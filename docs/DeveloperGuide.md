@@ -236,13 +236,16 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* busy SoC students
+* has a need to manage a significant number of tasks, such as assignments
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: TR4CKER is a desktop app that helps SoC students track their tasks, meet their deadlines, 
+and stay productive. It is optimized for Computing students familiar with CLI, who can manage their tasks efficiently 
+by typing in commands.
 
 
 ### User stories
@@ -305,7 +308,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Task**: An item to be completed by a certain deadline.
+* **CLI**: Command-Line Interface, a method of interacting with computer programs by typing lines of text. 
 
 --------------------------------------------------------------------------------------------------------------------
 
