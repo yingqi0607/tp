@@ -267,6 +267,73 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `TR4CKER`: application and the **Actor** is the `user`, unless specified otherwise)
 
+**Use case: Add a new task**
+
+**MSS**
+
+1.  User requests to add a new task.
+2.  TR4CKER requests for task details.
+3.  User provides more details.
+4.  TR4CKER inserts the new task to user's task list. 
+
+    Use case ends.
+
+**Extensions**
+
+* 3a. The given task details are invalid.
+    * 3a1. TR4CKER shows an error message.
+    
+    Use case resumes at step 3.
+      
+**Use case: Edit a task**
+
+**MSS**
+
+1.  Refer to list tasks use case.
+2.  User requests to edit a specific task in the list.
+3.  TR4CKER asks for the index.
+4.  User provides index.
+5.  TR4CKER asks for the field that he/she wishes to edit for the task. 
+6.  User provides field to edit.
+7.  TR4CKER asks for edited field.
+8.  User provides the new input.
+9.  TR4CKER updates the selected field accordingly.
+
+    Use case ends.
+
+**Extensions**
+
+* 4a. The given index is invalid.
+    * 4a1. TR4CKER shows an error message.
+    
+    Use case end.
+
+* 8a. The given input is invalid.
+    * 8a1. TR4CKER shows an error message.
+      
+    Use case resumes at step 8.
+    
+**Use case: Delete a task**
+    
+**MSS**
+
+1.  Refer to list tasks use case.
+2.  User requests to delete a specific task in the list.
+3.  TR4CKER asks for the index.
+4.  User provides index.
+5.  TR4CKER requests for confirmation. 
+6.  User confirms.
+7.  TR4CKER deletes the task from the list.
+
+    Use case ends.
+    
+**Extensions**
+
+* 4a. The given index is invalid.
+    * 4a1. TR4CKER shows an error message.
+  
+    Use case ends.
+      
 **Use case: Mark a task as done**
 
 **MSS**
@@ -291,8 +358,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. TR4CKER shows an error message.
 
       Use case ends.
-
-      
+  
 **Use case: View a task**
 
 **MSS**
@@ -331,7 +397,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   
   * 2a1. TR4CKER shows a 'no matches' error message.
   
-   Use case ends.
+    Use case ends.
 
 **Use case: List all tasks**
 
@@ -358,7 +424,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  TR4CKER application closes.
 
     Use case ends.
-
+    
 ### Non-Functional Requirements
 
 1.  TR4CKER should work on any _mainstream OS_ as long as it has Java `11` or above installed.
