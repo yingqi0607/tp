@@ -267,30 +267,87 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Mark a task as done**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to list tasks.
+2.  TR4CKER shows a list of all tasks.
+3.  User requests to mark a specific task in the list as done.
+4.  TR4CKER marks the task as done.
 
-    Use case ends.
-
-**Extensions**
+**Extentions**
 
 * 2a. The list is empty.
 
-  Use case ends.
-
+   * 2a1. TR4CKER shows an error message.
+    
+     Use case ends.
+    
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. TR4CKER shows an error message.
+
+      Use case resumes at step 3.
+
+      
+**Use case: View a task**
+
+**MSS**
+
+1.  User requests to list tasks.
+2.  TR4CKER shows a list of all tasks.
+3.  User requests to view a specific task in the list.
+4.  TR4CKER shows the details of the task.
+
+**Extentions**
+
+* 2a. The list is empty.
+
+    * 2a1. TR4CKER shows an error message.
+  
+    Use case ends.
+    
+* 3a. The given index is invalid.
+
+    * 3a1. TR4CKER shows an error message.
 
       Use case resumes at step 2.
+      
+**Use case: Find related tasks**
 
-*{More to be added}*
+1.  User requests to find tasks using specified keyword(s).
+2.  TR4CKER shows a list of all tasks that match the given keywords.
+
+**Extentions**
+
+* 2a. No tasks match the specified keyword(s).
+  
+  TR4CKER shows a 'no matches' error message.
+  
+  Use case ends.
+
+
+**Use case: List all tasks**
+
+**MSS**
+
+1.  User requests to list tasks.
+2.  TR4CKER shows a list of all tasks.
+3.  Use case ends.
+
+**Extentions**
+
+* 2a. List is empty.
+
+  * 2a1. TR4CKER shows an empty list.
+  
+**Use case: Exit the program**
+
+**MSS**
+
+1.  User requests to exit program.
+2.  TR4CKER application closes.
 
 ### Non-Functional Requirements
 
