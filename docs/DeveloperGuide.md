@@ -300,6 +300,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3.  User requests to view a specific task in the list.
 4.  TR4CKER shows the details of the task.
 
+    Use case ends. 
+    
 **Extensions**
 
 * 2a. The list is empty.
