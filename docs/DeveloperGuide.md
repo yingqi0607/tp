@@ -273,7 +273,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User requests to add a new task.
 2.  TR4CKER requests for task details.
-3.  User provides more details.
+3.  User provides task details.
 4.  TR4CKER inserts the new task to user's task list. 
 
     Use case ends.
