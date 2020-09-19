@@ -276,7 +276,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3.  User requests to mark a specific task in the list as done.
 4.  TR4CKER marks the task as done.
 
-**Extentions**
+**Extensions**
 
 * 2a. The list is empty.
 
@@ -300,7 +300,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3.  User requests to view a specific task in the list.
 4.  TR4CKER shows the details of the task.
 
-**Extentions**
+**Extensions**
 
 * 2a. The list is empty.
 
@@ -319,14 +319,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  User requests to find tasks using specified keyword(s).
 2.  TR4CKER shows a list of all tasks that match the given keywords.
 
-**Extentions**
+**Extensions**
 
 * 2a. No tasks match the specified keyword(s).
   
-  TR4CKER shows a 'no matches' error message.
+  * 2a1. TR4CKER shows a 'no matches' error message.
   
   Use case ends.
-
 
 **Use case: List all tasks**
 
@@ -334,9 +333,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User requests to list tasks.
 2.  TR4CKER shows a list of all tasks.
-3.  Use case ends.
+    
+    Use case ends.
 
-**Extentions**
+**Extensions**
 
 * 2a. List is empty.
 
@@ -348,6 +348,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User requests to exit program.
 2.  TR4CKER application closes.
+
+    Use case ends.
 
 ### Non-Functional Requirements
 
