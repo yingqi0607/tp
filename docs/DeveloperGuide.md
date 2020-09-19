@@ -236,13 +236,16 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* busy SoC students
+* has a need to manage a significant number of tasks, such as assignments
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: TR4CKER is a desktop app that helps SoC students track their tasks, meet their deadlines, 
+and stay productive. It is optimized for Computing students familiar with CLI, who can manage their tasks efficiently 
+by typing in commands.
 
 
 ### User stories
@@ -291,16 +294,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+1.  TR4CKER should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2.  TR4CKER should be able to hold up to **1000 tasks** without any noticeable sluggishness in performance for typical usage.
+3.  Users should be able to use TR4CKER without Internet connection, but accessing of User Guide or Developer Guide would require Internet.
+4.  Users with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to 
+    accomplish most of the tasks faster using commands than using the mouse.
+5.  Users should be able to retain their information when they switch laptops if they have the `data folder` (created on first load)
+    in the same directory as the `JAR file` on the other laptop.
+6.  The user interface should be intuitive enough for users who are not tech-savvy.
+7.  The response to any inputted commands should become visible within 5 seconds.
+8.  The source code should be open source.
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Task**: An item to be completed by a certain deadline.
+* **CLI**: Command-Line Interface, a method of interacting with computer programs by typing lines of text. 
 
 --------------------------------------------------------------------------------------------------------------------
 
