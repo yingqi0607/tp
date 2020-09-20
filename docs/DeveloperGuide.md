@@ -243,7 +243,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: TR4CKER is a desktop app that helps SoC students track their tasks, meet their deadlines, 
+**Value proposition**: TR4CKER is a desktop app that helps SoC students track their tasks, meet their deadlines,
 and stay productive. It is optimized for Computing students familiar with CLI, who can manage their tasks efficiently
 by typing in commands.
 
