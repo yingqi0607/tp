@@ -292,7 +292,7 @@ While the changes to code may be minimal, the test data will have to be updated 
 
 <div markdown="span" class="alert alert-warning">
 
-:exclamation: You must delete AddressBook’s storage file located at `/data/addressbook.json` before running it! Not doing so will cause AddressBook to default to an empty address book!
+:exclamation: You must delete AddressBook’s storage file located at `/data/tr4cker.json` before running it! Not doing so will cause AddressBook to default to an empty address book!
 
 </div>
 
@@ -341,7 +341,7 @@ save it with `Model#setPerson()`.
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
-        Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
+        Person editedPerson = new Person(personToEdit.getName(), personToEdit.getDeadline(), personToEdit.getEmail(),
                 personToEdit.getAddress(), remark, personToEdit.getTags());
 
         model.setPerson(personToEdit, editedPerson);
