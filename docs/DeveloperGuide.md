@@ -267,7 +267,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `TR4CKER`: application and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Add a new task**
+**Use case: UC01 - Add a new task**
 
 **MSS**
 
@@ -288,11 +288,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
     Use case resumes at step 4.
       
-**Use case: Edit a task**
+**Use case: UC02 - Edit a task**
 
 **MSS**
 
-1.  Refer to list tasks use case.
+1.  User requests to <u>list task (UC07)</u>.
 2.  User requests to edit a specific task in the list.
 3.  TR4CKER asks for the index.
 4.  User provides index.
@@ -319,11 +319,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
     Use case resumes at step 9.
     
-**Use case: Delete a task**
+**Use case: UC03 - Delete a task**
     
 **MSS**
 
-1.  Refer to list tasks use case.
+1.  User requests to <u>list task (UC07)</u>.
 2.  User requests to delete a specific task in the list.
 3.  TR4CKER asks for the index.
 4.  User provides index.
