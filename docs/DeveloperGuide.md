@@ -307,7 +307,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 4a. TR4CKER detects an error in entered task index.
-    * 4a1. TR4CKER shows an error message.
+    * 4a1. TR4CK:ER shows an error message.
     
     Use case end.
 
@@ -340,60 +340,46 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   
     Use case ends.
       
-**Use case: Mark a task as done**
+**Use case: UC04 - Mark a task as done**
 
 **MSS**
 
-1.  User requests to list tasks.
-2.  TR4CKER shows a list of all tasks.
-3.  User requests to mark a specific task in the list as done.
-4.  TR4CKER marks the task as done.
+1.  User requests to <u>list task (UC07)</u>.
+2.  User requests to mark a specific task in the list as done.
+3.  TR4CKER marks the task as done.
 
     Use case ends.
 
 **Extensions**
-
-* 2a. The list is empty.
-
-   * 2a1. TR4CKER shows an error message.
     
+* 2a. TR4CKER detects an error in entered task index.
+
+    * 2a1. TR4CKER shows an error message.
+
      Use case ends.
-    
-* 3a. The given index is invalid.
-
-    * 3a1. TR4CKER shows an error message.
-
-      Use case ends.
   
-**Use case: View a task**
+**Use case: UC05 - View a task**
 
 **MSS**
 
-1.  User requests to list tasks.
-2.  TR4CKER shows a list of all tasks.
-3.  User requests to view a specific task in the list.
-4.  TR4CKER shows the details of the task.
+1.  User requests to <u>list task (UC07)</u>.
+2.  User requests to view a specific task in the list.
+3.  TR4CKER shows the details of the task.
 
     Use case ends. 
     
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. TR4CKER detects an error in entered task index.
 
     * 2a1. TR4CKER shows an error message.
-  
-      Use case ends.
-    
-* 3a. The given index is invalid.
 
-    * 3a1. TR4CKER shows an error message.
-
-      Use case ends.
+    Use case ends.
       
-**Use case: Find related tasks**
+**Use case: UC06 - Find related tasks**
 
 1.  User requests to find tasks using specified keyword(s).
-2.  TR4CKER shows a list of all tasks that match the given keywords.
+2.  TR4CKER shows a list of all tasks that match the given keyword(s).
 
     Use case ends.
 
@@ -401,11 +387,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. No tasks match the specified keyword(s).
   
-  * 2a1. TR4CKER shows a 'no matches' error message.
+    * 2a1. TR4CKER shows a 'no matches' error message.
   
     Use case ends.
 
-**Use case: List all tasks**
+**Use case: UC07 - List all tasks**
 
 **MSS**
 
@@ -416,13 +402,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. List is empty.
+* 2a. TR4CKER's task list is empty.
 
-  * 2a1. TR4CKER shows an empty list.
+    * 2a1. TR4CKER shows an empty list.
   
     Use case ends.
   
-**Use case: Exit the program**
+**Use case: UC08 - Exit the program**
 
 **MSS**
 
