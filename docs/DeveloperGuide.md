@@ -307,7 +307,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 4a. TR4CKER detects an error in entered task index.
-    * 4a1. TR4CK:ER shows an error message.
+    * 4a1. TR4CKER shows an error message.
     
     Use case end.
 
