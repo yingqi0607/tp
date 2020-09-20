@@ -244,7 +244,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * is reasonably comfortable using CLI apps
 
 **Value proposition**: TR4CKER is a desktop app that helps SoC students track their tasks, meet their deadlines, 
-and stay productive. It is optimized for Computing students familiar with CLI, who can manage their tasks efficiently 
+and stay productive. It is optimized for Computing students familiar with CLI, who can manage their tasks efficiently
 by typing in commands.
 
 
@@ -274,7 +274,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  User requests to add a new task.
 2.  TR4CKER requests for task details.
 3.  User provides task details.
-4.  TR4CKER inserts the new task to user's task list. 
+4.  TR4CKER inserts the new task to user's task list.
 
     Use case ends.
 
@@ -283,11 +283,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 3a. TR4CKER detects an error in entered task details.
     * 3a1. TR4CKER requests for the correct task details.
     * 3a2. User enters the new task details.
-    
+
     Steps 3a1-3a2 are repeated until the details entered are correct.
-    
+
     Use case resumes at step 4.
-      
+
 **Use case: UC02 - Edit a task**
 
 **MSS**
@@ -296,7 +296,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  User requests to edit a specific task in the list.
 3.  TR4CKER asks for the index.
 4.  User provides index.
-5.  TR4CKER asks for the field that User wishes to edit for the task. 
+5.  TR4CKER asks for the field that User wishes to edit for the task.
 6.  User provides field to edit.
 7.  TR4CKER asks for the edited task field.
 8.  User provides the new edited task field.
@@ -308,38 +308,38 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 4a. TR4CKER detects an error in entered task index.
     * 4a1. TR4CKER shows an error message.
-    
+
     Use case end.
 
 * 8a. TR4CKER detects an error in edited task field.
     * 8a1. TR4CKER requests for the correct edited field.
     * 8a2. User enters the new edited field.
-    
+
     Steps 8a1-8a2 are repeated until the edited field entered is correct.
-    
+
     Use case resumes at step 9.
-    
+
 **Use case: UC03 - Delete a task**
-    
+
 **MSS**
 
 1.  User requests to <u>list task (UC07)</u>.
 2.  User requests to delete a specific task in the list.
 3.  TR4CKER asks for the index.
 4.  User provides index.
-5.  TR4CKER requests for confirmation. 
+5.  TR4CKER requests for confirmation.
 6.  User confirms.
 7.  TR4CKER deletes the task from the list.
 
     Use case ends.
-    
+
 **Extensions**
 
 * 4a. TR4CKER detects an error in entered task index.
     * 4a1. TR4CKER shows an error message.
-  
+
     Use case ends.
-      
+
 **Use case: UC04 - Mark a task as done**
 
 **MSS**
@@ -351,13 +351,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 
 **Extensions**
-    
+
 * 2a. TR4CKER detects an error in entered task index.
 
     * 2a1. TR4CKER shows an error message.
 
      Use case ends.
-  
+
 **Use case: UC05 - View a task**
 
 **MSS**
@@ -366,8 +366,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  User requests to view a specific task in the list.
 3.  TR4CKER shows the details of the task.
 
-    Use case ends. 
-    
+    Use case ends.
+
 **Extensions**
 
 * 2a. TR4CKER detects an error in entered task index.
@@ -375,7 +375,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2a1. TR4CKER shows an error message.
 
     Use case ends.
-      
+
 **Use case: UC06 - Find related tasks**
 
 1.  User requests to find tasks using specified keyword(s).
@@ -386,9 +386,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 2a. No tasks match the specified keyword(s).
-  
+
     * 2a1. TR4CKER shows a 'no matches' error message.
-  
+
     Use case ends.
 
 **Use case: UC07 - List all tasks**
@@ -397,7 +397,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User requests to list tasks.
 2.  TR4CKER shows a list of all tasks.
-    
+
     Use case ends.
 
 **Extensions**
@@ -405,9 +405,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2a. TR4CKER's task list is empty.
 
     * 2a1. TR4CKER shows an empty list.
-  
+
     Use case ends.
-  
+
 **Use case: UC08 - Exit the program**
 
 **MSS**
@@ -416,13 +416,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  TR4CKER application closes.
 
     Use case ends.
-    
+
 ### Non-Functional Requirements
 
 1.  TR4CKER should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  TR4CKER should be able to hold up to **1000 tasks** without any noticeable sluggishness in performance for typical usage.
 3.  Users should be able to use TR4CKER without Internet connection, but accessing of User Guide or Developer Guide would require Internet.
-4.  Users with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to 
+4.  Users with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to
     accomplish most of the tasks faster using commands than using the mouse.
 5.  Users should be able to retain their information when they switch laptops if they have the `data folder` (created on first load)
     in the same directory as the `JAR file` on the other laptop.
@@ -434,7 +434,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Task**: An item to be completed by a certain deadline.
-* **CLI**: Command-Line Interface, a method of interacting with computer programs by typing lines of text. 
+* **CLI**: Command-Line Interface, a method of interacting with computer programs by typing lines of text.
 
 --------------------------------------------------------------------------------------------------------------------
 
