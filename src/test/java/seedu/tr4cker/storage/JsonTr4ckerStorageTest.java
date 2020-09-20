@@ -63,7 +63,7 @@ public class JsonTr4ckerStorageTest {
 
     @Test
     public void readAndSaveTr4cker_allInOrder_success() throws Exception {
-        Path filePath = testFolder.resolve("TempAddressBook.json");
+        Path filePath = testFolder.resolve("TempTr4cker.json");
         Tr4cker original = getTypicalTr4cker();
         JsonTr4cker jsonTr4ckerStorage = new JsonTr4cker(filePath);
 

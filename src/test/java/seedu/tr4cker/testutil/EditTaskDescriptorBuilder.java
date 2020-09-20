@@ -8,9 +8,9 @@ import seedu.tr4cker.logic.commands.EditCommand;
 import seedu.tr4cker.logic.commands.EditCommand.EditTaskDescriptor;
 import seedu.tr4cker.model.tag.Tag;
 import seedu.tr4cker.model.task.Address;
+import seedu.tr4cker.model.task.Deadline;
 import seedu.tr4cker.model.task.Email;
 import seedu.tr4cker.model.task.Name;
-import seedu.tr4cker.model.task.Phone;
 import seedu.tr4cker.model.task.Task;
 
 /**
@@ -34,7 +34,7 @@ public class EditTaskDescriptorBuilder {
     public EditTaskDescriptorBuilder(Task task) {
         descriptor = new EditCommand.EditTaskDescriptor();
         descriptor.setName(task.getName());
-        descriptor.setPhone(task.getPhone());
+        descriptor.setDeadline(task.getDeadline());
         descriptor.setEmail(task.getEmail());
         descriptor.setAddress(task.getAddress());
         descriptor.setTags(task.getTags());
@@ -49,10 +49,10 @@ public class EditTaskDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code EditTaskDescriptor} that we are building.
+     * Sets the {@code Deadline} of the {@code EditTaskDescriptor} that we are building.
      */
-    public EditTaskDescriptorBuilder withPhone(String phone) {
-        descriptor.setPhone(new Phone(phone));
+    public EditTaskDescriptorBuilder withDeadline(String deadline) {
+        descriptor.setDeadline(new Deadline(deadline));
         return this;
     }
 
