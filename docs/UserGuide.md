@@ -14,7 +14,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `tr4cker.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
 
@@ -26,7 +26,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
    * **`list`** : Lists all contacts.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * **`add`**`n/John Doe d/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
 
    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
 
@@ -54,7 +54,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. if the command specifies `n/NAME d/DEADLINE`, `d/DEADLINE n/NAME` is also acceptable.
 
 </div>
 
@@ -71,15 +71,15 @@ Format: `help`
 
 Adds a person to the address book.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add n/NAME d/DEADLINE e/EMAIL a/ADDRESS [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add n/John Doe d/98765432 e/johnd@example.com a/John street, block 123, #01-01`
+* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison d/1234567 t/criminal`
 
 ### Listing all persons : `list`
 
@@ -91,7 +91,7 @@ Format: `list`
 
 Edits an existing person in the address book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [d/DEADLINE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -101,7 +101,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
     specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
+*  `edit 1 d/91234567 e/johndoe@example.com` Edits the deadline number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
 ### Locating persons by name: `find`
@@ -169,10 +169,10 @@ _{explain the feature here}_
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add** | `add n/NAME d/DEADLINE e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho d/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Edit** | `edit INDEX [n/NAME] [d/DEADLINE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`
