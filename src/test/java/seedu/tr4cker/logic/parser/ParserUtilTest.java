@@ -22,13 +22,13 @@ import seedu.tr4cker.model.task.Name;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
-    private static final String INVALID_DEADLINE = "+651234";
+    private static final String INVALID_DEADLINE = "2020-90-90 9999";
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = "Rachel Walker";
-    private static final String VALID_DEADLINE = "123456";
+    private static final String VALID_DEADLINE = "2020-12-31 2359";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_TAG_1 = "friend";

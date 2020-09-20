@@ -27,14 +27,14 @@ public class DeadlineTest {
         // invalid deadline times
         assertFalse(Deadline.isValidDeadline("")); // empty string
         assertFalse(Deadline.isValidDeadline(" ")); // spaces only
-        assertFalse(Deadline.isValidDeadline("91")); // less than 3 numbers
+        assertFalse(Deadline.isValidDeadline("2020-10-10")); // only has date
         assertFalse(Deadline.isValidDeadline("deadline")); // non-numeric
-        assertFalse(Deadline.isValidDeadline("9011p041")); // alphabets within digits
-        assertFalse(Deadline.isValidDeadline("9312 1534")); // spaces within digits
+        assertFalse(Deadline.isValidDeadline("2020-Oct-10 2359")); // alphabets within digits
+        assertFalse(Deadline.isValidDeadline("2020-10-10   2359")); // additional spaces within digits
 
         // valid deadline times
-        assertTrue(Deadline.isValidDeadline("911")); // exactly 3 numbers
-        assertTrue(Deadline.isValidDeadline("93121534"));
-        assertTrue(Deadline.isValidDeadline("124293842033123")); // long deadline times
+        assertTrue(Deadline.isValidDeadline("2020-02-02 0000"));
+        assertTrue(Deadline.isValidDeadline("2020-10-10 2359"));
+        assertTrue(Deadline.isValidDeadline("2020-09-23 1800"));
     }
 }

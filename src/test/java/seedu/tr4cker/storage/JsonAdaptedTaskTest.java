@@ -19,7 +19,7 @@ import seedu.tr4cker.model.task.Name;
 
 public class JsonAdaptedTaskTest {
     private static final String INVALID_NAME = "R@chel";
-    private static final String INVALID_DEADLINE = "+651234";
+    private static final String INVALID_DEADLINE = "2020+";
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";

@@ -17,7 +17,7 @@ import seedu.tr4cker.model.util.SampleDataUtil;
 public class TaskBuilder {
 
     public static final String DEFAULT_NAME = "Alice Pauline";
-    public static final String DEFAULT_DEADLINE = "85355255";
+    public static final String DEFAULT_DEADLINE = "2020-12-31 2359";
     public static final String DEFAULT_EMAIL = "alice@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
