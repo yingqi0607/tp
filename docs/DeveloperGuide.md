@@ -280,10 +280,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 3a. The given task details are invalid.
-    * 3a1. TR4CKER shows an error message.
+* 3a. TR4CKER detects an error in entered task details.
+    * 3a1. TR4CKER requests for the correct task details.
+    * 3a2. User enters the new task details.
     
-    Use case resumes at step 3.
+    Steps 3a1-3a2 are repeated until the details entered are correct.
+    
+    Use case resumes at step 4.
       
 **Use case: Edit a task**
 
@@ -293,25 +296,28 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  User requests to edit a specific task in the list.
 3.  TR4CKER asks for the index.
 4.  User provides index.
-5.  TR4CKER asks for the field that he/she wishes to edit for the task. 
+5.  TR4CKER asks for the field that User wishes to edit for the task. 
 6.  User provides field to edit.
-7.  TR4CKER asks for edited field.
-8.  User provides the new input.
+7.  TR4CKER asks for the edited task field.
+8.  User provides the new edited task field.
 9.  TR4CKER updates the selected field accordingly.
 
     Use case ends.
 
 **Extensions**
 
-* 4a. The given index is invalid.
+* 4a. TR4CKER detects an error in entered task index.
     * 4a1. TR4CKER shows an error message.
     
     Use case end.
 
-* 8a. The given input is invalid.
-    * 8a1. TR4CKER shows an error message.
-      
-    Use case resumes at step 8.
+* 8a. TR4CKER detects an error in edited task field.
+    * 8a1. TR4CKER requests for the correct edited field.
+    * 8a2. User enters the new edited field.
+    
+    Steps 8a1-8a2 are repeated until the edited field entered is correct.
+    
+    Use case resumes at step 9.
     
 **Use case: Delete a task**
     
@@ -329,7 +335,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
 **Extensions**
 
-* 4a. The given index is invalid.
+* 4a. TR4CKER detects an error in entered task index.
     * 4a1. TR4CKER shows an error message.
   
     Use case ends.
