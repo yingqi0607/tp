@@ -18,9 +18,9 @@ Class ReadOnlyUserPrefs
 Package Person {
 Class Person
 Class Address
-Class Email
+Class CompletionStatus
 Class Name
-Class Phone
+Class Deadline
 Class UniquePersonList
 }
 
@@ -43,14 +43,14 @@ UserPrefs .up.|> ReadOnlyUserPrefs
 AddressBook *--> "1" UniquePersonList
 UniquePersonList o--> "*" Person
 Person *--> Name
-Person *--> Phone
-Person *--> Email
+Person *--> Deadline
+Person *--> CompletionStatus
 Person *--> Address
 Person *--> "*" Tag
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+Name -[hidden]right-> Deadline
+Deadline -[hidden]right-> Address
+Address -[hidden]right-> CompletionStatus
 
 ModelManager -->"1" Person : filtered list
 @enduml

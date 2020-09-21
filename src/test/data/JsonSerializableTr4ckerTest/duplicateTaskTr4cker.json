@@ -1,0 +1,14 @@
+{
+  "tasks": [ {
+    "name": "Alice Pauline",
+    "deadline": "2020-10-20 1800",
+    "completionStatus": 0,
+    "address": "123, Jurong West Ave 6, #08-111",
+    "tagged": [ "friends" ]
+  }, {
+    "name": "Alice Pauline",
+    "deadline": "2020-10-20 1800",
+    "completionStatus": 0,
+    "address": "4th street"
+  } ]
+}
