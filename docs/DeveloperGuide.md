@@ -408,15 +408,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: UC08 - Exit the program**
-
-**MSS**
-
-1.  User requests to exit program.
-2.  TR4CKER application closes.
-
-    Use case ends.
-
 ### Non-Functional Requirements
 
 1.  TR4CKER should work on any _mainstream OS_ as long as it has Java `11` or above installed.

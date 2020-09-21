@@ -18,7 +18,7 @@ public class Task {
     // Identity fields
     private final Name name;
     private final Deadline deadline;
-    private final Email email;
+    private final CompletionStatus completionStatus;
 
     // Data fields
     private final Address address;
@@ -27,11 +27,11 @@ public class Task {
     /**
      * Every field must be present and not null.
      */
-    public Task(Name name, Deadline deadline, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, deadline, email, address, tags);
+    public Task(Name name, Deadline deadline, CompletionStatus completionStatus, Address address, Set<Tag> tags) {
+        requireAllNonNull(name, deadline, completionStatus, address, tags);
         this.name = name;
         this.deadline = deadline;
-        this.email = email;
+        this.completionStatus = completionStatus;
         this.address = address;
         this.tags.addAll(tags);
     }
@@ -44,8 +44,8 @@ public class Task {
         return deadline;
     }
 
-    public Email getEmail() {
-        return email;
+    public CompletionStatus getCompletionStatus() {
+        return completionStatus;
     }
 
     public Address getAddress() {
@@ -71,7 +71,7 @@ public class Task {
 
         return otherTask != null
                 && otherTask.getName().equals(getName())
-                && (otherTask.getDeadline().equals(getDeadline()) || otherTask.getEmail().equals(getEmail()));
+                && (otherTask.getDeadline().equals(getDeadline()));
     }
 
     /**
@@ -91,7 +91,7 @@ public class Task {
         Task otherTask = (Task) other;
         return otherTask.getName().equals(getName())
                 && otherTask.getDeadline().equals(getDeadline())
-                && otherTask.getEmail().equals(getEmail())
+                && otherTask.getCompletionStatus().equals(getCompletionStatus())
                 && otherTask.getAddress().equals(getAddress())
                 && otherTask.getTags().equals(getTags());
     }
@@ -99,7 +99,7 @@ public class Task {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, deadline, email, address, tags);
+        return Objects.hash(name, deadline, completionStatus, address, tags);
     }
 
     @Override
@@ -108,8 +108,8 @@ public class Task {
         builder.append(getName())
                 .append(" Deadline: ")
                 .append(getDeadline())
-                .append(" Email: ")
-                .append(getEmail())
+                .append(" CompletionStatus: ")
+                .append(getCompletionStatus())
                 .append(" Address: ")
                 .append(getAddress())
                 .append(" Tags: ");

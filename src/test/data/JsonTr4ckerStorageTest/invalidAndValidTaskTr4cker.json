@@ -2,12 +2,12 @@
   "tasks": [ {
     "name": "Valid Person",
     "deadline": "2021-01-01 0000",
-    "email": "hans@example.com",
+    "completionStatus": 0,
     "address": "4th street"
   }, {
     "name": "Person With Invalid Deadline Field",
     "deadline": "20211-01",
-    "email": "hans@example.com",
+    "completionStatus": 0,
     "address": "4th street"
   } ]
 }

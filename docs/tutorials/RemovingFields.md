@@ -75,7 +75,7 @@ private Label address;
 ...
 <Label fx:id="deadline" styleClass="cell_small_label" text="\$deadline" />
 <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
-<Label fx:id="email" styleClass="cell_small_label" text="\$email" />
+<Label fx:id="completionStatus" styleClass="cell_small_label" text="\$completionStatus" />
 ...
 ```
 
@@ -94,7 +94,7 @@ In `src/test/data/`, data meant for testing purposes are stored. While keeping t
   "persons": [ {
     "name": "Person with invalid name field: Ha!ns Mu@ster",
     "deadline": "9482424",
-    "email": "hans@example.com",
+    "completionStatus": 20,
     "address": "4th street"
   } ]
 }
