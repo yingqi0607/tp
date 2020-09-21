@@ -12,8 +12,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.tr4cker.commons.exceptions.IllegalValueException;
 import seedu.tr4cker.model.tag.Tag;
 import seedu.tr4cker.model.task.Address;
+import seedu.tr4cker.model.task.CompletionStatus;
 import seedu.tr4cker.model.task.Deadline;
-import seedu.tr4cker.model.task.Email;
 import seedu.tr4cker.model.task.Name;
 import seedu.tr4cker.model.task.Task;
 
@@ -26,7 +26,7 @@ class JsonAdaptedTask {
 
     private final String name;
     private final String deadline;
-    private final String email;
+    private final int completionStatus;
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
@@ -35,11 +35,12 @@ class JsonAdaptedTask {
      */
     @JsonCreator
     public JsonAdaptedTask(@JsonProperty("name") String name, @JsonProperty("deadline") String deadline,
-                           @JsonProperty("email") String email, @JsonProperty("address") String address,
+                           @JsonProperty("completionStatus") int completionStatus,
+                           @JsonProperty("address") String address,
                            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.deadline = deadline;
-        this.email = email;
+        this.completionStatus = completionStatus;
         this.address = address;
         if (tagged != null) {
             this.tagged.addAll(tagged);
@@ -52,7 +53,7 @@ class JsonAdaptedTask {
     public JsonAdaptedTask(Task source) {
         name = source.getName().fullName;
         deadline = source.getDeadline().value;
-        email = source.getEmail().value;
+        completionStatus = source.getCompletionStatus().value;
         address = source.getAddress().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -87,16 +88,17 @@ class JsonAdaptedTask {
         }
         final Deadline modelDeadline = new Deadline(deadline);
 
-        if (email == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
+        /*
+        no null check for CompletionStatus
+         */
+        if (!CompletionStatus.isValidCompletionStatus(completionStatus)) {
+            throw new IllegalValueException(CompletionStatus.MESSAGE_CONSTRAINTS);
         }
-        if (!Email.isValidEmail(email)) {
-            throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
-        }
-        final Email modelEmail = new Email(email);
+        final CompletionStatus modelCompletionStatus = new CompletionStatus(completionStatus);
 
         if (address == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Address.class.getSimpleName()));
         }
         if (!Address.isValidAddress(address)) {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
@@ -104,7 +106,7 @@ class JsonAdaptedTask {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(taskTags);
-        return new Task(modelName, modelDeadline, modelEmail, modelAddress, modelTags);
+        return new Task(modelName, modelDeadline, modelCompletionStatus, modelAddress, modelTags);
     }
 
 }

@@ -3,8 +3,8 @@ package seedu.tr4cker.model.task;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_COMPLETION_STATUS_BOB;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_DEADLINE_BOB;
-import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.tr4cker.testutil.Assert.assertThrows;
@@ -31,9 +31,9 @@ public class TaskTest {
         // null -> returns false
         assertFalse(ALICE.isSameTask(null));
 
-        // different deadline and email -> returns false
+        // different deadline and address -> returns false
         Task editedAlice =
-                new TaskBuilder(ALICE).withDeadline(VALID_DEADLINE_BOB).withEmail(VALID_EMAIL_BOB).build();
+                new TaskBuilder(ALICE).withDeadline(VALID_DEADLINE_BOB).withAddress(VALID_ADDRESS_BOB).build();
         assertFalse(ALICE.isSameTask(editedAlice));
 
         // different name -> returns false
@@ -41,16 +41,16 @@ public class TaskTest {
         assertFalse(ALICE.isSameTask(editedAlice));
 
         // same name, same deadline, different attributes -> returns true
-        editedAlice = new TaskBuilder(ALICE).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withTags(VALID_TAG_HUSBAND).build();
+        editedAlice = new TaskBuilder(ALICE).withCompletionStatus(VALID_COMPLETION_STATUS_BOB)
+                .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSameTask(editedAlice));
 
-        // same name, same email, different attributes -> returns true
+        // same name, different attributes -> returns false
         editedAlice = new TaskBuilder(ALICE).withDeadline(VALID_DEADLINE_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND).build();
-        assertTrue(ALICE.isSameTask(editedAlice));
+        assertFalse(ALICE.isSameTask(editedAlice));
 
-        // same name, same deadline, same email, different attributes -> returns true
+        // same name, same deadline, different attributes -> returns true
         editedAlice = new TaskBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSameTask(editedAlice));
     }
@@ -81,9 +81,9 @@ public class TaskTest {
         editedAlice = new TaskBuilder(ALICE).withDeadline(VALID_DEADLINE_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
-        // different email -> returns false
-        editedAlice = new TaskBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
+        // different completionStatus -> returns true
+        editedAlice = new TaskBuilder(ALICE).withCompletionStatus(VALID_COMPLETION_STATUS_BOB).build();
+        assertTrue(ALICE.equals(editedAlice));
 
         // different tr4cker -> returns false
         editedAlice = new TaskBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();

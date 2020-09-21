@@ -6,7 +6,6 @@ import static seedu.tr4cker.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_DEADLINE_BOB;
-import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
@@ -44,11 +43,7 @@ public class EditTaskDescriptorTest {
         editedAmy = new EditTaskDescriptorBuilder(DESC_AMY).withDeadline(VALID_DEADLINE_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
-        // different email -> returns false
-        editedAmy = new EditTaskDescriptorBuilder(DESC_AMY).withEmail(VALID_EMAIL_BOB).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
-
-        // different tr4cker -> returns false
+        // different address -> returns false
         editedAmy = new EditTaskDescriptorBuilder(DESC_AMY).withAddress(VALID_ADDRESS_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 

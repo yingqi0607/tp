@@ -407,15 +407,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2a1. TR4CKER shows an empty list.
   
     Use case ends.
-  
-**Use case: UC08 - Exit the program**
-
-**MSS**
-
-1.  User requests to exit program.
-2.  TR4CKER application closes.
-
-    Use case ends.
     
 ### Non-Functional Requirements
 

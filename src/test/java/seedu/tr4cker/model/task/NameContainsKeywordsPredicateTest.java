@@ -67,10 +67,10 @@ public class NameContainsKeywordsPredicateTest {
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("Carol"));
         assertFalse(predicate.test(new TaskBuilder().withName("Alice Bob").build()));
 
-        // Keywords match deadline, email and address, but does not match name
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("2020-12-31", "2359", "alice@email.com",
+        // Keywords match deadline and address, but does not match name
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("2020-12-31", "2359",
                 "Main", "Street"));
         assertFalse(predicate.test(new TaskBuilder().withName("Alice").withDeadline("2020-12-31 2359")
-                .withEmail("alice@email.com").withAddress("Main Street").build()));
+                .withCompletionStatus(0).withAddress("Main Street").build()));
     }
 }

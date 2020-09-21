@@ -16,6 +16,6 @@ Person -up-> "*" Tag
 
 Person *--> Name
 Person *--> Deadline
-Person *--> Email
+Person *--> CompletionStatus
 Person *--> Address
 @enduml

@@ -3,7 +3,6 @@ package seedu.tr4cker.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_DEADLINE;
-import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.tr4cker.model.Model.PREDICATE_SHOW_ALL_TASKS;
@@ -21,8 +20,8 @@ import seedu.tr4cker.logic.commands.exceptions.CommandException;
 import seedu.tr4cker.model.Model;
 import seedu.tr4cker.model.tag.Tag;
 import seedu.tr4cker.model.task.Address;
+import seedu.tr4cker.model.task.CompletionStatus;
 import seedu.tr4cker.model.task.Deadline;
-import seedu.tr4cker.model.task.Email;
 import seedu.tr4cker.model.task.Name;
 import seedu.tr4cker.model.task.Task;
 
@@ -39,12 +38,10 @@ public class EditCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_DEADLINE + "deadline] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_DEADLINE + "2020-10-10 1010 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+            + PREFIX_DEADLINE + "2020-10-10 1010 ";
 
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Task: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -95,11 +92,12 @@ public class EditCommand extends Command {
 
         Name updatedName = editTaskDescriptor.getName().orElse(taskToEdit.getName());
         Deadline updatedDeadline = editTaskDescriptor.getDeadline().orElse(taskToEdit.getDeadline());
-        Email updatedEmail = editTaskDescriptor.getEmail().orElse(taskToEdit.getEmail());
+        CompletionStatus updatedCompletionStatus =
+                taskToEdit.getCompletionStatus(); // edit command does not allow editing completion status
         Address updatedAddress = editTaskDescriptor.getAddress().orElse(taskToEdit.getAddress());
         Set<Tag> updatedTags = editTaskDescriptor.getTags().orElse(taskToEdit.getTags());
 
-        return new Task(updatedName, updatedDeadline, updatedEmail, updatedAddress, updatedTags);
+        return new Task(updatedName, updatedDeadline, updatedCompletionStatus, updatedAddress, updatedTags);
     }
 
     @Override
@@ -127,7 +125,6 @@ public class EditCommand extends Command {
     public static class EditTaskDescriptor {
         private Name name;
         private Deadline deadline;
-        private Email email;
         private Address address;
         private Set<Tag> tags;
 
@@ -140,7 +137,6 @@ public class EditCommand extends Command {
         public EditTaskDescriptor(EditTaskDescriptor toCopy) {
             setName(toCopy.name);
             setDeadline(toCopy.deadline);
-            setEmail(toCopy.email);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
         }
@@ -149,7 +145,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, deadline, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, deadline, address, tags);
         }
 
         public void setName(Name name) {
@@ -166,14 +162,6 @@ public class EditCommand extends Command {
 
         public Optional<Deadline> getDeadline() {
             return Optional.ofNullable(deadline);
-        }
-
-        public void setEmail(Email email) {
-            this.email = email;
-        }
-
-        public Optional<Email> getEmail() {
-            return Optional.ofNullable(email);
         }
 
         public void setAddress(Address address) {
@@ -218,7 +206,6 @@ public class EditCommand extends Command {
 
             return getName().equals(e.getName())
                     && getDeadline().equals(e.getDeadline())
-                    && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
                     && getTags().equals(e.getTags());
         }

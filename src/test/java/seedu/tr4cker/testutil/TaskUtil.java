@@ -2,7 +2,6 @@ package seedu.tr4cker.testutil;
 
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_DEADLINE;
-import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -32,7 +31,7 @@ public class TaskUtil {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + task.getName().fullName + " ");
         sb.append(PREFIX_DEADLINE + task.getDeadline().value + " ");
-        sb.append(PREFIX_EMAIL + task.getEmail().value + " ");
+        // Completion status not included
         sb.append(PREFIX_ADDRESS + task.getAddress().value + " ");
         task.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
@@ -47,7 +46,7 @@ public class TaskUtil {
         StringBuilder sb = new StringBuilder();
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
         descriptor.getDeadline().ifPresent(deadline -> sb.append(PREFIX_DEADLINE).append(deadline.value).append(" "));
-        descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
+        // Completion status not included
         descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
