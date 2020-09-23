@@ -14,7 +14,6 @@ You can reach us at the following emails:
 
 <img src="images/johndoe.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
 [[github](https://github.com/johndoe)]
 [[portfolio](team/johndoe.md)]
 
@@ -22,10 +21,10 @@ You can reach us at the following emails:
 
 ### Chia Wen Ling
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/cwenling.png" width="200px">
 
 [[github](http://github.com/cwenling)]
-[[portfolio](team/chiawenling.md)]
+[[portfolio](team/cwenling.md)]
 
 * Role: Developer
 * Responsibilities: Code Quality + Integration
