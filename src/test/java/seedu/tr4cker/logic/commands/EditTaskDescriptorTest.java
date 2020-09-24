@@ -2,11 +2,11 @@ package seedu.tr4cker.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.tr4cker.logic.commands.CommandTestUtil.DESC_AMY;
-import static seedu.tr4cker.logic.commands.CommandTestUtil.DESC_BOB;
-import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_DEADLINE_BOB;
-import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.tr4cker.logic.commands.CommandTestUtil.DESC_1;
+import static seedu.tr4cker.logic.commands.CommandTestUtil.DESC_2;
+import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_ADDRESS_2;
+import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_DEADLINE_2;
+import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_NAME_2;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
 import org.junit.jupiter.api.Test;
@@ -19,36 +19,36 @@ public class EditTaskDescriptorTest {
     @Test
     public void equals() {
         // same values -> returns true
-        EditTaskDescriptor descriptorWithSameValues = new EditCommand.EditTaskDescriptor(DESC_AMY);
-        assertTrue(DESC_AMY.equals(descriptorWithSameValues));
+        EditTaskDescriptor descriptorWithSameValues = new EditCommand.EditTaskDescriptor(DESC_1);
+        assertTrue(DESC_1.equals(descriptorWithSameValues));
 
         // same object -> returns true
-        assertTrue(DESC_AMY.equals(DESC_AMY));
+        assertTrue(DESC_1.equals(DESC_1));
 
         // null -> returns false
-        assertFalse(DESC_AMY.equals(null));
+        assertFalse(DESC_1.equals(null));
 
         // different types -> returns false
-        assertFalse(DESC_AMY.equals(5));
+        assertFalse(DESC_1.equals(5));
 
         // different values -> returns false
-        assertFalse(DESC_AMY.equals(DESC_BOB));
+        assertFalse(DESC_1.equals(DESC_2));
 
         // different name -> returns false
         EditCommand.EditTaskDescriptor editedAmy =
-                new EditTaskDescriptorBuilder(DESC_AMY).withName(VALID_NAME_BOB).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
+                new EditTaskDescriptorBuilder(DESC_1).withName(VALID_NAME_2).build();
+        assertFalse(DESC_1.equals(editedAmy));
 
         // different deadline -> returns false
-        editedAmy = new EditTaskDescriptorBuilder(DESC_AMY).withDeadline(VALID_DEADLINE_BOB).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
+        editedAmy = new EditTaskDescriptorBuilder(DESC_1).withDeadline(VALID_DEADLINE_2).build();
+        assertFalse(DESC_1.equals(editedAmy));
 
         // different address -> returns false
-        editedAmy = new EditTaskDescriptorBuilder(DESC_AMY).withAddress(VALID_ADDRESS_BOB).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
+        editedAmy = new EditTaskDescriptorBuilder(DESC_1).withAddress(VALID_ADDRESS_2).build();
+        assertFalse(DESC_1.equals(editedAmy));
 
         // different tags -> returns false
-        editedAmy = new EditTaskDescriptorBuilder(DESC_AMY).withTags(VALID_TAG_HUSBAND).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
+        editedAmy = new EditTaskDescriptorBuilder(DESC_1).withTags(VALID_TAG_HUSBAND).build();
+        assertFalse(DESC_1.equals(editedAmy));
     }
 }

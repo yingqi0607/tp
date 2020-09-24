@@ -25,23 +25,23 @@ import seedu.tr4cker.testutil.EditTaskDescriptorBuilder;
  */
 public class CommandTestUtil {
 
-    public static final String VALID_NAME_AMY = "Amy Bee";
-    public static final String VALID_NAME_BOB = "Bob Choo";
-    public static final String VALID_DEADLINE_AMY = "2020-10-20 1800";
-    public static final String VALID_DEADLINE_BOB = "2020-09-30 2359";
-    public static final int VALID_COMPLETION_STATUS_AMY = 0;
-    public static final int VALID_COMPLETION_STATUS_BOB = 0;
-    public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
-    public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
+    public static final String VALID_NAME_1 = "Amy Bee";
+    public static final String VALID_NAME_2 = "Bob Choo";
+    public static final String VALID_DEADLINE_1 = "2020-10-20 1800";
+    public static final String VALID_DEADLINE_2 = "2020-09-30 2359";
+    public static final int VALID_COMPLETION_STATUS_1 = 0;
+    public static final int VALID_COMPLETION_STATUS_2 = 0;
+    public static final String VALID_ADDRESS_1 = "Block 312, Amy Street 1";
+    public static final String VALID_ADDRESS_2 = "Block 123, Bobby Street 3";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
-    public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
-    public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
-    public static final String DEADLINE_DESC_AMY = " " + PREFIX_DEADLINE + VALID_DEADLINE_AMY;
-    public static final String DEADLINE_DESC_BOB = " " + PREFIX_DEADLINE + VALID_DEADLINE_BOB;
-    public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
-    public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
+    public static final String NAME_DESC_1 = " " + PREFIX_NAME + VALID_NAME_1;
+    public static final String NAME_DESC_2 = " " + PREFIX_NAME + VALID_NAME_2;
+    public static final String DEADLINE_DESC_1 = " " + PREFIX_DEADLINE + VALID_DEADLINE_1;
+    public static final String DEADLINE_DESC_2 = " " + PREFIX_DEADLINE + VALID_DEADLINE_2;
+    public static final String ADDRESS_DESC_1 = " " + PREFIX_ADDRESS + VALID_ADDRESS_1;
+    public static final String ADDRESS_DESC_2 = " " + PREFIX_ADDRESS + VALID_ADDRESS_2;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
@@ -53,15 +53,15 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditCommand.EditTaskDescriptor DESC_AMY;
-    public static final EditCommand.EditTaskDescriptor DESC_BOB;
+    public static final EditCommand.EditTaskDescriptor DESC_1;
+    public static final EditCommand.EditTaskDescriptor DESC_2;
 
     static {
-        DESC_AMY = new EditTaskDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withDeadline(VALID_DEADLINE_AMY).withAddress(VALID_ADDRESS_AMY)
+        DESC_1 = new EditTaskDescriptorBuilder().withName(VALID_NAME_1)
+                .withDeadline(VALID_DEADLINE_1).withAddress(VALID_ADDRESS_1)
                 .withTags(VALID_TAG_FRIEND).build();
-        DESC_BOB = new EditTaskDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withDeadline(VALID_DEADLINE_BOB).withAddress(VALID_ADDRESS_BOB)
+        DESC_2 = new EditTaskDescriptorBuilder().withName(VALID_NAME_2)
+                .withDeadline(VALID_DEADLINE_2).withAddress(VALID_ADDRESS_2)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
 
@@ -115,7 +115,7 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredTaskList().size());
 
         Task task = model.getFilteredTaskList().get(targetIndex.getZeroBased());
-        final String[] splitName = task.getName().fullName.split("\\s+");
+        final String[] splitName = task.getName().taskName.split("\\s+");
         model.updateFilteredTaskList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredTaskList().size());

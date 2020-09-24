@@ -48,7 +48,7 @@ public class TaskCard extends UiPart<Region> {
         super(FXML);
         this.task = task;
         id.setText(displayedIndex + ". ");
-        name.setText(task.getName().fullName);
+        name.setText(task.getName().taskName);
         deadline.setText(task.getDeadline().value);
         address.setText(task.getAddress().value);
         completionStatus.setText("Progress | " + task.getCompletionStatus().toString());

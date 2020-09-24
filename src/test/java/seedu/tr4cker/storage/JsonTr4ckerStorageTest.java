@@ -3,9 +3,9 @@ package seedu.tr4cker.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.tr4cker.testutil.Assert.assertThrows;
-import static seedu.tr4cker.testutil.TypicalTasks.ALICE;
-import static seedu.tr4cker.testutil.TypicalTasks.HOON;
-import static seedu.tr4cker.testutil.TypicalTasks.IDA;
+import static seedu.tr4cker.testutil.TypicalTasks.TASK1;
+import static seedu.tr4cker.testutil.TypicalTasks.TASK_H;
+import static seedu.tr4cker.testutil.TypicalTasks.TASK_I;
 import static seedu.tr4cker.testutil.TypicalTasks.getTypicalTr4cker;
 
 import java.io.IOException;
@@ -73,14 +73,14 @@ public class JsonTr4ckerStorageTest {
         assertEquals(original, new Tr4cker(readBack));
 
         // Modify data, overwrite exiting file, and read back
-        original.addTask(HOON);
-        original.removeTask(ALICE);
+        original.addTask(TASK_H);
+        original.removeTask(TASK1);
         jsonTr4ckerStorage.saveTr4cker(original, filePath);
         readBack = jsonTr4ckerStorage.readTr4cker(filePath).get();
         assertEquals(original, new Tr4cker(readBack));
 
         // Save and read without specifying file path
-        original.addTask(IDA);
+        original.addTask(TASK_I);
         jsonTr4ckerStorage.saveTr4cker(original); // file path not specified
         readBack = jsonTr4ckerStorage.readTr4cker().get(); // file path not specified
         assertEquals(original, new Tr4cker(readBack));

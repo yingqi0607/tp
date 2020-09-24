@@ -3,10 +3,10 @@ package seedu.tr4cker.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_ADDRESS_2;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.tr4cker.testutil.Assert.assertThrows;
-import static seedu.tr4cker.testutil.TypicalTasks.ALICE;
+import static seedu.tr4cker.testutil.TypicalTasks.TASK1;
 import static seedu.tr4cker.testutil.TypicalTasks.getTypicalTr4cker;
 
 import java.util.Arrays;
@@ -46,9 +46,9 @@ public class Tr4ckerTest {
     @Test
     public void resetData_withDuplicateTasks_throwsDuplicateTaskException() {
         // Two tasks with the same identity fields
-        Task editedAlice = new TaskBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Task editedAlice = new TaskBuilder(TASK1).withAddress(VALID_ADDRESS_2).withTags(VALID_TAG_HUSBAND)
                 .build();
-        List<Task> newTasks = Arrays.asList(ALICE, editedAlice);
+        List<Task> newTasks = Arrays.asList(TASK1, editedAlice);
         Tr4ckerStub newData = new Tr4ckerStub(newTasks);
 
         assertThrows(DuplicateTaskException.class, () -> tr4cker.resetData(newData));
@@ -61,19 +61,19 @@ public class Tr4ckerTest {
 
     @Test
     public void hasTask_taskNotInTr4cker_returnsFalse() {
-        assertFalse(tr4cker.hasTask(ALICE));
+        assertFalse(tr4cker.hasTask(TASK1));
     }
 
     @Test
     public void hasTask_taskInTr4cker_returnsTrue() {
-        tr4cker.addTask(ALICE);
-        assertTrue(tr4cker.hasTask(ALICE));
+        tr4cker.addTask(TASK1);
+        assertTrue(tr4cker.hasTask(TASK1));
     }
 
     @Test
     public void hasTask_taskWithSameIdentityFieldsInTr4cker_returnsTrue() {
-        tr4cker.addTask(ALICE);
-        Task editedAlice = new TaskBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        tr4cker.addTask(TASK1);
+        Task editedAlice = new TaskBuilder(TASK1).withAddress(VALID_ADDRESS_2).withTags(VALID_TAG_HUSBAND)
                 .build();
         assertTrue(tr4cker.hasTask(editedAlice));
     }
