@@ -5,9 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.tr4cker.commons.core.Messages.MESSAGE_TASKS_LISTED_OVERVIEW;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.tr4cker.testutil.TypicalTasks.CARL;
-import static seedu.tr4cker.testutil.TypicalTasks.ELLE;
-import static seedu.tr4cker.testutil.TypicalTasks.FIONA;
+import static seedu.tr4cker.testutil.TypicalTasks.TASK3;
+import static seedu.tr4cker.testutil.TypicalTasks.TASK5;
+import static seedu.tr4cker.testutil.TypicalTasks.TASK6;
 import static seedu.tr4cker.testutil.TypicalTasks.getTypicalTr4cker;
 
 import java.util.Arrays;
@@ -67,11 +67,11 @@ public class FindCommandTest {
     @Test
     public void execute_multipleKeywords_multipleTasksFound() {
         String expectedMessage = String.format(MESSAGE_TASKS_LISTED_OVERVIEW, 3);
-        NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
+        NameContainsKeywordsPredicate predicate = preparePredicate("Task3 Task5 Task6");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredTaskList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredTaskList());
+        assertEquals(Arrays.asList(TASK3, TASK5, TASK6), model.getFilteredTaskList());
     }
 
     /**

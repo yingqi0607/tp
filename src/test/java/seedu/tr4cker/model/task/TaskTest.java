@@ -2,14 +2,14 @@ package seedu.tr4cker.model.task;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_COMPLETION_STATUS_BOB;
-import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_DEADLINE_BOB;
-import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_ADDRESS_2;
+import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_COMPLETION_STATUS_2;
+import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_DEADLINE_2;
+import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_NAME_2;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.tr4cker.testutil.Assert.assertThrows;
-import static seedu.tr4cker.testutil.TypicalTasks.ALICE;
-import static seedu.tr4cker.testutil.TypicalTasks.BOB;
+import static seedu.tr4cker.testutil.TypicalTasks.MANUALTASK2;
+import static seedu.tr4cker.testutil.TypicalTasks.TASK1;
 
 import org.junit.jupiter.api.Test;
 
@@ -26,71 +26,71 @@ public class TaskTest {
     @Test
     public void isSameTask() {
         // same object -> returns true
-        assertTrue(ALICE.isSameTask(ALICE));
+        assertTrue(TASK1.isSameTask(TASK1));
 
         // null -> returns false
-        assertFalse(ALICE.isSameTask(null));
+        assertFalse(TASK1.isSameTask(null));
 
         // different deadline and address -> returns false
-        Task editedAlice =
-                new TaskBuilder(ALICE).withDeadline(VALID_DEADLINE_BOB).withAddress(VALID_ADDRESS_BOB).build();
-        assertFalse(ALICE.isSameTask(editedAlice));
+        Task editedTask1 =
+                new TaskBuilder(TASK1).withDeadline(VALID_DEADLINE_2).withAddress(VALID_ADDRESS_2).build();
+        assertFalse(TASK1.isSameTask(editedTask1));
 
         // different name -> returns false
-        editedAlice = new TaskBuilder(ALICE).withName(VALID_NAME_BOB).build();
-        assertFalse(ALICE.isSameTask(editedAlice));
+        editedTask1 = new TaskBuilder(TASK1).withName(VALID_NAME_2).build();
+        assertFalse(TASK1.isSameTask(editedTask1));
 
         // same name, same deadline, different attributes -> returns true
-        editedAlice = new TaskBuilder(ALICE).withCompletionStatus(VALID_COMPLETION_STATUS_BOB)
-                .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
-        assertTrue(ALICE.isSameTask(editedAlice));
+        editedTask1 = new TaskBuilder(TASK1).withCompletionStatus(VALID_COMPLETION_STATUS_2)
+                .withAddress(VALID_ADDRESS_2).withTags(VALID_TAG_HUSBAND).build();
+        assertTrue(TASK1.isSameTask(editedTask1));
 
         // same name, different attributes -> returns false
-        editedAlice = new TaskBuilder(ALICE).withDeadline(VALID_DEADLINE_BOB).withAddress(VALID_ADDRESS_BOB)
+        editedTask1 = new TaskBuilder(TASK1).withDeadline(VALID_DEADLINE_2).withAddress(VALID_ADDRESS_2)
                 .withTags(VALID_TAG_HUSBAND).build();
-        assertFalse(ALICE.isSameTask(editedAlice));
+        assertFalse(TASK1.isSameTask(editedTask1));
 
         // same name, same deadline, different attributes -> returns true
-        editedAlice = new TaskBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
-        assertTrue(ALICE.isSameTask(editedAlice));
+        editedTask1 = new TaskBuilder(TASK1).withAddress(VALID_ADDRESS_2).withTags(VALID_TAG_HUSBAND).build();
+        assertTrue(TASK1.isSameTask(editedTask1));
     }
 
     @Test
     public void equals() {
         // same values -> returns true
-        Task aliceCopy = new TaskBuilder(ALICE).build();
-        assertTrue(ALICE.equals(aliceCopy));
+        Task aliceCopy = new TaskBuilder(TASK1).build();
+        assertTrue(TASK1.equals(aliceCopy));
 
         // same object -> returns true
-        assertTrue(ALICE.equals(ALICE));
+        assertTrue(TASK1.equals(TASK1));
 
         // null -> returns false
-        assertFalse(ALICE.equals(null));
+        assertFalse(TASK1.equals(null));
 
         // different type -> returns false
-        assertFalse(ALICE.equals(5));
+        assertFalse(TASK1.equals(5));
 
         // different task -> returns false
-        assertFalse(ALICE.equals(BOB));
+        assertFalse(TASK1.equals(MANUALTASK2));
 
         // different name -> returns false
-        Task editedAlice = new TaskBuilder(ALICE).withName(VALID_NAME_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
+        Task editedTask1 = new TaskBuilder(TASK1).withName(VALID_NAME_2).build();
+        assertFalse(TASK1.equals(editedTask1));
 
         // different deadline -> returns false
-        editedAlice = new TaskBuilder(ALICE).withDeadline(VALID_DEADLINE_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
+        editedTask1 = new TaskBuilder(TASK1).withDeadline(VALID_DEADLINE_2).build();
+        assertFalse(TASK1.equals(editedTask1));
 
         // different completionStatus -> returns true
-        editedAlice = new TaskBuilder(ALICE).withCompletionStatus(VALID_COMPLETION_STATUS_BOB).build();
-        assertTrue(ALICE.equals(editedAlice));
+        editedTask1 = new TaskBuilder(TASK1).withCompletionStatus(VALID_COMPLETION_STATUS_2).build();
+        assertTrue(TASK1.equals(editedTask1));
 
         // different tr4cker -> returns false
-        editedAlice = new TaskBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
+        editedTask1 = new TaskBuilder(TASK1).withAddress(VALID_ADDRESS_2).build();
+        assertFalse(TASK1.equals(editedTask1));
 
         // different tags -> returns false
-        editedAlice = new TaskBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
-        assertFalse(ALICE.equals(editedAlice));
+        editedTask1 = new TaskBuilder(TASK1).withTags(VALID_TAG_HUSBAND).build();
+        assertFalse(TASK1.equals(editedTask1));
     }
 }
