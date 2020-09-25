@@ -17,4 +17,3 @@ Given below are my contributions to the project.
     * Added User Stories under Appendix: Requirements
 
 * **Community:**
-  * 
