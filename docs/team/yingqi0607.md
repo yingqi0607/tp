@@ -10,8 +10,16 @@ optimized for Computing students familiar with CLI, who can manage their tasks e
 Given below are my contributions to the project.
 
 * **Morphing of AddressBook:** 
+<<<<<<< HEAD
   * Refactor Address class to TaskDescription class.
 
 * **Documentation**:
   * Developer Guide:
     * Added User Stories under Appendix: Requirements.
+=======
+  * Refactor Address class to Description class.
+
+* **Documentation:**
+  * Developer Guide:
+    * Added User Stories under Appendix: Requirements
+
