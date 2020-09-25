@@ -50,10 +50,10 @@ You can reach us at the following emails:
 
 ### Lin Yingqi
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/yingqi.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/yingqi0607)]
+[[portfolio](team/yingqi0607.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Documentation + Testing
