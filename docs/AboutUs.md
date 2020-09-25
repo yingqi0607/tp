@@ -40,13 +40,13 @@ You can reach us at the following emails:
 
 ### Lim Ethan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/ethan-l-m-e.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/ethan-l-m-e)]
+[[portfolio](team/ethan-l-m-e.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Code Quality + Schedule & Tracking
 
 ### Lin Yingqi
 
