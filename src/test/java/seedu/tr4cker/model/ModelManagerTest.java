@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.tr4cker.model.Model.PREDICATE_SHOW_ALL_TASKS;
 import static seedu.tr4cker.testutil.Assert.assertThrows;
-import static seedu.tr4cker.testutil.TypicalTasks.ALICE;
-import static seedu.tr4cker.testutil.TypicalTasks.BENSON;
+import static seedu.tr4cker.testutil.TypicalTasks.TASK1;
+import static seedu.tr4cker.testutil.TypicalTasks.TASK2;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -79,13 +79,13 @@ public class ModelManagerTest {
 
     @Test
     public void hasTask_taskNotInTr4cker_returnsFalse() {
-        assertFalse(modelManager.hasTask(ALICE));
+        assertFalse(modelManager.hasTask(TASK1));
     }
 
     @Test
     public void hasTask_taskInTr4cker_returnsTrue() {
-        modelManager.addTask(ALICE);
-        assertTrue(modelManager.hasTask(ALICE));
+        modelManager.addTask(TASK1);
+        assertTrue(modelManager.hasTask(TASK1));
     }
 
     @Test
@@ -95,7 +95,7 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        Tr4cker tr4cker = new Tr4ckerBuilder().withTask(ALICE).withTask(BENSON).build();
+        Tr4cker tr4cker = new Tr4ckerBuilder().withTask(TASK1).withTask(TASK2).build();
         Tr4cker differentTr4cker = new Tr4cker();
         UserPrefs userPrefs = new UserPrefs();
 
@@ -117,7 +117,7 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(differentTr4cker, userPrefs)));
 
         // different filteredList -> returns false
-        String[] keywords = ALICE.getName().fullName.split("\\s+");
+        String[] keywords = TASK1.getName().taskName.split("\\s+");
         modelManager.updateFilteredTaskList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(tr4cker, userPrefs)));
 
