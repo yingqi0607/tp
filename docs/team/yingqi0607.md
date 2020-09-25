@@ -15,5 +15,3 @@ Given below are my contributions to the project.
 * **Documentation:**
   * Developer Guide:
     * Added User Stories under Appendix: Requirements
-
-* **Community:**
