@@ -5,7 +5,6 @@ import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_TASKDESCRIPTION;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_TASKDESCRIPTION;
 
 import seedu.tr4cker.logic.commands.exceptions.CommandException;
 import seedu.tr4cker.model.Model;

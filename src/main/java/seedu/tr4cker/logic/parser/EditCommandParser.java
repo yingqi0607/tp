@@ -2,10 +2,10 @@ package seedu.tr4cker.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.tr4cker.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_TASKDESCRIPTION;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_TASKDESCRIPTION;
 
 import java.util.Collection;
 import java.util.Collections;
