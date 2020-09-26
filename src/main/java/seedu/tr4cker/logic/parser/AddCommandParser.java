@@ -41,7 +41,8 @@ public class AddCommandParser implements Parser<AddCommand> {
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Deadline deadline = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_DEADLINE).get());
         CompletionStatus completionStatus = new CompletionStatus(0);
-        TaskDescription taskDescription = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_TASKDESCRIPTION).get());
+        TaskDescription taskDescription = ParserUtil.parseDescription(
+                argMultimap.getValue(PREFIX_TASKDESCRIPTION).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         Task task = new Task(name, deadline, completionStatus, taskDescription, tagList);

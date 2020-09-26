@@ -19,11 +19,11 @@ import seedu.tr4cker.commons.util.CollectionUtil;
 import seedu.tr4cker.logic.commands.exceptions.CommandException;
 import seedu.tr4cker.model.Model;
 import seedu.tr4cker.model.tag.Tag;
-import seedu.tr4cker.model.task.TaskDescription;
 import seedu.tr4cker.model.task.CompletionStatus;
 import seedu.tr4cker.model.task.Deadline;
 import seedu.tr4cker.model.task.Name;
 import seedu.tr4cker.model.task.Task;
+import seedu.tr4cker.model.task.TaskDescription;
 
 /**
  * Edits the details of an existing task in the Tr4cker.
@@ -94,7 +94,8 @@ public class EditCommand extends Command {
         Deadline updatedDeadline = editTaskDescriptor.getDeadline().orElse(taskToEdit.getDeadline());
         CompletionStatus updatedCompletionStatus =
                 taskToEdit.getCompletionStatus(); // edit command does not allow editing completion status
-        TaskDescription updatedTaskDescription = editTaskDescriptor.getTaskDescription().orElse(taskToEdit.getTaskDescription());
+        TaskDescription updatedTaskDescription =
+                editTaskDescriptor.getTaskDescription().orElse(taskToEdit.getTaskDescription());
         Set<Tag> updatedTags = editTaskDescriptor.getTags().orElse(taskToEdit.getTags());
 
         return new Task(updatedName, updatedDeadline, updatedCompletionStatus, updatedTaskDescription, updatedTags);
