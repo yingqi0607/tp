@@ -19,24 +19,24 @@ import seedu.tr4cker.model.task.TaskDescription;
 public class SampleDataUtil {
     public static Task[] getSampleTasks() {
         return new Task[] {
-            new Task(new Name("Alex Yeoh"), new Deadline("2020-10-20 1800"), new CompletionStatus(100),
-                new TaskDescription("Task 1 description"),
-                getTagSet("friends")),
-            new Task(new Name("Bernice Yu"), new Deadline("2020-09-30 2359"), new CompletionStatus(0),
-                new TaskDescription("Task 2 description"),
-                getTagSet("colleagues", "friends")),
-            new Task(new Name("Charlotte Oliveiro"), new Deadline("2020-10-03 1200"), new CompletionStatus(20),
-                new TaskDescription("Task 3 description"),
-                getTagSet("neighbours")),
-            new Task(new Name("David Li"), new Deadline("2020-09-21 1500"), new CompletionStatus(50),
-                new TaskDescription("Task 4 description"),
-                getTagSet("family")),
-            new Task(new Name("Irfan Ibrahim"), new Deadline("2020-10-10 1010"), new CompletionStatus(0),
-                new TaskDescription("Task 5 description"),
-                getTagSet("classmates")),
-            new Task(new Name("Roy Balakrishnan"), new Deadline("2020-12-25 0000"), new CompletionStatus(1),
-                new TaskDescription("Task 6 description"),
-                getTagSet("colleagues"))
+            new Task(new Name("CS1101S Mission"), new Deadline("2020-10-20 1800"), new CompletionStatus(100),
+                new TaskDescription("A very fun mission"),
+                getTagSet("CS1101S", "Mission", "Fun")),
+            new Task(new Name("CS1101S Quiz"), new Deadline("2020-09-30 2359"), new CompletionStatus(0),
+                new TaskDescription("A quiz that's too hard for me"),
+                getTagSet("CS1101S", "Quiz", "2Hard4Me")),
+            new Task(new Name("CS2100 MidTerms"), new Deadline("2020-10-03 1200"), new CompletionStatus(20),
+                new TaskDescription("Need do cheat sheet"),
+                getTagSet("cheatSheetsFTW")),
+            new Task(new Name("CS2103T Project"), new Deadline("2020-09-21 1500"), new CompletionStatus(50),
+                new TaskDescription("I love project work"),
+                getTagSet("CS2103T", "EthanSGKK")),
+            new Task(new Name("CS2101 OP2"), new Deadline("2020-10-10 1010"), new CompletionStatus(0),
+                new TaskDescription("All the best Good Luck"),
+                getTagSet("CS2101", "20Percent")),
+            new Task(new Name("CS1231S Graded Assignment"), new Deadline("2020-12-25 0000"), new CompletionStatus(1),
+                new TaskDescription("JustDueet"),
+                getTagSet("CS1231S", "Assignment"))
         };
     }
 

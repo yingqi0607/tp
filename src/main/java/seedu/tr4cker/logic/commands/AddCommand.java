@@ -21,7 +21,7 @@ public class AddCommand extends Command {
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_DEADLINE + "DEADLINE "
-            + PREFIX_TASKDESCRIPTION + "ADDRESS "
+            + PREFIX_TASKDESCRIPTION + "TASKDESCRIPTION "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
