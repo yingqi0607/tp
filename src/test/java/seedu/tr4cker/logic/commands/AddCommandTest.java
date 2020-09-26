@@ -62,8 +62,8 @@ public class AddCommandTest {
         assertTrue(addTask1Command.equals(addTask1Command));
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(task1);
-        assertTrue(addTask1Command.equals(addAliceCommandCopy));
+        AddCommand addTask1CommandCopy = new AddCommand(task1);
+        assertTrue(addTask1Command.equals(addTask1CommandCopy));
 
         // different types -> returns false
         assertFalse(addTask1Command.equals(1));
