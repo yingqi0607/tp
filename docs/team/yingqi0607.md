@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Chia Wen Ling's Project Portfolio Page
+title: Lin Yingqi's Project Portfolio Page
 ---
 
 ## Project: TR4CKER
@@ -11,8 +11,8 @@ optimized for Computing students familiar with CLI, who can manage their tasks e
 Given below are my contributions to the project.
 
 * **Morphing of AddressBook:** 
-  * Refactor Phone class to Deadline class.
+  * Refactor Address class to TaskDescription class.
 
 * **Documentation**:
   * Developer Guide:
-    * Update the Project Scope and Glossary under Appendix: Requirements.
+    * Added User Stories under Appendix: Requirements.

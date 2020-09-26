@@ -12,12 +12,13 @@ You can reach us at the following emails:
 
 ### Cheak Han Wei
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/hanweic53.png" width="200px">
 
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/hanweic53)]
+[[portfolio](team/hanweic53.md)]
 
-* Role: Project Advisor
+* Role: Developer
+* Responsibilities: Deliverables and deadlines + Integration
 
 ### Chia Wen Ling
 
@@ -40,20 +41,20 @@ You can reach us at the following emails:
 
 ### Lim Ethan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/ethan-l-m-e.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/ethan-l-m-e)]
+[[portfolio](team/ethan-l-m-e.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Code Quality + Schedule & Tracking
 
 ### Lin Yingqi
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/yingqi0607.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/yingqi0607)]
+[[portfolio](team/yingqi0607.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Documentation + Testing
