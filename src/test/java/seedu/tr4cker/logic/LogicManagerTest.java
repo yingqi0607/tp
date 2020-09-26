@@ -3,8 +3,8 @@ package seedu.tr4cker.logic;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.tr4cker.commons.core.Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX;
 import static seedu.tr4cker.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.tr4cker.logic.commands.CommandTestUtil.ADDRESS_DESC_1;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.DEADLINE_DESC_1;
+import static seedu.tr4cker.logic.commands.CommandTestUtil.DESCRIPTION_DESC_1;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.NAME_DESC_1;
 import static seedu.tr4cker.testutil.Assert.assertThrows;
 import static seedu.tr4cker.testutil.TypicalTasks.MANUALTASK1;
@@ -79,7 +79,7 @@ public class LogicManagerTest {
 
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_1 + DEADLINE_DESC_1
-                + ADDRESS_DESC_1;
+                + DESCRIPTION_DESC_1;
         Task expectedTask = new TaskBuilder(MANUALTASK1).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addTask(expectedTask);

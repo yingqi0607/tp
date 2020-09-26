@@ -2,9 +2,9 @@ package seedu.tr4cker.model.task;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_ADDRESS_2;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_COMPLETION_STATUS_2;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_DEADLINE_2;
+import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_DESCRIPTION_2;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_NAME_2;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.tr4cker.testutil.Assert.assertThrows;
@@ -31,9 +31,9 @@ public class TaskTest {
         // null -> returns false
         assertFalse(TASK1.isSameTask(null));
 
-        // different deadline and address -> returns false
+        // different deadline and descriptions -> returns false
         Task editedTask1 =
-                new TaskBuilder(TASK1).withDeadline(VALID_DEADLINE_2).withAddress(VALID_ADDRESS_2).build();
+                new TaskBuilder(TASK1).withDeadline(VALID_DEADLINE_2).withTaskDescription(VALID_DESCRIPTION_2).build();
         assertFalse(TASK1.isSameTask(editedTask1));
 
         // different name -> returns false
@@ -42,16 +42,17 @@ public class TaskTest {
 
         // same name, same deadline, different attributes -> returns true
         editedTask1 = new TaskBuilder(TASK1).withCompletionStatus(VALID_COMPLETION_STATUS_2)
-                .withAddress(VALID_ADDRESS_2).withTags(VALID_TAG_HUSBAND).build();
+                .withTaskDescription(VALID_DESCRIPTION_2).withTags(VALID_TAG_HUSBAND).build();
         assertTrue(TASK1.isSameTask(editedTask1));
 
         // same name, different attributes -> returns false
-        editedTask1 = new TaskBuilder(TASK1).withDeadline(VALID_DEADLINE_2).withAddress(VALID_ADDRESS_2)
+        editedTask1 = new TaskBuilder(TASK1).withDeadline(VALID_DEADLINE_2).withTaskDescription(VALID_DESCRIPTION_2)
                 .withTags(VALID_TAG_HUSBAND).build();
         assertFalse(TASK1.isSameTask(editedTask1));
 
         // same name, same deadline, different attributes -> returns true
-        editedTask1 = new TaskBuilder(TASK1).withAddress(VALID_ADDRESS_2).withTags(VALID_TAG_HUSBAND).build();
+        editedTask1 = new TaskBuilder(TASK1)
+                .withTaskDescription(VALID_DESCRIPTION_2).withTags(VALID_TAG_HUSBAND).build();
         assertTrue(TASK1.isSameTask(editedTask1));
     }
 
@@ -86,7 +87,7 @@ public class TaskTest {
         assertTrue(TASK1.equals(editedTask1));
 
         // different tr4cker -> returns false
-        editedTask1 = new TaskBuilder(TASK1).withAddress(VALID_ADDRESS_2).build();
+        editedTask1 = new TaskBuilder(TASK1).withTaskDescription(VALID_DESCRIPTION_2).build();
         assertFalse(TASK1.equals(editedTask1));
 
         // different tags -> returns false

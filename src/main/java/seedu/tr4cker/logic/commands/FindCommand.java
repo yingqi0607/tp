@@ -7,7 +7,7 @@ import seedu.tr4cker.model.Model;
 import seedu.tr4cker.model.task.NameContainsKeywordsPredicate;
 
 /**
- * Finds and lists all tasks in tr4cker book whose name contains any of the argument keywords.
+ * Finds and lists all tasks in tr4cker whose name contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
 public class FindCommand extends Command {

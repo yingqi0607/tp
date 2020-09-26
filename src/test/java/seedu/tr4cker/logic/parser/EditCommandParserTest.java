@@ -1,21 +1,21 @@
 package seedu.tr4cker.logic.parser;
 
 import static seedu.tr4cker.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.tr4cker.logic.commands.CommandTestUtil.ADDRESS_DESC_1;
-import static seedu.tr4cker.logic.commands.CommandTestUtil.ADDRESS_DESC_2;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.DEADLINE_DESC_1;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.DEADLINE_DESC_2;
-import static seedu.tr4cker.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
+import static seedu.tr4cker.logic.commands.CommandTestUtil.DESCRIPTION_DESC_1;
+import static seedu.tr4cker.logic.commands.CommandTestUtil.DESCRIPTION_DESC_2;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.INVALID_DEADLINE_DESC;
+import static seedu.tr4cker.logic.commands.CommandTestUtil.INVALID_DESCRIPTION_DESC;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.NAME_DESC_1;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
-import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_ADDRESS_1;
-import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_ADDRESS_2;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_DEADLINE_1;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_DEADLINE_2;
+import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_DESCRIPTION_1;
+import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_DESCRIPTION_2;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_NAME_1;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
@@ -32,9 +32,9 @@ import seedu.tr4cker.commons.core.index.Index;
 import seedu.tr4cker.logic.commands.EditCommand;
 import seedu.tr4cker.logic.commands.EditCommand.EditTaskDescriptor;
 import seedu.tr4cker.model.tag.Tag;
-import seedu.tr4cker.model.task.Address;
 import seedu.tr4cker.model.task.Deadline;
 import seedu.tr4cker.model.task.Name;
+import seedu.tr4cker.model.task.TaskDescription;
 import seedu.tr4cker.testutil.EditTaskDescriptorBuilder;
 
 public class EditCommandParserTest {
@@ -77,11 +77,12 @@ public class EditCommandParserTest {
     public void parse_invalidValue_failure() {
         assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
         assertParseFailure(parser, "1" + INVALID_DEADLINE_DESC, Deadline.MESSAGE_CONSTRAINTS); // invalid deadline
-        assertParseFailure(parser, "1" + INVALID_ADDRESS_DESC, Address.MESSAGE_CONSTRAINTS); // invalid tr4cker
+        assertParseFailure(parser, "1" + INVALID_DESCRIPTION_DESC,
+                TaskDescription.MESSAGE_CONSTRAINTS); // invalid tr4cker
         assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
 
         // invalid deadline followed by valid address
-        assertParseFailure(parser, "1" + INVALID_DEADLINE_DESC + ADDRESS_DESC_1, Deadline.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + INVALID_DEADLINE_DESC + DESCRIPTION_DESC_1, Deadline.MESSAGE_CONSTRAINTS);
 
         // valid deadline followed by invalid deadline. The test case for invalid deadline followed by valid deadline
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
@@ -95,17 +96,17 @@ public class EditCommandParserTest {
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_NAME_DESC
-                + VALID_ADDRESS_1 + VALID_DEADLINE_1, Name.MESSAGE_CONSTRAINTS);
+                + VALID_DESCRIPTION_1 + VALID_DEADLINE_1, Name.MESSAGE_CONSTRAINTS);
     }
 
     @Test
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_TASK;
         String userInput = targetIndex.getOneBased() + DEADLINE_DESC_2 + TAG_DESC_HUSBAND
-                + ADDRESS_DESC_1 + NAME_DESC_1 + TAG_DESC_FRIEND;
+                + DESCRIPTION_DESC_1 + NAME_DESC_1 + TAG_DESC_FRIEND;
 
         EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withName(VALID_NAME_1)
-                .withDeadline(VALID_DEADLINE_2).withAddress(VALID_ADDRESS_1)
+                .withDeadline(VALID_DEADLINE_2).withTaskDescription(VALID_DESCRIPTION_1)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
@@ -115,10 +116,10 @@ public class EditCommandParserTest {
     @Test
     public void parse_someFieldsSpecified_success() {
         Index targetIndex = INDEX_FIRST_TASK;
-        String userInput = targetIndex.getOneBased() + DEADLINE_DESC_2 + ADDRESS_DESC_1;
+        String userInput = targetIndex.getOneBased() + DEADLINE_DESC_2 + DESCRIPTION_DESC_1;
 
         EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withDeadline(VALID_DEADLINE_2)
-                .withAddress(VALID_ADDRESS_1).build();
+                .withTaskDescription(VALID_DESCRIPTION_1).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -139,9 +140,9 @@ public class EditCommandParserTest {
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        // tr4cker
-        userInput = targetIndex.getOneBased() + ADDRESS_DESC_1;
-        descriptor = new EditTaskDescriptorBuilder().withAddress(VALID_ADDRESS_1).build();
+        // description
+        userInput = targetIndex.getOneBased() + DESCRIPTION_DESC_1;
+        descriptor = new EditTaskDescriptorBuilder().withTaskDescription(VALID_DESCRIPTION_1).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
@@ -155,12 +156,12 @@ public class EditCommandParserTest {
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
         Index targetIndex = INDEX_FIRST_TASK;
-        String userInput = targetIndex.getOneBased() + DEADLINE_DESC_1 + ADDRESS_DESC_1
-                + TAG_DESC_FRIEND + DEADLINE_DESC_1 + ADDRESS_DESC_1 + TAG_DESC_FRIEND
-                + DEADLINE_DESC_2 + ADDRESS_DESC_2 + TAG_DESC_HUSBAND;
+        String userInput = targetIndex.getOneBased() + DEADLINE_DESC_1 + DESCRIPTION_DESC_1
+                + TAG_DESC_FRIEND + DEADLINE_DESC_1 + DESCRIPTION_DESC_1 + TAG_DESC_FRIEND
+                + DEADLINE_DESC_2 + DESCRIPTION_DESC_2 + TAG_DESC_HUSBAND;
 
         EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withDeadline(VALID_DEADLINE_2)
-                .withAddress(VALID_ADDRESS_2).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
+                .withTaskDescription(VALID_DESCRIPTION_2).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
@@ -177,10 +178,10 @@ public class EditCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // other valid values specified
-        userInput = targetIndex.getOneBased() + INVALID_DEADLINE_DESC + ADDRESS_DESC_2
+        userInput = targetIndex.getOneBased() + INVALID_DEADLINE_DESC + DESCRIPTION_DESC_2
                 + DEADLINE_DESC_2;
         descriptor = new EditTaskDescriptorBuilder().withDeadline(VALID_DEADLINE_2)
-                .withAddress(VALID_ADDRESS_2).build();
+                .withTaskDescription(VALID_DESCRIPTION_2).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }

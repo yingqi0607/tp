@@ -11,11 +11,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.tr4cker.commons.exceptions.IllegalValueException;
 import seedu.tr4cker.model.tag.Tag;
-import seedu.tr4cker.model.task.Address;
 import seedu.tr4cker.model.task.CompletionStatus;
 import seedu.tr4cker.model.task.Deadline;
 import seedu.tr4cker.model.task.Name;
 import seedu.tr4cker.model.task.Task;
+import seedu.tr4cker.model.task.TaskDescription;
 
 /**
  * Jackson-friendly version of {@link Task}.
@@ -27,7 +27,7 @@ class JsonAdaptedTask {
     private final String name;
     private final String deadline;
     private final int completionStatus;
-    private final String address;
+    private final String description;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -36,12 +36,12 @@ class JsonAdaptedTask {
     @JsonCreator
     public JsonAdaptedTask(@JsonProperty("name") String name, @JsonProperty("deadline") String deadline,
                            @JsonProperty("completionStatus") int completionStatus,
-                           @JsonProperty("address") String address,
+                           @JsonProperty("description") String description,
                            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.deadline = deadline;
         this.completionStatus = completionStatus;
-        this.address = address;
+        this.description = description;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -54,7 +54,7 @@ class JsonAdaptedTask {
         name = source.getName().taskName;
         deadline = source.getDeadline().value;
         completionStatus = source.getCompletionStatus().value;
-        address = source.getAddress().value;
+        description = source.getTaskDescription().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -96,17 +96,17 @@ class JsonAdaptedTask {
         }
         final CompletionStatus modelCompletionStatus = new CompletionStatus(completionStatus);
 
-        if (address == null) {
+        if (description == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    Address.class.getSimpleName()));
+                    TaskDescription.class.getSimpleName()));
         }
-        if (!Address.isValidAddress(address)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+        if (!TaskDescription.isValidTaskDescription(description)) {
+            throw new IllegalValueException(TaskDescription.MESSAGE_CONSTRAINTS);
         }
-        final Address modelAddress = new Address(address);
+        final TaskDescription modelTaskDescription = new TaskDescription(description);
 
         final Set<Tag> modelTags = new HashSet<>(taskTags);
-        return new Task(modelName, modelDeadline, modelCompletionStatus, modelAddress, modelTags);
+        return new Task(modelName, modelDeadline, modelCompletionStatus, modelTaskDescription, modelTags);
     }
 
 }

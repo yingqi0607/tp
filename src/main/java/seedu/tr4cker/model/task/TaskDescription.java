@@ -5,11 +5,11 @@ import static seedu.tr4cker.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Task's tr4cker in Tr4cker.
- * Guarantees: immutable; is valid as declared in {@link #isValidAddress(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidTaskDescription(String)}
  */
-public class Address {
+public class TaskDescription {
 
-    public static final String MESSAGE_CONSTRAINTS = "Addresses can take any values, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Descriptions can take any values, and it should not be blank";
 
     /*
      * The first character of the tr4cker must not be a whitespace,
@@ -22,18 +22,18 @@ public class Address {
     /**
      * Constructs an {@code Address}.
      *
-     * @param address A valid tr4cker.
+     * @param description A valid tr4cker.
      */
-    public Address(String address) {
-        requireNonNull(address);
-        checkArgument(isValidAddress(address), MESSAGE_CONSTRAINTS);
-        value = address;
+    public TaskDescription(String description) {
+        requireNonNull(description);
+        checkArgument(isValidTaskDescription(description), MESSAGE_CONSTRAINTS);
+        value = description;
     }
 
     /**
      * Returns true if a given string is a valid address.
      */
-    public static boolean isValidAddress(String test) {
+    public static boolean isValidTaskDescription(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
@@ -45,8 +45,8 @@ public class Address {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Address // instanceof handles nulls
-                && value.equals(((Address) other).value)); // state check
+                || (other instanceof TaskDescription // instanceof handles nulls
+                && value.equals(((TaskDescription) other).value)); // state check
     }
 
     @Override

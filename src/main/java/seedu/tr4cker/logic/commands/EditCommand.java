@@ -1,10 +1,10 @@
 package seedu.tr4cker.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_TASKDESCRIPTION;
 import static seedu.tr4cker.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 import java.util.Collections;
@@ -19,11 +19,11 @@ import seedu.tr4cker.commons.util.CollectionUtil;
 import seedu.tr4cker.logic.commands.exceptions.CommandException;
 import seedu.tr4cker.model.Model;
 import seedu.tr4cker.model.tag.Tag;
-import seedu.tr4cker.model.task.Address;
 import seedu.tr4cker.model.task.CompletionStatus;
 import seedu.tr4cker.model.task.Deadline;
 import seedu.tr4cker.model.task.Name;
 import seedu.tr4cker.model.task.Task;
+import seedu.tr4cker.model.task.TaskDescription;
 
 /**
  * Edits the details of an existing task in the Tr4cker.
@@ -38,7 +38,7 @@ public class EditCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_DEADLINE + "deadline] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_TASKDESCRIPTION + "DESCRIPTION] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_DEADLINE + "2020-10-10 1010 ";
@@ -94,10 +94,11 @@ public class EditCommand extends Command {
         Deadline updatedDeadline = editTaskDescriptor.getDeadline().orElse(taskToEdit.getDeadline());
         CompletionStatus updatedCompletionStatus =
                 taskToEdit.getCompletionStatus(); // edit command does not allow editing completion status
-        Address updatedAddress = editTaskDescriptor.getAddress().orElse(taskToEdit.getAddress());
+        TaskDescription updatedTaskDescription =
+                editTaskDescriptor.getTaskDescription().orElse(taskToEdit.getTaskDescription());
         Set<Tag> updatedTags = editTaskDescriptor.getTags().orElse(taskToEdit.getTags());
 
-        return new Task(updatedName, updatedDeadline, updatedCompletionStatus, updatedAddress, updatedTags);
+        return new Task(updatedName, updatedDeadline, updatedCompletionStatus, updatedTaskDescription, updatedTags);
     }
 
     @Override
@@ -125,7 +126,7 @@ public class EditCommand extends Command {
     public static class EditTaskDescriptor {
         private Name name;
         private Deadline deadline;
-        private Address address;
+        private TaskDescription taskDescription;
         private Set<Tag> tags;
 
         public EditTaskDescriptor() {}
@@ -137,7 +138,7 @@ public class EditCommand extends Command {
         public EditTaskDescriptor(EditTaskDescriptor toCopy) {
             setName(toCopy.name);
             setDeadline(toCopy.deadline);
-            setAddress(toCopy.address);
+            setDescription(toCopy.taskDescription);
             setTags(toCopy.tags);
         }
 
@@ -145,7 +146,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, deadline, address, tags);
+            return CollectionUtil.isAnyNonNull(name, deadline, taskDescription, tags);
         }
 
         public void setName(Name name) {
@@ -164,12 +165,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(deadline);
         }
 
-        public void setAddress(Address address) {
-            this.address = address;
+        public void setDescription(TaskDescription taskDescription) {
+            this.taskDescription = taskDescription;
         }
 
-        public Optional<Address> getAddress() {
-            return Optional.ofNullable(address);
+        public Optional<TaskDescription> getTaskDescription() {
+            return Optional.ofNullable(taskDescription);
         }
 
         /**
@@ -206,7 +207,7 @@ public class EditCommand extends Command {
 
             return getName().equals(e.getName())
                     && getDeadline().equals(e.getDeadline())
-                    && getAddress().equals(e.getAddress())
+                    && getTaskDescription().equals(e.getTaskDescription())
                     && getTags().equals(e.getTags());
         }
     }

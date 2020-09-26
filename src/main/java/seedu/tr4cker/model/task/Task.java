@@ -21,18 +21,19 @@ public class Task {
     private final CompletionStatus completionStatus;
 
     // Data fields
-    private final Address address;
+    private final TaskDescription taskDescription;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Task(Name name, Deadline deadline, CompletionStatus completionStatus, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, deadline, completionStatus, address, tags);
+    public Task(Name name, Deadline deadline, CompletionStatus completionStatus,
+                TaskDescription taskDescription, Set<Tag> tags) {
+        requireAllNonNull(name, deadline, completionStatus, taskDescription, tags);
         this.name = name;
         this.deadline = deadline;
         this.completionStatus = completionStatus;
-        this.address = address;
+        this.taskDescription = taskDescription;
         this.tags.addAll(tags);
     }
 
@@ -48,8 +49,8 @@ public class Task {
         return completionStatus;
     }
 
-    public Address getAddress() {
-        return address;
+    public TaskDescription getTaskDescription() {
+        return taskDescription;
     }
 
     /**
@@ -92,14 +93,14 @@ public class Task {
         return otherTask.getName().equals(getName())
                 && otherTask.getDeadline().equals(getDeadline())
                 && otherTask.getCompletionStatus().equals(getCompletionStatus())
-                && otherTask.getAddress().equals(getAddress())
+                && otherTask.getTaskDescription().equals(getTaskDescription())
                 && otherTask.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, deadline, completionStatus, address, tags);
+        return Objects.hash(name, deadline, completionStatus, taskDescription, tags);
     }
 
     @Override
@@ -111,7 +112,7 @@ public class Task {
                 .append(" CompletionStatus: ")
                 .append(getCompletionStatus())
                 .append(" Address: ")
-                .append(getAddress())
+                .append(getTaskDescription())
                 .append(" Tags: ");
         getTags().forEach(builder::append);
         return builder.toString();

@@ -7,10 +7,10 @@ import java.util.stream.Stream;
 import seedu.tr4cker.logic.commands.EditCommand;
 import seedu.tr4cker.logic.commands.EditCommand.EditTaskDescriptor;
 import seedu.tr4cker.model.tag.Tag;
-import seedu.tr4cker.model.task.Address;
 import seedu.tr4cker.model.task.Deadline;
 import seedu.tr4cker.model.task.Name;
 import seedu.tr4cker.model.task.Task;
+import seedu.tr4cker.model.task.TaskDescription;
 
 /**
  * A utility class to help with building EditTaskDescriptor objects.
@@ -34,7 +34,7 @@ public class EditTaskDescriptorBuilder {
         descriptor = new EditCommand.EditTaskDescriptor();
         descriptor.setName(task.getName());
         descriptor.setDeadline(task.getDeadline());
-        descriptor.setAddress(task.getAddress());
+        descriptor.setDescription(task.getTaskDescription());
         descriptor.setTags(task.getTags());
     }
 
@@ -55,10 +55,10 @@ public class EditTaskDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code EditTaskDescriptor} that we are building.
+     * Sets the {@code description} of the {@code EditTaskDescriptor} that we are building.
      */
-    public EditTaskDescriptorBuilder withAddress(String address) {
-        descriptor.setAddress(new Address(address));
+    public EditTaskDescriptorBuilder withTaskDescription(String description) {
+        descriptor.setDescription(new TaskDescription(description));
         return this;
     }
 

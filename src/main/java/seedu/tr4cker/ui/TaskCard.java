@@ -35,7 +35,7 @@ public class TaskCard extends UiPart<Region> {
     @FXML
     private Label deadline;
     @FXML
-    private Label address;
+    private Label description;
     @FXML
     private Label completionStatus;
     @FXML
@@ -50,7 +50,7 @@ public class TaskCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(task.getName().taskName);
         deadline.setText(task.getDeadline().value);
-        address.setText(task.getAddress().value);
+        description.setText(task.getTaskDescription().value);
         completionStatus.setText("Progress | " + task.getCompletionStatus().toString());
         task.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
