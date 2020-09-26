@@ -69,7 +69,7 @@ Format: `help`
 
 ### Adding a person: `add`
 
-Adds a person to the taskDescription book.
+Adds a person to tr4cker.
 
 Format: `add n/NAME dl/DEADLINE des/description [t/TAG]…​`
 
@@ -83,13 +83,13 @@ Examples:
 
 ### Listing all persons : `list`
 
-Shows a list of all persons in the taskDescription book.
+Shows a list of all persons in tr4cker.
 
 Format: `list`
 
 ### Editing a person : `edit`
 
-Edits an existing person in the taskDescription book.
+Edits an existing person in the tr4cker.
 
 Format: `edit INDEX [n/NAME] [dl/DEADLINE] [des/TASKDESCRIPTION] [t/TAG]…​`
 
@@ -124,7 +124,7 @@ Examples:
 
 ### Deleting a person : `delete`
 
-Deletes the specified person from the taskDescription book.
+Deletes the specified person from the tr4cker.
 
 Format: `delete INDEX`
 
@@ -133,12 +133,12 @@ Format: `delete INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the taskDescription book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `list` followed by `delete 2` deletes the 2nd task in tr4cker.
+* `find Betsy` followed by `delete 1` deletes the 1st task in the results of the `find` command.
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the taskDescription book.
+Clears all entries from tr4cker.
 
 Format: `clear`
 
@@ -150,7 +150,7 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+tr4cker data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Archiving data files `[coming in v2.0]`
 
@@ -161,7 +161,7 @@ _{explain the feature here}_
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous tr4cker home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 

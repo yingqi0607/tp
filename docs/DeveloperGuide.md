@@ -23,7 +23,7 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2021S1-CS2103T-T10-2/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 
 </div>
 
@@ -62,11 +62,11 @@ The sections below give more details of each component.
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 **API** :
-[`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/taskDescription/ui/Ui.java)
+[`Ui.java`](https://github.com/AY2021S1-CS2103T-T10-2/tp/tree/master/src/main/java/seedu/tr4cker/ui/Ui.java)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/taskDescription/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2021S1-CS2103T-T10-2/tp/tree/master/src/main/java/seedu/tr4cker/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -78,7 +78,7 @@ The `UI` component,
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
 **API** :
-[`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/taskDescription/logic/Logic.java)
+[`Logic.java`](https://github.com/AY2021S1-CS2103T-T10-2/tp/tree/master/src/main/java/seedu/tr4cker/logic/Logic.java)
 
 1. `Logic` uses the `Tr4ckerParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
@@ -151,23 +151,23 @@ Step 1. The user launches the application for the first time. The `VersionedAddr
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the taskDescription book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the taskDescription book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted taskDescription book state.
+Step 2. The user executes `delete 5` command to delete the 5th task in the tr4cker. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the taskDescription book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted taskDescription book state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified taskDescription book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `add n/task 1 …​` to add a new task. The `add` command also calls `Model#commitAddressBook()`, causing another modified tr4cker state to be saved into the `tr4ckerStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the taskDescription book state will not be saved into the `addressBookStateList`.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the tr4cker state will not be saved into the `tr4ckerStateList`.
 
 </div>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous taskDescription book state, and restores the taskDescription book to that state.
+Step 4. The user now decides that adding the task was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous tr4cker state, and restores the tr4cker to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial tr4cker state, then there are no previous tr4cker states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
 than attempting to perform the undo.
 
 </div>
