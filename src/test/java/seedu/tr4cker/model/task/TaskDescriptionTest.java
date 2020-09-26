@@ -29,8 +29,8 @@ public class TaskDescriptionTest {
         assertFalse(TaskDescription.isValidTaskDescription(" ")); // spaces only
 
         // valid addresses
-        assertTrue(TaskDescription.isValidTaskDescription("Blk 456, Den Road, #01-355"));
+        assertTrue(TaskDescription.isValidTaskDescription("description"));
         assertTrue(TaskDescription.isValidTaskDescription("-")); // one character
-        assertTrue(TaskDescription.isValidTaskDescription("Leng Inc; 1234 Market St; San Francisco CA 2349879; USA")); // long tr4cker
+        assertTrue(TaskDescription.isValidTaskDescription("Do all assignments and quizzes, assignment 1 is blahblahblahblahblah")); // long tr4cker
     }
 }
