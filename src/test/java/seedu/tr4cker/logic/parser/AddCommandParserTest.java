@@ -1,10 +1,10 @@
 package seedu.tr4cker.logic.parser;
 
 import static seedu.tr4cker.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.tr4cker.logic.commands.CommandTestUtil.DESCRIPTION_DESC_1;
-import static seedu.tr4cker.logic.commands.CommandTestUtil.DESCRIPTION_DESC_2;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.DEADLINE_DESC_1;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.DEADLINE_DESC_2;
+import static seedu.tr4cker.logic.commands.CommandTestUtil.DESCRIPTION_DESC_1;
+import static seedu.tr4cker.logic.commands.CommandTestUtil.DESCRIPTION_DESC_2;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.INVALID_DESCRIPTION_DESC;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.INVALID_DEADLINE_DESC;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
@@ -15,8 +15,8 @@ import static seedu.tr4cker.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
-import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_DESCRIPTION_2;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_DEADLINE_2;
+import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_DESCRIPTION_2;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_NAME_2;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
@@ -29,10 +29,10 @@ import org.junit.jupiter.api.Test;
 
 import seedu.tr4cker.logic.commands.AddCommand;
 import seedu.tr4cker.model.tag.Tag;
-import seedu.tr4cker.model.task.TaskDescription;
 import seedu.tr4cker.model.task.Deadline;
 import seedu.tr4cker.model.task.Name;
 import seedu.tr4cker.model.task.Task;
+import seedu.tr4cker.model.task.TaskDescription;
 import seedu.tr4cker.testutil.TaskBuilder;
 
 public class AddCommandParserTest {

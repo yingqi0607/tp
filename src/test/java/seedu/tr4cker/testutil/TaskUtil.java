@@ -1,9 +1,9 @@
 package seedu.tr4cker.testutil;
 
-import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_TASKDESCRIPTION;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_TASKDESCRIPTION;
 
 import java.util.Set;
 
@@ -47,7 +47,8 @@ public class TaskUtil {
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.taskName).append(" "));
         descriptor.getDeadline().ifPresent(deadline -> sb.append(PREFIX_DEADLINE).append(deadline.value).append(" "));
         // Completion status not included
-        descriptor.getTaskDescription().ifPresent(description -> sb.append(PREFIX_TASKDESCRIPTION).append(description.value).append(" "));
+        descriptor.getTaskDescription()
+                .ifPresent(description -> sb.append(PREFIX_TASKDESCRIPTION).append(description.value).append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {

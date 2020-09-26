@@ -15,9 +15,9 @@ import org.junit.jupiter.api.Test;
 
 import seedu.tr4cker.logic.parser.exceptions.ParseException;
 import seedu.tr4cker.model.tag.Tag;
-import seedu.tr4cker.model.task.TaskDescription;
 import seedu.tr4cker.model.task.Deadline;
 import seedu.tr4cker.model.task.Name;
+import seedu.tr4cker.model.task.TaskDescription;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";

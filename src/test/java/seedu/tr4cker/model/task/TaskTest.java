@@ -2,9 +2,9 @@ package seedu.tr4cker.model.task;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_DESCRIPTION_2;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_COMPLETION_STATUS_2;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_DEADLINE_2;
+import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_DESCRIPTION_2;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_NAME_2;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.tr4cker.testutil.Assert.assertThrows;
@@ -51,7 +51,8 @@ public class TaskTest {
         assertFalse(TASK1.isSameTask(editedTask1));
 
         // same name, same deadline, different attributes -> returns true
-        editedTask1 = new TaskBuilder(TASK1).withTaskDescription(VALID_DESCRIPTION_2).withTags(VALID_TAG_HUSBAND).build();
+        editedTask1 = new TaskBuilder(TASK1)
+                .withTaskDescription(VALID_DESCRIPTION_2).withTags(VALID_TAG_HUSBAND).build();
         assertTrue(TASK1.isSameTask(editedTask1));
     }
 

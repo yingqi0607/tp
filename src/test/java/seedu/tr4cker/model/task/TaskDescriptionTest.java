@@ -31,6 +31,7 @@ public class TaskDescriptionTest {
         // valid addresses
         assertTrue(TaskDescription.isValidTaskDescription("description"));
         assertTrue(TaskDescription.isValidTaskDescription("-")); // one character
-        assertTrue(TaskDescription.isValidTaskDescription("Do all assignments and quizzes, assignment 1 is blahblahblahblahblah")); // long tr4cker
+        assertTrue(TaskDescription.isValidTaskDescription("Do all assignments and quizzes, " +
+                "assignment 1 is blahblahblahblahblah")); // long tr4cker
     }
 }

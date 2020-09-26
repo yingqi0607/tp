@@ -4,11 +4,11 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.tr4cker.model.tag.Tag;
-import seedu.tr4cker.model.task.TaskDescription;
 import seedu.tr4cker.model.task.CompletionStatus;
 import seedu.tr4cker.model.task.Deadline;
 import seedu.tr4cker.model.task.Name;
 import seedu.tr4cker.model.task.Task;
+import seedu.tr4cker.model.task.TaskDescription;
 import seedu.tr4cker.model.util.SampleDataUtil;
 
 /**

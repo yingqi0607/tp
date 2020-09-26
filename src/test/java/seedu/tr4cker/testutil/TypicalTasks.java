@@ -1,11 +1,11 @@
 package seedu.tr4cker.testutil;
 
-import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_DESCRIPTION_1;
-import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_DESCRIPTION_2;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_COMPLETION_STATUS_1;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_COMPLETION_STATUS_2;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_DEADLINE_1;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_DEADLINE_2;
+import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_DESCRIPTION_1;
+import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_DESCRIPTION_2;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_NAME_1;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_NAME_2;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;

@@ -7,10 +7,10 @@ import java.util.stream.Stream;
 import seedu.tr4cker.logic.commands.EditCommand;
 import seedu.tr4cker.logic.commands.EditCommand.EditTaskDescriptor;
 import seedu.tr4cker.model.tag.Tag;
-import seedu.tr4cker.model.task.TaskDescription;
 import seedu.tr4cker.model.task.Deadline;
 import seedu.tr4cker.model.task.Name;
 import seedu.tr4cker.model.task.Task;
+import seedu.tr4cker.model.task.TaskDescription;
 
 /**
  * A utility class to help with building EditTaskDescriptor objects.

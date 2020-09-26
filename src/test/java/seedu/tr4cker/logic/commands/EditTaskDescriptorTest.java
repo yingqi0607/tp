@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.DESC_1;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.DESC_2;
-import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_DESCRIPTION_2;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_DEADLINE_2;
+import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_DESCRIPTION_2;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_NAME_2;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
