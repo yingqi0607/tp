@@ -7,6 +7,10 @@ We are a team based in the [School of Computing, National University of Singapor
 
 You can reach us at the following emails:
 - Koh Rui Ling - `e0426268@u.nus.edu`
+- Lin Yingqi - `e0424735@u.nus.edu`
+- Lim Ethan - `e0406537@u.nus.edu`
+- Chia Wen Ling - `wenling@u.nus.edu`
+- Cheak Han Wei - `e0389075@u.nus.edu`
 
 ## Project team
 

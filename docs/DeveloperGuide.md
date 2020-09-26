@@ -254,12 +254,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many tasks in the tr4cker | sort tasks by name           | locate a task easily                                                 |
+| `* * *`  | user                                       | add a new task                 |                                                                        |
+| `* * *`  | user                                       | delete a task                  | remove tasks that I have completed or no longer need                   |
+| `* * *`  | user                                       | edit a task                    | change the tasks that I have entered wrongly without deleting it       |
+| `* * *`  | user                                       | view all tasks                 | have a overview of all tasks that I have                               |
+| `* * *`  | user                                       | find a task                    | find the tasks that match the keywords that I want to find             |
+| `* * *`  | user                                       | mark a task as completed       | when I complete a task, I want to mark it as completed                 |
+| `* * *`  | user                                       | exit from the program          | indicate that I am done with what I wanted to do                       |
 
 *{More to be added}*
 
