@@ -5,8 +5,8 @@ import static seedu.tr4cker.logic.commands.CommandTestUtil.DEADLINE_DESC_1;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.DEADLINE_DESC_2;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.DESCRIPTION_DESC_1;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.DESCRIPTION_DESC_2;
-import static seedu.tr4cker.logic.commands.CommandTestUtil.INVALID_DESCRIPTION_DESC;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.INVALID_DEADLINE_DESC;
+import static seedu.tr4cker.logic.commands.CommandTestUtil.INVALID_DESCRIPTION_DESC;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.NAME_DESC_1;
@@ -77,7 +77,8 @@ public class EditCommandParserTest {
     public void parse_invalidValue_failure() {
         assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
         assertParseFailure(parser, "1" + INVALID_DEADLINE_DESC, Deadline.MESSAGE_CONSTRAINTS); // invalid deadline
-        assertParseFailure(parser, "1" + INVALID_DESCRIPTION_DESC, TaskDescription.MESSAGE_CONSTRAINTS); // invalid tr4cker
+        assertParseFailure(parser, "1" + INVALID_DESCRIPTION_DESC,
+                TaskDescription.MESSAGE_CONSTRAINTS); // invalid tr4cker
         assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
 
         // invalid deadline followed by valid address

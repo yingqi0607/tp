@@ -47,7 +47,8 @@ public class CommandTestUtil {
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_DEADLINE_DESC = " " + PREFIX_DEADLINE + "911a"; // 'a' not allowed in deadlines
-    public static final String INVALID_DESCRIPTION_DESC = " " + PREFIX_TASKDESCRIPTION; // empty string not allowed for addresses
+    public static final String INVALID_DESCRIPTION_DESC =
+            " " + PREFIX_TASKDESCRIPTION;// empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
