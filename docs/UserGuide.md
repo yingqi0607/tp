@@ -26,7 +26,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
    * **`list`** : Lists all contacts.
 
-   * **`add`**`n/John Doe d/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * **`add`**`n/task 1 dl/2020-09-08 des/Task 1 description t/urgent` : Adds a contact named `John Doe` to the Address Book.
 
    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
 
@@ -71,15 +71,15 @@ Format: `help`
 
 Adds a person to the taskDescription book.
 
-Format: `add n/NAME d/DEADLINE a/ADDRESS [t/TAG]…​`
+Format: `add n/NAME dl/DEADLINE des/description [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/John Doe d/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison d/1234567 t/criminal`
+* `add n/task 1 dl/2020-09-08 des/task 1 description`
+* `add n/task 2 dl/2020-08-09 2359 des/task 2 description t/urgent`
 
 ### Listing all persons : `list`
 
@@ -91,7 +91,7 @@ Format: `list`
 
 Edits an existing person in the taskDescription book.
 
-Format: `edit INDEX [n/NAME] [d/DEADLINE] [a/ADDRESS] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [dl/DEADLINE] [des/TASKDESCRIPTION] [t/TAG]…​`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -169,10 +169,10 @@ _{explain the feature here}_
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME d/DEADLINE a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho d/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add** | `add n/NAME dl/DEADLINE des/TASKDESCRIPTION [t/TAG]…​` <br> e.g., `add n/task 1 dl/2020-09-08 des/task 1 description t/urgent t/priority`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [d/DEADLINE] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Edit** | `edit INDEX [n/NAME] [dl/DEADLINE] [des/TASKDESCRIPTION] [t/TAG]…​`<br> e.g.,`edit 2 n/task 1 dl/2020-09-08`
+**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find task 1`
 **List** | `list`
 **Help** | `help`

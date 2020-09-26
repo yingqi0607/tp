@@ -241,7 +241,7 @@ the given commands to find exactly what happens.
 
     2.  Allow `delete` to remove more than one index at a time
 
-    3.  Save the taskDescription book in the CSV format instead
+    3.  Save the tr4cker in the CSV format instead
 
     4.  Add a new command
 
