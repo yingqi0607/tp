@@ -10,7 +10,7 @@ import seedu.tr4cker.commons.core.index.Index;
 import seedu.tr4cker.commons.util.StringUtil;
 import seedu.tr4cker.logic.parser.exceptions.ParseException;
 import seedu.tr4cker.model.tag.Tag;
-import seedu.tr4cker.model.task.Address;
+import seedu.tr4cker.model.task.TaskDescription;
 import seedu.tr4cker.model.task.Deadline;
 import seedu.tr4cker.model.task.Name;
 
@@ -65,18 +65,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String tr4cker} into an {@code Address}.
+     * Parses a {@code String tr4cker} into an {@code description}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code tr4cker} is invalid.
      */
-    public static Address parseAddress(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+    public static TaskDescription parseDescription(String description) throws ParseException {
+        requireNonNull(description);
+        String trimmedDescription = description.trim();
+        if (!TaskDescription.isValidTaskDescription(trimmedDescription)) {
+            throw new ParseException(TaskDescription.MESSAGE_CONSTRAINTS);
         }
-        return new Address(trimmedAddress);
+        return new TaskDescription(trimmedDescription);
     }
 
     /**

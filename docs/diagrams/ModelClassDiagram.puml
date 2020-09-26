@@ -45,12 +45,12 @@ UniquePersonList o--> "*" Person
 Person *--> Name
 Person *--> Deadline
 Person *--> CompletionStatus
-Person *--> Address
+Person *--> TaskDescription
 Person *--> "*" Tag
 
 Name -[hidden]right-> Deadline
-Deadline -[hidden]right-> Address
-Address -[hidden]right-> CompletionStatus
+Deadline -[hidden]right-> TaskDescription
+TaskDescription -[hidden]right-> CompletionStatus
 
 ModelManager -->"1" Person : filtered list
 @enduml

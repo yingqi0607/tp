@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.tr4cker.model.tag.Tag;
-import seedu.tr4cker.model.task.Address;
+import seedu.tr4cker.model.task.TaskDescription;
 import seedu.tr4cker.model.task.CompletionStatus;
 import seedu.tr4cker.model.task.Deadline;
 import seedu.tr4cker.model.task.Name;
@@ -19,12 +19,12 @@ public class TaskBuilder {
     public static final String DEFAULT_NAME = "Alice Pauline II";
     public static final String DEFAULT_DEADLINE = "2020-12-31 2359";
     public static final int DEFAULT_COMPLETION_STATUS = 0;
-    public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_DESCRIPTION = "description";
 
     private Name name;
     private Deadline deadline;
     private CompletionStatus completionStatus;
-    private Address address;
+    private TaskDescription taskDescription;
     private Set<Tag> tags;
 
     /**
@@ -34,7 +34,7 @@ public class TaskBuilder {
         name = new Name(DEFAULT_NAME);
         deadline = new Deadline(DEFAULT_DEADLINE);
         completionStatus = new CompletionStatus(DEFAULT_COMPLETION_STATUS);
-        address = new Address(DEFAULT_ADDRESS);
+        taskDescription = new TaskDescription(DEFAULT_DESCRIPTION);
         tags = new HashSet<>();
     }
 
@@ -45,7 +45,7 @@ public class TaskBuilder {
         name = taskToCopy.getName();
         deadline = taskToCopy.getDeadline();
         completionStatus = taskToCopy.getCompletionStatus();
-        address = taskToCopy.getAddress();
+        taskDescription = taskToCopy.getTaskDescription();
         tags = new HashSet<>(taskToCopy.getTags());
     }
 
@@ -66,10 +66,10 @@ public class TaskBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code Task} that we are building.
+     * Sets the {@code description} of the {@code Task} that we are building.
      */
-    public TaskBuilder withAddress(String address) {
-        this.address = new Address(address);
+    public TaskBuilder withTaskDescription(String description) {
+        this.taskDescription = new TaskDescription(description);
         return this;
     }
 
@@ -91,7 +91,7 @@ public class TaskBuilder {
     }
 
     public Task build() {
-        return new Task(name, deadline, completionStatus, address, tags);
+        return new Task(name, deadline, completionStatus, taskDescription, tags);
     }
 
 }

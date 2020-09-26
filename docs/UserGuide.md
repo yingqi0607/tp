@@ -69,7 +69,7 @@ Format: `help`
 
 ### Adding a person: `add`
 
-Adds a person to the address book.
+Adds a person to the taskDescription book.
 
 Format: `add n/NAME d/DEADLINE a/ADDRESS [t/TAG]…​`
 
@@ -83,13 +83,13 @@ Examples:
 
 ### Listing all persons : `list`
 
-Shows a list of all persons in the address book.
+Shows a list of all persons in the taskDescription book.
 
 Format: `list`
 
 ### Editing a person : `edit`
 
-Edits an existing person in the address book.
+Edits an existing person in the taskDescription book.
 
 Format: `edit INDEX [n/NAME] [d/DEADLINE] [a/ADDRESS] [t/TAG]…​`
 
@@ -124,7 +124,7 @@ Examples:
 
 ### Deleting a person : `delete`
 
-Deletes the specified person from the address book.
+Deletes the specified person from the taskDescription book.
 
 Format: `delete INDEX`
 
@@ -133,12 +133,12 @@ Format: `delete INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
+* `list` followed by `delete 2` deletes the 2nd person in the taskDescription book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all entries from the taskDescription book.
 
 Format: `clear`
 

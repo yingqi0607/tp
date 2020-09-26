@@ -2,7 +2,7 @@ package seedu.tr4cker.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.tr4cker.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_TASKDESCRIPTION;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_TAG;
@@ -31,7 +31,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DEADLINE,
-                        PREFIX_ADDRESS, PREFIX_TAG);
+                        PREFIX_TASKDESCRIPTION, PREFIX_TAG);
 
         Index index;
 
@@ -48,8 +48,8 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_DEADLINE).isPresent()) {
             editTaskDescriptor.setDeadline(ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_DEADLINE).get()));
         }
-        if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
-            editTaskDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
+        if (argMultimap.getValue(PREFIX_TASKDESCRIPTION).isPresent()) {
+            editTaskDescriptor.setDescription(ParserUtil.parseDescription(argMultimap.getValue(PREFIX_TASKDESCRIPTION).get()));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editTaskDescriptor::setTags);
 

@@ -2,7 +2,7 @@ package seedu.tr4cker.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_TASKDESCRIPTION;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_TAG;
@@ -31,8 +31,8 @@ public class CommandTestUtil {
     public static final String VALID_DEADLINE_2 = "2020-09-30 2359";
     public static final int VALID_COMPLETION_STATUS_1 = 0;
     public static final int VALID_COMPLETION_STATUS_2 = 0;
-    public static final String VALID_ADDRESS_1 = "Block 312, Amy Street 1";
-    public static final String VALID_ADDRESS_2 = "Block 123, Bobby Street 3";
+    public static final String VALID_DESCRIPTION_1 = "description 1";
+    public static final String VALID_DESCRIPTION_2 = "description 2";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
@@ -40,14 +40,14 @@ public class CommandTestUtil {
     public static final String NAME_DESC_2 = " " + PREFIX_NAME + VALID_NAME_2;
     public static final String DEADLINE_DESC_1 = " " + PREFIX_DEADLINE + VALID_DEADLINE_1;
     public static final String DEADLINE_DESC_2 = " " + PREFIX_DEADLINE + VALID_DEADLINE_2;
-    public static final String ADDRESS_DESC_1 = " " + PREFIX_ADDRESS + VALID_ADDRESS_1;
-    public static final String ADDRESS_DESC_2 = " " + PREFIX_ADDRESS + VALID_ADDRESS_2;
+    public static final String DESCRIPTION_DESC_1 = " " + PREFIX_TASKDESCRIPTION + VALID_DESCRIPTION_1;
+    public static final String DESCRIPTION_DESC_2 = " " + PREFIX_TASKDESCRIPTION + VALID_DESCRIPTION_2;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_DEADLINE_DESC = " " + PREFIX_DEADLINE + "911a"; // 'a' not allowed in deadlines
-    public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
+    public static final String INVALID_DESCRIPTION_DESC = " " + PREFIX_TASKDESCRIPTION; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
@@ -58,10 +58,10 @@ public class CommandTestUtil {
 
     static {
         DESC_1 = new EditTaskDescriptorBuilder().withName(VALID_NAME_1)
-                .withDeadline(VALID_DEADLINE_1).withAddress(VALID_ADDRESS_1)
+                .withDeadline(VALID_DEADLINE_1).withTaskDescription(VALID_DESCRIPTION_1)
                 .withTags(VALID_TAG_FRIEND).build();
         DESC_2 = new EditTaskDescriptorBuilder().withName(VALID_NAME_2)
-                .withDeadline(VALID_DEADLINE_2).withAddress(VALID_ADDRESS_2)
+                .withDeadline(VALID_DEADLINE_2).withTaskDescription(VALID_DESCRIPTION_2)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
 
