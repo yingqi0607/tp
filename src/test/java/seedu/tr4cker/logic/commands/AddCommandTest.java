@@ -53,16 +53,16 @@ public class AddCommandTest {
 
     @Test
     public void equals() {
-        Task task1 = new TaskBuilder().withName("homework").build();
-        Task task2 = new TaskBuilder().withName("assignment").build();
-        AddCommand addTask1Command = new AddCommand(task1);
-        AddCommand addTask2Command = new AddCommand(task2);
+        Task homework = new TaskBuilder().withName("homework").build();
+        Task assignment = new TaskBuilder().withName("assignment").build();
+        AddCommand addTask1Command = new AddCommand(homework);
+        AddCommand addTask2Command = new AddCommand(assignment);
 
         // same object -> returns true
         assertTrue(addTask1Command.equals(addTask1Command));
 
         // same values -> returns true
-        AddCommand addTask1CommandCopy = new AddCommand(task1);
+        AddCommand addTask1CommandCopy = new AddCommand(homework);
         assertTrue(addTask1Command.equals(addTask1CommandCopy));
 
         // different types -> returns false
