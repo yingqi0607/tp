@@ -91,11 +91,6 @@ Examples:
 * `add n/CS1101S Quiz dl/2020-01-25 des/Post-Lecture quiz`
 * `add n/CS1231S Homework Assignment dl/2020-09-08 2200 des/task 1 description t/assignment t/urgent`
 
-### Listing all persons : `list`
-
-Shows a list of all persons in tr4cker.
-
-Format: `list`
 
 ### Editing a task: `edit`
 
@@ -155,9 +150,18 @@ Clears all entries from tr4cker.
 
 Format: `clear`
 
-### Exiting the program : `exit`
+### Listing all tasks : `list`
 
-Exits the program.
+Shows a list of all tasks in tr4cker.
+
+Format: `list`
+
+Examples:
+* `list`
+
+### Exiting TR4CKER : `exit`
+
+Exits TR4CKER.
 
 Format: `exit`
 
