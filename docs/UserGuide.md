@@ -91,6 +91,20 @@ Examples:
 * `add n/CS1101S Quiz dl/2020-01-25 des/Post-Lecture quiz`
 * `add n/CS1231S Homework Assignment dl/2020-09-08 2200 des/task 1 description t/assignment t/urgent`
 
+### Marking tasks as done: `done`
+
+Marks the tasks you have completed as 'done' in TR4CKER.
+
+Format: `done [INDEX]`
+
+* Marks the task as done at the specified `INDEX`.
+* The index refers to a valid index number shown in the displayed task list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `list` followed by `done 2` marks the 2nd task in the displayed task list as done.
+* `find essay` followed by `done 1` marks the 1st task in the results of the `find` command as done.
+
 ### Listing all persons : `list`
 
 Shows a list of all persons in tr4cker.
@@ -185,6 +199,7 @@ Action | Format, Examples
 **Add** | `add n/NAME dl/DEADLINE des/TASKDESCRIPTION [t/TAG]…​` <br> e.g., `add n/task 1 dl/2020-09-08 des/task 1 description t/urgent t/priority`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
+**Done** | `done INDEX`<br> e.g., `done 1`
 **Edit** | `edit INDEX [n/NAME] [dl/DEADLINE] [des/TASKDESCRIPTION] [t/TAG]…​`<br> e.g.,`edit 2 n/task 1 dl/2020-09-08`
 **Find** | `find [KEYWORD_1] [KEYWORD_2] ...`<br> e.g., `find task 1`
 **List** | `list`
