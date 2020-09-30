@@ -134,7 +134,6 @@ Examples:
 * `find CS1231S Mission` returns `CS1101S Mission`, `CS1231S Graded Assignment`<br>
   ![result for 'find CS1231S Mission'](images/findCS1231SmissionResult.png)
 
-
 ### Deleting an existing task : `delete`
 
 You can delete an existing task from the task list by providing the 
