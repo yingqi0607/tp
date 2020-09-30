@@ -105,12 +105,6 @@ Examples:
 * `list` followed by `done 2` marks the 2nd task in the displayed task list as done.
 * `find essay` followed by `done 1` marks the 1st task in the results of the `find` command as done.
 
-### Listing all persons : `list`
-
-Shows a list of all persons in tr4cker.
-
-Format: `list`
-
 ### Editing a task: `edit`
 
 Edits an existing task’s details in TR4CKER.
@@ -169,9 +163,18 @@ Clears all entries from tr4cker.
 
 Format: `clear`
 
-### Exiting the program : `exit`
+### Listing all tasks : `list`
 
-Exits the program.
+Shows a list of all tasks in tr4cker.
+
+Format: `list`
+
+Examples:
+* `list`
+
+### Exiting TR4CKER : `exit`
+
+Exits TR4CKER.
 
 Format: `exit`
 
@@ -196,11 +199,13 @@ _{explain the feature here}_
 
 Action | Format, Examples
 --------|------------------
+**Help** | `help`
 **Add** | `add n/NAME dl/DEADLINE des/TASKDESCRIPTION [t/TAG]…​` <br> e.g., `add n/task 1 dl/2020-09-08 des/task 1 description t/urgent t/priority`
-**Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Done** | `done INDEX`<br> e.g., `done 1`
 **Edit** | `edit INDEX [n/NAME] [dl/DEADLINE] [des/TASKDESCRIPTION] [t/TAG]…​`<br> e.g.,`edit 2 n/task 1 dl/2020-09-08`
 **Find** | `find [KEYWORD_1] [KEYWORD_2] ...`<br> e.g., `find task 1`
+**Clear** | `clear`
 **List** | `list`
-**Help** | `help`
+**Exit** | `exit`
+
