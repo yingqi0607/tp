@@ -116,7 +116,7 @@ Examples:
 * `edit 2 dl/ 2020-09-13 1930` - Edits the deadline time of the 2nd task to be 13 Sep 2020, 1930 hrs.
 * `edit 3 t/` - Clears the existing tags of the 3rd task.
 
-### Locating persons by name: `find`
+### Locating tasks by keyword: `find`
 
 Finds persons whose names contain any of the given keywords.
 
