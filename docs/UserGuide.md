@@ -120,19 +120,20 @@ Examples:
 
 Finds persons whose names contain any of the given keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find [KEYWORD_1] [KEYWORD_2] ...`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* The search is case-insensitive. e.g `cs2101` will match `CS2101`
+* The order of the keywords does not matter. e.g. `Presentation CS2101` will match `CS2101 Presentation`
 * Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* Only full words will be matched e.g. `2101` will not match `CS2101`
+* Persons matching at least one keyword will be returned.
+  e.g. `find CS2101 project` will return `CS2101 Oral Presentation 1`, `CS2103T team project`
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `find CS2101` returns `CS2101 Oral Presentation 1`
+* `find CS1231S Mission` returns `CS1101S Mission`, `CS1231S Graded Assignment`<br>
+  ![result for 'find CS1231S Mission'](images/findCS1231SmissionResult.png)
+
 
 ### Deleting an existing task : `delete`
 
@@ -186,6 +187,6 @@ Action | Format, Examples
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [dl/DEADLINE] [des/TASKDESCRIPTION] [t/TAG]…​`<br> e.g.,`edit 2 n/task 1 dl/2020-09-08`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find task 1`
+**Find** | `find [KEYWORD_1] [KEYWORD_2] ...`<br> e.g., `find task 1`
 **List** | `list`
 **Help** | `help`
