@@ -67,19 +67,23 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 
-### Adding a person: `add`
+### Adding a new task: `add`
 
-Adds a person to tr4cker.
+You can add a new task to TR4CKER.
+
+Default deadline time would be set to 2359 if you do not provide a deadline time.
+
+You should enter time in this format: yyyy-MM-dd HHmm
 
 Format: `add n/NAME dl/DEADLINE des/description [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+A task can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/task 1 dl/2020-09-08 des/task 1 description`
-* `add n/task 2 dl/2020-08-09 2359 des/task 2 description t/urgent`
+* `add n/CS1101S Quiz dl/2020-01-25 des/Post-Lecture quiz`
+* `add n/CS1231S Homework Assignment dl/2020-09-08 2200 des/task 1 description t/assignment t/urgent`
 
 ### Listing all persons : `list`
 
@@ -122,19 +126,20 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
+### Deleting an existing task : `delete`
 
-Deletes the specified person from the tr4cker.
+You can delete an existing task from the task list by providing the 
+index number of the task that you want to delete.
 
 Format: `delete INDEX`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* Deletes the task at the specified `INDEX`.
+* The index refers to a valid index number shown in the displayed task list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd task in tr4cker.
-* `find Betsy` followed by `delete 1` deletes the 1st task in the results of the `find` command.
+* `list` followed by `delete 2` deletes the 2nd task in the displayed task list.
+* `find assignment` followed by `delete 1` deletes the 1st task in the results of the `find` command.
 
 ### Clearing all entries : `clear`
 
