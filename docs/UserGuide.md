@@ -202,6 +202,7 @@ Action | Format, Examples
 **Help** | `help`
 **Add** | `add n/NAME dl/DEADLINE des/TASKDESCRIPTION [t/TAG]…​` <br> e.g., `add n/task 1 dl/2020-09-08 des/task 1 description t/urgent t/priority`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
+**Done** | `done INDEX`<br> e.g., `done 1`
 **Edit** | `edit INDEX [n/NAME] [dl/DEADLINE] [des/TASKDESCRIPTION] [t/TAG]…​`<br> e.g.,`edit 2 n/task 1 dl/2020-09-08`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find task 1`
 **Clear** | `clear`
