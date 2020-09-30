@@ -85,7 +85,6 @@ Examples:
 * `add n/CS1101S Quiz dl/2020-01-25 des/Post-Lecture quiz`
 * `add n/CS1231S Homework Assignment dl/2020-09-08 2200 des/task 1 description t/assignment t/urgent`
 
-
 ### Listing all persons : `list`
 
 Shows a list of all persons in tr4cker.
@@ -140,6 +139,7 @@ Format: `delete INDEX`
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd task in the displayed task list.
+* `find assignment` followed by `delete 1` deletes the 1st task in the results of the `find` command.
 
 ### Clearing all entries : `clear`
 
