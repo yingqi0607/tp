@@ -132,7 +132,7 @@ Examples:
 
 ### Locating tasks by keyword: `find`
 
-Finds persons whose names contain any of the given keywords.
+Finds tasks whose names contain any of the given keywords.
 
 Format: `find [KEYWORD_1] [KEYWORD_2] ...`
 
