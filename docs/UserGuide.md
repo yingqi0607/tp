@@ -101,7 +101,7 @@ Format: `done [INDEX]`
 * The index refers to a valid index number shown in the displayed task list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
-Exmples:
+Examples:
 * `list` followed by `done 2` marks the 2nd task in the displayed task list as done.
 * `find essay` followed by `done 1` marks the 1st task in the results of the `find` command as done.
 
