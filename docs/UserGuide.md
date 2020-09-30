@@ -134,7 +134,7 @@ Format: `find [KEYWORD_1] [KEYWORD_2] ...`
 * The order of the keywords does not matter. e.g. `Presentation CS2101` will match `CS2101 Presentation`
 * Only the name is searched.
 * Only full words will be matched e.g. `2101` will not match `CS2101`
-* Persons matching at least one keyword will be returned.
+* Tasks matching at least one keyword will be returned.
   e.g. `find CS2101 project` will return `CS2101 Oral Presentation 1`, `CS2103T team project`
 
 Examples:
