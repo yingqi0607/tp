@@ -61,8 +61,24 @@ public class Task {
         return Collections.unmodifiableSet(tags);
     }
 
-    public void addTag(Tag tag) {
-        this.tags.add(tag);
+    /**
+     * Adds tag(s) to existing tags.
+     *
+     * @param tags Tags to be added.
+     */
+    public void addTags(Set<Tag> tags) {
+        this.tags.addAll(tags);
+    }
+
+    /**
+     * Deletes tag(s) from existing tags (if there exists).
+     *
+     * @param tags Tags to be deleted.
+     */
+    public void deleteTags(Set<Tag> tags) {
+        for (Tag tag : tags) {
+            this.tags.remove(tag);
+        }
     }
 
     /**

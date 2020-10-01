@@ -17,7 +17,7 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to the TR4CKER. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to TR4CKER "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_DEADLINE + "DEADLINE "
@@ -31,7 +31,7 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "owesMoney";
 
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
-    public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the tr4cker";
+    public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in TR4CKER.";
 
     private final Task toAdd;
 
