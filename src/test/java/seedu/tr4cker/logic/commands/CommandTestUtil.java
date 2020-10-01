@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_TASKDESCRIPTION;
+import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_TASK_DESCRIPTION;
 import static seedu.tr4cker.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -40,15 +40,15 @@ public class CommandTestUtil {
     public static final String NAME_DESC_2 = " " + PREFIX_NAME + VALID_NAME_2;
     public static final String DEADLINE_DESC_1 = " " + PREFIX_DEADLINE + VALID_DEADLINE_1;
     public static final String DEADLINE_DESC_2 = " " + PREFIX_DEADLINE + VALID_DEADLINE_2;
-    public static final String DESCRIPTION_DESC_1 = " " + PREFIX_TASKDESCRIPTION + VALID_DESCRIPTION_1;
-    public static final String DESCRIPTION_DESC_2 = " " + PREFIX_TASKDESCRIPTION + VALID_DESCRIPTION_2;
+    public static final String DESCRIPTION_DESC_1 = " " + PREFIX_TASK_DESCRIPTION + VALID_DESCRIPTION_1;
+    public static final String DESCRIPTION_DESC_2 = " " + PREFIX_TASK_DESCRIPTION + VALID_DESCRIPTION_2;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_DEADLINE_DESC = " " + PREFIX_DEADLINE + "911a"; // 'a' not allowed in deadlines
     public static final String INVALID_DESCRIPTION_DESC =
-            " " + PREFIX_TASKDESCRIPTION; // empty string not allowed for addresses
+            " " + PREFIX_TASK_DESCRIPTION; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";

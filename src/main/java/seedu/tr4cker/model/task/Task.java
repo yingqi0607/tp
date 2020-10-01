@@ -61,6 +61,10 @@ public class Task {
         return Collections.unmodifiableSet(tags);
     }
 
+    public void addTag(Tag tag) {
+        this.tags.add(tag);
+    }
+
     /**
      * Returns true if both tasks of the same name have at least one other identity field that is the same.
      * This defines a weaker notion of equality between two tasks.

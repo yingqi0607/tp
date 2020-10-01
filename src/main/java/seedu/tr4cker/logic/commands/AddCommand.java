@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_TASKDESCRIPTION;
+import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_TASK_DESCRIPTION;
 
 import seedu.tr4cker.logic.commands.exceptions.CommandException;
 import seedu.tr4cker.model.Model;
@@ -17,16 +17,16 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to the tr4cker. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to the TR4CKER. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_DEADLINE + "DEADLINE "
-            + PREFIX_TASKDESCRIPTION + "TASKDESCRIPTION "
+            + PREFIX_TASK_DESCRIPTION + "TASKDESCRIPTION "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_DEADLINE + "2020-10-10 1010 "
-            + PREFIX_TASKDESCRIPTION + "descriptions "
+            + PREFIX_TASK_DESCRIPTION + "descriptions "
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
 
