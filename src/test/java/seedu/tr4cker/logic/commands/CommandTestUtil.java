@@ -3,7 +3,9 @@ package seedu.tr4cker.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_DELETE_TAG;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_NEW_TAG;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_TASK_DESCRIPTION;
 import static seedu.tr4cker.testutil.Assert.assertThrows;
@@ -35,6 +37,10 @@ public class CommandTestUtil {
     public static final String VALID_DESCRIPTION_2 = "description 2";
     public static final String VALID_TAG_URGENT = "urgent";
     public static final String VALID_TAG_HELP = "help";
+    public static final String VALID_TAG_HOMEWORK = "homework";
+    public static final String VALID_TAG_WORK = "work";
+    public static final String VALID_TAG_ASSIGNMENT = "assignment";
+    public static final String VALID_TAG_MISSION = "mission";
 
     public static final String NAME_DESC_1 = " " + PREFIX_NAME + VALID_NAME_1;
     public static final String NAME_DESC_2 = " " + PREFIX_NAME + VALID_NAME_2;
@@ -42,8 +48,8 @@ public class CommandTestUtil {
     public static final String DEADLINE_DESC_2 = " " + PREFIX_DEADLINE + VALID_DEADLINE_2;
     public static final String DESCRIPTION_DESC_1 = " " + PREFIX_TASK_DESCRIPTION + VALID_DESCRIPTION_1;
     public static final String DESCRIPTION_DESC_2 = " " + PREFIX_TASK_DESCRIPTION + VALID_DESCRIPTION_2;
-    public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_HELP;
-    public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_URGENT;
+    public static final String TAG_DESC_HELP = " " + PREFIX_TAG + VALID_TAG_HELP;
+    public static final String TAG_DESC_URGENT = " " + PREFIX_TAG + VALID_TAG_URGENT;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "CS2103&"; // '&' not allowed in names
     public static final String INVALID_DEADLINE_DESC = " " + PREFIX_DEADLINE + "2020-09-a"; // 'a' not allowed
@@ -51,12 +57,21 @@ public class CommandTestUtil {
     public static final String INVALID_DESCRIPTION_DESC =
             " " + PREFIX_TASK_DESCRIPTION; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "tag*"; // '*' not allowed in tags
+    public static final String INVALID_NEW_TAG = " " + PREFIX_NEW_TAG + "tag*"; // '*' not allowed in tags
+    public static final String INVALID_DELETE_TAG = " " + PREFIX_DELETE_TAG + "tag*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
     public static final EditCommand.EditTaskDescriptor DESC_1;
     public static final EditCommand.EditTaskDescriptor DESC_2;
+
+    public static final String TAG_NEW_HOMEWORK = " " + PREFIX_NEW_TAG + VALID_TAG_HOMEWORK;
+    public static final String TAG_NEW_WORK = " " + PREFIX_NEW_TAG + VALID_TAG_WORK;
+    public static final String TAG_DELETE_ASSIGNMENT = " " + PREFIX_DELETE_TAG + VALID_TAG_ASSIGNMENT;
+    public static final String TAG_DELETE_MISSION = " " + PREFIX_DELETE_TAG + VALID_TAG_MISSION;
+    public static final String INVALID_NO_NEW_TAG = " " + PREFIX_NEW_TAG;
+    public static final String INVALID_NO_DELETE_TAG = " " + PREFIX_DELETE_TAG;
 
     static {
         DESC_1 = new EditTaskDescriptorBuilder().withName(VALID_NAME_1)
