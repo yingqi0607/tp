@@ -14,7 +14,7 @@ import seedu.tr4cker.logic.parser.exceptions.ParseException;
 import seedu.tr4cker.model.tag.Tag;
 
 /**
- * Parses input arguments and creates a new EditCommand object.
+ * Parses input arguments and creates a new TagCommand object.
  */
 public class TagCommandParser implements Parser<TagCommand> {
 
@@ -45,7 +45,7 @@ public class TagCommandParser implements Parser<TagCommand> {
     }
 
     /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * Returns true if any of the prefixes contains empty {@code Optional} values in the given
      * {@code ArgumentMultimap}.
      */
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {

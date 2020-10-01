@@ -11,7 +11,7 @@ import seedu.tr4cker.model.Model;
 import seedu.tr4cker.model.task.Task;
 
 /**
- * Deletes a task identified using it's displayed index from the tr4cker.
+ * Deletes a task identified using it's displayed index from TR4CKER.
  */
 public class DeleteCommand extends Command {
 
@@ -50,4 +50,5 @@ public class DeleteCommand extends Command {
                 || (other instanceof DeleteCommand // instanceof handles nulls
                 && targetIndex.equals(((DeleteCommand) other).targetIndex)); // state check
     }
+
 }

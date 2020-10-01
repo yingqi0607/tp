@@ -26,7 +26,7 @@ import seedu.tr4cker.model.task.Task;
 import seedu.tr4cker.model.task.TaskDescription;
 
 /**
- * Edits the details of an existing task in the Tr4cker.
+ * Edits the details of an existing task in TR4CKER.
  */
 public class EditCommand extends Command {
 
@@ -211,4 +211,5 @@ public class EditCommand extends Command {
                     && getTags().equals(e.getTags());
         }
     }
+
 }

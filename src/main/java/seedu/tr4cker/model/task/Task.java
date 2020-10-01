@@ -10,7 +10,7 @@ import java.util.Set;
 import seedu.tr4cker.model.tag.Tag;
 
 /**
- * Represents a Task in Tr4cker.
+ * Represents a Task in TR4CKER.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Task {

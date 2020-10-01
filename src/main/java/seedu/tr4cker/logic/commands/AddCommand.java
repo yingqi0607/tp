@@ -11,7 +11,7 @@ import seedu.tr4cker.model.Model;
 import seedu.tr4cker.model.task.Task;
 
 /**
- * Adds a task to the tr4cker.
+ * Adds a task to TR4CKER.
  */
 public class AddCommand extends Command {
 
@@ -36,7 +36,7 @@ public class AddCommand extends Command {
     private final Task toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Task}
+     * Creates an AddCommand to add the specified {@code Task}.
      */
     public AddCommand(Task task) {
         requireNonNull(task);
@@ -61,4 +61,5 @@ public class AddCommand extends Command {
                 || (other instanceof AddCommand // instanceof handles nulls
                 && toAdd.equals(((AddCommand) other).toAdd));
     }
+
 }

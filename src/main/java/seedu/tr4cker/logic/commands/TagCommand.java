@@ -15,6 +15,9 @@ import seedu.tr4cker.model.Model;
 import seedu.tr4cker.model.tag.Tag;
 import seedu.tr4cker.model.task.Task;
 
+/**
+ * Allows user to add or delete tags from a specified task.
+ */
 public class TagCommand extends Command {
 
     public static final String COMMAND_WORD = "tag";
@@ -27,15 +30,11 @@ public class TagCommand extends Command {
             + PREFIX_NEW_TAG + "urgent "
             + PREFIX_DELETE_TAG + "stillHaveTime";
 
-    public static final String MESSAGE_NEW_TAG_SUCCESS = "New tag added to Task: %1$s";
-    public static final String MESSAGE_DELETE_TAG_SUCCESS = "Tag deleted for Task: %1$s";
-    public static final String MESSAGE_DUPLICATE_TAG = "This tag already exists for Task: %1$s";
-    public static final String MESSAGE_ERROR = "This tag cannot be added to Task: %1$s";
+    public static final String MESSAGE_SUCCESS = "Tags edited for Task: %1$s";
 
     private final Index index;
     private final Set<Tag> tagsToAdd;
     private final Set<Tag> tagsToDelete;
-    private boolean isNewTag;
 
     /**
      * @param index of the task in the filtered task list to edit the tags.
@@ -71,12 +70,11 @@ public class TagCommand extends Command {
     }
 
     /**
-     * Generates a command execution success message based on whether the tag is added
-     * to or removed from {@code taskToEdit}.
+     * Generates a command execution success message when tag(s) are added
+     * to and/or removed from {@code taskToEdit}.
      */
     private String generateSuccessMessage(Task taskToEdit) {
-        String message = MESSAGE_NEW_TAG_SUCCESS;
-        return String.format(message, taskToEdit);
+        return String.format(MESSAGE_SUCCESS, taskToEdit);
     }
 
     @Override
