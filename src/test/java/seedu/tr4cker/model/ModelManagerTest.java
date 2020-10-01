@@ -119,7 +119,9 @@ public class ModelManagerTest {
         // different filteredList -> returns false
         String[] keywords = TASK1.getName().taskName.split("\\s+");
         modelManager.updateFilteredTaskList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-        assertFalse(modelManager.equals(new ModelManager(tr4cker, userPrefs)));
+        System.out.println(modelManager.getFilteredTaskList());
+        ModelManager newModelManager = new ModelManager(tr4cker, userPrefs);
+        assertFalse(modelManager.equals(newModelManager));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);

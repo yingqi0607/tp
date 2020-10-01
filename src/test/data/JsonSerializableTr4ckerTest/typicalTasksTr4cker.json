@@ -1,17 +1,17 @@
 {
-  "_comment": "TR4CKER save file which contains the same Task values as in TypicalTasks#getTypicalAddressBook()",
+  "_comment": "TR4CKER save file which contains the same Task values as in TypicalTasks#getTypicalTr4cker()",
   "tasks" : [ {
-    "name" : "Task1 Name",
+    "name" : "Task1Name",
     "deadline" : "2020-10-20 1800",
     "completionStatus" : 0,
     "description" : "Task 1 description",
-    "tagged" : [ "friends" ]
+    "tagged" : [ "quiz" ]
   }, {
-    "name" : "Task2 Meier",
+    "name" : "Task2 Name",
     "deadline" : "2020-09-30 2359",
     "completionStatus" : 0,
     "description" : "Task 2 description",
-    "tagged" : [ "owesMoney", "friends" ]
+    "tagged" : [ "graded", "assignment" ]
   }, {
     "name" : "Task3 Name",
     "deadline" : "2020-10-03 1200",
@@ -19,7 +19,7 @@
     "description" : "Task 3 description",
     "tagged" : [ ]
   }, {
-    "name" : "Task4 Meier",
+    "name" : "Task4 Name",
     "deadline" : "2020-09-21 1500",
     "completionStatus" : 0,
     "description" : "Task 4 description",

@@ -17,8 +17,8 @@ import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_DEADLINE_2;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_DESCRIPTION_1;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_DESCRIPTION_2;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_NAME_1;
-import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_TAG_HELP;
+import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_TAG_URGENT;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.tr4cker.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.tr4cker.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -107,7 +107,7 @@ public class EditCommandParserTest {
 
         EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withName(VALID_NAME_1)
                 .withDeadline(VALID_DEADLINE_2).withTaskDescription(VALID_DESCRIPTION_1)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+                .withTags(VALID_TAG_URGENT, VALID_TAG_HELP).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -148,7 +148,7 @@ public class EditCommandParserTest {
 
         // tags
         userInput = targetIndex.getOneBased() + TAG_DESC_FRIEND;
-        descriptor = new EditTaskDescriptorBuilder().withTags(VALID_TAG_FRIEND).build();
+        descriptor = new EditTaskDescriptorBuilder().withTags(VALID_TAG_HELP).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -161,7 +161,7 @@ public class EditCommandParserTest {
                 + DEADLINE_DESC_2 + DESCRIPTION_DESC_2 + TAG_DESC_HUSBAND;
 
         EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withDeadline(VALID_DEADLINE_2)
-                .withTaskDescription(VALID_DESCRIPTION_2).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
+                .withTaskDescription(VALID_DESCRIPTION_2).withTags(VALID_TAG_HELP, VALID_TAG_URGENT)
                 .build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 

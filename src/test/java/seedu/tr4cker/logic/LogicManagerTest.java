@@ -7,7 +7,7 @@ import static seedu.tr4cker.logic.commands.CommandTestUtil.DEADLINE_DESC_1;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.DESCRIPTION_DESC_1;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.NAME_DESC_1;
 import static seedu.tr4cker.testutil.Assert.assertThrows;
-import static seedu.tr4cker.testutil.TypicalTasks.MANUALTASK1;
+import static seedu.tr4cker.testutil.TypicalTasks.MANUAL_TASK1;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -80,7 +80,7 @@ public class LogicManagerTest {
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_1 + DEADLINE_DESC_1
                 + DESCRIPTION_DESC_1;
-        Task expectedTask = new TaskBuilder(MANUALTASK1).withTags().build();
+        Task expectedTask = new TaskBuilder(MANUAL_TASK1).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addTask(expectedTask);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
