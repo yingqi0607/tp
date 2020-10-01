@@ -13,12 +13,12 @@ import java.time.format.DateTimeParseException;
  */
 public class Deadline {
 
-
     public static final String MESSAGE_CONSTRAINTS =
             "deadline times should only contain numbers, and it should follow the format yyyy-MM-dd HHmm";
     public static final String VALIDATION_REGEX = "\\d{4}-\\d{2}-\\d{2} \\d{4}";
     public static final DateTimeFormatter DATE_TIME_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
     public final String value;
+    private static final String DEFAULT_TIME = " 2359";
     public final LocalDateTime dateTime;
 
     /**
@@ -29,8 +29,12 @@ public class Deadline {
     public Deadline(String deadline) {
         requireNonNull(deadline);
         checkArgument(isValidDeadline(deadline), MESSAGE_CONSTRAINTS);
-        value = deadline;
-        dateTime = LocalDateTime.parse(deadline, DATE_TIME_FORMAT);
+        if (!isDeadlineWithTime(deadline)) {
+            value = deadline + DEFAULT_TIME;
+        } else {
+            value = deadline;
+        }
+        dateTime = LocalDateTime.parse(value, DATE_TIME_FORMAT);
     }
 
     /**
@@ -38,10 +42,18 @@ public class Deadline {
      */
     public static boolean isValidDeadline(String test) {
         try {
-            LocalDateTime.parse(test, DATE_TIME_FORMAT);
+            if (!isDeadlineWithTime(test)) {
+                LocalDateTime.parse(test + DEFAULT_TIME, DATE_TIME_FORMAT);
+            } else {
+                LocalDateTime.parse(test, DATE_TIME_FORMAT);
+            }
         } catch (DateTimeParseException ex) {
             return false;
         }
+        return true;
+    }
+
+    public static boolean isDeadlineWithTime(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
