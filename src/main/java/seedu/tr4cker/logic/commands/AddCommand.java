@@ -24,11 +24,11 @@ public class AddCommand extends Command {
             + PREFIX_TASKDESCRIPTION + "TASKDESCRIPTION "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "John Doe "
+            + PREFIX_NAME + "CS2103T tP "
             + PREFIX_DEADLINE + "2020-10-10 1010 "
-            + PREFIX_TASKDESCRIPTION + "descriptions "
-            + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney";
+            + PREFIX_TASKDESCRIPTION + "Update User Guide "
+            + PREFIX_TAG + "CS2103T "
+            + PREFIX_TAG + "UG";
 
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the tr4cker";

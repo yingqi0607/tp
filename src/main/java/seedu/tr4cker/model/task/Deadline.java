@@ -15,9 +15,11 @@ public class Deadline {
 
     public static final String MESSAGE_CONSTRAINTS =
             "deadline times should only contain numbers, and it should follow the format yyyy-MM-dd HHmm";
+    public static final String MESSAGE_FUTURE =
+            "deadline times should be a time in the future";
     public static final String VALIDATION_REGEX = "\\d{4}-\\d{2}-\\d{2} \\d{4}";
     public static final DateTimeFormatter DATE_TIME_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
-    private static final String DEFAULT_TIME = " 2359";
+    public static final String DEFAULT_TIME = " 2359";
     public final LocalDateTime dateTime;
 
     /**
@@ -28,11 +30,8 @@ public class Deadline {
     public Deadline(String deadline) {
         requireNonNull(deadline);
         checkArgument(isValidDeadline(deadline), MESSAGE_CONSTRAINTS);
-        if (!isDeadlineWithTime(deadline)) {
-            dateTime = LocalDateTime.parse(deadline + DEFAULT_TIME, DATE_TIME_FORMAT);
-        } else {
-            dateTime = LocalDateTime.parse(deadline, DATE_TIME_FORMAT);
-        }
+        checkArgument(isFutureDeadline(deadline), MESSAGE_FUTURE);
+        dateTime = LocalDateTime.parse(deadline, DATE_TIME_FORMAT);
     }
 
     /**
@@ -40,11 +39,7 @@ public class Deadline {
      */
     public static boolean isValidDeadline(String test) {
         try {
-            if (!isDeadlineWithTime(test)) {
-                LocalDateTime.parse(test + DEFAULT_TIME, DATE_TIME_FORMAT);
-            } else {
-                LocalDateTime.parse(test, DATE_TIME_FORMAT);
-            }
+            LocalDateTime.parse(test, DATE_TIME_FORMAT);
         } catch (DateTimeParseException ex) {
             return false;
         }
@@ -53,6 +48,11 @@ public class Deadline {
 
     public static boolean isDeadlineWithTime(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    public static boolean isFutureDeadline(String test) {
+        LocalDateTime now = LocalDateTime.now();
+        return LocalDateTime.parse(test, DATE_TIME_FORMAT).isAfter(now);
     }
 
     @Override
