@@ -17,7 +17,6 @@ public class Deadline {
             "deadline times should only contain numbers, and it should follow the format yyyy-MM-dd HHmm";
     public static final String VALIDATION_REGEX = "\\d{4}-\\d{2}-\\d{2} \\d{4}";
     public static final DateTimeFormatter DATE_TIME_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
-    public final String value;
     private static final String DEFAULT_TIME = " 2359";
     public final LocalDateTime dateTime;
 
@@ -30,11 +29,10 @@ public class Deadline {
         requireNonNull(deadline);
         checkArgument(isValidDeadline(deadline), MESSAGE_CONSTRAINTS);
         if (!isDeadlineWithTime(deadline)) {
-            value = deadline + DEFAULT_TIME;
+            dateTime = LocalDateTime.parse(deadline + DEFAULT_TIME, DATE_TIME_FORMAT);
         } else {
-            value = deadline;
+            dateTime = LocalDateTime.parse(deadline, DATE_TIME_FORMAT);
         }
-        dateTime = LocalDateTime.parse(value, DATE_TIME_FORMAT);
     }
 
     /**
@@ -59,19 +57,19 @@ public class Deadline {
 
     @Override
     public String toString() {
-        return value;
+        return dateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Deadline // instanceof handles nulls
-                && value.equals(((Deadline) other).value)); // state check
+                && dateTime.equals(((Deadline) other).dateTime)); // state check
     }
 
     @Override
     public int hashCode() {
-        return value.hashCode();
+        return dateTime.hashCode();
     }
 
 }

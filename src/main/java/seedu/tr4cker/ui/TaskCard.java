@@ -49,7 +49,7 @@ public class TaskCard extends UiPart<Region> {
         this.task = task;
         id.setText(displayedIndex + ". ");
         name.setText(task.getName().taskName);
-        deadline.setText(task.getDeadline().value);
+        deadline.setText(task.getDeadline().toString());
         description.setText(task.getTaskDescription().value);
         completionStatus.setText("Progress | " + task.getCompletionStatus().toString());
         task.getTags().stream()
