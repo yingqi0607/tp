@@ -111,20 +111,18 @@ Examples:
 
 Edits an existing task’s details in TR4CKER.
 
-Format: `edit INDEX [n/NAME] [dl/DEADLINE] [des/TASKDESCRIPTION] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [dl/DEADLINE] [des/TASKDESCRIPTION]`
 
-* Edits the task's name, deadline, description and tags at the specified `INDEX`. 
+* Edits the task's name, deadline and description at the specified `INDEX`. 
 * The index refers to the index number shown in the task list.
 * The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing task’s details will be updated to the new task’s details being inputted.
-* When editing tags, the existing tags of the task will be removed i.e adding of tags is not cumulative.
-* You can remove all the task’s tags by typing `t/` without specifying any tags after it.
+* Editing of tags can be done using `tag` command.
 
 Examples:
 * `edit 1 n/prepare for tP tasks` - Edits the description of the 1st task to be `prepare for tP tasks`.
 * `edit 2 dl/2020-09-13 1930` - Edits the deadline time of the 2nd task to be 13 Sep 2020, 1930 hrs.
-* `edit 3 t/` - Clears the existing tags of the 3rd task.
 
 ### Editing tags: `tag`
 
@@ -215,7 +213,7 @@ _{explain the feature here}_
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous tr4cker home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous TR4CKER home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -227,7 +225,7 @@ Action | Format, Examples
 **Add** | `add n/NAME dl/DEADLINE des/TASKDESCRIPTION [t/TAG]…​` <br> e.g., `add n/task 1 dl/2020-09-08 des/task 1 description t/urgent t/priority`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Done** | `done INDEX`<br> e.g., `done 1`
-**Edit** | `edit INDEX [n/NAME] [dl/DEADLINE] [des/TASKDESCRIPTION] [t/TAG]…​`<br> e.g.,`edit 2 n/task 1 dl/2020-09-08`
+**Edit** | `edit INDEX [n/NAME] [dl/DEADLINE] [des/TASKDESCRIPTION]`<br> e.g.,`edit 2 n/task 1 dl/2020-09-08`
 **Find** | `find [KEYWORD_1] [KEYWORD_2] ...`<br> e.g., `find task 1`
 **Clear** | `clear`
 **List** | `list`
