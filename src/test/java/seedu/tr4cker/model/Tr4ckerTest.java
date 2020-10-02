@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_DESCRIPTION_2;
-import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_TAG_URGENT;
 import static seedu.tr4cker.testutil.Assert.assertThrows;
 import static seedu.tr4cker.testutil.TypicalTasks.TASK1;
 import static seedu.tr4cker.testutil.TypicalTasks.getTypicalTr4cker;
@@ -46,7 +46,7 @@ public class Tr4ckerTest {
     @Test
     public void resetData_withDuplicateTasks_throwsDuplicateTaskException() {
         // Two tasks with the same identity fields
-        Task editedAlice = new TaskBuilder(TASK1).withTaskDescription(VALID_DESCRIPTION_2).withTags(VALID_TAG_HUSBAND)
+        Task editedAlice = new TaskBuilder(TASK1).withTaskDescription(VALID_DESCRIPTION_2).withTags(VALID_TAG_URGENT)
                 .build();
         List<Task> newTasks = Arrays.asList(TASK1, editedAlice);
         Tr4ckerStub newData = new Tr4ckerStub(newTasks);
@@ -73,7 +73,7 @@ public class Tr4ckerTest {
     @Test
     public void hasTask_taskWithSameIdentityFieldsInTr4cker_returnsTrue() {
         tr4cker.addTask(TASK1);
-        Task editedAlice = new TaskBuilder(TASK1).withTaskDescription(VALID_DESCRIPTION_2).withTags(VALID_TAG_HUSBAND)
+        Task editedAlice = new TaskBuilder(TASK1).withTaskDescription(VALID_DESCRIPTION_2).withTags(VALID_TAG_URGENT)
                 .build();
         assertTrue(tr4cker.hasTask(editedAlice));
     }

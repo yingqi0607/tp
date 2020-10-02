@@ -11,8 +11,8 @@ import seedu.tr4cker.model.Tr4cker;
 public class ClearCommand extends Command {
 
     public static final String COMMAND_WORD = "clear";
-    public static final String MESSAGE_SUCCESS = "TR4CKER has been cleared!";
 
+    public static final String MESSAGE_SUCCESS = "TR4CKER has been cleared!";
 
     @Override
     public CommandResult execute(Model model) {
@@ -20,4 +20,5 @@ public class ClearCommand extends Command {
         model.setTr4cker(new Tr4cker());
         return new CommandResult(MESSAGE_SUCCESS);
     }
+
 }

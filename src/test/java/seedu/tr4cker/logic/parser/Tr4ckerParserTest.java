@@ -4,11 +4,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.tr4cker.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.tr4cker.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.tr4cker.logic.commands.CommandTestUtil.TAG_DELETE_ASSIGNMENT;
+import static seedu.tr4cker.logic.commands.CommandTestUtil.TAG_NEW_HOMEWORK;
 import static seedu.tr4cker.testutil.Assert.assertThrows;
 import static seedu.tr4cker.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
@@ -22,7 +26,9 @@ import seedu.tr4cker.logic.commands.ExitCommand;
 import seedu.tr4cker.logic.commands.FindCommand;
 import seedu.tr4cker.logic.commands.HelpCommand;
 import seedu.tr4cker.logic.commands.ListCommand;
+import seedu.tr4cker.logic.commands.TagCommand;
 import seedu.tr4cker.logic.parser.exceptions.ParseException;
+import seedu.tr4cker.model.tag.Tag;
 import seedu.tr4cker.model.task.NameContainsKeywordsPredicate;
 import seedu.tr4cker.model.task.Task;
 import seedu.tr4cker.testutil.EditTaskDescriptorBuilder;
@@ -60,6 +66,20 @@ public class Tr4ckerParserTest {
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_TASK.getOneBased() + " " + TaskUtil.getEditTaskDescriptorDetails(descriptor));
         assertEquals(new EditCommand(INDEX_FIRST_TASK, descriptor), command);
+    }
+
+    @Test
+    public void parseCommand_tag() throws Exception {
+        Tag tag1 = new Tag("homework");
+        Tag tag2 = new Tag("assignment");
+        Set<Tag> add = new HashSet<>();
+        Set<Tag> delete = new HashSet<>();
+        add.add(tag1);
+        delete.add(tag2);
+        TagCommand command = (TagCommand) parser.parseCommand(
+                TagCommand.COMMAND_WORD + " " + INDEX_FIRST_TASK.getOneBased()
+                        + TAG_NEW_HOMEWORK + TAG_DELETE_ASSIGNMENT);
+        assertEquals(new TagCommand(INDEX_FIRST_TASK, add, delete), command);
     }
 
     @Test

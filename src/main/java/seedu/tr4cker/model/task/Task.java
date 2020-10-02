@@ -10,7 +10,7 @@ import java.util.Set;
 import seedu.tr4cker.model.tag.Tag;
 
 /**
- * Represents a Task in Tr4cker.
+ * Represents a Task in TR4CKER.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Task {
@@ -59,6 +59,26 @@ public class Task {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    /**
+     * Adds tag(s) to existing tags.
+     *
+     * @param tags Tags to be added.
+     */
+    public void addTags(Set<Tag> tags) {
+        this.tags.addAll(tags);
+    }
+
+    /**
+     * Deletes tag(s) from existing tags (if there exists).
+     *
+     * @param tags Tags to be deleted.
+     */
+    public void deleteTags(Set<Tag> tags) {
+        for (Tag tag : tags) {
+            this.tags.remove(tag);
+        }
     }
 
     /**

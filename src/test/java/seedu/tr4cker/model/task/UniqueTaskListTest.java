@@ -4,9 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_DESCRIPTION_2;
-import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_TAG_URGENT;
 import static seedu.tr4cker.testutil.Assert.assertThrows;
-import static seedu.tr4cker.testutil.TypicalTasks.MANUALTASK2;
+import static seedu.tr4cker.testutil.TypicalTasks.MANUAL_TASK2;
 import static seedu.tr4cker.testutil.TypicalTasks.TASK1;
 
 import java.util.Arrays;
@@ -42,7 +42,7 @@ public class UniqueTaskListTest {
     @Test
     public void contains_taskWithSameIdentityFieldsInList_returnsTrue() {
         uniqueTaskList.add(TASK1);
-        Task editedAlice = new TaskBuilder(TASK1).withTaskDescription(VALID_DESCRIPTION_2).withTags(VALID_TAG_HUSBAND)
+        Task editedAlice = new TaskBuilder(TASK1).withTaskDescription(VALID_DESCRIPTION_2).withTags(VALID_TAG_URGENT)
                 .build();
         assertTrue(uniqueTaskList.contains(editedAlice));
     }
@@ -85,7 +85,7 @@ public class UniqueTaskListTest {
     @Test
     public void setTask_editedTaskHasSameIdentity_success() {
         uniqueTaskList.add(TASK1);
-        Task editedAlice = new TaskBuilder(TASK1).withTaskDescription(VALID_DESCRIPTION_2).withTags(VALID_TAG_HUSBAND)
+        Task editedAlice = new TaskBuilder(TASK1).withTaskDescription(VALID_DESCRIPTION_2).withTags(VALID_TAG_URGENT)
                 .build();
         uniqueTaskList.setTask(TASK1, editedAlice);
         UniqueTaskList expectedUniqueTaskList = new UniqueTaskList();
@@ -96,17 +96,17 @@ public class UniqueTaskListTest {
     @Test
     public void setTask_editedTaskHasDifferentIdentity_success() {
         uniqueTaskList.add(TASK1);
-        uniqueTaskList.setTask(TASK1, MANUALTASK2);
+        uniqueTaskList.setTask(TASK1, MANUAL_TASK2);
         UniqueTaskList expectedUniqueTaskList = new UniqueTaskList();
-        expectedUniqueTaskList.add(MANUALTASK2);
+        expectedUniqueTaskList.add(MANUAL_TASK2);
         assertEquals(expectedUniqueTaskList, uniqueTaskList);
     }
 
     @Test
     public void setTask_editedTaskHasNonUniqueIdentity_throwsDuplicateTaskException() {
         uniqueTaskList.add(TASK1);
-        uniqueTaskList.add(MANUALTASK2);
-        assertThrows(DuplicateTaskException.class, () -> uniqueTaskList.setTask(TASK1, MANUALTASK2));
+        uniqueTaskList.add(MANUAL_TASK2);
+        assertThrows(DuplicateTaskException.class, () -> uniqueTaskList.setTask(TASK1, MANUAL_TASK2));
     }
 
     @Test
@@ -136,7 +136,7 @@ public class UniqueTaskListTest {
     public void setTasks_uniqueTaskList_replacesOwnListWithProvidedUniqueTaskList() {
         uniqueTaskList.add(TASK1);
         UniqueTaskList expectedUniqueTaskList = new UniqueTaskList();
-        expectedUniqueTaskList.add(MANUALTASK2);
+        expectedUniqueTaskList.add(MANUAL_TASK2);
         uniqueTaskList.setTasks(expectedUniqueTaskList);
         assertEquals(expectedUniqueTaskList, uniqueTaskList);
     }
@@ -149,10 +149,10 @@ public class UniqueTaskListTest {
     @Test
     public void setTasks_list_replacesOwnListWithProvidedList() {
         uniqueTaskList.add(TASK1);
-        List<Task> taskList = Collections.singletonList(MANUALTASK2);
+        List<Task> taskList = Collections.singletonList(MANUAL_TASK2);
         uniqueTaskList.setTasks(taskList);
         UniqueTaskList expectedUniqueTaskList = new UniqueTaskList();
-        expectedUniqueTaskList.add(MANUALTASK2);
+        expectedUniqueTaskList.add(MANUAL_TASK2);
         assertEquals(expectedUniqueTaskList, uniqueTaskList);
     }
 
