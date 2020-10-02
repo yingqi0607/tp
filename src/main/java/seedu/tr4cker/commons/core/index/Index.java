@@ -9,13 +9,13 @@ package seedu.tr4cker.commons.core.index;
  * convert it back to an int if the index will not be passed to a different component again.
  */
 public class Index {
-    private int zeroBasedIndex;
+    private final int zeroBasedIndex;
 
     /**
      * Index can only be created by calling {@link Index#fromZeroBased(int)} or
      * {@link Index#fromOneBased(int)}.
      */
-    public Index(int zeroBasedIndex) {
+    private Index(int zeroBasedIndex) {
         if (zeroBasedIndex < 0) {
             throw new IndexOutOfBoundsException();
         }

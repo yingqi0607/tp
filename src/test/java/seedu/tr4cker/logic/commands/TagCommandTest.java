@@ -87,7 +87,7 @@ class TagCommandTest {
 
     @Test
     public void equals() {
-        Index index = new Index(1);
+        Index index = Index.fromZeroBased(1);
         add.add(tag1);
         delete.add(tag2);
         TagCommand tagCommand1 = new TagCommand(index, add, delete);
