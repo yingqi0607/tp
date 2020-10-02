@@ -14,9 +14,10 @@ import java.time.format.DateTimeParseException;
 public class Deadline {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "deadline times should only contain numbers, and it should follow the format yyyy-MM-dd HHmm";
+            "Deadline should only contain numbers, and it should follow the format yyyy-MM-dd "
+                    + "or yyyy-MM-dd HHmm";
     public static final String MESSAGE_FUTURE =
-            "deadline times should be a time in the future";
+            "Deadline should be a time in the future";
     public static final String VALIDATION_REGEX = "\\d{4}-\\d{2}-\\d{2} \\d{4}";
     public static final DateTimeFormatter DATE_TIME_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
     public static final String DEFAULT_TIME = " 2359";
