@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_TASKDESCRIPTION;
+import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_TASK_DESCRIPTION;
 import static seedu.tr4cker.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 import java.util.Collections;
@@ -26,7 +26,7 @@ import seedu.tr4cker.model.task.Task;
 import seedu.tr4cker.model.task.TaskDescription;
 
 /**
- * Edits the details of an existing task in the Tr4cker.
+ * Edits the details of an existing task in TR4CKER.
  */
 public class EditCommand extends Command {
 
@@ -38,7 +38,7 @@ public class EditCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_DEADLINE + "deadline] "
-            + "[" + PREFIX_TASKDESCRIPTION + "DESCRIPTION] "
+            + "[" + PREFIX_TASK_DESCRIPTION + "DESCRIPTION] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_DEADLINE + "2020-10-10 1010 ";
@@ -211,4 +211,5 @@ public class EditCommand extends Command {
                     && getTags().equals(e.getTags());
         }
     }
+
 }

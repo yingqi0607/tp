@@ -33,6 +33,8 @@ description`, with a deadline of `8 Sep 2020, 1700 hrs` and with an `urgent` tag
     * **`delete`**`3`: Deletes the 3rd task shown in the current task list.
 
     * **`edit`**`1 n/actually task 2`: Edits 1st task's name to be `actually task 2`.
+    
+    * **`tag`**`1 new/urgent`: Adds `urgent` tag to existing tags of 1st task.
 
     * **`find`**`task`: Finds the tasks with `task` as a keyword.
 
@@ -120,9 +122,31 @@ Format: `edit INDEX [n/NAME] [dl/DEADLINE] [des/TASKDESCRIPTION] [t/TAG]…​`
 * You can remove all the task’s tags by typing `t/` without specifying any tags after it.
 
 Examples:
-* `edit 1 n/ prepare for tP tasks` - Edits the description of the 1st task to be `prepare for tP tasks`.
-* `edit 2 dl/ 2020-09-13 1930` - Edits the deadline time of the 2nd task to be 13 Sep 2020, 1930 hrs.
+* `edit 1 n/prepare for tP tasks` - Edits the description of the 1st task to be `prepare for tP tasks`.
+* `edit 2 dl/2020-09-13 1930` - Edits the deadline time of the 2nd task to be 13 Sep 2020, 1930 hrs.
 * `edit 3 t/` - Clears the existing tags of the 3rd task.
+
+### Editing tags: `tag`
+
+Adds and/or deletes tag(s) from an existing task in TR4CKER.
+
+Format: `tag INDEX [new/NEW_TAG]…​ [del/TAG_TO_DELETE]…​`
+
+* Adds tag(s) to task at the specified `INDEX` when using `new/NEW_TAG`.
+* Deletes tag(s) from task at the specified `INDEX` when using `del/TAG_TO_DELETE`.
+* The index refers to the index number shown in the task list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* At least one of the fields must be provided.
+* Tag(s) will only be added if it does not exist yet.
+* Tag(s) will only be deleted if it exists.
+* Adding and deleting of tags can be used concurrently.
+* Multiple tags can be added and deleted at the same time.
+
+Examples:
+* `tag 1 new/urgent` - Adds a new tag `urgent` to the existing tags of 1st task (if the tag does not already exist).
+* `tag 2 del/assignment` - Deletes the tag `assignment` from the 2nd task (if the tag exists).
+* `tag 3 new/urgent del/assignment new/graded` - Adds 2 new tags `urgent` and `graded`, deletes the tag `assignment`
+from the 3rd task.
 
 ### Locating tasks by keyword: `find`
 

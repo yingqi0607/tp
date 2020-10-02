@@ -24,7 +24,7 @@ import seedu.tr4cker.model.task.Task;
  */
 public class DeleteCommandTest {
 
-    private Model model = new ModelManager(getTypicalTr4cker(), new UserPrefs());
+    private final Model model = new ModelManager(getTypicalTr4cker(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -99,7 +99,7 @@ public class DeleteCommandTest {
     }
 
     /**
-     * Updates {@code model}'s filtered list to show no one.
+     * Updates {@code model}'s filtered list to show no tasks.
      */
     private void showNoTask(Model model) {
         model.updateFilteredTaskList(p -> false);

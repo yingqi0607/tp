@@ -13,17 +13,17 @@ import static seedu.tr4cker.logic.commands.CommandTestUtil.NAME_DESC_1;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.NAME_DESC_2;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
-import static seedu.tr4cker.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
-import static seedu.tr4cker.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
+import static seedu.tr4cker.logic.commands.CommandTestUtil.TAG_DESC_HELP;
+import static seedu.tr4cker.logic.commands.CommandTestUtil.TAG_DESC_URGENT;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_DEADLINE_2;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_DESCRIPTION_2;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_NAME_2;
-import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_TAG_HELP;
+import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_TAG_URGENT;
 import static seedu.tr4cker.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.tr4cker.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.tr4cker.testutil.TypicalTasks.MANUALTASK1;
-import static seedu.tr4cker.testutil.TypicalTasks.MANUALTASK2;
+import static seedu.tr4cker.testutil.TypicalTasks.MANUAL_TASK1;
+import static seedu.tr4cker.testutil.TypicalTasks.MANUAL_TASK2;
 
 import org.junit.jupiter.api.Test;
 
@@ -36,39 +36,39 @@ import seedu.tr4cker.model.task.TaskDescription;
 import seedu.tr4cker.testutil.TaskBuilder;
 
 public class AddCommandParserTest {
-    private AddCommandParser parser = new AddCommandParser();
+    private final AddCommandParser parser = new AddCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Task expectedTask = new TaskBuilder(MANUALTASK2).withTags(VALID_TAG_FRIEND).build();
+        Task expectedTask = new TaskBuilder(MANUAL_TASK2).withTags(VALID_TAG_HELP).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_2 + DEADLINE_DESC_2
-                + DESCRIPTION_DESC_2 + TAG_DESC_FRIEND, new AddCommand(expectedTask));
+                + DESCRIPTION_DESC_2 + TAG_DESC_HELP, new AddCommand(expectedTask));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, NAME_DESC_1 + NAME_DESC_2 + DEADLINE_DESC_2
-                + DESCRIPTION_DESC_2 + TAG_DESC_FRIEND, new AddCommand(expectedTask));
+                + DESCRIPTION_DESC_2 + TAG_DESC_HELP, new AddCommand(expectedTask));
 
         // multiple deadlines - last deadline accepted
         assertParseSuccess(parser, NAME_DESC_2 + DEADLINE_DESC_1 + DEADLINE_DESC_2
-                + DESCRIPTION_DESC_2 + TAG_DESC_FRIEND, new AddCommand(expectedTask));
+                + DESCRIPTION_DESC_2 + TAG_DESC_HELP, new AddCommand(expectedTask));
 
         // multiple descriptions - last description accepted
         assertParseSuccess(parser, NAME_DESC_2 + DEADLINE_DESC_2 + DESCRIPTION_DESC_1
-                + DESCRIPTION_DESC_2 + TAG_DESC_FRIEND, new AddCommand(expectedTask));
+                + DESCRIPTION_DESC_2 + TAG_DESC_HELP, new AddCommand(expectedTask));
 
         // multiple tags - all accepted
-        Task expectedTaskMultipleTags = new TaskBuilder(MANUALTASK2).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
+        Task expectedTaskMultipleTags = new TaskBuilder(MANUAL_TASK2).withTags(VALID_TAG_HELP, VALID_TAG_URGENT)
                 .build();
         assertParseSuccess(parser, NAME_DESC_2 + DEADLINE_DESC_2 + DESCRIPTION_DESC_2
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddCommand(expectedTaskMultipleTags));
+                + TAG_DESC_URGENT + TAG_DESC_HELP, new AddCommand(expectedTaskMultipleTags));
     }
 
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
-        Task expectedTask = new TaskBuilder(MANUALTASK1).withTags().build();
+        Task expectedTask = new TaskBuilder(MANUAL_TASK1).withTags().build();
         assertParseSuccess(parser, NAME_DESC_1 + DEADLINE_DESC_1 + DESCRIPTION_DESC_1,
                 new AddCommand(expectedTask));
     }
@@ -98,19 +98,19 @@ public class AddCommandParserTest {
     public void parse_invalidValue_failure() {
         // invalid name
         assertParseFailure(parser, INVALID_NAME_DESC + DEADLINE_DESC_2 + DESCRIPTION_DESC_2
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Name.MESSAGE_CONSTRAINTS);
+                + TAG_DESC_URGENT + TAG_DESC_HELP, Name.MESSAGE_CONSTRAINTS);
 
         // invalid deadline
         assertParseFailure(parser, NAME_DESC_2 + INVALID_DEADLINE_DESC + DESCRIPTION_DESC_2
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Deadline.MESSAGE_CONSTRAINTS);
+                + TAG_DESC_URGENT + TAG_DESC_HELP, Deadline.MESSAGE_CONSTRAINTS);
 
         // invalid address
         assertParseFailure(parser, NAME_DESC_2 + DEADLINE_DESC_2 + INVALID_DESCRIPTION_DESC
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, TaskDescription.MESSAGE_CONSTRAINTS);
+                + TAG_DESC_URGENT + TAG_DESC_HELP, TaskDescription.MESSAGE_CONSTRAINTS);
 
         // invalid tag
         assertParseFailure(parser, NAME_DESC_2 + DEADLINE_DESC_2 + DESCRIPTION_DESC_2
-                + INVALID_TAG_DESC + VALID_TAG_FRIEND, Tag.MESSAGE_CONSTRAINTS);
+                + INVALID_TAG_DESC + VALID_TAG_HELP, Tag.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + DEADLINE_DESC_2 + INVALID_DESCRIPTION_DESC,
@@ -118,7 +118,7 @@ public class AddCommandParserTest {
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_2 + DEADLINE_DESC_2
-                + DESCRIPTION_DESC_2 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
+                + DESCRIPTION_DESC_2 + TAG_DESC_URGENT + TAG_DESC_HELP,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
 }

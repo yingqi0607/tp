@@ -10,15 +10,15 @@ import static seedu.tr4cker.logic.commands.CommandTestUtil.INVALID_DESCRIPTION_D
 import static seedu.tr4cker.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.NAME_DESC_1;
-import static seedu.tr4cker.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
-import static seedu.tr4cker.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
+import static seedu.tr4cker.logic.commands.CommandTestUtil.TAG_DESC_HELP;
+import static seedu.tr4cker.logic.commands.CommandTestUtil.TAG_DESC_URGENT;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_DEADLINE_1;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_DEADLINE_2;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_DESCRIPTION_1;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_DESCRIPTION_2;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_NAME_1;
-import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_TAG_HELP;
+import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_TAG_URGENT;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.tr4cker.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.tr4cker.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -44,7 +44,7 @@ public class EditCommandParserTest {
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE);
 
-    private EditCommandParser parser = new EditCommandParser();
+    private final EditCommandParser parser = new EditCommandParser();
 
     @Test
     public void parse_missingParts_failure() {
@@ -90,9 +90,9 @@ public class EditCommandParserTest {
 
         // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Task} being edited,
         // parsing it together with a valid tag results in error
-        assertParseFailure(parser, "1" + TAG_DESC_FRIEND + TAG_DESC_HUSBAND + TAG_EMPTY, Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + TAG_DESC_FRIEND + TAG_EMPTY + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + TAG_EMPTY + TAG_DESC_FRIEND + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + TAG_DESC_HELP + TAG_DESC_URGENT + TAG_EMPTY, Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + TAG_DESC_HELP + TAG_EMPTY + TAG_DESC_URGENT, Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + TAG_EMPTY + TAG_DESC_HELP + TAG_DESC_URGENT, Tag.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_NAME_DESC
@@ -102,12 +102,12 @@ public class EditCommandParserTest {
     @Test
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_TASK;
-        String userInput = targetIndex.getOneBased() + DEADLINE_DESC_2 + TAG_DESC_HUSBAND
-                + DESCRIPTION_DESC_1 + NAME_DESC_1 + TAG_DESC_FRIEND;
+        String userInput = targetIndex.getOneBased() + DEADLINE_DESC_2 + TAG_DESC_URGENT
+                + DESCRIPTION_DESC_1 + NAME_DESC_1 + TAG_DESC_HELP;
 
         EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withName(VALID_NAME_1)
                 .withDeadline(VALID_DEADLINE_2).withTaskDescription(VALID_DESCRIPTION_1)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+                .withTags(VALID_TAG_URGENT, VALID_TAG_HELP).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -147,8 +147,8 @@ public class EditCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // tags
-        userInput = targetIndex.getOneBased() + TAG_DESC_FRIEND;
-        descriptor = new EditTaskDescriptorBuilder().withTags(VALID_TAG_FRIEND).build();
+        userInput = targetIndex.getOneBased() + TAG_DESC_HELP;
+        descriptor = new EditTaskDescriptorBuilder().withTags(VALID_TAG_HELP).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -157,11 +157,11 @@ public class EditCommandParserTest {
     public void parse_multipleRepeatedFields_acceptsLast() {
         Index targetIndex = INDEX_FIRST_TASK;
         String userInput = targetIndex.getOneBased() + DEADLINE_DESC_1 + DESCRIPTION_DESC_1
-                + TAG_DESC_FRIEND + DEADLINE_DESC_1 + DESCRIPTION_DESC_1 + TAG_DESC_FRIEND
-                + DEADLINE_DESC_2 + DESCRIPTION_DESC_2 + TAG_DESC_HUSBAND;
+                + TAG_DESC_HELP + DEADLINE_DESC_1 + DESCRIPTION_DESC_1 + TAG_DESC_HELP
+                + DEADLINE_DESC_2 + DESCRIPTION_DESC_2 + TAG_DESC_URGENT;
 
         EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withDeadline(VALID_DEADLINE_2)
-                .withTaskDescription(VALID_DESCRIPTION_2).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
+                .withTaskDescription(VALID_DESCRIPTION_2).withTags(VALID_TAG_HELP, VALID_TAG_URGENT)
                 .build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 

@@ -7,7 +7,7 @@ import static seedu.tr4cker.logic.commands.CommandTestUtil.DESC_2;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_DEADLINE_2;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_DESCRIPTION_2;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_NAME_2;
-import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_TAG_URGENT;
 
 import org.junit.jupiter.api.Test;
 
@@ -48,7 +48,7 @@ public class EditTaskDescriptorTest {
         assertFalse(DESC_1.equals(editedAmy));
 
         // different tags -> returns false
-        editedAmy = new EditTaskDescriptorBuilder(DESC_1).withTags(VALID_TAG_HUSBAND).build();
+        editedAmy = new EditTaskDescriptorBuilder(DESC_1).withTags(VALID_TAG_URGENT).build();
         assertFalse(DESC_1.equals(editedAmy));
     }
 }
