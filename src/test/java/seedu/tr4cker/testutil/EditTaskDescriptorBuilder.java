@@ -17,7 +17,7 @@ import seedu.tr4cker.model.task.TaskDescription;
  */
 public class EditTaskDescriptorBuilder {
 
-    private EditTaskDescriptor descriptor;
+    private final EditTaskDescriptor descriptor;
 
     public EditTaskDescriptorBuilder() {
         descriptor = new EditCommand.EditTaskDescriptor();
@@ -75,4 +75,5 @@ public class EditTaskDescriptorBuilder {
     public EditCommand.EditTaskDescriptor build() {
         return descriptor;
     }
+
 }

@@ -4,8 +4,7 @@
     "name" : "Task1Name",
     "deadline" : "2020-10-20 1800",
     "completionStatus" : 0,
-    "description" : "Task 1 description",
-    "tagged" : [ "quiz" ]
+    "description" : "Task 1 description"
   }, {
     "name" : "Task2 Name",
     "deadline" : "2020-09-30 2359",

@@ -27,8 +27,8 @@ public class AddCommand extends Command {
             + PREFIX_NAME + "John Doe "
             + PREFIX_DEADLINE + "2020-10-10 1010 "
             + PREFIX_TASK_DESCRIPTION + "descriptions "
-            + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney";
+            + PREFIX_TAG + "urgent "
+            + PREFIX_TAG + "mission";
 
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in TR4CKER.";

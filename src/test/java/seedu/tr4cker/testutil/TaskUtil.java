@@ -5,11 +5,8 @@ import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_TASK_DESCRIPTION;
 
-import java.util.Set;
-
 import seedu.tr4cker.logic.commands.AddCommand;
 import seedu.tr4cker.logic.commands.EditCommand.EditTaskDescriptor;
-import seedu.tr4cker.model.tag.Tag;
 import seedu.tr4cker.model.task.Task;
 
 /**
@@ -31,7 +28,7 @@ public class TaskUtil {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + task.getName().taskName + " ");
         sb.append(PREFIX_DEADLINE + task.getDeadline().value + " ");
-        // Completion status not included
+        // completion status not included
         sb.append(PREFIX_TASK_DESCRIPTION + task.getTaskDescription().value + " ");
         task.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
@@ -46,17 +43,9 @@ public class TaskUtil {
         StringBuilder sb = new StringBuilder();
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.taskName).append(" "));
         descriptor.getDeadline().ifPresent(deadline -> sb.append(PREFIX_DEADLINE).append(deadline.value).append(" "));
-        // Completion status not included
+        // completion status and tags not included
         descriptor.getTaskDescription()
                 .ifPresent(description -> sb.append(PREFIX_TASK_DESCRIPTION).append(description.value).append(" "));
-        if (descriptor.getTags().isPresent()) {
-            Set<Tag> tags = descriptor.getTags().get();
-            if (tags.isEmpty()) {
-                sb.append(PREFIX_TAG);
-            } else {
-                tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
-            }
-        }
         return sb.toString();
     }
 }

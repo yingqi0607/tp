@@ -3,7 +3,6 @@ package seedu.tr4cker.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_TASK_DESCRIPTION;
 import static seedu.tr4cker.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
@@ -38,8 +37,7 @@ public class EditCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_DEADLINE + "deadline] "
-            + "[" + PREFIX_TASK_DESCRIPTION + "DESCRIPTION] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_TASK_DESCRIPTION + "DESCRIPTION]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_DEADLINE + "2020-10-10 1010 ";
 
@@ -92,13 +90,14 @@ public class EditCommand extends Command {
 
         Name updatedName = editTaskDescriptor.getName().orElse(taskToEdit.getName());
         Deadline updatedDeadline = editTaskDescriptor.getDeadline().orElse(taskToEdit.getDeadline());
-        CompletionStatus updatedCompletionStatus =
+        CompletionStatus initialCompletionStatus =
                 taskToEdit.getCompletionStatus(); // edit command does not allow editing completion status
         TaskDescription updatedTaskDescription =
                 editTaskDescriptor.getTaskDescription().orElse(taskToEdit.getTaskDescription());
-        Set<Tag> updatedTags = editTaskDescriptor.getTags().orElse(taskToEdit.getTags());
+        Set<Tag> initialTags = taskToEdit.getTags(); // edit command does not allow editing of tags
 
-        return new Task(updatedName, updatedDeadline, updatedCompletionStatus, updatedTaskDescription, updatedTags);
+        return new Task(updatedName, updatedDeadline, initialCompletionStatus,
+                updatedTaskDescription, initialTags);
     }
 
     @Override
@@ -133,7 +132,6 @@ public class EditCommand extends Command {
 
         /**
          * Copy constructor.
-         * A defensive copy of {@code tags} is used internally.
          */
         public EditTaskDescriptor(EditTaskDescriptor toCopy) {
             setName(toCopy.name);
@@ -146,7 +144,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, deadline, taskDescription, tags);
+            return CollectionUtil.isAnyNonNull(name, deadline, taskDescription);
         }
 
         public void setName(Name name) {
@@ -175,7 +173,6 @@ public class EditCommand extends Command {
 
         /**
          * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
          */
         public void setTags(Set<Tag> tags) {
             this.tags = (tags != null) ? new HashSet<>(tags) : null;
@@ -207,8 +204,7 @@ public class EditCommand extends Command {
 
             return getName().equals(e.getName())
                     && getDeadline().equals(e.getDeadline())
-                    && getTaskDescription().equals(e.getTaskDescription())
-                    && getTags().equals(e.getTags());
+                    && getTaskDescription().equals(e.getTaskDescription());
         }
     }
 
