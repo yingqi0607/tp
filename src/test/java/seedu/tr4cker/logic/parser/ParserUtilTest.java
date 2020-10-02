@@ -22,11 +22,13 @@ import seedu.tr4cker.model.task.TaskDescription;
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_DEADLINE = "2020-90-90 9999";
+    private static final String INVALID_EXPIRED_DEADLINE = "2020-01-01 2359";
     private static final String INVALID_DESCRIPTION = " ";
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = "Rachel Walker";
-    private static final String VALID_DEADLINE = "2020-12-31 2359";
+    private static final String VALID_DEADLINE = "2021-12-25 2359";
+    private static final String VALID_DEADLINE_NO_TIME = "2021-12-25";
     private static final String VALID_DESCRIPTION = "description";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
@@ -67,6 +69,7 @@ public class ParserUtilTest {
     public void parseName_validValueWithoutWhitespace_returnsName() throws Exception {
         Name expectedName = new Name(VALID_NAME);
         assertEquals(expectedName, ParserUtil.parseName(VALID_NAME));
+
     }
 
     @Test
@@ -84,12 +87,14 @@ public class ParserUtilTest {
     @Test
     public void parseDeadline_invalidValue_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseDeadline(INVALID_DEADLINE));
+        assertThrows(ParseException.class, () -> ParserUtil.parseDeadline(INVALID_EXPIRED_DEADLINE));
     }
 
     @Test
     public void parseDeadline_validValueWithoutWhitespace_returnsDeadline() throws Exception {
         Deadline expectedDeadline = new Deadline(VALID_DEADLINE);
         assertEquals(expectedDeadline, ParserUtil.parseDeadline(VALID_DEADLINE));
+        assertEquals(expectedDeadline, ParserUtil.parseDeadline(VALID_DEADLINE_NO_TIME));
     }
 
     @Test

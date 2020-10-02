@@ -45,7 +45,8 @@ public class TaskUtil {
     public static String getEditTaskDescriptorDetails(EditTaskDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.taskName).append(" "));
-        descriptor.getDeadline().ifPresent(deadline -> sb.append(PREFIX_DEADLINE).append(deadline.toString()).append(" "));
+        descriptor.getDeadline().ifPresent(deadline -> sb.append(PREFIX_DEADLINE)
+                .append(deadline.toString()).append(" "));
         // Completion status not included
         descriptor.getTaskDescription()
                 .ifPresent(description -> sb.append(PREFIX_TASK_DESCRIPTION).append(description.value).append(" "));

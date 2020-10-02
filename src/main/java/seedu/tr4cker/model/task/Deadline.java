@@ -50,6 +50,9 @@ public class Deadline {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Returns true if a given string is a future time.
+     */
     public static boolean isFutureDeadline(String test) {
         LocalDateTime now = LocalDateTime.now();
         return LocalDateTime.parse(test, DATE_TIME_FORMAT).isAfter(now);
