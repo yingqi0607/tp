@@ -29,8 +29,8 @@ public class CommandTestUtil {
 
     public static final String VALID_NAME_1 = "Amy Bee";
     public static final String VALID_NAME_2 = "Bob Choo";
-    public static final String VALID_DEADLINE_1 = "2020-10-20 1800";
-    public static final String VALID_DEADLINE_2 = "2020-09-30 2359";
+    public static final String VALID_DEADLINE_1 = "2021-10-20 1800";
+    public static final String VALID_DEADLINE_2 = "2021-09-30 2359";
     public static final int VALID_COMPLETION_STATUS_1 = 0;
     public static final int VALID_COMPLETION_STATUS_2 = 0;
     public static final String VALID_DESCRIPTION_1 = "description 1";
