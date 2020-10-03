@@ -25,14 +25,14 @@ public class TypicalTasks {
 
     public static final Task TASK1 = new TaskBuilder().withName("Task1Name")
             .withTaskDescription("Task 1 description").withCompletionStatus(0)
-            .withDeadline("2020-10-20 1800").build();
+            .withDeadline("2021-10-20 1800").build();
     public static final Task TASK1_ADD = new TaskBuilder().withName("Task1Name")
             .withTaskDescription("Task 1 description").withCompletionStatus(0)
-            .withDeadline("2020-10-20 1800")
+            .withDeadline("2021-10-20 1800")
             .withTags("tag1", "tag2").build();
     public static final Task TASK1_DELETE = new TaskBuilder().withName("Task1Name")
             .withTaskDescription("Task 1 description").withCompletionStatus(0)
-            .withDeadline("2020-10-20 1800").build();
+            .withDeadline("2021-10-20 1800").build();
     public static final Task TASK2 = new TaskBuilder().withName("Task2 Name")
             .withTaskDescription("Task 2 description").withCompletionStatus(0)
             .withDeadline("2021-09-30 2359")
