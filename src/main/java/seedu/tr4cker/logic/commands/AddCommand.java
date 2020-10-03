@@ -30,7 +30,6 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "CS2103T "
             + PREFIX_TAG + "UG";
 
-
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in TR4CKER.";
 

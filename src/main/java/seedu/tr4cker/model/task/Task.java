@@ -131,7 +131,7 @@ public class Task {
                 .append(getDeadline())
                 .append(" CompletionStatus: ")
                 .append(getCompletionStatus())
-                .append(" Address: ")
+                .append(" Description: ")
                 .append(getTaskDescription())
                 .append(" Tags: ");
         getTags().forEach(builder::append);

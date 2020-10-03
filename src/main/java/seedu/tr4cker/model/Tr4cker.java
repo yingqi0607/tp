@@ -9,7 +9,7 @@ import seedu.tr4cker.model.task.Task;
 import seedu.tr4cker.model.task.UniqueTaskList;
 
 /**
- * Wraps all data at Tr4cker level.
+ * Wraps all data at TR4CKER level.
  * Duplicates are not allowed (by .isSameTask comparison).
  */
 public class Tr4cker implements ReadOnlyTr4cker {

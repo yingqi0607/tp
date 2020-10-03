@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.tr4cker.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Task's tr4cker in Tr4cker.
+ * Represents a Task's description in TR4CKER.
  * Guarantees: immutable; is valid as declared in {@link #isValidTaskDescription(String)}
  */
 public class TaskDescription {
@@ -22,7 +22,7 @@ public class TaskDescription {
     /**
      * Constructs an {@code Address}.
      *
-     * @param description A valid tr4cker.
+     * @param description A valid TR4CKER.
      */
     public TaskDescription(String description) {
         requireNonNull(description);

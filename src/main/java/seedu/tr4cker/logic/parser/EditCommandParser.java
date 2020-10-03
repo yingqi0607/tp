@@ -4,18 +4,11 @@ import static java.util.Objects.requireNonNull;
 import static seedu.tr4cker.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_TASK_DESCRIPTION;
-
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Optional;
-import java.util.Set;
 
 import seedu.tr4cker.commons.core.index.Index;
 import seedu.tr4cker.logic.commands.EditCommand;
 import seedu.tr4cker.logic.parser.exceptions.ParseException;
-import seedu.tr4cker.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new EditCommand object.
@@ -31,7 +24,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DEADLINE,
-                        PREFIX_TASK_DESCRIPTION, PREFIX_TAG);
+                        PREFIX_TASK_DESCRIPTION);
 
         Index index;
 
@@ -52,28 +45,12 @@ public class EditCommandParser implements Parser<EditCommand> {
             editTaskDescriptor.setDescription(
                     ParserUtil.parseDescription(argMultimap.getValue(PREFIX_TASK_DESCRIPTION).get()));
         }
-        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editTaskDescriptor::setTags);
 
         if (!editTaskDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
 
         return new EditCommand(index, editTaskDescriptor);
-    }
-
-    /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>} if {@code tags} is non-empty.
-     * If {@code tags} contain only one element which is an empty string, it will be parsed into a
-     * {@code Set<Tag>} containing zero tags.
-     */
-    private Optional<Set<Tag>> parseTagsForEdit(Collection<String> tags) throws ParseException {
-        assert tags != null;
-
-        if (tags.isEmpty()) {
-            return Optional.empty();
-        }
-        Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
-        return Optional.of(ParserUtil.parseTags(tagSet));
     }
 
 }
