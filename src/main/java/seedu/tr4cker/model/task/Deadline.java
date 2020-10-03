@@ -16,7 +16,7 @@ public class Deadline {
     public static final String MESSAGE_CONSTRAINTS =
             "Deadline should be a valid date, and it should follow the format yyyy-MM-dd "
                     + "or yyyy-MM-dd HHmm";
-    public static final String MESSAGE_FUTURE =
+    public static final String MESSAGE_FUTURE_CONSTRAINT =
             "Deadline should be a time in the future";
     public static final String VALIDATION_REGEX = "\\d{4}-\\d{2}-\\d{2} \\d{4}";
     public static final DateTimeFormatter DATE_TIME_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
@@ -31,7 +31,7 @@ public class Deadline {
     public Deadline(String deadline) {
         requireNonNull(deadline);
         checkArgument(isValidDeadline(deadline), MESSAGE_CONSTRAINTS);
-        checkArgument(isFutureDeadline(deadline), MESSAGE_FUTURE);
+        checkArgument(isFutureDeadline(deadline), MESSAGE_FUTURE_CONSTRAINT);
         dateTime = LocalDateTime.parse(deadline, DATE_TIME_FORMAT);
     }
 
