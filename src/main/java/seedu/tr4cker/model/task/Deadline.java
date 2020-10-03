@@ -13,12 +13,14 @@ import java.time.format.DateTimeParseException;
  */
 public class Deadline {
 
-
     public static final String MESSAGE_CONSTRAINTS =
-            "deadline times should only contain numbers, and it should follow the format yyyy-MM-dd HHmm";
+            "Deadline should be a valid date, and it should follow the format yyyy-MM-dd "
+                    + "or yyyy-MM-dd HHmm";
+    public static final String MESSAGE_FUTURE_CONSTRAINT =
+            "Deadline should be a time in the future";
     public static final String VALIDATION_REGEX = "\\d{4}-\\d{2}-\\d{2} \\d{4}";
     public static final DateTimeFormatter DATE_TIME_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
-    public final String value;
+    public static final String DEFAULT_TIME = " 2359";
     public final LocalDateTime dateTime;
 
     /**
@@ -29,7 +31,7 @@ public class Deadline {
     public Deadline(String deadline) {
         requireNonNull(deadline);
         checkArgument(isValidDeadline(deadline), MESSAGE_CONSTRAINTS);
-        value = deadline;
+        checkArgument(isFutureDeadline(deadline), MESSAGE_FUTURE_CONSTRAINT);
         dateTime = LocalDateTime.parse(deadline, DATE_TIME_FORMAT);
     }
 
@@ -42,24 +44,36 @@ public class Deadline {
         } catch (DateTimeParseException ex) {
             return false;
         }
+        return true;
+    }
+
+    public static boolean isDeadlineWithTime(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns true if a given string is a future time.
+     */
+    public static boolean isFutureDeadline(String test) {
+        LocalDateTime now = LocalDateTime.now();
+        return LocalDateTime.parse(test, DATE_TIME_FORMAT).isAfter(now);
     }
 
     @Override
     public String toString() {
-        return value;
+        return dateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Deadline // instanceof handles nulls
-                && value.equals(((Deadline) other).value)); // state check
+                && dateTime.equals(((Deadline) other).dateTime)); // state check
     }
 
     @Override
     public int hashCode() {
-        return value.hashCode();
+        return dateTime.hashCode();
     }
 
 }

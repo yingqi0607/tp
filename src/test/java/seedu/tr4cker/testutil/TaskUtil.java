@@ -30,7 +30,7 @@ public class TaskUtil {
     public static String getTaskDetails(Task task) {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + task.getName().taskName + " ");
-        sb.append(PREFIX_DEADLINE + task.getDeadline().value + " ");
+        sb.append(PREFIX_DEADLINE + task.getDeadline().toString() + " ");
         // Completion status not included
         sb.append(PREFIX_TASK_DESCRIPTION + task.getTaskDescription().value + " ");
         task.getTags().stream().forEach(
@@ -45,7 +45,8 @@ public class TaskUtil {
     public static String getEditTaskDescriptorDetails(EditTaskDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.taskName).append(" "));
-        descriptor.getDeadline().ifPresent(deadline -> sb.append(PREFIX_DEADLINE).append(deadline.value).append(" "));
+        descriptor.getDeadline().ifPresent(deadline -> sb.append(PREFIX_DEADLINE)
+                .append(deadline.toString()).append(" "));
         // Completion status not included
         descriptor.getTaskDescription()
                 .ifPresent(description -> sb.append(PREFIX_TASK_DESCRIPTION).append(description.value).append(" "));

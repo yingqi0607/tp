@@ -52,7 +52,7 @@ class JsonAdaptedTask {
      */
     public JsonAdaptedTask(Task source) {
         name = source.getName().taskName;
-        deadline = source.getDeadline().value;
+        deadline = source.getDeadline().toString();
         completionStatus = source.getCompletionStatus().value;
         description = source.getTaskDescription().value;
         tagged.addAll(source.getTags().stream()

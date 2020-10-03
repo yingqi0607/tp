@@ -58,8 +58,14 @@ public class ParserUtil {
     public static Deadline parseDeadline(String deadline) throws ParseException {
         requireNonNull(deadline);
         String trimmedDeadline = deadline.trim();
+        if (!Deadline.isDeadlineWithTime(trimmedDeadline)) {
+            trimmedDeadline += Deadline.DEFAULT_TIME;
+        }
         if (!Deadline.isValidDeadline(trimmedDeadline)) {
             throw new ParseException(Deadline.MESSAGE_CONSTRAINTS);
+        }
+        if (!Deadline.isFutureDeadline(trimmedDeadline)) {
+            throw new ParseException(Deadline.MESSAGE_FUTURE_CONSTRAINT);
         }
         return new Deadline(trimmedDeadline);
     }
