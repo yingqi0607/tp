@@ -21,14 +21,16 @@ import seedu.tr4cker.model.task.TaskDescription;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
-    private static final String INVALID_DEADLINE = "2020-90-90 9999";
-    private static final String INVALID_EXPIRED_DEADLINE = "2020-01-01 2359";
+    private static final String INVALID_DEADLINE = "90-90-2021 9999";
+    private static final String INVALID_EXPIRED_DEADLINE = "01-01-2020 2359";
     private static final String INVALID_DESCRIPTION = " ";
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = "Rachel Walker";
-    private static final String VALID_DEADLINE = "2021-12-25 2359";
-    private static final String VALID_DEADLINE_NO_TIME = "2021-12-25";
+    private static final String VALID_DEADLINE_MM = "25-12-2021 2359";
+    private static final String VALID_DEADLINE_MMM = "25-Dec-2021 2359";
+    private static final String VALID_DEADLINE_NO_TIME_MM = "25-12-2021";
+    private static final String VALID_DEADLINE_NO_TIME_MMM = "25-Dec-2021";
     private static final String VALID_DESCRIPTION = "description";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
@@ -92,15 +94,17 @@ public class ParserUtilTest {
 
     @Test
     public void parseDeadline_validValueWithoutWhitespace_returnsDeadline() throws Exception {
-        Deadline expectedDeadline = new Deadline(VALID_DEADLINE);
-        assertEquals(expectedDeadline, ParserUtil.parseDeadline(VALID_DEADLINE));
-        assertEquals(expectedDeadline, ParserUtil.parseDeadline(VALID_DEADLINE_NO_TIME));
+        Deadline expectedDeadline = new Deadline(VALID_DEADLINE_MM);
+        assertEquals(expectedDeadline, ParserUtil.parseDeadline(VALID_DEADLINE_MM));
+        assertEquals(expectedDeadline, ParserUtil.parseDeadline(VALID_DEADLINE_MMM));
+        assertEquals(expectedDeadline, ParserUtil.parseDeadline(VALID_DEADLINE_NO_TIME_MM));
+        assertEquals(expectedDeadline, ParserUtil.parseDeadline(VALID_DEADLINE_NO_TIME_MMM));
     }
 
     @Test
     public void parseDeadline_validValueWithWhitespace_returnsTrimmedDeadline() throws Exception {
-        String deadlineWithWhitespace = WHITESPACE + VALID_DEADLINE + WHITESPACE;
-        Deadline expectedDeadline = new Deadline(VALID_DEADLINE);
+        String deadlineWithWhitespace = WHITESPACE + VALID_DEADLINE_MM + WHITESPACE;
+        Deadline expectedDeadline = new Deadline(VALID_DEADLINE_MM);
         assertEquals(expectedDeadline, ParserUtil.parseDeadline(deadlineWithWhitespace));
     }
 

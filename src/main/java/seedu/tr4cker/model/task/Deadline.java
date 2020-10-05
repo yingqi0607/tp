@@ -18,8 +18,10 @@ public class Deadline {
                     + "or yyyy-MM-dd HHmm";
     public static final String MESSAGE_FUTURE_CONSTRAINT =
             "Deadline should be a time in the future";
-    public static final String VALIDATION_REGEX = "\\d{4}-\\d{2}-\\d{2} \\d{4}";
-    public static final DateTimeFormatter DATE_TIME_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
+    public static final String VALIDATION_REGEX_MM = "\\d{2}-\\d{2}-\\d{4} \\d{4}";
+    public static final String VALIDATION_REGEX_MMMM = "\\d{2}-[a-zA-Z]{3}-\\d{4} \\d{4}";
+
+    public static final DateTimeFormatter DATE_TIME_FORMAT = DateTimeFormatter.ofPattern("dd-[MM][MMM]-yyyy HHmm");
     public static final String DEFAULT_TIME = " 2359";
     public final LocalDateTime dateTime;
 
@@ -48,7 +50,7 @@ public class Deadline {
     }
 
     public static boolean isDeadlineWithTime(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.matches(VALIDATION_REGEX_MM) || test.matches(VALIDATION_REGEX_MMMM);
     }
 
     /**
@@ -61,7 +63,7 @@ public class Deadline {
 
     @Override
     public String toString() {
-        return dateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
+        return dateTime.format(DateTimeFormatter.ofPattern("dd-MMM-yyyy HHmm"));
     }
 
     @Override

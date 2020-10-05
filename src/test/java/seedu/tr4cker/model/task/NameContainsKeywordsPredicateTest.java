@@ -69,9 +69,9 @@ public class NameContainsKeywordsPredicateTest {
         assertFalse(predicate.test(new TaskBuilder().withName("My Homework Assignment").build()));
 
         // Keywords match deadline and description, but does not match name
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("2020-12-31", "2359",
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("31-12-2021", "2359",
                 "description"));
-        assertFalse(predicate.test(new TaskBuilder().withName("My Homework Assignment").withDeadline("2020-12-31 2359")
+        assertFalse(predicate.test(new TaskBuilder().withName("My Homework Assignment").withDeadline("31-12-2021 2359")
                 .withCompletionStatus(0).withTaskDescription("description").build()));
     }
 }
