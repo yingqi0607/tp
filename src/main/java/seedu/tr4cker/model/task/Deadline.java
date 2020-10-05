@@ -14,12 +14,15 @@ import java.time.format.DateTimeParseException;
 public class Deadline {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Deadline should be a valid date, and it should follow the format yyyy-MM-dd "
-                    + "or yyyy-MM-dd HHmm";
+            "Invalid format to input Deadline. Please ensure the following:\n" +
+                    "1. Enter a valid date\n" +
+                    "2. Formats accepted: dd-MM-yyyy HHmm and dd-MMM-yyyy HHmm\n" +
+                    "(e.g. 25-01-2021 1800 or 25-Jan-2021 1800)\n" +
+                    "3. If deadline time is not entered, it will be set to 2359 by default";
     public static final String MESSAGE_FUTURE_CONSTRAINT =
             "Deadline should be a time in the future";
     public static final String VALIDATION_REGEX_MM = "\\d{2}-\\d{2}-\\d{4} \\d{4}";
-    public static final String VALIDATION_REGEX_MMMM = "\\d{2}-[a-zA-Z]{3}-\\d{4} \\d{4}";
+    public static final String VALIDATION_REGEX_MMM = "\\d{2}-[a-zA-Z]{3}-\\d{4} \\d{4}";
 
     public static final DateTimeFormatter DATE_TIME_FORMAT = DateTimeFormatter.ofPattern("dd-[MM][MMM]-yyyy HHmm");
     public static final String DEFAULT_TIME = " 2359";
@@ -50,7 +53,7 @@ public class Deadline {
     }
 
     public static boolean isDeadlineWithTime(String test) {
-        return test.matches(VALIDATION_REGEX_MM) || test.matches(VALIDATION_REGEX_MMMM);
+        return test.matches(VALIDATION_REGEX_MM) || test.matches(VALIDATION_REGEX_MMM);
     }
 
     /**
