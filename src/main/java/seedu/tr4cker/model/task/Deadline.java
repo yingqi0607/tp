@@ -14,11 +14,11 @@ import java.time.format.DateTimeParseException;
 public class Deadline {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Invalid format to input Deadline. Please ensure the following:\n" +
-                    "1. Enter a valid date\n" +
-                    "2. Formats accepted: dd-MM-yyyy HHmm and dd-MMM-yyyy HHmm\n" +
-                    "(e.g. 25-01-2021 1800 or 25-Jan-2021 1800)\n" +
-                    "3. If deadline time is not entered, it will be set to 2359 by default";
+            "Invalid format to input Deadline. Please ensure the following:\n"
+                    + "1. Enter a valid date\n"
+                    + "2. Formats accepted: dd-MM-yyyy HHmm and dd-MMM-yyyy HHmm\n"
+                    + "(e.g. 25-01-2021 1800 or 25-Jan-2021 1800)\n"
+                    + "3. If deadline time is not entered, it will be set to 2359 by default";
     public static final String MESSAGE_FUTURE_CONSTRAINT =
             "Deadline should be a time in the future";
     public static final String VALIDATION_REGEX_MM = "\\d{2}-\\d{2}-\\d{4} \\d{4}";
