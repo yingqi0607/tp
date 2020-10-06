@@ -6,6 +6,7 @@ import static seedu.tr4cker.commons.util.AppUtil.checkArgument;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Arrays;
+import java.util.function.Predicate;
 
 /**
  * Helper functions for handling strings.
@@ -18,7 +19,7 @@ public class StringUtil {
      *   <br>examples:<pre>
      *       containsWordIgnoreCase("ABc def", "abc") == true
      *       containsWordIgnoreCase("ABc def", "DEF") == true
-     *       containsWordIgnoreCase("ABc def", "AB") == false //not a full word match
+     *       containsWordIgnoreCase("ABc def", "AB") == true //partial word match still true
      *       </pre>
      * @param sentence cannot be null
      * @param word cannot be null, cannot be empty, must be a single word
@@ -34,8 +35,10 @@ public class StringUtil {
         String preppedSentence = sentence;
         String[] wordsInPreppedSentence = preppedSentence.split("\\s+");
 
+        String preppedWordLowerCase = preppedWord.toLowerCase();
+        Predicate<String> containsIgnoreCase = w -> w.toLowerCase().contains(preppedWordLowerCase);
         return Arrays.stream(wordsInPreppedSentence)
-                .anyMatch(preppedWord::equalsIgnoreCase);
+                .anyMatch(containsIgnoreCase); //use preppedWord::equalsIgnoreCase for equals instead of contains
     }
 
     /**
