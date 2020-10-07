@@ -39,7 +39,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_DEADLINE + "deadline] "
             + "[" + PREFIX_TASK_DESCRIPTION + "DESCRIPTION]\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_DEADLINE + "2020-10-10 1010 ";
+            + PREFIX_DEADLINE + "10-Oct-2021 1010 ";
 
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Task: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
