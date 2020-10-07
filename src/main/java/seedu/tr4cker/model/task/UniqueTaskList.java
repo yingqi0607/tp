@@ -102,13 +102,13 @@ public class UniqueTaskList implements Iterable<Task> {
     /**
      * Sorts the the list according to deadline
      */
-    public void sortTasksAccordingToDeadline(){
-        Collections.sort(internalList, new Comparator<Task>(){
+    public void sortTasksAccordingToDeadline() {
+        Collections.sort(internalList, new Comparator<Task>() {
             @Override
-            public int compare(Task task1, Task task2){
-                try{
+            public int compare(Task task1, Task task2) {
+                try {
                     return task1.getDeadline().dateTime.compareTo(task2.getDeadline().dateTime);
-                }catch (Exception e){
+                } catch (Exception e) {
                     throw new IllegalArgumentException(e);
                 }
             }
