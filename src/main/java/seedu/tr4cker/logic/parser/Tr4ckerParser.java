@@ -10,6 +10,7 @@ import seedu.tr4cker.logic.commands.AddCommand;
 import seedu.tr4cker.logic.commands.ClearCommand;
 import seedu.tr4cker.logic.commands.Command;
 import seedu.tr4cker.logic.commands.DeleteCommand;
+import seedu.tr4cker.logic.commands.DoneCommand;
 import seedu.tr4cker.logic.commands.EditCommand;
 import seedu.tr4cker.logic.commands.ExitCommand;
 import seedu.tr4cker.logic.commands.FindCommand;
@@ -56,6 +57,9 @@ public class Tr4ckerParser {
 
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
+
+        case DoneCommand.COMMAND_WORD:
+            return new DoneCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
