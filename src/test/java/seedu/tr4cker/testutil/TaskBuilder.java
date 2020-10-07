@@ -17,7 +17,7 @@ import seedu.tr4cker.model.util.SampleDataUtil;
 public class TaskBuilder {
 
     public static final String DEFAULT_NAME = "Task1 Name";
-    public static final String DEFAULT_DEADLINE = "2020-12-31 2359";
+    public static final String DEFAULT_DEADLINE = "01-Dec-2021 2359";
     public static final int DEFAULT_COMPLETION_STATUS = 0;
     public static final String DEFAULT_DESCRIPTION = "Task 1 description";
 

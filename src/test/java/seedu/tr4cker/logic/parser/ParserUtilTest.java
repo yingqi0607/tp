@@ -1,11 +1,14 @@
 package seedu.tr4cker.logic.parser;
 
+import static java.time.DayOfWeek.FRIDAY;
+import static java.time.temporal.TemporalAdjusters.next;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.tr4cker.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.tr4cker.testutil.Assert.assertThrows;
 import static seedu.tr4cker.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
@@ -18,17 +21,22 @@ import seedu.tr4cker.model.tag.Tag;
 import seedu.tr4cker.model.task.Deadline;
 import seedu.tr4cker.model.task.Name;
 import seedu.tr4cker.model.task.TaskDescription;
+import seedu.tr4cker.model.util.NaturalDateUtil;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
-    private static final String INVALID_DEADLINE = "2020-90-90 9999";
-    private static final String INVALID_EXPIRED_DEADLINE = "2020-01-01 2359";
+    private static final String INVALID_DEADLINE = "90-90-2021 9999";
+    private static final String INVALID_EXPIRED_DEADLINE = "01-01-2020 2359";
+    private static final String INVALID_NATURAL_DEADLINE_1 = "Tuesdday";
+    private static final String INVALID_NATURAL_DEADLINE_2 = "Tuesday 2500";
     private static final String INVALID_DESCRIPTION = " ";
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = "Rachel Walker";
-    private static final String VALID_DEADLINE = "2021-12-25 2359";
-    private static final String VALID_DEADLINE_NO_TIME = "2021-12-25";
+    private static final String VALID_DEADLINE_MM = "25-12-2021 2359";
+    private static final String VALID_DEADLINE_MMM = "25-Dec-2021 2359";
+    private static final String VALID_DEADLINE_NO_TIME_MM = "25-12-2021";
+    private static final String VALID_DEADLINE_NO_TIME_MMM = "25-Dec-2021";
     private static final String VALID_DESCRIPTION = "description";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
@@ -88,19 +96,34 @@ public class ParserUtilTest {
     public void parseDeadline_invalidValue_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseDeadline(INVALID_DEADLINE));
         assertThrows(ParseException.class, () -> ParserUtil.parseDeadline(INVALID_EXPIRED_DEADLINE));
+        assertThrows(ParseException.class, () -> ParserUtil.parseDeadline(INVALID_NATURAL_DEADLINE_1));
+        assertThrows(ParseException.class, () -> ParserUtil.parseDeadline(INVALID_NATURAL_DEADLINE_2));
     }
 
     @Test
     public void parseDeadline_validValueWithoutWhitespace_returnsDeadline() throws Exception {
-        Deadline expectedDeadline = new Deadline(VALID_DEADLINE);
-        assertEquals(expectedDeadline, ParserUtil.parseDeadline(VALID_DEADLINE));
-        assertEquals(expectedDeadline, ParserUtil.parseDeadline(VALID_DEADLINE_NO_TIME));
+        Deadline expectedDeadline = new Deadline(VALID_DEADLINE_MM);
+        assertEquals(expectedDeadline, ParserUtil.parseDeadline(VALID_DEADLINE_MM));
+        assertEquals(expectedDeadline, ParserUtil.parseDeadline(VALID_DEADLINE_MMM));
+        assertEquals(expectedDeadline, ParserUtil.parseDeadline(VALID_DEADLINE_NO_TIME_MM));
+        assertEquals(expectedDeadline, ParserUtil.parseDeadline(VALID_DEADLINE_NO_TIME_MMM));
+
+        String expectedDate = LocalDate.now().with(next(FRIDAY))
+                .format(NaturalDateUtil.DATE_TIME_FORMATTER);
+        expectedDeadline = new Deadline(expectedDate + " 2200");
+        assertEquals(expectedDeadline, ParserUtil.parseDeadline("friday 2200"));
+        expectedDeadline = new Deadline(expectedDate + " 2359");
+        assertEquals(expectedDeadline, ParserUtil.parseDeadline("friday"));
+
+        expectedDeadline = new Deadline(LocalDate.now().format(NaturalDateUtil.DATE_TIME_FORMATTER)
+                + " 2359");
+        assertEquals(expectedDeadline, ParserUtil.parseDeadline("today"));
     }
 
     @Test
     public void parseDeadline_validValueWithWhitespace_returnsTrimmedDeadline() throws Exception {
-        String deadlineWithWhitespace = WHITESPACE + VALID_DEADLINE + WHITESPACE;
-        Deadline expectedDeadline = new Deadline(VALID_DEADLINE);
+        String deadlineWithWhitespace = WHITESPACE + VALID_DEADLINE_MM + WHITESPACE;
+        Deadline expectedDeadline = new Deadline(VALID_DEADLINE_MM);
         assertEquals(expectedDeadline, ParserUtil.parseDeadline(deadlineWithWhitespace));
     }
 

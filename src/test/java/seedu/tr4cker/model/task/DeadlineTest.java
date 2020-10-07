@@ -27,14 +27,36 @@ public class DeadlineTest {
         // invalid deadline times
         assertFalse(Deadline.isValidDeadline("")); // empty string
         assertFalse(Deadline.isValidDeadline(" ")); // spaces only
-        assertFalse(Deadline.isValidDeadline("2020-10-10")); // only has date
+        assertFalse(Deadline.isValidDeadline("02-12-2021")); // only has date
         assertFalse(Deadline.isValidDeadline("deadline")); // non-numeric
-        assertFalse(Deadline.isValidDeadline("2020-Oct-10 2359")); // alphabets within digits
-        assertFalse(Deadline.isValidDeadline("2020-10-10   2359")); // additional spaces within digits
+        assertFalse(Deadline.isValidDeadline("02-12-2021   0000")); // additional spaces within digits
+        assertFalse(Deadline.isValidDeadline("10/10/2021 2359")); // wrong format
 
         // valid deadline times
-        assertTrue(Deadline.isValidDeadline("2020-02-02 0000"));
-        assertTrue(Deadline.isValidDeadline("2020-10-10 2359"));
-        assertTrue(Deadline.isValidDeadline("2020-09-23 1800"));
+        assertTrue(Deadline.isValidDeadline("02-12-2021 0000"));
+        assertTrue(Deadline.isValidDeadline("10-Oct-2021 2359"));
+        assertTrue(Deadline.isValidDeadline("20-Sep-2021 1800"));
+    }
+
+    @Test
+    public void isDeadlineWithTime() {
+        // invalid deadline times
+        assertFalse(Deadline.isDeadlineWithTime("20-Sept-2021 1900")); // additional alphabets
+        assertFalse(Deadline.isDeadlineWithTime("201-091-20211")); // additional numbers
+        assertFalse(Deadline.isDeadlineWithTime("20-Sep-2021")); // no time
+        assertFalse(Deadline.isDeadlineWithTime("20-09-2021")); // no time
+
+        // valid deadline times
+        assertTrue(Deadline.isDeadlineWithTime("02-12-2021 0000"));
+        assertTrue(Deadline.isDeadlineWithTime("02-Dec-2021 0000"));
+    }
+
+    @Test
+    public void isFutureDeadline() {
+        // invalid deadline times
+        assertFalse(Deadline.isFutureDeadline("20-Sep-2020 1900")); // time has passed
+
+        // valid deadline times
+        assertTrue(Deadline.isDeadlineWithTime("02-12-2030 0000"));
     }
 }
