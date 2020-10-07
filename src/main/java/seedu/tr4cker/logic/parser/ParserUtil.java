@@ -14,6 +14,7 @@ import seedu.tr4cker.model.task.CompletionStatus;
 import seedu.tr4cker.model.task.Deadline;
 import seedu.tr4cker.model.task.Name;
 import seedu.tr4cker.model.task.TaskDescription;
+import seedu.tr4cker.model.util.NaturalDateUtil;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -59,6 +60,10 @@ public class ParserUtil {
     public static Deadline parseDeadline(String deadline) throws ParseException {
         requireNonNull(deadline);
         String trimmedDeadline = deadline.trim();
+
+        if (NaturalDateUtil.isNaturalDeadline(trimmedDeadline)) {
+            trimmedDeadline = NaturalDateUtil.convertToDateTime(trimmedDeadline);
+        }
         if (!Deadline.isDeadlineWithTime(trimmedDeadline)) {
             trimmedDeadline += Deadline.DEFAULT_TIME;
         }
