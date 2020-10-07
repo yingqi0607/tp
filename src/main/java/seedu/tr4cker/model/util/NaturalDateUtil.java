@@ -23,21 +23,22 @@ public class NaturalDateUtil {
 
     public static final String MESSAGE_DAY = "Please enter a valid day of the week in full, e.g. Saturday";
     public static final String MESSAGE_TIME = "Please enter a valid time in 24Hr format";
-    public static final String VALIDATION_REGEX = "[a-zA-Z]*";
-    public static final String VALIDATION_REGEX_TIME = "[a-zA-Z]* \\d{4}";
+    public static final String VALIDATION_REGEX = "[a-zA-Z]{5,}";
+    public static final String VALIDATION_REGEX_TIME = "[a-zA-Z]{5,} \\d{4}";
 
-    private static final Map<String, DayOfWeek> daysOfWeek;
+    public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd-MMM-yyyy");
+    private static final Map<String, DayOfWeek> DAYS_OF_WEEK;
 
     static {
-        daysOfWeek = new HashMap<>();
-        daysOfWeek.put("MONDAY", MONDAY);
-        daysOfWeek.put("TUESDAY", TUESDAY);
-        daysOfWeek.put("WEDNESDAY", WEDNESDAY);
-        daysOfWeek.put("THURSDAY", THURSDAY);
-        daysOfWeek.put("FRIDAY", FRIDAY);
-        daysOfWeek.put("SATURDAY", SATURDAY);
-        daysOfWeek.put("SUNDAY", SUNDAY);
-        daysOfWeek.put("TODAY", null);
+        DAYS_OF_WEEK = new HashMap<>();
+        DAYS_OF_WEEK.put("MONDAY", MONDAY);
+        DAYS_OF_WEEK.put("TUESDAY", TUESDAY);
+        DAYS_OF_WEEK.put("WEDNESDAY", WEDNESDAY);
+        DAYS_OF_WEEK.put("THURSDAY", THURSDAY);
+        DAYS_OF_WEEK.put("FRIDAY", FRIDAY);
+        DAYS_OF_WEEK.put("SATURDAY", SATURDAY);
+        DAYS_OF_WEEK.put("SUNDAY", SUNDAY);
+        DAYS_OF_WEEK.put("TODAY", null);
     }
 
     /**
@@ -55,22 +56,21 @@ public class NaturalDateUtil {
      * @throws ParseException when the date or time is in the wrong format
      */
     public static String convertToDateTime(String naturalDateTime) throws ParseException {
+        assert isNaturalDeadline(naturalDateTime);
         String dateTime;
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd-MMM-yyyy");
-
         String [] deadlineTokens = naturalDateTime.split(" ");
         int unitsOfDeadline = deadlineTokens.length;
         assert unitsOfDeadline == 1 || unitsOfDeadline == 2;
 
         String dayOfDeadline = deadlineTokens[0].toUpperCase();
 
-        if (!daysOfWeek.containsKey(dayOfDeadline)) {
+        if (!DAYS_OF_WEEK.containsKey(dayOfDeadline)) {
             throw new ParseException(MESSAGE_DAY);
         } else if (dayOfDeadline.equals("TODAY")) {
-            dateTime = LocalDate.now().format(dateTimeFormatter);
+            dateTime = LocalDate.now().format(DATE_TIME_FORMATTER);
         } else {
-            dateTime = LocalDate.now().with(next(daysOfWeek.get(dayOfDeadline)))
-                    .format(dateTimeFormatter);
+            dateTime = LocalDate.now().with(next(DAYS_OF_WEEK.get(dayOfDeadline)))
+                    .format(DATE_TIME_FORMATTER);
         }
 
         if (unitsOfDeadline == 2) {
