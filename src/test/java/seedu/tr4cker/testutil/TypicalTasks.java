@@ -25,38 +25,38 @@ public class TypicalTasks {
 
     public static final Task TASK1 = new TaskBuilder().withName("Task1Name")
             .withTaskDescription("Task 1 description").withCompletionStatus(0)
-            .withDeadline("2021-10-20 1800").build();
+            .withDeadline("20-Oct-2021 1800").build();
     public static final Task TASK1_ADD = new TaskBuilder().withName("Task1Name")
             .withTaskDescription("Task 1 description").withCompletionStatus(0)
-            .withDeadline("2021-10-20 1800")
+            .withDeadline("20-Oct-2021 1800")
             .withTags("tag1", "tag2").build();
     public static final Task TASK1_DELETE = new TaskBuilder().withName("Task1Name")
             .withTaskDescription("Task 1 description").withCompletionStatus(0)
-            .withDeadline("2021-10-20 1800").build();
+            .withDeadline("20-Oct-2021 1800").build();
     public static final Task TASK2 = new TaskBuilder().withName("Task2 Name")
             .withTaskDescription("Task 2 description").withCompletionStatus(0)
-            .withDeadline("2021-09-30 2359")
+            .withDeadline("30-09-2021 2359")
             .withTags("graded", "assignment").build();
     public static final Task TASK3 = new TaskBuilder().withName("Task3 Name")
-            .withDeadline("2021-10-03 1200")
+            .withDeadline("10-03-2021 1200")
             .withCompletionStatus(0).withTaskDescription("Task 3 description").build();
     public static final Task TASK4 = new TaskBuilder().withName("Task4 Name")
-            .withDeadline("2021-09-21 1500")
+            .withDeadline("21-09-2021 1500")
             .withCompletionStatus(0).withTaskDescription("Task 4 description").withTags("friends").build();
     public static final Task TASK5 = new TaskBuilder().withName("Task5 Name")
-            .withDeadline("2021-10-10 1010")
+            .withDeadline("10-10-2021 1010")
             .withCompletionStatus(0).withTaskDescription("Task 5 description").build();
     public static final Task TASK6 = new TaskBuilder().withName("Task6 Name")
-            .withDeadline("2021-12-25 0000")
+            .withDeadline("25-12-2021 0000")
             .withCompletionStatus(0).withTaskDescription("Task 6 description").build();
     public static final Task TASK7 = new TaskBuilder().withName("Task7 Name")
-            .withDeadline("2021-01-01 0000")
+            .withDeadline("01-01-2021 0000")
             .withCompletionStatus(0).withTaskDescription("Task 7 description").build();
 
     // Manually added
-    public static final Task TASK_H = new TaskBuilder().withName("TASK H").withDeadline("2021-12-07 0600")
+    public static final Task TASK_H = new TaskBuilder().withName("TASK H").withDeadline("12-Jul-2021 0600")
             .withCompletionStatus(0).withTaskDescription("Task H description").build();
-    public static final Task TASK_I = new TaskBuilder().withName("TASK I").withDeadline("2021-09-27 2359")
+    public static final Task TASK_I = new TaskBuilder().withName("TASK I").withDeadline("27-Sep-2021 2359")
             .withCompletionStatus(0).withTaskDescription("Task I description").build();
 
     // Manually added - Task's details found in {@code CommandTestUtil}
@@ -74,11 +74,11 @@ public class TypicalTasks {
      * Returns an {@code Tr4cker} with all the typical tasks.
      */
     public static Tr4cker getTypicalTr4cker() {
-        Tr4cker ab = new Tr4cker();
+        Tr4cker tr4cker = new Tr4cker();
         for (Task task : getTypicalTasks()) {
-            ab.addTask(task);
+            tr4cker.addTask(task);
         }
-        return ab;
+        return tr4cker;
     }
 
     public static List<Task> getTypicalTasks() {
