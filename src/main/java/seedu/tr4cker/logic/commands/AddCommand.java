@@ -25,7 +25,7 @@ public class AddCommand extends Command {
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "CS2103T tP "
-            + PREFIX_DEADLINE + "2020-10-10 1010 "
+            + PREFIX_DEADLINE + "10-Oct-2021 1010 "
             + PREFIX_TASK_DESCRIPTION + "Update User Guide "
             + PREFIX_TAG + "CS2103T "
             + PREFIX_TAG + "UG";
