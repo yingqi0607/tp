@@ -38,7 +38,6 @@ public class NaturalDateUtil {
         DAYS_OF_WEEK.put("FRIDAY", FRIDAY);
         DAYS_OF_WEEK.put("SATURDAY", SATURDAY);
         DAYS_OF_WEEK.put("SUNDAY", SUNDAY);
-        DAYS_OF_WEEK.put("TODAY", null);
     }
 
     /**
@@ -53,27 +52,31 @@ public class NaturalDateUtil {
      *
      * @param naturalDateTime natural date-time input
      * @return formatted DateTime String
-     * @throws ParseException when the date or time is in the wrong format
      */
     public static String convertToDateTime(String naturalDateTime) throws ParseException {
         assert isNaturalDeadline(naturalDateTime);
-        String dateTime;
         String [] deadlineTokens = naturalDateTime.split(" ");
         int unitsOfDeadline = deadlineTokens.length;
         assert unitsOfDeadline == 1 || unitsOfDeadline == 2;
 
+        return parse(deadlineTokens, unitsOfDeadline == 2);
+    }
+
+    private static String parse(String[] deadlineTokens, boolean hasTime) throws ParseException {
+        String dateTime;
         String dayOfDeadline = deadlineTokens[0].toUpperCase();
 
-        if (!DAYS_OF_WEEK.containsKey(dayOfDeadline)) {
-            throw new ParseException(MESSAGE_DAY);
-        } else if (dayOfDeadline.equals("TODAY")) {
+        if (dayOfDeadline.equals("TODAY")) {
             dateTime = LocalDate.now().format(DATE_TIME_FORMATTER);
         } else {
+            if (!DAYS_OF_WEEK.containsKey(dayOfDeadline)) {
+                throw new ParseException(MESSAGE_DAY);
+            }
             dateTime = LocalDate.now().with(next(DAYS_OF_WEEK.get(dayOfDeadline)))
                     .format(DATE_TIME_FORMATTER);
         }
 
-        if (unitsOfDeadline == 2) {
+        if (hasTime) {
             try {
                 LocalTime.parse(deadlineTokens[1], DateTimeFormatter.ofPattern("HHmm"));
                 dateTime += " " + deadlineTokens[1];
