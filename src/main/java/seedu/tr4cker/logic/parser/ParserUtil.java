@@ -10,6 +10,7 @@ import seedu.tr4cker.commons.core.index.Index;
 import seedu.tr4cker.commons.util.StringUtil;
 import seedu.tr4cker.logic.parser.exceptions.ParseException;
 import seedu.tr4cker.model.tag.Tag;
+import seedu.tr4cker.model.task.CompletionStatus;
 import seedu.tr4cker.model.task.Deadline;
 import seedu.tr4cker.model.task.Name;
 import seedu.tr4cker.model.task.TaskDescription;
@@ -88,6 +89,27 @@ public class ParserUtil {
             throw new ParseException(TaskDescription.MESSAGE_CONSTRAINTS);
         }
         return new TaskDescription(trimmedDescription);
+    }
+
+    /**
+     * Parses a {@code String completionStatus} into an {@code CompletionStatus}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code completionStatus} is invalid.
+     */
+    public static CompletionStatus parseCompletionStatus(String completionStatus) throws ParseException {
+        requireNonNull(completionStatus);
+        String trimmedCompletionStatus = completionStatus.trim();
+        int trimmedCompletionStatusInt;
+        try {
+            trimmedCompletionStatusInt = Integer.parseInt(trimmedCompletionStatus);
+        } catch (NumberFormatException numberFormatException) {
+            throw new ParseException(CompletionStatus.MESSAGE_CONSTRAINTS);
+        }
+        if (!CompletionStatus.isValidCompletionStatus(trimmedCompletionStatusInt)) {
+            throw new ParseException(CompletionStatus.MESSAGE_CONSTRAINTS);
+        }
+        return new CompletionStatus(trimmedCompletionStatusInt);
     }
 
     /**

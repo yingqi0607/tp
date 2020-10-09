@@ -48,4 +48,7 @@ public class CompletionStatus {
         return value;
     }
 
+    public int compareTo(CompletionStatus other) {
+        return Integer.compare(value, other.value);
+    }
 }
