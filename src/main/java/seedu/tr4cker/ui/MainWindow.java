@@ -81,14 +81,6 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private Label tabCountdown;
 
-    //=============================================
-    private final Label[] tabList = new Label[] {
-            tabHome,
-            tabDaily,
-            tabModule,
-            tabCountdown
-    };
-
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
@@ -103,6 +95,8 @@ public class MainWindow extends UiPart<Stage> {
         setWindowDefaultSize(logic.getGuiSettings());
 
         setAccelerators();
+
+        setTabColors(0);
 
         helpWindow = new HelpWindow();
     }
@@ -175,7 +169,9 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Resets Color of all tabs.
+     * Sets color of tab with specified {@code index} to be the {@code TAB_HIGHLIGHT_COLOR}.
+     *
+     * @param index index of tab starting from 0.
      */
     private void setTabColors(int index) {
         for (int i = 0; i < menuBar.getMenus().size(); i++) {
