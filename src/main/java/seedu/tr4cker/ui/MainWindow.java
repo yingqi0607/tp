@@ -135,6 +135,23 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    //TODO write tab switching methods
+    /**
+     * Tab switch to main page.
+     */
+    @FXML
+    public void handleShowTabMain() {
+        //Todo
+    }
+
+    /**
+     * Tab switch to daily page.
+     */
+    @FXML
+    public void handleShowTabDaily() {
+        //Todo
+    }
+
     /**
      * Opens the help window or focuses on it if it's already opened.
      */
