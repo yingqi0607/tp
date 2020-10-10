@@ -3,6 +3,8 @@ package seedu.tr4cker.model.task;
 import static java.util.Objects.requireNonNull;
 import static seedu.tr4cker.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -95,6 +97,22 @@ public class UniqueTaskList implements Iterable<Task> {
         }
 
         internalList.setAll(tasks);
+    }
+
+    /**
+     * Sorts the the list according to deadline
+     */
+    public void sortTasksAccordingToDeadline() {
+        Collections.sort(internalList, new Comparator<Task>() {
+            @Override
+            public int compare(Task task1, Task task2) {
+                try {
+                    return task1.getDeadline().dateTime.compareTo(task2.getDeadline().dateTime);
+                } catch (Exception e) {
+                    throw new IllegalArgumentException(e);
+                }
+            }
+        });
     }
 
     /**

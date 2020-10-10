@@ -138,16 +138,16 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseDescription_validValueWithoutWhitespace_returnsAddress() throws Exception {
+    public void parseDescription_validValueWithoutWhitespace_returnsDescriptions() throws Exception {
         TaskDescription expectedTaskDescription = new TaskDescription(VALID_DESCRIPTION);
         assertEquals(expectedTaskDescription, ParserUtil.parseDescription(VALID_DESCRIPTION));
     }
 
     @Test
-    public void parseDescription_validValueWithWhitespace_returnsTrimmedAddress() throws Exception {
-        String addressWithWhitespace = WHITESPACE + VALID_DESCRIPTION + WHITESPACE;
+    public void parseDescription_validValueWithWhitespace_returnsTrimmedDescriptions() throws Exception {
+        String descriptionWithWhitespace = WHITESPACE + VALID_DESCRIPTION + WHITESPACE;
         TaskDescription expectedTaskDescription = new TaskDescription(VALID_DESCRIPTION);
-        assertEquals(expectedTaskDescription, ParserUtil.parseDescription(addressWithWhitespace));
+        assertEquals(expectedTaskDescription, ParserUtil.parseDescription(descriptionWithWhitespace));
     }
 
     @Test
