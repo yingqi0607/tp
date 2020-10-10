@@ -75,10 +75,18 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private Label tabDaily;
 
+    @FXML
+    private Label tabModule;
+
+    @FXML
+    private Label tabCountdown;
+
     //=============================================
     private final Label[] tabList = new Label[] {
             tabHome,
             tabDaily,
+            tabModule,
+            tabCountdown
     };
 
     /**
@@ -197,6 +205,26 @@ public class MainWindow extends UiPart<Stage> {
         //Todo
         tabPane.getSelectionModel().select(DAILY);
         setTabColors(DAILY);
+    }
+
+    /**
+     * Tab switch to modules page.
+     */
+    @FXML
+    public void handleShowTabModule() {
+        //Todo
+        tabPane.getSelectionModel().select(MODULE);
+        setTabColors(MODULE);
+    }
+
+    /**
+     * Tab switch to countdown page.
+     */
+    @FXML
+    public void handleShowTabCountdown() {
+        //Todo
+        tabPane.getSelectionModel().select(COUNTDOWN);
+        setTabColors(COUNTDOWN);
     }
 
     /**

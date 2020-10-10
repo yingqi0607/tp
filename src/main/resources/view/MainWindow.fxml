@@ -37,8 +37,15 @@
              <Label fx:id="tabDaily" onMouseClicked="#handleShowTabDaily" text="Daily" />
             </graphic>
           </Menu>
-          <Menu mnemonicParsing="false" text="File">
-            <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
+          <Menu>
+            <graphic>
+              <Label fx:id="tabModule" onMouseClicked="#handleShowTabModule" text="Modules" />
+            </graphic>
+          </Menu>
+          <Menu>
+            <graphic>
+              <Label fx:id="tabCountdown" onMouseClicked="#handleShowTabCountdown" text="Countdowns" />
+            </graphic>
           </Menu>
           <Menu mnemonicParsing="false" text="Help">
             <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
@@ -57,23 +64,33 @@
           </padding>
         </StackPane>
         <TabPane fx:id="tabPane" style="-fx-tab-max-height: -10;" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
-            <tabs>
-                <Tab>
-                    <content>
-                        <VBox fx:id="taskList" minWidth="340" prefWidth="340" styleClass="pane-with-border">
-                            <padding>
-                                <Insets bottom="10" left="10" right="10" top="10" />
-                            </padding>
-                            <StackPane fx:id="taskListPanelPlaceholder" VBox.vgrow="ALWAYS" />
-                        </VBox>
-                    </content>
-                </Tab>
-                <Tab>
-                   <content>
+          <tabs>
+            <Tab>
+              <content>
+                <VBox fx:id="taskList" minWidth="340" prefWidth="340" styleClass="pane-with-border">
+                  <padding>
+                    <Insets bottom="10" left="10" right="10" top="10" />
+                  </padding>
+                    <StackPane fx:id="taskListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+                </VBox>
+              </content>
+            </Tab>
+            <Tab>
+              <content>
 
-                   </content>
-                </Tab>
-            </tabs>
+              </content>
+            </Tab>
+            <Tab>
+              <content>
+
+              </content>
+            </Tab>
+            <Tab>
+              <content>
+
+              </content>
+            </Tab>
+          </tabs>
         </TabPane>
 
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
