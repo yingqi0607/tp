@@ -20,7 +20,7 @@ public class TaskDescription {
     public final String value;
 
     /**
-     * Constructs an {@code description}.
+     * Constructs a {@code description}.
      *
      * @param description A valid TR4CKER.
      */
