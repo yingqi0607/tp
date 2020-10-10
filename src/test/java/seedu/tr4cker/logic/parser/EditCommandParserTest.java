@@ -71,7 +71,7 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_DESCRIPTION_DESC,
                 TaskDescription.MESSAGE_CONSTRAINTS); // invalid tr4cker
 
-        // invalid deadline followed by valid address
+        // invalid deadline followed by valid description
         assertParseFailure(parser, "1" + INVALID_DEADLINE_DESC + DESCRIPTION_DESC_1, Deadline.MESSAGE_CONSTRAINTS);
 
         // valid deadline followed by invalid deadline. The test case for invalid deadline followed by valid deadline

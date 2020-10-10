@@ -85,7 +85,7 @@ public class AddCommandParserTest {
         assertParseFailure(parser, NAME_DESC_2 + VALID_DEADLINE_2 + DESCRIPTION_DESC_2,
                 expectedMessage);
 
-        // missing address prefix
+        // missing description prefix
         assertParseFailure(parser, NAME_DESC_2 + DEADLINE_DESC_2 + VALID_DESCRIPTION_2,
                 expectedMessage);
 
@@ -104,7 +104,7 @@ public class AddCommandParserTest {
         assertParseFailure(parser, NAME_DESC_2 + INVALID_DEADLINE_DESC + DESCRIPTION_DESC_2
                 + TAG_DESC_URGENT + TAG_DESC_HELP, Deadline.MESSAGE_CONSTRAINTS);
 
-        // invalid address
+        // invalid description
         assertParseFailure(parser, NAME_DESC_2 + DEADLINE_DESC_2 + INVALID_DESCRIPTION_DESC
                 + TAG_DESC_URGENT + TAG_DESC_HELP, TaskDescription.MESSAGE_CONSTRAINTS);
 

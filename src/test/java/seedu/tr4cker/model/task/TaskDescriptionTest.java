@@ -14,9 +14,9 @@ public class TaskDescriptionTest {
     }
 
     @Test
-    public void constructor_invalidAddress_throwsIllegalArgumentException() {
-        String invalidAddress = "";
-        assertThrows(IllegalArgumentException.class, () -> new TaskDescription(invalidAddress));
+    public void constructor_invalidDescription_throwsIllegalArgumentException() {
+        String invalidDescription = "";
+        assertThrows(IllegalArgumentException.class, () -> new TaskDescription(invalidDescription));
     }
 
     @Test
@@ -24,11 +24,11 @@ public class TaskDescriptionTest {
         // null tr4cker
         assertThrows(NullPointerException.class, () -> TaskDescription.isValidTaskDescription(null));
 
-        // invalid addresses
+        // invalid descriptions
         assertFalse(TaskDescription.isValidTaskDescription("")); // empty string
         assertFalse(TaskDescription.isValidTaskDescription(" ")); // spaces only
 
-        // valid addresses
+        // valid descriptions
         assertTrue(TaskDescription.isValidTaskDescription("description"));
         assertTrue(TaskDescription.isValidTaskDescription("-")); // one character
         assertTrue(TaskDescription.isValidTaskDescription("Do all assignments and quizzes, "
