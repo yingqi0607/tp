@@ -4,6 +4,8 @@ import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextInputControl;
@@ -23,6 +25,13 @@ import seedu.tr4cker.logic.parser.exceptions.ParseException;
  * a menu bar and space where other JavaFX elements can be placed.
  */
 public class MainWindow extends UiPart<Stage> {
+
+    // Tabs
+    private static final String TAB_HIGHLIGHT_COLOR = "-fx-background-color: #619196";
+    private static final int HOME = 0;
+    private static final int DAILY = 1;
+    private static final int MODULE = 2;
+    private static final int COUNTDOWN = 3;
 
     private static final String FXML = "MainWindow.fxml";
 
@@ -51,8 +60,26 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private StackPane statusbarPlaceholder;
 
+    /*
+     * Tab related objects
+     */
     @FXML
-    private TabPane tabPaneItem;
+    private MenuBar menuBar;
+
+    @FXML
+    private TabPane tabPane;
+
+    @FXML
+    private Label tabHome;
+
+    @FXML
+    private Label tabDaily;
+
+    //=============================================
+    private final Label[] tabList = new Label[] {
+            tabHome,
+            tabDaily,
+    };
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -139,14 +166,27 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
-    //TODO write tab switching methods
+    /**
+     * Resets Color of all tabs.
+     */
+    private void setTabColors(int index) {
+        for (int i = 0; i < menuBar.getMenus().size(); i++) {
+            if (i != index) {
+                menuBar.getMenus().get(i).setStyle("");
+            } else {
+                menuBar.getMenus().get(i).setStyle(TAB_HIGHLIGHT_COLOR);
+            }
+        }
+    }
+
     /**
      * Tab switch to main page.
      */
     @FXML
-    public void handleShowTabMain() {
+    public void handleShowTabHome() {
         //Todo
-        tabPaneItem.getSelectionModel().select(0);
+        tabPane.getSelectionModel().select(HOME);
+        setTabColors(HOME);
     }
 
     /**
@@ -155,7 +195,8 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     public void handleShowTabDaily() {
         //Todo
-        tabPaneItem.getSelectionModel().select(1);
+        tabPane.getSelectionModel().select(DAILY);
+        setTabColors(DAILY);
     }
 
     /**

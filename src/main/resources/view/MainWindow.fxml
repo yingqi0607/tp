@@ -29,12 +29,12 @@
         <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
           <Menu mnemonicParsing="false">
             <graphic>
-              <Label onMouseClicked="#handleShowTabMain" text="TR4CKER" />
+              <Label fx:id="tabHome" onMouseClicked="#handleShowTabHome" text="Home" />
             </graphic>
           </Menu>
           <Menu mnemonicParsing="false">
             <graphic>
-             <Label onMouseClicked="#handleShowTabDaily" text="Daily" />
+             <Label fx:id="tabDaily" onMouseClicked="#handleShowTabDaily" text="Daily" />
             </graphic>
           </Menu>
           <Menu mnemonicParsing="false" text="File">
@@ -56,26 +56,25 @@
             <Insets bottom="5" left="10" right="10" top="5" />
           </padding>
         </StackPane>
-            <TabPane fx:id="tabPaneItem" style="-fx-tab-max-height: -10;" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
-               <tabs>
-                  <Tab>
-                     <content>
-            
-                    <VBox fx:id="taskList" minWidth="340" prefWidth="340" styleClass="pane-with-border">
-                      <padding>
-                        <Insets bottom="10" left="10" right="10" top="10" />
-                      </padding>
-                      <StackPane fx:id="taskListPanelPlaceholder" VBox.vgrow="ALWAYS" />
-                    </VBox>
-                     </content>
-                  </Tab>
-                  <Tab>
+        <TabPane fx:id="tabPane" style="-fx-tab-max-height: -10;" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+            <tabs>
+                <Tab>
+                    <content>
+                        <VBox fx:id="taskList" minWidth="340" prefWidth="340" styleClass="pane-with-border">
+                            <padding>
+                                <Insets bottom="10" left="10" right="10" top="10" />
+                            </padding>
+                            <StackPane fx:id="taskListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+                        </VBox>
+                    </content>
+                </Tab>
+                <Tab>
                    <content>
 
                    </content>
-                  </Tab>
-               </tabs>
-            </TabPane>
+                </Tab>
+            </tabs>
+        </TabPane>
 
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
       </VBox>
