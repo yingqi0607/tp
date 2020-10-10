@@ -7,6 +7,8 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
@@ -27,12 +29,12 @@
         <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
           <Menu mnemonicParsing="false">
             <graphic>
-              <Label text="TR4CKER" onMouseClicked="#handleShowTabMain" />
+              <Label onMouseClicked="#handleShowTabMain" text="TR4CKER" />
             </graphic>
           </Menu>
           <Menu mnemonicParsing="false">
             <graphic>
-             <Label text="Daily" onMouseClicked="#handleShowTabDaily" />
+             <Label onMouseClicked="#handleShowTabDaily" text="Daily" />
             </graphic>
           </Menu>
           <Menu mnemonicParsing="false" text="File">
@@ -54,13 +56,26 @@
             <Insets bottom="5" left="10" right="10" top="5" />
           </padding>
         </StackPane>
+            <TabPane fx:id="tabPaneItem" style="-fx-tab-max-height: -10;" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+               <tabs>
+                  <Tab>
+                     <content>
+            
+                    <VBox fx:id="taskList" minWidth="340" prefWidth="340" styleClass="pane-with-border">
+                      <padding>
+                        <Insets bottom="10" left="10" right="10" top="10" />
+                      </padding>
+                      <StackPane fx:id="taskListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+                    </VBox>
+                     </content>
+                  </Tab>
+                  <Tab>
+                   <content>
 
-        <VBox fx:id="taskList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
-          <padding>
-            <Insets bottom="10" left="10" right="10" top="10" />
-          </padding>
-          <StackPane fx:id="taskListPanelPlaceholder" VBox.vgrow="ALWAYS" />
-        </VBox>
+                   </content>
+                  </Tab>
+               </tabs>
+            </TabPane>
 
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
       </VBox>
