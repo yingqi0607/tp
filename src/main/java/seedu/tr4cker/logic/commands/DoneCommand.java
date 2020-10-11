@@ -42,8 +42,8 @@ public class DoneCommand extends Command {
     private final CompletionStatus completionStatus;
 
     /**
-     * @param index of the task in the filtered task list to edit
-     * @param completionStatus details to edit the task with
+     * @param index of the task in the filtered task list to mark as done
+     * @param completionStatus new completion status of the task
      */
     public DoneCommand(Index index, CompletionStatus completionStatus) {
         requireNonNull(index);
