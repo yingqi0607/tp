@@ -4,7 +4,10 @@ import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
@@ -22,6 +25,14 @@ import seedu.tr4cker.logic.parser.exceptions.ParseException;
  * a menu bar and space where other JavaFX elements can be placed.
  */
 public class MainWindow extends UiPart<Stage> {
+
+    // Tabs
+    private static final String TAB_HIGHLIGHT_COLOR = "-fx-background-color: #619196";
+    private static final int HOME = 0;
+    private static final int DAILY = 1;
+    private static final int MODULE = 2;
+    private static final int COUNTDOWN = 3;
+    private static final int PLANNER = 4;
 
     private static final String FXML = "MainWindow.fxml";
 
@@ -50,6 +61,30 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private StackPane statusbarPlaceholder;
 
+    /*
+     * Tab related objects
+     */
+    @FXML
+    private MenuBar menuBar;
+
+    @FXML
+    private TabPane tabPane;
+
+    @FXML
+    private Label tabHome;
+
+    @FXML
+    private Label tabDaily;
+
+    @FXML
+    private Label tabModule;
+
+    @FXML
+    private Label tabCountdown;
+
+    @FXML
+    private Label tabPlanner;
+
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
@@ -64,6 +99,8 @@ public class MainWindow extends UiPart<Stage> {
         setWindowDefaultSize(logic.getGuiSettings());
 
         setAccelerators();
+
+        setTabColors(0);
 
         helpWindow = new HelpWindow();
     }
@@ -133,6 +170,66 @@ public class MainWindow extends UiPart<Stage> {
             primaryStage.setX(guiSettings.getWindowCoordinates().getX());
             primaryStage.setY(guiSettings.getWindowCoordinates().getY());
         }
+    }
+
+    /**
+     * Sets color of tab with specified {@code index} to be the {@code TAB_HIGHLIGHT_COLOR}.
+     *
+     * @param index index of tab starting from 0.
+     */
+    private void setTabColors(int index) {
+        for (int i = 0; i < menuBar.getMenus().size(); i++) {
+            if (i != index) {
+                menuBar.getMenus().get(i).setStyle("");
+            } else {
+                menuBar.getMenus().get(i).setStyle(TAB_HIGHLIGHT_COLOR);
+            }
+        }
+    }
+
+    /**
+     * Tab switch to main page.
+     */
+    @FXML
+    public void handleShowTabHome() {
+        tabPane.getSelectionModel().select(HOME);
+        setTabColors(HOME);
+    }
+
+    /**
+     * Tab switch to daily page.
+     */
+    @FXML
+    public void handleShowTabDaily() {
+        tabPane.getSelectionModel().select(DAILY);
+        setTabColors(DAILY);
+    }
+
+    /**
+     * Tab switch to modules page.
+     */
+    @FXML
+    public void handleShowTabModule() {
+        tabPane.getSelectionModel().select(MODULE);
+        setTabColors(MODULE);
+    }
+
+    /**
+     * Tab switch to countdown page.
+     */
+    @FXML
+    public void handleShowTabCountdown() {
+        tabPane.getSelectionModel().select(COUNTDOWN);
+        setTabColors(COUNTDOWN);
+    }
+
+    /**
+     * Tab switch to planner page.
+     */
+    @FXML
+    public void handleShowTabPlanner() {
+        tabPane.getSelectionModel().select(PLANNER);
+        setTabColors(PLANNER);
     }
 
     /**

@@ -31,6 +31,7 @@
 
 .tab-pane {
     -fx-padding: 0 0 0 1;
+    -fx-background-color: derive(#1d1d1d, 20%);
 }
 
 .tab-pane .tab-header-area {
