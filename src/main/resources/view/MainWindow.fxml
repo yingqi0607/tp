@@ -47,6 +47,11 @@
               <Label fx:id="tabCountdown" onMouseClicked="#handleShowTabCountdown" text="Countdowns" />
             </graphic>
           </Menu>
+          <Menu>
+            <graphic>
+              <Label fx:id="tabPlanner" onMouseClicked="#handleShowTabPlanner" text="Planner" />
+            </graphic>
+          </Menu>
           <Menu mnemonicParsing="false" text="Help">
             <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
           </Menu>

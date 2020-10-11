@@ -32,6 +32,7 @@ public class MainWindow extends UiPart<Stage> {
     private static final int DAILY = 1;
     private static final int MODULE = 2;
     private static final int COUNTDOWN = 3;
+    private static final int PLANNER = 4;
 
     private static final String FXML = "MainWindow.fxml";
 
@@ -80,6 +81,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private Label tabCountdown;
+
+    @FXML
+    private Label tabPlanner;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -188,7 +192,6 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleShowTabHome() {
-        //Todo
         tabPane.getSelectionModel().select(HOME);
         setTabColors(HOME);
     }
@@ -198,7 +201,6 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleShowTabDaily() {
-        //Todo
         tabPane.getSelectionModel().select(DAILY);
         setTabColors(DAILY);
     }
@@ -208,7 +210,6 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleShowTabModule() {
-        //Todo
         tabPane.getSelectionModel().select(MODULE);
         setTabColors(MODULE);
     }
@@ -218,9 +219,17 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleShowTabCountdown() {
-        //Todo
         tabPane.getSelectionModel().select(COUNTDOWN);
         setTabColors(COUNTDOWN);
+    }
+
+    /**
+     * Tab switch to planner page.
+     */
+    @FXML
+    public void handleShowTabPlanner() {
+        tabPane.getSelectionModel().select(PLANNER);
+        setTabColors(PLANNER);
     }
 
     /**
