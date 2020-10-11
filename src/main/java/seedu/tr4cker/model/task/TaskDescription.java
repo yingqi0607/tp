@@ -20,7 +20,7 @@ public class TaskDescription {
     public final String value;
 
     /**
-     * Constructs an {@code Address}.
+     * Constructs a {@code description}.
      *
      * @param description A valid TR4CKER.
      */
@@ -31,7 +31,7 @@ public class TaskDescription {
     }
 
     /**
-     * Returns true if a given string is a valid address.
+     * Returns true if a given string is a valid description.
      */
     public static boolean isValidTaskDescription(String test) {
         return test.matches(VALIDATION_REGEX);

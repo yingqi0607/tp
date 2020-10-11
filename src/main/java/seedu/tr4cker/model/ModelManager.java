@@ -34,7 +34,7 @@ public class ModelManager implements Model {
 
         this.tr4cker = new Tr4cker(tr4cker);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredTasks = new FilteredList<>(this.tr4cker.getTaskList());
+        filteredTasks = new FilteredList<Task>(this.tr4cker.getTaskList());
     }
 
     public ModelManager() {

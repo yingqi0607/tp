@@ -103,6 +103,7 @@ public class Tr4cker implements ReadOnlyTr4cker {
 
     @Override
     public ObservableList<Task> getTaskList() {
+        tasks.sortTasksAccordingToDeadline();
         return tasks.asUnmodifiableObservableList();
     }
 
