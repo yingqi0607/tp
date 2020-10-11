@@ -26,4 +26,14 @@ public class CompletionStatusTest {
         assertTrue(CompletionStatus.isValidCompletionStatus(0)); // minimum
         assertTrue(CompletionStatus.isValidCompletionStatus(100)); // maximum
     }
+
+    @Test
+    public void compareTo() {
+        CompletionStatus lessComplete = new CompletionStatus(30);
+        CompletionStatus moreComplete = new CompletionStatus(70);
+
+        assertTrue(lessComplete.compareTo(moreComplete) < 0);
+        assertTrue(moreComplete.compareTo(lessComplete) > 0);
+        assertTrue(lessComplete.compareTo(lessComplete) == 0);
+    }
 }

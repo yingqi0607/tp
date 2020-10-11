@@ -20,6 +20,7 @@ import org.junit.jupiter.api.Test;
 import seedu.tr4cker.logic.commands.AddCommand;
 import seedu.tr4cker.logic.commands.ClearCommand;
 import seedu.tr4cker.logic.commands.DeleteCommand;
+import seedu.tr4cker.logic.commands.DoneCommand;
 import seedu.tr4cker.logic.commands.EditCommand;
 import seedu.tr4cker.logic.commands.EditCommand.EditTaskDescriptor;
 import seedu.tr4cker.logic.commands.ExitCommand;
@@ -29,6 +30,7 @@ import seedu.tr4cker.logic.commands.ListCommand;
 import seedu.tr4cker.logic.commands.TagCommand;
 import seedu.tr4cker.logic.parser.exceptions.ParseException;
 import seedu.tr4cker.model.tag.Tag;
+import seedu.tr4cker.model.task.CompletionStatus;
 import seedu.tr4cker.model.task.NameContainsKeywordsPredicate;
 import seedu.tr4cker.model.task.Task;
 import seedu.tr4cker.testutil.EditTaskDescriptorBuilder;
@@ -66,6 +68,15 @@ public class Tr4ckerParserTest {
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_TASK.getOneBased() + " " + TaskUtil.getEditTaskDescriptorDetails(descriptor));
         EditCommand expectedCommand = new EditCommand(INDEX_FIRST_TASK, descriptor);
+        assertEquals(expectedCommand, command);
+    }
+
+    @Test
+    public void parseCommand_done() throws Exception {
+        CompletionStatus completionStatus = new CompletionStatus(50);
+        DoneCommand command = (DoneCommand) parser.parseCommand(DoneCommand.COMMAND_WORD + " "
+                + INDEX_FIRST_TASK.getOneBased() + " " + "p/50");
+        DoneCommand expectedCommand = new DoneCommand(INDEX_FIRST_TASK, completionStatus);
         assertEquals(expectedCommand, command);
     }
 

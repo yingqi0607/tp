@@ -2,6 +2,7 @@ package seedu.tr4cker.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_COMPLETION_STATUS;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_DELETE_TAG;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_NAME;
@@ -27,8 +28,8 @@ import seedu.tr4cker.testutil.EditTaskDescriptorBuilder;
  */
 public class CommandTestUtil {
 
-    public static final String VALID_NAME_1 = "Amy Bee";
-    public static final String VALID_NAME_2 = "Bob Choo";
+    public static final String VALID_NAME_1 = "CS2100S Assignment";
+    public static final String VALID_NAME_2 = "CS1010E Midterm QuizS";
     public static final String VALID_DEADLINE_1 = "20-Oct-2021 1800";
     public static final String VALID_DEADLINE_2 = "24-Sep-2021 2359";
     public static final int VALID_COMPLETION_STATUS_1 = 0;
@@ -46,6 +47,8 @@ public class CommandTestUtil {
     public static final String NAME_DESC_2 = " " + PREFIX_NAME + VALID_NAME_2;
     public static final String DEADLINE_DESC_1 = " " + PREFIX_DEADLINE + VALID_DEADLINE_1;
     public static final String DEADLINE_DESC_2 = " " + PREFIX_DEADLINE + VALID_DEADLINE_2;
+    public static final String COMPLETION_STATUS_DESC_1 = " " + PREFIX_COMPLETION_STATUS + VALID_COMPLETION_STATUS_1;
+    public static final String COMPLETION_STATUS_DESC_2 = " " + PREFIX_COMPLETION_STATUS + VALID_COMPLETION_STATUS_2;
     public static final String DESCRIPTION_DESC_1 = " " + PREFIX_TASK_DESCRIPTION + VALID_DESCRIPTION_1;
     public static final String DESCRIPTION_DESC_2 = " " + PREFIX_TASK_DESCRIPTION + VALID_DESCRIPTION_2;
     public static final String TAG_DESC_HELP = " " + PREFIX_TAG + VALID_TAG_HELP;
@@ -54,6 +57,7 @@ public class CommandTestUtil {
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "CS2103&"; // '&' not allowed in names
     public static final String INVALID_DEADLINE_DESC = " " + PREFIX_DEADLINE + "2020-09-a"; // 'a' not allowed
     // in deadlines
+    public static final String INVALID_COMPLETION_STATUS = " " + PREFIX_COMPLETION_STATUS + 1000; // >100 not allowed
     public static final String INVALID_DESCRIPTION_DESC =
             " " + PREFIX_TASK_DESCRIPTION; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "tag*"; // '*' not allowed in tags
