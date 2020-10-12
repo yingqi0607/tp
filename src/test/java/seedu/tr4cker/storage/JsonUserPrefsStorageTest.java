@@ -24,7 +24,7 @@ public class JsonUserPrefsStorageTest {
     public Path testFolder;
 
     @Test
-    public void getUserPrefsFilePath() {
+    public void getUserPrefsFilePath_success() {
         JsonUserPrefsStorage jsonUserPrefsStorage = new JsonUserPrefsStorage(TEST_DATA_FOLDER);
         assertEquals(jsonUserPrefsStorage.getUserPrefsFilePath(), TEST_DATA_FOLDER);
     }
