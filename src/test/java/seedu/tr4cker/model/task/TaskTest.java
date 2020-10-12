@@ -123,4 +123,19 @@ public class TaskTest {
         editedTask1 = new TaskBuilder(TASK1).withTags(VALID_TAG_URGENT).build();
         assertFalse(TASK1.equals(editedTask1));
     }
+
+    @Test
+    public void testHashcode() {
+        Name name = new Name("name");
+        Deadline deadline = new Deadline("02-12-2021 1800");
+        CompletionStatus completionStatus = new CompletionStatus(0);
+        TaskDescription taskDescription = new TaskDescription("description");
+        Tag tag = new Tag("tag");
+        Set<Tag> tags = new HashSet<>();
+        tags.add(tag);
+        Task task1 = new Task(name, deadline, completionStatus, taskDescription, tags);
+        Task task2 = new Task(name, deadline, completionStatus, taskDescription, tags);
+        assertEquals(task1.hashCode(), task2.hashCode());
+    }
+
 }

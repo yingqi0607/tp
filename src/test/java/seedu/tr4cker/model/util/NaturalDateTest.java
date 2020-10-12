@@ -1,4 +1,4 @@
-package seedu.tr4cker.model;
+package seedu.tr4cker.model.util;
 
 import static java.time.DayOfWeek.FRIDAY;
 import static java.time.temporal.TemporalAdjusters.next;
@@ -12,7 +12,6 @@ import java.time.LocalDate;
 import org.junit.jupiter.api.Test;
 
 import seedu.tr4cker.logic.parser.exceptions.ParseException;
-import seedu.tr4cker.model.util.NaturalDateUtil;
 
 public class NaturalDateTest {
 

@@ -1,5 +1,6 @@
 package seedu.tr4cker.model.task;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.tr4cker.testutil.Assert.assertThrows;
@@ -37,4 +38,12 @@ public class NameTest {
         assertTrue(Name.isValidName("Homework Assignment")); // with capital letters
         assertTrue(Name.isValidName("A Very Long name for my Homework")); // long names
     }
+
+    @Test
+    public void testHashcode() {
+        Name name1 = new Name("name");
+        Name name2 = new Name("name");
+        assertEquals(name1.hashCode(), name2.hashCode());
+    }
+
 }

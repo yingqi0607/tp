@@ -16,6 +16,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
+import seedu.tr4cker.commons.core.GuiSettings;
 import seedu.tr4cker.logic.commands.AddCommand;
 import seedu.tr4cker.logic.commands.CommandResult;
 import seedu.tr4cker.logic.commands.ListCommand;
@@ -24,6 +25,7 @@ import seedu.tr4cker.logic.parser.exceptions.ParseException;
 import seedu.tr4cker.model.Model;
 import seedu.tr4cker.model.ModelManager;
 import seedu.tr4cker.model.ReadOnlyTr4cker;
+import seedu.tr4cker.model.Tr4cker;
 import seedu.tr4cker.model.UserPrefs;
 import seedu.tr4cker.model.task.Task;
 import seedu.tr4cker.storage.JsonTr4cker;
@@ -92,6 +94,16 @@ public class LogicManagerTest {
         assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredTaskList().remove(0));
     }
 
+    @Test
+    public void getTr4cker_success() {
+        assertEquals(logic.getTr4cker().getClass(), Tr4cker.class);
+    }
+
+    @Test
+    public void getGuiSettings_success() {
+        assertEquals(logic.getGuiSettings().getClass(), GuiSettings.class);
+    }
+
     /**
      * Executes the command and confirms that
      * - no exceptions are thrown <br>
@@ -158,4 +170,5 @@ public class LogicManagerTest {
             throw DUMMY_IO_EXCEPTION;
         }
     }
+
 }
