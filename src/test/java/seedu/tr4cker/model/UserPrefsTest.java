@@ -1,10 +1,23 @@
 package seedu.tr4cker.model;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.tr4cker.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.tr4cker.commons.core.index.Index;
+
 public class UserPrefsTest {
+
+    @Test
+    public void testEquals() {
+        UserPrefs userPref = new UserPrefs();
+        assertEquals(userPref, userPref);
+
+        Index index = Index.fromOneBased(1);
+        assertNotEquals(userPref, index);
+    }
 
     @Test
     public void setGuiSettings_nullGuiSettings_throwsNullPointerException() {

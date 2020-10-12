@@ -1,5 +1,6 @@
 package seedu.tr4cker.model.task;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.tr4cker.testutil.Assert.assertThrows;
@@ -34,4 +35,12 @@ public class TaskDescriptionTest {
         assertTrue(TaskDescription.isValidTaskDescription("Do all assignments and quizzes, "
                 + "assignment 1 is blahblahblahblahblah")); // long tr4cker
     }
+
+    @Test
+    public void testHashcode() {
+        TaskDescription taskDescription1 = new TaskDescription("description");
+        TaskDescription taskDescription2 = new TaskDescription("description");
+        assertEquals(taskDescription1.hashCode(), taskDescription2.hashCode());
+    }
+
 }
