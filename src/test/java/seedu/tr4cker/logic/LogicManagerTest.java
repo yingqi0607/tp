@@ -95,12 +95,12 @@ public class LogicManagerTest {
     }
 
     @Test
-    public void getTr4cker() {
+    public void getTr4cker_success() {
         assertEquals(logic.getTr4cker().getClass(), Tr4cker.class);
     }
 
     @Test
-    public void getGuiSettings() {
+    public void getGuiSettings_success() {
         assertEquals(logic.getGuiSettings().getClass(), GuiSettings.class);
     }
 
@@ -170,4 +170,5 @@ public class LogicManagerTest {
             throw DUMMY_IO_EXCEPTION;
         }
     }
+
 }
