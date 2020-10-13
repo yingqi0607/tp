@@ -1,5 +1,6 @@
 package seedu.tr4cker.model.task;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.tr4cker.testutil.Assert.assertThrows;
@@ -59,4 +60,12 @@ public class DeadlineTest {
         // valid deadline times
         assertTrue(Deadline.isDeadlineWithTime("02-12-2030 0000"));
     }
+
+    @Test
+    public void testHashcode() {
+        Deadline deadline1 = new Deadline("02-12-2021 1800");
+        Deadline deadline2 = new Deadline("02-12-2021 1800");
+        assertEquals(deadline1.hashCode(), deadline2.hashCode());
+    }
+
 }

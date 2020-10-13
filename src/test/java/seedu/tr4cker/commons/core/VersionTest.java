@@ -1,10 +1,14 @@
 package seedu.tr4cker.commons.core;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.tr4cker.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
+
+import seedu.tr4cker.commons.core.index.Index;
 
 public class VersionTest {
 
@@ -103,6 +107,10 @@ public class VersionTest {
         one = new Version(2, 15, 0, false);
         another = new Version(2, 15, 5, true);
         assertTrue(one.compareTo(another) < 0);
+
+        one = new Version(2, 15, 0, false);
+        another = new Version(2, 15, 0, true);
+        assertEquals(one.compareTo(another), 1);
     }
 
     @Test
@@ -126,6 +134,11 @@ public class VersionTest {
         one = new Version(100, 191, 275, true);
         another = new Version(100, 191, 275, true);
         assertTrue(one.equals(another));
+
+        assertNotEquals(one, null);
+
+        Index index = Index.fromOneBased(1);
+        assertFalse(one.equals(index));
     }
 
     private void verifyVersionParsedCorrectly(String versionString,

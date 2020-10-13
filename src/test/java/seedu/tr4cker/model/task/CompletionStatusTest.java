@@ -1,5 +1,6 @@
 package seedu.tr4cker.model.task;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.tr4cker.testutil.Assert.assertThrows;
@@ -36,4 +37,11 @@ public class CompletionStatusTest {
         assertTrue(moreComplete.compareTo(lessComplete) > 0);
         assertTrue(lessComplete.compareTo(lessComplete) == 0);
     }
+
+    @Test
+    public void testHashcode() {
+        CompletionStatus completionStatus = new CompletionStatus(10);
+        assertEquals(completionStatus.hashCode(), 10);
+    }
+
 }

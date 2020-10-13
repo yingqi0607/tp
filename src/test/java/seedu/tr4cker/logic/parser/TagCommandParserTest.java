@@ -144,4 +144,9 @@ class TagCommandParserTest {
         assertParseSuccess(parser, userInput3, new TagCommand(targetIndex, add, delete));
     }
 
+    @Test
+    public void parse_invalidIndex_throwsParseException() {
+        assertParseFailure(parser, "-1 new/", String.format(MESSAGE_INVALID_COMMAND_FORMAT, TagCommand.MESSAGE_USAGE));
+    }
+
 }
