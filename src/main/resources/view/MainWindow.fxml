@@ -10,10 +10,12 @@
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.image.Image?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
+<?import javafx.scene.shape.Box?>
 <fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="TR4CKER" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/soccat.png" />
@@ -25,11 +27,11 @@
         <URL value="@Extensions.css" />
       </stylesheets>
 
-      <VBox>
+      <VBox >
         <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
           <Menu mnemonicParsing="false">
             <graphic>
-              <Label fx:id="tabHome" onMouseClicked="#handleShowTabHome" text="Home" />
+              <Label fx:id="tabHome" onMouseClicked="#handleShowTabHome" text="Home"/>
             </graphic>
           </Menu>
           <Menu mnemonicParsing="false">
@@ -57,17 +59,6 @@
           </Menu>
         </MenuBar>
 
-        <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
-          <padding>
-            <Insets bottom="5" left="10" right="10" top="5" />
-          </padding>
-        </StackPane>
-
-        <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100" styleClass="pane-with-border" VBox.vgrow="NEVER">
-          <padding>
-            <Insets bottom="5" left="10" right="10" top="5" />
-          </padding>
-        </StackPane>
         <TabPane fx:id="tabPane" style="-fx-tab-max-height: -10;" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
           <tabs>
             <Tab>
@@ -98,6 +89,25 @@
           </tabs>
         </TabPane>
 
+        <HBox style="-fx-background-color: transparent;" maxHeight="250" minHeight="130">
+          <!-- Soccat -->
+          <Box width="175"></Box>
+
+          <VBox spacing="3">
+            <padding>
+              <Insets top="5" right="5" bottom="5" left="5"/>
+            </padding>
+            <StackPane fx:id="resultDisplayPlaceholder" maxHeight="200" minHeight="130" prefHeight="190"
+                       prefWidth="1100" styleClass="interaction-pane" VBox.vgrow="NEVER">
+              <padding>
+                <Insets bottom="5" right="10" />
+              </padding>
+            </StackPane>
+
+            <StackPane fx:id="commandBoxPlaceholder" styleClass="command-pane" VBox.vgrow="NEVER">
+            </StackPane>
+          </VBox>
+        </HBox>
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
       </VBox>
     </Scene>
