@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'Caveat Brush', cursive;
+    src: url('../fonts/CaveatBrush-Regular.ttf');
+}
+
 .background {
     -fx-background-color: derive(#1d1d1d, 20%);
     background-color: #383838; /* Used in the default.html file */
@@ -24,15 +29,11 @@
     -fx-opacity: 1;
 }
 
-.text-field {
-    -fx-font-size: 12pt;
-    -fx-font-family: "Segoe UI Semibold";
-}
-
 .tab-pane {
     -fx-padding: 0 0 0 1;
     -fx-background-color: derive(#1d1d1d, 20%);
 }
+
 
 .tab-pane .tab-header-area {
     -fx-padding: 0 0 0 0;
@@ -168,20 +169,48 @@
      -fx-border-top-width: 1px;
 }
 
-.status-bar {
-    -fx-background-color: derive(#1d1d1d, 30%);
-    -fx-background-color: #F8D8ED;
+.interaction-pane {
+    -fx-background-color: #fde6fb;
+    -fx-border-color: #46505F;
+    -fx-border-width: 3px;
+}
+
+.command-pane {
+    -fx-background-color: #F6FCFF;
+    -fx-border-color: #46505F;
+    -fx-border-width: 3px;
 }
 
 .result-display {
     -fx-background-color: transparent;
     -fx-font-family: "Segoe UI Light";
     -fx-font-size: 13pt;
-    -fx-text-fill: white;
+    -fx-text-fill: black;
+}
+
+#resultDisplay .content {
+    -fx-background-color: #fde6fb;
 }
 
 .result-display .label {
     -fx-text-fill: black !important;
+}
+
+#commandTypeLabel {
+    -fx-font-size: 11px;
+    -fx-text-fill: #F70D1A;
+}
+
+#commandTextField {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-font-family: "Caveat Brush";
+    -fx-font-size: 15pt;
+    -fx-text-fill: #796f6f;
+}
+
+.status-bar {
+    -fx-background-color: #eed4d4;
 }
 
 .status-bar .label {
@@ -220,13 +249,14 @@
 }
 
 .menu-bar {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: #F8D8ED;
 }
 
 .menu-bar .label {
     -fx-font-size: 14pt;
-    -fx-font-family: "Segoe UI Light";
-    -fx-text-fill: white;
+    -fx-font-family: "Caveat Brush";
+    -fx-font-weight: bold;
+    -fx-text-fill: black;
     -fx-opacity: 0.9;
 }
 
@@ -341,30 +371,11 @@
     -fx-border-width: 0;
 }
 
-#commandTypeLabel {
-    -fx-font-size: 11px;
-    -fx-text-fill: #F70D1A;
-}
-
-#commandTextField {
-    -fx-background-color: transparent #383838 transparent #383838;
-    -fx-background-insets: 0;
-    -fx-border-color: #383838 #383838 #ffffff #383838;
-    -fx-border-insets: 0;
-    -fx-border-width: 1;
-    -fx-font-family: "Segoe UI Light";
-    -fx-font-size: 13pt;
-    -fx-text-fill: white;
-}
-
 #filterField, #taskListPanel, #taskWebpage {
     -fx-effect: innershadow(gaussian, black, 10, 0, 0, 0);
 }
 
-#resultDisplay .content {
-    -fx-background-color: transparent, #383838, transparent, #383838;
-    -fx-background-radius: 0;
-}
+
 
 #tags {
     -fx-hgap: 7;

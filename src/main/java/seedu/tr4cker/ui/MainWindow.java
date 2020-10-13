@@ -27,7 +27,7 @@ import seedu.tr4cker.logic.parser.exceptions.ParseException;
 public class MainWindow extends UiPart<Stage> {
 
     // Tabs
-    private static final String TAB_HIGHLIGHT_COLOR = "-fx-background-color: #619196";
+    private static final String TAB_HIGHLIGHT_COLOR = "-fx-background-color: #7ed5ea";
     private static final int HOME = 0;
     private static final int DAILY = 1;
     private static final int MODULE = 2;
