@@ -64,7 +64,7 @@
           <tabs>
             <Tab>
               <content>
-                <VBox fx:id="taskList" minWidth="340" prefWidth="340" styleClass="pane-with-border">
+                <VBox fx:id="taskList" minWidth="300" prefWidth="300" maxWidth="600" styleClass="pane-with-border">
                   <padding>
                     <Insets bottom="10" left="10" right="10" top="10" />
                   </padding>
