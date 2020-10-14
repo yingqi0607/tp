@@ -10,9 +10,7 @@ import seedu.tr4cker.logic.parser.exceptions.ParseException;
 import seedu.tr4cker.model.ReadOnlyTr4cker;
 import seedu.tr4cker.model.task.Task;
 
-/**
- * API of the Logic component
- */
+/** API of the Logic component. */
 public interface Logic {
     /**
      * Executes the command and returns the result.
@@ -33,18 +31,15 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of tasks. */
     ObservableList<Task> getFilteredTaskList();
 
-    /**
-     * Returns the user prefs' tr4cker file path.
-     */
+    /** Returns an unmodifiable view of the filtered list of tasks for Planner. */
+    ObservableList<Task> getPlannerFilteredTaskList();
+
+    /** Returns the user prefs' tr4cker file path. */
     Path getTr4ckerFilePath();
 
-    /**
-     * Returns the user prefs' GUI settings.
-     */
+    /** Returns the user prefs' GUI settings. */
     GuiSettings getGuiSettings();
 
-    /**
-     * Set the user prefs' GUI settings.
-     */
+    /** Set the user prefs' GUI settings. */
     void setGuiSettings(GuiSettings guiSettings);
 }

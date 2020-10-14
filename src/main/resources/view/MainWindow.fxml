@@ -1,15 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.stage.*?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Scene?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.stage.Stage?>
 
-<fx:root minHeight="775" minWidth="775" onCloseRequest="#handleExit" title="TR4CKER" type="javafx.stage.Stage"
-         xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="775" minWidth="775" onCloseRequest="#handleExit" title="TR4CKER" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/soccat.png" />
   </icons>
@@ -69,14 +78,44 @@
 
               </content>
             </Tab>
-            <Tab text="Modules">
+            <Tab text="Module">
               <content>
 
               </content>
             </Tab>
-            <Tab>
+            <Tab text="Countdown">
               <content>
 
+              </content>
+            </Tab>
+            <Tab text="Planner">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                  <children>
+                    <SplitPane dividerPositions="0.5" prefHeight="180.0" prefWidth="1284.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                       <items>
+                          <AnchorPane prefHeight="180.0" prefWidth="200.0">
+                             <children>
+                              <VBox fx:id="planner" prefHeight="180.0" prefWidth="642.0">
+                                 <children>
+                                   <StackPane fx:id="plannerPanelPlaceholder" prefHeight="180.0" prefWidth="642.0" />
+                                 </children>
+                              </VBox>
+                             </children>
+                          </AnchorPane>
+                          <AnchorPane prefHeight="180.0" prefWidth="642.0">
+                             <children>
+                              <VBox fx:id="plannerTaskList" layoutY="10.0" prefHeight="180.0" prefWidth="642.0">
+                               <children>
+                                  <StackPane fx:id="plannerTaskListPanelPlaceholder" prefHeight="180.0" prefWidth="642.0" />
+                               </children>
+                              </VBox>
+                             </children>
+                          </AnchorPane>
+                       </items>
+                    </SplitPane>
+                  </children>
+                </AnchorPane>
               </content>
             </Tab>
           </tabs>
@@ -86,10 +125,10 @@
           <!-- Soccat -->
           <ImageView fitWidth="175.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="NEVER">
             <image>
-              <Image url="@../images/soccat.png"/>
+              <Image url="@../images/soccat.png" />
             </image>
             <HBox.margin>
-              <Insets top="30.0" bottom="40.0"/>
+              <Insets bottom="40.0" top="30.0" />
             </HBox.margin>
           </ImageView>
           <VBox spacing="3" HBox.hgrow="ALWAYS">

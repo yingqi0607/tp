@@ -115,11 +115,20 @@ public class ModelManager implements Model {
     //=========== Filtered Task List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Task} backed by the internal list of
-     * {@code versionedTr4cker}
+     * Returns an unmodifiable view of the list of {@code Task}
+     * backed by the internal list of {@code versionedTr4cker}.
      */
     @Override
     public ObservableList<Task> getFilteredTaskList() {
+        return filteredTasks;
+    }
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Task}
+     * backed by the internal list of {@code versionedTr4cker} for Planner.
+     */
+    @Override
+    public ObservableList<Task> getPlannerFilteredTaskList() {
         return filteredTasks;
     }
 

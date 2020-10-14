@@ -38,13 +38,14 @@ public class MainWindow extends UiPart<Stage> {
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
-    private Stage primaryStage;
-    private Logic logic;
+    private final Stage primaryStage;
+    private final Logic logic;
 
     // Independent Ui parts residing in this Ui container
     private TaskListPanel taskListPanel;
+    private TaskListPanel plannerTaskListPanel;
     private ResultDisplay resultDisplay;
-    private HelpWindow helpWindow;
+    private final HelpWindow helpWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -60,6 +61,15 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    /*
+     * Planner tab content.
+     */
+    @FXML
+    private StackPane plannerPanelPlaceholder;
+
+    @FXML
+    private StackPane plannerTaskListPanelPlaceholder;
 
     /*
      * Tab related objects
@@ -158,6 +168,13 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        // for the task list in planner tab
+        plannerTaskListPanel = new TaskListPanel(logic.getPlannerFilteredTaskList());
+        plannerTaskListPanelPlaceholder.getChildren().add(plannerTaskListPanel.getRoot());
+
+        // for the planner in planner tab
+
     }
 
     /**
