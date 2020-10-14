@@ -10,7 +10,7 @@
     <Pane fx:id="taskListPanelTitleHolder" minHeight="40.0" prefHeight="40.0" styleClass="all-tasks">
         <children>
             <Label fx:id="taskListPanelTitle" alignment="CENTER" contentDisplay="CENTER"
-                   prefHeight="40.0" prefWidth="${taskListPanelTitleHolder.width}"
+                   prefHeight="30.0" prefWidth="${taskListPanelTitleHolder.width}"
                    text="All Tasks" textAlignment="CENTER">
             </Label>
         </children>
