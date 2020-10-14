@@ -29,6 +29,17 @@
     -fx-opacity: 1;
 }
 
+.all-tasks {
+    -fx-background-color: #F8D8ED;
+}
+
+.all-tasks .label {
+    -fx-font-size: 25pt;
+    -fx-font-family: "Caveat Brush";
+    -fx-text-fill: black;
+    -fx-opacity: 1;
+}
+
 .tab-pane {
     -fx-padding: 0 0 0 1;
     -fx-background-color: derive(#1d1d1d, 20%);
