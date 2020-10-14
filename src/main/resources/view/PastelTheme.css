@@ -178,10 +178,8 @@
      -fx-background-color: derive(#97b5b7, 20%);
 }
 
-.pane-with-border {
+.pane-no-border {
      -fx-background-color: derive(#97b5b7, 20%);
-     -fx-border-color: derive(#97b5b7, 10%);
-     -fx-border-top-width: 1px;
 }
 
 .interaction-pane {

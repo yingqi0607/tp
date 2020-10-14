@@ -10,15 +10,14 @@
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.Pane?>
-<fx:root minHeight="775" minWidth="775" onCloseRequest="#handleExit" title="TR4CKER" type="javafx.stage.Stage"
-         xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="775" minWidth="775" onCloseRequest="#handleExit" title="TR4CKER" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/soccat.png" />
   </icons>
@@ -60,16 +59,14 @@
             <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
           </Menu>
         </MenuBar>
-        <Pane fx:id="Header" minHeight="40.0" prefHeight="40.0" styleClass="header">
-          <Label fx:id="labelHeader" alignment="CENTER" contentDisplay="CENTER"
-                 text="TR4CKER" textAlignment="CENTER" prefWidth="${Header.width}" prefHeight="30.0">
-          </Label>
+        <Pane fx:id="Header" minHeight="50.0" prefHeight="50.0" styleClass="header">
+          <Label fx:id="labelHeader" alignment="CENTER" contentDisplay="CENTER" prefHeight="${Header.height}" prefWidth="${Header.width}" text="TR4CKER" textAlignment="CENTER" />
         </Pane>
         <TabPane fx:id="tabPane" style="-fx-tab-max-height: -10;" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
           <tabs>
             <Tab>
               <content>
-                <VBox fx:id="taskList" minWidth="300" prefWidth="300" maxWidth="600" styleClass="pane-with-border">
+                <VBox fx:id="taskList" maxWidth="600" minWidth="300" prefWidth="300" styleClass="pane-no-border">
                   <padding>
                     <Insets bottom="10" left="10" right="10" top="10" />
                   </padding>
@@ -94,13 +91,13 @@
             </Tab>
           </tabs>
         </TabPane>
-        <HBox maxHeight="250" minHeight="130" style="-fx-background-color: transparent;">
+        <HBox maxHeight="250" minHeight="130" styleClass="background">
           <ImageView fitWidth="175.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="NEVER">
             <image>
-              <Image url="@../images/soccat.png"/>
+              <Image url="@../images/soccat.png" />
             </image>
             <HBox.margin>
-              <Insets top="30.0" bottom="40.0"/>
+              <Insets bottom="40.0" top="30.0" />
             </HBox.margin>
           </ImageView>
 
