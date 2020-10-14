@@ -16,6 +16,7 @@
 <?import javafx.stage.Stage?>
 
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
 <fx:root minHeight="775" minWidth="775" onCloseRequest="#handleExit" title="TR4CKER" type="javafx.stage.Stage"
          xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
@@ -59,7 +60,11 @@
             <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
           </Menu>
         </MenuBar>
-
+        <Pane fx:id="Header" minHeight="40.0" prefHeight="40.0" styleClass="header">
+          <Label fx:id="labelHeader" alignment="CENTER" contentDisplay="CENTER"
+                 text="TR4CKER" textAlignment="CENTER" prefWidth="${Header.width}" prefHeight="30.0">
+          </Label>
+        </Pane>
         <TabPane fx:id="tabPane" style="-fx-tab-max-height: -10;" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
           <tabs>
             <Tab>
@@ -89,7 +94,6 @@
             </Tab>
           </tabs>
         </TabPane>
-
         <HBox maxHeight="250" minHeight="130" style="-fx-background-color: transparent;">
           <ImageView fitWidth="175.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="NEVER">
             <image>
