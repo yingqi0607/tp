@@ -15,8 +15,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<?import javafx.scene.shape.Box?>
-<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="TR4CKER" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<?import javafx.scene.image.ImageView?>
+<fx:root minHeight="775" minWidth="775" onCloseRequest="#handleExit" title="TR4CKER" type="javafx.stage.Stage"
+         xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/soccat.png" />
   </icons>
@@ -27,16 +28,16 @@
         <URL value="@Extensions.css" />
       </stylesheets>
 
-      <VBox >
+      <VBox>
         <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
           <Menu mnemonicParsing="false">
             <graphic>
-              <Label fx:id="tabHome" onMouseClicked="#handleShowTabHome" text="Home"/>
+              <Label fx:id="tabHome" onMouseClicked="#handleShowTabHome" text="Home" />
             </graphic>
           </Menu>
           <Menu mnemonicParsing="false">
             <graphic>
-             <Label fx:id="tabDaily" onMouseClicked="#handleShowTabDaily" text="Daily" />
+              <Label fx:id="tabDaily" onMouseClicked="#handleShowTabDaily" text="Daily" />
             </graphic>
           </Menu>
           <Menu>
@@ -67,7 +68,7 @@
                   <padding>
                     <Insets bottom="10" left="10" right="10" top="10" />
                   </padding>
-                    <StackPane fx:id="taskListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+                  <StackPane fx:id="taskListPanelPlaceholder" VBox.vgrow="ALWAYS" />
                 </VBox>
               </content>
             </Tab>
@@ -89,22 +90,27 @@
           </tabs>
         </TabPane>
 
-        <HBox style="-fx-background-color: transparent;" maxHeight="250" minHeight="130">
-          <!-- Soccat -->
-          <Box width="175"></Box>
+        <HBox maxHeight="250" minHeight="130" style="-fx-background-color: transparent;">
+          <ImageView fitWidth="175.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="NEVER">
+            <image>
+              <Image url="@../images/soccat.png"/>
+            </image>
+            <HBox.margin>
+              <Insets top="30.0" bottom="40.0"/>
+            </HBox.margin>
+          </ImageView>
 
-          <VBox spacing="3">
+          <VBox spacing="3" HBox.hgrow="ALWAYS">
             <padding>
-              <Insets top="5" right="5" bottom="5" left="5"/>
+              <Insets bottom="5" left="5" right="5" top="5" />
             </padding>
-            <StackPane fx:id="resultDisplayPlaceholder" maxHeight="200" minHeight="130" prefHeight="190"
-                       prefWidth="1100" styleClass="interaction-pane" VBox.vgrow="NEVER">
+            <StackPane fx:id="resultDisplayPlaceholder" maxHeight="200" minHeight="130" prefHeight="190" prefWidth="1100" styleClass="interaction-pane" VBox.vgrow="NEVER">
               <padding>
                 <Insets bottom="5" right="10" />
               </padding>
             </StackPane>
 
-            <StackPane fx:id="commandBoxPlaceholder" styleClass="command-pane" VBox.vgrow="NEVER">
+            <StackPane fx:id="commandBoxPlaceholder" styleClass="command-pane" VBox.vgrow="ALWAYS">
             </StackPane>
           </VBox>
         </HBox>
