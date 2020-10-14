@@ -29,8 +29,12 @@
     -fx-opacity: 1;
 }
 
-.label-all-tasks {
-    -fx-font-size: 14pt;
+.all-tasks {
+    -fx-background-color: #F8D8ED;
+}
+
+.all-tasks .label {
+    -fx-font-size: 25pt;
     -fx-font-family: "Caveat Brush";
     -fx-text-fill: black;
     -fx-opacity: 1;
