@@ -3,6 +3,17 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.control.Label?>
+
 <VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-  <ListView fx:id="taskListView" VBox.vgrow="ALWAYS" />
+    <Pane fx:id="taskListPanelTitleHolder" minHeight="40.0" prefHeight="40.0" styleClass="all-tasks">
+        <children>
+            <Label fx:id="taskListPanelTitle" alignment="CENTER" contentDisplay="CENTER"
+                   prefHeight="40.0" prefWidth="${taskListPanelTitleHolder.width}"
+                   text="All Tasks" textAlignment="CENTER">
+            </Label>
+        </children>
+    </Pane>
+    <ListView fx:id="taskListView" VBox.vgrow="ALWAYS" />
 </VBox>
