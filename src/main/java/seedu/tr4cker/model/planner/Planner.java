@@ -9,7 +9,7 @@ public class Planner {
 
     private final LocalDateTime localDateTime;
     private final String[] months = {"January", "February", "March", "April", "May", "June",
-            "July", "August", "September", "October", "November", "December"};
+        "July", "August", "September", "October", "November", "December"};
 
     public Planner(LocalDateTime localDateTime) {
         this.localDateTime = localDateTime;
