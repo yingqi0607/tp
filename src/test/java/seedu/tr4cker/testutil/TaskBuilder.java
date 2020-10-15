@@ -32,7 +32,7 @@ public class TaskBuilder {
      */
     public TaskBuilder() {
         name = new Name(DEFAULT_NAME);
-        deadline = new Deadline(DEFAULT_DEADLINE);
+        deadline = new Deadline(DEFAULT_DEADLINE, false);
         completionStatus = new CompletionStatus(DEFAULT_COMPLETION_STATUS);
         taskDescription = new TaskDescription(DEFAULT_DESCRIPTION);
         tags = new HashSet<>();
@@ -77,7 +77,7 @@ public class TaskBuilder {
      * Sets the {@code Deadline} of the {@code Task} that we are building.
      */
     public TaskBuilder withDeadline(String deadline) {
-        this.deadline = new Deadline(deadline);
+        this.deadline = new Deadline(deadline, false);
         return this;
     }
 

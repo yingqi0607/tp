@@ -73,7 +73,7 @@ public class ParserUtil {
         if (!Deadline.isFutureDeadline(trimmedDeadline)) {
             throw new ParseException(Deadline.MESSAGE_FUTURE_CONSTRAINT);
         }
-        return new Deadline(trimmedDeadline);
+        return new Deadline(trimmedDeadline, true);
     }
 
     /**

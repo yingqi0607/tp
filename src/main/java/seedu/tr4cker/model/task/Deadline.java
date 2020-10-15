@@ -32,11 +32,14 @@ public class Deadline {
      * Constructs a {@code Deadline}.
      *
      * @param deadline A valid deadline time.
+     * @param isNewTask if deadline belongs to a new Task.
      */
-    public Deadline(String deadline) {
+    public Deadline(String deadline, boolean isNewTask) {
         requireNonNull(deadline);
         checkArgument(isValidDeadline(deadline), MESSAGE_CONSTRAINTS);
-        checkArgument(isFutureDeadline(deadline), MESSAGE_FUTURE_CONSTRAINT);
+        if (isNewTask) {
+            checkArgument(isFutureDeadline(deadline), MESSAGE_FUTURE_CONSTRAINT);
+        }
         dateTime = LocalDateTime.parse(deadline, DATE_TIME_FORMAT);
     }
 

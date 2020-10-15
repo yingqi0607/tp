@@ -50,7 +50,7 @@ public class EditTaskDescriptorBuilder {
      * Sets the {@code Deadline} of the {@code EditTaskDescriptor} that we are building.
      */
     public EditTaskDescriptorBuilder withDeadline(String deadline) {
-        descriptor.setDeadline(new Deadline(deadline));
+        descriptor.setDeadline(new Deadline(deadline, false));
         return this;
     }
 
