@@ -19,6 +19,8 @@ import seedu.tr4cker.logic.Logic;
 import seedu.tr4cker.logic.commands.CommandResult;
 import seedu.tr4cker.logic.commands.exceptions.CommandException;
 import seedu.tr4cker.logic.parser.exceptions.ParseException;
+import seedu.tr4cker.model.planner.Planner;
+import seedu.tr4cker.ui.planner.PlannerPanel;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -44,6 +46,7 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private TaskListPanel taskListPanel;
     private TaskListPanel plannerTaskListPanel;
+    private PlannerPanel plannerPanel;
     private ResultDisplay resultDisplay;
     private final HelpWindow helpWindow;
 
@@ -174,7 +177,8 @@ public class MainWindow extends UiPart<Stage> {
         plannerTaskListPanelPlaceholder.getChildren().add(plannerTaskListPanel.getRoot());
 
         // for the planner in planner tab
-
+        plannerPanel = new PlannerPanel(Planner.getCurrentDateTime());
+        plannerPanelPlaceholder.getChildren().add(plannerPanel.getRoot());
     }
 
     /**
