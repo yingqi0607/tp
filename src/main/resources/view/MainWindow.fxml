@@ -1,23 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.Scene?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.stage.Stage?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.stage.*?>
 
 <fx:root minHeight="775" minWidth="775" onCloseRequest="#handleExit" title="TR4CKER" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
@@ -95,24 +84,8 @@
               <content>
                 <SplitPane dividerPositions="0.5" prefHeight="180.0" prefWidth="1284.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                    <items>
-                      <AnchorPane prefHeight="180.0" prefWidth="200.0">
-                         <children>
-                          <VBox fx:id="planner" prefHeight="192.0" prefWidth="642.0">
-                             <children>
-                               <StackPane fx:id="plannerPanelPlaceholder" prefHeight="235.0" prefWidth="642.0" />
-                             </children>
-                          </VBox>
-                         </children>
-                      </AnchorPane>
-                      <AnchorPane prefHeight="180.0" prefWidth="642.0">
-                         <children>
-                          <VBox fx:id="plannerTaskList" prefHeight="190.0" prefWidth="642.0">
-                           <children>
-                              <StackPane fx:id="plannerTaskListPanelPlaceholder" prefHeight="210.0" prefWidth="642.0" />
-                           </children>
-                          </VBox>
-                         </children>
-                      </AnchorPane>
+                      <StackPane fx:id="plannerPanelPlaceholder" prefHeight="150.0" prefWidth="200.0" />
+                      <StackPane fx:id="plannerTaskListPanelPlaceholder" prefHeight="150.0" prefWidth="200.0" />
                    </items>
                 </SplitPane>
               </content>
