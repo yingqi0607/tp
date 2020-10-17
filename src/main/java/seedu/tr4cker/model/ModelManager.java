@@ -129,7 +129,7 @@ public class ModelManager implements Model {
     /**
      * Returns a Predicate to check if tasks in the task list are due today or not.
      *
-     * @return Predicate<Task>.
+     * @return Predicate to check if the task is due today.
      */
     private Predicate<Task> checkTaskDate() {
         return task -> task.getDeadline().getDateTime().getDayOfMonth() == LocalDate.now().getDayOfMonth()

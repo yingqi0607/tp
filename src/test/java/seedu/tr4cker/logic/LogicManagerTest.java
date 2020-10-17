@@ -95,6 +95,11 @@ public class LogicManagerTest {
     }
 
     @Test
+    public void getPlannerFilteredTaskList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getPlannerFilteredTaskList().remove(0));
+    }
+
+    @Test
     public void getTr4cker_success() {
         assertEquals(logic.getTr4cker().getClass(), Tr4cker.class);
     }

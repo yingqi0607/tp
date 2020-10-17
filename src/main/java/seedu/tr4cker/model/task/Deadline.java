@@ -3,7 +3,6 @@ package seedu.tr4cker.model.task;
 import static java.util.Objects.requireNonNull;
 import static seedu.tr4cker.commons.util.AppUtil.checkArgument;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
