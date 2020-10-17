@@ -19,7 +19,7 @@ import seedu.tr4cker.logic.Logic;
 import seedu.tr4cker.logic.commands.CommandResult;
 import seedu.tr4cker.logic.commands.exceptions.CommandException;
 import seedu.tr4cker.logic.parser.exceptions.ParseException;
-import seedu.tr4cker.model.planner.Planner;
+import seedu.tr4cker.model.planner.PlannerDay;
 import seedu.tr4cker.ui.planner.PlannerPanel;
 
 /**
@@ -66,7 +66,7 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane statusbarPlaceholder;
 
     /*
-     * Planner tab content.
+     * PlannerDay tab content.
      */
     @FXML
     private StackPane plannerPanelPlaceholder;
@@ -177,7 +177,7 @@ public class MainWindow extends UiPart<Stage> {
         plannerTaskListPanelPlaceholder.getChildren().add(plannerTaskListPanel.getRoot());
 
         // for the planner in planner tab
-        plannerPanel = new PlannerPanel(Planner.getCurrentDateTime());
+        plannerPanel = new PlannerPanel(PlannerDay.getCurrDay());
         plannerPanelPlaceholder.getChildren().add(plannerPanel.getRoot());
     }
 

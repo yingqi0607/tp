@@ -31,7 +31,7 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of tasks. */
     ObservableList<Task> getFilteredTaskList();
 
-    /** Returns an unmodifiable view of the filtered list of tasks for Planner. */
+    /** Returns an unmodifiable view of the filtered list of tasks for PlannerDay. */
     ObservableList<Task> getPlannerFilteredTaskList();
 
     /** Returns the user prefs' tr4cker file path. */

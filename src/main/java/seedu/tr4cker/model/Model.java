@@ -61,7 +61,7 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered task list. */
     ObservableList<Task> getFilteredTaskList();
 
-    /** Returns an unmodifiable view of the filtered task list for Planner. */
+    /** Returns an unmodifiable view of the filtered task list for PlannerDay. */
     ObservableList<Task> getPlannerFilteredTaskList();
 
     /**
