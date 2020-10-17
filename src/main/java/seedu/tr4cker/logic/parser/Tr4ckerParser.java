@@ -78,7 +78,7 @@ public class Tr4ckerParser {
             return new HelpCommand();
 
         case PlannerCommand.COMMAND_WORD:
-            return new PlannerCommand();
+            return new PlannerCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
