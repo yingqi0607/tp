@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.tr4cker.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.time.LocalDate;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -22,6 +23,7 @@ public class ModelManager implements Model {
     private final Tr4cker tr4cker;
     private final UserPrefs userPrefs;
     private final FilteredList<Task> filteredTasks;
+    private final FilteredList<Task> plannerFilteredTasks;
 
     /**
      * Initializes a ModelManager with the given tr4cker and userPrefs.
@@ -34,7 +36,8 @@ public class ModelManager implements Model {
 
         this.tr4cker = new Tr4cker(tr4cker);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredTasks = new FilteredList<Task>(this.tr4cker.getTaskList());
+        filteredTasks = new FilteredList<>(this.tr4cker.getTaskList());
+        plannerFilteredTasks = new FilteredList<>(this.tr4cker.getTaskList(), checkTaskDate());
     }
 
     public ModelManager() {
@@ -76,7 +79,7 @@ public class ModelManager implements Model {
         userPrefs.setTr4ckerFilePath(tr4ckerFilePath);
     }
 
-    //=========== Tr4cker ================================================================================
+    //=========== TR4CKER ================================================================================
 
     @Override
     public void setTr4cker(ReadOnlyTr4cker tr4cker) {
@@ -124,16 +127,34 @@ public class ModelManager implements Model {
     }
 
     /**
+     * Returns a Predicate to check if tasks in the task list are due today or not.
+     *
+     * @return Predicate<Task>.
+     */
+    private Predicate<Task> checkTaskDate() {
+        return task -> task.getDeadline().getDateTime().getDayOfMonth() == LocalDate.now().getDayOfMonth()
+                && task.getDeadline().getDateTime().getMonthValue() == LocalDate.now().getMonthValue()
+                && task.getDeadline().getDateTime().getYear() == LocalDate.now().getYear();
+    }
+
+    /**
      * Returns an unmodifiable view of the list of {@code Task}
      * backed by the internal list of {@code versionedTr4cker} for PlannerDay.
+     * Should only show current's day tasks by default.
      */
     @Override
     public ObservableList<Task> getPlannerFilteredTaskList() {
-        return filteredTasks;
+        return plannerFilteredTasks;
     }
 
     @Override
     public void updateFilteredTaskList(Predicate<Task> predicate) {
+        requireNonNull(predicate);
+        filteredTasks.setPredicate(predicate);
+    }
+
+    @Override
+    public void updatePlannerFilteredTaskList(Predicate<Task> predicate) {
         requireNonNull(predicate);
         filteredTasks.setPredicate(predicate);
     }

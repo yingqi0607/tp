@@ -3,6 +3,7 @@ package seedu.tr4cker.model.task;
 import static java.util.Objects.requireNonNull;
 import static seedu.tr4cker.commons.util.AppUtil.checkArgument;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -26,7 +27,7 @@ public class Deadline {
 
     public static final DateTimeFormatter DATE_TIME_FORMAT = DateTimeFormatter.ofPattern("dd-[MM][MMM]-yyyy HHmm");
     public static final String DEFAULT_TIME = " 2359";
-    public final LocalDateTime dateTime;
+    private final LocalDateTime dateTime;
 
     /**
      * Constructs a {@code Deadline}.
@@ -38,6 +39,15 @@ public class Deadline {
         checkArgument(isValidDeadline(deadline), MESSAGE_CONSTRAINTS);
         checkArgument(isFutureDeadline(deadline), MESSAGE_FUTURE_CONSTRAINT);
         dateTime = LocalDateTime.parse(deadline, DATE_TIME_FORMAT);
+    }
+
+    /**
+     * Returns the deadline of a task.
+     *
+     * @return Date time of task.
+     */
+    public LocalDateTime getDateTime() {
+        return this.dateTime;
     }
 
     /**
