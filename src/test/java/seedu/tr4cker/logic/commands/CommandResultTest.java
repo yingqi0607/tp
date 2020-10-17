@@ -13,26 +13,26 @@ public class CommandResultTest {
         CommandResult commandResult = new CommandResult("feedback");
 
         // same values -> returns true
-        assertTrue(commandResult.equals(new CommandResult("feedback")));
-        assertTrue(commandResult.equals(new CommandResult("feedback", false, false)));
+        assertEquals(new CommandResult("feedback"), commandResult);
+        assertEquals(new CommandResult("feedback", false, false, false), commandResult);
 
         // same object -> returns true
-        assertTrue(commandResult.equals(commandResult));
+        assertEquals(commandResult, commandResult);
 
         // null -> returns false
-        assertFalse(commandResult.equals(null));
+        assertNotEquals(commandResult, null);
 
         // different types -> returns false
         assertFalse(commandResult.equals(0.5f));
 
         // different feedbackToUser value -> returns false
-        assertFalse(commandResult.equals(new CommandResult("different")));
+        assertNotEquals(new CommandResult("different"), commandResult);
 
         // different showHelp value -> returns false
-        assertFalse(commandResult.equals(new CommandResult("feedback", true, false)));
+        assertNotEquals(new CommandResult("feedback", true, false, false), commandResult);
 
         // different exit value -> returns false
-        assertFalse(commandResult.equals(new CommandResult("feedback", false, true)));
+        assertNotEquals(new CommandResult("feedback", false, true, false), commandResult);
     }
 
     @Test
@@ -46,15 +46,15 @@ public class CommandResultTest {
         assertNotEquals(commandResult.hashCode(), new CommandResult("different").hashCode());
 
         // different showHelp value -> returns different hashcode
-        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", true, false).hashCode());
+        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", true, false, false).hashCode());
 
         // different exit value -> returns different hashcode
-        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false, true).hashCode());
+        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false, true, false).hashCode());
     }
 
     @Test
     public void testBoolean() {
-        CommandResult commandResult = new CommandResult("feedback", true, true);
+        CommandResult commandResult = new CommandResult("feedback", true, true, false);
         assertTrue(commandResult.isShowHelp());
         assertTrue(commandResult.isExit());
     }
