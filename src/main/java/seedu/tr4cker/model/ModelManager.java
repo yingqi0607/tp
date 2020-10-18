@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.tr4cker.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
-import java.time.LocalDate;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -15,7 +14,7 @@ import seedu.tr4cker.commons.core.LogsCenter;
 import seedu.tr4cker.model.task.Task;
 
 /**
- * Represents the in-memory model of Tr4cker data.
+ * Represents the in-memory model of TR4CKER data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);

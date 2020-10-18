@@ -1,13 +1,11 @@
 package seedu.tr4cker.model;
 
 import java.nio.file.Path;
-import java.time.LocalDate;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.tr4cker.commons.core.GuiSettings;
 import seedu.tr4cker.model.task.Task;
-import seedu.tr4cker.model.task.TaskDueInPredicate;
 
 /** The API of the Model component. */
 public interface Model {

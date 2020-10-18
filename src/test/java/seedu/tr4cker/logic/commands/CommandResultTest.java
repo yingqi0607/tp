@@ -54,8 +54,9 @@ public class CommandResultTest {
 
     @Test
     public void testBoolean() {
-        CommandResult commandResult = new CommandResult("feedback", true, true, false);
+        CommandResult commandResult = new CommandResult("feedback", true, true, true);
         assertTrue(commandResult.isShowHelp());
         assertTrue(commandResult.isExit());
+        assertTrue(commandResult.isShowPlanner());
     }
 }
