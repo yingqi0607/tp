@@ -37,7 +37,7 @@ public class ModelManager implements Model {
         this.tr4cker = new Tr4cker(tr4cker);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredTasks = new FilteredList<>(this.tr4cker.getTaskList());
-        plannerFilteredTasks = new FilteredList<>(this.tr4cker.getTaskList(), checkTaskDate());
+        plannerFilteredTasks = new FilteredList<>(this.tr4cker.getTaskList());
     }
 
     public ModelManager() {
@@ -127,17 +127,6 @@ public class ModelManager implements Model {
     }
 
     /**
-     * Returns a Predicate to check if tasks in the task list are due today or not.
-     *
-     * @return Predicate to check if the task is due today.
-     */
-    private Predicate<Task> checkTaskDate() {
-        return task -> task.getDeadline().getDateTime().getDayOfMonth() == LocalDate.now().getDayOfMonth()
-                && task.getDeadline().getDateTime().getMonthValue() == LocalDate.now().getMonthValue()
-                && task.getDeadline().getDateTime().getYear() == LocalDate.now().getYear();
-    }
-
-    /**
      * Returns an unmodifiable view of the list of {@code Task}
      * backed by the internal list of {@code versionedTr4cker} for PlannerDay.
      * Should only show current's day tasks by default.
@@ -156,7 +145,7 @@ public class ModelManager implements Model {
     @Override
     public void updatePlannerFilteredTaskList(Predicate<Task> predicate) {
         requireNonNull(predicate);
-        filteredTasks.setPredicate(predicate);
+        plannerFilteredTasks.setPredicate(predicate);
     }
 
     @Override
@@ -175,7 +164,8 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return tr4cker.equals(other.tr4cker)
                 && userPrefs.equals(other.userPrefs)
-                && filteredTasks.equals(other.filteredTasks);
+                && filteredTasks.equals(other.filteredTasks)
+                && plannerFilteredTasks.equals(other.plannerFilteredTasks);
     }
 
 }

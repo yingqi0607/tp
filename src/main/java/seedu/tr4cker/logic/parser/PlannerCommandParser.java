@@ -10,6 +10,7 @@ import java.util.stream.Stream;
 
 import seedu.tr4cker.logic.commands.PlannerCommand;
 import seedu.tr4cker.logic.parser.exceptions.ParseException;
+import seedu.tr4cker.model.task.TaskDueInPredicate;
 import seedu.tr4cker.model.util.GotoDateUtil;
 
 /**
@@ -68,25 +69,28 @@ public class PlannerCommandParser implements Parser<PlannerCommand> {
 
         LocalDate localDate;
         String message;
+        TaskDueInPredicate taskDueInPredicate;
+
         if (isToday) {
             localDate = GotoDateUtil.getToday();
             message = GotoDateUtil.parseGotoDay(localDate) + " (TODAY)";
-            return new PlannerCommand(message);
+            taskDueInPredicate = new TaskDueInPredicate();
         } else if (isTomorrow) {
             localDate = GotoDateUtil.getTomorrow();
             message = GotoDateUtil.parseGotoDay(localDate) + " (TOMORROW)";
-            return new PlannerCommand(message);
+            taskDueInPredicate = new TaskDueInPredicate(localDate);
         } else if (isValidGotoDate) {
             localDate = GotoDateUtil.splitGotoDay(trimmedGotoDay);
             message = GotoDateUtil.parseGotoDay(localDate);
-            return new PlannerCommand(message);
+            taskDueInPredicate = new TaskDueInPredicate(localDate);
         } else if (isValidGotoMonth) {
             YearMonth yearMonth = GotoDateUtil.splitGotoMonth(trimmedGotoDay);
             message = GotoDateUtil.parseGotoMonth(yearMonth);
-            return new PlannerCommand(message);
+            taskDueInPredicate = new TaskDueInPredicate(yearMonth);
         } else {
             throw new ParseException(PlannerCommand.MESSAGE_GOTO_USAGE);
         }
+        return new PlannerCommand(message, taskDueInPredicate);
     }
 
 }
