@@ -1,13 +1,16 @@
 package seedu.tr4cker.logic.parser;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.tr4cker.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_PLANNER_GOTO;
 
 import java.time.LocalDate;
+import java.time.YearMonth;
 import java.util.stream.Stream;
 
 import seedu.tr4cker.logic.commands.PlannerCommand;
 import seedu.tr4cker.logic.parser.exceptions.ParseException;
+import seedu.tr4cker.model.util.GotoDateUtil;
 
 /**
  * Parses input arguments and creates a new PlannerCommand object.
@@ -32,9 +35,8 @@ public class PlannerCommandParser implements Parser<PlannerCommand> {
             return new PlannerCommand();
         }
 
-        // user wants to goto a specific date/month
-        LocalDate gotoDate = ParserUtil.parseGotoDay(argMultimap.getValue(PREFIX_PLANNER_GOTO).get());
-        return new PlannerCommand(gotoDate);
+        // user wants to goto a specific day/date/month
+        return parseGotoDay(argMultimap.getValue(PREFIX_PLANNER_GOTO).get());
     }
 
     /**
@@ -43,6 +45,48 @@ public class PlannerCommandParser implements Parser<PlannerCommand> {
      */
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+
+    /**
+     * Parses {@code String gotoDay} into a {@code PlannerCommand}.
+     *
+     * @throws ParseException if the given {@code gotoDay} is invalid.
+     */
+    private static PlannerCommand parseGotoDay(String gotoDay) throws ParseException {
+        requireNonNull(gotoDay);
+        String trimmedGotoDay = gotoDay.trim();
+
+        boolean isToday;
+        boolean isTomorrow;
+        boolean isValidGotoDate;
+        boolean isValidGotoMonth;
+
+        isToday = GotoDateUtil.checkToday(trimmedGotoDay);
+        isTomorrow = GotoDateUtil.checkTomorrow(trimmedGotoDay);
+        isValidGotoDate = GotoDateUtil.isValidGotoDate(trimmedGotoDay);
+        isValidGotoMonth = GotoDateUtil.isValidGotoMonth(trimmedGotoDay);
+
+        LocalDate localDate;
+        String message;
+        if (isToday) {
+            localDate = GotoDateUtil.getToday();
+            message = GotoDateUtil.parseGotoDay(localDate) + " (TODAY)";
+            return new PlannerCommand(message);
+        } else if (isTomorrow) {
+            localDate = GotoDateUtil.getTomorrow();
+            message = GotoDateUtil.parseGotoDay(localDate) + " (TOMORROW)";
+            return new PlannerCommand(message);
+        } else if (isValidGotoDate) {
+            localDate = GotoDateUtil.splitGotoDay(trimmedGotoDay);
+            message = GotoDateUtil.parseGotoDay(localDate);
+            return new PlannerCommand(message);
+        } else if (isValidGotoMonth) {
+            YearMonth yearMonth = GotoDateUtil.splitGotoMonth(trimmedGotoDay);
+            message = GotoDateUtil.parseGotoMonth(yearMonth);
+            return new PlannerCommand(message);
+        } else {
+            throw new ParseException(PlannerCommand.MESSAGE_GOTO_USAGE);
+        }
     }
 
 }

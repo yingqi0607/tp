@@ -2,8 +2,6 @@ package seedu.tr4cker.logic.commands;
 
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_PLANNER_GOTO;
 
-import java.time.LocalDate;
-
 import seedu.tr4cker.model.Model;
 
 /**
@@ -12,8 +10,6 @@ import seedu.tr4cker.model.Model;
 public class PlannerCommand extends Command {
 
     public static final String COMMAND_WORD = "planner";
-
-    public static final String MESSAGE_SWITCH_TAB_SUCCESS = "Switched to Planner tab!";
 
     public static final String MESSAGE_SWITCH_TAB_USAGE = COMMAND_WORD + ": Switches to Planner tab\n"
             + "Example: " + COMMAND_WORD;
@@ -24,27 +20,33 @@ public class PlannerCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_PLANNER_GOTO + "25-12-2020";
 
-    private final LocalDate gotoDate;
+    public static final String MESSAGE_SWITCH_TAB_SUCCESS = "Switched to Planner tab!";
+
+    public static final String MESSAGE_GOTO_DATE_SUCCESS = "Showed tasks on: %1$s";
+
+    private final String message;
 
     /**
      * Constructor for PlannerCommand when user wants to switch to Planner tab.
      */
     public PlannerCommand() {
-        this.gotoDate = null;
+        this.message = null;
     }
 
     /**
-     * Constructor for PlannerCommand when user wants to go to a specific date/month in Planner tab.
-     *
-     * @param gotoDate User's input.
+     * Constructor for PlannerCommand when user wants to switch to specific date/month.
      */
-    public PlannerCommand(LocalDate gotoDate) {
-        this.gotoDate = gotoDate;
+    public PlannerCommand(String message) {
+        this.message = message;
     }
 
     @Override
     public CommandResult execute(Model model) {
-        return new CommandResult(MESSAGE_SWITCH_TAB_SUCCESS, false, false, true);
+        if (message == null) {
+            return new CommandResult(MESSAGE_SWITCH_TAB_SUCCESS, false, false, true);
+        }
+        String result = String.format(MESSAGE_GOTO_DATE_SUCCESS, message);
+        return new CommandResult(result, false, false, true);
     }
 
 }

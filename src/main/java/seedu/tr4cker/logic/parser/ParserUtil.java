@@ -2,21 +2,18 @@ package seedu.tr4cker.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
-import java.time.LocalDate;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
 import seedu.tr4cker.commons.core.index.Index;
 import seedu.tr4cker.commons.util.StringUtil;
-import seedu.tr4cker.logic.commands.PlannerCommand;
 import seedu.tr4cker.logic.parser.exceptions.ParseException;
 import seedu.tr4cker.model.tag.Tag;
 import seedu.tr4cker.model.task.CompletionStatus;
 import seedu.tr4cker.model.task.Deadline;
 import seedu.tr4cker.model.task.Name;
 import seedu.tr4cker.model.task.TaskDescription;
-import seedu.tr4cker.model.util.GotoDateUtil;
 import seedu.tr4cker.model.util.NaturalDateUtil;
 
 /**
@@ -140,23 +137,6 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
-    }
-
-    /**
-     * Parses {@code String gotoDay} into a {@code LocalDate}.
-     *
-     * @throws ParseException if the given {@code gotoDay} is invalid.
-     */
-    public static LocalDate parseGotoDay(String gotoDay) throws ParseException {
-        requireNonNull(gotoDay);
-        String trimmedGotoDay = gotoDay.trim();
-
-        if (!GotoDateUtil.isValidGoto(trimmedGotoDay)) {
-            throw new ParseException(PlannerCommand.MESSAGE_GOTO_USAGE);
-        }
-
-        String checkedGotoDay = GotoDateUtil.checkGotoDay(trimmedGotoDay);
-        return GotoDateUtil.splitGotoDay(checkedGotoDay);
     }
 
 }
