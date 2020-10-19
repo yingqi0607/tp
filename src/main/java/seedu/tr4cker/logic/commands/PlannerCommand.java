@@ -3,7 +3,6 @@ package seedu.tr4cker.logic.commands;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_PLANNER_GOTO;
 
 import java.time.LocalDate;
-import java.time.Year;
 import java.time.YearMonth;
 
 import seedu.tr4cker.model.Model;
@@ -54,7 +53,8 @@ public class PlannerCommand extends Command {
     /**
      * Constructor for PlannerCommand when user wants to switch to specific date/month.
      */
-    public PlannerCommand(String message, LocalDate localDate, YearMonth yearMonth, TaskDueInPredicate taskDueInPredicate) {
+    public PlannerCommand(String message, LocalDate localDate, YearMonth yearMonth,
+                          TaskDueInPredicate taskDueInPredicate) {
         this.message = message;
         this.localDate = localDate;
         this.yearMonth = yearMonth;
@@ -74,17 +74,25 @@ public class PlannerCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        if (other == this // short circuit if same object
-                || (other instanceof PlannerCommand // instanceof handles nulls
-                && message == null && ((PlannerCommand) other).message == null
-                && taskDueInPredicate.equals(((PlannerCommand) other).taskDueInPredicate))) {
+        if (this == other) { // short circuit if same object
             return true;
         } else if (!(other instanceof PlannerCommand)) {
             return false;
+        } else {
+            PlannerCommand plannerCommand = (PlannerCommand) other;
+            if (message == null && ((PlannerCommand) other).message == null
+                    && taskDueInPredicate.equals(plannerCommand.taskDueInPredicate)
+                    && localDate == null && (plannerCommand.localDate == null
+                    && yearMonth == null && (plannerCommand.yearMonth == null))) {
+                return true;
+            } else {
+                assert message != null;
+                return message.equals(plannerCommand.message) // instanceof handles not null
+                        && taskDueInPredicate.equals(plannerCommand.taskDueInPredicate)
+                        || localDate == null && plannerCommand.localDate == null
+                        || yearMonth == null && plannerCommand.yearMonth == null;
+            }
         }
-        assert message != null;
-        return message.equals(((PlannerCommand) other).message) // instanceof handles not null
-                && taskDueInPredicate.equals(((PlannerCommand) other).taskDueInPredicate); // state check
     }
 
 }

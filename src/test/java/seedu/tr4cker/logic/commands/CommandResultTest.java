@@ -5,16 +5,23 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.time.LocalDate;
+import java.time.YearMonth;
+
 import org.junit.jupiter.api.Test;
 
 public class CommandResultTest {
     @Test
     public void equals() {
         CommandResult commandResult = new CommandResult("feedback");
+        LocalDate localDate = LocalDate.now();
+        YearMonth yearMonth = YearMonth.now();
+        CommandResult commandResult1 = new CommandResult("feedback", localDate, yearMonth);
 
         // same values -> returns true
         assertEquals(new CommandResult("feedback"), commandResult);
         assertEquals(new CommandResult("feedback", false, false), commandResult);
+        assertEquals(new CommandResult("feedback", localDate, yearMonth), commandResult1);
 
         // same object -> returns true
         assertEquals(commandResult, commandResult);

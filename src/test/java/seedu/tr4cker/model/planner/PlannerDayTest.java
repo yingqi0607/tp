@@ -1,6 +1,7 @@
 package seedu.tr4cker.model.planner;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import java.time.LocalDate;
 
@@ -14,6 +15,7 @@ class PlannerDayTest {
     private final PlannerDay plannerDay2 = new PlannerDay(localDate2);
     private final LocalDate localDate3 = LocalDate.of(2021, 12, 6);
     private final PlannerDay plannerDay3 = new PlannerDay(localDate3);
+    private final PlannerDay plannerDay4 = new PlannerDay(localDate3);
 
     @Test
     public void getDay_success() {
@@ -85,6 +87,13 @@ class PlannerDayTest {
         assertEquals(plannerDay1.getNextDay(), new PlannerDay(test1));
         assertEquals(plannerDay2.getNextDay(), new PlannerDay(test2));
         assertEquals(plannerDay3.getNextDay(), new PlannerDay(test3));
+    }
+
+    @Test
+    public void equalsTest() {
+        assertEquals(plannerDay3, plannerDay4);
+        assertNotEquals(plannerDay1, null);
+        assertNotEquals(plannerDay3, 5);
     }
 
 }

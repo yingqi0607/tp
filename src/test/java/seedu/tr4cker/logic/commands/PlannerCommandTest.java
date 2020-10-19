@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.tr4cker.testutil.TypicalTasks.getTypicalTr4cker;
 
 import java.time.LocalDate;
+import java.time.YearMonth;
 
 import org.junit.jupiter.api.Test;
 
@@ -51,8 +52,10 @@ class PlannerCommandTest {
     public void equals() {
         PlannerCommand plannerCommand1 = new PlannerCommand();
         PlannerCommand plannerCommand2 = new PlannerCommand();
-        PlannerCommand plannerCommand3 = new PlannerCommand(message, null, null, taskDueInPredicate);
-        PlannerCommand plannerCommand4 = new PlannerCommand(message, null, null, taskDueInPredicate);
+        LocalDate localDate = LocalDate.now();
+        YearMonth yearMonth = YearMonth.now();
+        PlannerCommand plannerCommand3 = new PlannerCommand(message, localDate, yearMonth, taskDueInPredicate);
+        PlannerCommand plannerCommand4 = new PlannerCommand(message, localDate, yearMonth, taskDueInPredicate);
 
         // same object -> returns true
         assertEquals(plannerCommand1, plannerCommand1);

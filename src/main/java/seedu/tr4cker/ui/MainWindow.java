@@ -19,8 +19,6 @@ import seedu.tr4cker.logic.Logic;
 import seedu.tr4cker.logic.commands.CommandResult;
 import seedu.tr4cker.logic.commands.exceptions.CommandException;
 import seedu.tr4cker.logic.parser.exceptions.ParseException;
-import seedu.tr4cker.model.planner.PlannerDay;
-import seedu.tr4cker.ui.planner.PlannerCalendarPanel;
 import seedu.tr4cker.ui.planner.PlannerTabWindow;
 
 /**
@@ -46,8 +44,6 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private TaskListPanel taskListPanel;
-    private TaskListPanel plannerTaskListPanel;
-    private PlannerCalendarPanel plannerCalendarPanel;
     private PlannerTabWindow plannerTabWindow;
     private ResultDisplay resultDisplay;
     private final HelpWindow helpWindow;
@@ -72,9 +68,6 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     private StackPane plannerTabWindowPlaceholder;
-
-//    @FXML
-//    private StackPane plannerTaskListPanelPlaceholder;
 
     /*
      * Tab related objects

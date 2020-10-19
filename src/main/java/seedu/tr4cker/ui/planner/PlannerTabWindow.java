@@ -1,5 +1,9 @@
 package seedu.tr4cker.ui.planner;
 
+import java.time.LocalDate;
+import java.time.YearMonth;
+import java.util.logging.Logger;
+
 import javafx.fxml.FXML;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
@@ -11,15 +15,11 @@ import seedu.tr4cker.model.util.GotoDateUtil;
 import seedu.tr4cker.ui.TaskListPanel;
 import seedu.tr4cker.ui.UiPart;
 
-import java.time.LocalDate;
-import java.time.YearMonth;
-import java.util.logging.Logger;
-
 /**
  * An UI component that displays Planner tab.
  * Displays the calendar and tasks list.
  */
-public class PlannerTabWindow extends UiPart<Region>  {
+public class PlannerTabWindow extends UiPart<Region> {
 
     private static final String FXML = "PlannerTabWindow.fxml";
     private final Logger logger = LogsCenter.getLogger(PlannerCalendarPanel.class);
