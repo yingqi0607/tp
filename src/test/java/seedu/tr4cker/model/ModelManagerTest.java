@@ -2,6 +2,7 @@ package seedu.tr4cker.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.tr4cker.model.Model.PREDICATE_SHOW_ALL_TASKS;
 import static seedu.tr4cker.testutil.Assert.assertThrows;
@@ -94,6 +95,11 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void getPlannerFilteredTaskList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getPlannerFilteredTaskList().remove(0));
+    }
+
+    @Test
     public void equals() {
         Tr4cker tr4cker = new Tr4ckerBuilder().withTask(TASK1).withTask(TASK2).build();
         Tr4cker differentTr4cker = new Tr4cker();
@@ -102,33 +108,37 @@ public class ModelManagerTest {
         // same values -> returns true
         modelManager = new ModelManager(tr4cker, userPrefs);
         ModelManager modelManagerCopy = new ModelManager(tr4cker, userPrefs);
-        assertTrue(modelManager.equals(modelManagerCopy));
+        assertEquals(modelManagerCopy, modelManager);
 
         // same object -> returns true
-        assertTrue(modelManager.equals(modelManager));
+        assertEquals(modelManager, modelManager);
 
         // null -> returns false
-        assertFalse(modelManager.equals(null));
+        assertNotEquals(modelManager, null);
 
         // different types -> returns false
-        assertFalse(modelManager.equals(5));
+        assertNotEquals(modelManager, 5);
 
         // different tr4cker -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentTr4cker, userPrefs)));
+        assertNotEquals(new ModelManager(differentTr4cker, userPrefs), modelManager);
 
         // different filteredList -> returns false
         String[] keywords = TASK1.getName().taskName.split("\\s+");
         modelManager.updateFilteredTaskList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-        System.out.println(modelManager.getFilteredTaskList());
         ModelManager newModelManager = new ModelManager(tr4cker, userPrefs);
-        assertFalse(modelManager.equals(newModelManager));
+        assertNotEquals(newModelManager, modelManager);
+
+        // different plannerFilteredList -> returns false
+        modelManager.updateFilteredTaskList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
+        assertNotEquals(newModelManager, modelManager);
 
         // resets modelManager to initial state for upcoming tests
+        modelManager.updatePlannerFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
         modelManager.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setTr4ckerFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(tr4cker, differentUserPrefs)));
+        assertNotEquals(new ModelManager(tr4cker, differentUserPrefs), modelManager);
     }
 }

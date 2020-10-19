@@ -26,7 +26,7 @@ public class Deadline {
 
     public static final DateTimeFormatter DATE_TIME_FORMAT = DateTimeFormatter.ofPattern("dd-[MM][MMM]-yyyy HHmm");
     public static final String DEFAULT_TIME = " 2359";
-    public final LocalDateTime dateTime;
+    private final LocalDateTime dateTime;
 
     /**
      * Constructs a {@code Deadline}.
@@ -41,6 +41,15 @@ public class Deadline {
             checkArgument(isFutureDeadline(deadline), MESSAGE_FUTURE_CONSTRAINT);
         }
         dateTime = LocalDateTime.parse(deadline, DATE_TIME_FORMAT);
+    }
+
+    /**
+     * Returns the deadline of a task.
+     *
+     * @return Date time of task.
+     */
+    public LocalDateTime getDateTime() {
+        return this.dateTime;
     }
 
     /**

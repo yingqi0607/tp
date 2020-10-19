@@ -65,6 +65,11 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public ObservableList<Task> getPlannerFilteredTaskList() {
+        return model.getPlannerFilteredTaskList();
+    }
+
+    @Override
     public Path getTr4ckerFilePath() {
         return model.getTr4ckerFilePath();
     }

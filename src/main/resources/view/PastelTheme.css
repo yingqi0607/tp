@@ -217,7 +217,7 @@
 #commandTextField {
     -fx-background-color: transparent;
     -fx-background-insets: 0;
-    -fx-font-family: "Caveat Brush";
+    -fx-font-family: "Caveat Brush", Brush Script MT;
     -fx-font-size: 15pt;
     -fx-text-fill: #796f6f;
 }

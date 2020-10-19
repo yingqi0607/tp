@@ -19,6 +19,7 @@ import seedu.tr4cker.logic.Logic;
 import seedu.tr4cker.logic.commands.CommandResult;
 import seedu.tr4cker.logic.commands.exceptions.CommandException;
 import seedu.tr4cker.logic.parser.exceptions.ParseException;
+import seedu.tr4cker.ui.planner.PlannerTabWindow;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -38,13 +39,14 @@ public class MainWindow extends UiPart<Stage> {
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
-    private Stage primaryStage;
-    private Logic logic;
+    private final Stage primaryStage;
+    private final Logic logic;
 
     // Independent Ui parts residing in this Ui container
     private TaskListPanel taskListPanel;
+    private PlannerTabWindow plannerTabWindow;
     private ResultDisplay resultDisplay;
-    private HelpWindow helpWindow;
+    private final HelpWindow helpWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -60,6 +62,12 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    /*
+     * Planner tab content.
+     */
+    @FXML
+    private StackPane plannerTabWindowPlaceholder;
 
     /*
      * Tab related objects
@@ -158,6 +166,9 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        plannerTabWindow = new PlannerTabWindow(logic);
+        plannerTabWindowPlaceholder.getChildren().add(plannerTabWindow.getRoot());
     }
 
     /**
@@ -281,6 +292,11 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isShowPlanner()) {
+                handleShowTabPlanner();
+                plannerTabWindow.updateCalendar(commandResult);
             }
 
             return commandResult;

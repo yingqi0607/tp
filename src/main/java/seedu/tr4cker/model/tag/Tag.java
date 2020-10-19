@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.tr4cker.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Tag in Tr4cker.
+ * Represents a Tag in TR4CKER.
  * Guarantees: immutable; name is valid as declared in {@link #isValidTagName(String)}
  */
 public class Tag {

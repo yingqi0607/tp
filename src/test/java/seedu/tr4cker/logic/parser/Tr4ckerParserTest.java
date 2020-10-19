@@ -27,6 +27,7 @@ import seedu.tr4cker.logic.commands.ExitCommand;
 import seedu.tr4cker.logic.commands.FindCommand;
 import seedu.tr4cker.logic.commands.HelpCommand;
 import seedu.tr4cker.logic.commands.ListCommand;
+import seedu.tr4cker.logic.commands.PlannerCommand;
 import seedu.tr4cker.logic.commands.TagCommand;
 import seedu.tr4cker.logic.parser.exceptions.ParseException;
 import seedu.tr4cker.model.tag.Tag;
@@ -118,6 +119,19 @@ public class Tr4ckerParserTest {
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+    }
+
+    @Test
+    public void parseCommand_planner() throws Exception {
+        assertTrue(parser.parseCommand(PlannerCommand.COMMAND_WORD) instanceof PlannerCommand);
+        assertTrue(parser.parseCommand(PlannerCommand.COMMAND_WORD + " goto/today") instanceof PlannerCommand);
+        assertTrue(parser.parseCommand(PlannerCommand.COMMAND_WORD + " goto/tdy") instanceof PlannerCommand);
+        assertTrue(parser.parseCommand(PlannerCommand.COMMAND_WORD + " goto/tomorrow") instanceof PlannerCommand);
+        assertTrue(parser.parseCommand(PlannerCommand.COMMAND_WORD + " goto/tmr") instanceof PlannerCommand);
+        assertTrue(parser.parseCommand(PlannerCommand.COMMAND_WORD + " goto/Oct-2020") instanceof PlannerCommand);
+        assertTrue(parser.parseCommand(PlannerCommand.COMMAND_WORD + " goto/10-Oct-2020") instanceof PlannerCommand);
+        assertTrue(parser.parseCommand(PlannerCommand.COMMAND_WORD + " goto/10-2020") instanceof PlannerCommand);
+        assertTrue(parser.parseCommand(PlannerCommand.COMMAND_WORD + " goto/10-10-2020") instanceof PlannerCommand);
     }
 
     @Test

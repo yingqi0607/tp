@@ -14,7 +14,7 @@ import seedu.tr4cker.commons.core.LogsCenter;
 import seedu.tr4cker.model.task.Task;
 
 /**
- * Represents the in-memory model of Tr4cker data.
+ * Represents the in-memory model of TR4CKER data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
@@ -22,6 +22,7 @@ public class ModelManager implements Model {
     private final Tr4cker tr4cker;
     private final UserPrefs userPrefs;
     private final FilteredList<Task> filteredTasks;
+    private final FilteredList<Task> plannerFilteredTasks;
 
     /**
      * Initializes a ModelManager with the given tr4cker and userPrefs.
@@ -34,7 +35,8 @@ public class ModelManager implements Model {
 
         this.tr4cker = new Tr4cker(tr4cker);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredTasks = new FilteredList<Task>(this.tr4cker.getTaskList());
+        filteredTasks = new FilteredList<>(this.tr4cker.getTaskList());
+        plannerFilteredTasks = new FilteredList<>(this.tr4cker.getTaskList());
     }
 
     public ModelManager() {
@@ -76,7 +78,7 @@ public class ModelManager implements Model {
         userPrefs.setTr4ckerFilePath(tr4ckerFilePath);
     }
 
-    //=========== Tr4cker ================================================================================
+    //=========== TR4CKER ================================================================================
 
     @Override
     public void setTr4cker(ReadOnlyTr4cker tr4cker) {
@@ -115,18 +117,34 @@ public class ModelManager implements Model {
     //=========== Filtered Task List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Task} backed by the internal list of
-     * {@code versionedTr4cker}
+     * Returns an unmodifiable view of the list of {@code Task}
+     * backed by the internal list of {@code versionedTr4cker}.
      */
     @Override
     public ObservableList<Task> getFilteredTaskList() {
         return filteredTasks;
     }
 
+    /**
+     * Returns an unmodifiable view of the list of {@code Task}
+     * backed by the internal list of {@code versionedTr4cker} for PlannerDay.
+     * Should only show current's day tasks by default.
+     */
+    @Override
+    public ObservableList<Task> getPlannerFilteredTaskList() {
+        return plannerFilteredTasks;
+    }
+
     @Override
     public void updateFilteredTaskList(Predicate<Task> predicate) {
         requireNonNull(predicate);
         filteredTasks.setPredicate(predicate);
+    }
+
+    @Override
+    public void updatePlannerFilteredTaskList(Predicate<Task> predicate) {
+        requireNonNull(predicate);
+        plannerFilteredTasks.setPredicate(predicate);
     }
 
     @Override
@@ -145,7 +163,8 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return tr4cker.equals(other.tr4cker)
                 && userPrefs.equals(other.userPrefs)
-                && filteredTasks.equals(other.filteredTasks);
+                && filteredTasks.equals(other.filteredTasks)
+                && plannerFilteredTasks.equals(other.plannerFilteredTasks);
     }
 
 }
