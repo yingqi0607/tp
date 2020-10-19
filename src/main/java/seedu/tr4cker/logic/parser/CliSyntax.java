@@ -13,5 +13,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_COMPLETION_STATUS = new Prefix("p/");
     public static final Prefix PREFIX_DELETE_TAG = new Prefix("del/");
     public static final Prefix PREFIX_NEW_TAG = new Prefix("new/");
+    public static final Prefix PREFIX_PLANNER_GOTO = new Prefix("goto/");
 
 }

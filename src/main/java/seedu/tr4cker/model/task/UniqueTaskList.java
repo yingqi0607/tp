@@ -107,7 +107,7 @@ public class UniqueTaskList implements Iterable<Task> {
             @Override
             public int compare(Task task1, Task task2) {
                 try {
-                    return task1.getDeadline().dateTime.compareTo(task2.getDeadline().dateTime);
+                    return task1.getDeadline().getDateTime().compareTo(task2.getDeadline().getDateTime());
                 } catch (Exception e) {
                     throw new IllegalArgumentException(e);
                 }

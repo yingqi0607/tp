@@ -2,6 +2,8 @@ package seedu.tr4cker.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
+import java.time.YearMonth;
 import java.util.Objects;
 
 /**
@@ -10,12 +12,17 @@ import java.util.Objects;
 public class CommandResult {
 
     private final String feedbackToUser;
+    private final LocalDate localDate;
+    private final YearMonth yearMonth;
 
     /** Help information should be shown to the user. */
     private final boolean showHelp;
 
     /** The application should exit. */
     private final boolean exit;
+
+    /** TR4CKER shows Planner tab. */
+    private boolean showPlanner;
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
@@ -24,6 +31,8 @@ public class CommandResult {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
+        this.localDate = null;
+        this.yearMonth = null;
     }
 
     /**
@@ -32,6 +41,19 @@ public class CommandResult {
      */
     public CommandResult(String feedbackToUser) {
         this(feedbackToUser, false, false);
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
+     * {@code localDate} and {@code yearMonth}. For usage of PlannerCommand.
+     */
+    public CommandResult(String feedbackToUser, LocalDate localDate, YearMonth yearMonth) {
+        this.feedbackToUser = requireNonNull(feedbackToUser);
+        this.showHelp = false;
+        this.exit = false;
+        this.showPlanner = true;
+        this.localDate = localDate;
+        this.yearMonth = yearMonth;
     }
 
     public String getFeedbackToUser() {
@@ -44,6 +66,18 @@ public class CommandResult {
 
     public boolean isExit() {
         return exit;
+    }
+
+    public boolean isShowPlanner() {
+        return showPlanner;
+    }
+
+    public LocalDate getLocalDate() {
+        return this.localDate;
+    }
+
+    public YearMonth getYearMonth() {
+        return this.yearMonth;
     }
 
     @Override
