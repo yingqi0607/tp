@@ -57,11 +57,16 @@
           <tabs>
             <Tab text="Home">
               <content>
-                <VBox fx:id="taskList" maxWidth="600" minWidth="300" prefWidth="300" styleClass="pane-no-border">
+                <VBox fx:id="taskList" maxWidth="900" minWidth="600" prefWidth="600" styleClass="pane-no-border">
                   <padding>
                     <Insets bottom="10" left="10" right="10" top="10" />
                   </padding>
-                  <StackPane fx:id="taskListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+
+                  <SplitPane>
+                    <StackPane fx:id="taskListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+                    <StackPane fx:id="expiredTaskListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+                  </SplitPane>
+
                 </VBox>
               </content>
             </Tab>

@@ -14,6 +14,9 @@ import seedu.tr4cker.model.task.TaskDescription;
 class SampleDataUtilTest {
 
     private final Task[] tasks = new Task[] {
+        new Task(new Name("Expired Task"), new Deadline("10-Oct-2019 1800", false),
+               new CompletionStatus(90), new TaskDescription("An expired task"),
+               getTagSet("exp")),
         new Task(new Name("CS1101S Mission"), new Deadline("10-Oct-2021 1800", false),
                 new CompletionStatus(100), new TaskDescription("A very fun mission"),
                 getTagSet("CS1101S", "Mission", "Fun")),

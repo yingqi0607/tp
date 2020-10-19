@@ -44,6 +44,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private TaskListPanel taskListPanel;
+    private ExpiredTaskListPanel expiredTaskListPanel;
     private PlannerTabWindow plannerTabWindow;
     private ResultDisplay resultDisplay;
     private final HelpWindow helpWindow;
@@ -56,6 +57,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane taskListPanelPlaceholder;
+
+    @FXML
+    private StackPane expiredTaskListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -157,6 +161,9 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         taskListPanel = new TaskListPanel(logic.getFilteredTaskList());
         taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
+
+        expiredTaskListPanel = new ExpiredTaskListPanel(logic.getFilteredTaskList());
+        expiredTaskListPanelPlaceholder.getChildren().add(expiredTaskListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
