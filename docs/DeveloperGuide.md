@@ -102,7 +102,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the tr4cker data.
+* stores the TR4CKER data.
 * exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
@@ -133,41 +133,98 @@ Classes used by multiple components are in the `seedu.tr4cker.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Planner feature \[coming in v1.3]
+TR4CKER has a planner feature which provides users to view the calendar side-by-side with the tasks that are due on 
+specified day. This feature is to allow users to have a clearer view of their schedules and allow them to plan their
+time ahead, and hence increasing productivity.
+
+The 2 main functions of Planner feature are to:
+1. Displays an overview of tasks for today/tomorrow
+2. Displays an overview of tasks on a specified date/month
+
+#### Implementation \[will be updated with UML diagrams]
+The planner panel is facilitated by the `PlannerPanel` class, which serves as the entry point to show users the calendar
+and tasks list side-by-side. 
+
+To illustrate how the 2 functions work step-by-step, given below are 3 example usage scenarios:
+
+1. Displays an overview of tasks for today 
+
+2. Displays an overview of tasks on a specified date
+
+3. Displays an overview of tasks on a specified month
+
+#### Design considerations:
+
+##### Aspect 1: How users can easily navigate to today's/tomorrow's tasks list
+
+* **Current Choice:** Use the same `planner` command to navigate to today's/tomorrow's tasks list. For example, 
+`planner goto/today` would navigate users to today's tasks list and `planner goto/tomorrow` would navigate users to 
+tomorrow's tasks list. Short forms are also provided such as `tdy` and `tmr`.
+  * Pros: User-friendly as users would only need to know 1 command.
+  * Pros: Users can use short forms, which increase convenience.
+  * Cons: Users may not utilise this feature as they do not know the existence of it.
+
+* **Alternative 1:** Separate commands to allow users to navigate to today's/tomorrow's tasks list.
+  * Pros: Clearer error messages to prompt users that the input does not conform to standard.
+  * Cons: Need to ensure that the implementation of each individual command is correct.
+  * Cons: Not as user-friendly as users would need to know multiple commands now.
+  
+**Justification for current choice:** After thinking about how different commands would also have their own advantages,
+I chose to implement the current choice. The current implementation would allow users to only know 1 command, which would
+fairly be more user-friendly, especially after considering how TR4CKER also has many other commands available.
+The problem of users not knowing the existence of this command could be solved by documenting this feature clearly in the
+User Guide of TR4CKER.
+
+##### Aspect 2: \[tbc]
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo 
+history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the 
+following operations:
 
 * `VersionedAddressBook#commit()` — Saves the current tr4cker state in its history.
 * `VersionedAddressBook#undo()` — Restores the previous tr4cker state from its history.
 * `VersionedAddressBook#redo()` — Restores a previously undone tr4cker state from its history.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and 
+`Model#redoAddressBook()` respectively.
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial tr4cker state, and the `currentStatePointer` pointing to that single tr4cker state.
+Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the 
+initial tr4cker state, and the `currentStatePointer` pointing to that single tr4cker state.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th task in the tr4cker. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the tr4cker after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted tr4cker state.
+Step 2. The user executes `delete 5` command to delete the 5th task in the tr4cker. The `delete` command calls 
+`Model#commitAddressBook()`, causing the modified state of the tr4cker after the `delete 5` command executes to be saved 
+in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted tr4cker state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/task 1 …​` to add a new task. The `add` command also calls `Model#commitAddressBook()`, causing another modified tr4cker state to be saved into the `tr4ckerStateList`.
+Step 3. The user executes `add n/task 1 …​` to add a new task. The `add` command also calls 
+`Model#commitAddressBook()`, causing another modified tr4cker state to be saved into the `tr4ckerStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the tr4cker state will not be saved into the `tr4ckerStateList`.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will 
+not call `Model#commitAddressBook()`, so the tr4cker state will not be saved into the `tr4ckerStateList`.
 
 </div>
 
-Step 4. The user now decides that adding the task was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous tr4cker state, and restores the tr4cker to that state.
+Step 4. The user now decides that adding the task was a mistake, and decides to undo that action by executing the `undo` 
+command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the 
+left, pointing it to the previous tr4cker state, and restores the tr4cker to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial tr4cker state, then there are no previous tr4cker states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, 
+pointing to the initial tr4cker state, then there are no previous tr4cker states to restore. The `undo` command uses 
+`Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
 than attempting to perform the undo.
 
 </div>
@@ -176,21 +233,31 @@ The following sequence diagram shows how the undo operation works:
 
 ![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end 
+at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </div>
 
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the tr4cker to that state.
+The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` 
+once to the right, pointing to the previously undone state, and restores the tr4cker to that state.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest tr4cker state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 
+`addressBookStateList.size() - 1`, pointing to the latest tr4cker state, then there are no undone AddressBook states to 
+restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error 
+to the user rather than attempting to perform the redo.
 
 </div>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the tr4cker, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+Step 5. The user then decides to execute the command `list`. Commands that do not modify the tr4cker, such as `list`, 
+will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the 
+`addressBookStateList` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all tr4cker states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not 
+pointing at the end of the `addressBookStateList`, all tr4cker states after the `currentStatePointer` will be purged. 
+Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop 
+applications follow.
 
 ![UndoRedoState5](images/UndoRedoState5.png)
 
