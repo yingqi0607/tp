@@ -33,4 +33,11 @@ public class PlannerDayCard extends UiPart<Region> {
         dateNumber.setText(Integer.toString(plannerDay.getDay()));
     }
 
+    /**
+     * Clears the date number of a PlannerDayCard.
+     */
+    public void clear() {
+        dateNumber.setText("");
+    }
+
 }

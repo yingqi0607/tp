@@ -26,23 +26,24 @@ class PlannerCommandTest {
     public void execute_switchPlannerTab_success() {
         CommandResult commandResult = new PlannerCommand().execute(model);
         CommandResult expectedCommandResult =
-                new CommandResult(PlannerCommand.MESSAGE_SWITCH_TAB_SUCCESS, false, false, true);
+                new CommandResult(PlannerCommand.MESSAGE_SWITCH_TAB_SUCCESS, false, false);
         assertEquals(commandResult, expectedCommandResult);
     }
 
     @Test
     public void execute_gotoDay_success() {
-        PlannerCommand plannerCommand = new PlannerCommand(message, taskDueInPredicate);
+        LocalDate localDate = LocalDate.of(2020, 10, 18);
+        PlannerCommand plannerCommand = new PlannerCommand(message, localDate, null, taskDueInPredicate);
         CommandResult commandResult = plannerCommand.execute(model);
         CommandResult expectedCommandResult =
-                new CommandResult("Showed tasks on: 18-Oct-2020", false, false, true);
+                new CommandResult("Showed tasks on: 18-Oct-2020", null, null);
         assertEquals(commandResult, expectedCommandResult);
 
         message += " (TODAY)";
-        plannerCommand = new PlannerCommand(message, taskDueInPredicate);
+        plannerCommand = new PlannerCommand(message, localDate, null, taskDueInPredicate);
         commandResult = plannerCommand.execute(model);
         expectedCommandResult =
-                new CommandResult("Showed tasks on: 18-Oct-2020 (TODAY)", false, false, true);
+                new CommandResult("Showed tasks on: 18-Oct-2020 (TODAY)", null, null);
         assertEquals(commandResult, expectedCommandResult);
     }
 
@@ -50,8 +51,8 @@ class PlannerCommandTest {
     public void equals() {
         PlannerCommand plannerCommand1 = new PlannerCommand();
         PlannerCommand plannerCommand2 = new PlannerCommand();
-        PlannerCommand plannerCommand3 = new PlannerCommand(message, taskDueInPredicate);
-        PlannerCommand plannerCommand4 = new PlannerCommand(message, taskDueInPredicate);
+        PlannerCommand plannerCommand3 = new PlannerCommand(message, null, null, taskDueInPredicate);
+        PlannerCommand plannerCommand4 = new PlannerCommand(message, null, null, taskDueInPredicate);
 
         // same object -> returns true
         assertEquals(plannerCommand1, plannerCommand1);

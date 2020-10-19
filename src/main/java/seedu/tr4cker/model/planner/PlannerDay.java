@@ -37,6 +37,15 @@ public class PlannerDay {
     }
 
     /**
+     * Returns the month in number representation.
+     *
+     * @return Number representation of month of date.
+     */
+    public int getMonth() {
+        return localDate.getMonthValue();
+    }
+
+    /**
      * Returns the month in string representation.
      *
      * @return String representation of month of date.
@@ -53,18 +62,6 @@ public class PlannerDay {
         return localDate.getYear();
     }
 
-    //public int getLengthOfCurrMonth() {
-    //    return this.localDate.lengthOfMonth();
-    //}
-    //
-    //public int getLengthOfPrevMonth() {
-    //    return this.localDate.minusMonths(1).lengthOfMonth();
-    //}
-    //
-    //public int getLengthOfNextMonth() {
-    //    return this.localDate.plusMonths(1).lengthOfMonth();
-    //}
-
     /**
      * Creates the first day of the month.
      *
@@ -74,18 +71,6 @@ public class PlannerDay {
         LocalDate firstDay = this.localDate.withDayOfMonth(1);
         return new PlannerDay(firstDay);
     }
-
-    //public PlannerDay createPrevMonthWithDate(int date) {
-    //    LocalDate prevMonth = this.localDate.minusMonths(1);
-    //    LocalDate prevMonthDate = prevMonth.withDayOfMonth(date);
-    //    return new PlannerDay(prevMonthDate);
-    //}
-    //
-    //public PlannerDay createNextMonthWithDate(int date) {
-    //    LocalDate nextMonth = this.localDate.plusMonths(1);
-    //    LocalDate nextMonthDate = nextMonth.withDayOfMonth(date);
-    //    return new PlannerDay(nextMonthDate);
-    //}
 
     /**
      * Returns the current date.

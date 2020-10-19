@@ -82,12 +82,7 @@
             </Tab>
             <Tab text="Planner">
               <content>
-                <SplitPane dividerPositions="0.5" prefHeight="180.0" prefWidth="1284.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                   <items>
-                      <StackPane fx:id="plannerPanelPlaceholder" prefHeight="150.0" prefWidth="200.0" />
-                      <StackPane fx:id="plannerTaskListPanelPlaceholder" prefHeight="150.0" prefWidth="200.0" />
-                   </items>
-                </SplitPane>
+                <StackPane fx:id="plannerTabWindowPlaceholder" prefHeight="110.0" prefWidth="200.0" />
               </content>
             </Tab>
           </tabs>

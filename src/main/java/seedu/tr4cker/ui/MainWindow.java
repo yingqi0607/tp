@@ -20,7 +20,8 @@ import seedu.tr4cker.logic.commands.CommandResult;
 import seedu.tr4cker.logic.commands.exceptions.CommandException;
 import seedu.tr4cker.logic.parser.exceptions.ParseException;
 import seedu.tr4cker.model.planner.PlannerDay;
-import seedu.tr4cker.ui.planner.PlannerPanel;
+import seedu.tr4cker.ui.planner.PlannerCalendarPanel;
+import seedu.tr4cker.ui.planner.PlannerTabWindow;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -46,7 +47,8 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private TaskListPanel taskListPanel;
     private TaskListPanel plannerTaskListPanel;
-    private PlannerPanel plannerPanel;
+    private PlannerCalendarPanel plannerCalendarPanel;
+    private PlannerTabWindow plannerTabWindow;
     private ResultDisplay resultDisplay;
     private final HelpWindow helpWindow;
 
@@ -66,13 +68,13 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane statusbarPlaceholder;
 
     /*
-     * PlannerDay tab content.
+     * Planner tab content.
      */
     @FXML
-    private StackPane plannerPanelPlaceholder;
+    private StackPane plannerTabWindowPlaceholder;
 
-    @FXML
-    private StackPane plannerTaskListPanelPlaceholder;
+//    @FXML
+//    private StackPane plannerTaskListPanelPlaceholder;
 
     /*
      * Tab related objects
@@ -172,13 +174,8 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
-        // for the task list in planner tab
-        plannerTaskListPanel = new TaskListPanel(logic.getPlannerFilteredTaskList());
-        plannerTaskListPanelPlaceholder.getChildren().add(plannerTaskListPanel.getRoot());
-
-        // for the planner in planner tab
-        plannerPanel = new PlannerPanel(PlannerDay.getCurrDay());
-        plannerPanelPlaceholder.getChildren().add(plannerPanel.getRoot());
+        plannerTabWindow = new PlannerTabWindow(logic);
+        plannerTabWindowPlaceholder.getChildren().add(plannerTabWindow.getRoot());
     }
 
     /**
@@ -306,6 +303,7 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowPlanner()) {
                 handleShowTabPlanner();
+                plannerTabWindow.updateCalendar(commandResult);
             }
 
             return commandResult;

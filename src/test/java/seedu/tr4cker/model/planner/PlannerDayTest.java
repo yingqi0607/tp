@@ -30,6 +30,13 @@ class PlannerDayTest {
     }
 
     @Test
+    public void getMonth_success() {
+        assertEquals(plannerDay1.getMonth(), 1);
+        assertEquals(plannerDay2.getMonth(), 2);
+        assertEquals(plannerDay3.getMonth(), 12);
+    }
+
+    @Test
     public void getMonthName_success() {
         assertEquals(plannerDay1.getMonthName(), "JANUARY");
         assertEquals(plannerDay2.getMonthName(), "FEBRUARY");
@@ -43,18 +50,6 @@ class PlannerDayTest {
         assertEquals(plannerDay3.getYear(), 2021);
     }
 
-    //@Test
-    //public void getLengthOfCurrMonth_success() {
-    //}
-    //
-    //@Test
-    //public void getLengthOfPrevMonth_success() {
-    //}
-    //
-    //@Test
-    //public void getLengthOfNextMonth_success() {
-    //}
-
     @Test
     public void createFirstDayOfMonth_success() {
         LocalDate test1 = LocalDate.of(2021, 1, 1);
@@ -64,14 +59,6 @@ class PlannerDayTest {
         assertEquals(plannerDay2.createFirstDayOfMonth(), new PlannerDay(test2));
         assertEquals(plannerDay3.createFirstDayOfMonth(), new PlannerDay(test3));
     }
-
-    //@Test
-    //public void createPrevMonthWithDate_success() {
-    //}
-    //
-    //@Test
-    //public void createNextMonthWithDate_success() {
-    //}
 
     @Test
     public void getCurrDay_success() {

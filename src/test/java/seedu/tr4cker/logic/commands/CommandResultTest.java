@@ -14,7 +14,7 @@ public class CommandResultTest {
 
         // same values -> returns true
         assertEquals(new CommandResult("feedback"), commandResult);
-        assertEquals(new CommandResult("feedback", false, false, false), commandResult);
+        assertEquals(new CommandResult("feedback", false, false), commandResult);
 
         // same object -> returns true
         assertEquals(commandResult, commandResult);
@@ -29,10 +29,10 @@ public class CommandResultTest {
         assertNotEquals(new CommandResult("different"), commandResult);
 
         // different showHelp value -> returns false
-        assertNotEquals(new CommandResult("feedback", true, false, false), commandResult);
+        assertNotEquals(new CommandResult("feedback", true, false), commandResult);
 
         // different exit value -> returns false
-        assertNotEquals(new CommandResult("feedback", false, true, false), commandResult);
+        assertNotEquals(new CommandResult("feedback", false, true), commandResult);
     }
 
     @Test
@@ -46,17 +46,17 @@ public class CommandResultTest {
         assertNotEquals(commandResult.hashCode(), new CommandResult("different").hashCode());
 
         // different showHelp value -> returns different hashcode
-        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", true, false, false).hashCode());
+        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", true, false).hashCode());
 
         // different exit value -> returns different hashcode
-        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false, true, false).hashCode());
+        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false, true).hashCode());
     }
 
     @Test
     public void testBoolean() {
-        CommandResult commandResult = new CommandResult("feedback", true, true, true);
+        CommandResult commandResult = new CommandResult("feedback", true, true);
         assertTrue(commandResult.isShowHelp());
         assertTrue(commandResult.isExit());
-        assertTrue(commandResult.isShowPlanner());
+        assertFalse(commandResult.isShowPlanner());
     }
 }

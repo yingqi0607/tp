@@ -3,6 +3,8 @@ package seedu.tr4cker.logic.commands;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_PLANNER_GOTO;
 
 import java.time.LocalDate;
+import java.time.Year;
+import java.time.YearMonth;
 
 import seedu.tr4cker.model.Model;
 import seedu.tr4cker.model.task.TaskDueInPredicate;
@@ -35,6 +37,8 @@ public class PlannerCommand extends Command {
     public static final String MESSAGE_GOTO_DATE_SUCCESS = "Showed tasks on: %1$s";
 
     private final String message;
+    private final LocalDate localDate;
+    private final YearMonth yearMonth;
     private final TaskDueInPredicate taskDueInPredicate;
 
     /**
@@ -42,26 +46,30 @@ public class PlannerCommand extends Command {
      */
     public PlannerCommand() {
         this.message = null;
+        this.localDate = null;
+        this.yearMonth = null;
         this.taskDueInPredicate = new TaskDueInPredicate(LocalDate.now());
     }
 
     /**
      * Constructor for PlannerCommand when user wants to switch to specific date/month.
      */
-    public PlannerCommand(String message, TaskDueInPredicate taskDueInPredicate) {
+    public PlannerCommand(String message, LocalDate localDate, YearMonth yearMonth, TaskDueInPredicate taskDueInPredicate) {
         this.message = message;
+        this.localDate = localDate;
+        this.yearMonth = yearMonth;
         this.taskDueInPredicate = taskDueInPredicate;
     }
 
     @Override
     public CommandResult execute(Model model) {
-        if (message == null) {
+        if (message == null && localDate == null && yearMonth == null) {
             model.updatePlannerFilteredTaskList(taskDueInPredicate);
-            return new CommandResult(MESSAGE_SWITCH_TAB_SUCCESS, false, false, true);
+            return new CommandResult(MESSAGE_SWITCH_TAB_SUCCESS, null, null);
         }
         model.updatePlannerFilteredTaskList(taskDueInPredicate);
         String result = String.format(MESSAGE_GOTO_DATE_SUCCESS, message);
-        return new CommandResult(result, false, false, true);
+        return new CommandResult(result, localDate, yearMonth);
     }
 
     @Override

@@ -35,23 +35,25 @@ class PlannerCommandParserTest {
     @Test
     public void parse_gotoDay_success() {
         String message1 = GotoDateUtil.parseGotoDay(LocalDate.now()) + " (TODAY)";
-        PlannerCommand plannerCommand = new PlannerCommand(message1, new TaskDueInPredicate());
+        PlannerCommand plannerCommand = new PlannerCommand(message1, LocalDate.now(), null, new TaskDueInPredicate());
         assertParseSuccess(plannerCommandParser, " goto/today", plannerCommand);
         assertParseSuccess(plannerCommandParser, " goto/tdy", plannerCommand);
 
         LocalDate tomorrow = LocalDate.now().plusDays(1);
         String message2 = GotoDateUtil.parseGotoDay(tomorrow) + " (TOMORROW)";
-        plannerCommand = new PlannerCommand(message2, new TaskDueInPredicate(tomorrow));
+        plannerCommand = new PlannerCommand(message2, tomorrow, null, new TaskDueInPredicate(tomorrow));
         assertParseSuccess(plannerCommandParser, " goto/tomorrow", plannerCommand);
         assertParseSuccess(plannerCommandParser, " goto/tmr", plannerCommand);
 
-        String message3 = GotoDateUtil.parseGotoDay(LocalDate.of(2020, 10, 18));
-        plannerCommand = new PlannerCommand(message3, new TaskDueInPredicate(LocalDate.of(2020, 10, 18)));
+        LocalDate localDate1 = LocalDate.of(2020, 10, 18);
+        String message3 = GotoDateUtil.parseGotoDay(localDate1);
+        plannerCommand = new PlannerCommand(message3, localDate1, null, new TaskDueInPredicate(localDate1));
         assertParseSuccess(plannerCommandParser, " goto/18-Oct-2020", plannerCommand);
         assertParseSuccess(plannerCommandParser, " goto/18-10-2020", plannerCommand);
 
-        String message4 = GotoDateUtil.parseGotoMonth(YearMonth.of(2020, 10));
-        plannerCommand = new PlannerCommand(message4, new TaskDueInPredicate(YearMonth.of(2020, 10)));
+        YearMonth yearMonth1 = YearMonth.of(2020, 10);
+        String message4 = GotoDateUtil.parseGotoMonth(yearMonth1);
+        plannerCommand = new PlannerCommand(message4, null, yearMonth1, new TaskDueInPredicate(yearMonth1));
         assertParseSuccess(plannerCommandParser, " goto/Oct-2020", plannerCommand);
         assertParseSuccess(plannerCommandParser, " goto/10-2020", plannerCommand);
     }
