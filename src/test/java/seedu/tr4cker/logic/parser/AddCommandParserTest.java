@@ -24,6 +24,7 @@ import static seedu.tr4cker.logic.parser.CommandParserTestUtil.assertParseFailur
 import static seedu.tr4cker.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.tr4cker.testutil.TypicalTasks.MANUAL_TASK1;
 import static seedu.tr4cker.testutil.TypicalTasks.MANUAL_TASK2;
+import static seedu.tr4cker.testutil.TypicalTasks.MANUAL_TASK_DEFAULT_DEADLINE;
 
 import org.junit.jupiter.api.Test;
 
@@ -71,6 +72,10 @@ public class AddCommandParserTest {
         Task expectedTask = new TaskBuilder(MANUAL_TASK1).withTags().build();
         assertParseSuccess(parser, NAME_DESC_1 + DEADLINE_DESC_1 + DESCRIPTION_DESC_1,
                 new AddCommand(expectedTask));
+        // no deadline
+        expectedTask = new TaskBuilder(MANUAL_TASK_DEFAULT_DEADLINE).withTags().build();
+        assertParseSuccess(parser, NAME_DESC_1 + DESCRIPTION_DESC_1,
+                new AddCommand(expectedTask));
     }
 
     @Test
@@ -79,10 +84,6 @@ public class AddCommandParserTest {
 
         // missing name prefix
         assertParseFailure(parser, VALID_NAME_2 + DEADLINE_DESC_2 + DESCRIPTION_DESC_2,
-                expectedMessage);
-
-        // missing deadline prefix
-        assertParseFailure(parser, NAME_DESC_2 + VALID_DEADLINE_2 + DESCRIPTION_DESC_2,
                 expectedMessage);
 
         // missing description prefix
