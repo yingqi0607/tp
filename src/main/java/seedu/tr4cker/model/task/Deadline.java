@@ -28,7 +28,7 @@ public class Deadline {
 
     public static final DateTimeFormatter DATE_TIME_FORMAT = DateTimeFormatter.ofPattern("dd-[MM][MMM]-yyyy HHmm");
     public static final String DEFAULT_TIME = " 2359";
-    public static final String DEFAULT_TODAY = LocalDateTime.now().format(DATE_TIME_FORMAT).split(" ")[0];
+    public static final String DEFAULT_DATE_TODAY = LocalDateTime.now().format(DATE_TIME_FORMAT).split(" ")[0];
     private final LocalDateTime dateTime;
 
     /**

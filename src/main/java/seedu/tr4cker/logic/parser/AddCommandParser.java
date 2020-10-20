@@ -41,7 +41,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Deadline deadline;
         if (argMultimap.getValue(PREFIX_DEADLINE).isEmpty()) {
-            deadline = ParserUtil.parseDeadline(Deadline.DEFAULT_TODAY);
+            deadline = ParserUtil.parseDeadline(Deadline.DEFAULT_DATE_TODAY);
         } else {
             deadline = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_DEADLINE).get());
         }
