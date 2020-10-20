@@ -11,7 +11,6 @@ import seedu.tr4cker.commons.core.LogsCenter;
 import seedu.tr4cker.logic.Logic;
 import seedu.tr4cker.logic.commands.CommandResult;
 import seedu.tr4cker.model.planner.PlannerDay;
-import seedu.tr4cker.model.util.GotoDateUtil;
 import seedu.tr4cker.ui.TaskListPanel;
 import seedu.tr4cker.ui.UiPart;
 

@@ -19,13 +19,13 @@ import seedu.tr4cker.ui.UiPart;
 public class PlannerCalendarPanel extends UiPart<Region> {
 
     private static final String FXML = "PlannerCalendarPanel.fxml";
+    private static int count;
     private final Logger logger = LogsCenter.getLogger(PlannerCalendarPanel.class);
 
     private final PlannerDay plannerDay;
     private final ArrayList<PlannerDayCard> plannerDayCards = new ArrayList<>();
     private int month;
     private int year;
-    private static int count;
 
     @FXML
     private GridPane calendarTable;
