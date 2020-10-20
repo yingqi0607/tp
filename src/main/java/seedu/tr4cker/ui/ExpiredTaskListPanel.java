@@ -8,7 +8,6 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.tr4cker.commons.core.LogsCenter;
-import seedu.tr4cker.model.task.Deadline;
 import seedu.tr4cker.model.task.Task;
 
 /**
@@ -26,8 +25,7 @@ public class ExpiredTaskListPanel extends UiPart<Region> {
      */
     public ExpiredTaskListPanel(ObservableList<Task> taskList) {
         super(FXML);
-        expiredTaskListView.setItems(taskList.filtered(x ->
-                !Deadline.isFutureDeadline(x.getDeadline().toString()) && !x.isCompleted()));
+        expiredTaskListView.setItems(taskList);
         expiredTaskListView.setCellFactory(listView -> new TaskListViewCell());
     }
 

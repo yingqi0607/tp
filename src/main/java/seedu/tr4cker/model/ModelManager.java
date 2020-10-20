@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.tr4cker.commons.core.GuiSettings;
 import seedu.tr4cker.commons.core.LogsCenter;
+import seedu.tr4cker.model.task.Deadline;
 import seedu.tr4cker.model.task.Task;
 
 /**
@@ -22,6 +23,7 @@ public class ModelManager implements Model {
     private final Tr4cker tr4cker;
     private final UserPrefs userPrefs;
     private final FilteredList<Task> filteredTasks;
+    private final FilteredList<Task> filteredExpiredTasks;
     private final FilteredList<Task> plannerFilteredTasks;
 
     /**
@@ -36,6 +38,8 @@ public class ModelManager implements Model {
         this.tr4cker = new Tr4cker(tr4cker);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredTasks = new FilteredList<>(this.tr4cker.getTaskList());
+        filteredExpiredTasks = new FilteredList<>(this.tr4cker.getTaskList().filtered(
+            x -> !Deadline.isFutureDeadline(x.getDeadline().toString()) && !x.isCompleted()));
         plannerFilteredTasks = new FilteredList<>(this.tr4cker.getTaskList());
     }
 
@@ -123,6 +127,15 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Task> getFilteredTaskList() {
         return filteredTasks;
+    }
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Task}
+     * backed by the internal list of {@code versionedTr4cker}.
+     */
+    @Override
+    public ObservableList<Task> getFilteredExpiredTaskList() {
+        return filteredExpiredTasks;
     }
 
     /**

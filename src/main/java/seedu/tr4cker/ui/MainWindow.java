@@ -162,7 +162,7 @@ public class MainWindow extends UiPart<Stage> {
         taskListPanel = new TaskListPanel(logic.getFilteredTaskList());
         taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
 
-        expiredTaskListPanel = new ExpiredTaskListPanel(logic.getFilteredTaskList());
+        expiredTaskListPanel = new ExpiredTaskListPanel(logic.getFilteredExpiredTaskList());
         expiredTaskListPanelPlaceholder.getChildren().add(expiredTaskListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
