@@ -143,16 +143,20 @@ The 2 main functions of Planner feature are to:
 2. Displays an overview of tasks on a specified date/month
 
 #### Implementation \[will be updated with UML diagrams]
-The planner panel is facilitated by the `PlannerPanel` class, which serves as the entry point to show users the calendar
-and tasks list side-by-side. 
+To implement the UI of this planner feature, there is a `planner` package in `model` and `ui` packages. To implement 
+the commands of this planner feature, there are `PlannerCommand` and `PlannerCommandParser` classes in `logic` package.
+Given below is the class diagram (Figure 1) of how the UI aspect of this planner feature is being implemented:
+![PlannerClassDiagram](images/PlannerClassDiagram.png)
+Figure 1: Planner Class Diagram
 
-To illustrate how the 2 functions work step-by-step, given below are 3 example usage scenarios:
+To illustrate how the commands work step-by-step, given below are 3 example usage scenarios:
 
-1. Displays an overview of tasks for today 
+1. Displays an overview of tasks for today - `planner goto/today`
 
-2. Displays an overview of tasks on a specified date
+2. Displays an overview of tasks on a specified date - `planner goto/09-12-2020`
 
-3. Displays an overview of tasks on a specified month
+3. Displays an overview of tasks on a specified month - `planner goto/Oct-2020`
+
 
 #### Design considerations:
 

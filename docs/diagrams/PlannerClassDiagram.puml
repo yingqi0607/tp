@@ -1,0 +1,46 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor PLANNER_COLOR
+skinparam classBackgroundColor PLANNER_COLOR
+skinparam ClassAttributeFontColor #FFFFFF
+skinparam classAttributeIconSize 0
+
+class Logic LOGIC_COLOR {
+    +getPlannerFilteredTaskList(): ObservableList<Task>
+}
+
+class PlannerTabWindow {
+    +PlannerTabWindow(Logic)
+    +updateCalendar(CommandResult): void
+}
+
+class PlannerCalendarPanel {
+    +PlannerCalendarPanel(PlannerDay)
+    +fillCalendarTable(PlannerDay): void
+    +clearCalendar(): void
+    +changeCalendarMonthYear(YearMonth): void
+}
+
+class PlannerDayCard {
+    +PlannerDayCard(PlannerDay)
+    +clear(): void
+}
+
+class PlannerDay {
+    +PlannerDay(LocalDate)
+    +{static} getCurrDay(): PlannerDay
+    +createFirstDayOfMonth(): PlannerDay
+}
+
+class TaskListPanel {
+    +TaskListPanel(ObservableList<Task>)
+}
+
+PlannerTabWindow -right-> Logic
+PlannerTabWindow "1" *-down-> "1" PlannerCalendarPanel : < is stored in
+PlannerTabWindow "1" *-down-> "1" TaskListPanel : < is stored in
+PlannerCalendarPanel "1" *-down-> "plannerDayCards *" PlannerDayCard
+PlannerCalendarPanel "1" --> "*" PlannerDay
+PlannerDayCard "1" --> "1" PlannerDay
+@enduml
