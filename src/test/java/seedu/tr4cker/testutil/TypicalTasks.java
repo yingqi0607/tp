@@ -58,6 +58,8 @@ public class TypicalTasks {
             .withCompletionStatus(0).withTaskDescription("Task H description").build();
     public static final Task TASK_I = new TaskBuilder().withName("TASK I").withDeadline("27-Sep-2021 2359")
             .withCompletionStatus(0).withTaskDescription("Task I description").build();
+    public static final Task TASK_J = new TaskBuilder().withName("TASK J").withDeadline("20-Oct-2021 1800")
+            .withCompletionStatus(0).withTaskDescription("Task J description").build();
 
     // Manually added - Task's details found in {@code CommandTestUtil}
     public static final Task MANUAL_TASK1 = new TaskBuilder().withName(VALID_NAME_1).withDeadline(VALID_DEADLINE_1)
