@@ -11,7 +11,7 @@ import seedu.tr4cker.commons.core.LogsCenter;
 import seedu.tr4cker.model.task.Task;
 
 /**
- * Panel containing the list of tasks.
+ * Panel containing the list of expired tasks.
  */
 public class ExpiredTaskListPanel extends UiPart<Region> {
     private static final String FXML = "ExpiredTaskListPanel.fxml";
