@@ -1,0 +1,45 @@
+{
+  "_comment": "TR4CKER save file which contains the same Task values as in TypicalTasks#getTypicalTr4cker()",
+  "tasks" : [ {
+    "name" : "Task1Name",
+    "deadline" : "20-Oct-2021 1800",
+    "completionStatus" : 0,
+    "description" : "Task 1 description"
+  }, {
+    "name" : "Task2 Name",
+    "deadline" : "30-09-2021 2359",
+    "completionStatus" : 0,
+    "description" : "Task 2 description",
+    "tagged" : [ "graded", "assignment" ]
+  }, {
+    "name" : "Task3 Name",
+    "deadline" : "10-03-2021 1200",
+    "completionStatus" : 0,
+    "description" : "Task 3 description",
+    "tagged" : [ ]
+  }, {
+    "name" : "Task4 Name",
+    "deadline" : "21-09-2021 1500",
+    "completionStatus" : 0,
+    "description" : "Task 4 description",
+    "tagged" : [ "friends" ]
+  }, {
+    "name" : "Task5 Name",
+    "deadline" : "10-10-2021 1010",
+    "completionStatus" : 0,
+    "description" : "Task 5 description",
+    "tagged" : [ ]
+  }, {
+    "name" : "Task6 Name",
+    "deadline" : "25-12-2021 0000",
+    "completionStatus" : 0,
+    "description" : "Task 6 description",
+    "tagged" : [ ]
+  }, {
+    "name" : "Task7 Name",
+    "deadline" : "01-01-2021 0000",
+    "completionStatus" : 0,
+    "description" : "Task 7 description",
+    "tagged" : [ ]
+  } ]
+}

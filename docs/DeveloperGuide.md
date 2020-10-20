@@ -23,11 +23,11 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2021S1-CS2103T-T10-2/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 
 </div>
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2021S1-CS2103T-T10-2/tp/tree/master/src/main/java/seedu/tr4cker/Main.java) and [`MainApp`](https://github.com/AY2021S1-CS2103T-T10-2/tp/tree/master/src/main/java/seedu/tr4cker/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -62,11 +62,11 @@ The sections below give more details of each component.
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 **API** :
-[`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+[`Ui.java`](https://github.com/AY2021S1-CS2103T-T10-2/tp/tree/master/src/main/java/seedu/tr4cker/ui/Ui.java)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2021S1-CS2103T-T10-2/tp/tree/master/src/main/java/seedu/tr4cker/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -78,9 +78,9 @@ The `UI` component,
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
 **API** :
-[`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+[`Logic.java`](https://github.com/AY2021S1-CS2103T-T10-2/tp/tree/master/src/main/java/seedu/tr4cker/logic/Logic.java)
 
-1. `Logic` uses the `AddressBookParser` class to parse the user command.
+1. `Logic` uses the `Tr4ckerParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
 1. The command execution can affect the `Model` (e.g. adding a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
@@ -97,17 +97,17 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2021S1-CS2103T-T10-2/tp/tree/master/src/main/java/seedu/tr4cker/model/Model.java)
 
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the address book data.
+* stores the TR4CKER data.
 * exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `tr4cker`, which `Person` references. This allows `tr4cker` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
 ![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
 
 </div>
@@ -117,15 +117,15 @@ The `Model`,
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2021S1-CS2103T-T10-2/tp/tree/master/src/main/java/seedu/tr4cker/storage/Storage.java)
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
-* can save the address book data in json format and read it back.
+* can save the tr4cker data in json format and read it back.
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.tr4cker.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -133,41 +133,98 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Planner feature \[coming in v1.3]
+TR4CKER has a planner feature which provides users to view the calendar side-by-side with the tasks that are due on 
+specified day. This feature is to allow users to have a clearer view of their schedules and allow them to plan their
+time ahead, and hence increasing productivity.
+
+The 2 main functions of Planner feature are to:
+1. Displays an overview of tasks for today/tomorrow
+2. Displays an overview of tasks on a specified date/month
+
+#### Implementation \[will be updated with UML diagrams]
+The planner panel is facilitated by the `PlannerPanel` class, which serves as the entry point to show users the calendar
+and tasks list side-by-side. 
+
+To illustrate how the 2 functions work step-by-step, given below are 3 example usage scenarios:
+
+1. Displays an overview of tasks for today 
+
+2. Displays an overview of tasks on a specified date
+
+3. Displays an overview of tasks on a specified month
+
+#### Design considerations:
+
+##### Aspect 1: How users can easily navigate to today's/tomorrow's tasks list
+
+* **Current Choice:** Use the same `planner` command to navigate to today's/tomorrow's tasks list. For example, 
+`planner goto/today` would navigate users to today's tasks list and `planner goto/tomorrow` would navigate users to 
+tomorrow's tasks list. Short forms are also provided such as `tdy` and `tmr`.
+  * Pros: User-friendly as users would only need to know 1 command.
+  * Pros: Users can use short forms, which increase convenience.
+  * Cons: Users may not utilise this feature as they do not know the existence of it.
+
+* **Alternative 1:** Separate commands to allow users to navigate to today's/tomorrow's tasks list.
+  * Pros: Clearer error messages to prompt users that the input does not conform to standard.
+  * Cons: Need to ensure that the implementation of each individual command is correct.
+  * Cons: Not as user-friendly as users would need to know multiple commands now.
+  
+**Justification for current choice:** After thinking about how different commands would also have their own advantages,
+I chose to implement the current choice. The current implementation would allow users to only know 1 command, which would
+fairly be more user-friendly, especially after considering how TR4CKER also has many other commands available.
+The problem of users not knowing the existence of this command could be solved by documenting this feature clearly in the
+User Guide of TR4CKER.
+
+##### Aspect 2: \[tbc]
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo 
+history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the 
+following operations:
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+* `VersionedAddressBook#commit()` — Saves the current tr4cker state in its history.
+* `VersionedAddressBook#undo()` — Restores the previous tr4cker state from its history.
+* `VersionedAddressBook#redo()` — Restores a previously undone tr4cker state from its history.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and 
+`Model#redoAddressBook()` respectively.
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the 
+initial tr4cker state, and the `currentStatePointer` pointing to that single tr4cker state.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delete 5` command to delete the 5th task in the tr4cker. The `delete` command calls 
+`Model#commitAddressBook()`, causing the modified state of the tr4cker after the `delete 5` command executes to be saved 
+in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted tr4cker state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `add n/task 1 …​` to add a new task. The `add` command also calls 
+`Model#commitAddressBook()`, causing another modified tr4cker state to be saved into the `tr4ckerStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will 
+not call `Model#commitAddressBook()`, so the tr4cker state will not be saved into the `tr4ckerStateList`.
 
 </div>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 4. The user now decides that adding the task was a mistake, and decides to undo that action by executing the `undo` 
+command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the 
+left, pointing it to the previous tr4cker state, and restores the tr4cker to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, 
+pointing to the initial tr4cker state, then there are no previous tr4cker states to restore. The `undo` command uses 
+`Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
 than attempting to perform the undo.
 
 </div>
@@ -176,21 +233,31 @@ The following sequence diagram shows how the undo operation works:
 
 ![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end 
+at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </div>
 
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` 
+once to the right, pointing to the previously undone state, and restores the tr4cker to that state.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 
+`addressBookStateList.size() - 1`, pointing to the latest tr4cker state, then there are no undone AddressBook states to 
+restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error 
+to the user rather than attempting to perform the redo.
 
 </div>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+Step 5. The user then decides to execute the command `list`. Commands that do not modify the tr4cker, such as `list`, 
+will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the 
+`addressBookStateList` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not 
+pointing at the end of the `addressBookStateList`, all tr4cker states after the `currentStatePointer` will be purged. 
+Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop 
+applications follow.
 
 ![UndoRedoState5](images/UndoRedoState5.png)
 
@@ -202,7 +269,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ##### Aspect: How undo & redo executes
 
-* **Alternative 1 (current choice):** Saves the entire address book.
+* **Alternative 1 (current choice):** Saves the entire tr4cker.
   * Pros: Easy to implement.
   * Cons: May have performance issues in terms of memory usage.
 
@@ -243,8 +310,8 @@ _{Explain here how the data archiving feature will be implemented}_
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: TR4CKER is a desktop app that helps SoC students track their tasks, meet their deadlines, 
-and stay productive. It is optimized for Computing students familiar with CLI, who can manage their tasks efficiently 
+**Value proposition**: TR4CKER is a desktop app that helps SoC students track their tasks, meet their deadlines,
+and stay productive. It is optimized for Computing students familiar with CLI, who can manage their tasks efficiently
 by typing in commands.
 
 
@@ -254,50 +321,167 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| `* * *`  | user                                       | add a new task                 |                                                                        |
+| `* * *`  | user                                       | delete a task                  | remove tasks that I have completed or no longer need                   |
+| `* * *`  | user                                       | edit a task                    | change the tasks that I have entered wrongly without deleting it       |
+| `* * *`  | user                                       | view all tasks                 | have a overview of all tasks that I have                               |
+| `* * *`  | user                                       | find a task                    | find the tasks that match the keywords that I want to find             |
+| `* * *`  | user                                       | mark a task as completed       | when I complete a task, I want to mark it as completed                 |
+| `* * *`  | user                                       | exit from the program          | indicate that I am done with what I wanted to do                       |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `TR4CKER`: application and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC01 - Add a new task**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to add a new task.
+2.  TR4CKER requests for task details.
+3.  User provides task details.
+4.  TR4CKER inserts the new task to user's task list.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 3a. TR4CKER detects an error in entered task details.
+    * 3a1. TR4CKER requests for the correct task details.
+    * 3a2. User enters the new task details.
 
-  Use case ends.
+    Steps 3a1-3a2 are repeated until the details entered are correct.
 
-* 3a. The given index is invalid.
+    Use case resumes at step 4.
 
-    * 3a1. AddressBook shows an error message.
+**Use case: UC02 - Edit a task**
 
-      Use case resumes at step 2.
+**MSS**
 
-*{More to be added}*
+1.  User requests to <u>list task (UC07)</u>.
+2.  User requests to edit a specific task in the list.
+3.  TR4CKER asks for the index.
+4.  User provides index.
+5.  TR4CKER asks for the field that User wishes to edit for the task.
+6.  User provides field to edit.
+7.  TR4CKER asks for the edited task field.
+8.  User provides the new edited task field.
+9.  TR4CKER updates the selected field accordingly.
+
+    Use case ends.
+
+**Extensions**
+
+* 4a. TR4CKER detects an error in entered task index.
+    * 4a1. TR4CKER shows an error message.
+
+    Use case end.
+
+* 8a. TR4CKER detects an error in edited task field.
+    * 8a1. TR4CKER requests for the correct edited field.
+    * 8a2. User enters the new edited field.
+
+    Steps 8a1-8a2 are repeated until the edited field entered is correct.
+
+    Use case resumes at step 9.
+
+**Use case: UC03 - Delete a task**
+
+**MSS**
+
+1.  User requests to <u>list task (UC07)</u>.
+2.  User requests to delete a specific task in the list.
+3.  TR4CKER asks for the index.
+4.  User provides index.
+5.  TR4CKER requests for confirmation.
+6.  User confirms.
+7.  TR4CKER deletes the task from the list.
+
+    Use case ends.
+
+**Extensions**
+
+* 4a. TR4CKER detects an error in entered task index.
+    * 4a1. TR4CKER shows an error message.
+
+    Use case ends.
+
+**Use case: UC04 - Mark a task as done**
+
+**MSS**
+
+1.  User requests to <u>list task (UC07)</u>.
+2.  User requests to mark a specific task in the list as done.
+3.  TR4CKER marks the task as done.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. TR4CKER detects an error in entered task index.
+
+    * 2a1. TR4CKER shows an error message.
+
+     Use case ends.
+
+**Use case: UC05 - View a task**
+
+**MSS**
+
+1.  User requests to <u>list task (UC07)</u>.
+2.  User requests to view a specific task in the list.
+3.  TR4CKER shows the details of the task.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. TR4CKER detects an error in entered task index.
+
+    * 2a1. TR4CKER shows an error message.
+
+    Use case ends.
+
+**Use case: UC06 - Find related tasks**
+
+1.  User requests to find tasks using specified keyword(s).
+2.  TR4CKER shows a list of all tasks that match the given keyword(s).
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. No tasks match the specified keyword(s).
+
+    * 2a1. TR4CKER shows a 'no matches' error message.
+
+    Use case ends.
+
+**Use case: UC07 - List all tasks**
+
+**MSS**
+
+1.  User requests to list tasks.
+2.  TR4CKER shows a list of all tasks.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. TR4CKER's task list is empty.
+
+    * 2a1. TR4CKER shows an empty list.
+
+    Use case ends.
 
 ### Non-Functional Requirements
 
 1.  TR4CKER should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  TR4CKER should be able to hold up to **1000 tasks** without any noticeable sluggishness in performance for typical usage.
 3.  Users should be able to use TR4CKER without Internet connection, but accessing of User Guide or Developer Guide would require Internet.
-4.  Users with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to 
+4.  Users with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to
     accomplish most of the tasks faster using commands than using the mouse.
 5.  Users should be able to retain their information when they switch laptops if they have the `data folder` (created on first load)
     in the same directory as the `JAR file` on the other laptop.
@@ -309,7 +493,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Task**: An item to be completed by a certain deadline.
-* **CLI**: Command-Line Interface, a method of interacting with computer programs by typing lines of text. 
+* **CLI**: Command-Line Interface, a method of interacting with computer programs by typing lines of text.
 
 --------------------------------------------------------------------------------------------------------------------
 
