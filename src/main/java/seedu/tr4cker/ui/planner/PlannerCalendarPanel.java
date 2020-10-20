@@ -19,10 +19,13 @@ import seedu.tr4cker.ui.UiPart;
 public class PlannerCalendarPanel extends UiPart<Region> {
 
     private static final String FXML = "PlannerCalendarPanel.fxml";
+    private static int count;
     private final Logger logger = LogsCenter.getLogger(PlannerCalendarPanel.class);
 
     private final PlannerDay plannerDay;
     private final ArrayList<PlannerDayCard> plannerDayCards = new ArrayList<>();
+    private int month;
+    private int year;
 
     @FXML
     private GridPane calendarTable;
@@ -56,6 +59,11 @@ public class PlannerCalendarPanel extends UiPart<Region> {
                 currDay = currDay.getPrevDay();
             }
         }
+        if (count == 0) {
+            setCurrentMonth(currDay.getMonth());
+            setCurrentYear(currDay.getYear());
+        }
+        count++;
         for (int row = 0; row < 6; row++) {
             for (int col = 0; col < 7; col++) {
                 PlannerDayCard plannerDayCard = new PlannerDayCard(currDay);
@@ -67,12 +75,35 @@ public class PlannerCalendarPanel extends UiPart<Region> {
     }
 
     /**
+     * Sets the current month of the calendar.
+     */
+    public void setCurrentMonth(int month) {
+        this.month = month;
+    }
+
+    /**
+     * Sets the current year of the calendar.
+     */
+    public void setCurrentYear(int year) {
+        this.year = year;
+    }
+
+    /**
      * Gets the current month of the calendar.
      *
      * @return Current month.
      */
     public int getCurrentMonth() {
-        return plannerDay.getMonth();
+        return month;
+    }
+
+    /**
+     * Gets the current year of the calendar.
+     *
+     * @return Current year.
+     */
+    public int getCurrentYear() {
+        return year;
     }
 
     /**

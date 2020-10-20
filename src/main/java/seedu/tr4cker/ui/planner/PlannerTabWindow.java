@@ -11,7 +11,6 @@ import seedu.tr4cker.commons.core.LogsCenter;
 import seedu.tr4cker.logic.Logic;
 import seedu.tr4cker.logic.commands.CommandResult;
 import seedu.tr4cker.model.planner.PlannerDay;
-import seedu.tr4cker.model.util.GotoDateUtil;
 import seedu.tr4cker.ui.TaskListPanel;
 import seedu.tr4cker.ui.UiPart;
 
@@ -54,16 +53,29 @@ public class PlannerTabWindow extends UiPart<Region> {
         LocalDate localDate = commandResult.getLocalDate();
         YearMonth yearMonth = commandResult.getYearMonth();
         if (localDate != null && yearMonth == null) { // user wants to go to specified date
-            if (localDate.getMonthValue() == plannerCalendarPanel.getCurrentMonth()) {
-                int dayIndex = localDate.getDayOfMonth();
-                if (localDate.equals(GotoDateUtil.getToday())) {
-                    // need to do UI
-                } else {
+            int year = localDate.getYear();
+            int month = localDate.getMonthValue();
+            int date = localDate.getDayOfMonth();
+            plannerCalendarPanel.setCurrentYear(year);
+            plannerCalendarPanel.setCurrentMonth(month);
+            if (localDate.getMonthValue() == plannerCalendarPanel.getCurrentMonth()
+                    && localDate.getYear() == plannerCalendarPanel.getCurrentYear()) {
+                // check if date is the same as current highlighted day, else need to change highlight
 
-                    // need to do UI
-                }
+            } else {
+                // check if date is the same as current highlighted day, else need to change highlight
+                LocalDate newDate = LocalDate.of(year, month, 1);
+                YearMonth newYearMonth = YearMonth.of(year, month);
+                PlannerDay newDay = new PlannerDay(newDate);
+                plannerCalendarPanel.clearCalendar();
+                plannerCalendarPanel.changeCalendarMonthYear(newYearMonth);
+                plannerCalendarPanel.fillCalendarTable(newDay);
             }
         } else if (localDate == null && yearMonth != null) { // user wants to go to specified month
+            int year = yearMonth.getYear();
+            int month = yearMonth.getMonthValue();
+            plannerCalendarPanel.setCurrentYear(year);
+            plannerCalendarPanel.setCurrentMonth(month);
             LocalDate firstDayOfMonth = yearMonth.atDay(1);
             PlannerDay newDay = new PlannerDay(firstDayOfMonth);
             plannerCalendarPanel.clearCalendar();
