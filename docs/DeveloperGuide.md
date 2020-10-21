@@ -133,7 +133,33 @@ Classes used by multiple components are in the `seedu.tr4cker.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Planner feature \[coming in v1.3]
+### Categorised Tasks Handling feature in Home tab \[coming in v1.3] (Han Wei)
+
+### Feature introduction 
+This feature allows users to view and handle tasks under 3 categories separately.
+
+### Implementation details
+This feature comes in the form of a Task List panel, which is made up of three sub-panels:
+1. Pending tasks (Incomplete tasks that are not overdue)
+2. Expired tasks (Incomplete tasks that are overdue)
+3. Completed tasks (Archived tasks)
+
+Upon starting the app or refreshing of task lists, tasks which deadlines have passed will automatically appear under Expired tasks panel.  
+Users can modify tasks displayed in the Expired task panel using the Edit command. 
+
+The following diagram shows the sequence flow of a EditCommand which modifies the deadline of a task in the Expired task list:
+![EditActivityDiagram](images/EditActivityDiagram.png)    
+Figure 1: Edit deadline of expired task Activity Diagram
+
+Once the user marks a task as complete, it will automatically appear under Completed tasks.
+
+### Design considerations:
+
+#### Aspect 1: How users can easily view and control all the tasks
+This design filters the tasks into 3 lists according to their completion statuses and deadlines which will be useful to the users, 
+as opposed to having browse through a long task list. 
+
+### Planner feature \[coming in v1.3] (Rui Ling)
 TR4CKER has a planner feature which provides users to view the calendar side-by-side with the tasks that are due on 
 specified day. This feature is to allow users to have a clearer view of their schedules and allow them to plan their
 time ahead, and hence increasing productivity.
@@ -216,7 +242,7 @@ User Guide of TR4CKER.
 
 ##### Aspect 2: \[tbc]
 
-### Countdown feature \[coming in v1.3]
+### Countdown feature \[coming in v1.3] (Wen Ling)
 TR4CKER has a countdowns tab which allows users to add important dates and times that they would like TR4CKER to countdown to.
 This feature allows users to isolate the most important time sensitive events and deadlines, and know exactly how much time 
 they have before a certain event, which enhances the tracking experience.
