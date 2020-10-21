@@ -11,7 +11,7 @@
         <children>
             <Label fx:id="taskListPanelTitle" alignment="CENTER" contentDisplay="CENTER"
                    prefHeight="30.0" prefWidth="${taskListPanelTitleHolder.width}"
-                   text="Upcoming Tasks" textAlignment="CENTER">
+                   text="Pending Tasks" textAlignment="CENTER">
             </Label>
         </children>
     </Pane>

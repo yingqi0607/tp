@@ -219,6 +219,7 @@ public class MainWindow extends UiPart<Stage> {
     public void handleShowTabHome() {
         tabPane.getSelectionModel().select(HOME);
         setTabColors(HOME);
+        logger.info("Homepage tab is selected");
     }
 
     /**
