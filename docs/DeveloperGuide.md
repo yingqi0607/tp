@@ -253,6 +253,30 @@ currently displayed, and `countdown previous` with display the event before the 
 to know what is the next upcoming event, for example what is the next exam that they have to prepare for. The first implementation
 is also less prone to errors as users do are able to know what is the next event without knowing beforehand what day is it on.
 
+### Module feature \[coming in v1.3]
+TR4CKER has a module tab which provides users with an alternate view of tasks. Tasks arranged in shorter lists categorized by modules. 
+This feature is to allow users to have a more focused overview of tasks and their associated modules, and know how many tasks are
+pending for each module as opposed to the most-urgent-task-first organization in the main task list.
+
+The 2 main functions of the Module feature are to:
+1. Display all modules taken by the user.
+2. Display a list of yet to be completed tasks under each module.
+
+#### Implementation
+To implement the UI of this planner feature, will be a `ModuleTaskCard` & `ModuleTaskListPanel` classes in the `ui` package, which will be 
+modified from the `TaskCard` class. To implement the commands of this module feature, 
+there are `ModuleCommnad` and `ModuleCommandParser` classes in `logic` package.
+
+#### Design considerations:
+
+##### Aspect 1: Users should be able to easily view the next most recent event
+
+* **Current Choice:**
+
+* **Alternative 1:**
+  
+**Justification for current choice:**
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
