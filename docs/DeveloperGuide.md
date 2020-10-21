@@ -148,7 +148,7 @@ Upon starting the app or refreshing of task lists, tasks which deadlines have pa
 Users can modify tasks displayed in the Expired task panel using the Edit command.
 
 The following diagram shows the sequence flow of a EditCommand which modifies the deadline of a task in the Expired task list:
-![EditActivityDiagram](images/EditActivityDiagram.png)    
+![EditActivityDiagram](images/EditActivityDiagram.png)
 Figure 1: Edit deadline of expired task Activity Diagram
 
 Once the user marks a task as complete, it will automatically appear under Completed tasks.
@@ -233,7 +233,7 @@ tomorrow's tasks list. Short forms are also provided such as `tdy` and `tmr`.
   * Pros: Clearer error messages to prompt users that the input does not conform to standard.
   * Cons: Need to ensure that the implementation of each individual command is correct.
   * Cons: Not as user-friendly as users would need to know multiple commands now.
-  
+
 **Justification for current choice:** After thinking about how different commands would also have their own advantages,
 I chose to implement the current choice. The current implementation would allow users to only know 1 command, which would
 fairly be more user-friendly, especially after considering how TR4CKER also has many other commands available.
@@ -253,7 +253,7 @@ The 2 main functions of the Countdown feature are to:
 
 #### Implementation \[will be updated with UML diagrams]
 The countdown panel is facilitated by the `CountdownPanel` class, which serves as the entry point to show users the countdown
-events as a list. 
+events as a list.
 
 To illustrate how the 2 functions work step-by-step, given below are 3 example usage scenarios:
 
@@ -274,7 +274,7 @@ currently displayed, and `countdown previous` with display the event before the 
 * **Alternative 1:** Another command to allow users to navigate to the events in a specified day.
   * Pros: More user-friendly as it is faster to navigate to a particular event on a particular day.
   * Cons: Requires user to already know what days have events in the countdown list.
-  
+
 **Justification for current choice:** Considering how users who are using the countdown feature will prefer to be able
 to know what is the next upcoming event, for example what is the next exam that they have to prepare for. The first implementation
 is also less prone to errors as users do are able to know what is the next event without knowing beforehand what day is it on.
