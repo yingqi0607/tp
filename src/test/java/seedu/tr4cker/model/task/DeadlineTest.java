@@ -11,13 +11,13 @@ public class DeadlineTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new Deadline(null));
+        assertThrows(NullPointerException.class, () -> new Deadline(null, false));
     }
 
     @Test
     public void constructor_invalidDeadline_throwsIllegalArgumentException() {
         String invalidDeadline = "";
-        assertThrows(IllegalArgumentException.class, () -> new Deadline(invalidDeadline));
+        assertThrows(IllegalArgumentException.class, () -> new Deadline(invalidDeadline, false));
     }
 
     @Test
@@ -63,8 +63,8 @@ public class DeadlineTest {
 
     @Test
     public void testHashcode() {
-        Deadline deadline1 = new Deadline("02-12-2021 1800");
-        Deadline deadline2 = new Deadline("02-12-2021 1800");
+        Deadline deadline1 = new Deadline("02-12-2021 1800", false);
+        Deadline deadline2 = new Deadline("02-12-2021 1800", false);
         assertEquals(deadline1.hashCode(), deadline2.hashCode());
     }
 

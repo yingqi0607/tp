@@ -95,6 +95,10 @@ public class Task {
                 && (otherTask.getDeadline().equals(getDeadline()));
     }
 
+    public boolean isCompleted() {
+        return completionStatus.value == 100;
+    }
+
     /**
      * Returns true if both tasks have the same identity and data fields.
      * This defines a stronger notion of equality between two tasks.

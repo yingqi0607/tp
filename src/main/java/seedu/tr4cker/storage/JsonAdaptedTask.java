@@ -86,7 +86,7 @@ class JsonAdaptedTask {
         if (!Deadline.isValidDeadline(deadline)) {
             throw new IllegalValueException(Deadline.MESSAGE_CONSTRAINTS);
         }
-        final Deadline modelDeadline = new Deadline(deadline);
+        final Deadline modelDeadline = new Deadline(deadline, false);
 
         /*
         no null check for CompletionStatus

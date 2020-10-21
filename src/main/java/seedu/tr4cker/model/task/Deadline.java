@@ -15,10 +15,12 @@ public class Deadline {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Invalid format to input Deadline. Please ensure the following:\n"
-                    + "1. Enter a valid date\n"
+                    + "1. Enter a valid date and time (in 24Hr)\n"
                     + "2. Formats accepted: dd-MM-yyyy HHmm and dd-MMM-yyyy HHmm\n"
-                    + "(e.g. 25-01-2021 1800 or 25-Jan-2021 1800)\n"
-                    + "3. If deadline time is not entered, it will be set to 2359 by default";
+                    + "(e.g. 25-01-2021 1800 and 25-Jan-2021 1800)\n"
+                    + "3. First alphabet of Month is in upper-case, (e.g. Feb instead of feb)\n"
+                    + "4. Natural dates accepted: days of week (e.g. Today, Monday, Sunday)\n"
+                    + "If deadline date/time is not entered, it will be set to today/2359 by default";
     public static final String MESSAGE_FUTURE_CONSTRAINT =
             "Deadline should be a time in the future";
     public static final String VALIDATION_REGEX_MM = "\\d{2}-\\d{2}-\\d{4} \\d{4}";
@@ -26,17 +28,21 @@ public class Deadline {
 
     public static final DateTimeFormatter DATE_TIME_FORMAT = DateTimeFormatter.ofPattern("dd-[MM][MMM]-yyyy HHmm");
     public static final String DEFAULT_TIME = " 2359";
+    public static final String DEFAULT_DATE_TODAY = LocalDateTime.now().format(DATE_TIME_FORMAT).split(" ")[0];
     private final LocalDateTime dateTime;
 
     /**
      * Constructs a {@code Deadline}.
      *
      * @param deadline A valid deadline time.
+     * @param isNewTask if deadline belongs to a new Task.
      */
-    public Deadline(String deadline) {
+    public Deadline(String deadline, boolean isNewTask) {
         requireNonNull(deadline);
         checkArgument(isValidDeadline(deadline), MESSAGE_CONSTRAINTS);
-        checkArgument(isFutureDeadline(deadline), MESSAGE_FUTURE_CONSTRAINT);
+        if (isNewTask) {
+            checkArgument(isFutureDeadline(deadline), MESSAGE_FUTURE_CONSTRAINT);
+        }
         dateTime = LocalDateTime.parse(deadline, DATE_TIME_FORMAT);
     }
 

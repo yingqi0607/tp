@@ -5,12 +5,24 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.tr4cker.commons.core.GuiSettings;
+import seedu.tr4cker.model.task.Deadline;
 import seedu.tr4cker.model.task.Task;
 
 /** The API of the Model component. */
 public interface Model {
     /** {@code Predicate} that always evaluate to true. */
     Predicate<Task> PREDICATE_SHOW_ALL_TASKS = unused -> true;
+
+    /** {@code Predicate} that evaluates to true when task is not expired. */
+    Predicate<Task> PREDICATE_SHOW_PENDING_TASKS = task -> Deadline.isFutureDeadline(task.getDeadline().toString())
+            && !task.isCompleted();
+
+    /** {@code Predicate} that evaluates to true when task is expired. */
+    Predicate<Task> PREDICATE_SHOW_EXPIRED_TASKS = task -> !Deadline.isFutureDeadline(task.getDeadline().toString())
+            && !task.isCompleted();
+
+    /** {@code Predicate} that evaluates to true when task is completed. */
+    Predicate<Task> PREDICATE_SHOW_COMPLETED_TASKS = Task::isCompleted;
 
     /** Replaces user prefs data with the data in {@code userPrefs}. */
     void setUserPrefs(ReadOnlyUserPrefs userPrefs);
@@ -61,6 +73,12 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered task list. */
     ObservableList<Task> getFilteredTaskList();
 
+    /** Returns an unmodifiable view of the filtered expired task list. */
+    ObservableList<Task> getFilteredExpiredTaskList();
+
+    /** Returns an unmodifiable view of the filtered completed task list. */
+    ObservableList<Task> getFilteredCompletedTaskList();
+
     /** Returns an unmodifiable view of the filtered task list for PlannerDay. */
     ObservableList<Task> getPlannerFilteredTaskList();
 
@@ -69,6 +87,18 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredTaskList(Predicate<Task> predicate);
+
+    /**
+     * Updates the filter of the filtered expired task list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredExpiredTaskList(Predicate<Task> predicate);
+
+    /**
+     * Updates the filter of the filtered completed task list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredCompletedTaskList(Predicate<Task> predicate);
 
     /**
      * Updates the filter of the filtered task list to filter by the given {@code predicate} for PlannerDay.

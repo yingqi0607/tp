@@ -29,11 +29,11 @@ public class ParserUtilTest {
     private static final String INVALID_COMPLETION_STATUS_1 = "1000";
     private static final String INVALID_COMPLETION_STATUS_2 = "-5";
     private static final String INVALID_DEADLINE = "90-90-2021 9999";
-    private static final String INVALID_EXPIRED_DEADLINE = "01-01-2020 2359";
     private static final String INVALID_NATURAL_DEADLINE_1 = "Tuesdday";
     private static final String INVALID_NATURAL_DEADLINE_2 = "Tuesday 2500";
     private static final String INVALID_DESCRIPTION = " ";
     private static final String INVALID_TAG = "#friend";
+    private static final String EXPIRED_DEADLINE = "01-01-2020 2359";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_COMPLETION_STATUS = "50";
@@ -116,6 +116,22 @@ public class ParserUtilTest {
     }
 
     @Test
+    public void parseDeadline_expiredDeadline_throwsIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, () -> new Deadline(EXPIRED_DEADLINE, true));
+    }
+
+    @Test
+    public void parseDeadline_expiredDeadline_returnsDeadline() {
+        boolean isCreated = true;
+        try {
+            Deadline expectedDeadline = new Deadline(EXPIRED_DEADLINE, false);
+        } catch (IllegalArgumentException e) {
+            isCreated = false;
+        }
+        assertTrue(isCreated);
+    }
+
+    @Test
     public void parseDeadline_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseDeadline((String) null));
     }
@@ -123,14 +139,14 @@ public class ParserUtilTest {
     @Test
     public void parseDeadline_invalidValue_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseDeadline(INVALID_DEADLINE));
-        assertThrows(ParseException.class, () -> ParserUtil.parseDeadline(INVALID_EXPIRED_DEADLINE));
+        assertThrows(ParseException.class, () -> ParserUtil.parseDeadline(EXPIRED_DEADLINE));
         assertThrows(ParseException.class, () -> ParserUtil.parseDeadline(INVALID_NATURAL_DEADLINE_1));
         assertThrows(ParseException.class, () -> ParserUtil.parseDeadline(INVALID_NATURAL_DEADLINE_2));
     }
 
     @Test
     public void parseDeadline_validValueWithoutWhitespace_returnsDeadline() throws Exception {
-        Deadline expectedDeadline = new Deadline(VALID_DEADLINE_MM);
+        Deadline expectedDeadline = new Deadline(VALID_DEADLINE_MM, false);
         assertEquals(expectedDeadline, ParserUtil.parseDeadline(VALID_DEADLINE_MM));
         assertEquals(expectedDeadline, ParserUtil.parseDeadline(VALID_DEADLINE_MMM));
         assertEquals(expectedDeadline, ParserUtil.parseDeadline(VALID_DEADLINE_NO_TIME_MM));
@@ -138,20 +154,20 @@ public class ParserUtilTest {
 
         String expectedDate = LocalDate.now().with(next(FRIDAY))
                 .format(NaturalDateUtil.DATE_TIME_FORMATTER);
-        expectedDeadline = new Deadline(expectedDate + " 2200");
+        expectedDeadline = new Deadline(expectedDate + " 2200", false);
         assertEquals(expectedDeadline, ParserUtil.parseDeadline("friday 2200"));
-        expectedDeadline = new Deadline(expectedDate + " 2359");
+        expectedDeadline = new Deadline(expectedDate + " 2359", false);
         assertEquals(expectedDeadline, ParserUtil.parseDeadline("friday"));
 
         expectedDeadline = new Deadline(LocalDate.now().format(NaturalDateUtil.DATE_TIME_FORMATTER)
-                + " 2359");
+                + " 2359", false);
         assertEquals(expectedDeadline, ParserUtil.parseDeadline("today"));
     }
 
     @Test
     public void parseDeadline_validValueWithWhitespace_returnsTrimmedDeadline() throws Exception {
         String deadlineWithWhitespace = WHITESPACE + VALID_DEADLINE_MM + WHITESPACE;
-        Deadline expectedDeadline = new Deadline(VALID_DEADLINE_MM);
+        Deadline expectedDeadline = new Deadline(VALID_DEADLINE_MM, false);
         assertEquals(expectedDeadline, ParserUtil.parseDeadline(deadlineWithWhitespace));
     }
 

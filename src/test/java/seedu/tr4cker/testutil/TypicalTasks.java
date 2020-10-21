@@ -16,6 +16,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.tr4cker.model.Tr4cker;
+import seedu.tr4cker.model.task.Deadline;
 import seedu.tr4cker.model.task.Task;
 
 /**
@@ -65,8 +66,11 @@ public class TypicalTasks {
             .withTags(VALID_TAG_HELP).build();
     public static final Task MANUAL_TASK2 = new TaskBuilder().withName(VALID_NAME_2).withDeadline(VALID_DEADLINE_2)
             .withCompletionStatus(VALID_COMPLETION_STATUS_2).withTaskDescription(VALID_DESCRIPTION_2)
-            .withTags(VALID_TAG_URGENT, VALID_TAG_HELP)
-            .build();
+            .withTags(VALID_TAG_URGENT, VALID_TAG_HELP).build();
+    public static final Task MANUAL_TASK_DEFAULT_DEADLINE = new TaskBuilder().withName(VALID_NAME_1)
+            .withDeadline(Deadline.DEFAULT_DATE_TODAY + Deadline.DEFAULT_TIME)
+            .withCompletionStatus(VALID_COMPLETION_STATUS_1).withTaskDescription(VALID_DESCRIPTION_1)
+            .withTags(VALID_TAG_HELP).build();
 
     private TypicalTasks() {} // prevents instantiation
 

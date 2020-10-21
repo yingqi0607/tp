@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.tr4cker.commons.core.GuiSettings;
 import seedu.tr4cker.commons.core.LogsCenter;
+import seedu.tr4cker.model.task.Deadline;
 import seedu.tr4cker.model.task.Task;
 
 /**
@@ -22,6 +23,8 @@ public class ModelManager implements Model {
     private final Tr4cker tr4cker;
     private final UserPrefs userPrefs;
     private final FilteredList<Task> filteredTasks;
+    private final FilteredList<Task> filteredExpiredTasks;
+    private final FilteredList<Task> filteredCompletedTasks;
     private final FilteredList<Task> plannerFilteredTasks;
 
     /**
@@ -35,7 +38,13 @@ public class ModelManager implements Model {
 
         this.tr4cker = new Tr4cker(tr4cker);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredTasks = new FilteredList<>(this.tr4cker.getTaskList());
+        //filteredTasks = new FilteredList<>(this.tr4cker.getTaskList();
+        filteredTasks = new FilteredList<>(this.tr4cker.getTaskList().filtered(
+            x -> Deadline.isFutureDeadline(x.getDeadline().toString()) && !x.isCompleted()));
+        filteredExpiredTasks = new FilteredList<>(this.tr4cker.getTaskList().filtered(
+            x -> !Deadline.isFutureDeadline(x.getDeadline().toString()) && !x.isCompleted()));
+        filteredCompletedTasks = new FilteredList<>(this.tr4cker.getTaskList().filtered(
+            Task::isCompleted));
         plannerFilteredTasks = new FilteredList<>(this.tr4cker.getTaskList());
     }
 
@@ -104,7 +113,7 @@ public class ModelManager implements Model {
     @Override
     public void addTask(Task task) {
         tr4cker.addTask(task);
-        updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+        updateFilteredTaskList(PREDICATE_SHOW_PENDING_TASKS);
     }
 
     @Override
@@ -127,6 +136,24 @@ public class ModelManager implements Model {
 
     /**
      * Returns an unmodifiable view of the list of {@code Task}
+     * backed by the internal list of {@code versionedTr4cker}.
+     */
+    @Override
+    public ObservableList<Task> getFilteredExpiredTaskList() {
+        return filteredExpiredTasks;
+    }
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Task}
+     * backed by the internal list of {@code versionedTr4cker}.
+     */
+    @Override
+    public ObservableList<Task> getFilteredCompletedTaskList() {
+        return filteredCompletedTasks;
+    }
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Task}
      * backed by the internal list of {@code versionedTr4cker} for PlannerDay.
      * Should only show current's day tasks by default.
      */
@@ -139,6 +166,18 @@ public class ModelManager implements Model {
     public void updateFilteredTaskList(Predicate<Task> predicate) {
         requireNonNull(predicate);
         filteredTasks.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredExpiredTaskList(Predicate<Task> predicate) {
+        requireNonNull(predicate);
+        filteredExpiredTasks.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredCompletedTaskList(Predicate<Task> predicate) {
+        requireNonNull(predicate);
+        filteredCompletedTasks.setPredicate(predicate);
     }
 
     @Override

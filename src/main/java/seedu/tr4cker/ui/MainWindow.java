@@ -44,6 +44,8 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private TaskListPanel taskListPanel;
+    private ExpiredTaskListPanel expiredTaskListPanel;
+    private CompletedTaskListPanel completedTaskListPanel;
     private PlannerTabWindow plannerTabWindow;
     private ResultDisplay resultDisplay;
     private final HelpWindow helpWindow;
@@ -56,6 +58,12 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane taskListPanelPlaceholder;
+
+    @FXML
+    private StackPane expiredTaskListPanelPlaceholder;
+
+    @FXML
+    private StackPane completedTaskListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -158,6 +166,12 @@ public class MainWindow extends UiPart<Stage> {
         taskListPanel = new TaskListPanel(logic.getFilteredTaskList());
         taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
 
+        expiredTaskListPanel = new ExpiredTaskListPanel(logic.getFilteredExpiredTaskList());
+        expiredTaskListPanelPlaceholder.getChildren().add(expiredTaskListPanel.getRoot());
+
+        completedTaskListPanel = new CompletedTaskListPanel(logic.getFilteredCompletedTaskList());
+        completedTaskListPanelPlaceholder.getChildren().add(completedTaskListPanel.getRoot());
+
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
@@ -205,6 +219,7 @@ public class MainWindow extends UiPart<Stage> {
     public void handleShowTabHome() {
         tabPane.getSelectionModel().select(HOME);
         setTabColors(HOME);
+        logger.info("Homepage tab is selected");
     }
 
     /**
@@ -273,6 +288,14 @@ public class MainWindow extends UiPart<Stage> {
 
     public TaskListPanel getTaskListPanel() {
         return taskListPanel;
+    }
+
+    public ExpiredTaskListPanel getExpiredTaskListPanel() {
+        return expiredTaskListPanel;
+    }
+
+    public CompletedTaskListPanel getCompletedTaskListPanel() {
+        return completedTaskListPanel;
     }
 
     /**

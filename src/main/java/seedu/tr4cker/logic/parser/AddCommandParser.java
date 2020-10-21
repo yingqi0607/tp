@@ -33,13 +33,18 @@ public class AddCommandParser implements Parser<AddCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DEADLINE,
                         PREFIX_TASK_DESCRIPTION, PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_TASK_DESCRIPTION, PREFIX_DEADLINE)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_TASK_DESCRIPTION)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        Deadline deadline = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_DEADLINE).get());
+        Deadline deadline;
+        if (argMultimap.getValue(PREFIX_DEADLINE).isEmpty()) {
+            deadline = ParserUtil.parseDeadline(Deadline.DEFAULT_DATE_TODAY);
+        } else {
+            deadline = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_DEADLINE).get());
+        }
         CompletionStatus completionStatus = new CompletionStatus(0);
         TaskDescription taskDescription = ParserUtil.parseDescription(
                 argMultimap.getValue(PREFIX_TASK_DESCRIPTION).get());
