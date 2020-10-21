@@ -138,25 +138,34 @@ TR4CKER has a planner feature which provides users to view the calendar side-by-
 specified day. This feature is to allow users to have a clearer view of their schedules and allow them to plan their
 time ahead, and hence increasing productivity.
 
-The 2 main functions of Planner feature are to:
-1. Displays an overview of tasks for today/tomorrow
-2. Displays an overview of tasks on a specified date/month
+The 2 main functions of Planner command are to:
+1. Switch to planner tab
+2. Display an overview of tasks for today/tomorrow and on specified date/month
 
 #### Implementation \[will be updated with UML diagrams]
 To implement the UI of this planner feature, there is a `planner` package in `model` and `ui` packages. To implement 
 the commands of this planner feature, there are `PlannerCommand` and `PlannerCommandParser` classes in `logic` package.
-Given below is the class diagram (Figure 1) of how the UI aspect of this planner feature is being implemented:
+The following class diagram (Figure 1) summarises how the UI aspect of this planner feature is being implemented:
 ![PlannerClassDiagram](images/PlannerClassDiagram.png)
 Figure 1: Planner Class Diagram
 
-To illustrate how the commands work step-by-step, given below are 3 example usage scenarios:
+During the initialisation of TR4CKER, `PlannerTabWindow` will be initialised, together with `PlannerCalendarPanel` and
+`TaskListPanel`. `PlannerTabWindow` will execute `Logic#getPlannerFilteredTaskList` to update the tasks list shown in 
+Planner tab. The month and year of the calendar will be set in `PlannerCalendarPanel`. There are multiple `PlannerDayCard`
+in 1 `PlannerCalendarPanel`. `PlannerDayCard` serves to store the details of each `PlannerDay`, which contains the date
+of each grid in the `PlannerCalendarPanel`. When users execute planner commands, The month and year of the calendar will 
+be updated in `PlannerCalendarPanel`. Existing details of the calendar will also be cleared through 
+`PlannerCalendarPanel#clearCalendar()` and `PlannerDayCard#clear()`. At the same time, the tasks list will also be updated.
 
-1. Displays an overview of tasks for today - `planner goto/today`
+The following sequence diagram (Figure 2) shows how the planner feature works when a user executes `planner goto/today`:
+![PlannerSequenceDiagram](images/PlannerSequenceDiagram.png)
+Figure 2: Planner Sequence Diagram during execution of `planner goto/today`
 
-2. Displays an overview of tasks on a specified date - `planner goto/09-12-2020`
 
-3. Displays an overview of tasks on a specified month - `planner goto/Oct-2020`
-
+The following activity diagram (Figure 3) summarises what happens when a user executes the 2 main functions of 
+`PlannerCommand`:
+![PlannerActivityDiagram](images/PlannerActivityDiagram.png)
+Figure 3: Planner Activity Diagram
 
 #### Design considerations:
 
