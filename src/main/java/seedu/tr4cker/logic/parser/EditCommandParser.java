@@ -8,6 +8,7 @@ import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_TASK_DESCRIPTION;
 
 import seedu.tr4cker.commons.core.index.Index;
 import seedu.tr4cker.logic.commands.EditCommand;
+import seedu.tr4cker.logic.commands.EditExpiredCommand;
 import seedu.tr4cker.logic.parser.exceptions.ParseException;
 
 /**
@@ -22,9 +23,13 @@ public class EditCommandParser implements Parser<EditCommand> {
      */
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DEADLINE,
-                        PREFIX_TASK_DESCRIPTION);
+        boolean isEditExpiredTask = false;
+
+        if (args.trim().length() > 6 && args.trim().substring(0, 7).equals("expired")) {
+            isEditExpiredTask = true;
+        }
+
+        ArgumentMultimap argMultimap = getArgMultimap(args, isEditExpiredTask);
 
         Index index;
 
@@ -50,7 +55,25 @@ public class EditCommandParser implements Parser<EditCommand> {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
 
-        return new EditCommand(index, editTaskDescriptor);
+        if (isEditExpiredTask) {
+            return new EditExpiredCommand(index, editTaskDescriptor);
+        } else {
+            return new EditCommand(index, editTaskDescriptor);
+        }
     }
 
+    private ArgumentMultimap getArgMultimap(String args, boolean isEditExpiredTask) throws ParseException {
+        try {
+            if (isEditExpiredTask) {
+                return ArgumentTokenizer.tokenize(args.trim().substring(8), PREFIX_NAME, PREFIX_DEADLINE,
+                        PREFIX_TASK_DESCRIPTION);
+            } else {
+                return ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DEADLINE,
+                        PREFIX_TASK_DESCRIPTION);
+            }
+        } catch (StringIndexOutOfBoundsException e) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
+        }
+
+    }
 }

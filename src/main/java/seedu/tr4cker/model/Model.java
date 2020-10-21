@@ -5,12 +5,16 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.tr4cker.commons.core.GuiSettings;
+import seedu.tr4cker.model.task.Deadline;
 import seedu.tr4cker.model.task.Task;
 
 /** The API of the Model component. */
 public interface Model {
     /** {@code Predicate} that always evaluate to true. */
     Predicate<Task> PREDICATE_SHOW_ALL_TASKS = unused -> true;
+
+    /** {@code Predicate} that always evaluate to true. */
+    Predicate<Task> PREDICATE_SHOW_EXPIRED_TASKS = task -> !Deadline.isFutureDeadline(task.getDeadline().toString());
 
     /** Replaces user prefs data with the data in {@code userPrefs}. */
     void setUserPrefs(ReadOnlyUserPrefs userPrefs);
@@ -72,6 +76,12 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredTaskList(Predicate<Task> predicate);
+
+    /**
+     * Updates the filter of the filtered expired task list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredExpiredTaskList(Predicate<Task> predicate);
 
     /**
      * Updates the filter of the filtered task list to filter by the given {@code predicate} for PlannerDay.

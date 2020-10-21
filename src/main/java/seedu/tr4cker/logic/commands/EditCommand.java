@@ -1,9 +1,8 @@
 package seedu.tr4cker.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_DEADLINE;
-import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_TASK_DESCRIPTION;
+import static seedu.tr4cker.logic.parser.CliSyntax.*;
+import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.tr4cker.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 import java.util.Collections;
@@ -31,22 +30,22 @@ public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the task identified "
-            + "by the index number used in the displayed task list. "
-            + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_DEADLINE + "deadline] "
-            + "[" + PREFIX_TASK_DESCRIPTION + "DESCRIPTION]\n"
-            + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_DEADLINE + "10-Oct-2021 1010 ";
+    public static final String MESSAGE_USAGE = "Looks like you're trying to use the " + COMMAND_WORD + " command: "
+            + "Edits details of the task identified by the index number used in the specified task list\n"
+            + "Compulsory Parameters: INDEX (must be a positive integer) and at least 1 field to be edited\n"
+            + "Fields that can be edited: " + PREFIX_NAME  + "NAME " + PREFIX_DEADLINE + "DEADLINE "
+            + PREFIX_TASK_DESCRIPTION + "DESCRIPTION\n"
+            + "To edit task in Pending Tasks: " + "(E.g. " + COMMAND_WORD + " 1 "
+            + PREFIX_DEADLINE + "10-Dec-2020 2300)\n"
+            + "To edit task in Expired Tasks: " + "(E.g. " + COMMAND_WORD + " expired 1 "
+            + PREFIX_DEADLINE + "10-Dec-2020 2300)";
 
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Task: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in TR4CKER.";
 
-    private final Index index;
-    private final EditTaskDescriptor editTaskDescriptor;
+    protected final Index index;
+    protected final EditTaskDescriptor editTaskDescriptor;
 
     /**
      * @param index of the task in the filtered task list to edit
@@ -85,7 +84,7 @@ public class EditCommand extends Command {
      * Creates and returns a {@code Task} with the details of {@code taskToEdit}
      * edited with {@code editTaskDescriptor}.
      */
-    private static Task createEditedTask(Task taskToEdit, EditTaskDescriptor editTaskDescriptor) {
+    protected static Task createEditedTask(Task taskToEdit, EditTaskDescriptor editTaskDescriptor) {
         assert taskToEdit != null;
 
         Name updatedName = editTaskDescriptor.getName().orElse(taskToEdit.getName());

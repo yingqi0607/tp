@@ -22,7 +22,7 @@ public class AddCommand extends Command {
             + "Compulsory Parameters: " + PREFIX_NAME + "NAME " + PREFIX_TASK_DESCRIPTION + "TASKDESCRIPTION\n"
             + "Optional Parameters: " + PREFIX_DEADLINE + "DEADLINE "
             + PREFIX_TAG + "TAG...(more than one tag is allowed)\n"
-            + "(e.g. " + COMMAND_WORD + " "
+            + "(E.g. " + COMMAND_WORD + " "
             + PREFIX_NAME + "CS2103T tP "
             + PREFIX_DEADLINE + "10-Oct-2021 1010 "
             + PREFIX_TASK_DESCRIPTION + "Update User Guide "

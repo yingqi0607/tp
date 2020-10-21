@@ -1,6 +1,8 @@
 package seedu.tr4cker.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.tr4cker.logic.parser.CliSyntax.*;
+import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.List;
 
@@ -17,10 +19,11 @@ public class DeleteCommand extends Command {
 
     public static final String COMMAND_WORD = "delete";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the task identified by the index number used in the displayed task list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+    public static final String MESSAGE_USAGE = "Looks like you're trying to use the " + COMMAND_WORD + " command: "
+            + "Deletes the task identified by the index number used in the specified task list\n"
+            + "Compulsory Parameter: INDEX (must be a positive integer and valid index number)\n"
+            + "To delete task from Pending Tasks: (E.g. " + COMMAND_WORD + " 1)\n"
+            + "To delete task from Expired Tasks: (E.g. " + COMMAND_WORD + " expired 1)";
 
     public static final String MESSAGE_DELETE_TASK_SUCCESS = "Deleted Task: %1$s";
 
