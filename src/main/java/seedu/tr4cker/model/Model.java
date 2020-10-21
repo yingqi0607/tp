@@ -14,6 +14,9 @@ public interface Model {
     Predicate<Task> PREDICATE_SHOW_ALL_TASKS = unused -> true;
 
     /** {@code Predicate} that always evaluate to true. */
+    Predicate<Task> PREDICATE_SHOW_PENDING_TASKS = task -> Deadline.isFutureDeadline(task.getDeadline().toString());
+
+    /** {@code Predicate} that always evaluate to true. */
     Predicate<Task> PREDICATE_SHOW_EXPIRED_TASKS = task -> !Deadline.isFutureDeadline(task.getDeadline().toString());
 
     /** Replaces user prefs data with the data in {@code userPrefs}. */

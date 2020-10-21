@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_TASK_DESCRIPTION;
-import static seedu.tr4cker.model.Model.PREDICATE_SHOW_ALL_TASKS;
+import static seedu.tr4cker.model.Model.PREDICATE_SHOW_PENDING_TASKS;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -77,7 +77,7 @@ public class EditCommand extends Command {
         }
 
         model.setTask(taskToEdit, editedTask);
-        model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+        model.updateFilteredTaskList(PREDICATE_SHOW_PENDING_TASKS);
         return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask));
     }
 

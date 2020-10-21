@@ -37,9 +37,11 @@ public class ModelManager implements Model {
 
         this.tr4cker = new Tr4cker(tr4cker);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredTasks = new FilteredList<>(this.tr4cker.getTaskList());
+        //filteredTasks = new FilteredList<>(this.tr4cker.getTaskList();
+        filteredTasks = new FilteredList<>(this.tr4cker.getTaskList().filtered(
+            x -> Deadline.isFutureDeadline(x.getDeadline().toString()))); // && !x.isCompleted()));
         filteredExpiredTasks = new FilteredList<>(this.tr4cker.getTaskList().filtered(
-            x -> !Deadline.isFutureDeadline(x.getDeadline().toString()) && !x.isCompleted()));
+            x -> !Deadline.isFutureDeadline(x.getDeadline().toString()))); // && !x.isCompleted()));
         plannerFilteredTasks = new FilteredList<>(this.tr4cker.getTaskList());
     }
 
@@ -108,7 +110,7 @@ public class ModelManager implements Model {
     @Override
     public void addTask(Task task) {
         tr4cker.addTask(task);
-        updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+        updateFilteredTaskList(PREDICATE_SHOW_PENDING_TASKS);
     }
 
     @Override

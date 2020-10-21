@@ -2,7 +2,7 @@ package seedu.tr4cker.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_COMPLETION_STATUS;
-import static seedu.tr4cker.model.Model.PREDICATE_SHOW_ALL_TASKS;
+import static seedu.tr4cker.model.Model.PREDICATE_SHOW_PENDING_TASKS;
 
 import java.util.List;
 import java.util.Set;
@@ -66,7 +66,7 @@ public class DoneCommand extends Command {
         Task completedTask = createCompletedTask(taskToComplete, completionStatus);
 
         model.setTask(taskToComplete, completedTask);
-        model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+        model.updateFilteredTaskList(PREDICATE_SHOW_PENDING_TASKS);
         if (completedTask.getCompletionStatus()
                 .compareTo(taskToComplete.getCompletionStatus()) > 0) {
             return new CommandResult(String.format(MESSAGE_DONE_TASK_SUCCESS_INCREASE, completedTask));

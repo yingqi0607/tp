@@ -3,7 +3,7 @@ package seedu.tr4cker.logic.commands;
 import static seedu.tr4cker.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_DELETE_TAG;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_NEW_TAG;
-import static seedu.tr4cker.model.Model.PREDICATE_SHOW_ALL_TASKS;
+import static seedu.tr4cker.model.Model.PREDICATE_SHOW_PENDING_TASKS;
 
 import java.util.List;
 import java.util.Set;
@@ -64,7 +64,7 @@ public class TagCommand extends Command {
                 taskToEdit.getTaskDescription(), taskToEdit.getTags());
 
         model.setTask(taskToEdit, editedTask);
-        model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+        model.updateFilteredTaskList(PREDICATE_SHOW_PENDING_TASKS);
 
         return new CommandResult(generateSuccessMessage(editedTask));
     }
