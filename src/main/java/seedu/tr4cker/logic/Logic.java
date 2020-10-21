@@ -34,6 +34,9 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of expired tasks. */
     ObservableList<Task> getFilteredExpiredTaskList();
 
+    /** Returns an unmodifiable view of the filtered list of completed tasks. */
+    ObservableList<Task> getFilteredCompletedTaskList();
+
     /** Returns an unmodifiable view of the filtered list of tasks for PlannerDay. */
     ObservableList<Task> getPlannerFilteredTaskList();
 

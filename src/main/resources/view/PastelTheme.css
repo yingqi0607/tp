@@ -44,7 +44,7 @@
     -fx-opacity: 1;
 }
 
-#taskListView, #expiredTaskListView .list-cell:empty{
+#taskListView, #expiredTaskListView, #completedTaskListView, .list-cell:empty{
     -fx-background-color: #eecfcf;
 }
 

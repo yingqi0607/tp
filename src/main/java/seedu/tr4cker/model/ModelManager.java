@@ -24,6 +24,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Task> filteredTasks;
     private final FilteredList<Task> filteredExpiredTasks;
+    private final FilteredList<Task> filteredCompletedTasks;
     private final FilteredList<Task> plannerFilteredTasks;
 
     /**
@@ -39,9 +40,11 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         //filteredTasks = new FilteredList<>(this.tr4cker.getTaskList();
         filteredTasks = new FilteredList<>(this.tr4cker.getTaskList().filtered(
-            x -> Deadline.isFutureDeadline(x.getDeadline().toString()))); // && !x.isCompleted()));
+            x -> Deadline.isFutureDeadline(x.getDeadline().toString()) && !x.isCompleted()));
         filteredExpiredTasks = new FilteredList<>(this.tr4cker.getTaskList().filtered(
-            x -> !Deadline.isFutureDeadline(x.getDeadline().toString()))); // && !x.isCompleted()));
+            x -> !Deadline.isFutureDeadline(x.getDeadline().toString()) && !x.isCompleted()));
+        filteredCompletedTasks = new FilteredList<>(this.tr4cker.getTaskList().filtered(
+            Task::isCompleted));
         plannerFilteredTasks = new FilteredList<>(this.tr4cker.getTaskList());
     }
 
@@ -142,6 +145,15 @@ public class ModelManager implements Model {
 
     /**
      * Returns an unmodifiable view of the list of {@code Task}
+     * backed by the internal list of {@code versionedTr4cker}.
+     */
+    @Override
+    public ObservableList<Task> getFilteredCompletedTaskList() {
+        return filteredCompletedTasks;
+    }
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Task}
      * backed by the internal list of {@code versionedTr4cker} for PlannerDay.
      * Should only show current's day tasks by default.
      */
@@ -160,6 +172,12 @@ public class ModelManager implements Model {
     public void updateFilteredExpiredTaskList(Predicate<Task> predicate) {
         requireNonNull(predicate);
         filteredExpiredTasks.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredCompletedTaskList(Predicate<Task> predicate) {
+        requireNonNull(predicate);
+        filteredCompletedTasks.setPredicate(predicate);
     }
 
     @Override
