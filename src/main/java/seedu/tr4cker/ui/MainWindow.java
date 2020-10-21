@@ -318,8 +318,8 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isShowPlanner()) {
-                handleShowTabPlanner();
                 plannerTabWindow.updateCalendar(commandResult);
+                handleShowTabPlanner();
             }
 
             return commandResult;
