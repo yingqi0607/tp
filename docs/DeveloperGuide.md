@@ -216,6 +216,43 @@ User Guide of TR4CKER.
 
 ##### Aspect 2: \[tbc]
 
+### Countdown feature \[coming in v1.3]
+TR4CKER has a countdowns tab which allows users to add important dates and times that they would like TR4CKER to countdown to.
+This feature allows users to isolate the most important time sensitive events and deadlines, and know exactly how much time 
+they have before a certain event, which enhances the tracking experience.
+
+The 2 main functions of the Countdown feature are to:
+1. Display a countdown of all events to be tracked
+2. Display the next upcoming event
+
+#### Implementation \[will be updated with UML diagrams]
+The countdown panel is facilitated by the `CountdownPanel` class, which serves as the entry point to show users the countdown
+events as a list. 
+
+To illustrate how the 2 functions work step-by-step, given below are 3 example usage scenarios:
+
+1. Displays all upcoming countdowns
+
+2. Displays the next upcoming event
+
+#### Design considerations:
+
+##### Aspect 1: Users should be able to easily view the next most recent event
+
+* **Current Choice:** Use the same `countdown` command to navigate to the next event or previous event. For example, 
+`countdown first` would display the earliest upcoming event, `countdown next` will display the event after the one 
+currently displayed, and `countdown previous` with display the event before the one currently displayed.
+  * Pros: Users can easily know the chronological sequence of events.
+  * Cons: May be difficult to navigate if there is a long list of events.
+
+* **Alternative 1:** Another command to allow users to navigate to the events in a specified day.
+  * Pros: More user-friendly as it is faster to navigate to a particular event on a particular day.
+  * Cons: Requires user to already know what days have events in the countdown list.
+  
+**Justification for current choice:** Considering how users who are using the countdown feature will prefer to be able
+to know what is the next upcoming event, for example what is the next exam that they have to prepare for. The first implementation
+is also less prone to errors as users do are able to know what is the next event without knowing beforehand what day is it on.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
