@@ -1,8 +1,9 @@
 package seedu.tr4cker.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.tr4cker.logic.parser.CliSyntax.*;
-import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_TASK_DESCRIPTION;
 import static seedu.tr4cker.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 import java.util.Collections;
@@ -33,7 +34,7 @@ public class EditCommand extends Command {
     public static final String MESSAGE_USAGE = "Looks like you're trying to use the " + COMMAND_WORD + " command: "
             + "Edits details of the task identified by the index number used in the specified task list\n"
             + "Compulsory Parameters: INDEX (must be a positive integer) and at least 1 field to be edited\n"
-            + "Fields that can be edited: " + PREFIX_NAME  + "NAME " + PREFIX_DEADLINE + "DEADLINE "
+            + "Fields that can be edited: " + PREFIX_NAME + "NAME " + PREFIX_DEADLINE + "DEADLINE "
             + PREFIX_TASK_DESCRIPTION + "DESCRIPTION\n"
             + "To edit task in Pending Tasks: " + "(E.g. " + COMMAND_WORD + " 1 "
             + PREFIX_DEADLINE + "10-Dec-2020 2300)\n"
