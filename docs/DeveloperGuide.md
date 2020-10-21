@@ -142,7 +142,7 @@ The 2 main functions of Planner command are to:
 1. Switch to planner tab
 2. Display an overview of tasks for today/tomorrow and on specified date/month
 
-#### Implementation \[will be updated with UML diagrams]
+#### Implementation
 To implement the UI of this planner feature, there is a `planner` package in `model` and `ui` packages. To implement 
 the commands of this planner feature, there are `PlannerCommand` and `PlannerCommandParser` classes in `logic` package.
 The following class diagram (Figure 1) summarises how the UI aspect of this planner feature is being implemented:
@@ -161,11 +161,36 @@ The following sequence diagram (Figure 2) shows how the planner feature works wh
 ![PlannerSequenceDiagram](images/PlannerSequenceDiagram.png)
 Figure 2: Planner Sequence Diagram during execution of `planner goto/today`
 
+When a user executes a `PlannerCommand` of `planner goto/today`, `MainWindow` will be called to execute the command. It will 
+then call `LogicManager` to execute, followed by parsing of command in `Tr4ckerParser`. `Tr4ckerParser` will create a new 
+instance of `PlannerCommandParser` to parse the user's input. After parsing and checking the validity of user's input, a 
+new `PlannerCommand` instance is created. This new instance `plannerCommand` will be passed back to `LogicManager` to execute 
+on the `Model` in `PlannerCommand`. After executing, a new instance `CommandResult` `commandResult` is created. `commandResult` 
+will be passed back to `MainWindow`, then it will be checked in `PlannerTabWindow` if the user wants to switch to Planner 
+tab, or to view a specific date/month. After that, the calendar and tasks list are updated in Planner tab, and user can 
+now see the results.
 
 The following activity diagram (Figure 3) summarises what happens when a user executes the 2 main functions of 
 `PlannerCommand`:
 ![PlannerActivityDiagram](images/PlannerActivityDiagram.png)
 Figure 3: Planner Activity Diagram
+
+This activity diagram shows all the possible paths TR4CKER can take when a user executes a `PlannerCommand`. After 
+inputting a command, the command is parsed. By checking the arguments provided by the user, it can either mean the 
+user wants to:
+1. switch to Planner tab
+2. display an overview of tasks for today/tomorrow and on a specified date/month.
+
+If user wants to switch to Planner tab, TR4CKER will display the planner, and a feedback will be provided to the user. If 
+user wants to display an overview of tasks, the validity of input will be checked. The input can take these 5 different paths:
+1. today
+2. tomorrow
+3. specified date
+4. specified month
+5. error (not shown here).
+
+Depending on the inputs, the calendar view and tasks list will be updated accordingly. Planner tab is then displayed to 
+the user and a feedback is provided.
 
 #### Design considerations:
 
