@@ -1,0 +1,17 @@
+@startuml
+(*) --> "User requests to edit deadline of an Expired task"
+--> "TR4CKER parses deadline"
+if "" then
+--> [deadline is a valid future date]  "modify deadline"
+--> === B1 ===
+--> "task added to Pending Tasks panel"
+--> === B2 ===
+=== B1 === --> "task removed from Expired Tasks panel"
+-> === B2 ===
+--> (*)
+
+else
+--> [else] "displays error message"
+--> (*)
+
+@enduml
