@@ -73,9 +73,9 @@
                   </padding>
 
                   <SplitPane dividerPositions="0.33, 0.66" minWidth="900">
-                    <StackPane fx:id="taskListPanelPlaceholder" prefWidth="300" minWidth="450" VBox.vgrow="NEVER" />
-                    <StackPane fx:id="expiredTaskListPanelPlaceholder" prefWidth="300" minWidth="450" VBox.vgrow="NEVER" />
-                    <StackPane fx:id="completedTaskListPanelPlaceholder" prefWidth="300" minWidth="450" VBox.vgrow="NEVER" />
+                    <StackPane fx:id="taskListPanelPlaceholder" prefWidth="300" minWidth="-Infinity" VBox.vgrow="NEVER" />
+                    <StackPane fx:id="expiredTaskListPanelPlaceholder" prefWidth="300" minWidth="-Infinity" VBox.vgrow="NEVER" />
+                    <StackPane fx:id="completedTaskListPanelPlaceholder" prefWidth="300" minWidth="-Infinity" VBox.vgrow="NEVER" />
                   </SplitPane>
 
                 </VBox>
