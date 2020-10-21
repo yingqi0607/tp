@@ -24,8 +24,8 @@ optimized for Computing students familiar with CLI, who can manage their tasks e
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
-   
-    * **`add`**`n/task 1 dl/2020-09-08 1700 des/task 1 description t/urgent`: Adds a task named `task 1` with description `task 1 
+
+    * **`add`**`n/task 1 dl/2020-09-08 1700 des/task 1 description t/urgent`: Adds a task named `task 1` with description `task 1
 description`, with a deadline of `8 Sep 2020, 1700 hrs` and with an `urgent` tag into TR4CKER.
 
     * **`done`**`1`: Marks the 1st task as done.
@@ -33,7 +33,7 @@ description`, with a deadline of `8 Sep 2020, 1700 hrs` and with an `urgent` tag
     * **`delete`**`3`: Deletes the 3rd task shown in the current task list.
 
     * **`edit`**`1 n/actually task 2`: Edits 1st task's name to be `actually task 2`.
-    
+
     * **`tag`**`1 new/urgent`: Adds `urgent` tag to existing tags of 1st task.
 
     * **`find`**`task`: Finds the tasks with `task` as a keyword.
@@ -113,7 +113,7 @@ Edits an existing task’s details in TR4CKER.
 
 Format: `edit INDEX [n/NAME] [dl/DEADLINE] [des/TASKDESCRIPTION]`
 
-* Edits the task's name, deadline and description at the specified `INDEX`. 
+* Edits the task's name, deadline and description at the specified `INDEX`.
 * The index refers to the index number shown in the task list.
 * The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -166,7 +166,7 @@ Examples:
 
 ### Deleting an existing task : `delete`
 
-You can delete an existing task from the task list by providing the 
+You can delete an existing task from the task list by providing the
 index number of the task that you want to delete.
 
 Format: `delete INDEX`
