@@ -56,14 +56,16 @@ public class PlannerTabWindow extends UiPart<Region> {
             int year = localDate.getYear();
             int month = localDate.getMonthValue();
             int date = localDate.getDayOfMonth();
-            plannerCalendarPanel.setCurrentYear(year);
-            plannerCalendarPanel.setCurrentMonth(month);
             if (localDate.getMonthValue() == plannerCalendarPanel.getCurrentMonth()
                     && localDate.getYear() == plannerCalendarPanel.getCurrentYear()) {
                 // check if date is the same as current highlighted day, else need to change highlight
+                plannerCalendarPanel.setCurrentYear(year);
+                plannerCalendarPanel.setCurrentMonth(month);
 
             } else {
                 // check if date is the same as current highlighted day, else need to change highlight
+                plannerCalendarPanel.setCurrentYear(year);
+                plannerCalendarPanel.setCurrentMonth(month);
                 LocalDate newDate = LocalDate.of(year, month, 1);
                 YearMonth newYearMonth = YearMonth.of(year, month);
                 PlannerDay newDay = new PlannerDay(newDate);
