@@ -6,7 +6,19 @@ import static seedu.tr4cker.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.tr4cker.logic.commands.*;
+import seedu.tr4cker.logic.commands.AddCommand;
+import seedu.tr4cker.logic.commands.ClearCommand;
+import seedu.tr4cker.logic.commands.Command;
+import seedu.tr4cker.logic.commands.CountdownCommand;
+import seedu.tr4cker.logic.commands.DeleteCommand;
+import seedu.tr4cker.logic.commands.DoneCommand;
+import seedu.tr4cker.logic.commands.EditCommand;
+import seedu.tr4cker.logic.commands.ExitCommand;
+import seedu.tr4cker.logic.commands.FindCommand;
+import seedu.tr4cker.logic.commands.HelpCommand;
+import seedu.tr4cker.logic.commands.ListCommand;
+import seedu.tr4cker.logic.commands.PlannerCommand;
+import seedu.tr4cker.logic.commands.TagCommand;
 import seedu.tr4cker.logic.parser.exceptions.ParseException;
 
 /**

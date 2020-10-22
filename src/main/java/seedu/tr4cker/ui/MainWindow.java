@@ -191,7 +191,7 @@ public class MainWindow extends UiPart<Stage> {
         plannerTabWindowPlaceholder.getChildren().add(plannerTabWindow.getRoot());
 
         countdownTabWindow = new CountdownTabWindow(logic);
-//        countdownTabWindowPlaceholder.getChildren().add(countdownTabWindow.getRoot());
+        countdownTabWindowPlaceholder.getChildren().add(countdownTabWindow.getRoot());
     }
 
     /**
