@@ -11,7 +11,7 @@
 .label {
     -fx-font-size: 11pt;
     -fx-font-family: "Segoe UI Semibold";
-    -fx-text-fill: #555555;
+    -fx-text-fill: #000000;
     -fx-opacity: 0.9;
 }
 
@@ -409,4 +409,24 @@
     -fx-font-family: "Consolas";
     -fx-font-weight: bold;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 5, 0.5, 1.5, 1.5);
+}
+
+/*planner tab*/
+#month-year-label {
+    -fx-font-size: 20pt;
+    -fx-font-family: "Century Schoolbook";
+    -fx-text-fill: #000000;
+}
+
+#same-month-colour {
+    -fx-font-size: 10pt;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: #000000;
+}
+
+#different-month-colour {
+    -fx-font-size: 10pt;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: #000000;
+    -fx-opacity: 0.5;
 }

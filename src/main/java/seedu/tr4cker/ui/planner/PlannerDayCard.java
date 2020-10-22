@@ -38,6 +38,18 @@ public class PlannerDayCard extends UiPart<Region> {
      */
     public void clear() {
         dateNumber.setText("");
+        // clear highlight
+
+        // clear box colour
+
+    }
+
+    public void setSameMonthColour() {
+        dateNumber.setId("same-month-colour");
+    }
+
+    public void setDifferentMonthColour() {
+        dateNumber.setId("different-month-colour");
     }
 
 }

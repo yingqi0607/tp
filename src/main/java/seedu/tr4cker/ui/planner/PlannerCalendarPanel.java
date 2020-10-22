@@ -41,6 +41,7 @@ public class PlannerCalendarPanel extends UiPart<Region> {
         logger.fine("Initialising plannerCalendar panel...");
         this.plannerDay = plannerDay;
         this.calendarMonthYear.setText(plannerDay.getMonthName() + " " + plannerDay.getYear());
+        this.calendarMonthYear.setId("month-year-label");
 
         PlannerDay startDay = plannerDay.createFirstDayOfMonth();
         fillCalendarTable(startDay);
@@ -59,6 +60,7 @@ public class PlannerCalendarPanel extends UiPart<Region> {
                 currDay = currDay.getPrevDay();
             }
         }
+        System.out.println(currDay.getMonth());
         if (count == 0) {
             setCurrentMonth(currDay.getMonth());
             setCurrentYear(currDay.getYear());
@@ -69,6 +71,11 @@ public class PlannerCalendarPanel extends UiPart<Region> {
                 PlannerDayCard plannerDayCard = new PlannerDayCard(currDay);
                 plannerDayCards.add(plannerDayCard);
                 calendarTable.add(plannerDayCard.getRoot(), col, row);
+                if (currDay.getMonth() == startDay.getMonth()) {
+                    plannerDayCard.setSameMonthColour();
+                } else {
+                    plannerDayCard.setDifferentMonthColour();
+                }
                 currDay = currDay.getNextDay();
             }
         }
@@ -124,6 +131,7 @@ public class PlannerCalendarPanel extends UiPart<Region> {
     public void changeCalendarMonthYear(YearMonth yearMonth) {
         String label = yearMonth.getMonth().name() + " " + yearMonth.getYear();
         this.calendarMonthYear.setText(label);
+        this.calendarMonthYear.setId("month-year-label");
     }
 
 }
