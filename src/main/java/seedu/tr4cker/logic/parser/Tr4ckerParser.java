@@ -82,7 +82,7 @@ public class Tr4ckerParser {
             return new PlannerCommandParser().parse(arguments);
 
         case CountdownCommand.COMMAND_WORD:
-            return new CountdownCommand();
+            return new CountdownCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

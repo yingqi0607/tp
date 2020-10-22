@@ -3,7 +3,7 @@ package seedu.tr4cker.logic.commands;
 import seedu.tr4cker.model.Model;
 
 /**
- * Allows user to go to Planner tab or go to specific date/month of calendar in Planner tab.
+ * Allows user to go to Countdown tab.
  */
 public class CountdownCommand extends Command {
 
@@ -15,7 +15,7 @@ public class CountdownCommand extends Command {
     public static final String MESSAGE_SWITCH_TAB_SUCCESS = "Switched to Countdown tab!";
 
     /**
-     * Constructor for PlannerCommand when user wants to switch to Planner tab.
+     * Constructor for CountdownCommand when user wants to switch to Countdown tab.
      */
     public CountdownCommand() {
     }

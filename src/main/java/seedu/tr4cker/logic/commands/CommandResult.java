@@ -55,6 +55,7 @@ public class CommandResult {
         this.showHelp = false;
         this.exit = false;
         this.showPlanner = true;
+        this.showCountdown = false;
         this.localDate = localDate;
         this.yearMonth = yearMonth;
     }
@@ -67,6 +68,7 @@ public class CommandResult {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = false;
         this.exit = false;
+        this.showPlanner = false;
         this.showCountdown = isShowCountdown;
         this.localDate = null;
         this.yearMonth = null;
