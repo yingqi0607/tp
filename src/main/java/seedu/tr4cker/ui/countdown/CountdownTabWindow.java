@@ -8,8 +8,7 @@ import seedu.tr4cker.ui.TaskListPanel;
 import seedu.tr4cker.ui.UiPart;
 
 /**
- * An UI component that displays Planner tab.
- * Displays the calendar and tasks list.
+ * An UI component that displays Countdown tab.
  */
 public class CountdownTabWindow extends UiPart<Region> {
 
@@ -21,7 +20,7 @@ public class CountdownTabWindow extends UiPart<Region> {
     private StackPane countdownListPanelPlaceholder;
 
     /**
-     * Constructor for PlannerTabWindow.
+     * Constructor for CountdownTabWindow.
      *
      * @param logic Logic of TR4CKER.
      */

@@ -6,7 +6,7 @@ import seedu.tr4cker.logic.commands.CountdownCommand;
 import seedu.tr4cker.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new PlannerCommand object.
+ * Parses input arguments and creates a new CountdownCommand object.
  */
 public class CountdownCommandParser implements Parser<CountdownCommand> {
 
