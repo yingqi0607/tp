@@ -74,6 +74,7 @@ public class StorageManager implements Storage {
     public void saveTr4cker(ReadOnlyTr4cker tr4cker, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
         this.tr4cker.saveTr4cker(tr4cker, filePath);
+        // todo save module list
     }
 
 }

@@ -37,13 +37,28 @@ public class Module {
     }
 
     /**
-     * Will return true as long as module codes match.
+     * Returns true if both modules have the same module code.
+     * This defines a weaker notion of equality between two modules.
+     */
+    public boolean isSameModule(Module otherModule) {
+        if (otherModule == this) {
+            return true;
+        }
+
+        return otherModule != null
+                && moduleCode.equals(otherModule.moduleCode);
+    }
+
+    /**
+     * Returns true if both modules have the same identity and data fields.
+     * This defines a stronger notion of equality between two modules.
      */
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Module // instanceof handles nulls
-                && moduleCode.equals(((Module) other).moduleCode)); // state check
+                && moduleName.equals(((Module) other).moduleName)
+                && moduleCode.equals(((Module) other).moduleCode));
     }
 
     @Override
