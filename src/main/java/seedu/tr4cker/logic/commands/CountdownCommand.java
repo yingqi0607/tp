@@ -29,7 +29,7 @@ public class CountdownCommand extends Command {
     public boolean equals(Object other) {
         if (this == other) { // short circuit if same object
             return true;
-        } else if (!(other instanceof PlannerCommand)) {
+        } else if (!(other instanceof CountdownCommand)) {
             return false;
         } else {
             return false; // to be implemented
