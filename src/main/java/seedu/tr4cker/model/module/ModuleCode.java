@@ -55,6 +55,6 @@ public class ModuleCode {
      * Format state as text for viewing.
      */
     public String toString() {
-        return '[' + codeName + ']';
+        return '{' + codeName + '}';
     }
 }

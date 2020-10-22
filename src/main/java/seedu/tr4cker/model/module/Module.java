@@ -65,4 +65,11 @@ public class Module {
     public int hashCode() {
         return moduleCode.hashCode();
     }
+
+    /**
+     * Format state as text for viewing.
+     */
+    public String toString() {
+        return "[ " + moduleCode.toString() + " | " + moduleName + " ]";
+    }
 }

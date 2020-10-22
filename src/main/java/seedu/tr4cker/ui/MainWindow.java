@@ -329,6 +329,10 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
+            if (commandResult.isShowModules()) {
+                handleShowTabModule();
+            }
+
             if (commandResult.isShowPlanner()) {
                 plannerTabWindow.updateCalendar(commandResult);
                 handleShowTabPlanner();

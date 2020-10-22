@@ -64,6 +64,21 @@ public interface Model {
      */
     void addTask(Task task);
 
+    /** Returns true if a module with the same identity as {@code module} exists in Tr4cker. */
+    boolean hasModule(Module module);
+
+    /**
+     * Deletes the given module.
+     * The module must exist in Tr4cker.
+     */
+    void deleteModule(Module target);
+
+    /**
+     * Adds the given module.
+     * {@code module} must not already exist in Tr4cker.
+     */
+    void addModule(Module module);
+
     /**
      * Replaces the given task {@code target} with {@code editedTask}.
      * {@code target} must exist in the tr4cker.
@@ -103,6 +118,12 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredCompletedTaskList(Predicate<Task> predicate);
+
+    /**
+     * Updates the filter of the filtered module list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredModuleList(Predicate<Module> predicate);
 
     /**
      * Updates the filter of the filtered task list to filter by the given {@code predicate} for PlannerDay.

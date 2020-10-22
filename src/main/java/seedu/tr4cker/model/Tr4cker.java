@@ -97,6 +97,31 @@ public class Tr4cker implements ReadOnlyTr4cker {
         tasks.remove(key);
     }
 
+    //// module-level operations
+    /**
+     * Returns true if a module with the same identity as {@code module} exists in Tr4cker.
+     */
+    public boolean hasModule(Module module) {
+        requireNonNull(module);
+        return modules.contains(module);
+    }
+
+    /**
+     * Adds a module to Tr4cker.
+     * The module must not already exist in Tr4cker.
+     */
+    public void addModule(Module m) {
+        modules.add(m);
+    }
+
+    /**
+     * Removes {@code key} from this {@code Tr4cker}.
+     * {@code key} must exist in Tr4cker.
+     */
+    public void removeModule(Module key) {
+        modules.remove(key);
+    }
+
     //// util methods
 
     @Override

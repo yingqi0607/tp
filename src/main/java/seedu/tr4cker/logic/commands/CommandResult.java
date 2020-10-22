@@ -1,5 +1,7 @@
 package seedu.tr4cker.logic.commands;
 
+import seedu.tr4cker.model.module.ModuleCode;
+
 import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
@@ -20,6 +22,9 @@ public class CommandResult {
 
     /** The application should exit. */
     private final boolean exit;
+
+    /** TR4CKER shows Module tab. */
+    private boolean showModules;
 
     /** TR4CKER shows Planner tab. */
     private boolean showPlanner;
@@ -45,6 +50,16 @@ public class CommandResult {
 
     /**
      * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
+     * For usage of ModuleCommand.
+     */
+    public static CommandResult createModuleCommandResult(String feedbackToUser) {
+        CommandResult newCommandResult = new CommandResult(feedbackToUser);
+        newCommandResult.showModules = true;
+        return newCommandResult;
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
      * {@code localDate} and {@code yearMonth}. For usage of PlannerCommand.
      */
     public CommandResult(String feedbackToUser, LocalDate localDate, YearMonth yearMonth) {
@@ -66,6 +81,10 @@ public class CommandResult {
 
     public boolean isExit() {
         return exit;
+    }
+
+    public boolean isShowModules() {
+        return showModules;
     }
 
     public boolean isShowPlanner() {

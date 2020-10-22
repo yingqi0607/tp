@@ -126,6 +126,23 @@ public class ModelManager implements Model {
         tr4cker.setTask(target, editedTask);
     }
 
+    @Override
+    public boolean hasModule(Module module) {
+        requireNonNull(module);
+        return tr4cker.hasModule(module);
+    }
+
+    @Override
+    public void deleteModule(Module target) {
+        tr4cker.removeModule(target);
+    }
+
+    @Override
+    public void addModule(Module module) {
+        tr4cker.addModule(module);
+        updateFilteredModuleList(x -> true);
+    }
+
     //=========== Filtered Task List Accessors =============================================================
 
     /**
@@ -190,6 +207,12 @@ public class ModelManager implements Model {
     public void updateFilteredCompletedTaskList(Predicate<Task> predicate) {
         requireNonNull(predicate);
         filteredCompletedTasks.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredModuleList(Predicate<Module> predicate) {
+        requireNonNull(predicate);
+        filteredModules.setPredicate(predicate);
     }
 
     @Override

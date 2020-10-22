@@ -49,7 +49,7 @@ public class AddCommand extends Command {
         if (model.hasTask(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
-        //todo throw exception if adds non-existent module
+        //todo throw exception if adds task with non-existent module
 
         model.addTask(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
