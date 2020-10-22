@@ -88,7 +88,10 @@
             </Tab>
             <Tab text="Module">
               <content>
-
+                <SplitPane dividerPositions="0.33" minWidth="900">
+                  <StackPane fx:id="moduleListPanelPlaceholder" prefWidth="300" minWidth="-Infinity" VBox.vgrow="NEVER" />
+                  <StackPane fx:id="dummyPlaceholder" prefWidth="600" minWidth="-Infinity" VBox.vgrow="NEVER" />
+                </SplitPane>
               </content>
             </Tab>
             <Tab text="Countdown">

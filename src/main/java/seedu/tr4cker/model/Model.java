@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.tr4cker.commons.core.GuiSettings;
+import seedu.tr4cker.model.module.Module;
 import seedu.tr4cker.model.task.Deadline;
 import seedu.tr4cker.model.task.Task;
 
@@ -78,6 +79,9 @@ public interface Model {
 
     /** Returns an unmodifiable view of the filtered completed task list. */
     ObservableList<Task> getFilteredCompletedTaskList();
+
+    /** Returns an unmodifiable view of the list of modules. */
+    ObservableList<Module> getFilteredModuleList();
 
     /** Returns an unmodifiable view of the filtered task list for PlannerDay. */
     ObservableList<Task> getPlannerFilteredTaskList();

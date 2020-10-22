@@ -5,6 +5,8 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.tr4cker.model.module.Module;
+import seedu.tr4cker.model.module.UniqueModuleList;
 import seedu.tr4cker.model.task.Task;
 import seedu.tr4cker.model.task.UniqueTaskList;
 
@@ -15,6 +17,7 @@ import seedu.tr4cker.model.task.UniqueTaskList;
 public class Tr4cker implements ReadOnlyTr4cker {
 
     private final UniqueTaskList tasks;
+    private final UniqueModuleList modules; //todo pair with ui
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -25,6 +28,7 @@ public class Tr4cker implements ReadOnlyTr4cker {
      */
     {
         tasks = new UniqueTaskList();
+        modules = new UniqueModuleList();
     }
 
     public Tr4cker() {}
@@ -105,6 +109,10 @@ public class Tr4cker implements ReadOnlyTr4cker {
     public ObservableList<Task> getTaskList() {
         tasks.sortTasksAccordingToDeadline();
         return tasks.asUnmodifiableObservableList();
+    }
+
+    public ObservableList<Module> getModuleList() {
+        return modules.asUnmodifiableObservableList();
     }
 
     @Override

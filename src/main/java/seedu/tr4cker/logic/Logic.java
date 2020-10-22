@@ -8,6 +8,7 @@ import seedu.tr4cker.logic.commands.CommandResult;
 import seedu.tr4cker.logic.commands.exceptions.CommandException;
 import seedu.tr4cker.logic.parser.exceptions.ParseException;
 import seedu.tr4cker.model.ReadOnlyTr4cker;
+import seedu.tr4cker.model.module.Module;
 import seedu.tr4cker.model.task.Task;
 
 /** API of the Logic component. */
@@ -36,6 +37,9 @@ public interface Logic {
 
     /** Returns an unmodifiable view of the filtered list of completed tasks. */
     ObservableList<Task> getFilteredCompletedTaskList();
+
+    /** Returns an unmodifiable view of the list of modules. */
+    ObservableList<Module> getFilteredModuleList();
 
     /** Returns an unmodifiable view of the filtered list of tasks for PlannerDay. */
     ObservableList<Task> getPlannerFilteredTaskList();

@@ -46,6 +46,7 @@ public class MainWindow extends UiPart<Stage> {
     private TaskListPanel taskListPanel;
     private ExpiredTaskListPanel expiredTaskListPanel;
     private CompletedTaskListPanel completedTaskListPanel;
+    private ModuleListPanel moduleListPanel;
     private PlannerTabWindow plannerTabWindow;
     private ResultDisplay resultDisplay;
     private final HelpWindow helpWindow;
@@ -70,6 +71,12 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    /*
+     * Module tab content.
+     */
+    @FXML
+    private StackPane moduleListPanelPlaceholder;
 
     /*
      * Planner tab content.
@@ -181,6 +188,11 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
+        /**Modules */
+        moduleListPanel = new ModuleListPanel(logic.getFilteredModuleList());
+        moduleListPanelPlaceholder.getChildren().add(moduleListPanel.getRoot());
+
+        /**Planner */
         plannerTabWindow = new PlannerTabWindow(logic);
         plannerTabWindowPlaceholder.getChildren().add(plannerTabWindow.getRoot());
     }
