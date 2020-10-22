@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="357.0" prefWidth="440.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox fx:id="vbox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="388.0" prefWidth="473.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <StackPane alignment="TOP_CENTER" prefHeight="45.0" prefWidth="440.0">
+        <StackPane alignment="TOP_CENTER" prefHeight="63.0" prefWidth="474.0">
             <children>
-                <Label fx:id="calendarMonthYear" alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="305.0" text="monthYear" StackPane.alignment="CENTER" />
+                <Label fx:id="calendarMonthYear" alignment="CENTER" contentDisplay="CENTER" prefHeight="49.0" prefWidth="306.0" text="monthYear" StackPane.alignment="CENTER" />
             </children>
         </StackPane>
-      <StackPane prefHeight="63.0" prefWidth="440.0">
+      <StackPane prefHeight="63.0" prefWidth="435.0">
          <children>
             <GridPane alignment="CENTER" prefHeight="35.0" prefWidth="660.0" StackPane.alignment="CENTER">
               <columnConstraints>
@@ -35,7 +36,13 @@
                   <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="68.0" text="SUN" GridPane.columnIndex="6" />
                </children>
             </GridPane>
-         </children></StackPane>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets left="20.0" right="20.0" />
+         </padding></StackPane>
       <StackPane prefHeight="164.0" prefWidth="423.0">
          <children>
              <GridPane fx:id="calendarTable" alignment="CENTER" gridLinesVisible="true" prefHeight="274.0" prefWidth="423.0">
@@ -57,6 +64,9 @@
                      <RowConstraints minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
                  </rowConstraints>
              </GridPane>
-         </children></StackPane>
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="20.0" right="20.0" />
+         </padding></StackPane>
     </children>
 </VBox>

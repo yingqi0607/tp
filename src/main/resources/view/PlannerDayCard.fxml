@@ -2,10 +2,11 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.shape.*?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label fx:id="dateNumber" contentDisplay="RIGHT" layoutX="7.0" layoutY="5.0" text="Date Number"/>
+      <Circle fx:id="circle" fill="#ffffff00" layoutX="15.5" layoutY="14.0" radius="12.0" stroke="#d55291" strokeType="INSIDE" strokeWidth="2.0" />
+      <Label fx:id="dateNumber" contentDisplay="RIGHT" layoutX="11.0" layoutY="5.0" text="Date Number" />
    </children>
 </AnchorPane>

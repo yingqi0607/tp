@@ -1,5 +1,6 @@
 package seedu.tr4cker.ui.planner;
 
+import java.time.LocalDate;
 import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.logging.Logger;
@@ -8,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import seedu.tr4cker.commons.core.LogsCenter;
 import seedu.tr4cker.model.planner.PlannerDay;
 import seedu.tr4cker.ui.UiPart;
@@ -33,6 +35,9 @@ public class PlannerCalendarPanel extends UiPart<Region> {
     @FXML
     private Label calendarMonthYear;
 
+    @FXML
+    private VBox vbox;
+
     /**
      * Creates a {@code PlannerCalendarPanel} with the given {@code PlannerDay} to display.
      */
@@ -42,9 +47,11 @@ public class PlannerCalendarPanel extends UiPart<Region> {
         this.plannerDay = plannerDay;
         this.calendarMonthYear.setText(plannerDay.getMonthName() + " " + plannerDay.getYear());
         this.calendarMonthYear.setId("month-year-label");
+        vbox.getStyleClass().add("vbox");
+        calendarTable.getStyleClass().add("calendarGrid");
 
         PlannerDay startDay = plannerDay.createFirstDayOfMonth();
-        fillCalendarTable(startDay);
+        fillCalendarTable(startDay, null);
     }
 
     /**
@@ -52,7 +59,7 @@ public class PlannerCalendarPanel extends UiPart<Region> {
      *
      * @param startDay First day of the month.
      */
-    public void fillCalendarTable(PlannerDay startDay) {
+    public void fillCalendarTable(PlannerDay startDay, LocalDate localDate) {
         int index = startDay.getDayOfWeek();
         PlannerDay currDay = startDay;
         if (index != 1) {
@@ -60,7 +67,6 @@ public class PlannerCalendarPanel extends UiPart<Region> {
                 currDay = currDay.getPrevDay();
             }
         }
-        System.out.println(currDay.getMonth());
         if (count == 0) {
             setCurrentMonth(currDay.getMonth());
             setCurrentYear(currDay.getYear());
@@ -71,6 +77,18 @@ public class PlannerCalendarPanel extends UiPart<Region> {
                 PlannerDayCard plannerDayCard = new PlannerDayCard(currDay);
                 plannerDayCards.add(plannerDayCard);
                 calendarTable.add(plannerDayCard.getRoot(), col, row);
+                if (localDate != null) {
+                    if (currDay.getDay() == localDate.getDayOfMonth()
+                            && currDay.getMonth() == localDate.getMonthValue()) {
+                        plannerDayCard.setToday();
+                    }
+                } else {
+                    if (currDay.getDay() == startDay.getDay()
+                            && currDay.getMonth() == startDay.getMonth()) {
+                        plannerDayCard.setToday();
+                    }
+                }
+
                 if (currDay.getMonth() == startDay.getMonth()) {
                     plannerDayCard.setSameMonthColour();
                 } else {

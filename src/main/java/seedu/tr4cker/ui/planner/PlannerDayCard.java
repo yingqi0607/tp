@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
+import javafx.scene.shape.Circle;
 import seedu.tr4cker.commons.core.LogsCenter;
 import seedu.tr4cker.model.planner.PlannerDay;
 import seedu.tr4cker.ui.UiPart;
@@ -21,6 +22,9 @@ public class PlannerDayCard extends UiPart<Region> {
     private final PlannerDay plannerDay;
 
     @FXML
+    private Circle circle;
+
+    @FXML
     private Label dateNumber;
 
     /**
@@ -31,25 +35,36 @@ public class PlannerDayCard extends UiPart<Region> {
         logger.fine("Initialising plannerDayCard...");
         this.plannerDay = plannerDay;
         dateNumber.setText(Integer.toString(plannerDay.getDay()));
+        circle.setId("circle-not-today");
     }
 
     /**
-     * Clears the date number of a PlannerDayCard.
+     * Clears the date number and highlight of a PlannerDayCard.
      */
     public void clear() {
         dateNumber.setText("");
-        // clear highlight
-
-        // clear box colour
-
+        circle.setId("circle-not-today");
     }
 
+    /**
+     * Sets the date of the same month to be black colour.
+     */
     public void setSameMonthColour() {
         dateNumber.setId("same-month-colour");
     }
 
+    /**
+     * Sets the date of the same month to be grey colour.
+     */
     public void setDifferentMonthColour() {
         dateNumber.setId("different-month-colour");
+    }
+
+    /**
+     * Highlights the date.
+     */
+    public void setToday() {
+        circle.setId("circle-today");
     }
 
 }

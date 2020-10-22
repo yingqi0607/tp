@@ -56,23 +56,15 @@ public class PlannerTabWindow extends UiPart<Region> {
             int year = localDate.getYear();
             int month = localDate.getMonthValue();
             int date = localDate.getDayOfMonth();
-            if (localDate.getMonthValue() == plannerCalendarPanel.getCurrentMonth()
-                    && localDate.getYear() == plannerCalendarPanel.getCurrentYear()) {
-                // check if date is the same as current highlighted day, else need to change highlight
-                plannerCalendarPanel.setCurrentYear(year);
-                plannerCalendarPanel.setCurrentMonth(month);
-
-            } else {
-                // check if date is the same as current highlighted day, else need to change highlight
-                plannerCalendarPanel.setCurrentYear(year);
-                plannerCalendarPanel.setCurrentMonth(month);
-                LocalDate newDate = LocalDate.of(year, month, 1);
-                YearMonth newYearMonth = YearMonth.of(year, month);
-                PlannerDay newDay = new PlannerDay(newDate);
-                plannerCalendarPanel.clearCalendar();
-                plannerCalendarPanel.changeCalendarMonthYear(newYearMonth);
-                plannerCalendarPanel.fillCalendarTable(newDay);
-            }
+            plannerCalendarPanel.setCurrentYear(year);
+            plannerCalendarPanel.setCurrentMonth(month);
+            LocalDate newDate = LocalDate.of(year, month, 1);
+            LocalDate userInput = LocalDate.of(year, month, date);
+            YearMonth newYearMonth = YearMonth.of(year, month);
+            PlannerDay newDay = new PlannerDay(newDate);
+            plannerCalendarPanel.clearCalendar();
+            plannerCalendarPanel.changeCalendarMonthYear(newYearMonth);
+            plannerCalendarPanel.fillCalendarTable(newDay, userInput);
         } else if (localDate == null && yearMonth != null) { // user wants to go to specified month
             int year = yearMonth.getYear();
             int month = yearMonth.getMonthValue();
@@ -82,8 +74,7 @@ public class PlannerTabWindow extends UiPart<Region> {
             PlannerDay newDay = new PlannerDay(firstDayOfMonth);
             plannerCalendarPanel.clearCalendar();
             plannerCalendarPanel.changeCalendarMonthYear(yearMonth);
-            plannerCalendarPanel.fillCalendarTable(newDay);
-            // need to do UI
+            plannerCalendarPanel.fillCalendarTable(newDay, null);
         }
     }
 
