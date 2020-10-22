@@ -19,6 +19,7 @@ import seedu.tr4cker.logic.Logic;
 import seedu.tr4cker.logic.commands.CommandResult;
 import seedu.tr4cker.logic.commands.exceptions.CommandException;
 import seedu.tr4cker.logic.parser.exceptions.ParseException;
+import seedu.tr4cker.ui.countdown.CountdownTabWindow;
 import seedu.tr4cker.ui.planner.PlannerTabWindow;
 
 /**
@@ -47,6 +48,7 @@ public class MainWindow extends UiPart<Stage> {
     private ExpiredTaskListPanel expiredTaskListPanel;
     private CompletedTaskListPanel completedTaskListPanel;
     private PlannerTabWindow plannerTabWindow;
+    private CountdownTabWindow countdownTabWindow;
     private ResultDisplay resultDisplay;
     private final HelpWindow helpWindow;
 
@@ -76,6 +78,9 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     private StackPane plannerTabWindowPlaceholder;
+
+    @FXML
+    private StackPane countdownTabWindowPlaceholder;
 
     /*
      * Tab related objects
@@ -183,6 +188,9 @@ public class MainWindow extends UiPart<Stage> {
 
         plannerTabWindow = new PlannerTabWindow(logic);
         plannerTabWindowPlaceholder.getChildren().add(plannerTabWindow.getRoot());
+
+        countdownTabWindow = new CountdownTabWindow(logic);
+        countdownTabWindowPlaceholder.getChildren().add(countdownTabWindow.getRoot());
     }
 
     /**
@@ -320,6 +328,10 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isShowPlanner()) {
                 plannerTabWindow.updateCalendar(commandResult);
                 handleShowTabPlanner();
+            }
+
+            if (commandResult.isShowCountdown()) {
+                handleShowTabCountdown();
             }
 
             return commandResult;

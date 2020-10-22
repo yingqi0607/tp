@@ -24,6 +24,9 @@ public class CommandResult {
     /** TR4CKER shows Planner tab. */
     private boolean showPlanner;
 
+    /** TR4CKER shows Countdown tab. */
+    private boolean showCountdown;
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
@@ -52,8 +55,23 @@ public class CommandResult {
         this.showHelp = false;
         this.exit = false;
         this.showPlanner = true;
+        this.showCountdown = false;
         this.localDate = localDate;
         this.yearMonth = yearMonth;
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser}.
+     * For usage of CountdownCommand.
+     */
+    public CommandResult(String feedbackToUser, boolean isShowCountdown) {
+        this.feedbackToUser = requireNonNull(feedbackToUser);
+        this.showHelp = false;
+        this.exit = false;
+        this.showPlanner = false;
+        this.showCountdown = isShowCountdown;
+        this.localDate = null;
+        this.yearMonth = null;
     }
 
     public String getFeedbackToUser() {
@@ -70,6 +88,10 @@ public class CommandResult {
 
     public boolean isShowPlanner() {
         return showPlanner;
+    }
+
+    public boolean isShowCountdown() {
+        return showCountdown;
     }
 
     public LocalDate getLocalDate() {
