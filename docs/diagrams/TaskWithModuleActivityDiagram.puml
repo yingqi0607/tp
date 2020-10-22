@@ -7,12 +7,8 @@ else ([existing task])
 :User requests to edit task to associate with module;
 endif
 if () then ([module exists])
-
-    fork
-        :Task added to main pending tasks panel;
-    fork again
-        :Task added to module task list;
-    end fork
+    :Task added to main pending tasks panel;
+    :Task added to module task list;
 else ([module does not exist])
     :displays error message;
 
