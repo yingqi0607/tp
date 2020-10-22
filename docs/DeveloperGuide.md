@@ -279,29 +279,45 @@ currently displayed, and `countdown previous` with display the event before the 
 to know what is the next upcoming event, for example what is the next exam that they have to prepare for. The first implementation
 is also less prone to errors as users do are able to know what is the next event without knowing beforehand what day is it on.
 
-### Module feature \[coming in v1.3]
-TR4CKER has a module tab which provides users with an alternate view of tasks. Tasks arranged in shorter lists categorized by modules. 
-This feature is to allow users to have a more focused overview of tasks and their associated modules, and know how many tasks are
-pending for each module as opposed to the most-urgent-task-first organization in the main task list.
+### Module feature \[coming in v1.3] (Ethan)
+TR4CKER has a module tab which provides users with an alternate view of tasks. Tasks are arranged in shorter lists categorized by modules. 
+This feature is to allow users to have a more focused overview of tasks, and know how many tasks are
+pending for each module as opposed to the most-urgent-task-first organization in  main task list.
 
 The 2 main functions of the Module feature are to:
 1. Display all modules taken by the user.
-2. Display a list of yet to be completed tasks under each module.
+2. Display the list of yet to be completed tasks under each module.
 
 #### Implementation
-To implement the UI of this planner feature, will be a `ModuleTaskCard` & `ModuleTaskListPanel` classes in the `ui` package, which will be 
-modified from the `TaskCard` class. To implement the commands of this module feature, 
-there are `ModuleCommnad` and `ModuleCommandParser` classes in `logic` package.
+To implement the UI of this planner feature, there will be a `ModuleTaskCard` & `ModuleTaskListPanel` classes in the `ui` package,
+modified from the `TaskCard` and `TaskListPanel` classes. To implement the commands of this module feature, 
+there are `ModuleCommnad` and `ModuleCommandParser` classes in the `logic` package.
+
+A module in the Modules tab has its own `ModuleTaskListPanel`, updated whenever new tasks are added with the module or are 
+edited to be associated under the module.
+
+The following diagram shows the sequence flow when a task gets added to the `ModuleTaskListPanel` of a module:
+![TaskWithModuleActivityDiagram](images/TaskWithModuleActivityDiagram.png)
+Figure 1: Adding task to `ModuleTaskListPanel` of a module.
 
 #### Design considerations:
 
-##### Aspect 1: Users should be able to easily view the next most recent event
+##### Aspect 1: How modules are deleted and added to tasks
 
-* **Current Choice:**
+* **Current Choice:** Modules cannot be deleted if there are existing tasks tagged with the module. Tasks can only be
+tagged with an existing module.
+  * Pros: Safer, will not have stray tasks with non-existent modules.
+  * Pros: User has safeguard against deleting modules that still has pending tasks.
+  * Cons: Less flexible, extra steps for the user to create modules before assigning tasks, and delete tasks before
+  deleting a module.
 
-* **Alternative 1:**
-  
-**Justification for current choice:**
+* **Alternative 1:** Allow both modules to be deleted and tasks to be tagged regardless of the others' existence.
+  * Pros: More convenient for user to use without restrictions.
+  * Cons: Prone to error, user may assign incorrectly with typos.
+    
+**Justification for current choice:** Better reliability of the feature by reducing possible errors by the user. As errors
+will cause more time wasted for the user to fix them anyway, it seems that it is better to incur some overhead to
+prevent making a mess altogether.
 
 ### \[Proposed\] Undo/redo feature
 

@@ -1,0 +1,19 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor PLANNER_COLOR
+skinparam classBackgroundColor PLANNER_COLOR
+skinparam ClassAttributeFontColor #FFFFFF
+skinparam classAttributeIconSize 0
+
+class Module {
++moduleName
++moduleCode
+}
+
+class ModuleTaskCard {
+}
+
+class ModuleTaskListPanel {
+}
+@enduml
