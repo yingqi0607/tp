@@ -17,7 +17,6 @@ import seedu.tr4cker.commons.core.GuiSettings;
 import seedu.tr4cker.commons.core.LogsCenter;
 import seedu.tr4cker.logic.Logic;
 import seedu.tr4cker.logic.commands.CommandResult;
-import seedu.tr4cker.logic.commands.CountdownCommand;
 import seedu.tr4cker.logic.commands.exceptions.CommandException;
 import seedu.tr4cker.logic.parser.exceptions.ParseException;
 import seedu.tr4cker.ui.countdown.CountdownTabWindow;
