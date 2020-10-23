@@ -38,10 +38,11 @@ public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
 
+    private static Logic logic;
+
     private final Logger logger = LogsCenter.getLogger(getClass());
 
     private final Stage primaryStage;
-    private final Logic logic;
 
     // Independent Ui parts residing in this Ui container
     private TaskListPanel taskListPanel;
@@ -114,7 +115,7 @@ public class MainWindow extends UiPart<Stage> {
 
         // Set dependencies
         this.primaryStage = primaryStage;
-        this.logic = logic;
+        MainWindow.logic = logic;
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
@@ -124,6 +125,10 @@ public class MainWindow extends UiPart<Stage> {
         setTabColors(0);
 
         helpWindow = new HelpWindow();
+    }
+
+    public static Logic getLogic() {
+        return logic;
     }
 
     public Stage getPrimaryStage() {
@@ -316,6 +321,7 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            plannerTabWindow.updateIndicator();
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

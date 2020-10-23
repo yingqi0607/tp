@@ -11,7 +11,7 @@
 .label {
     -fx-font-size: 11pt;
     -fx-font-family: "Segoe UI Semibold";
-    -fx-text-fill: #555555;
+    -fx-text-fill: #000000;
     -fx-opacity: 0.9;
 }
 
@@ -409,4 +409,56 @@
     -fx-font-family: "Consolas";
     -fx-font-weight: bold;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 5, 0.5, 1.5, 1.5);
+}
+
+/*planner tab*/
+#month-year-label {
+    -fx-font-size: 20pt;
+    -fx-font-family: "Century Schoolbook";
+    -fx-text-fill: #000000;
+}
+
+#same-month-colour {
+    -fx-font-size: 9pt;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: #000000;
+}
+
+#different-month-colour {
+    -fx-font-size: 9pt;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: #000000;
+    -fx-opacity: 0.5;
+}
+
+.vbox {
+    -fx-background-color: #FCEEF7;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 2, 0.5, 2, 2.5);
+}
+
+.calendarGrid Line {
+    -fx-stroke: #ec97cf;
+    -fx-stroke-width: 1.5;
+}
+
+#circle-not-today {
+    -fx-stroke: #FCEEF7;
+    -fx-stroke-width: 2;
+}
+
+#circle-today {
+    -fx-stroke: #d55291;
+    -fx-stroke-width: 2;
+}
+
+#indicator-no-tasks {
+    -fx-fill: #FCEEF7;
+}
+
+#indicator-green {
+    -fx-fill: #1da15f;
+}
+
+#indicator-red {
+    -fx-fill: #DC143C;
 }
