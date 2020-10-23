@@ -34,7 +34,7 @@ public class ModelManager implements Model {
         super();
         requireAllNonNull(tr4cker, userPrefs);
 
-        logger.fine("Initializing with Tr4cker: " + tr4cker + " and user prefs " + userPrefs);
+        logger.fine("Initializing with TR4CKER: " + tr4cker + " and user prefs " + userPrefs);
 
         this.tr4cker = new Tr4cker(tr4cker);
         this.userPrefs = new UserPrefs(userPrefs);

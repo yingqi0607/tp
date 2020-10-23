@@ -7,6 +7,7 @@ import java.time.YearMonth;
 
 import seedu.tr4cker.model.Model;
 import seedu.tr4cker.model.task.TaskDueInPredicate;
+import seedu.tr4cker.model.util.GotoDateUtil;
 
 /**
  * Allows user to go to Planner tab or go to specific date/month of calendar in Planner tab.
@@ -47,7 +48,7 @@ public class PlannerCommand extends Command {
         this.message = null;
         this.localDate = null;
         this.yearMonth = null;
-        this.taskDueInPredicate = new TaskDueInPredicate(LocalDate.now());
+        this.taskDueInPredicate = new TaskDueInPredicate(GotoDateUtil.getToday());
     }
 
     /**

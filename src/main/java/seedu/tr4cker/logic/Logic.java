@@ -9,6 +9,7 @@ import seedu.tr4cker.logic.commands.exceptions.CommandException;
 import seedu.tr4cker.logic.parser.exceptions.ParseException;
 import seedu.tr4cker.model.ReadOnlyTr4cker;
 import seedu.tr4cker.model.task.Task;
+import seedu.tr4cker.model.task.TaskDueInPredicate;
 
 /** API of the Logic component. */
 public interface Logic {
@@ -37,8 +38,11 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of completed tasks. */
     ObservableList<Task> getFilteredCompletedTaskList();
 
-    /** Returns an unmodifiable view of the filtered list of tasks for PlannerDay. */
+    /** Returns an unmodifiable view of the filtered list of tasks for Planner tab. */
     ObservableList<Task> getPlannerFilteredTaskList();
+
+    /** Updates an unmodifiable view of the filtered list of tasks for Planner tab. */
+    void updatePlannerFilteredTaskList(TaskDueInPredicate taskDueInPredicate);
 
     /** Returns the user prefs' tr4cker file path. */
     Path getTr4ckerFilePath();

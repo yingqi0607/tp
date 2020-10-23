@@ -101,7 +101,7 @@ public interface Model {
     void updateFilteredCompletedTaskList(Predicate<Task> predicate);
 
     /**
-     * Updates the filter of the filtered task list to filter by the given {@code predicate} for PlannerDay.
+     * Updates the filter of the filtered task list to filter by the given {@code predicate} for Planner tab.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updatePlannerFilteredTaskList(Predicate<Task> predicate);

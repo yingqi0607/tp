@@ -38,6 +38,11 @@ public class PlannerTaskListPanel extends UiPart<Region> {
         logger.fine("Created Planner Task List panel.");
     }
 
+    /**
+     * Updates the title of the task list panel.
+     *
+     * @param title New title.
+     */
     public void updateTitle(String title) {
         plannerTaskListPanelTitle.setText("Tasks due on: " + title);
         logger.fine("Updated date of planner task list panel to: " + title);
