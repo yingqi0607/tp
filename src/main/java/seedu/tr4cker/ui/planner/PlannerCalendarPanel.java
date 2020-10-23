@@ -150,4 +150,13 @@ public class PlannerCalendarPanel extends UiPart<Region> {
         this.calendarMonthYear.setId("month-year-label");
     }
 
+    /**
+     * Updates indicator of all Planner Day Cards.
+     */
+    public void updateIndicator() {
+        for (PlannerDayCard plannerDayCard : plannerDayCards) {
+            plannerDayCard.updateIndicator();
+        }
+    }
+
 }

@@ -107,4 +107,11 @@ public class PlannerTabWindow extends UiPart<Region> {
         logger.fine("Updated calendar view to " + GotoDateUtil.parseGotoMonth(yearMonth));
     }
 
+    /**
+     * Updates indicator in calendar panel.
+     */
+    public void updateIndicator() {
+        plannerCalendarPanel.updateIndicator();
+    }
+
 }

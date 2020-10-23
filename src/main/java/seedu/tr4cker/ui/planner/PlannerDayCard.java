@@ -45,7 +45,7 @@ public class PlannerDayCard extends UiPart<Region> {
         this.plannerDay = plannerDay;
         dateNumber.setText(Integer.toString(plannerDay.getDay()));
         circle.setId("circle-not-today");
-        setIndicator(plannerDay);
+        setIndicator();
     }
 
     /**
@@ -79,10 +79,8 @@ public class PlannerDayCard extends UiPart<Region> {
 
     /**
      * Sets the indicator of a Planner Day Card depending on number of tasks due on that day.
-     *
-     * @param plannerDay Planner day.
      */
-    private void setIndicator(PlannerDay plannerDay) {
+    private void setIndicator() {
         ObservableList<Task> filteredList = MainWindow.getLogic().getFilteredTaskList();
         LocalDate localDate = plannerDay.getLocalDate();
         int numOfTasks = filteredList.filtered(new TaskDueInPredicate(localDate)).size();
@@ -105,15 +103,22 @@ public class PlannerDayCard extends UiPart<Region> {
     /**
      * Sets indicator to green colour (1 or 2 tasks).
      */
-    public void setGreenIndicator() {
+    private void setGreenIndicator() {
         indicator.setId("indicator-green");
     }
 
     /**
      * Sets indicator to red colour (more than 2 tasks).
      */
-    public void setRedIndicator() {
+    private void setRedIndicator() {
         indicator.setId("indicator-red");
+    }
+
+    /**
+     * Updates indicator of Planner Day Card.
+     */
+    public void updateIndicator() {
+        setIndicator();
     }
 
 }
