@@ -20,6 +20,7 @@ import seedu.tr4cker.model.Model;
 import seedu.tr4cker.model.ReadOnlyTr4cker;
 import seedu.tr4cker.model.ReadOnlyUserPrefs;
 import seedu.tr4cker.model.Tr4cker;
+import seedu.tr4cker.model.module.Module;
 import seedu.tr4cker.model.task.Task;
 import seedu.tr4cker.testutil.TaskBuilder;
 
@@ -115,6 +116,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void addModule(Module module) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setTr4cker(ReadOnlyTr4cker tr4cker) {
             throw new AssertionError("This method should not be called.");
         }
@@ -140,6 +146,16 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean hasModule(Module module) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteModule(Module target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Task> getFilteredTaskList() {
             throw new AssertionError("This method should not be called.");
         }
@@ -151,6 +167,11 @@ public class AddCommandTest {
 
         @Override
         public ObservableList<Task> getFilteredCompletedTaskList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Module> getFilteredModuleList() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -171,6 +192,11 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredCompletedTaskList(Predicate<Task> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredModuleList(Predicate<Module> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 

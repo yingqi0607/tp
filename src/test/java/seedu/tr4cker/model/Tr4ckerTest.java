@@ -18,6 +18,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.tr4cker.model.module.Module;
 import seedu.tr4cker.model.task.Task;
 import seedu.tr4cker.model.task.exceptions.DuplicateTaskException;
 import seedu.tr4cker.testutil.TaskBuilder;
@@ -88,14 +89,21 @@ public class Tr4ckerTest {
      */
     private static class Tr4ckerStub implements ReadOnlyTr4cker {
         private final ObservableList<Task> tasks = FXCollections.observableArrayList();
+        private final ObservableList<Module> modules = FXCollections.observableArrayList();
 
         Tr4ckerStub(Collection<Task> tasks) {
             this.tasks.setAll(tasks);
+            //todo add modules to tests
         }
 
         @Override
         public ObservableList<Task> getTaskList() {
             return tasks;
+        }
+
+        @Override
+        public ObservableList<Module> getModuleList() {
+            return modules;
         }
     }
 

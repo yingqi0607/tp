@@ -52,12 +52,21 @@ public class Tr4cker implements ReadOnlyTr4cker {
     }
 
     /**
+     * Replaces the contents of the module list with {@code modules}.
+     * {@code modules} must not contain duplicate modules.
+     */
+    public void setModules(List<Module> modules) {
+        this.modules.setModules(modules);
+    }
+
+    /**
      * Resets the existing data of this {@code Tr4cker} with {@code newData}.
      */
     public void resetData(ReadOnlyTr4cker newData) {
         requireNonNull(newData);
 
         setTasks(newData.getTaskList());
+        setModules(newData.getModuleList());
     }
 
     //// task-level operations
@@ -98,6 +107,7 @@ public class Tr4cker implements ReadOnlyTr4cker {
     }
 
     //// module-level operations
+
     /**
      * Returns true if a module with the same identity as {@code module} exists in Tr4cker.
      */
@@ -136,6 +146,7 @@ public class Tr4cker implements ReadOnlyTr4cker {
         return tasks.asUnmodifiableObservableList();
     }
 
+    @Override
     public ObservableList<Module> getModuleList() {
         return modules.asUnmodifiableObservableList();
     }
@@ -144,11 +155,12 @@ public class Tr4cker implements ReadOnlyTr4cker {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Tr4cker // instanceof handles nulls
-                && tasks.equals(((Tr4cker) other).tasks));
+                && tasks.equals(((Tr4cker) other).tasks))
+                && modules.equals(((Tr4cker) other).modules);
     }
 
     @Override
     public int hashCode() {
-        return tasks.hashCode();
+        return tasks.hashCode() + modules.hashCode();
     }
 }
