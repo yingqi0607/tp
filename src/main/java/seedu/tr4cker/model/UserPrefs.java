@@ -15,6 +15,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
     private Path tr4ckerFilePath = Paths.get("data" , "tr4cker.json");
+    private Path eventsFilePath = Paths.get("data", "events.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -36,6 +37,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
         setTr4ckerFilePath(newUserPrefs.getTr4ckerFilePath());
+        setEventsFilePath(newUserPrefs.getEventsFilePath());
     }
 
     public GuiSettings getGuiSettings() {
@@ -56,6 +58,15 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.tr4ckerFilePath = tr4ckerFilePath;
     }
 
+    public Path getEventsFilePath() {
+        return eventsFilePath;
+    }
+
+    public void setEventsFilePath(Path eventsFilePath) {
+        requireNonNull(eventsFilePath);
+        this.eventsFilePath = eventsFilePath;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -68,19 +79,21 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         UserPrefs o = (UserPrefs) other;
 
         return guiSettings.equals(o.guiSettings)
-                && tr4ckerFilePath.equals(o.tr4ckerFilePath);
+                && tr4ckerFilePath.equals(o.tr4ckerFilePath)
+                && eventsFilePath.equals(o.eventsFilePath);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(guiSettings, tr4ckerFilePath);
+        return Objects.hash(guiSettings, tr4ckerFilePath, eventsFilePath);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Gui Settings : " + guiSettings);
-        sb.append("\nLocal data file location : " + tr4ckerFilePath);
+        sb.append("\nLocal data (tasks) file location : " + tr4ckerFilePath);
+        sb.append("\nLocal data (events) file location : " + eventsFilePath);
         return sb.toString();
     }
 

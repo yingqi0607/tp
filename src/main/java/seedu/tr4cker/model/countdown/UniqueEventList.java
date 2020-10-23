@@ -135,11 +135,21 @@ public class UniqueEventList implements Iterable<Event> {
         return true;
     }
 
+    /**
+     * Gets the first upcoming event in the sorted list of events.
+     *
+     * @return Earliest upcoming event.
+     */
     public Event firstEvent() {
         sortEventsByDate();
         return internalUnmodifiableList.get(0);
     }
 
+    /**
+     * Gets the second upcoming event in the sorted list of events.
+     *
+     * @return Second earliest upcoming event.
+     */
     public Event secondEvent() {
         sortEventsByDate();
         return internalUnmodifiableList.get(1);

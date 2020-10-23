@@ -5,6 +5,8 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.tr4cker.model.countdown.Event;
+import seedu.tr4cker.model.countdown.UniqueEventList;
 import seedu.tr4cker.model.task.Task;
 import seedu.tr4cker.model.task.UniqueTaskList;
 
@@ -16,6 +18,8 @@ public class Tr4cker implements ReadOnlyTr4cker {
 
     private final UniqueTaskList tasks;
 
+    private final UniqueEventList events;
+
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
      * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
@@ -25,6 +29,7 @@ public class Tr4cker implements ReadOnlyTr4cker {
      */
     {
         tasks = new UniqueTaskList();
+        events = new UniqueEventList();
     }
 
     public Tr4cker() {}
@@ -48,12 +53,21 @@ public class Tr4cker implements ReadOnlyTr4cker {
     }
 
     /**
+     * Replaces the contents of the event list with {@code events}.
+     * {@code events} must not contain duplicate events.
+     */
+    public void setEvents(List<Event> events) {
+        this.events.setEvents(events);
+    }
+
+    /**
      * Resets the existing data of this {@code Tr4cker} with {@code newData}.
      */
     public void resetData(ReadOnlyTr4cker newData) {
         requireNonNull(newData);
 
         setTasks(newData.getTaskList());
+        setEvents(newData.getEventList());
     }
 
     //// task-level operations
@@ -93,11 +107,45 @@ public class Tr4cker implements ReadOnlyTr4cker {
         tasks.remove(key);
     }
 
+    //// event-level operations
+
+    /**
+     * Returns true if a event with the same identity as {@code event} exists in Tr4cker.
+     */
+    public boolean hasEvent(Event event) {
+        requireNonNull(event);
+        return events.contains(event);
+    }
+
+    /**
+     * Adds an event to Tr4cker.
+     * The event must not already exist in Tr4cker.
+     */
+    public void addEvent(Event p) {
+        events.add(p);
+    }
+
+    /**
+     * Removes {@code key} from this {@code Tr4cker}.
+     * {@code key} must exist in Tr4cker.
+     */
+    public void removeEvent(Event key) {
+        events.remove(key);
+    }
+
+    public Event firstEvent() {
+        return events.firstEvent();
+    }
+
+    public Event secondEvent() {
+        return events.secondEvent();
+    }
+
     //// util methods
 
     @Override
     public String toString() {
-        return tasks.asUnmodifiableObservableList().size() + " tasks";
+        return tasks.asUnmodifiableObservableList().size() + " tasks"; // Consider accounting for events
         // TODO: refine later
     }
 
@@ -108,14 +156,22 @@ public class Tr4cker implements ReadOnlyTr4cker {
     }
 
     @Override
+    public ObservableList<Event> getEventList() {
+        events.sortEventsByDate();
+        return events.asUnmodifiableObservableList();
+    }
+
+    @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Tr4cker // instanceof handles nulls
-                && tasks.equals(((Tr4cker) other).tasks));
+                && tasks.equals(((Tr4cker) other).tasks)
+                && events.equals(((Tr4cker) other).events));
     }
 
     @Override
     public int hashCode() {
-        return tasks.hashCode();
+        return tasks.hashCode() + events.hashCode();
+        // TODO: refine later
     }
 }
