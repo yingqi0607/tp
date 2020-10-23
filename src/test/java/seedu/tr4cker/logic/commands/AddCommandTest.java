@@ -20,6 +20,7 @@ import seedu.tr4cker.model.Model;
 import seedu.tr4cker.model.ReadOnlyTr4cker;
 import seedu.tr4cker.model.ReadOnlyUserPrefs;
 import seedu.tr4cker.model.Tr4cker;
+import seedu.tr4cker.model.countdown.Event;
 import seedu.tr4cker.model.task.Task;
 import seedu.tr4cker.testutil.TaskBuilder;
 
@@ -110,6 +111,16 @@ public class AddCommandTest {
         }
 
         @Override
+        public Path getEventsFilePath() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setEventsFilePath(Path eventsFilePath) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addTask(Task task) {
             throw new AssertionError("This method should not be called.");
         }
@@ -140,6 +151,21 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean hasEvent(Event event) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteEvent(Event target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addEvent(Event event) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Task> getFilteredTaskList() {
             throw new AssertionError("This method should not be called.");
         }
@@ -160,6 +186,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public ObservableList<Event> getFilteredEventsList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void updateFilteredTaskList(Predicate<Task> predicate) {
             throw new AssertionError("This method should not be called.");
         }
@@ -176,6 +207,11 @@ public class AddCommandTest {
 
         @Override
         public void updatePlannerFilteredTaskList(Predicate<Task> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredEventList(Predicate<Event> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }

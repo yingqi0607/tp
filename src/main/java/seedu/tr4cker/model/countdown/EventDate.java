@@ -1,11 +1,11 @@
 package seedu.tr4cker.model.countdown;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.tr4cker.commons.util.AppUtil.checkArgument;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.tr4cker.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents the date of an event in TR4CKER.
@@ -37,7 +37,8 @@ public class EventDate {
     public EventDate(String date) {
         requireNonNull(date);
         checkArgument(isValidDate(date), MESSAGE_CONSTRAINTS);
-        checkArgument(isFutureDate(date), MESSAGE_FUTURE_CONSTRAINT); // would mean that you cant add events that have passed.
+        checkArgument(isFutureDate(date), MESSAGE_FUTURE_CONSTRAINT);
+        // would mean that you cant add events that have passed.
         this.date = LocalDate.parse(date, DATE_TIME_FORMAT);
     }
 
