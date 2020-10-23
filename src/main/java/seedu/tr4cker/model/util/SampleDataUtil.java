@@ -6,6 +6,9 @@ import java.util.stream.Collectors;
 
 import seedu.tr4cker.model.ReadOnlyTr4cker;
 import seedu.tr4cker.model.Tr4cker;
+import seedu.tr4cker.model.countdown.Event;
+import seedu.tr4cker.model.countdown.EventDate;
+import seedu.tr4cker.model.countdown.EventName;
 import seedu.tr4cker.model.tag.Tag;
 import seedu.tr4cker.model.task.CompletionStatus;
 import seedu.tr4cker.model.task.Deadline;
@@ -46,10 +49,25 @@ public class SampleDataUtil {
         };
     }
 
+    public static Event[] getSampleEvents() {
+        return new Event[] {
+            new Event(new EventName("CS2103T Final Exam"), new EventDate("02-Dec-2020")),
+            new Event(new EventName("CS2103T Practical Exam Dry Run"), new EventDate("30-10-2020")),
+            new Event(new EventName("CS2103T Practical Exam"), new EventDate("13-Nov-2020")),
+            new Event(new EventName("Han Wei's Birthday"), new EventDate("09-10-2020")),
+            new Event(new EventName("CS2101 OP2 Demo"), new EventDate("03-11-2020")),
+            new Event(new EventName("CS2101 OP2 Pitch"), new EventDate("06-11-2020")),
+            new Event(new EventName("Christmas"), new EventDate("25-Dec-2020"))
+        };
+    }
+
     public static ReadOnlyTr4cker getSampleTr4cker() {
         Tr4cker sampleAb = new Tr4cker();
         for (Task sampleTask : getSampleTasks()) {
             sampleAb.addTask(sampleTask);
+        }
+        for (Event sampleEvent : getSampleEvents()) {
+            sampleAb.addEvent(sampleEvent);
         }
         return sampleAb;
     }
