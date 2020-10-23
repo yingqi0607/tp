@@ -37,7 +37,7 @@ public class EventDate {
     public EventDate(String date) {
         requireNonNull(date);
         checkArgument(isValidDate(date), MESSAGE_CONSTRAINTS);
-        checkArgument(isFutureDate(date), MESSAGE_FUTURE_CONSTRAINT);
+        // checkArgument(isFutureDate(date), MESSAGE_FUTURE_CONSTRAINT);
         // would mean that you cant add events that have passed.
         this.date = LocalDate.parse(date, DATE_TIME_FORMAT);
     }

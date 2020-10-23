@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.tr4cker.commons.exceptions.IllegalValueException;
 import seedu.tr4cker.model.ReadOnlyTr4cker;
 import seedu.tr4cker.model.Tr4cker;
+import seedu.tr4cker.model.countdown.Event;
 import seedu.tr4cker.model.task.Task;
 
 /**
@@ -20,15 +21,19 @@ import seedu.tr4cker.model.task.Task;
 class JsonSerializableTr4cker {
 
     public static final String MESSAGE_DUPLICATE_TASK = "Task list contains duplicate task(s).";
+    public static final String MESSAGE_DUPLICATE_EVENT = "Events list contains duplicate event(s).";
 
     private final List<JsonAdaptedTask> tasks = new ArrayList<>();
+    private final List<JsonAdaptedEvent> events = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableTr4cker} with the given tasks.
      */
     @JsonCreator
-    public JsonSerializableTr4cker(@JsonProperty("tasks") List<JsonAdaptedTask> tasks) {
+    public JsonSerializableTr4cker(@JsonProperty("tasks") List<JsonAdaptedTask> tasks,
+                                   @JsonProperty("events") List<JsonAdaptedEvent> events) {
         this.tasks.addAll(tasks);
+        this.events.addAll(events);
     }
 
     /**
@@ -38,6 +43,37 @@ class JsonSerializableTr4cker {
      */
     public JsonSerializableTr4cker(ReadOnlyTr4cker source) {
         tasks.addAll(source.getTaskList().stream().map(JsonAdaptedTask::new).collect(Collectors.toList()));
+        events.addAll(source.getEventList().stream().map(JsonAdaptedEvent::new).collect(Collectors.toList()));
+    }
+
+    /**
+     * Converts tasks into the model's {@code Tr4cker} object.
+     *
+     * @throws IllegalValueException if there were any data constraints violated.
+     */
+    private void tasksToModelType(Tr4cker tr4cker) throws IllegalValueException {
+        for (JsonAdaptedTask jsonAdaptedTask : tasks) {
+            Task task = jsonAdaptedTask.toModelType();
+            if (tr4cker.hasTask(task)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_TASK);
+            }
+            tr4cker.addTask(task);
+        }
+    }
+
+    /**
+     * Converts events into the model's {@code Tr4cker} object.
+     *
+     * @throws IllegalValueException if there were any data constraints violated.
+     */
+    private void eventsToModelType(Tr4cker tr4cker) throws IllegalValueException {
+        for (JsonAdaptedEvent jsonAdaptedEvent : events) {
+            Event event = jsonAdaptedEvent.toModelType();
+            if (tr4cker.hasEvent(event)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_EVENT);
+            }
+            tr4cker.addEvent(event);
+        }
     }
 
     /**
@@ -47,13 +83,8 @@ class JsonSerializableTr4cker {
      */
     public Tr4cker toModelType() throws IllegalValueException {
         Tr4cker tr4cker = new Tr4cker();
-        for (JsonAdaptedTask jsonAdaptedTask : tasks) {
-            Task task = jsonAdaptedTask.toModelType();
-            if (tr4cker.hasTask(task)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_TASK);
-            }
-            tr4cker.addTask(task);
-        }
+        tasksToModelType(tr4cker);
+        eventsToModelType(tr4cker);
         return tr4cker;
     }
 

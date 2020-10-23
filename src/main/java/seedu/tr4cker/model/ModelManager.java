@@ -90,17 +90,6 @@ public class ModelManager implements Model {
         userPrefs.setTr4ckerFilePath(tr4ckerFilePath);
     }
 
-    @Override
-    public Path getEventsFilePath() {
-        return userPrefs.getEventsFilePath();
-    }
-
-    @Override
-    public void setEventsFilePath(Path eventsFilePath) {
-        requireNonNull(eventsFilePath);
-        userPrefs.setEventsFilePath(eventsFilePath);
-    }
-
     //=========== TR4CKER ================================================================================
 
     @Override

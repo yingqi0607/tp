@@ -41,5 +41,17 @@
     "completionStatus" : 0,
     "description" : "Task 7 description",
     "tagged" : [ ]
-  } ]
+  } ],
+  "events" : [
+    {
+      "eventName": "Event1 Name",
+      "eventDate": "01-01-2021"
+    }, {
+      "eventName": "Event2 Name",
+      "eventDate": "10-10-2020"
+    }, {
+      "eventName": "Event3 Name",
+      "eventDate": "30-11-2020"
+    }
+  ]
 }

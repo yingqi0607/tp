@@ -111,16 +111,6 @@ public class AddCommandTest {
         }
 
         @Override
-        public Path getEventsFilePath() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setEventsFilePath(Path eventsFilePath) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public void addTask(Task task) {
             throw new AssertionError("This method should not be called.");
         }

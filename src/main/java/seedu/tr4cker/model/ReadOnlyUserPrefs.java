@@ -13,6 +13,4 @@ public interface ReadOnlyUserPrefs {
 
     Path getTr4ckerFilePath();
 
-    Path getEventsFilePath();
-
 }

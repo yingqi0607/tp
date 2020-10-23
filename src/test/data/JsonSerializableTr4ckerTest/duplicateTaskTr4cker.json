@@ -10,5 +10,11 @@
     "deadline": "20-Oct-2021 1800",
     "completionStatus": 0,
     "description": "description 1"
-  } ]
+  } ],
+  "events" : [
+    {
+      "eventName": "Event1 Name",
+      "eventDate": "01-01-2021"
+    }
+  ]
 }

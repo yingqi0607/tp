@@ -46,12 +46,6 @@ public interface Model {
     /** Sets the user prefs' Tr4cker file path. */
     void setTr4ckerFilePath(Path tr4ckerFilePath);
 
-    /** Returns the user prefs' Events file path. */
-    Path getEventsFilePath();
-
-    /** Sets the user prefs' Events file path. */
-    void setEventsFilePath(Path eventsFilePath);
-
     /** Replaces Tr4cker data with the data in {@code tr4cker}. */
     void setTr4cker(ReadOnlyTr4cker tr4cker);
 
