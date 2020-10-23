@@ -2,6 +2,8 @@ package seedu.tr4cker.model.planner;
 
 import java.time.LocalDate;
 
+import seedu.tr4cker.model.util.GotoDateUtil;
+
 /**
  * Represents the calendar in Planner tab.
  */
@@ -17,6 +19,15 @@ public class PlannerDay {
      */
     public PlannerDay(LocalDate localDate) {
         this.localDate = localDate;
+    }
+
+    /**
+     * Returns date associated to PlannerDay.
+     *
+     * @return Local date.
+     */
+    public LocalDate getLocalDate() {
+        return this.localDate;
     }
 
     /**
@@ -119,7 +130,7 @@ public class PlannerDay {
 
     @Override
     public String toString() {
-        return localDate.toString();
+        return GotoDateUtil.parseGotoDay(localDate);
     }
 
 }

@@ -59,6 +59,7 @@ public class PlannerCalendarPanel extends UiPart<Region> {
      * Fills up the calendar with dates of the current month.
      *
      * @param startDay First day of the month.
+     * @param localDate User's specified date (can be null or not).
      */
     public void fillCalendarTable(PlannerDay startDay, LocalDate localDate) {
         int index = startDay.getDayOfWeek();
@@ -78,7 +79,7 @@ public class PlannerCalendarPanel extends UiPart<Region> {
                 PlannerDayCard plannerDayCard = new PlannerDayCard(currDay);
                 plannerDayCards.add(plannerDayCard);
                 calendarTable.add(plannerDayCard.getRoot(), col, row);
-                checkDay(startDay, currDay, localDate, plannerDayCard);
+                highlightDay(startDay, currDay, localDate, plannerDayCard);
                 currDay = currDay.getNextDay();
             }
         }
@@ -93,8 +94,8 @@ public class PlannerCalendarPanel extends UiPart<Region> {
      * @param localDate User's specified date (can be null or not).
      * @param plannerDayCard Planner Day Card.
      */
-    private void checkDay(PlannerDay startDay, PlannerDay currDay,
-                          LocalDate localDate, PlannerDayCard plannerDayCard) {
+    private void highlightDay(PlannerDay startDay, PlannerDay currDay,
+                              LocalDate localDate, PlannerDayCard plannerDayCard) {
         if (localDate != null) {
             if (currDay.getDay() == localDate.getDayOfMonth()
                     && currDay.getMonth() == localDate.getMonthValue()) {

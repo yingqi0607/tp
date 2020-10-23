@@ -450,3 +450,15 @@
     -fx-stroke: #d55291;
     -fx-stroke-width: 2;
 }
+
+#indicator-no-tasks {
+    -fx-fill: #FCEEF7;
+}
+
+#indicator-green {
+    -fx-fill: #1da15f;
+}
+
+#indicator-red {
+    -fx-fill: #DC143C;
+}
