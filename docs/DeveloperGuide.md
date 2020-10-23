@@ -243,23 +243,30 @@ User Guide of TR4CKER.
 ##### Aspect 2: \[tbc]
 
 ### Countdown feature \[coming in v1.3] (Wen Ling)
-TR4CKER has a countdowns tab which allows users to add important dates and times that they would like TR4CKER to countdown to.
-This feature allows users to isolate the most important time sensitive events and deadlines, and know exactly how much time
-they have before a certain event, which enhances the tracking experience.
+TR4CKER has a countdowns tab which allows users to add important events that they would like TR4CKER to countdown to.
+This feature allows users to isolate the most important time sensitive events and deadlines, and tells the user exactly
+how many days do they have to a certain event, which enhances the tracking experience.
 
-The 2 main functions of the Countdown feature are to:
-1. Display a countdown of all events to be tracked
-2. Display the next upcoming event
+The 3 main functions of the Countdown feature are to:
+1. Display a list of all countdown events
+2. Display prominently the 2 earliest upcoming events
 
 #### Implementation \[will be updated with UML diagrams]
-The countdown panel is facilitated by the `CountdownPanel` class, which serves as the entry point to show users the countdown
-events as a list.
+The countdown panel is facilitated by the `CountdownPanel` class, which serves as the entry point to show users the
+countdown events as a list.
 
-To illustrate how the 2 functions work step-by-step, given below are 3 example usage scenarios:
+To allow TR4CKER to countdown to events, users can add new events by 2 methods using Countdown Command.
 
-1. Displays all upcoming countdowns
+1. Add event based on task in task list (Note: Countdowns list is separate from tasks list, and subsequent changes
+to tasks in task list will not be reflected in countdowns list.)
 
-2. Displays the next upcoming event
+2. Add independent event 
+
+Users can also use Countdown Command to 
+
+The following activity diagram shows the flow of executing a Countdown Command:
+![CountdownCommandActivityDiagram](images/CountdownActivityDiagram.png)
+
 
 #### Design considerations:
 
