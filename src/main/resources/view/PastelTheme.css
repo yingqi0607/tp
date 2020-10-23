@@ -44,6 +44,10 @@
     -fx-opacity: 1;
 }
 
+#taskListView, #expiredTaskListView, #completedTaskListView, .list-cell:empty{
+    -fx-background-color: #eecfcf;
+}
+
 .tab-pane {
     -fx-padding: 0 0 0 1;
     -fx-background-color: derive(#97b5b7, 20%);
@@ -94,7 +98,7 @@
 }
 
 .split-pane:horizontal .split-pane-divider {
-    -fx-background-color: derive(#97b57b, 20%);
+    -fx-background-color: derive(#97b5b7, 20%);
     -fx-border-color: transparent transparent transparent #4d4d4d;
 }
 
@@ -107,7 +111,7 @@
 .list-view {
     -fx-background-insets: 0;
     -fx-padding: 0;
-    -fx-background-color: derive(#97b5b7, 20%);
+    -fx-background-color: #eecfcf;
 }
 
 .list-cell {

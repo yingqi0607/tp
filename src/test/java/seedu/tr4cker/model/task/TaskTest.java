@@ -127,7 +127,7 @@ public class TaskTest {
     @Test
     public void testHashcode() {
         Name name = new Name("name");
-        Deadline deadline = new Deadline("02-12-2021 1800");
+        Deadline deadline = new Deadline("02-12-2021 1800", false);
         CompletionStatus completionStatus = new CompletionStatus(0);
         TaskDescription taskDescription = new TaskDescription("description");
         Tag tag = new Tag("tag");

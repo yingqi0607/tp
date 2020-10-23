@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 import seedu.tr4cker.logic.commands.AddCommand;
 import seedu.tr4cker.logic.commands.ClearCommand;
 import seedu.tr4cker.logic.commands.Command;
+import seedu.tr4cker.logic.commands.CountdownCommand;
 import seedu.tr4cker.logic.commands.DeleteCommand;
 import seedu.tr4cker.logic.commands.DoneCommand;
 import seedu.tr4cker.logic.commands.EditCommand;
@@ -79,6 +80,9 @@ public class Tr4ckerParser {
 
         case PlannerCommand.COMMAND_WORD:
             return new PlannerCommandParser().parse(arguments);
+
+        case CountdownCommand.COMMAND_WORD:
+            return new CountdownCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

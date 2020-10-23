@@ -17,18 +17,17 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to TR4CKER "
-            + "Parameters: "
-            + PREFIX_NAME + "NAME "
-            + PREFIX_DEADLINE + "DEADLINE "
-            + PREFIX_TASK_DESCRIPTION + "TASKDESCRIPTION "
-            + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " "
+    public static final String MESSAGE_USAGE = "Looks like you're trying to use the " + COMMAND_WORD + " command: "
+            + "Adds a task to TR4CKER\n"
+            + "Compulsory Parameters: " + PREFIX_NAME + "NAME " + PREFIX_TASK_DESCRIPTION + "TASKDESCRIPTION\n"
+            + "Optional Parameters: " + PREFIX_DEADLINE + "DEADLINE "
+            + PREFIX_TAG + "TAG...(more than one tag is allowed)\n"
+            + "(E.g. " + COMMAND_WORD + " "
             + PREFIX_NAME + "CS2103T tP "
             + PREFIX_DEADLINE + "10-Oct-2021 1010 "
             + PREFIX_TASK_DESCRIPTION + "Update User Guide "
             + PREFIX_TAG + "CS2103T "
-            + PREFIX_TAG + "UG";
+            + PREFIX_TAG + "UG" + ")";
 
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in TR4CKER.";
