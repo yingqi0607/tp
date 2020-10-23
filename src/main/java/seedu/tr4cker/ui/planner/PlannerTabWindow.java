@@ -11,7 +11,7 @@ import seedu.tr4cker.commons.core.LogsCenter;
 import seedu.tr4cker.logic.Logic;
 import seedu.tr4cker.logic.commands.CommandResult;
 import seedu.tr4cker.model.planner.PlannerDay;
-import seedu.tr4cker.ui.TaskListPanel;
+import seedu.tr4cker.model.util.GotoDateUtil;
 import seedu.tr4cker.ui.UiPart;
 
 /**
@@ -23,7 +23,7 @@ public class PlannerTabWindow extends UiPart<Region> {
     private static final String FXML = "PlannerTabWindow.fxml";
     private final Logger logger = LogsCenter.getLogger(PlannerCalendarPanel.class);
     private final PlannerCalendarPanel plannerCalendarPanel;
-    private final TaskListPanel taskListPanel;
+    private final PlannerTaskListPanel plannerTaskListPanel;
 
     @FXML
     private StackPane plannerCalendarPanelPlaceholder;
@@ -37,12 +37,12 @@ public class PlannerTabWindow extends UiPart<Region> {
      */
     public PlannerTabWindow(Logic logic) {
         super(FXML);
-        logger.fine("Initialising Planner Tab Window");
+        logger.fine("Initialising Planner Tab Window...");
         this.plannerCalendarPanel = new PlannerCalendarPanel(PlannerDay.getCurrDay());
-        this.taskListPanel = new TaskListPanel(logic.getPlannerFilteredTaskList());
+        this.plannerTaskListPanel = new PlannerTaskListPanel(logic.getPlannerFilteredTaskList());
 
         plannerCalendarPanelPlaceholder.getChildren().add(plannerCalendarPanel.getRoot());
-        plannerTaskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
+        plannerTaskListPanelPlaceholder.getChildren().add(plannerTaskListPanel.getRoot());
         logger.fine("Created Planner Tab Window.");
     }
 
@@ -79,7 +79,8 @@ public class PlannerTabWindow extends UiPart<Region> {
         plannerCalendarPanel.clearCalendar();
         plannerCalendarPanel.changeCalendarMonthYear(newYearMonth);
         plannerCalendarPanel.fillCalendarTable(newDay, userInput);
-        logger.fine("Updated calendar view to " + localDate.toString());
+        plannerTaskListPanel.updateTitle(GotoDateUtil.parseGotoDay(localDate));
+        logger.fine("Updated calendar view to " + GotoDateUtil.parseGotoDay(localDate));
     }
 
     /**
@@ -97,7 +98,8 @@ public class PlannerTabWindow extends UiPart<Region> {
         plannerCalendarPanel.clearCalendar();
         plannerCalendarPanel.changeCalendarMonthYear(yearMonth);
         plannerCalendarPanel.fillCalendarTable(newDay, null);
-        logger.fine("Updated calendar view to " + yearMonth.toString());
+        plannerTaskListPanel.updateTitle(GotoDateUtil.parseGotoMonth(yearMonth));
+        logger.fine("Updated calendar view to " + GotoDateUtil.parseGotoMonth(yearMonth));
     }
 
 }
