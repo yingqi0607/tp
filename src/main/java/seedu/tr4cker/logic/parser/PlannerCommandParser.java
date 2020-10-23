@@ -86,7 +86,7 @@ public class PlannerCommandParser implements Parser<PlannerCommand> {
             taskDueInPredicate = new TaskDueInPredicate(localDate);
         } else if (isValidGotoMonth) {
             yearMonth = GotoDateUtil.splitGotoMonth(trimmedGotoDay);
-            message = GotoDateUtil.parseGotoMonth(yearMonth);
+            message = "01-" + GotoDateUtil.parseGotoMonth(yearMonth);
             taskDueInPredicate = new TaskDueInPredicate(yearMonth);
         } else {
             throw new ParseException(PlannerCommand.MESSAGE_GOTO_USAGE);
