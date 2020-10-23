@@ -117,4 +117,9 @@ public class PlannerDay {
                 && this.getYear() == plannerDay.getYear();
     }
 
+    @Override
+    public String toString() {
+        return localDate.toString();
+    }
+
 }

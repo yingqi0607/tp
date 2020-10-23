@@ -43,7 +43,7 @@ public class PlannerCalendarPanel extends UiPart<Region> {
      */
     public PlannerCalendarPanel(PlannerDay plannerDay) {
         super(FXML);
-        logger.fine("Initialising plannerCalendar panel...");
+        logger.fine("Initialising Planner Calendar panel...");
         this.plannerDay = plannerDay;
         this.calendarMonthYear.setText(plannerDay.getMonthName() + " " + plannerDay.getYear());
         this.calendarMonthYear.setId("month-year-label");
@@ -52,6 +52,7 @@ public class PlannerCalendarPanel extends UiPart<Region> {
 
         PlannerDay startDay = plannerDay.createFirstDayOfMonth();
         fillCalendarTable(startDay, null);
+        logger.fine("Created Planner Calendar panel.");
     }
 
     /**
@@ -77,25 +78,39 @@ public class PlannerCalendarPanel extends UiPart<Region> {
                 PlannerDayCard plannerDayCard = new PlannerDayCard(currDay);
                 plannerDayCards.add(plannerDayCard);
                 calendarTable.add(plannerDayCard.getRoot(), col, row);
-                if (localDate != null) {
-                    if (currDay.getDay() == localDate.getDayOfMonth()
-                            && currDay.getMonth() == localDate.getMonthValue()) {
-                        plannerDayCard.setToday();
-                    }
-                } else {
-                    if (currDay.getDay() == startDay.getDay()
-                            && currDay.getMonth() == startDay.getMonth()) {
-                        plannerDayCard.setToday();
-                    }
-                }
-
-                if (currDay.getMonth() == startDay.getMonth()) {
-                    plannerDayCard.setSameMonthColour();
-                } else {
-                    plannerDayCard.setDifferentMonthColour();
-                }
+                checkDay(startDay, currDay, localDate, plannerDayCard);
                 currDay = currDay.getNextDay();
             }
+        }
+        logger.fine("Filled calendar view with start date: " + startDay.toString());
+    }
+
+    /**
+     * Checks the days and set the colour and highlight dates.
+     *
+     * @param startDay Start day.
+     * @param currDay Current day.
+     * @param localDate User's specified date (can be null or not).
+     * @param plannerDayCard Planner Day Card.
+     */
+    private void checkDay(PlannerDay startDay, PlannerDay currDay,
+                          LocalDate localDate, PlannerDayCard plannerDayCard) {
+        if (localDate != null) {
+            if (currDay.getDay() == localDate.getDayOfMonth()
+                    && currDay.getMonth() == localDate.getMonthValue()) {
+                plannerDayCard.setToday();
+            }
+        } else {
+            if (currDay.getDay() == startDay.getDay()
+                    && currDay.getMonth() == startDay.getMonth()) {
+                plannerDayCard.setToday();
+            }
+        }
+
+        if (currDay.getMonth() == startDay.getMonth()) {
+            plannerDayCard.setSameMonthColour();
+        } else {
+            plannerDayCard.setDifferentMonthColour();
         }
     }
 
@@ -111,24 +126,6 @@ public class PlannerCalendarPanel extends UiPart<Region> {
      */
     public void setCurrentYear(int year) {
         this.year = year;
-    }
-
-    /**
-     * Gets the current month of the calendar.
-     *
-     * @return Current month.
-     */
-    public int getCurrentMonth() {
-        return month;
-    }
-
-    /**
-     * Gets the current year of the calendar.
-     *
-     * @return Current year.
-     */
-    public int getCurrentYear() {
-        return year;
     }
 
     /**
