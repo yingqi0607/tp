@@ -96,4 +96,9 @@ class PlannerDayTest {
         assertNotEquals(plannerDay3, 5);
     }
 
+    @Test
+    public void stringTest() {
+        assertEquals(plannerDay3.toString(), plannerDay4.toString());
+    }
+
 }

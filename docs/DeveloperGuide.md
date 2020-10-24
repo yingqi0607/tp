@@ -243,23 +243,30 @@ User Guide of TR4CKER.
 ##### Aspect 2: \[tbc]
 
 ### Countdown feature \[coming in v1.3] (Wen Ling)
-TR4CKER has a countdowns tab which allows users to add important dates and times that they would like TR4CKER to countdown to.
-This feature allows users to isolate the most important time sensitive events and deadlines, and know exactly how much time
-they have before a certain event, which enhances the tracking experience.
+TR4CKER has a countdowns tab which allows users to add important events that they would like TR4CKER to countdown to.
+This feature allows users to isolate the most important time sensitive events and deadlines, and tells the user exactly
+how many days do they have to a certain event, which enhances the tracking experience.
 
-The 2 main functions of the Countdown feature are to:
-1. Display a countdown of all events to be tracked
-2. Display the next upcoming event
+The 3 main functions of the Countdown feature are to:
+1. Display a list of all countdown events
+2. Display prominently the 2 earliest upcoming events
 
 #### Implementation \[will be updated with UML diagrams]
-The countdown panel is facilitated by the `CountdownPanel` class, which serves as the entry point to show users the countdown
-events as a list.
+The countdown panel is facilitated by the `CountdownPanel` class, which serves as the entry point to show users the
+countdown events as a list.
 
-To illustrate how the 2 functions work step-by-step, given below are 3 example usage scenarios:
+To allow TR4CKER to countdown to events, users can add new events by 2 methods using Countdown Command.
 
-1. Displays all upcoming countdowns
+1. Add event based on task in task list (Note: Countdowns list is separate from tasks list, and subsequent changes
+to tasks in task list will not be reflected in countdowns list.)
 
-2. Displays the next upcoming event
+2. Add independent event 
+
+Users can also use Countdown Command to 
+
+The following activity diagram shows the flow of executing a Countdown Command:
+![CountdownCommandActivityDiagram](images/CountdownActivityDiagram.png)
+
 
 #### Design considerations:
 
@@ -289,7 +296,7 @@ The 2 main functions of the Module feature are to:
 2. Display the list of yet to be completed tasks under each module.
 
 #### Implementation
-To implement the UI of this planner feature, there will be a `ModuleTaskCard` & `ModuleTaskListPanel` classes
+To implement the UI of this Module feature, there will be a `ModuleTaskCard` & `ModuleTaskListPanel` classes
 in the `ui` package, modified from the `TaskCard` and `TaskListPanel` classes. To implement the commands of
 this module feature, there are `ModuleCommnad` and `ModuleCommandParser` classes in the `logic` package.
 
@@ -319,6 +326,37 @@ tagged with an existing module.
 will cause more time wasted for the user to fix them anyway, it seems that it is better to incur some overhead to
 prevent making a mess altogether.
 
+### Daily feature \[coming in v1.3] (Yingqi)
+Tracker has a daily feature that allows users to add current tasks to a todo list for the day.
+This feature allows users to plan for what they want to do for a particular day.
+
+The 3 main functions of the Daily feature are to:
+1. Add tasks from existing task list to a todo list
+2. Display all tasks that the user wants to do for the day
+3. The daily todo list is cleared everyday
+
+#### Implementation
+The UI of the Daily feature is facilitated by the `DailyPanel` class which will show users all daily todo tasks as a list.
+
+To implement the the commands of this Daily feature, there are `TodoCommand` and `TodoCommandParser` classes in the `logic` package.
+
+The following diagram shows the sequence flow when a task gets added into the `DailyPanel`:
+![DailySequenceDiagram](images/DailySequenceDiagram.png)
+
+#### Design Considerations
+
+##### Aspect 1: How users can plan for the things he/she wants to complete for the day
+
+* **Current Choice:** When users use list command to view all tasks, only task names are shown.
+  * Pros: A neater list is being shown.
+  * Pros: Users can look through the list quickly and decide what to add to daily todo list.
+  * Cons: Important details such and deadline and descriptions are omitted, users may not know which task is more urgent to do.
+  
+* **Alternative 1:** When users decides to add a particular task to daily todo list, details of that task is shown.
+  * Pros: Users have clearer idea of the details of the tasks that he/she wants to complete for the day.
+  * Cons: Details are shown only when the tasks is already added, if the user do not want to do it for the day, he/she has to delete it from todo list.
+
+**Justification for current choice:** Users would already have details of the tasks in mind and therefore they will tend to add the tasks they feel that are more urgent to daily todo list. Hence details can be ommited when users select tasks to add into daily todo list.
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation

@@ -16,6 +16,7 @@ import seedu.tr4cker.model.Model;
 import seedu.tr4cker.model.ReadOnlyTr4cker;
 import seedu.tr4cker.model.module.Module;
 import seedu.tr4cker.model.task.Task;
+import seedu.tr4cker.model.task.TaskDueInPredicate;
 import seedu.tr4cker.storage.Storage;
 
 /**
@@ -81,6 +82,11 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Task> getPlannerFilteredTaskList() {
         return model.getPlannerFilteredTaskList();
+    }
+
+    @Override
+    public void updatePlannerFilteredTaskList(TaskDueInPredicate taskDueInPredicate) {
+        model.updatePlannerFilteredTaskList(taskDueInPredicate);
     }
 
     @Override
