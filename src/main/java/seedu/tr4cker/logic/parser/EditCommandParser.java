@@ -51,7 +51,7 @@ public class EditCommandParser implements Parser<EditCommand> {
                     ParserUtil.parseDescription(argMultimap.getValue(PREFIX_TASK_DESCRIPTION).get()));
         }
         if (argMultimap.getValue(PREFIX_MODULE_CODE).isPresent()) {
-            if (argMultimap.getValue(PREFIX_MODULE_CODE).get().equals("")) {
+            if (argMultimap.getValue(PREFIX_MODULE_CODE).get().equals("del")) {
                 editTaskDescriptor.setModuleCode(new HashSet<>()); // for deleting module code
             } else {
                 editTaskDescriptor.setModuleCode(

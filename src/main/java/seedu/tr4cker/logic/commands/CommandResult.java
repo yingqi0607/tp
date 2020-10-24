@@ -52,9 +52,10 @@ public class CommandResult {
      * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
      * For usage of ModuleCommand.
      */
-    public static CommandResult createModuleCommandResult(String feedbackToUser) {
+    public static CommandResult createModuleTabSwitchCommandResult(String feedbackToUser) {
         CommandResult newCommandResult = new CommandResult(feedbackToUser);
         newCommandResult.showModules = true;
+        newCommandResult.showPlanner = false;
         return newCommandResult;
     }
 

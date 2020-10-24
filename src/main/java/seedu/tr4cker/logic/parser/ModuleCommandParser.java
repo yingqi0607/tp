@@ -40,10 +40,9 @@ public class ModuleCommandParser {
         if (arePrefixesPresent(argMultimap, PREFIX_MODULE_NAME, PREFIX_MODULE_CODE) &&
                 !arePrefixesPresent(argMultimap, PREFIX_MODULE_DELETE) &&
                 argMultimap.getPreamble().isEmpty()) {
-            //todo do something
             String moduleName = argMultimap.getValue(PREFIX_MODULE_NAME).get();
-            ModuleCode moduleCode = new ModuleCode(argMultimap.getValue(PREFIX_MODULE_CODE).get());
-            Module module = new Module(moduleName, moduleCode);
+            String moduleCode = argMultimap.getValue(PREFIX_MODULE_CODE).get();
+            Module module = ParserUtil.parseModule(moduleName, moduleCode);
             return new ModuleCommand(module);
         }
 
@@ -51,7 +50,6 @@ public class ModuleCommandParser {
         if (!arePrefixesPresent(argMultimap, PREFIX_MODULE_NAME, PREFIX_MODULE_CODE) &&
                 arePrefixesPresent(argMultimap, PREFIX_MODULE_DELETE) &&
                 argMultimap.getPreamble().isEmpty()) {
-            //todo do something
             Index index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_MODULE_DELETE).get());
             return new ModuleCommand(index);
         }

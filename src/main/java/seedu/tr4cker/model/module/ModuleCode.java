@@ -32,13 +32,6 @@ public class ModuleCode {
         return test.matches(VALIDATION_REGEX);
     }
 
-    /**
-     * Returns true if a given string is a valid tag name.
-     */
-    public static boolean isValidTagName(String test) {
-        return test.matches(VALIDATION_REGEX);
-    }
-
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

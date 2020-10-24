@@ -1,5 +1,6 @@
 package seedu.tr4cker.logic.commands;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_MODULE_DELETE;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_MODULE_NAME;
@@ -57,6 +58,7 @@ public class ModuleCommand extends Command {
      * Constructor for ModuleCommand when user wants to add a module.
      */
     public ModuleCommand (Module toAdd) {
+        requireNonNull(toAdd);
         this.toAdd = toAdd;
         this.toDeleteIndex = null;
     }
@@ -65,15 +67,16 @@ public class ModuleCommand extends Command {
      * Constructor for ModuleCommand when user wants to delete a module.
      */
     public ModuleCommand (Index toDeleteIndex) {
+        requireNonNull(toDeleteIndex);
         this.toAdd = null;
         this.toDeleteIndex = toDeleteIndex;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        requireNonNull(model);
         if (toAdd == null && toDeleteIndex == null) {
-            //todo update module tab?
-            return CommandResult.createModuleCommandResult(MESSAGE_SWITCH_TAB_SUCCESS);
+            return CommandResult.createModuleTabSwitchCommandResult(MESSAGE_SWITCH_TAB_SUCCESS);
         }
 
         if (toDeleteIndex == null) {

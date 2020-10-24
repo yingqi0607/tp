@@ -1,6 +1,7 @@
 package seedu.tr4cker.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.tr4cker.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -115,10 +116,29 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String tr4cker} into an {@code description}.
+     * Parses a {@code String name} and {@code String moduleCode} into a {@code Module}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code tr4cker} is invalid.
+     * @throws ParseException if the given {@code moduleName} or {@code moduleCode} is invalid.
+     */
+    public static Module parseModule(String moduleName, String moduleCode) throws ParseException {
+        requireAllNonNull(moduleName, moduleCode);
+        String trimmedName = moduleName.trim();
+        String trimmedModuleCode = moduleCode.trim();
+        if (!Module.isValidModuleName(trimmedName)) {
+            throw new ParseException(Module.MESSAGE_CONSTRAINTS);
+        }
+        if (!ModuleCode.isValidModuleCode(trimmedModuleCode)) {
+            throw new ParseException(ModuleCode.MESSAGE_CONSTRAINTS);
+        }
+        return new Module(trimmedName, new ModuleCode(trimmedModuleCode));
+    }
+
+    /**
+     * Parses a {@code String moduleCode} into a {@code Set<ModuleCode>}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code moduleCode} is invalid.
      */
     public static Set<ModuleCode> parseModuleCode(String moduleCode) throws ParseException {
         requireNonNull(moduleCode);
