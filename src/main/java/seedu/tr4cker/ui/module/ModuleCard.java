@@ -1,5 +1,6 @@
 package seedu.tr4cker.ui.module;
 
+import javafx.beans.binding.Bindings;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -50,6 +51,7 @@ public class ModuleCard extends UiPart<Region> {
         moduleCode.setText(module.moduleCode.toString());
         smallTaskListView.setItems(taskList.filtered(task -> task.getModuleCode().contains(module.moduleCode)));
         smallTaskListView.setCellFactory(listView -> new ModuleTasksListViewCell());
+        smallTaskListView.setPrefHeight(smallTaskListView.getItems().size() * 40 + 2);
     }
 
     /**

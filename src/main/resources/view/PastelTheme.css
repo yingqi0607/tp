@@ -404,6 +404,22 @@
     -fx-effect: innershadow(gaussian, black, 10, 0, 0, 0);
 }
 
+/*
+ * Module-related FX
+ */
+
+.list-cell:filled #moduleListCardPane {
+    -fx-background-color: #eecfcf;
+}
+
+#smallTaskListView {
+    -fx-padding: 0 5 0 15;
+}
+
+#smallTaskListView .scroll-bar {
+    -fx-opacity: 0;
+}
+
 #moduleListCard {
     -fx-background-radius: 7px;
     -fx-background-color: #20B2AA;
