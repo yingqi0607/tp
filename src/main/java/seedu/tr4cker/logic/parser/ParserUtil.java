@@ -9,6 +9,8 @@ import java.util.Set;
 import seedu.tr4cker.commons.core.index.Index;
 import seedu.tr4cker.commons.util.StringUtil;
 import seedu.tr4cker.logic.parser.exceptions.ParseException;
+import seedu.tr4cker.model.module.Module;
+import seedu.tr4cker.model.module.ModuleCode;
 import seedu.tr4cker.model.tag.Tag;
 import seedu.tr4cker.model.task.CompletionStatus;
 import seedu.tr4cker.model.task.Deadline;
@@ -110,6 +112,23 @@ public class ParserUtil {
             throw new ParseException(CompletionStatus.MESSAGE_CONSTRAINTS);
         }
         return new CompletionStatus(trimmedCompletionStatusInt);
+    }
+
+    /**
+     * Parses a {@code String tr4cker} into an {@code description}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code tr4cker} is invalid.
+     */
+    public static Set<ModuleCode> parseModuleCode(String moduleCode) throws ParseException {
+        requireNonNull(moduleCode);
+        final Set<ModuleCode> moduleCodeSet = new HashSet<>();
+        String trimmedModuleCode = moduleCode.trim();
+        if (!ModuleCode.isValidModuleCode(trimmedModuleCode)) {
+            throw new ParseException(ModuleCode.MESSAGE_CONSTRAINTS);
+        }
+        moduleCodeSet.add(new ModuleCode(moduleCode));
+        return moduleCodeSet;
     }
 
     /**

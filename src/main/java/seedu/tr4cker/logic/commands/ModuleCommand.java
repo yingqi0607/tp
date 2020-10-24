@@ -40,6 +40,7 @@ public class ModuleCommand extends Command {
     public static final String MESSAGE_MODULE_DELETE_SUCCESS = "Deleted module: %1$s";
 
     public static final String MESSAGE_DUPLICATE_MODULE = "This module already exists in TR4CKER.";
+    public static final String MESSAGE_STILL_HAS_TASKS = "This module still has related tasks in TR4CKER.";
 
     private final Module toAdd;
     private final Index toDeleteIndex;
@@ -92,6 +93,9 @@ public class ModuleCommand extends Command {
         }
 
         Module moduleToDelete = lastShownList.get(toDeleteIndex.getZeroBased());
+        if (model.hasRelatedTasks(moduleToDelete)) {
+            throw new CommandException(MESSAGE_STILL_HAS_TASKS);
+        }
         model.deleteModule(moduleToDelete);
         return new CommandResult(String.format(MESSAGE_MODULE_DELETE_SUCCESS, moduleToDelete));
     }

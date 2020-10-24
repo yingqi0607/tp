@@ -19,6 +19,7 @@ import seedu.tr4cker.logic.Logic;
 import seedu.tr4cker.logic.commands.CommandResult;
 import seedu.tr4cker.logic.commands.exceptions.CommandException;
 import seedu.tr4cker.logic.parser.exceptions.ParseException;
+import seedu.tr4cker.ui.module.ModuleListPanel;
 import seedu.tr4cker.ui.planner.PlannerTabWindow;
 
 /**
@@ -189,7 +190,7 @@ public class MainWindow extends UiPart<Stage> {
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
         /**Modules */
-        moduleListPanel = new ModuleListPanel(logic.getFilteredModuleList());
+        moduleListPanel = new ModuleListPanel(logic.getFilteredModuleList(), logic.getFilteredTaskList());
         moduleListPanelPlaceholder.getChildren().add(moduleListPanel.getRoot());
 
         /**Planner */

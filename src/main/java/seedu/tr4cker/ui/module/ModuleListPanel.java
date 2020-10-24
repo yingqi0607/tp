@@ -1,4 +1,4 @@
-package seedu.tr4cker.ui;
+package seedu.tr4cker.ui.module;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -7,6 +7,10 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.tr4cker.commons.core.LogsCenter;
 import seedu.tr4cker.model.module.Module;
+import seedu.tr4cker.model.task.Task;
+import seedu.tr4cker.ui.TaskListPanel;
+import seedu.tr4cker.ui.UiPart;
+import seedu.tr4cker.ui.module.ModuleCard;
 
 import java.util.logging.Logger;
 
@@ -16,6 +20,7 @@ import java.util.logging.Logger;
 public class ModuleListPanel extends UiPart<Region> {
     private static final String FXML = "ModuleListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(TaskListPanel.class);
+    private final ObservableList<Task> taskObservableList;
 
     @FXML
     private ListView<Module> moduleListView;
@@ -23,10 +28,12 @@ public class ModuleListPanel extends UiPart<Region> {
     /**
      * Creates a {@code TaskListPanel} with the given {@code ObservableList}.
      */
-    public ModuleListPanel(ObservableList<Module> moduleList) {
+    public ModuleListPanel(ObservableList<Module> moduleList, ObservableList<Task> taskList) {
         super(FXML);
         moduleListView.setItems(moduleList);
         moduleListView.setCellFactory(listView -> new ModuleListViewCell());
+
+        this.taskObservableList = taskList;
     }
 
     /**
@@ -41,7 +48,7 @@ public class ModuleListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new ModuleCard(module, getIndex() + 1).getRoot());
+                setGraphic(new ModuleCard(module, getIndex() + 1, taskObservableList).getRoot());
             }
         }
     }

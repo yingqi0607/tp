@@ -80,6 +80,19 @@ public class Tr4cker implements ReadOnlyTr4cker {
     }
 
     /**
+     * Returns true if a task with the same module code as {@code module} exists in Tr4cker.
+     */
+    public boolean hasRelatedTasks(Module module) {
+        requireNonNull(module);
+        for (Task task : tasks) {
+            if (task.getModuleCode().contains(module.moduleCode)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
      * Adds a task to Tr4cker.
      * The task must not already exist in Tr4cker.
      */
@@ -114,6 +127,18 @@ public class Tr4cker implements ReadOnlyTr4cker {
     public boolean hasModule(Module module) {
         requireNonNull(module);
         return modules.contains(module);
+    }
+
+    /**
+     * Returns true if the {@code task} has a module code that exists in Tr4cker, or if
+     * it's module field is null.
+     */
+    public boolean hasValidModuleField(Task task) {
+        requireNonNull(task);
+        if (task.getModuleCode().isEmpty()) {
+            return true;
+        }
+        return task.getModuleCode().stream().anyMatch(modules::containsCode);
     }
 
     /**

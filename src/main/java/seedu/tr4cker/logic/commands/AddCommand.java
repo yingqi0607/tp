@@ -1,10 +1,7 @@
 package seedu.tr4cker.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_DEADLINE;
-import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_TASK_DESCRIPTION;
+import static seedu.tr4cker.logic.parser.CliSyntax.*;
 
 import seedu.tr4cker.logic.commands.exceptions.CommandException;
 import seedu.tr4cker.model.Model;
@@ -21,6 +18,7 @@ public class AddCommand extends Command {
             + "Adds a task to TR4CKER\n"
             + "Compulsory Parameters: " + PREFIX_NAME + "NAME " + PREFIX_TASK_DESCRIPTION + "TASKDESCRIPTION\n"
             + "Optional Parameters: " + PREFIX_DEADLINE + "DEADLINE "
+            + PREFIX_MODULE_CODE + "MODULECODE (must be of existing module)"
             + PREFIX_TAG + "TAG...(more than one tag is allowed)\n"
             + "(E.g. " + COMMAND_WORD + " "
             + PREFIX_NAME + "CS2103T tP "
@@ -31,6 +29,7 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in TR4CKER.";
+    public static final String MESSAGE_INVALID_MODULE = "Given module does not exist in TR4CKER.";
 
     private final Task toAdd;
 
@@ -50,6 +49,9 @@ public class AddCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
         //todo throw exception if adds task with non-existent module
+        if (!model.hasValidModuleField(toAdd)) {
+            throw new CommandException(MESSAGE_INVALID_MODULE);
+        }
 
         model.addTask(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));

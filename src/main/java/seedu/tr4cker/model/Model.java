@@ -52,6 +52,9 @@ public interface Model {
     /** Returns true if a task with the same identity as {@code task} exists in Tr4cker. */
     boolean hasTask(Task task);
 
+    /** Returns true if a task with the same module code as {@code module} exists in Tr4cker. */
+    boolean hasRelatedTasks(Module module);
+
     /**
      * Deletes the given task.
      * The task must exist in Tr4cker.
@@ -66,6 +69,11 @@ public interface Model {
 
     /** Returns true if a module with the same identity as {@code module} exists in Tr4cker. */
     boolean hasModule(Module module);
+
+    /** Returns true if a {@code task} has a module code that exists in Tr4cker, or if
+     * it's module field is null.
+     */
+    boolean hasValidModuleField(Task task);
 
     /**
      * Deletes the given module.

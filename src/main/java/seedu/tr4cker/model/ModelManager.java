@@ -109,6 +109,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasRelatedTasks(Module module) {
+        return tr4cker.hasRelatedTasks(module);
+    }
+
+    @Override
     public void deleteTask(Task target) {
         tr4cker.removeTask(target);
     }
@@ -130,6 +135,11 @@ public class ModelManager implements Model {
     public boolean hasModule(Module module) {
         requireNonNull(module);
         return tr4cker.hasModule(module);
+    }
+
+    @Override
+    public boolean hasValidModuleField(Task task) {
+        return tr4cker.hasValidModuleField(task);
     }
 
     @Override

@@ -1,20 +1,18 @@
-package seedu.tr4cker.ui;
-
-import java.util.Comparator;
+package seedu.tr4cker.ui.module;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.tr4cker.model.task.Task;
+import seedu.tr4cker.ui.UiPart;
 
 /**
- * An UI component that displays information of a {@code Task}.
+ * An UI component that displays truncated information of a {@code Task}.
  */
-public class TaskCard extends UiPart<Region> {
+public class SmallTaskCard extends UiPart<Region> {
 
-    private static final String FXML = "TaskListCard.fxml";
+    private static final String FXML = "SmallTaskCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -31,34 +29,19 @@ public class TaskCard extends UiPart<Region> {
     @FXML
     private Label name;
     @FXML
-    private Label id;
-    @FXML
     private Label deadline;
     @FXML
-    private Label description;
-    @FXML
-    private Label completionStatus;
-    @FXML
-    private FlowPane moduleCode;
-    @FXML
-    private FlowPane tags;
+    private Label id;
 
     /**
-     * Creates a {@code TaskCode} with the given {@code Task} and index to display.
+     * Creates a {@code SmallTaskCard} with the given {@code task} and index to display.
      */
-    public TaskCard(Task task, int displayedIndex) {
+    public SmallTaskCard(Task task, int displayedIndex) {
         super(FXML);
         this.task = task;
         id.setText(displayedIndex + ". ");
         name.setText(task.getName().taskName);
         deadline.setText(task.getDeadline().toString());
-        description.setText(task.getTaskDescription().value);
-        completionStatus.setText("Progress | " + task.getCompletionStatus().toString());
-        task.getModuleCode().stream()
-                .forEach(code -> moduleCode.getChildren().add(new Label(code.codeName)));
-        task.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 
     @Override
@@ -69,12 +52,12 @@ public class TaskCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof TaskCard)) {
+        if (!(other instanceof SmallTaskCard)) {
             return false;
         }
 
         // state check
-        TaskCard card = (TaskCard) other;
+        SmallTaskCard card = (SmallTaskCard) other;
         return id.getText().equals(card.id.getText())
                 && task.equals(card.task);
     }

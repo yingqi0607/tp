@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.tr4cker.commons.exceptions.IllegalValueException;
+import seedu.tr4cker.model.module.ModuleCode;
 import seedu.tr4cker.model.tag.Tag;
 import seedu.tr4cker.model.task.CompletionStatus;
 import seedu.tr4cker.model.task.Deadline;
@@ -28,6 +29,7 @@ class JsonAdaptedTask {
     private final String deadline;
     private final int completionStatus;
     private final String description;
+    private final List<JsonAdaptedModuleCode> moduleCode = new ArrayList<>();
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -37,11 +39,15 @@ class JsonAdaptedTask {
     public JsonAdaptedTask(@JsonProperty("name") String name, @JsonProperty("deadline") String deadline,
                            @JsonProperty("completionStatus") int completionStatus,
                            @JsonProperty("description") String description,
+                           @JsonProperty("moduleCode") List<JsonAdaptedModuleCode> moduleCode,
                            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.deadline = deadline;
         this.completionStatus = completionStatus;
         this.description = description;
+        if (moduleCode != null) {
+            this.moduleCode.addAll(moduleCode);
+        }
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -55,6 +61,8 @@ class JsonAdaptedTask {
         deadline = source.getDeadline().toString();
         completionStatus = source.getCompletionStatus().value;
         description = source.getTaskDescription().value;
+        moduleCode.addAll(source.getModuleCode().stream()
+                .map(JsonAdaptedModuleCode::new).collect(Collectors.toList()));
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -69,6 +77,10 @@ class JsonAdaptedTask {
         final List<Tag> taskTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             taskTags.add(tag.toModelType());
+        }
+        final List<ModuleCode> taskModuleCode = new ArrayList<>();
+        for (JsonAdaptedModuleCode code : moduleCode) {
+            taskModuleCode.add(code.toModelType());
         }
 
         if (name == null) {
@@ -105,8 +117,9 @@ class JsonAdaptedTask {
         }
         final TaskDescription modelTaskDescription = new TaskDescription(description);
 
+        final Set<ModuleCode> modelModuleCode = new HashSet<>(taskModuleCode);
         final Set<Tag> modelTags = new HashSet<>(taskTags);
-        return new Task(modelName, modelDeadline, modelCompletionStatus, modelTaskDescription, modelTags);
+        return new Task(modelName, modelDeadline, modelCompletionStatus, modelTaskDescription, modelModuleCode, modelTags);
     }
 
 }

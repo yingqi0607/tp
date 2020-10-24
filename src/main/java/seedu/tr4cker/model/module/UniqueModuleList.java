@@ -37,6 +37,14 @@ public class UniqueModuleList implements Iterable<Module> {
     }
 
     /**
+     * Returns true if the list contains a Module with the given module code.
+     */
+    public boolean containsCode(ModuleCode toCheck) {
+        requireNonNull(toCheck);
+        return internalList.stream().anyMatch(x -> x.moduleCode.equals(toCheck));
+    }
+
+    /**
      * Adds a module to the list.
      * The module must not already exist in the list.
      */
