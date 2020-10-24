@@ -1,24 +1,18 @@
 package seedu.tr4cker.model.module;
 
-import org.junit.jupiter.api.Test;
-import seedu.tr4cker.model.module.exceptions.DuplicateModuleException;
-import seedu.tr4cker.model.module.exceptions.ModuleNotFoundException;
-import seedu.tr4cker.model.task.Task;
-import seedu.tr4cker.model.task.UniqueTaskList;
-import seedu.tr4cker.model.task.exceptions.DuplicateTaskException;
-import seedu.tr4cker.model.task.exceptions.TaskNotFoundException;
-import seedu.tr4cker.testutil.TaskBuilder;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.tr4cker.testutil.Assert.assertThrows;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_DESCRIPTION_2;
-import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_TAG_URGENT;
-import static seedu.tr4cker.testutil.Assert.assertThrows;
-import static seedu.tr4cker.testutil.TypicalTasks.MANUAL_TASK2;
-import static seedu.tr4cker.testutil.TypicalTasks.TASK1;
+import org.junit.jupiter.api.Test;
+
+import seedu.tr4cker.model.module.exceptions.DuplicateModuleException;
+import seedu.tr4cker.model.module.exceptions.ModuleNotFoundException;
 
 class UniqueModuleListTest {
 
@@ -116,6 +110,6 @@ class UniqueModuleListTest {
     @Test
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, ()
-                -> uniqueModuleList.asUnmodifiableObservableList().remove(0));
+            -> uniqueModuleList.asUnmodifiableObservableList().remove(0));
     }
 }

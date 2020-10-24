@@ -256,8 +256,7 @@ public class AddCommandTest {
         @Override
         public boolean hasValidModuleField(Task task) {
             requireNonNull(task);
-            return modulesAdded.stream().noneMatch(
-                    module -> task.getModuleCode().contains(module.moduleCode));
+            return modulesAdded.stream().noneMatch(module -> task.getModuleCode().contains(module.moduleCode));
         }
 
         @Override

@@ -1,8 +1,10 @@
 package seedu.tr4cker.model.util;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static seedu.tr4cker.model.util.SampleDataUtil.getTagSet;
 import static seedu.tr4cker.model.util.SampleDataUtil.getModuleCodeSet;
+import static seedu.tr4cker.model.util.SampleDataUtil.getTagSet;
+
+import java.util.HashSet;
 
 import org.junit.jupiter.api.Test;
 
@@ -13,8 +15,6 @@ import seedu.tr4cker.model.task.Deadline;
 import seedu.tr4cker.model.task.Name;
 import seedu.tr4cker.model.task.Task;
 import seedu.tr4cker.model.task.TaskDescription;
-
-import java.util.HashSet;
 
 class SampleDataUtilTest {
 
@@ -46,12 +46,12 @@ class SampleDataUtilTest {
     };
 
     private final Module[] modules = new Module[] {
-            new Module("Programming Methodology", new ModuleCode("CS1101S")),
-            new Module("Computer Organization", new ModuleCode("CS2100")),
-            new Module("Software Engineering", new ModuleCode("CS2103T")),
-            new Module("Effective Communication for Computing Professionals",
+        new Module("Programming Methodology", new ModuleCode("CS1101S")),
+        new Module("Computer Organization", new ModuleCode("CS2100")),
+        new Module("Software Engineering", new ModuleCode("CS2103T")),
+        new Module("Effective Communication for Computing Professionals",
                     new ModuleCode("CS2101")),
-            new Module("Discrete Structures", new ModuleCode("CS1231S"))
+        new Module("Discrete Structures", new ModuleCode("CS1231S"))
     };
 
     @Test

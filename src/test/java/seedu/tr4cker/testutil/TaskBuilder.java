@@ -3,7 +3,6 @@ package seedu.tr4cker.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.tr4cker.model.module.Module;
 import seedu.tr4cker.model.module.ModuleCode;
 import seedu.tr4cker.model.tag.Tag;
 import seedu.tr4cker.model.task.CompletionStatus;

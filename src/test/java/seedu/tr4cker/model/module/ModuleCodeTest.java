@@ -1,9 +1,13 @@
 package seedu.tr4cker.model.module;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.tr4cker.testutil.Assert.assertThrows;
+
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static seedu.tr4cker.testutil.Assert.assertThrows;
+
 
 class ModuleCodeTest {
 

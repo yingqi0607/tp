@@ -1,27 +1,36 @@
 package seedu.tr4cker.logic.commands;
 
-import static seedu.tr4cker.logic.commands.CommandTestUtil.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_MODULE_CODE_1;
+import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_MODULE_NAME_1;
+import static seedu.tr4cker.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.tr4cker.testutil.Assert.assertThrows;
-
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import org.junit.jupiter.api.Test;
-import seedu.tr4cker.commons.core.GuiSettings;
-import seedu.tr4cker.commons.core.Messages;
-import seedu.tr4cker.commons.core.index.Index;
-import seedu.tr4cker.logic.commands.exceptions.CommandException;
-import seedu.tr4cker.model.*;
-import seedu.tr4cker.model.module.Module;
-import seedu.tr4cker.model.module.ModuleCode;
-import seedu.tr4cker.model.task.Task;
+import static seedu.tr4cker.testutil.TypicalTasks.getTypicalTr4cker;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.function.Predicate;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static seedu.tr4cker.testutil.TypicalTasks.getTypicalTr4cker;
+import org.junit.jupiter.api.Test;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import seedu.tr4cker.commons.core.GuiSettings;
+import seedu.tr4cker.commons.core.Messages;
+import seedu.tr4cker.commons.core.index.Index;
+import seedu.tr4cker.logic.commands.exceptions.CommandException;
+import seedu.tr4cker.model.Model;
+import seedu.tr4cker.model.ModelManager;
+import seedu.tr4cker.model.ReadOnlyTr4cker;
+import seedu.tr4cker.model.ReadOnlyUserPrefs;
+import seedu.tr4cker.model.UserPrefs;
+import seedu.tr4cker.model.module.Module;
+import seedu.tr4cker.model.module.ModuleCode;
+import seedu.tr4cker.model.task.Task;
+
 
 /**
  * Contains integration tests (interaction with the Model) for {@code ModuleCommand}.
@@ -64,7 +73,8 @@ class ModuleCommandTest {
 
         CommandResult commandResult = new ModuleCommand(validModule).execute(modelStub);
 
-        assertEquals(String.format(ModuleCommand.MESSAGE_MODULE_ADD_SUCCESS, validModule), commandResult.getFeedbackToUser());
+        assertEquals(String.format(ModuleCommand.MESSAGE_MODULE_ADD_SUCCESS, validModule),
+                commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validModule), modelStub.modulesAdded);
     }
 
@@ -74,7 +84,8 @@ class ModuleCommandTest {
 
         CommandResult commandResult = new ModuleCommand(Index.fromOneBased(1)).execute(modelStub);
 
-        assertEquals(String.format(ModuleCommand.MESSAGE_MODULE_DELETE_SUCCESS, testModule), commandResult.getFeedbackToUser());
+        assertEquals(String.format(ModuleCommand.MESSAGE_MODULE_DELETE_SUCCESS, testModule),
+                commandResult.getFeedbackToUser());
         assertEquals(new ArrayList<>(), modelStub.modulesAdded);
     }
 

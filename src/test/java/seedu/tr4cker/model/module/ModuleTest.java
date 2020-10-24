@@ -1,22 +1,21 @@
 package seedu.tr4cker.model.module;
 
-import org.junit.jupiter.api.Test;
-import seedu.tr4cker.model.task.Name;
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.tr4cker.testutil.Assert.assertThrows;
-import static seedu.tr4cker.testutil.TypicalTasks.MANUAL_TASK2;
-import static seedu.tr4cker.testutil.TypicalTasks.TASK1;
+
+import org.junit.jupiter.api.Test;
 
 class ModuleTest {
 
-    private static Module EXAMPLE_MODULE =
+    private Module exampleModule =
             new Module("NAME1", new ModuleCode("CODE1"));
-    private static Module EXAMPLE_MODULE_COPY =
+    private Module exampleModuleCopy =
             new Module("NAME1", new ModuleCode("CODE1"));
-    private static Module MODULE_DIFF_CODE =
+    private Module moduleWithDiffCode =
             new Module("NAME1", new ModuleCode("CODE2"));
-    private static Module MODULE_DIFF_NAME =
+    private Module moduleWithDiffName =
             new Module("NAME2", new ModuleCode("CODE1"));
 
     @Test
@@ -40,37 +39,37 @@ class ModuleTest {
     @Test
     void isSameModule() {
         // same object -> returns true
-        assertTrue(EXAMPLE_MODULE.isSameModule(EXAMPLE_MODULE));
+        assertTrue(exampleModule.isSameModule(exampleModule));
 
         // null -> returns false
-        assertFalse(EXAMPLE_MODULE.isSameModule(null));
+        assertFalse(exampleModule.isSameModule(null));
 
         // different module code -> returns false
-        assertFalse(EXAMPLE_MODULE.isSameModule(MODULE_DIFF_CODE));
+        assertFalse(exampleModule.isSameModule(moduleWithDiffCode));
 
         // same code different name -> returns true
-        assertTrue(EXAMPLE_MODULE.isSameModule(MODULE_DIFF_NAME));
+        assertTrue(exampleModule.isSameModule(moduleWithDiffName));
     }
 
     @Test
     void testEquals() {
         // same values -> returns true
-        assertTrue(EXAMPLE_MODULE.equals(EXAMPLE_MODULE_COPY));
+        assertTrue(exampleModule.equals(exampleModuleCopy));
 
         // same object -> returns true
-        assertTrue(EXAMPLE_MODULE.equals(EXAMPLE_MODULE));
+        assertTrue(exampleModule.equals(exampleModule));
 
         // null -> returns false
-        assertFalse(EXAMPLE_MODULE.equals(null));
+        assertFalse(exampleModule.equals(null));
 
         // different type -> returns false
-        assertFalse(EXAMPLE_MODULE.equals(5));
+        assertFalse(exampleModule.equals(5));
 
         // different name -> returns false
-        assertFalse(EXAMPLE_MODULE.equals(MODULE_DIFF_NAME));
+        assertFalse(exampleModule.equals(moduleWithDiffName));
 
         // different code -> returns false
-        assertFalse(EXAMPLE_MODULE.equals(MODULE_DIFF_CODE));
+        assertFalse(exampleModule.equals(moduleWithDiffCode));
     }
 
     @Test

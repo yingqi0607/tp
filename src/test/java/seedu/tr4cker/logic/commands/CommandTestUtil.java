@@ -2,7 +2,16 @@ package seedu.tr4cker.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.tr4cker.logic.parser.CliSyntax.*;
+import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_COMPLETION_STATUS;
+import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_DELETE_TAG;
+import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
+import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_MODULE_DELETE;
+import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_MODULE_NAME;
+import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_NEW_TAG;
+import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_TASK_DESCRIPTION;
 import static seedu.tr4cker.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;

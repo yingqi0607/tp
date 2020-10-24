@@ -1,17 +1,22 @@
 package seedu.tr4cker.logic.parser;
 
 import static seedu.tr4cker.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.tr4cker.logic.commands.CommandTestUtil.*;
+import static seedu.tr4cker.logic.commands.CommandTestUtil.INVALID_MODULE_CODE_DESC;
+import static seedu.tr4cker.logic.commands.CommandTestUtil.INVALID_MODULE_NAME_DESC;
+import static seedu.tr4cker.logic.commands.CommandTestUtil.MODULE_CODE_DESC_1;
+import static seedu.tr4cker.logic.commands.CommandTestUtil.MODULE_DELETE_DESC;
+import static seedu.tr4cker.logic.commands.CommandTestUtil.MODULE_NAME_DESC_1;
+import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_MODULE_CODE_1;
+import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_MODULE_NAME_1;
 import static seedu.tr4cker.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.tr4cker.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.tr4cker.commons.core.index.Index;
 import seedu.tr4cker.logic.commands.ModuleCommand;
 import seedu.tr4cker.model.module.Module;
 import seedu.tr4cker.model.module.ModuleCode;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class ModuleCommandParserTest {
     private static final String MESSAGE_INVALID_SWITCH_TAB_FORMAT = String.format(MESSAGE_INVALID_COMMAND_FORMAT,
@@ -33,7 +38,7 @@ class ModuleCommandParserTest {
     }
 
     @Test
-    void parse_addModule_fieldsMissing_failure() {
+    void parse_addModuleFieldsMissing_failure() {
         String userInput1 = MODULE_NAME_DESC_1;
         String userInput2 = MODULE_CODE_DESC_1;
         String userInput3 = MODULE_NAME_DESC_1 + INVALID_MODULE_CODE_DESC;
@@ -66,8 +71,8 @@ class ModuleCommandParserTest {
                 MESSAGE_INVALID_MODULE_COMMAND_FORMAT);
 
         // name, code and delete at the same time
-        assertParseFailure(moduleCommandParser, MODULE_NAME_DESC_1 + MODULE_CODE_DESC_1 +
-                MODULE_DELETE_DESC, MESSAGE_INVALID_MODULE_COMMAND_FORMAT);
+        assertParseFailure(moduleCommandParser, MODULE_NAME_DESC_1 + MODULE_CODE_DESC_1
+                + MODULE_DELETE_DESC, MESSAGE_INVALID_MODULE_COMMAND_FORMAT);
     }
 
     @Test
