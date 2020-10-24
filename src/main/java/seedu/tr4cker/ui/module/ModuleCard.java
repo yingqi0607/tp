@@ -1,6 +1,5 @@
 package seedu.tr4cker.ui.module;
 
-import javafx.beans.binding.Bindings;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -17,7 +16,7 @@ import seedu.tr4cker.ui.UiPart;
  */
 public class ModuleCard extends UiPart<Region> {
 
-    private static final String FXML = "ModuleListCard.fxml";
+    private static final String FXML = "ModuleCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -46,7 +45,7 @@ public class ModuleCard extends UiPart<Region> {
     public ModuleCard(Module module, int displayedIndex, ObservableList<Task> taskList) {
         super(FXML);
         this.module = module;
-        id.setText(displayedIndex + ". ");
+        id.setText(displayedIndex + ") ");
         moduleName.setText(module.moduleName);
         moduleCode.setText(module.moduleCode.toString());
         smallTaskListView.setItems(taskList.filtered(task -> task.getModuleCode().contains(module.moduleCode)));

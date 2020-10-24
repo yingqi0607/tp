@@ -1,22 +1,21 @@
 package seedu.tr4cker.logic.parser;
 
-import seedu.tr4cker.commons.core.index.Index;
-import seedu.tr4cker.logic.commands.AddCommand;
-import seedu.tr4cker.logic.commands.ModuleCommand;
-import seedu.tr4cker.logic.commands.PlannerCommand;
-import seedu.tr4cker.logic.parser.exceptions.ParseException;
-import seedu.tr4cker.model.module.Module;
-import seedu.tr4cker.model.module.ModuleCode;
+import static seedu.tr4cker.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
+import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_MODULE_DELETE;
+import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_MODULE_NAME;
 
 import java.util.stream.Stream;
 
-import static seedu.tr4cker.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.tr4cker.logic.parser.CliSyntax.*;
+import seedu.tr4cker.commons.core.index.Index;
+import seedu.tr4cker.logic.commands.ModuleCommand;
+import seedu.tr4cker.logic.parser.exceptions.ParseException;
+import seedu.tr4cker.model.module.Module;
 
 /**
  * Parses input arguments and creates a new ModuleCommand object.
  */
-public class ModuleCommandParser {
+public class ModuleCommandParser implements Parser<ModuleCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the ModuleCommand
      * and returns an ModuleCommand object for execution.
@@ -37,9 +36,10 @@ public class ModuleCommandParser {
         }
 
         // user wants to add a new Module
-        if (arePrefixesPresent(argMultimap, PREFIX_MODULE_NAME, PREFIX_MODULE_CODE) &&
-                !arePrefixesPresent(argMultimap, PREFIX_MODULE_DELETE) &&
-                argMultimap.getPreamble().isEmpty()) {
+        if (arePrefixesPresent(argMultimap, PREFIX_MODULE_NAME)
+                && arePrefixesPresent(argMultimap, PREFIX_MODULE_CODE)
+                && !arePrefixesPresent(argMultimap, PREFIX_MODULE_DELETE)
+                && argMultimap.getPreamble().isEmpty()) {
             String moduleName = argMultimap.getValue(PREFIX_MODULE_NAME).get();
             String moduleCode = argMultimap.getValue(PREFIX_MODULE_CODE).get();
             Module module = ParserUtil.parseModule(moduleName, moduleCode);
@@ -47,14 +47,14 @@ public class ModuleCommandParser {
         }
 
         // user wants to delete an existing Module
-        if (!arePrefixesPresent(argMultimap, PREFIX_MODULE_NAME, PREFIX_MODULE_CODE) &&
-                arePrefixesPresent(argMultimap, PREFIX_MODULE_DELETE) &&
-                argMultimap.getPreamble().isEmpty()) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_MODULE_NAME, PREFIX_MODULE_CODE)
+                && arePrefixesPresent(argMultimap, PREFIX_MODULE_DELETE)
+                && argMultimap.getPreamble().isEmpty()) {
             Index index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_MODULE_DELETE).get());
             return new ModuleCommand(index);
         }
 
-        throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+        throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ModuleCommand.MESSAGE_USAGE));
     }
 
     /**

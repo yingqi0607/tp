@@ -51,12 +51,12 @@ public class SampleDataUtil {
 
     public static Module[] getSampleModules() {
         return new Module[] {
-                new Module("Programming Methodology", new ModuleCode("CS1101S")),
-                new Module("Computer Organization", new ModuleCode("CS2100")),
-                new Module("Software Engineering", new ModuleCode("CS2103T")),
-                new Module("Effective Communication for Computing Professionals",
-                        new ModuleCode("CS2101")),
-                new Module("Discrete Structures", new ModuleCode("CS1231S"))
+            new Module("Programming Methodology", new ModuleCode("CS1101S")),
+            new Module("Computer Organization", new ModuleCode("CS2100")),
+            new Module("Software Engineering", new ModuleCode("CS2103T")),
+            new Module("Effective Communication for Computing Professionals",
+                    new ModuleCode("CS2101")),
+            new Module("Discrete Structures", new ModuleCode("CS1231S"))
         };
     }
 

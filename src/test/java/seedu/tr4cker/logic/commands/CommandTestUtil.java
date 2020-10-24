@@ -30,6 +30,8 @@ public class CommandTestUtil {
     public static final int VALID_COMPLETION_STATUS_2 = 0;
     public static final String VALID_DESCRIPTION_1 = "description 1";
     public static final String VALID_DESCRIPTION_2 = "description 2";
+    public static final String VALID_MODULE_NAME_1 = "Module 1";
+    public static final String VALID_MODULE_NAME_2 = "Module 2";
     public static final String VALID_MODULE_CODE_1 = "CS1111";
     public static final String VALID_MODULE_CODE_2 = "CS2222";
     public static final String VALID_TAG_URGENT = "urgent";
@@ -47,8 +49,11 @@ public class CommandTestUtil {
     public static final String COMPLETION_STATUS_DESC_2 = " " + PREFIX_COMPLETION_STATUS + VALID_COMPLETION_STATUS_2;
     public static final String DESCRIPTION_DESC_1 = " " + PREFIX_TASK_DESCRIPTION + VALID_DESCRIPTION_1;
     public static final String DESCRIPTION_DESC_2 = " " + PREFIX_TASK_DESCRIPTION + VALID_DESCRIPTION_2;
+    public static final String MODULE_NAME_DESC_1 = " " + PREFIX_MODULE_NAME + VALID_MODULE_NAME_1;
+    public static final String MODULE_NAME_DESC_2 = " " + PREFIX_MODULE_NAME + VALID_MODULE_NAME_2;
     public static final String MODULE_CODE_DESC_1 = " " + PREFIX_MODULE_CODE + VALID_MODULE_CODE_1;
     public static final String MODULE_CODE_DESC_2 = " " + PREFIX_MODULE_CODE + VALID_MODULE_CODE_2;
+    public static final String MODULE_DELETE_DESC = " " + PREFIX_MODULE_DELETE + "1";
     public static final String TAG_DESC_HELP = " " + PREFIX_TAG + VALID_TAG_HELP;
     public static final String TAG_DESC_URGENT = " " + PREFIX_TAG + VALID_TAG_URGENT;
 
@@ -58,7 +63,11 @@ public class CommandTestUtil {
     public static final String INVALID_COMPLETION_STATUS = " " + PREFIX_COMPLETION_STATUS + 1000; // >100 not allowed
     public static final String INVALID_DESCRIPTION_DESC =
             " " + PREFIX_TASK_DESCRIPTION; // empty string not allowed for addresses
+    public static final String INVALID_MODULE_NAME_DESC = " " + PREFIX_MODULE_NAME + "!Discrete Structures";
+    // '!' not allowed
     public static final String INVALID_MODULE_CODE_DESC = " " + PREFIX_MODULE_CODE + "#CS3241"; // '#' not allowed
+    // in module codes
+    public static final String INVALID_MODULE_DELETE_DESC = " " + PREFIX_MODULE_DELETE + "-1"; // '#' not allowed
     // in module codes
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "tag*"; // '*' not allowed in tags
     public static final String INVALID_NEW_TAG = " " + PREFIX_NEW_TAG + "tag*"; // '*' not allowed in tags

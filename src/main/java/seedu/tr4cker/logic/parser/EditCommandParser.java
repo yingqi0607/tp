@@ -2,14 +2,17 @@ package seedu.tr4cker.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.tr4cker.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.tr4cker.logic.parser.CliSyntax.*;
+import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
+import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_TASK_DESCRIPTION;
+
+import java.util.HashSet;
 
 import seedu.tr4cker.commons.core.index.Index;
 import seedu.tr4cker.logic.commands.EditCommand;
 import seedu.tr4cker.logic.commands.EditExpiredCommand;
 import seedu.tr4cker.logic.parser.exceptions.ParseException;
-
-import java.util.HashSet;
 
 /**
  * Parses input arguments and creates a new EditCommand object.

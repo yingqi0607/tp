@@ -119,7 +119,13 @@ class JsonAdaptedTask {
 
         final Set<ModuleCode> modelModuleCode = new HashSet<>(taskModuleCode);
         final Set<Tag> modelTags = new HashSet<>(taskTags);
-        return new Task(modelName, modelDeadline, modelCompletionStatus, modelTaskDescription, modelModuleCode, modelTags);
+        return new Task(
+                modelName,
+                modelDeadline,
+                modelCompletionStatus,
+                modelTaskDescription,
+                modelModuleCode,
+                modelTags);
     }
 
 }

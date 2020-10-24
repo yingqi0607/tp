@@ -1,7 +1,5 @@
 package seedu.tr4cker.logic.commands;
 
-import seedu.tr4cker.model.module.ModuleCode;
-
 import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
@@ -53,17 +51,6 @@ public class CommandResult {
 
     /**
      * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
-     * For usage of ModuleCommand.
-     */
-    public static CommandResult createModuleTabSwitchCommandResult(String feedbackToUser) {
-        CommandResult newCommandResult = new CommandResult(feedbackToUser);
-        newCommandResult.showModules = true;
-        newCommandResult.showPlanner = false;
-        return newCommandResult;
-    }
-
-    /**
-     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
      * {@code localDate} and {@code yearMonth}. For usage of PlannerCommand.
      */
     public CommandResult(String feedbackToUser, LocalDate localDate, YearMonth yearMonth) {
@@ -88,6 +75,18 @@ public class CommandResult {
         this.showCountdown = isShowCountdown;
         this.localDate = null;
         this.yearMonth = null;
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
+     * For usage of ModuleCommand.
+     */
+    public static CommandResult createModuleTabSwitchCommandResult(String feedbackToUser) {
+        CommandResult newCommandResult = new CommandResult(feedbackToUser);
+        newCommandResult.showModules = true;
+        newCommandResult.showPlanner = false;
+        newCommandResult.showCountdown = false;
+        return newCommandResult;
     }
 
     public String getFeedbackToUser() {

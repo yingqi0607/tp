@@ -1,15 +1,16 @@
 package seedu.tr4cker.model.module;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.tr4cker.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.util.Iterator;
+import java.util.List;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.tr4cker.model.module.exceptions.DuplicateModuleException;
 import seedu.tr4cker.model.module.exceptions.ModuleNotFoundException;
 
-import java.util.Iterator;
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.tr4cker.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
  * A list of modules that enforces uniqueness between its elements and does not allow nulls.

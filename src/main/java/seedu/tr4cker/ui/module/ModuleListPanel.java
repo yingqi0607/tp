@@ -1,5 +1,7 @@
 package seedu.tr4cker.ui.module;
 
+import java.util.logging.Logger;
+
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
@@ -10,9 +12,6 @@ import seedu.tr4cker.model.module.Module;
 import seedu.tr4cker.model.task.Task;
 import seedu.tr4cker.ui.TaskListPanel;
 import seedu.tr4cker.ui.UiPart;
-import seedu.tr4cker.ui.module.ModuleCard;
-
-import java.util.logging.Logger;
 
 /**
  * Panel containing the list of modules.

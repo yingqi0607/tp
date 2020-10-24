@@ -5,14 +5,14 @@ import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_MODULE_DELETE;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_MODULE_NAME;
 
+import java.util.List;
+import java.util.Objects;
+
 import seedu.tr4cker.commons.core.Messages;
 import seedu.tr4cker.commons.core.index.Index;
 import seedu.tr4cker.logic.commands.exceptions.CommandException;
 import seedu.tr4cker.model.Model;
 import seedu.tr4cker.model.module.Module;
-
-import java.util.List;
-import java.util.Objects;
 
 /**
  * Allows user to add or delete modules from TR4CKER.
