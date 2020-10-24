@@ -199,11 +199,11 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
-        /**Modules */
+        /*Modules */
         moduleListPanel = new ModuleListPanel(logic.getFilteredModuleList(), logic.getFilteredTaskList());
         moduleListPanelPlaceholder.getChildren().add(moduleListPanel.getRoot());
 
-        /**Planner */
+        /*Planner */
         plannerTabWindow = new PlannerTabWindow(logic);
         plannerTabWindowPlaceholder.getChildren().add(plannerTabWindow.getRoot());
 
