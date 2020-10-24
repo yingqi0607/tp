@@ -101,20 +101,17 @@ Format: `list`
 
 Edits an existing task’s details in TR4CKER.
 
-Format: `edit INDEX [n/NAME] [dl/DEADLINE] [des/TASKDESCRIPTION] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [dl/DEADLINE] [des/TASKDESCRIPTION]`
 
-* Edits the task's name, deadline, description and tags at the specified `INDEX`. 
+* Edits the task's name, deadline and description at the specified `INDEX`. 
 * The index refers to the index number shown in the task list.
 * The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing task’s details will be updated to the new task’s details being inputted.
-* When editing tags, the existing tags of the task will be removed i.e adding of tags is not cumulative.
-* You can remove all the task’s tags by typing `t/` without specifying any tags after it.
 
 Examples:
 * `edit 1 n/ prepare for tP tasks` - Edits the description of the 1st task to be `prepare for tP tasks`.
 * `edit 2 dl/ 2020-09-13 1930` - Edits the deadline time of the 2nd task to be 13 Sep 2020, 1930 hrs.
-* `edit 3 t/` - Clears the existing tags of the 3rd task.
 
 ##### Locating tasks by name: `find`
 
@@ -168,7 +165,7 @@ Format: `exit`
 #### Countdown tab features
 
 #### Planner tab features
-If you would like to have an overview of your schedule in calendar view and have your tasks list side-by-side, Planner
+If you would like to have an overview of your schedule in a calendar view and have your tasks list side-by-side, Planner
 tab helps you to achieve that! By having an overview of your upcoming schedule, you would be able to better manage your
 time and be more productive!
 
@@ -184,16 +181,23 @@ Figure 1: TR4CKER after executing `planner`
 
 By default, TR4CKER will circle today's date and the show you the tasks due on that day.
 
+Example:
+* `planner` - Switches to Planner tab, showing calendar view of today and tasks due today.
+
 ##### Switching calendar view and tasks list
-If you would like to view the calendar on specific date/month, and with the tasks due on that date beside it, you can
+If you would like to view the calendar on specific date/month, and with the tasks due on that date beside, you can
 use this command.
 
-General format: `planner goto/[INPUT]`
+General format: `planner goto/INPUT`
+
+* Input is compulsory and the format varies on the usages.
 
 For the ease of accessing today's and tomorrow's tasks list, TR4CKER has provided you with 2 commands that you can use!
-Short forms like "tdy" for "today" and "tmr" for "tomorrow" also allow you to save time typing the full words.
+Short forms like "tdy" for "today" and "tmr" for "tomorrow" also allow you to save time without typing the full words.
 ##### Today
 Format: `planner goto/today` or `planner goto/tdy`
+
+* Input can only be `today` or `tdy`. There are no other alternatives.
 
 First, you enter the command to go to today:
 ![goto today command](images/plannertab_gototoday.png)
@@ -212,6 +216,8 @@ will both give you today's calendar view and tasks due today.
 
 ##### Tomorrow
 Format: `planner goto/tomorrow` or `planner goto/tmr`
+
+* Input can only be `tomorrow` or `tmr`. There are no other alternatives.
 
 First, you enter the command to go to tomorrow:
 ![goto tomorrow command](images/plannertab_gototomorrow.png)
@@ -233,6 +239,9 @@ you can use!
 ##### Specific date
 Format: `planner goto/dd-mm-yyyy` or `planner goto/dd-MMM-yyyy`
 
+* Input must be a valid date.
+* You can either use the month number or month name for the month field of the input date. 
+
 First, you enter the command to go to a specific date:
 ![goto date command](images/plannertab_gotodate.png)
 Figure 6: TR4CKER before executing `planner goto/08-11-2020`
@@ -250,6 +259,9 @@ shows you the tasks due on 28th February 2021.
 ##### Specific month
 Format: `planner goto/mm-yyyy` or `planner goto/MMM-yyyy`
 
+* Input must be a valid month.
+* You can either use the month number or month name for the month field of the input month.
+
 First, you enter the command to go to a specific month:
 ![goto month command](images/plannertab_gotomonth.png)
 Figure 8: TR4CKER before executing `planner goto/Sep-2021`
@@ -266,6 +278,19 @@ Examples:
 shows you the tasks due on 1st December 2020.
 * `planner goto/Feb-2021` - Shows you the calendar view of February 2021, with 1st February 2021 being circled, and
 shows you the tasks due on 1st February 2021.
+
+##### Indicators on Calendar
+You would have realised there are different colours tagged to every day in the calendar. To allow you to have a better
+overview of your schedule, Planner tab allows you to check if your upcoming days are busy!
+
+The figure below shows the indicators.
+![indicator](images/plannertab_indicator.png)
+Figure 10: Indicators (circled in red) on calendar
+
+The indicator colours and their meanings are:
+* No indicator - no tasks due on that date
+* Green indicator - 2 or lesser tasks due on that date
+* Red indicator - more than 2 tasks due on that date
 
 #### Help tab features
 ##### Viewing help : `help`
