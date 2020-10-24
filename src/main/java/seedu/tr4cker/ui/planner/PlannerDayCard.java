@@ -34,6 +34,9 @@ public class PlannerDayCard extends UiPart<Region> {
     private Label dateNumber;
 
     @FXML
+    private Rectangle coverUp;
+
+    @FXML
     private Rectangle indicator;
 
     /**
@@ -81,6 +84,7 @@ public class PlannerDayCard extends UiPart<Region> {
      * Sets the indicator of a Planner Day Card depending on number of tasks due on that day.
      */
     private void setIndicator() {
+        setNoIndicator();
         ObservableList<Task> filteredList = MainWindow.getLogic().getFilteredTaskList();
         LocalDate localDate = plannerDay.getLocalDate();
         int numOfTasks = filteredList.filtered(new TaskDueInPredicate(localDate)).size();
@@ -97,13 +101,15 @@ public class PlannerDayCard extends UiPart<Region> {
      * Sets indicator to no colour (0 tasks).
      */
     private void setNoIndicator() {
-        indicator.setId("indicator-no-tasks");
+        coverUp.setId("indicator-no-tasks");
+        indicator.setId("invisible");
     }
 
     /**
      * Sets indicator to green colour (1 or 2 tasks).
      */
     private void setGreenIndicator() {
+        coverUp.setId("invisible");
         indicator.setId("indicator-green");
     }
 
@@ -111,6 +117,7 @@ public class PlannerDayCard extends UiPart<Region> {
      * Sets indicator to red colour (more than 2 tasks).
      */
     private void setRedIndicator() {
+        coverUp.setId("invisible");
         indicator.setId("indicator-red");
     }
 

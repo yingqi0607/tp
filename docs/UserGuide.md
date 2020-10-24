@@ -4,7 +4,7 @@ title: User Guide to TR4CKER
 ---
 
 TR4CKER is a desktop app that helps SoC students track their tasks, meet their deadlines, and stay productive. It is 
-optimized for Computing students familiar with CLI, who can manage their tasks efficiently by typing in commands.
+optimized for Computing students familiar with Command Line Interface (CLI), who can manage their tasks efficiently by typing in commands.
 
 * Table of Contents
 {:toc}
@@ -24,8 +24,8 @@ optimized for Computing students familiar with CLI, who can manage their tasks e
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
-
-    * **`add`**`n/task 1 dl/2020-09-08 1700 des/task 1 description t/urgent`: Adds a task named `task 1` with description `task 1
+   
+    * **`add`**`n/task 1 dl/2020-09-08 1700 des/task 1 description t/urgent`: Adds a task named `task 1` with description `task 1 
 description`, with a deadline of `8 Sep 2020, 1700 hrs` and with an `urgent` tag into TR4CKER.
 
     * **`done`**`1`: Marks the 1st task as done.
@@ -33,8 +33,6 @@ description`, with a deadline of `8 Sep 2020, 1700 hrs` and with an `urgent` tag
     * **`delete`**`3`: Deletes the 3rd task shown in the current task list.
 
     * **`edit`**`1 n/actually task 2`: Edits 1st task's name to be `actually task 2`.
-
-    * **`tag`**`1 new/urgent`: Adds `urgent` tag to existing tags of 1st task.
 
     * **`find`**`task`: Finds the tasks with `task` as a keyword.
 
@@ -66,16 +64,16 @@ description`, with a deadline of `8 Sep 2020, 1700 hrs` and with an `urgent` tag
 
 </div>
 
-### Viewing help : `help`
+### Tabs
+- TR4CKER
+- Daily
+- Modules
+- Countdown
+- Planner
+- Help
 
-Shows a message explaning how to access the help page.
-
-![help message](images/helpMessage.png)
-
-Format: `help`
-
-
-### Adding a new task: `add`
+#### TR4CKER tab features
+##### Adding a new task: `add`
 
 You can add a new task to TR4CKER.
 
@@ -93,80 +91,52 @@ Examples:
 * `add n/CS1101S Quiz dl/2020-01-25 des/Post-Lecture quiz`
 * `add n/CS1231S Homework Assignment dl/2020-09-08 2200 des/task 1 description t/assignment t/urgent`
 
-### Marking tasks as done: `done`
+##### Listing all tasks: `list`
 
-Marks the tasks you have completed as 'done' in TR4CKER.
+Shows a list of all persons in tr4cker.
 
-Format: `done [INDEX]`
+Format: `list`
 
-* Marks the task as done at the specified `INDEX`.
-* The index refers to a valid index number shown in the displayed task list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `list` followed by `done 2` marks the 2nd task in the displayed task list as done.
-* `find essay` followed by `done 1` marks the 1st task in the results of the `find` command as done.
-
-### Editing a task: `edit`
+##### Editing a task: `edit`
 
 Edits an existing task’s details in TR4CKER.
 
-Format: `edit INDEX [n/NAME] [dl/DEADLINE] [des/TASKDESCRIPTION]`
+Format: `edit INDEX [n/NAME] [dl/DEADLINE] [des/TASKDESCRIPTION] [t/TAG]…​`
 
-* Edits the task's name, deadline and description at the specified `INDEX`.
+* Edits the task's name, deadline, description and tags at the specified `INDEX`. 
 * The index refers to the index number shown in the task list.
 * The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing task’s details will be updated to the new task’s details being inputted.
-* Editing of tags can be done using `tag` command.
+* When editing tags, the existing tags of the task will be removed i.e adding of tags is not cumulative.
+* You can remove all the task’s tags by typing `t/` without specifying any tags after it.
 
 Examples:
-* `edit 1 n/prepare for tP tasks` - Edits the description of the 1st task to be `prepare for tP tasks`.
-* `edit 2 dl/2020-09-13 1930` - Edits the deadline time of the 2nd task to be 13 Sep 2020, 1930 hrs.
+* `edit 1 n/ prepare for tP tasks` - Edits the description of the 1st task to be `prepare for tP tasks`.
+* `edit 2 dl/ 2020-09-13 1930` - Edits the deadline time of the 2nd task to be 13 Sep 2020, 1930 hrs.
+* `edit 3 t/` - Clears the existing tags of the 3rd task.
 
-### Editing tags: `tag`
+##### Locating tasks by name: `find`
 
-Adds and/or deletes tag(s) from an existing task in TR4CKER.
+Finds persons whose names contain any of the given keywords.
 
-Format: `tag INDEX [new/NEW_TAG]…​ [del/TAG_TO_DELETE]…​`
+Format: `find KEYWORD [MORE_KEYWORDS]`
 
-* Adds tag(s) to task at the specified `INDEX` when using `new/NEW_TAG`.
-* Deletes tag(s) from task at the specified `INDEX` when using `del/TAG_TO_DELETE`.
-* The index refers to the index number shown in the task list.
-* The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the fields must be provided.
-* Tag(s) will only be added if it does not exist yet.
-* Tag(s) will only be deleted if it exists.
-* Adding and deleting of tags can be used concurrently.
-* Multiple tags can be added and deleted at the same time.
-
-Examples:
-* `tag 1 new/urgent` - Adds a new tag `urgent` to the existing tags of 1st task (if the tag does not already exist).
-* `tag 2 del/assignment` - Deletes the tag `assignment` from the 2nd task (if the tag exists).
-* `tag 3 new/urgent del/assignment new/graded` - Adds 2 new tags `urgent` and `graded`, deletes the tag `assignment`
-from the 3rd task.
-
-### Locating tasks by keyword: `find`
-
-Finds tasks whose names contain any of the given keywords.
-
-Format: `find [KEYWORD_1] [KEYWORD_2] ...`
-
-* The search is case-insensitive. e.g `cs2101` will match `CS2101`
-* The order of the keywords does not matter. e.g. `Presentation CS2101` will match `CS2101 Presentation`
+* The search is case-insensitive. e.g `hans` will match `Hans`
+* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
-* Only full words will be matched e.g. `2101` will not match `CS2101`
-* Tasks matching at least one keyword will be returned.
-  e.g. `find CS2101 project` will return `CS2101 Oral Presentation 1`, `CS2103T team project`
+* Only full words will be matched e.g. `Han` will not match `Hans`
+* Persons matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
-* `find CS2101` returns `CS2101 Oral Presentation 1`
-* `find CS1231S Mission` returns `CS1101S Mission`, `CS1231S Graded Assignment`<br>
-  ![result for 'find CS1231S Mission'](images/findCS1231SmissionResult.png)
+* `find John` returns `john` and `John Doe`
+* `find alex david` returns `Alex Yeoh`, `David Li`<br>
+  ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting an existing task : `delete`
+##### Deleting an existing task : `delete`
 
-You can delete an existing task from the task list by providing the
+You can delete an existing task from the task list by providing the 
 index number of the task that you want to delete.
 
 Format: `delete INDEX`
@@ -179,41 +149,109 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd task in the displayed task list.
 * `find assignment` followed by `delete 1` deletes the 1st task in the results of the `find` command.
 
-### Clearing all entries : `clear`
+##### Clearing all tasks: `clear`
 
-Clears all entries from tr4cker.
+Clears all entries from TR4CKER.
 
 Format: `clear`
 
-### Listing all tasks : `list`
+##### Exiting TR4CKER: `exit`
 
-Shows a list of all tasks in tr4cker.
-
-Format: `list`
-
-Examples:
-* `list`
-
-### Exiting TR4CKER : `exit`
-
-Exits TR4CKER.
+Exits the program.
 
 Format: `exit`
 
-### Saving the data
+#### Daily tab features
 
-tr4cker data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+#### Modules tab features
 
-### Archiving data files `[coming in v2.0]`
+#### Countdown tab features
 
-_{explain the feature here}_
+#### Planner tab features
+If you would like to have an overview of your schedule in calendar view and have your tasks list side-by-side, Planner
+tab helps you to achieve that! By having an overview of your upcoming schedule, you would be able to better manage your
+time and be more productive!
+
+##### Switching to Planner tab: `planner`
+If you would like to switch to Planner tab without clicking on the Planner tab button, you can do so easily through the
+CLI, by just typing `planner`.
+
+Format: `planner`
+
+Once you enter, TR4CKER should look like this:
+![switch tab](images/plannertab_switchtab.png)
+
+By default, TR4CKER will circle today's date and the show you the tasks due on that day.
+
+##### Switching calendar view and tasks list
+If you would like to view the calendar on specific date/month, and with the tasks due on that date beside it, you can
+use this command.
+
+Format: `planner goto/[INPUT]`
+
+For the ease of accessing today's and tomorrow's tasks list, TR4CKER has provided you with 2 commands that you can use!
+Short forms like "tdy" for "today" and "tmr" for "tomorrow" also allow you to save time typing the full words.
+##### Today
+Format: `planner goto/today` or `planner goto/tdy`
+
+First, you enter the command to go to today:
+![goto today command](images/plannertab_gototoday.png)
+
+Then, TR4CKER will change planner tab to today's calendar view and tasks due today:
+![goto today result](images/plannertab_gototoday1.png)
+
+##### Tomorrow
+Format: `planner goto/tomorrow` or `planner goto/tmr`
+
+First, you enter the command to go to tomorrow:
+![goto tomorrow command](images/plannertab_gototomorrow.png)
+
+Then, TR4CKER will change planner tab to tomorrow's calendar view and tasks due tomorrow:
+![goto tomorrow result](images/plannertab_gototomorrow1.png)
+
+For the ease of accessing of a specific date's or month's tasks list, TR4CKER has provided you with 2 commands that
+you can use!
+##### Specific date
+Format: `planner goto/dd-mm-yyyy` or `planner goto/dd-MMM-yyyy`
+
+First, you enter the command to go to a specific date:
+![goto date command](images/plannertab_gotodate.png)
+
+Then, TR4CKER will change planner tab to the calendar view and tasks due on the input date you provided:
+![goto date result](images/plannertab_gotodate1.png)
+
+##### Specific month
+Format: `planner goto/mm-yyyy` or `planner goto/MMM-yyyy`
+
+First, you enter the command to go to a specific month:
+![goto month command](images/plannertab_gotomonth.png)
+
+Then, TR4CKER will change planner tab to the calendar view and tasks due on the input month you provided:
+![goto month result](images/plannertab_gotomonth1.png)
+
+By default, TR4CKER will circle the first day of the month you inputted and show you the tasks due on the first day of
+the input month.
+
+#### Help tab features
+##### Viewing help : `help`
+
+Shows a message explaining how to access the help page.
+
+![help message](images/helpMessage.png)
+
+Format: `help`
+
+##### Saving the data
+
+TR4CKER data are saved in the hard disk automatically after any command that changes the data.
+There is no need to save manually.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous TR4CKER home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous tr4cker home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -221,13 +259,10 @@ _{explain the feature here}_
 
 Action | Format, Examples
 --------|------------------
-**Help** | `help`
 **Add** | `add n/NAME dl/DEADLINE des/TASKDESCRIPTION [t/TAG]…​` <br> e.g., `add n/task 1 dl/2020-09-08 des/task 1 description t/urgent t/priority`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Done** | `done INDEX`<br> e.g., `done 1`
-**Edit** | `edit INDEX [n/NAME] [dl/DEADLINE] [des/TASKDESCRIPTION]`<br> e.g.,`edit 2 n/task 1 dl/2020-09-08`
-**Find** | `find [KEYWORD_1] [KEYWORD_2] ...`<br> e.g., `find task 1`
 **Clear** | `clear`
+**Delete** | `delete INDEX`<br> e.g., `delete 3`
+**Edit** | `edit INDEX [n/NAME] [dl/DEADLINE] [des/TASKDESCRIPTION] [t/TAG]…​`<br> e.g.,`edit 2 n/task 1 dl/2020-09-08`
+**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find task 1`
 **List** | `list`
-**Exit** | `exit`
-
+**Help** | `help`
