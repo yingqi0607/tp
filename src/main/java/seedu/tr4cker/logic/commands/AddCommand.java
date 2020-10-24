@@ -24,6 +24,7 @@ public class AddCommand extends Command {
             + PREFIX_NAME + "CS2103T tP "
             + PREFIX_DEADLINE + "10-Oct-2021 1010 "
             + PREFIX_TASK_DESCRIPTION + "Update User Guide "
+            + PREFIX_MODULE_CODE + "CS2103T"
             + PREFIX_TAG + "CS2103T "
             + PREFIX_TAG + "UG" + ")";
 
@@ -48,7 +49,6 @@ public class AddCommand extends Command {
         if (model.hasTask(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
-        //todo throw exception if adds task with non-existent module
         if (!model.hasValidModuleField(toAdd)) {
             throw new CommandException(MESSAGE_INVALID_MODULE);
         }

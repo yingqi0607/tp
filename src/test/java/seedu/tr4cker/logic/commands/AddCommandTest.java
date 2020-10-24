@@ -136,6 +136,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean hasRelatedTasks(Module module) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void deleteTask(Task target) {
             throw new AssertionError("This method should not be called.");
         }
@@ -147,6 +152,11 @@ public class AddCommandTest {
 
         @Override
         public boolean hasModule(Module module) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasValidModuleField(Task task) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -229,6 +239,7 @@ public class AddCommandTest {
      */
     private class ModelStubAcceptingTaskAdded extends ModelStub {
         final ArrayList<Task> tasksAdded = new ArrayList<>();
+        final ArrayList<Module> modulesAdded = new ArrayList<>();
 
         @Override
         public boolean hasTask(Task task) {
@@ -240,6 +251,13 @@ public class AddCommandTest {
         public void addTask(Task task) {
             requireNonNull(task);
             tasksAdded.add(task);
+        }
+
+        @Override
+        public boolean hasValidModuleField(Task task) {
+            requireNonNull(task);
+            return modulesAdded.stream().noneMatch(
+                    module -> task.getModuleCode().contains(module.moduleCode));
         }
 
         @Override
