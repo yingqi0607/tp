@@ -80,6 +80,9 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private StackPane plannerTabWindowPlaceholder;
 
+    /*
+     * Countdown tab content.
+     */
     @FXML
     private StackPane countdownTabWindowPlaceholder;
 
@@ -260,6 +263,7 @@ public class MainWindow extends UiPart<Stage> {
     public void handleShowTabCountdown() {
         tabPane.getSelectionModel().select(COUNTDOWN);
         setTabColors(COUNTDOWN);
+        logger.info("Countdown tab is selected");
     }
 
     /**

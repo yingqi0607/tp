@@ -8,6 +8,7 @@ import seedu.tr4cker.logic.commands.CommandResult;
 import seedu.tr4cker.logic.commands.exceptions.CommandException;
 import seedu.tr4cker.logic.parser.exceptions.ParseException;
 import seedu.tr4cker.model.ReadOnlyTr4cker;
+import seedu.tr4cker.model.countdown.Event;
 import seedu.tr4cker.model.task.Task;
 import seedu.tr4cker.model.task.TaskDueInPredicate;
 
@@ -40,6 +41,9 @@ public interface Logic {
 
     /** Returns an unmodifiable view of the filtered list of tasks for Planner tab. */
     ObservableList<Task> getPlannerFilteredTaskList();
+
+    /** Returns an unmodifiable view of the filtered list of events. */
+    ObservableList<Event> getFilteredEventList();
 
     /** Updates an unmodifiable view of the filtered list of tasks for Planner tab. */
     void updatePlannerFilteredTaskList(TaskDueInPredicate taskDueInPredicate);
