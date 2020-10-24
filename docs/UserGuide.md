@@ -180,6 +180,7 @@ Format: `planner`
 
 Once you enter, TR4CKER should look like this:
 ![switch tab](images/plannertab_switchtab.png)
+Figure 1: TR4CKER after executing `planner`
 
 By default, TR4CKER will circle today's date and the show you the tasks due on that day.
 
@@ -187,7 +188,7 @@ By default, TR4CKER will circle today's date and the show you the tasks due on t
 If you would like to view the calendar on specific date/month, and with the tasks due on that date beside it, you can
 use this command.
 
-Format: `planner goto/[INPUT]`
+General format: `planner goto/[INPUT]`
 
 For the ease of accessing today's and tomorrow's tasks list, TR4CKER has provided you with 2 commands that you can use!
 Short forms like "tdy" for "today" and "tmr" for "tomorrow" also allow you to save time typing the full words.
@@ -196,18 +197,36 @@ Format: `planner goto/today` or `planner goto/tdy`
 
 First, you enter the command to go to today:
 ![goto today command](images/plannertab_gototoday.png)
+Figure 2: TR4CKER before executing `planner goto/tdy`
 
 Then, TR4CKER will change planner tab to today's calendar view and tasks due today:
 ![goto today result](images/plannertab_gototoday1.png)
+Figure 3: TR4CKER after executing `planner goto/tdy`
+
+Examples:  
+These 2 examples:
+* `planner goto/today`
+* `planner goto/tdy`
+
+will both give you today's calendar view and tasks due today.
 
 ##### Tomorrow
 Format: `planner goto/tomorrow` or `planner goto/tmr`
 
 First, you enter the command to go to tomorrow:
 ![goto tomorrow command](images/plannertab_gototomorrow.png)
+Figure 4: TR4CKER before executing `planner goto/tmr`
 
 Then, TR4CKER will change planner tab to tomorrow's calendar view and tasks due tomorrow:
 ![goto tomorrow result](images/plannertab_gototomorrow1.png)
+Figure 5: TR4CKER after executing `planner goto/tmr`
+
+Examples:  
+These 2 examples:
+* `planner goto/tomorrow`
+* `planner goto/tmr`
+
+will both give you tomorrow's calendar view and tasks due tomorrow.
 
 For the ease of accessing of a specific date's or month's tasks list, TR4CKER has provided you with 2 commands that
 you can use!
@@ -216,21 +235,37 @@ Format: `planner goto/dd-mm-yyyy` or `planner goto/dd-MMM-yyyy`
 
 First, you enter the command to go to a specific date:
 ![goto date command](images/plannertab_gotodate.png)
+Figure 6: TR4CKER before executing `planner goto/08-11-2020`
 
 Then, TR4CKER will change planner tab to the calendar view and tasks due on the input date you provided:
 ![goto date result](images/plannertab_gotodate1.png)
+Figure 7: TR4CKER after executing `planner goto/08-11-2020`
+
+Examples:
+* `planner goto/02-12-2020` - Shows you the calendar view of December 2020, with 2nd December 2020 being circled, and
+shows you the tasks due on 2nd December 2020.
+* `planner goto/28-Feb-2021` - Shows you the calendar view of February 2021, with 28th February 2021 being circled, and
+shows you the tasks due on 28th February 2021.
 
 ##### Specific month
 Format: `planner goto/mm-yyyy` or `planner goto/MMM-yyyy`
 
 First, you enter the command to go to a specific month:
 ![goto month command](images/plannertab_gotomonth.png)
+Figure 8: TR4CKER before executing `planner goto/Sep-2021`
 
 Then, TR4CKER will change planner tab to the calendar view and tasks due on the input month you provided:
 ![goto month result](images/plannertab_gotomonth1.png)
+Figure 9: TR4CKER after executing `planner goto/Sep-2021`
 
 By default, TR4CKER will circle the first day of the month you inputted and show you the tasks due on the first day of
 the input month.
+
+Examples:
+* `planner goto/12-2020` - Shows you the calendar view of December 2020, with 1st December 2020 being circled, and
+shows you the tasks due on 1st December 2020.
+* `planner goto/Feb-2021` - Shows you the calendar view of February 2021, with 1st February 2021 being circled, and
+shows you the tasks due on 1st February 2021.
 
 #### Help tab features
 ##### Viewing help : `help`
@@ -251,7 +286,8 @@ There is no need to save manually.
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous tr4cker home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
+the data of your previous TR4CKER home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
