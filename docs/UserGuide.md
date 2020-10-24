@@ -24,8 +24,8 @@ optimized for Computing students familiar with Command Line Interface (CLI), who
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
-   
-    * **`add`**`n/task 1 dl/2020-09-08 1700 des/task 1 description t/urgent`: Adds a task named `task 1` with description `task 1 
+
+    * **`add`**`n/task 1 dl/2020-09-08 1700 des/task 1 description t/urgent`: Adds a task named `task 1` with description `task 1
 description`, with a deadline of `8 Sep 2020, 1700 hrs` and with an `urgent` tag into TR4CKER.
 
     * **`done`**`1`: Marks the 1st task as done.
@@ -33,6 +33,8 @@ description`, with a deadline of `8 Sep 2020, 1700 hrs` and with an `urgent` tag
     * **`delete`**`3`: Deletes the 3rd task shown in the current task list.
 
     * **`edit`**`1 n/actually task 2`: Edits 1st task's name to be `actually task 2`.
+
+    * **`tag`**`1 new/urgent`: Adds `urgent` tag to existing tags of 1st task.
 
     * **`find`**`task`: Finds the tasks with `task` as a keyword.
 
@@ -93,9 +95,23 @@ Examples:
 
 ##### Listing all tasks: `list`
 
-Shows a list of all persons in tr4cker.
+Shows a list of all tasks in TR4CKER.
 
 Format: `list`
+
+##### Marking tasks as done: `done`
+
+Marks the tasks you have completed as 'done' in TR4CKER.
+
+Format: `done [INDEX]`
+
+* Marks the task as done at the specified `INDEX`.
+* The index refers to a valid index number shown in the displayed task list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `list` followed by `done 2` marks the 2nd task in the displayed task list as done.
+* `find essay` followed by `done 1` marks the 1st task in the results of the `find` command as done.
 
 ##### Editing a task: `edit`
 
@@ -103,33 +119,56 @@ Edits an existing task’s details in TR4CKER.
 
 Format: `edit INDEX [n/NAME] [dl/DEADLINE] [des/TASKDESCRIPTION]`
 
-* Edits the task's name, deadline and description at the specified `INDEX`. 
+* Edits the task's name, deadline and description at the specified `INDEX`.
 * The index refers to the index number shown in the task list.
 * The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing task’s details will be updated to the new task’s details being inputted.
+* Editing of tags can be done using `tag` command.
 
 Examples:
-* `edit 1 n/ prepare for tP tasks` - Edits the description of the 1st task to be `prepare for tP tasks`.
-* `edit 2 dl/ 2020-09-13 1930` - Edits the deadline time of the 2nd task to be 13 Sep 2020, 1930 hrs.
+* `edit 1 n/prepare for tP tasks` - Edits the description of the 1st task to be `prepare for tP tasks`.
+* `edit 2 dl/2020-09-13 1930` - Edits the deadline time of the 2nd task to be 13 Sep 2020, 1930 hrs.
 
-##### Locating tasks by name: `find`
+##### Editing tags: `tag`
 
-Finds persons whose names contain any of the given keywords.
+Adds and/or deletes tag(s) from an existing task in TR4CKER.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `tag INDEX [new/NEW_TAG]…​ [del/TAG_TO_DELETE]…​`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* Adds tag(s) to task at the specified `INDEX` when using `new/NEW_TAG`.
+* Deletes tag(s) from task at the specified `INDEX` when using `del/TAG_TO_DELETE`.
+* The index refers to the index number shown in the task list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* At least one of the fields must be provided.
+* Tag(s) will only be added if it does not exist yet.
+* Tag(s) will only be deleted if it exists.
+* Adding and deleting of tags can be used concurrently.
+* Multiple tags can be added and deleted at the same time.
+
+Examples:
+* `tag 1 new/urgent` - Adds a new tag `urgent` to the existing tags of 1st task (if the tag does not already exist).
+* `tag 2 del/assignment` - Deletes the tag `assignment` from the 2nd task (if the tag exists).
+* `tag 3 new/urgent del/assignment new/graded` - Adds 2 new tags `urgent` and `graded`, deletes the tag `assignment`
+from the 3rd task.
+
+##### Locating tasks by keyword: `find`
+
+Finds tasks whose names contain any of the given keywords.
+
+Format: `find [KEYWORD_1] [KEYWORD_2] ...`
+
+* The search is case-insensitive. e.g `cs2101` will match `CS2101`
+* The order of the keywords does not matter. e.g. `Presentation CS2101` will match `CS2101 Presentation`
 * Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* Only full words will be matched e.g. `2101` will not match `CS2101`
+* Tasks matching at least one keyword will be returned.
+  e.g. `find CS2101 project` will return `CS2101 Oral Presentation 1`, `CS2103T team project`
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `find CS2101` returns `CS2101 Oral Presentation 1`
+* `find CS1231S Mission` returns `CS1101S Mission`, `CS1231S Graded Assignment`<br>
+  ![result for 'find CS1231S Mission'](images/findCS1231SmissionResult.png)
 
 ##### Deleting an existing task : `delete`
 
@@ -320,10 +359,12 @@ the data of your previous TR4CKER home folder.
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME dl/DEADLINE des/TASKDESCRIPTION [t/TAG]…​` <br> e.g., `add n/task 1 dl/2020-09-08 des/task 1 description t/urgent t/priority`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [dl/DEADLINE] [des/TASKDESCRIPTION] [t/TAG]…​`<br> e.g.,`edit 2 n/task 1 dl/2020-09-08`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find task 1`
-**List** | `list`
 **Help** | `help`
+**Add** | `add n/NAME dl/DEADLINE des/TASKDESCRIPTION [t/TAG]…​` <br> e.g., `add n/task 1 dl/2020-09-08 des/task 1 description t/urgent t/priority`
+**Delete** | `delete INDEX`<br> e.g., `delete 3`
+**Done** | `done INDEX`<br> e.g., `done 1`
+**Edit** | `edit INDEX [n/NAME] [dl/DEADLINE] [des/TASKDESCRIPTION]`<br> e.g.,`edit 2 n/task 1 dl/2020-09-08`
+**Find** | `find [KEYWORD_1] [KEYWORD_2] ...`<br> e.g., `find task 1`
+**Clear** | `clear`
+**List** | `list`
+**Exit** | `exit`
