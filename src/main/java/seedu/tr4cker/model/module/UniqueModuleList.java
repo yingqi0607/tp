@@ -68,6 +68,9 @@ public class UniqueModuleList implements Iterable<Module> {
         }
     }
 
+    /**
+     * Replaces the contents of this list with another {@code UniqueModuleList}.
+     */
     public void setModules(UniqueModuleList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
@@ -75,7 +78,7 @@ public class UniqueModuleList implements Iterable<Module> {
 
     /**
      * Replaces the contents of this list with {@code modules}.
-     * {@code tasks} must not contain duplicate modules.
+     * {@code modules} must not contain duplicate modules.
      */
     public void setModules(List<Module> modules) {
         requireAllNonNull(modules);

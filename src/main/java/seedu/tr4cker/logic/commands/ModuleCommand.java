@@ -57,7 +57,7 @@ public class ModuleCommand extends Command {
     /**
      * Constructor for ModuleCommand when user wants to add a module.
      */
-    public ModuleCommand (Module toAdd) {
+    public ModuleCommand(Module toAdd) {
         requireNonNull(toAdd);
         this.toAdd = toAdd;
         this.toDeleteIndex = null;
@@ -66,7 +66,7 @@ public class ModuleCommand extends Command {
     /**
      * Constructor for ModuleCommand when user wants to delete a module.
      */
-    public ModuleCommand (Index toDeleteIndex) {
+    public ModuleCommand(Index toDeleteIndex) {
         requireNonNull(toDeleteIndex);
         this.toAdd = null;
         this.toDeleteIndex = toDeleteIndex;

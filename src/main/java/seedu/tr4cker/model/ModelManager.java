@@ -47,7 +47,7 @@ public class ModelManager implements Model {
             x -> !Deadline.isFutureDeadline(x.getDeadline().toString()) && !x.isCompleted()));
         filteredCompletedTasks = new FilteredList<>(this.tr4cker.getTaskList().filtered(
             Task::isCompleted));
-        filteredModules = new FilteredList<>(this.tr4cker.getModuleList().filtered(x->true));
+        filteredModules = new FilteredList<>(this.tr4cker.getModuleList().filtered(x -> true));
         plannerFilteredTasks = new FilteredList<>(this.tr4cker.getTaskList());
     }
 
