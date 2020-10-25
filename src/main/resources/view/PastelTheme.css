@@ -1,3 +1,9 @@
+/** PastelTheme Palette
+ * -fx-background-color: #eecfcf; (Pink TaskList bg)
+ * -fx-background-color: #ff6699; (Red Tag)
+ * -fx-background-color: derive(#97b5b7, 20%); (Background green)
+ */
+
 @font-face {
     font-family: 'Caveat Brush', cursive;
     src: url('../fonts/CaveatBrush-Regular.ttf');
@@ -172,6 +178,18 @@
     -fx-font-size: 13px;
     -fx-text-fill: #010504;
     -fx-background-color: #3FFB73;
+    -fx-padding: 2 5 2 5;
+    -fx-border-radius: 2;
+    -fx-background-radius: 2;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 5, 0.5, 1.5, 1.5);
+}
+
+.cell_small_label_moduleCode {
+    -fx-font-family: "Consolas";
+    -fx-font-weight: bold;
+    -fx-font-size: 13px;
+    -fx-text-fill: #010504;
+    -fx-background-color: #ff6699;
     -fx-padding: 2 5 2 5;
     -fx-border-radius: 2;
     -fx-background-radius: 2;
@@ -392,16 +410,60 @@
     -fx-effect: innershadow(gaussian, black, 10, 0, 0, 0);
 }
 
-
-
-#tags {
-    -fx-hgap: 7;
-    -fx-vgap: 3;
+/*module tab==========================================================================================================*/
+.list-cell:filled #moduleListCardPane {
+    -fx-background-color: derive(#97b5b7, 20%);
 }
 
-#tags .label {
+#moduleListCardPane {
+    -fx-background-color: derive(#97b5b7, 20%);
+}
+
+#smallTaskListView {
+    -fx-padding: 0 0 0 11;
+    -fx-background-color: derive(#97b5b7, 20%);
+}
+
+#smallTaskListView .list-cell:filled {
+   -fx-background-radius: 7px;
+}
+
+#smallTaskListView .scroll-bar {
+    -fx-opacity: 0;
+}
+
+#moduleListView {
+    -fx-background-color: derive(#97b5b7, 20%);
+}
+
+#moduleListView .list-cell:empty {
+    -fx-background-color: derive(#97b5b7, 20%);
+}
+
+#moduleCard {
+    -fx-background-radius: 7px;
+    -fx-background-color: derive(#33cccc, 20%)
+}
+
+#moduleCard {
+    -fx-background-radius: 7px;
+    -fx-background-color: derive(#33cccc, 20%)
+}
+
+#moduleCardPane {
+    -fx-background-color: derive(#97b5b7, 20%);
+}
+
+#moduleName, #moduleCode {
+    -fx-font-size: 20;
+    -fx-font-family: "Caveat Brush";
+    -fx-text-fill: #000000;
+    -fx-opacity: 0.7;
+}
+
+#moduleCode .label {
     -fx-text-fill: black;
-    -fx-background-color: #5CE3EC;
+    -fx-background-color: #ff6699;
     -fx-padding: 1 3 1 3;
     -fx-border-radius: 2;
     -fx-background-radius: 2;
@@ -411,7 +473,7 @@
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 5, 0.5, 1.5, 1.5);
 }
 
-/*planner tab*/
+/*planner tab=========================================================================================================*/
 #month-year-label {
     -fx-font-size: 20pt;
     -fx-font-family: "Century Schoolbook";
@@ -465,4 +527,22 @@
 
 #invisible {
     -fx-fill: transparent;
+}
+
+/*others==============================================================================================================*/
+#tags {
+    -fx-hgap: 7;
+    -fx-vgap: 3;
+}
+
+#tags .label {
+    -fx-text-fill: black;
+    -fx-background-color: #5CE3EC;
+    -fx-padding: 1 3 1 3;
+    -fx-border-radius: 2;
+    -fx-background-radius: 2;
+    -fx-font-size: 13;
+    -fx-font-family: "Consolas";
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 5, 0.5, 1.5, 1.5);
 }

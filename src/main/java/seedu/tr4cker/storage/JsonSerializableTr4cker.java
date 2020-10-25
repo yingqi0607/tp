@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.tr4cker.commons.exceptions.IllegalValueException;
 import seedu.tr4cker.model.ReadOnlyTr4cker;
 import seedu.tr4cker.model.Tr4cker;
+import seedu.tr4cker.model.module.Module;
 import seedu.tr4cker.model.task.Task;
 
 /**
@@ -20,15 +21,19 @@ import seedu.tr4cker.model.task.Task;
 class JsonSerializableTr4cker {
 
     public static final String MESSAGE_DUPLICATE_TASK = "Task list contains duplicate task(s).";
+    public static final String MESSAGE_DUPLICATE_MODULE = "Module list contains duplicate module(s).";
 
     private final List<JsonAdaptedTask> tasks = new ArrayList<>();
+    private final List<JsonAdaptedModule> modules = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableTr4cker} with the given tasks.
+     * Constructs a {@code JsonSerializableTr4cker} with the given tasks & modules.
      */
     @JsonCreator
-    public JsonSerializableTr4cker(@JsonProperty("tasks") List<JsonAdaptedTask> tasks) {
+    public JsonSerializableTr4cker(@JsonProperty("tasks") List<JsonAdaptedTask> tasks,
+                                   @JsonProperty("modules") List<JsonAdaptedModule> modules) {
         this.tasks.addAll(tasks);
+        this.modules.addAll(modules);
     }
 
     /**
@@ -38,6 +43,7 @@ class JsonSerializableTr4cker {
      */
     public JsonSerializableTr4cker(ReadOnlyTr4cker source) {
         tasks.addAll(source.getTaskList().stream().map(JsonAdaptedTask::new).collect(Collectors.toList()));
+        modules.addAll(source.getModuleList().stream().map(JsonAdaptedModule::new).collect(Collectors.toList()));
     }
 
     /**
@@ -47,11 +53,19 @@ class JsonSerializableTr4cker {
      */
     public Tr4cker toModelType() throws IllegalValueException {
         Tr4cker tr4cker = new Tr4cker();
+        for (JsonAdaptedModule jsonAdaptedModule : modules) { // Must add modules first.
+            Module module = jsonAdaptedModule.toModelType();
+            if (tr4cker.hasModule(module)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_MODULE);
+            }
+            tr4cker.addModule(module);
+        }
         for (JsonAdaptedTask jsonAdaptedTask : tasks) {
             Task task = jsonAdaptedTask.toModelType();
             if (tr4cker.hasTask(task)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_TASK);
             }
+            //todo throw exception if module not existent
             tr4cker.addTask(task);
         }
         return tr4cker;

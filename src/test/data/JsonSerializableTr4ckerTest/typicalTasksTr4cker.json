@@ -41,5 +41,6 @@
     "completionStatus" : 0,
     "description" : "Task 7 description",
     "tagged" : [ ]
-  } ]
+  } ],
+  "modules" : [ ]
 }

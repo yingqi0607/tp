@@ -1,10 +1,13 @@
 package seedu.tr4cker.logic.commands;
 
-import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_MODULE_CODE_1;
+import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_MODULE_NAME_1;
+import static seedu.tr4cker.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.tr4cker.testutil.Assert.assertThrows;
+import static seedu.tr4cker.testutil.TypicalTasks.getTypicalTr4cker;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -13,68 +16,111 @@ import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.tr4cker.commons.core.GuiSettings;
+import seedu.tr4cker.commons.core.Messages;
+import seedu.tr4cker.commons.core.index.Index;
 import seedu.tr4cker.logic.commands.exceptions.CommandException;
 import seedu.tr4cker.model.Model;
+import seedu.tr4cker.model.ModelManager;
 import seedu.tr4cker.model.ReadOnlyTr4cker;
 import seedu.tr4cker.model.ReadOnlyUserPrefs;
-import seedu.tr4cker.model.Tr4cker;
+import seedu.tr4cker.model.UserPrefs;
 import seedu.tr4cker.model.module.Module;
+import seedu.tr4cker.model.module.ModuleCode;
 import seedu.tr4cker.model.task.Task;
-import seedu.tr4cker.testutil.TaskBuilder;
 
-public class AddCommandTest {
+
+/**
+ * Contains integration tests (interaction with the Model) for {@code ModuleCommand}.
+ */
+class ModuleCommandTest {
+
+    private final Model model = new ModelManager(getTypicalTr4cker(), new UserPrefs());
+
+    private final Module testModule = new Module(VALID_MODULE_NAME_1, new ModuleCode(VALID_MODULE_CODE_1));
 
     @Test
-    public void constructor_nullTask_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddCommand(null));
+    public void execute_switchPlannerTab_success() throws CommandException {
+        CommandResult commandResult = new ModuleCommand().execute(model);
+        CommandResult expectedCommandResult =
+                CommandResult.createModuleTabSwitchCommandResult(ModuleCommand.MESSAGE_SWITCH_TAB_SUCCESS);
+        assertEquals(commandResult, expectedCommandResult);
     }
 
     @Test
-    public void execute_taskAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingTaskAdded modelStub = new ModelStubAcceptingTaskAdded();
-        Task validTask = new TaskBuilder().build();
+    public void execute_invalidDeleteIndexList_throwsCommandException() {
+        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredTaskList().size() + 1);
+        ModuleCommand moduleCommand = new ModuleCommand(outOfBoundIndex);
 
-        CommandResult commandResult = new AddCommand(validTask).execute(modelStub);
-
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validTask), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validTask), modelStub.tasksAdded);
+        assertCommandFailure(moduleCommand, model, Messages.MESSAGE_INVALID_MODULE_DISPLAYED_INDEX);
     }
 
     @Test
-    public void execute_duplicateTask_throwsCommandException() {
-        Task validTask = new TaskBuilder().build();
-        AddCommand addCommand = new AddCommand(validTask);
-        ModelStub modelStub = new ModelStubWithTask(validTask);
+    public void execute_unableToDeleteModule_throwsCommandException() {
+        ModelStubWithTaskModulePaired modelStub = new ModelStubWithTaskModulePaired();
+        ModuleCommand moduleCommand = new ModuleCommand(Index.fromOneBased(1));
 
         assertThrows(CommandException.class,
-                AddCommand.MESSAGE_DUPLICATE_TASK, () -> addCommand.execute(modelStub));
+                ModuleCommand.MESSAGE_STILL_HAS_TASKS, () -> moduleCommand.execute(modelStub));
     }
 
     @Test
-    public void equals() {
-        Task homework = new TaskBuilder().withName("homework").build();
-        Task assignment = new TaskBuilder().withName("assignment").build();
-        AddCommand addTask1Command = new AddCommand(homework);
-        AddCommand addTask2Command = new AddCommand(assignment);
+    public void execute_moduleAcceptedByModel_addSuccessful() throws Exception {
+        ModuleCommandTest.ModelStubAcceptingModule modelStub = new ModuleCommandTest.ModelStubAcceptingModule();
+        Module validModule = testModule;
+
+        CommandResult commandResult = new ModuleCommand(validModule).execute(modelStub);
+
+        assertEquals(String.format(ModuleCommand.MESSAGE_MODULE_ADD_SUCCESS, validModule),
+                commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validModule), modelStub.modulesAdded);
+    }
+
+    @Test
+    public void execute_moduleDeletedFromModel_deleteSuccessful() throws Exception {
+        ModuleCommandTest.ModelStubAllowingDelete modelStub = new ModuleCommandTest.ModelStubAllowingDelete();
+
+        CommandResult commandResult = new ModuleCommand(Index.fromOneBased(1)).execute(modelStub);
+
+        assertEquals(String.format(ModuleCommand.MESSAGE_MODULE_DELETE_SUCCESS, testModule),
+                commandResult.getFeedbackToUser());
+        assertEquals(new ArrayList<>(), modelStub.modulesAdded);
+    }
+
+    @Test
+    public void execute_moduleAddedtoModel_addFailure() throws Exception {
+        ModuleCommandTest.ModelStubRejectingModule modelStub = new ModuleCommandTest.ModelStubRejectingModule();
+
+        ModuleCommand moduleCommand = new ModuleCommand(testModule);
+
+        assertThrows(CommandException.class,
+                ModuleCommand.MESSAGE_DUPLICATE_MODULE, () -> moduleCommand.execute(modelStub));
+    }
+
+    @Test
+    void testEquals() {
+        ModuleCommand addCommand1 = new ModuleCommand(testModule);
+        ModuleCommand addCommand2 = new ModuleCommand(testModule);
+        ModuleCommand switchCommand = new ModuleCommand();
+        ModuleCommand deleteCommand = new ModuleCommand(Index.fromOneBased(1));
 
         // same object -> returns true
-        assertTrue(addTask1Command.equals(addTask1Command));
+        assertTrue(addCommand1.equals(addCommand1));
 
-        // same values -> returns true
-        AddCommand addTask1CommandCopy = new AddCommand(homework);
-        assertTrue(addTask1Command.equals(addTask1CommandCopy));
+        // same command
+        assertTrue(addCommand1.equals(addCommand2));
 
-        // different types -> returns false
-        assertFalse(addTask1Command.equals(1));
+        // null -> false
+        assertFalse(addCommand1.equals(null));
 
-        // null -> returns false
-        assertFalse(addTask1Command.equals(null));
-
-        // different task -> returns false
-        assertFalse(addTask1Command.equals(addTask2Command));
+        // different -> false
+        assertFalse(addCommand1.equals(switchCommand));
+        assertFalse(addCommand1.equals(deleteCommand));
+        assertFalse(switchCommand.equals(deleteCommand));
     }
+
 
     /**
      * A default model stub that have all of the methods failing.
@@ -217,52 +263,71 @@ public class AddCommandTest {
     }
 
     /**
-     * A Model stub that contains a single task.
+     * A Model stub that has a single module and always reports module has related tasks.
      */
-    private class ModelStubWithTask extends ModelStub {
-        private final Task task;
+    class ModelStubWithTaskModulePaired extends ModelStub {
 
-        ModelStubWithTask(Task task) {
-            requireNonNull(task);
-            this.task = task;
+        @Override
+        public boolean hasRelatedTasks(Module module) {
+            return true;
         }
 
         @Override
-        public boolean hasTask(Task task) {
-            requireNonNull(task);
-            return this.task.isSameTask(task);
+        public ObservableList<Module> getFilteredModuleList() {
+            ObservableList<Module> list = FXCollections.observableArrayList();
+            list.add(new Module("name", new ModuleCode("code")));
+            return list;
         }
     }
 
     /**
-     * A Model stub that always accept the task being added.
+     * A Model stub that always accepts a module.
      */
-    private class ModelStubAcceptingTaskAdded extends ModelStub {
-        final ArrayList<Task> tasksAdded = new ArrayList<>();
+    class ModelStubAcceptingModule extends ModelStub {
         final ArrayList<Module> modulesAdded = new ArrayList<>();
 
         @Override
-        public boolean hasTask(Task task) {
-            requireNonNull(task);
-            return tasksAdded.stream().anyMatch(task::isSameTask);
+        public boolean hasModule(Module module) {
+            return false;
         }
 
         @Override
-        public void addTask(Task task) {
-            requireNonNull(task);
-            tasksAdded.add(task);
-        }
-
-        @Override
-        public boolean hasValidModuleField(Task task) {
-            requireNonNull(task);
-            return modulesAdded.stream().noneMatch(module -> task.getModuleCode().contains(module.moduleCode));
-        }
-
-        @Override
-        public ReadOnlyTr4cker getTr4cker() {
-            return new Tr4cker();
+        public void addModule(Module module) {
+            modulesAdded.add(module);
         }
     }
 
+    /**
+     * A Model stub that always allows deleting a module.
+     */
+    class ModelStubAllowingDelete extends ModelStub {
+        final ArrayList<Module> modulesAdded = new ArrayList<>(Arrays.asList(testModule));
+
+        @Override
+        public boolean hasRelatedTasks(Module module) {
+            return false;
+        }
+
+        @Override
+        public void deleteModule(Module target) {
+            modulesAdded.remove(target);
+        }
+
+        @Override
+        public ObservableList<Module> getFilteredModuleList() {
+            return FXCollections.observableList(modulesAdded);
+        }
+    }
+
+    /**
+     * A Model stub that always rejects adding a module.
+     */
+    class ModelStubRejectingModule extends ModelStub {
+        final ArrayList<Module> modulesAdded = new ArrayList<>();
+
+        @Override
+        public boolean hasModule(Module module) {
+            return true;
+        }
+    }
 }

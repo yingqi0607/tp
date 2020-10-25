@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.tr4cker.model.module.ModuleCode;
 import seedu.tr4cker.model.tag.Tag;
 
 /**
@@ -22,18 +23,20 @@ public class Task {
 
     // Data fields
     private final TaskDescription taskDescription;
+    private final Set<ModuleCode> moduleCode;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
     public Task(Name name, Deadline deadline, CompletionStatus completionStatus,
-                TaskDescription taskDescription, Set<Tag> tags) {
+                TaskDescription taskDescription, Set<ModuleCode> moduleCode, Set<Tag> tags) {
         requireAllNonNull(name, deadline, completionStatus, taskDescription, tags);
         this.name = name;
         this.deadline = deadline;
         this.completionStatus = completionStatus;
         this.taskDescription = taskDescription;
+        this.moduleCode = moduleCode;
         this.tags.addAll(tags);
     }
 
@@ -51,6 +54,10 @@ public class Task {
 
     public TaskDescription getTaskDescription() {
         return taskDescription;
+    }
+
+    public Set<ModuleCode> getModuleCode() {
+        return Collections.unmodifiableSet(moduleCode);
     }
 
     /**
@@ -118,13 +125,14 @@ public class Task {
                 && otherTask.getDeadline().equals(getDeadline())
                 && otherTask.getCompletionStatus().equals(getCompletionStatus())
                 && otherTask.getTaskDescription().equals(getTaskDescription())
+                && otherTask.getModuleCode().equals(getModuleCode())
                 && otherTask.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, deadline, completionStatus, taskDescription, tags);
+        return Objects.hash(name, deadline, completionStatus, taskDescription, moduleCode, tags);
     }
 
     @Override
@@ -137,7 +145,9 @@ public class Task {
                 .append(getCompletionStatus())
                 .append(" Description: ")
                 .append(getTaskDescription())
-                .append(" Tags: ");
+                .append(" ModuleCode: ");
+        getModuleCode().forEach(builder::append);
+        builder.append(" Tags: ");
         getTags().forEach(builder::append);
         return builder.toString();
     }
