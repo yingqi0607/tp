@@ -204,9 +204,9 @@ Format: `exit`
 #### Countdown tab features
 
 #### Planner tab features
-If you would like to have an overview of your schedule in a calendar view and have your tasks list side-by-side, Planner
-tab helps you to achieve that! By having an overview of your upcoming schedule, you would be able to better manage your
-time and be more productive!
+You can view an overview of your schedule in a calendar view and have your tasks list side-by-side using the Planner
+tab. By having an overview of your upcoming schedule, you would be able to better manage your time and hence
+be more productive!
 
 ##### Switching to Planner tab: `planner`
 If you would like to switch to Planner tab without clicking on the Planner tab button, you can do so easily through the
@@ -214,7 +214,7 @@ CLI, by just typing `planner`.
 
 Format: `planner`
 
-Once you enter, TR4CKER should look like this:
+Once you enter `planner` into the command box, TR4CKER should look like this:
 ![switch tab](images/plannertab_switchtab.png)
 Figure 1: TR4CKER after executing `planner`
 
@@ -238,7 +238,7 @@ Format: `planner goto/today` or `planner goto/tdy`
 
 * Input can only be `today` or `tdy`. There are no other alternatives.
 
-First, you enter the command to go to today:
+First, you enter the command into the command box to go to today:
 ![goto today command](images/plannertab_gototoday.png)
 Figure 2: TR4CKER before executing `planner goto/tdy`
 
@@ -258,7 +258,7 @@ Format: `planner goto/tomorrow` or `planner goto/tmr`
 
 * Input can only be `tomorrow` or `tmr`. There are no other alternatives.
 
-First, you enter the command to go to tomorrow:
+First, you enter the command into the command box to go to tomorrow:
 ![goto tomorrow command](images/plannertab_gototomorrow.png)
 Figure 4: TR4CKER before executing `planner goto/tmr`
 
@@ -281,7 +281,7 @@ Format: `planner goto/dd-mm-yyyy` or `planner goto/dd-MMM-yyyy`
 * Input must be a valid date.
 * You can either use the month number or month name for the month field of the input date. 
 
-First, you enter the command to go to a specific date:
+First, you enter the command into the command box to go to a specific date:
 ![goto date command](images/plannertab_gotodate.png)
 Figure 6: TR4CKER before executing `planner goto/08-11-2020`
 
@@ -301,7 +301,7 @@ Format: `planner goto/mm-yyyy` or `planner goto/MMM-yyyy`
 * Input must be a valid month.
 * You can either use the month number or month name for the month field of the input month.
 
-First, you enter the command to go to a specific month:
+First, you enter the command into the command box to go to a specific month:
 ![goto month command](images/plannertab_gotomonth.png)
 Figure 8: TR4CKER before executing `planner goto/Sep-2021`
 
