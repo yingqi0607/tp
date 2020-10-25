@@ -61,7 +61,10 @@ public class UniqueEventList implements Iterable<Event> {
         }
     }
 
-    public void setEvents(seedu.tr4cker.model.countdown.UniqueEventList replacement) {
+    /**
+     * Replaces the contents of this list with another {@code UniqueEventList}.
+     */
+    public void setEvents(UniqueEventList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }

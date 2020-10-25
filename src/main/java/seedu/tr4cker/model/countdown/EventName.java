@@ -10,7 +10,7 @@ import static seedu.tr4cker.commons.util.AppUtil.checkArgument;
 public class EventName {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Names should only contain alphanumeric characters and spaces, and it should not be blank";
+            "Event names should only contain alphanumeric characters and spaces, and it should not be blank";
 
     /*
      * The first character of the event name must not be a whitespace,

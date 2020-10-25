@@ -92,6 +92,8 @@ public class LogicManager implements Logic {
     public ObservableList<Event> getFilteredEventList() {
         return model.getFilteredEventsList();
     }
+
+    @Override
     public void updateFilteredModuleList(Predicate<Module> predicate) {
         model.updateFilteredModuleList(predicate);
     }

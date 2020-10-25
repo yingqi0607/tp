@@ -49,6 +49,7 @@ public interface Logic {
 
     /** Returns an unmodifiable view of the filtered list of events. */
     ObservableList<Event> getFilteredEventList();
+
     /** Updates an unmodifiable view of the filtered list of tasks for Module tab. */
     void updateFilteredModuleList(Predicate<Module> predicate);
 

@@ -20,7 +20,6 @@ public class Tr4cker implements ReadOnlyTr4cker {
 
     private final UniqueTaskList tasks;
     private final UniqueModuleList modules; //todo pair with ui
-
     private final UniqueEventList events;
 
     /*
@@ -158,10 +157,16 @@ public class Tr4cker implements ReadOnlyTr4cker {
         events.remove(key);
     }
 
+    /**
+     * Returns the earliest upcoming (@code Event}.
+     */
     public Event firstEvent() {
         return events.firstEvent();
     }
 
+    /**
+     * Returns the second earliest upcoming (@code Event}.
+     */
     public Event secondEvent() {
         return events.secondEvent();
     }
@@ -222,6 +227,8 @@ public class Tr4cker implements ReadOnlyTr4cker {
         events.sortEventsByDate();
         return events.asUnmodifiableObservableList();
     }
+
+    @Override
     public ObservableList<Module> getModuleList() {
         return modules.asUnmodifiableObservableList();
     }
