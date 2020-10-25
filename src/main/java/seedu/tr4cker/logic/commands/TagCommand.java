@@ -61,7 +61,7 @@ public class TagCommand extends Command {
         taskToEdit.addTags(tagsToAdd);
         taskToEdit.deleteTags(tagsToDelete);
         Task editedTask = new Task(taskToEdit.getName(), taskToEdit.getDeadline(), taskToEdit.getCompletionStatus(),
-                taskToEdit.getTaskDescription(), taskToEdit.getTags());
+                taskToEdit.getTaskDescription(), taskToEdit.getModuleCode(), taskToEdit.getTags());
 
         model.setTask(taskToEdit, editedTask);
         model.updateFilteredTaskList(PREDICATE_SHOW_PENDING_TASKS);

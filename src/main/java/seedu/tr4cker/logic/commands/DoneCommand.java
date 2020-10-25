@@ -12,6 +12,7 @@ import seedu.tr4cker.commons.core.Messages;
 import seedu.tr4cker.commons.core.index.Index;
 import seedu.tr4cker.logic.commands.exceptions.CommandException;
 import seedu.tr4cker.model.Model;
+import seedu.tr4cker.model.module.ModuleCode;
 import seedu.tr4cker.model.tag.Tag;
 import seedu.tr4cker.model.task.CompletionStatus;
 import seedu.tr4cker.model.task.Deadline;
@@ -91,12 +92,13 @@ public class DoneCommand extends Command {
         Deadline initialDeadline = taskToComplete.getDeadline();
         CompletionStatus initialCompletionStatus = taskToComplete.getCompletionStatus();
         TaskDescription initialTaskDescription = taskToComplete.getTaskDescription();
+        Set<ModuleCode> initialModuleCode = taskToComplete.getModuleCode();
         Set<Tag> initialTags = taskToComplete.getTags();
         if (completionStatus.equals(initialCompletionStatus)) {
             throw new CommandException(MESSAGE_COMPLETION_SAME);
         }
         return new Task(initialName, initialDeadline, completionStatus,
-                initialTaskDescription, initialTags);
+                initialTaskDescription, initialModuleCode, initialTags);
     }
 
     @Override

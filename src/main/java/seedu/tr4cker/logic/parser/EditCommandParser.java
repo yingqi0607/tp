@@ -3,8 +3,11 @@ package seedu.tr4cker.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.tr4cker.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_TASK_DESCRIPTION;
+
+import java.util.HashSet;
 
 import seedu.tr4cker.commons.core.index.Index;
 import seedu.tr4cker.logic.commands.EditCommand;
@@ -50,6 +53,14 @@ public class EditCommandParser implements Parser<EditCommand> {
             editTaskDescriptor.setDescription(
                     ParserUtil.parseDescription(argMultimap.getValue(PREFIX_TASK_DESCRIPTION).get()));
         }
+        if (argMultimap.getValue(PREFIX_MODULE_CODE).isPresent()) {
+            if (argMultimap.getValue(PREFIX_MODULE_CODE).get().equals("del")) {
+                editTaskDescriptor.setModuleCode(new HashSet<>()); // for deleting module code
+            } else {
+                editTaskDescriptor.setModuleCode(
+                        ParserUtil.parseModuleCode(argMultimap.getValue(PREFIX_MODULE_CODE).get()));
+            }
+        }
 
         if (!editTaskDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
@@ -66,10 +77,10 @@ public class EditCommandParser implements Parser<EditCommand> {
         try {
             if (isEditExpiredTask) {
                 return ArgumentTokenizer.tokenize(args.trim().substring(8), PREFIX_NAME, PREFIX_DEADLINE,
-                        PREFIX_TASK_DESCRIPTION);
+                        PREFIX_TASK_DESCRIPTION, PREFIX_MODULE_CODE);
             } else {
                 return ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DEADLINE,
-                        PREFIX_TASK_DESCRIPTION);
+                        PREFIX_TASK_DESCRIPTION, PREFIX_MODULE_CODE);
             }
         } catch (StringIndexOutOfBoundsException e) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));

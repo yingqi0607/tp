@@ -53,5 +53,6 @@
       "eventName": "Event3 Name",
       "eventDate": "30-11-2020"
     }
-  ]
+  ],
+  "modules" : [ ]
 }

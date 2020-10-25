@@ -21,6 +21,7 @@ import seedu.tr4cker.model.ReadOnlyTr4cker;
 import seedu.tr4cker.model.ReadOnlyUserPrefs;
 import seedu.tr4cker.model.Tr4cker;
 import seedu.tr4cker.model.countdown.Event;
+import seedu.tr4cker.model.module.Module;
 import seedu.tr4cker.model.task.Task;
 import seedu.tr4cker.testutil.TaskBuilder;
 
@@ -116,6 +117,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void addModule(Module module) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setTr4cker(ReadOnlyTr4cker tr4cker) {
             throw new AssertionError("This method should not be called.");
         }
@@ -127,6 +133,11 @@ public class AddCommandTest {
 
         @Override
         public boolean hasTask(Task task) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasRelatedTasks(Module module) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -144,14 +155,23 @@ public class AddCommandTest {
         public boolean hasEvent(Event event) {
             throw new AssertionError("This method should not be called.");
         }
+        public boolean hasModule(Module module) {
+            throw new AssertionError("This method should not be called.");
+        }
 
         @Override
         public void deleteEvent(Event target) {
             throw new AssertionError("This method should not be called.");
         }
+        public boolean hasValidModuleField(Task task) {
+            throw new AssertionError("This method should not be called.");
+        }
 
         @Override
         public void addEvent(Event event) {
+            throw new AssertionError("This method should not be called.");
+        }
+        public void deleteModule(Module target) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -167,6 +187,11 @@ public class AddCommandTest {
 
         @Override
         public ObservableList<Task> getFilteredCompletedTaskList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Module> getFilteredModuleList() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -192,6 +217,11 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredCompletedTaskList(Predicate<Task> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredModuleList(Predicate<Module> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -229,6 +259,7 @@ public class AddCommandTest {
      */
     private class ModelStubAcceptingTaskAdded extends ModelStub {
         final ArrayList<Task> tasksAdded = new ArrayList<>();
+        final ArrayList<Module> modulesAdded = new ArrayList<>();
 
         @Override
         public boolean hasTask(Task task) {
@@ -240,6 +271,12 @@ public class AddCommandTest {
         public void addTask(Task task) {
             requireNonNull(task);
             tasksAdded.add(task);
+        }
+
+        @Override
+        public boolean hasValidModuleField(Task task) {
+            requireNonNull(task);
+            return modulesAdded.stream().noneMatch(module -> task.getModuleCode().contains(module.moduleCode));
         }
 
         @Override

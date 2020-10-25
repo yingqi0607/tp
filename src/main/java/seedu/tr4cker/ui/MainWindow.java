@@ -20,6 +20,7 @@ import seedu.tr4cker.logic.commands.CommandResult;
 import seedu.tr4cker.logic.commands.exceptions.CommandException;
 import seedu.tr4cker.logic.parser.exceptions.ParseException;
 import seedu.tr4cker.ui.countdown.CountdownTabWindow;
+import seedu.tr4cker.ui.module.ModuleListPanel;
 import seedu.tr4cker.ui.planner.PlannerTabWindow;
 
 /**
@@ -48,6 +49,7 @@ public class MainWindow extends UiPart<Stage> {
     private TaskListPanel taskListPanel;
     private ExpiredTaskListPanel expiredTaskListPanel;
     private CompletedTaskListPanel completedTaskListPanel;
+    private ModuleListPanel moduleListPanel;
     private PlannerTabWindow plannerTabWindow;
     private CountdownTabWindow countdownTabWindow;
     private ResultDisplay resultDisplay;
@@ -73,6 +75,12 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    /*
+     * Module tab content.
+     */
+    @FXML
+    private StackPane moduleListPanelPlaceholder;
 
     /*
      * Planner tab content.
@@ -194,6 +202,11 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
+        /*Modules */
+        moduleListPanel = new ModuleListPanel(logic.getFilteredModuleList(), logic.getFilteredTaskList());
+        moduleListPanelPlaceholder.getChildren().add(moduleListPanel.getRoot());
+
+        /*Planner */
         plannerTabWindow = new PlannerTabWindow(logic);
         plannerTabWindowPlaceholder.getChildren().add(plannerTabWindow.getRoot());
 
@@ -333,6 +346,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isShowModules()) {
+                handleShowTabModule();
             }
 
             if (commandResult.isShowPlanner()) {
