@@ -17,6 +17,7 @@ import seedu.tr4cker.commons.core.index.Index;
 import seedu.tr4cker.commons.util.CollectionUtil;
 import seedu.tr4cker.logic.commands.exceptions.CommandException;
 import seedu.tr4cker.model.Model;
+import seedu.tr4cker.model.module.ModuleCode;
 import seedu.tr4cker.model.tag.Tag;
 import seedu.tr4cker.model.task.CompletionStatus;
 import seedu.tr4cker.model.task.Deadline;
@@ -44,6 +45,7 @@ public class EditCommand extends Command {
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Task: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in TR4CKER.";
+    public static final String MESSAGE_INVALID_MODULE = "Given module does not exist in TR4CKER.";
 
     protected final Index index;
     protected final EditTaskDescriptor editTaskDescriptor;
@@ -75,6 +77,9 @@ public class EditCommand extends Command {
         if (!taskToEdit.isSameTask(editedTask) && model.hasTask(editedTask)) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
+        if (!model.hasValidModuleField(editedTask)) {
+            throw new CommandException(MESSAGE_INVALID_MODULE);
+        }
 
         model.setTask(taskToEdit, editedTask);
         model.updateFilteredTaskList(PREDICATE_SHOW_PENDING_TASKS);
@@ -94,10 +99,12 @@ public class EditCommand extends Command {
                 taskToEdit.getCompletionStatus(); // edit command does not allow editing completion status
         TaskDescription updatedTaskDescription =
                 editTaskDescriptor.getTaskDescription().orElse(taskToEdit.getTaskDescription());
+        Set<ModuleCode> updatedModuleCode =
+                editTaskDescriptor.getModuleCode().orElse(taskToEdit.getModuleCode());
         Set<Tag> initialTags = taskToEdit.getTags(); // edit command does not allow editing of tags
 
         return new Task(updatedName, updatedDeadline, initialCompletionStatus,
-                updatedTaskDescription, initialTags);
+                updatedTaskDescription, updatedModuleCode, initialTags);
     }
 
     @Override
@@ -126,6 +133,7 @@ public class EditCommand extends Command {
         private Name name;
         private Deadline deadline;
         private TaskDescription taskDescription;
+        private Set<ModuleCode> moduleCode;
         private Set<Tag> tags;
 
         public EditTaskDescriptor() {}
@@ -137,6 +145,7 @@ public class EditCommand extends Command {
             setName(toCopy.name);
             setDeadline(toCopy.deadline);
             setDescription(toCopy.taskDescription);
+            setModuleCode(toCopy.moduleCode);
             setTags(toCopy.tags);
         }
 
@@ -144,7 +153,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, deadline, taskDescription);
+            return CollectionUtil.isAnyNonNull(name, deadline, taskDescription, moduleCode);
         }
 
         public void setName(Name name) {
@@ -169,6 +178,24 @@ public class EditCommand extends Command {
 
         public Optional<TaskDescription> getTaskDescription() {
             return Optional.ofNullable(taskDescription);
+        }
+
+        /**
+         * Sets {@code tags} to this object's {@code tags}.
+         */
+        public void setModuleCode(Set<ModuleCode> moduleCode) {
+            this.moduleCode = (moduleCode != null) ? new HashSet<>(moduleCode) : null;
+        }
+
+        /**
+         * Returns an unmodifiable module code set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code moduleCode} is null.
+         */
+        public Optional<Set<ModuleCode>> getModuleCode() {
+            return (moduleCode != null)
+                    ? Optional.of(Collections.unmodifiableSet(moduleCode))
+                    : Optional.empty();
         }
 
         /**
@@ -204,7 +231,8 @@ public class EditCommand extends Command {
 
             return getName().equals(e.getName())
                     && getDeadline().equals(e.getDeadline())
-                    && getTaskDescription().equals(e.getTaskDescription());
+                    && getTaskDescription().equals(e.getTaskDescription())
+                    && getModuleCode().equals(e.getModuleCode());
         }
     }
 

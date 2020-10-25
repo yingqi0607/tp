@@ -4,7 +4,7 @@ title: User Guide to TR4CKER
 ---
 
 TR4CKER is a desktop app that helps SoC students track their tasks, meet their deadlines, and stay productive. It is 
-optimized for Computing students familiar with CLI, who can manage their tasks efficiently by typing in commands.
+optimized for Computing students familiar with Command Line Interface (CLI), who can manage their tasks efficiently by typing in commands.
 
 * Table of Contents
 {:toc}
@@ -66,16 +66,16 @@ description`, with a deadline of `8 Sep 2020, 1700 hrs` and with an `urgent` tag
 
 </div>
 
-### Viewing help : `help`
+### Tabs
+- TR4CKER
+- Daily
+- Modules
+- Countdown
+- Planner
+- Help
 
-Shows a message explaning how to access the help page.
-
-![help message](images/helpMessage.png)
-
-Format: `help`
-
-
-### Adding a new task: `add`
+#### TR4CKER tab features
+##### Adding a new task: `add`
 
 You can add a new task to TR4CKER.
 
@@ -93,7 +93,13 @@ Examples:
 * `add n/CS1101S Quiz dl/2020-01-25 des/Post-Lecture quiz`
 * `add n/CS1231S Homework Assignment dl/2020-09-08 2200 des/task 1 description t/assignment t/urgent`
 
-### Marking tasks as done: `done`
+##### Listing all tasks: `list`
+
+Shows a list of all tasks in TR4CKER.
+
+Format: `list`
+
+##### Marking tasks as done: `done`
 
 Marks the tasks you have completed as 'done' in TR4CKER.
 
@@ -107,7 +113,7 @@ Examples:
 * `list` followed by `done 2` marks the 2nd task in the displayed task list as done.
 * `find essay` followed by `done 1` marks the 1st task in the results of the `find` command as done.
 
-### Editing a task: `edit`
+##### Editing a task: `edit`
 
 Edits an existing task’s details in TR4CKER.
 
@@ -124,7 +130,7 @@ Examples:
 * `edit 1 n/prepare for tP tasks` - Edits the description of the 1st task to be `prepare for tP tasks`.
 * `edit 2 dl/2020-09-13 1930` - Edits the deadline time of the 2nd task to be 13 Sep 2020, 1930 hrs.
 
-### Editing tags: `tag`
+##### Editing tags: `tag`
 
 Adds and/or deletes tag(s) from an existing task in TR4CKER.
 
@@ -146,7 +152,7 @@ Examples:
 * `tag 3 new/urgent del/assignment new/graded` - Adds 2 new tags `urgent` and `graded`, deletes the tag `assignment`
 from the 3rd task.
 
-### Locating tasks by keyword: `find`
+##### Locating tasks by keyword: `find`
 
 Finds tasks whose names contain any of the given keywords.
 
@@ -164,9 +170,9 @@ Examples:
 * `find CS1231S Mission` returns `CS1101S Mission`, `CS1231S Graded Assignment`<br>
   ![result for 'find CS1231S Mission'](images/findCS1231SmissionResult.png)
 
-### Deleting an existing task : `delete`
+##### Deleting an existing task : `delete`
 
-You can delete an existing task from the task list by providing the
+You can delete an existing task from the task list by providing the 
 index number of the task that you want to delete.
 
 Format: `delete INDEX`
@@ -179,41 +185,173 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd task in the displayed task list.
 * `find assignment` followed by `delete 1` deletes the 1st task in the results of the `find` command.
 
-### Clearing all entries : `clear`
+##### Clearing all tasks: `clear`
 
-Clears all entries from tr4cker.
+Clears all entries from TR4CKER.
 
 Format: `clear`
 
-### Listing all tasks : `list`
+##### Exiting TR4CKER: `exit`
 
-Shows a list of all tasks in tr4cker.
-
-Format: `list`
-
-Examples:
-* `list`
-
-### Exiting TR4CKER : `exit`
-
-Exits TR4CKER.
+Exits the program.
 
 Format: `exit`
 
-### Saving the data
+#### Daily tab features
 
-tr4cker data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+#### Modules tab features
 
-### Archiving data files `[coming in v2.0]`
+#### Countdown tab features
 
-_{explain the feature here}_
+#### Planner tab features
+You can view an overview of your schedule in a calendar view and have your tasks list side-by-side using the Planner
+tab. By having an overview of your upcoming schedule, you would be able to better manage your time and hence
+be more productive!
+
+##### Switching to Planner tab: `planner`
+If you would like to switch to Planner tab without clicking on the Planner tab button, you can do so easily through the
+CLI, by just typing `planner`.
+
+Format: `planner`
+
+Once you enter `planner` into the command box, TR4CKER should look like this:
+![switch tab](images/plannertab_switchtab.png)
+Figure 1: TR4CKER after executing `planner`
+
+By default, TR4CKER will circle today's date and the show you the tasks due on that day.
+
+Example:
+* `planner` - Switches to Planner tab, showing calendar view of today and tasks due today.
+
+##### Switching calendar view and tasks list
+If you would like to view the calendar on specific date/month, and with the tasks due on that date beside, you can
+use this command.
+
+General format: `planner goto/INPUT`
+
+* Input is compulsory and the format varies on the usages.
+
+For the ease of accessing today's and tomorrow's tasks list, TR4CKER has provided you with 2 commands that you can use!
+Short forms like "tdy" for "today" and "tmr" for "tomorrow" also allow you to save time without typing the full words.
+##### Today
+Format: `planner goto/today` or `planner goto/tdy`
+
+* Input can only be `today` or `tdy`. There are no other alternatives.
+
+First, you enter the command into the command box to go to today:
+![goto today command](images/plannertab_gototoday.png)
+Figure 2: TR4CKER before executing `planner goto/tdy`
+
+Then, TR4CKER will change planner tab to today's calendar view and tasks due today:
+![goto today result](images/plannertab_gototoday1.png)
+Figure 3: TR4CKER after executing `planner goto/tdy`
+
+Examples:  
+These 2 examples:
+* `planner goto/today`
+* `planner goto/tdy`
+
+will both give you today's calendar view and tasks due today.
+
+##### Tomorrow
+Format: `planner goto/tomorrow` or `planner goto/tmr`
+
+* Input can only be `tomorrow` or `tmr`. There are no other alternatives.
+
+First, you enter the command into the command box to go to tomorrow:
+![goto tomorrow command](images/plannertab_gototomorrow.png)
+Figure 4: TR4CKER before executing `planner goto/tmr`
+
+Then, TR4CKER will change planner tab to tomorrow's calendar view and tasks due tomorrow:
+![goto tomorrow result](images/plannertab_gototomorrow1.png)
+Figure 5: TR4CKER after executing `planner goto/tmr`
+
+Examples:  
+These 2 examples:
+* `planner goto/tomorrow`
+* `planner goto/tmr`
+
+will both give you tomorrow's calendar view and tasks due tomorrow.
+
+For the ease of accessing of a specific date's or month's tasks list, TR4CKER has provided you with 2 commands that
+you can use!
+##### Specific date
+Format: `planner goto/dd-mm-yyyy` or `planner goto/dd-MMM-yyyy`
+
+* Input must be a valid date.
+* You can either use the month number or month name for the month field of the input date. 
+
+First, you enter the command into the command box to go to a specific date:
+![goto date command](images/plannertab_gotodate.png)
+Figure 6: TR4CKER before executing `planner goto/08-11-2020`
+
+Then, TR4CKER will change planner tab to the calendar view and tasks due on the input date you provided:
+![goto date result](images/plannertab_gotodate1.png)
+Figure 7: TR4CKER after executing `planner goto/08-11-2020`
+
+Examples:
+* `planner goto/02-12-2020` - Shows you the calendar view of December 2020, with 2nd December 2020 being circled, and
+shows you the tasks due on 2nd December 2020.
+* `planner goto/28-Feb-2021` - Shows you the calendar view of February 2021, with 28th February 2021 being circled, and
+shows you the tasks due on 28th February 2021.
+
+##### Specific month
+Format: `planner goto/mm-yyyy` or `planner goto/MMM-yyyy`
+
+* Input must be a valid month.
+* You can either use the month number or month name for the month field of the input month.
+
+First, you enter the command into the command box to go to a specific month:
+![goto month command](images/plannertab_gotomonth.png)
+Figure 8: TR4CKER before executing `planner goto/Sep-2021`
+
+Then, TR4CKER will change planner tab to the calendar view and tasks due on the input month you provided:
+![goto month result](images/plannertab_gotomonth1.png)
+Figure 9: TR4CKER after executing `planner goto/Sep-2021`
+
+By default, TR4CKER will circle the first day of the month you inputted and show you the tasks due on the first day of
+the input month.
+
+Examples:
+* `planner goto/12-2020` - Shows you the calendar view of December 2020, with 1st December 2020 being circled, and
+shows you the tasks due on 1st December 2020.
+* `planner goto/Feb-2021` - Shows you the calendar view of February 2021, with 1st February 2021 being circled, and
+shows you the tasks due on 1st February 2021.
+
+##### Indicators on Calendar
+You would have realised there are different colours tagged to every day in the calendar. To allow you to have a better
+overview of your schedule, Planner tab allows you to check if your upcoming days are busy!
+
+The figure below shows the indicators.
+![indicator](images/plannertab_indicator.png)
+Figure 10: Indicators (circled in red) on calendar
+
+The indicator colours and their meanings are:
+* No indicator - no tasks due on that date
+* Green indicator - 2 or lesser tasks due on that date
+* Red indicator - more than 2 tasks due on that date
+
+#### Help tab features
+##### Viewing help : `help`
+
+Shows a message explaining how to access the help page.
+
+![help message](images/helpMessage.png)
+
+Format: `help`
+
+##### Saving the data
+
+TR4CKER data are saved in the hard disk automatically after any command that changes the data.
+There is no need to save manually.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous TR4CKER home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
+the data of your previous TR4CKER home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -230,4 +368,3 @@ Action | Format, Examples
 **Clear** | `clear`
 **List** | `list`
 **Exit** | `exit`
-

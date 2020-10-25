@@ -19,6 +19,7 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.tr4cker.model.module.ModuleCode;
 import seedu.tr4cker.model.tag.Tag;
 import seedu.tr4cker.testutil.TaskBuilder;
 
@@ -130,11 +131,14 @@ public class TaskTest {
         Deadline deadline = new Deadline("02-12-2021 1800", false);
         CompletionStatus completionStatus = new CompletionStatus(0);
         TaskDescription taskDescription = new TaskDescription("description");
+        ModuleCode code = new ModuleCode("codeName");
+        Set<ModuleCode> moduleCode = new HashSet<>();
+        moduleCode.add(code);
         Tag tag = new Tag("tag");
         Set<Tag> tags = new HashSet<>();
         tags.add(tag);
-        Task task1 = new Task(name, deadline, completionStatus, taskDescription, tags);
-        Task task2 = new Task(name, deadline, completionStatus, taskDescription, tags);
+        Task task1 = new Task(name, deadline, completionStatus, taskDescription, moduleCode, tags);
+        Task task2 = new Task(name, deadline, completionStatus, taskDescription, moduleCode, tags);
         assertEquals(task1.hashCode(), task2.hashCode());
     }
 

@@ -88,12 +88,12 @@
             </Tab>
             <Tab text="Module">
               <content>
-
+                  <StackPane fx:id="moduleListPanelPlaceholder" prefWidth="900" minWidth="-Infinity" VBox.vgrow="NEVER" />
               </content>
             </Tab>
             <Tab text="Countdown">
               <content>
-
+                <StackPane fx:id="countdownTabWindowPlaceholder" prefHeight="110.0" prefWidth="200.0" />
               </content>
             </Tab>
             <Tab text="Planner">

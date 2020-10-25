@@ -21,8 +21,14 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
+    /** TR4CKER shows Module tab. */
+    private boolean showModules;
+
     /** TR4CKER shows Planner tab. */
     private boolean showPlanner;
+
+    /** TR4CKER shows Countdown tab. */
+    private boolean showCountdown;
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
@@ -52,8 +58,35 @@ public class CommandResult {
         this.showHelp = false;
         this.exit = false;
         this.showPlanner = true;
+        this.showCountdown = false;
         this.localDate = localDate;
         this.yearMonth = yearMonth;
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser}.
+     * For usage of CountdownCommand.
+     */
+    public CommandResult(String feedbackToUser, boolean isShowCountdown) {
+        this.feedbackToUser = requireNonNull(feedbackToUser);
+        this.showHelp = false;
+        this.exit = false;
+        this.showPlanner = false;
+        this.showCountdown = isShowCountdown;
+        this.localDate = null;
+        this.yearMonth = null;
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
+     * For usage of ModuleCommand.
+     */
+    public static CommandResult createModuleTabSwitchCommandResult(String feedbackToUser) {
+        CommandResult newCommandResult = new CommandResult(feedbackToUser);
+        newCommandResult.showModules = true;
+        newCommandResult.showPlanner = false;
+        newCommandResult.showCountdown = false;
+        return newCommandResult;
     }
 
     public String getFeedbackToUser() {
@@ -68,8 +101,16 @@ public class CommandResult {
         return exit;
     }
 
+    public boolean isShowModules() {
+        return showModules;
+    }
+
     public boolean isShowPlanner() {
         return showPlanner;
+    }
+
+    public boolean isShowCountdown() {
+        return showCountdown;
     }
 
     public LocalDate getLocalDate() {

@@ -5,6 +5,8 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.tr4cker.model.module.Module;
+import seedu.tr4cker.model.module.UniqueModuleList;
 import seedu.tr4cker.model.task.Task;
 import seedu.tr4cker.model.task.UniqueTaskList;
 
@@ -15,6 +17,7 @@ import seedu.tr4cker.model.task.UniqueTaskList;
 public class Tr4cker implements ReadOnlyTr4cker {
 
     private final UniqueTaskList tasks;
+    private final UniqueModuleList modules; //todo pair with ui
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -25,6 +28,7 @@ public class Tr4cker implements ReadOnlyTr4cker {
      */
     {
         tasks = new UniqueTaskList();
+        modules = new UniqueModuleList();
     }
 
     public Tr4cker() {}
@@ -48,12 +52,21 @@ public class Tr4cker implements ReadOnlyTr4cker {
     }
 
     /**
+     * Replaces the contents of the module list with {@code modules}.
+     * {@code modules} must not contain duplicate modules.
+     */
+    public void setModules(List<Module> modules) {
+        this.modules.setModules(modules);
+    }
+
+    /**
      * Resets the existing data of this {@code Tr4cker} with {@code newData}.
      */
     public void resetData(ReadOnlyTr4cker newData) {
         requireNonNull(newData);
 
         setTasks(newData.getTaskList());
+        setModules(newData.getModuleList());
     }
 
     //// task-level operations
@@ -64,6 +77,19 @@ public class Tr4cker implements ReadOnlyTr4cker {
     public boolean hasTask(Task task) {
         requireNonNull(task);
         return tasks.contains(task);
+    }
+
+    /**
+     * Returns true if a task with the same module code as {@code module} exists in Tr4cker.
+     */
+    public boolean hasRelatedTasks(Module module) {
+        requireNonNull(module);
+        for (Task task : tasks) {
+            if (task.getModuleCode().contains(module.moduleCode)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -93,6 +119,44 @@ public class Tr4cker implements ReadOnlyTr4cker {
         tasks.remove(key);
     }
 
+    //// module-level operations
+
+    /**
+     * Returns true if a module with the same identity as {@code module} exists in Tr4cker.
+     */
+    public boolean hasModule(Module module) {
+        requireNonNull(module);
+        return modules.contains(module);
+    }
+
+    /**
+     * Returns true if the {@code task} has a module code that exists in Tr4cker, or if
+     * it's module field is null.
+     */
+    public boolean hasValidModuleField(Task task) {
+        requireNonNull(task);
+        if (task.getModuleCode().isEmpty()) {
+            return true;
+        }
+        return task.getModuleCode().stream().anyMatch(modules::containsCode);
+    }
+
+    /**
+     * Adds a module to Tr4cker.
+     * The module must not already exist in Tr4cker.
+     */
+    public void addModule(Module m) {
+        modules.add(m);
+    }
+
+    /**
+     * Removes {@code key} from this {@code Tr4cker}.
+     * {@code key} must exist in Tr4cker.
+     */
+    public void removeModule(Module key) {
+        modules.remove(key);
+    }
+
     //// util methods
 
     @Override
@@ -108,14 +172,20 @@ public class Tr4cker implements ReadOnlyTr4cker {
     }
 
     @Override
+    public ObservableList<Module> getModuleList() {
+        return modules.asUnmodifiableObservableList();
+    }
+
+    @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Tr4cker // instanceof handles nulls
-                && tasks.equals(((Tr4cker) other).tasks));
+                && tasks.equals(((Tr4cker) other).tasks))
+                && modules.equals(((Tr4cker) other).modules);
     }
 
     @Override
     public int hashCode() {
-        return tasks.hashCode();
+        return tasks.hashCode() + modules.hashCode();
     }
 }

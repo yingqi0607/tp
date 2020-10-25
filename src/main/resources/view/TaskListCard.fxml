@@ -36,6 +36,7 @@
                   <Insets bottom="10.0" left="10.0" />
                </HBox.margin></Label>
       </HBox>
+      <FlowPane fx:id="moduleCode" prefHeight="9.0" prefWidth="130.0" />
       <FlowPane fx:id="tags" prefHeight="9.0" prefWidth="130.0" />
       <Label fx:id="description" styleClass="cell_small_label" text="\$description" wrapText="true">
             <VBox.margin>
