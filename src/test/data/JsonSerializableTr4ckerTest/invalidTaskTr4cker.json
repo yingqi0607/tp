@@ -5,5 +5,11 @@
     "completionStatus": -1,
     "description": "description"
   } ],
+  "events" : [
+    {
+      "eventName": "Event1 Name",
+      "eventDate": "01-01-2021"
+    }
+  ],
   "modules" : [ ]
 }

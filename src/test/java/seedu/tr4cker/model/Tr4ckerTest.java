@@ -22,6 +22,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.tr4cker.model.countdown.Event;
 import seedu.tr4cker.model.module.Module;
 import seedu.tr4cker.model.module.ModuleCode;
 import seedu.tr4cker.model.module.exceptions.DuplicateModuleException;
@@ -124,6 +125,7 @@ public class Tr4ckerTest {
      */
     private static class Tr4ckerStub implements ReadOnlyTr4cker {
         private final ObservableList<Task> tasks = FXCollections.observableArrayList();
+        private final ObservableList<Event> events = FXCollections.observableArrayList();
         private final ObservableList<Module> modules = FXCollections.observableArrayList();
 
         Tr4ckerStub(Collection<Task> tasks, Collection<Module> modules) {
@@ -137,6 +139,9 @@ public class Tr4ckerTest {
         }
 
         @Override
+        public ObservableList<Event> getEventList() {
+            return events;
+        }
         public ObservableList<Module> getModuleList() {
             return modules;
         }
