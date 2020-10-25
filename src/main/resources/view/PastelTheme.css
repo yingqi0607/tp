@@ -462,3 +462,7 @@
 #indicator-red {
     -fx-fill: #DC143C;
 }
+
+#invisible {
+    -fx-fill: transparent;
+}
