@@ -27,6 +27,7 @@ import seedu.tr4cker.model.ModelManager;
 import seedu.tr4cker.model.ReadOnlyTr4cker;
 import seedu.tr4cker.model.ReadOnlyUserPrefs;
 import seedu.tr4cker.model.UserPrefs;
+import seedu.tr4cker.model.countdown.Event;
 import seedu.tr4cker.model.module.Module;
 import seedu.tr4cker.model.module.ModuleCode;
 import seedu.tr4cker.model.task.Task;
@@ -197,6 +198,21 @@ class ModuleCommandTest {
         }
 
         @Override
+        public boolean hasEvent(Event event) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteEvent(Event target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addEvent(Event event) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean hasModule(Module module) {
             throw new AssertionError("This method should not be called.");
         }
@@ -237,6 +253,11 @@ class ModuleCommandTest {
         }
 
         @Override
+        public ObservableList<Event> getFilteredEventsList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void updateFilteredTaskList(Predicate<Task> predicate) {
             throw new AssertionError("This method should not be called.");
         }
@@ -258,6 +279,11 @@ class ModuleCommandTest {
 
         @Override
         public void updatePlannerFilteredTaskList(Predicate<Task> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredEventList(Predicate<Event> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }

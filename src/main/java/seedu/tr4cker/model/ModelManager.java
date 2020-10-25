@@ -150,7 +150,7 @@ public class ModelManager implements Model {
         tr4cker.addEvent(task);
         updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
     }
-
+    @Override
     public boolean hasModule(Module module) {
         requireNonNull(module);
         return tr4cker.hasModule(module);

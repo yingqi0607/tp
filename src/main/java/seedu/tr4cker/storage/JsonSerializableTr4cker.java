@@ -23,11 +23,10 @@ class JsonSerializableTr4cker {
 
     public static final String MESSAGE_DUPLICATE_TASK = "Task list contains duplicate task(s).";
     public static final String MESSAGE_DUPLICATE_EVENT = "Events list contains duplicate event(s).";
+    public static final String MESSAGE_DUPLICATE_MODULE = "Module list contains duplicate module(s).";
 
     private final List<JsonAdaptedTask> tasks = new ArrayList<>();
     private final List<JsonAdaptedEvent> events = new ArrayList<>();
-    public static final String MESSAGE_DUPLICATE_MODULE = "Module list contains duplicate module(s).";
-
     private final List<JsonAdaptedModule> modules = new ArrayList<>();
 
     /**
