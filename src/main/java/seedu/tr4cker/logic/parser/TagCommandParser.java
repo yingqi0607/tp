@@ -1,6 +1,8 @@
 package seedu.tr4cker.logic.parser;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.tr4cker.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.tr4cker.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_DELETE_TAG;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_NEW_TAG;
 
@@ -24,6 +26,7 @@ public class TagCommandParser implements Parser<TagCommand> {
      * @throws ParseException if the user input does not conform the expected format.
      */
     public TagCommand parse(String args) throws ParseException {
+        requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NEW_TAG, PREFIX_DELETE_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NEW_TAG, PREFIX_DELETE_TAG)) {
@@ -37,6 +40,7 @@ public class TagCommandParser implements Parser<TagCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     TagCommand.MESSAGE_USAGE), ive);
         }
+        assert index != null : "Index of task should not be null here.";
 
         Set<Tag> tagListToAdd = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_NEW_TAG));
         Set<Tag> tagListToDelete = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_DELETE_TAG));
@@ -49,6 +53,7 @@ public class TagCommandParser implements Parser<TagCommand> {
      * {@code ArgumentMultimap}.
      */
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        requireAllNonNull(argumentMultimap, prefixes);
         return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 

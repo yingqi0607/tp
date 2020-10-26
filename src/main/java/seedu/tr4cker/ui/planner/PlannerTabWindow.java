@@ -1,5 +1,7 @@
 package seedu.tr4cker.ui.planner;
 
+import static java.util.Objects.requireNonNull;
+
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.util.logging.Logger;
@@ -39,6 +41,8 @@ public class PlannerTabWindow extends UiPart<Region> {
     public PlannerTabWindow(Logic logic) {
         super(FXML);
         logger.fine("Initialising Planner Tab Window...");
+        requireNonNull(logic);
+
         this.plannerCalendarPanel = new PlannerCalendarPanel(PlannerDay.getCurrDay());
         this.plannerTaskListPanel = new PlannerTaskListPanel(logic.getPlannerFilteredTaskList());
         logic.updatePlannerFilteredTaskList(new TaskDueInPredicate());
@@ -55,8 +59,10 @@ public class PlannerTabWindow extends UiPart<Region> {
      * @param commandResult CommandResult being passed in.
      */
     public void updateCalendar(CommandResult commandResult) { // from mainwindow
+        requireNonNull(commandResult);
         LocalDate localDate = commandResult.getLocalDate();
         YearMonth yearMonth = commandResult.getYearMonth();
+
         if (localDate == null && yearMonth == null) {
             updateToLocalDate(GotoDateUtil.getToday());
         } else if (localDate != null && yearMonth == null) { // user wants to go to specified date
@@ -72,15 +78,19 @@ public class PlannerTabWindow extends UiPart<Region> {
      * @param localDate User's input.
      */
     private void updateToLocalDate(LocalDate localDate) {
+        requireNonNull(localDate);
         int year = localDate.getYear();
         int month = localDate.getMonthValue();
         int date = localDate.getDayOfMonth();
+
         plannerCalendarPanel.setCurrentYear(year);
         plannerCalendarPanel.setCurrentMonth(month);
+
         LocalDate newDate = LocalDate.of(year, month, 1);
         LocalDate userInput = LocalDate.of(year, month, date);
         YearMonth newYearMonth = YearMonth.of(year, month);
         PlannerDay newDay = new PlannerDay(newDate);
+
         plannerCalendarPanel.clearCalendar();
         plannerCalendarPanel.changeCalendarMonthYear(newYearMonth);
         plannerCalendarPanel.fillCalendarTable(newDay, userInput);
@@ -94,12 +104,16 @@ public class PlannerTabWindow extends UiPart<Region> {
      * @param yearMonth User's input.
      */
     private void updateToYearMonth(YearMonth yearMonth) {
+        requireNonNull(yearMonth);
         int year = yearMonth.getYear();
         int month = yearMonth.getMonthValue();
+
         plannerCalendarPanel.setCurrentYear(year);
         plannerCalendarPanel.setCurrentMonth(month);
+
         LocalDate firstDayOfMonth = yearMonth.atDay(1);
         PlannerDay newDay = new PlannerDay(firstDayOfMonth);
+
         plannerCalendarPanel.clearCalendar();
         plannerCalendarPanel.changeCalendarMonthYear(yearMonth);
         plannerCalendarPanel.fillCalendarTable(newDay, null);

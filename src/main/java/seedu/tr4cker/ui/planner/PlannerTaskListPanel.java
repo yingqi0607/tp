@@ -1,5 +1,7 @@
 package seedu.tr4cker.ui.planner;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -33,6 +35,7 @@ public class PlannerTaskListPanel extends UiPart<Region> {
     public PlannerTaskListPanel(ObservableList<Task> taskList) {
         super(FXML);
         logger.fine("Initialising Planner Task List panel...");
+        requireNonNull(taskList);
         taskListView.setItems(taskList);
         taskListView.setCellFactory(listView -> new TaskListViewCell());
         logger.fine("Created Planner Task List panel.");
@@ -44,6 +47,7 @@ public class PlannerTaskListPanel extends UiPart<Region> {
      * @param title New title.
      */
     public void updateTitle(String title) {
+        requireNonNull(title);
         plannerTaskListPanelTitle.setText("Tasks due on: " + title);
         logger.fine("Updated date of planner task list panel to: " + title);
     }

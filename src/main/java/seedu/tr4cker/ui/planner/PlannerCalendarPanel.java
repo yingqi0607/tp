@@ -1,5 +1,8 @@
 package seedu.tr4cker.ui.planner;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.tr4cker.commons.util.CollectionUtil.requireAllNonNull;
+
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.util.ArrayList;
@@ -44,6 +47,8 @@ public class PlannerCalendarPanel extends UiPart<Region> {
     public PlannerCalendarPanel(PlannerDay plannerDay) {
         super(FXML);
         logger.fine("Initialising Planner Calendar panel...");
+        requireNonNull(plannerDay);
+
         this.plannerDay = plannerDay;
         this.calendarMonthYear.setText(plannerDay.getMonthName() + " " + plannerDay.getYear());
         this.calendarMonthYear.setId("month-year-label");
@@ -62,6 +67,8 @@ public class PlannerCalendarPanel extends UiPart<Region> {
      * @param localDate User's specified date (can be null or not).
      */
     public void fillCalendarTable(PlannerDay startDay, LocalDate localDate) {
+        requireNonNull(startDay);
+
         int index = startDay.getDayOfWeek();
         PlannerDay currDay = startDay;
         if (index != 1) {
@@ -96,6 +103,8 @@ public class PlannerCalendarPanel extends UiPart<Region> {
      */
     private void highlightDay(PlannerDay startDay, PlannerDay currDay,
                               LocalDate localDate, PlannerDayCard plannerDayCard) {
+        requireAllNonNull(startDay, currDay, localDate, plannerDayCard);
+
         if (localDate != null) {
             if (currDay.getDay() == localDate.getDayOfMonth()
                     && currDay.getMonth() == localDate.getMonthValue()) {
@@ -145,6 +154,7 @@ public class PlannerCalendarPanel extends UiPart<Region> {
      * @param yearMonth Year month user specified.
      */
     public void changeCalendarMonthYear(YearMonth yearMonth) {
+        requireNonNull(yearMonth);
         String label = yearMonth.getMonth().name() + " " + yearMonth.getYear();
         this.calendarMonthYear.setText(label);
         this.calendarMonthYear.setId("month-year-label");

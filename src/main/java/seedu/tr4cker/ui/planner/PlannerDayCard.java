@@ -1,5 +1,7 @@
 package seedu.tr4cker.ui.planner;
 
+import static java.util.Objects.requireNonNull;
+
 import java.time.LocalDate;
 import java.util.logging.Logger;
 
@@ -45,6 +47,8 @@ public class PlannerDayCard extends UiPart<Region> {
     public PlannerDayCard(PlannerDay plannerDay) {
         super(FXML);
         logger.fine("Initialising plannerDayCard...");
+        requireNonNull(plannerDay);
+
         this.plannerDay = plannerDay;
         dateNumber.setText(Integer.toString(plannerDay.getDay()));
         circle.setId("circle-not-today");
