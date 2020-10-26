@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.time.YearMonth;
 import java.util.function.Predicate;
 
+import seedu.tr4cker.model.util.GotoDateUtil;
+
 /**
  * Tests that a {@code Task}'s {@code Deadline} is the deadline user wanted.
  */
@@ -13,7 +15,7 @@ public class TaskDueInPredicate implements Predicate<Task> {
 
     /** Constructor for TaskDueInPredicate with dueDate to be current time. */
     public TaskDueInPredicate() {
-        this.dueDate = LocalDate.now();
+        this.dueDate = GotoDateUtil.getToday();
     }
 
     /** Constructor for TaskDueInPredicate with dueDate to be inputted date. */

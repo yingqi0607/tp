@@ -260,9 +260,9 @@ To allow TR4CKER to countdown to events, users can add new events by 2 methods u
 1. Add event based on task in task list (Note: Countdowns list is separate from tasks list, and subsequent changes
 to tasks in task list will not be reflected in countdowns list.)
 
-2. Add independent event 
+2. Add independent event
 
-Users can also use Countdown Command to 
+Users can also use Countdown Command to
 
 The following activity diagram shows the flow of executing a Countdown Command:
 ![CountdownCommandActivityDiagram](images/CountdownActivityDiagram.png)
@@ -351,7 +351,7 @@ The following diagram shows the sequence flow when a task gets added into the `D
   * Pros: A neater list is being shown.
   * Pros: Users can look through the list quickly and decide what to add to daily todo list.
   * Cons: Important details such and deadline and descriptions are omitted, users may not know which task is more urgent to do.
-  
+
 * **Alternative 1:** When users decides to add a particular task to daily todo list, details of that task is shown.
   * Pros: Users have clearer idea of the details of the tasks that he/she wants to complete for the day.
   * Cons: Details are shown only when the tasks is already added, if the user do not want to do it for the day, he/she has to delete it from todo list.

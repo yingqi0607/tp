@@ -21,6 +21,9 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
+    /** TR4CKER shows Module tab. */
+    private boolean showModules;
+
     /** TR4CKER shows Planner tab. */
     private boolean showPlanner;
 
@@ -74,6 +77,18 @@ public class CommandResult {
         this.yearMonth = null;
     }
 
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
+     * For usage of ModuleCommand.
+     */
+    public static CommandResult createModuleTabSwitchCommandResult(String feedbackToUser) {
+        CommandResult newCommandResult = new CommandResult(feedbackToUser);
+        newCommandResult.showModules = true;
+        newCommandResult.showPlanner = false;
+        newCommandResult.showCountdown = false;
+        return newCommandResult;
+    }
+
     public String getFeedbackToUser() {
         return feedbackToUser;
     }
@@ -84,6 +99,10 @@ public class CommandResult {
 
     public boolean isExit() {
         return exit;
+    }
+
+    public boolean isShowModules() {
+        return showModules;
     }
 
     public boolean isShowPlanner() {

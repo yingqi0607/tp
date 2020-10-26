@@ -35,7 +35,7 @@ public class DoneCommandTest {
         ModelManager expectedModel = new ModelManager(model.getTr4cker(), new UserPrefs());
         Task newTask = new Task(taskToComplete.getName(), taskToComplete.getDeadline(),
                 new CompletionStatus(75), taskToComplete.getTaskDescription(),
-                taskToComplete.getTags());
+                taskToComplete.getModuleCode(), taskToComplete.getTags());
         String expectedMessage = String.format(DoneCommand.MESSAGE_DONE_TASK_SUCCESS_INCREASE, newTask);
         expectedModel.setTask(model.getFilteredTaskList().get(0), newTask);
         assertCommandSuccess(doneCommand, model, expectedMessage, expectedModel);
@@ -48,7 +48,7 @@ public class DoneCommandTest {
 
         Task newTask = new Task(taskToComplete.getName(), taskToComplete.getDeadline(),
                 new CompletionStatus(75), taskToComplete.getTaskDescription(),
-                taskToComplete.getTags());
+                taskToComplete.getModuleCode(), taskToComplete.getTags());
         expectedModel.setTask(model.getFilteredTaskList().get(0), newTask);
 
         model.setTask(model.getFilteredTaskList().get(0), newTask);
@@ -56,7 +56,7 @@ public class DoneCommandTest {
         DoneCommand doneCommand = new DoneCommand(INDEX_FIRST_TASK, percentage);
         Task newTask2 = new Task(newTask.getName(), newTask.getDeadline(),
                 new CompletionStatus(50), newTask.getTaskDescription(),
-                newTask.getTags());
+                taskToComplete.getModuleCode(), newTask.getTags());
         String expectedMessage = String.format(DoneCommand.MESSAGE_DONE_TASK_SUCCESS_DECREASE, newTask2);
         expectedModel.setTask(model.getFilteredTaskList().get(0), newTask2);
         assertCommandSuccess(doneCommand, model, expectedMessage, expectedModel);
@@ -69,7 +69,7 @@ public class DoneCommandTest {
 
         Task newTask = new Task(taskToComplete.getName(), taskToComplete.getDeadline(),
                 new CompletionStatus(75), taskToComplete.getTaskDescription(),
-                taskToComplete.getTags());
+                taskToComplete.getModuleCode(), taskToComplete.getTags());
         expectedModel.setTask(model.getFilteredTaskList().get(0), newTask);
 
         model.setTask(model.getFilteredTaskList().get(0), newTask);
@@ -91,7 +91,7 @@ public class DoneCommandTest {
 
         Task newTask = new Task(taskToComplete.getName(), taskToComplete.getDeadline(),
                 new CompletionStatus(75), taskToComplete.getTaskDescription(),
-                taskToComplete.getTags());
+                taskToComplete.getModuleCode(), taskToComplete.getTags());
         String expectedMessage = String.format(DoneCommand.MESSAGE_DONE_TASK_SUCCESS_INCREASE, newTask);
 
         Model expectedModel = new ModelManager(model.getTr4cker(), new UserPrefs());

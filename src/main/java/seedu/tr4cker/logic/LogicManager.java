@@ -2,6 +2,7 @@ package seedu.tr4cker.logic;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -14,7 +15,10 @@ import seedu.tr4cker.logic.parser.Tr4ckerParser;
 import seedu.tr4cker.logic.parser.exceptions.ParseException;
 import seedu.tr4cker.model.Model;
 import seedu.tr4cker.model.ReadOnlyTr4cker;
+import seedu.tr4cker.model.countdown.Event;
+import seedu.tr4cker.model.module.Module;
 import seedu.tr4cker.model.task.Task;
+import seedu.tr4cker.model.task.TaskDueInPredicate;
 import seedu.tr4cker.storage.Storage;
 
 /**
@@ -75,8 +79,28 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public ObservableList<Module> getFilteredModuleList() {
+        return model.getFilteredModuleList();
+    }
+
+    @Override
     public ObservableList<Task> getPlannerFilteredTaskList() {
         return model.getPlannerFilteredTaskList();
+    }
+
+    @Override
+    public ObservableList<Event> getFilteredEventList() {
+        return model.getFilteredEventsList();
+    }
+
+    @Override
+    public void updateFilteredModuleList(Predicate<Module> predicate) {
+        model.updateFilteredModuleList(predicate);
+    }
+
+    @Override
+    public void updatePlannerFilteredTaskList(TaskDueInPredicate taskDueInPredicate) {
+        model.updatePlannerFilteredTaskList(taskDueInPredicate);
     }
 
     @Override

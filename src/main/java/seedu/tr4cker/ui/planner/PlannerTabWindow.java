@@ -11,7 +11,8 @@ import seedu.tr4cker.commons.core.LogsCenter;
 import seedu.tr4cker.logic.Logic;
 import seedu.tr4cker.logic.commands.CommandResult;
 import seedu.tr4cker.model.planner.PlannerDay;
-import seedu.tr4cker.ui.TaskListPanel;
+import seedu.tr4cker.model.task.TaskDueInPredicate;
+import seedu.tr4cker.model.util.GotoDateUtil;
 import seedu.tr4cker.ui.UiPart;
 
 /**
@@ -23,7 +24,7 @@ public class PlannerTabWindow extends UiPart<Region> {
     private static final String FXML = "PlannerTabWindow.fxml";
     private final Logger logger = LogsCenter.getLogger(PlannerCalendarPanel.class);
     private final PlannerCalendarPanel plannerCalendarPanel;
-    private final TaskListPanel taskListPanel;
+    private final PlannerTaskListPanel plannerTaskListPanel;
 
     @FXML
     private StackPane plannerCalendarPanelPlaceholder;
@@ -37,11 +38,15 @@ public class PlannerTabWindow extends UiPart<Region> {
      */
     public PlannerTabWindow(Logic logic) {
         super(FXML);
+        logger.fine("Initialising Planner Tab Window...");
         this.plannerCalendarPanel = new PlannerCalendarPanel(PlannerDay.getCurrDay());
-        this.taskListPanel = new TaskListPanel(logic.getPlannerFilteredTaskList());
+        this.plannerTaskListPanel = new PlannerTaskListPanel(logic.getPlannerFilteredTaskList());
+        logic.updatePlannerFilteredTaskList(new TaskDueInPredicate());
+        updateToLocalDate(GotoDateUtil.getToday());
 
         plannerCalendarPanelPlaceholder.getChildren().add(plannerCalendarPanel.getRoot());
-        plannerTaskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
+        plannerTaskListPanelPlaceholder.getChildren().add(plannerTaskListPanel.getRoot());
+        logger.fine("Created Planner Tab Window.");
     }
 
     /**
@@ -52,39 +57,61 @@ public class PlannerTabWindow extends UiPart<Region> {
     public void updateCalendar(CommandResult commandResult) { // from mainwindow
         LocalDate localDate = commandResult.getLocalDate();
         YearMonth yearMonth = commandResult.getYearMonth();
-        if (localDate != null && yearMonth == null) { // user wants to go to specified date
-            int year = localDate.getYear();
-            int month = localDate.getMonthValue();
-            int date = localDate.getDayOfMonth();
-            if (localDate.getMonthValue() == plannerCalendarPanel.getCurrentMonth()
-                    && localDate.getYear() == plannerCalendarPanel.getCurrentYear()) {
-                // check if date is the same as current highlighted day, else need to change highlight
-                plannerCalendarPanel.setCurrentYear(year);
-                plannerCalendarPanel.setCurrentMonth(month);
-
-            } else {
-                // check if date is the same as current highlighted day, else need to change highlight
-                plannerCalendarPanel.setCurrentYear(year);
-                plannerCalendarPanel.setCurrentMonth(month);
-                LocalDate newDate = LocalDate.of(year, month, 1);
-                YearMonth newYearMonth = YearMonth.of(year, month);
-                PlannerDay newDay = new PlannerDay(newDate);
-                plannerCalendarPanel.clearCalendar();
-                plannerCalendarPanel.changeCalendarMonthYear(newYearMonth);
-                plannerCalendarPanel.fillCalendarTable(newDay);
-            }
-        } else if (localDate == null && yearMonth != null) { // user wants to go to specified month
-            int year = yearMonth.getYear();
-            int month = yearMonth.getMonthValue();
-            plannerCalendarPanel.setCurrentYear(year);
-            plannerCalendarPanel.setCurrentMonth(month);
-            LocalDate firstDayOfMonth = yearMonth.atDay(1);
-            PlannerDay newDay = new PlannerDay(firstDayOfMonth);
-            plannerCalendarPanel.clearCalendar();
-            plannerCalendarPanel.changeCalendarMonthYear(yearMonth);
-            plannerCalendarPanel.fillCalendarTable(newDay);
-            // need to do UI
+        if (localDate == null && yearMonth == null) {
+            updateToLocalDate(GotoDateUtil.getToday());
+        } else if (localDate != null && yearMonth == null) { // user wants to go to specified date
+            updateToLocalDate(localDate);
+        } else if (localDate == null) { // user wants to go to specified month
+            updateToYearMonth(yearMonth);
         }
+    }
+
+    /**
+     * Updates calendar view to reflect user's input (specific date).
+     *
+     * @param localDate User's input.
+     */
+    private void updateToLocalDate(LocalDate localDate) {
+        int year = localDate.getYear();
+        int month = localDate.getMonthValue();
+        int date = localDate.getDayOfMonth();
+        plannerCalendarPanel.setCurrentYear(year);
+        plannerCalendarPanel.setCurrentMonth(month);
+        LocalDate newDate = LocalDate.of(year, month, 1);
+        LocalDate userInput = LocalDate.of(year, month, date);
+        YearMonth newYearMonth = YearMonth.of(year, month);
+        PlannerDay newDay = new PlannerDay(newDate);
+        plannerCalendarPanel.clearCalendar();
+        plannerCalendarPanel.changeCalendarMonthYear(newYearMonth);
+        plannerCalendarPanel.fillCalendarTable(newDay, userInput);
+        plannerTaskListPanel.updateTitle(GotoDateUtil.parseGotoDay(localDate));
+        logger.fine("Updated calendar view to " + GotoDateUtil.parseGotoDay(localDate));
+    }
+
+    /**
+     * Updates calendar view to reflect user's input (specific month).
+     *
+     * @param yearMonth User's input.
+     */
+    private void updateToYearMonth(YearMonth yearMonth) {
+        int year = yearMonth.getYear();
+        int month = yearMonth.getMonthValue();
+        plannerCalendarPanel.setCurrentYear(year);
+        plannerCalendarPanel.setCurrentMonth(month);
+        LocalDate firstDayOfMonth = yearMonth.atDay(1);
+        PlannerDay newDay = new PlannerDay(firstDayOfMonth);
+        plannerCalendarPanel.clearCalendar();
+        plannerCalendarPanel.changeCalendarMonthYear(yearMonth);
+        plannerCalendarPanel.fillCalendarTable(newDay, null);
+        plannerTaskListPanel.updateTitle("01-" + GotoDateUtil.parseGotoMonth(yearMonth));
+        logger.fine("Updated calendar view to " + GotoDateUtil.parseGotoMonth(yearMonth));
+    }
+
+    /**
+     * Updates indicator in calendar panel.
+     */
+    public void updateIndicator() {
+        plannerCalendarPanel.updateIndicator();
     }
 
 }

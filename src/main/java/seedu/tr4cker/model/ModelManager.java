@@ -11,6 +11,8 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.tr4cker.commons.core.GuiSettings;
 import seedu.tr4cker.commons.core.LogsCenter;
+import seedu.tr4cker.model.countdown.Event;
+import seedu.tr4cker.model.module.Module;
 import seedu.tr4cker.model.task.Deadline;
 import seedu.tr4cker.model.task.Task;
 
@@ -25,7 +27,9 @@ public class ModelManager implements Model {
     private final FilteredList<Task> filteredTasks;
     private final FilteredList<Task> filteredExpiredTasks;
     private final FilteredList<Task> filteredCompletedTasks;
+    private final FilteredList<Module> filteredModules;
     private final FilteredList<Task> plannerFilteredTasks;
+    private final FilteredList<Event> filteredEvents;
 
     /**
      * Initializes a ModelManager with the given tr4cker and userPrefs.
@@ -34,7 +38,7 @@ public class ModelManager implements Model {
         super();
         requireAllNonNull(tr4cker, userPrefs);
 
-        logger.fine("Initializing with Tr4cker: " + tr4cker + " and user prefs " + userPrefs);
+        logger.fine("Initializing with TR4CKER: " + tr4cker + " and user prefs " + userPrefs);
 
         this.tr4cker = new Tr4cker(tr4cker);
         this.userPrefs = new UserPrefs(userPrefs);
@@ -45,7 +49,9 @@ public class ModelManager implements Model {
             x -> !Deadline.isFutureDeadline(x.getDeadline().toString()) && !x.isCompleted()));
         filteredCompletedTasks = new FilteredList<>(this.tr4cker.getTaskList().filtered(
             Task::isCompleted));
+        filteredModules = new FilteredList<>(this.tr4cker.getModuleList().filtered(x -> true));
         plannerFilteredTasks = new FilteredList<>(this.tr4cker.getTaskList());
+        filteredEvents = new FilteredList<>(this.tr4cker.getEventList());
     }
 
     public ModelManager() {
@@ -106,6 +112,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasRelatedTasks(Module module) {
+        return tr4cker.hasRelatedTasks(module);
+    }
+
+    @Override
     public void deleteTask(Task target) {
         tr4cker.removeTask(target);
     }
@@ -121,6 +132,44 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedTask);
 
         tr4cker.setTask(target, editedTask);
+    }
+
+    @Override
+    public boolean hasEvent(Event task) {
+        requireNonNull(task);
+        return tr4cker.hasEvent(task);
+    }
+
+    @Override
+    public void deleteEvent(Event target) {
+        tr4cker.removeEvent(target);
+    }
+
+    @Override
+    public void addEvent(Event task) {
+        tr4cker.addEvent(task);
+        updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
+    }
+    @Override
+    public boolean hasModule(Module module) {
+        requireNonNull(module);
+        return tr4cker.hasModule(module);
+    }
+
+    @Override
+    public boolean hasValidModuleField(Task task) {
+        return tr4cker.hasValidModuleField(task);
+    }
+
+    @Override
+    public void deleteModule(Module target) {
+        tr4cker.removeModule(target);
+    }
+
+    @Override
+    public void addModule(Module module) {
+        tr4cker.addModule(module);
+        updateFilteredModuleList(x -> true);
     }
 
     //=========== Filtered Task List Accessors =============================================================
@@ -153,6 +202,15 @@ public class ModelManager implements Model {
     }
 
     /**
+     * Returns an unmodifiable view of the list of {@code Module}
+     * backed by the internal list of {@code versionedTr4cker}.
+     */
+    @Override
+    public ObservableList<Module> getFilteredModuleList() {
+        return filteredModules;
+    }
+
+    /**
      * Returns an unmodifiable view of the list of {@code Task}
      * backed by the internal list of {@code versionedTr4cker} for PlannerDay.
      * Should only show current's day tasks by default.
@@ -160,6 +218,15 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Task> getPlannerFilteredTaskList() {
         return plannerFilteredTasks;
+    }
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Event}
+     * backed by the internal list of {@code versionedTr4cker}.
+     */
+    @Override
+    public ObservableList<Event> getFilteredEventsList() {
+        return filteredEvents;
     }
 
     @Override
@@ -181,9 +248,21 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void updateFilteredModuleList(Predicate<Module> predicate) {
+        requireNonNull(predicate);
+        filteredModules.setPredicate(predicate);
+    }
+
+    @Override
     public void updatePlannerFilteredTaskList(Predicate<Task> predicate) {
         requireNonNull(predicate);
         plannerFilteredTasks.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredEventList(Predicate<Event> predicate) {
+        requireNonNull(predicate);
+        filteredEvents.setPredicate(predicate);
     }
 
     @Override
@@ -203,7 +282,8 @@ public class ModelManager implements Model {
         return tr4cker.equals(other.tr4cker)
                 && userPrefs.equals(other.userPrefs)
                 && filteredTasks.equals(other.filteredTasks)
-                && plannerFilteredTasks.equals(other.plannerFilteredTasks);
+                && plannerFilteredTasks.equals(other.plannerFilteredTasks)
+                && filteredEvents.equals(other.filteredEvents);
     }
 
 }
