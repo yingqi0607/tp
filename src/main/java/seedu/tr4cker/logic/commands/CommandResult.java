@@ -94,7 +94,7 @@ public class CommandResult {
 
     /**
      * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
-     * For usage of ModuleCommand.
+     * For usage of HomeCommand.
      */
     public static CommandResult createHomeTabSwitchCommandResult(String feedbackToUser) {
         CommandResult newCommandResult = new CommandResult(feedbackToUser);
