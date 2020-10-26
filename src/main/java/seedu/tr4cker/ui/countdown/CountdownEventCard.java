@@ -26,12 +26,16 @@ public class CountdownEventCard extends UiPart<Region> {
 
     @FXML
     private HBox cardPane;
+
     @FXML
     private Label eventName;
+
     @FXML
     private Label id;
+
     @FXML
     private Label eventDate;
+
     @FXML
     private Label daysRemaining;
 
