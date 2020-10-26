@@ -32,6 +32,14 @@ public class Event {
     }
 
     /**
+     * Returns the number of days remaining to the event as an int.
+     * Returns 0 if event has passed.
+     */
+    public int getDaysRemaining() {
+        return getEventDate().getDaysTill();
+    }
+
+    /**
      * Returns true if both events of the same name have at least one other identity field that is the same.
      * This defines a weaker notion of equality between two events.
      */

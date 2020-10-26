@@ -26,12 +26,18 @@ public class CountdownEventCard extends UiPart<Region> {
 
     @FXML
     private HBox cardPane;
+
     @FXML
     private Label eventName;
+
     @FXML
     private Label id;
+
     @FXML
     private Label eventDate;
+
+    @FXML
+    private Label daysRemaining;
 
     /**
      * Creates a {@code EventCode} with the given {@code Event} and index to display.
@@ -42,6 +48,8 @@ public class CountdownEventCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         eventName.setText(event.getEventName().eventName);
         eventDate.setText(event.getEventDate().toString());
+        int daysLeft = event.getDaysRemaining();
+        daysRemaining.setText(String.valueOf(daysLeft) + " days!");
     }
 
     @Override

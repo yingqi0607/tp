@@ -129,7 +129,13 @@ public interface Model {
     ObservableList<Task> getPlannerFilteredTaskList();
 
     /** Returns an unmodifiable view of the filtered completed task list. */
-    ObservableList<Event> getFilteredEventsList();
+    ObservableList<Event> getFilteredEventList();
+
+    /** Returns the first event in events list. */
+    Event getFirstEvent();
+
+    /** Returns the second event in events list. */
+    Event getSecondEvent();
 
     /**
      * Updates the filter of the filtered task list to filter by the given {@code predicate}.

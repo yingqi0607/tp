@@ -30,6 +30,8 @@ public class ModelManager implements Model {
     private final FilteredList<Module> filteredModules;
     private final FilteredList<Task> plannerFilteredTasks;
     private final FilteredList<Event> filteredEvents;
+    private final Event firstEvent;
+    private final Event secondEvent;
 
     /**
      * Initializes a ModelManager with the given tr4cker and userPrefs.
@@ -49,9 +51,16 @@ public class ModelManager implements Model {
             x -> !Deadline.isFutureDeadline(x.getDeadline().toString()) && !x.isCompleted()));
         filteredCompletedTasks = new FilteredList<>(this.tr4cker.getTaskList().filtered(
             Task::isCompleted));
+
         filteredModules = new FilteredList<>(this.tr4cker.getModuleList().filtered(x -> true));
+
         plannerFilteredTasks = new FilteredList<>(this.tr4cker.getTaskList());
+
         filteredEvents = new FilteredList<>(this.tr4cker.getEventList());
+        firstEvent = this.tr4cker.firstEvent();
+        secondEvent = this.tr4cker.secondEvent();
+        //TODO: Make code more defensive
+
     }
 
     public ModelManager() {
@@ -225,8 +234,18 @@ public class ModelManager implements Model {
      * backed by the internal list of {@code versionedTr4cker}.
      */
     @Override
-    public ObservableList<Event> getFilteredEventsList() {
+    public ObservableList<Event> getFilteredEventList() {
         return filteredEvents;
+    }
+
+    @Override
+    public Event getFirstEvent() {
+        return firstEvent;
+    }
+
+    @Override
+    public Event getSecondEvent() {
+        return secondEvent;
     }
 
     @Override

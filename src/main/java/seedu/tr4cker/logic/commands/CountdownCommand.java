@@ -1,5 +1,7 @@
 package seedu.tr4cker.logic.commands;
 
+import static seedu.tr4cker.model.Model.PREDICATE_SHOW_ALL_EVENTS;
+
 import seedu.tr4cker.model.Model;
 
 /**
@@ -22,6 +24,7 @@ public class CountdownCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) {
+        model.updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
         return new CommandResult(MESSAGE_SWITCH_TAB_SUCCESS, true);
     }
 

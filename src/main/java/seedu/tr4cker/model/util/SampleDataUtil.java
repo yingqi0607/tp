@@ -71,7 +71,8 @@ public class SampleDataUtil {
             new Event(new EventName("Han Wei Birthday"), new EventDate("09-10-2020")),
             new Event(new EventName("CS2101 OP2 Demo"), new EventDate("03-11-2020")),
             new Event(new EventName("CS2101 OP2 Pitch"), new EventDate("06-11-2020")),
-            new Event(new EventName("Christmas"), new EventDate("25-Dec-2020"))
+            new Event(new EventName("Christmas"), new EventDate("25-Dec-2020")),
+
         };
     }
 

@@ -144,6 +144,9 @@ public class UniqueEventList implements Iterable<Event> {
      * @return Earliest upcoming event.
      */
     public Event firstEvent() {
+        if (internalUnmodifiableList.size() < 1) {
+            return null;
+        }
         sortEventsByDate();
         return internalUnmodifiableList.get(0);
     }
@@ -154,6 +157,9 @@ public class UniqueEventList implements Iterable<Event> {
      * @return Second earliest upcoming event.
      */
     public Event secondEvent() {
+        if (internalUnmodifiableList.size() < 1) {
+            return null;
+        }
         sortEventsByDate();
         return internalUnmodifiableList.get(1);
     }
