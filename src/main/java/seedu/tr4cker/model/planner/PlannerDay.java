@@ -1,5 +1,7 @@
 package seedu.tr4cker.model.planner;
 
+import static java.util.Objects.requireNonNull;
+
 import java.time.LocalDate;
 
 import seedu.tr4cker.model.util.GotoDateUtil;
@@ -18,6 +20,7 @@ public class PlannerDay {
      * @param localDate Date in the calendar.
      */
     public PlannerDay(LocalDate localDate) {
+        requireNonNull(localDate);
         this.localDate = localDate;
     }
 

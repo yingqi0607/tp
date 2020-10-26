@@ -81,6 +81,8 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_INVALID_MODULE);
         }
 
+        assert taskToEdit != null : "Task to edit should not be null here.";
+        assert editedTask != null : "Edited task should not be null here.";
         model.setTask(taskToEdit, editedTask);
         model.updateFilteredTaskList(PREDICATE_SHOW_PENDING_TASKS);
 
@@ -145,6 +147,7 @@ public class EditCommand extends Command {
          * Copy constructor.
          */
         public EditTaskDescriptor(EditTaskDescriptor toCopy) {
+            requireNonNull(toCopy);
             setName(toCopy.name);
             setDeadline(toCopy.deadline);
             setDescription(toCopy.taskDescription);
