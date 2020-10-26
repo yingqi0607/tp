@@ -104,7 +104,7 @@ public class PlannerCalendarPanel extends UiPart<Region> {
      */
     private void highlightDay(PlannerDay startDay, PlannerDay currDay,
                               LocalDate localDate, PlannerDayCard plannerDayCard) {
-        requireAllNonNull(startDay, currDay, localDate, plannerDayCard);
+        requireAllNonNull(startDay, currDay, plannerDayCard);
 
         if (localDate != null) {
             if (currDay.getDay() == localDate.getDayOfMonth()
