@@ -16,6 +16,7 @@ import seedu.tr4cker.logic.commands.EditCommand;
 import seedu.tr4cker.logic.commands.ExitCommand;
 import seedu.tr4cker.logic.commands.FindCommand;
 import seedu.tr4cker.logic.commands.HelpCommand;
+import seedu.tr4cker.logic.commands.HomeCommand;
 import seedu.tr4cker.logic.commands.ListCommand;
 import seedu.tr4cker.logic.commands.ModuleCommand;
 import seedu.tr4cker.logic.commands.PlannerCommand;
@@ -87,6 +88,9 @@ public class Tr4ckerParser {
 
         case CountdownCommand.COMMAND_WORD:
             return new CountdownCommandParser().parse(arguments);
+
+        case HomeCommand.COMMAND_WORD:
+            return new HomeCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
