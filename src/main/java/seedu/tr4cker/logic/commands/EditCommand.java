@@ -85,7 +85,10 @@ public class EditCommand extends Command {
         assert editedTask != null : "Edited task should not be null here.";
         model.setTask(taskToEdit, editedTask);
         model.updateFilteredTaskList(PREDICATE_SHOW_PENDING_TASKS);
-        return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask));
+
+        CommandResult commandResult = new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask));
+        commandResult.setHomeTab();
+        return commandResult;
     }
 
     /**

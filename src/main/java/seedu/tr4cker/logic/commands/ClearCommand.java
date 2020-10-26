@@ -18,7 +18,10 @@ public class ClearCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.setTr4cker(new Tr4cker());
-        return new CommandResult(MESSAGE_SUCCESS);
+
+        CommandResult commandResult = new CommandResult(MESSAGE_SUCCESS);
+        commandResult.setHomeTab();
+        return commandResult;
     }
 
 }
