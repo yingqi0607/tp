@@ -59,8 +59,10 @@ public class PlannerDayCard extends UiPart<Region> {
      * Clears the date number and highlight of a PlannerDayCard.
      */
     public void clear() {
+        logger.fine("Clearing dates...");
         dateNumber.setText("");
         circle.setId("circle-not-today");
+        logger.fine("Cleared dates.");
     }
 
     /**
@@ -88,6 +90,7 @@ public class PlannerDayCard extends UiPart<Region> {
      * Sets the indicator of a Planner Day Card depending on number of tasks due on that day.
      */
     private void setIndicator() {
+        logger.fine("Setting indicators...");
         setNoIndicator();
         ObservableList<Task> filteredList = MainWindow.getLogic().getFilteredTaskList();
         LocalDate localDate = plannerDay.getLocalDate();
@@ -99,6 +102,7 @@ public class PlannerDayCard extends UiPart<Region> {
         } else {
             setRedIndicator();
         }
+        logger.fine("Set indicators.");
     }
 
     /**

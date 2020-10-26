@@ -48,6 +48,7 @@ public class PlannerTaskListPanel extends UiPart<Region> {
      */
     public void updateTitle(String title) {
         requireNonNull(title);
+        logger.fine("Updating date of planner task list panel to: " + title);
         plannerTaskListPanelTitle.setText("Tasks due on: " + title);
         logger.fine("Updated date of planner task list panel to: " + title);
     }

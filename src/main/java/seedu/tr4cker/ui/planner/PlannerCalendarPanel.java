@@ -15,6 +15,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.tr4cker.commons.core.LogsCenter;
 import seedu.tr4cker.model.planner.PlannerDay;
+import seedu.tr4cker.model.util.GotoDateUtil;
 import seedu.tr4cker.ui.UiPart;
 
 /**
@@ -67,6 +68,7 @@ public class PlannerCalendarPanel extends UiPart<Region> {
      * @param localDate User's specified date (can be null or not).
      */
     public void fillCalendarTable(PlannerDay startDay, LocalDate localDate) {
+        logger.fine("Filling up calendar table with start day: " + startDay.toString());
         requireNonNull(startDay);
 
         int index = startDay.getDayOfWeek();
@@ -142,10 +144,12 @@ public class PlannerCalendarPanel extends UiPart<Region> {
      * Clears the calendar.
      */
     public void clearCalendar() {
+        logger.fine("Clearing calendar...");
         this.calendarMonthYear.setText("");
         for (PlannerDayCard plannerDayCard : plannerDayCards) {
             plannerDayCard.clear();
         }
+        logger.fine("Cleared calendar.");
     }
 
     /**
@@ -156,17 +160,21 @@ public class PlannerCalendarPanel extends UiPart<Region> {
     public void changeCalendarMonthYear(YearMonth yearMonth) {
         requireNonNull(yearMonth);
         String label = yearMonth.getMonth().name() + " " + yearMonth.getYear();
+        logger.fine("Changing calendar month year to: " + label);
         this.calendarMonthYear.setText(label);
         this.calendarMonthYear.setId("month-year-label");
+        logger.fine("Changed calendar month year to: " + label);
     }
 
     /**
      * Updates indicator of all Planner Day Cards.
      */
     public void updateIndicator() {
+        logger.fine("Updating indicators...");
         for (PlannerDayCard plannerDayCard : plannerDayCards) {
             plannerDayCard.updateIndicator();
         }
+        logger.fine("Updated indicators.");
     }
 
 }

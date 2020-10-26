@@ -60,6 +60,7 @@ public class PlannerTabWindow extends UiPart<Region> {
      */
     public void updateCalendar(CommandResult commandResult) { // from mainwindow
         requireNonNull(commandResult);
+        logger.fine("Updating calendar with command result: " + commandResult);
         LocalDate localDate = commandResult.getLocalDate();
         YearMonth yearMonth = commandResult.getYearMonth();
 
@@ -70,6 +71,7 @@ public class PlannerTabWindow extends UiPart<Region> {
         } else if (localDate == null) { // user wants to go to specified month
             updateToYearMonth(yearMonth);
         }
+        logger.fine("Updated calendar with command result: " + commandResult);
     }
 
     /**
@@ -79,6 +81,7 @@ public class PlannerTabWindow extends UiPart<Region> {
      */
     private void updateToLocalDate(LocalDate localDate) {
         requireNonNull(localDate);
+        logger.fine("Updating calendar view to: " + GotoDateUtil.parseGotoDay(localDate));
         int year = localDate.getYear();
         int month = localDate.getMonthValue();
         int date = localDate.getDayOfMonth();
@@ -105,6 +108,7 @@ public class PlannerTabWindow extends UiPart<Region> {
      */
     private void updateToYearMonth(YearMonth yearMonth) {
         requireNonNull(yearMonth);
+        logger.fine("Updating calendar view to " + GotoDateUtil.parseGotoMonth(yearMonth));
         int year = yearMonth.getYear();
         int month = yearMonth.getMonthValue();
 
