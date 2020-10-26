@@ -258,6 +258,16 @@ class ModuleCommandTest {
         }
 
         @Override
+        public Event getFirstEvent() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Event getSecondEvent() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void updateFilteredTaskList(Predicate<Task> predicate) {
             throw new AssertionError("This method should not be called.");
         }

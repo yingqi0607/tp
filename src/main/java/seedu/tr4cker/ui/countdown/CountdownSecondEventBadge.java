@@ -1,5 +1,7 @@
 package seedu.tr4cker.ui.countdown;
 
+import java.util.logging.Logger;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
@@ -8,8 +10,6 @@ import javafx.scene.shape.Circle;
 import seedu.tr4cker.commons.core.LogsCenter;
 import seedu.tr4cker.model.countdown.Event;
 import seedu.tr4cker.ui.UiPart;
-
-import java.util.logging.Logger;
 
 /**
  * A UI component that displays the second earliest upcoming event in Countdowns.

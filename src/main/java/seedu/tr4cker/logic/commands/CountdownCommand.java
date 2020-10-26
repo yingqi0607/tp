@@ -1,8 +1,8 @@
 package seedu.tr4cker.logic.commands;
 
-import seedu.tr4cker.model.Model;
-
 import static seedu.tr4cker.model.Model.PREDICATE_SHOW_ALL_EVENTS;
+
+import seedu.tr4cker.model.Model;
 
 /**
  * Allows user to go to Countdown tab.
