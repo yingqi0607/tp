@@ -23,10 +23,13 @@ public class CountdownFirstEventBadge extends UiPart<Region> {
 
     @javafx.fxml.FXML
     private Circle circle;
+
     @FXML
     private VBox cardPane;
+
     @FXML
     private Label daysRemaining;
+
     @FXML
     private Label eventName;
 
