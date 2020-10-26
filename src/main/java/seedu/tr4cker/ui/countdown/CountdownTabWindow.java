@@ -1,11 +1,14 @@
 package seedu.tr4cker.ui.countdown;
 
+import java.util.logging.Logger;
+
 import javafx.fxml.FXML;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
+import seedu.tr4cker.commons.core.LogsCenter;
 import seedu.tr4cker.logic.Logic;
-import seedu.tr4cker.ui.TaskListPanel;
 import seedu.tr4cker.ui.UiPart;
+import seedu.tr4cker.ui.planner.PlannerCalendarPanel;
 
 /**
  * An UI component that displays Countdown tab.
@@ -13,8 +16,8 @@ import seedu.tr4cker.ui.UiPart;
 public class CountdownTabWindow extends UiPart<Region> {
 
     private static final String FXML = "CountdownTabWindow.fxml";
-
-    private final TaskListPanel taskListPanel;
+    private final Logger logger = LogsCenter.getLogger(PlannerCalendarPanel.class);
+    private final CountdownEventListPanel countdownEventsListPanel;
 
     @FXML
     private StackPane countdownListPanelPlaceholder;
@@ -26,8 +29,9 @@ public class CountdownTabWindow extends UiPart<Region> {
      */
     public CountdownTabWindow(Logic logic) {
         super(FXML);
-        this.taskListPanel = new TaskListPanel(logic.getFilteredTaskList());
-
-        countdownListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
+        logger.fine("Initialising Countdown Tab Window...");
+        this.countdownEventsListPanel = new CountdownEventListPanel(logic.getFilteredEventList());
+        countdownListPanelPlaceholder.getChildren().add(countdownEventsListPanel.getRoot());
+        logger.fine("Created Countdown Tab Window.");
     }
 }

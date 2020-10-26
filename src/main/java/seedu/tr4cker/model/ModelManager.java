@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.tr4cker.commons.core.GuiSettings;
 import seedu.tr4cker.commons.core.LogsCenter;
+import seedu.tr4cker.model.countdown.Event;
 import seedu.tr4cker.model.module.Module;
 import seedu.tr4cker.model.task.Deadline;
 import seedu.tr4cker.model.task.Task;
@@ -28,6 +29,7 @@ public class ModelManager implements Model {
     private final FilteredList<Task> filteredCompletedTasks;
     private final FilteredList<Module> filteredModules;
     private final FilteredList<Task> plannerFilteredTasks;
+    private final FilteredList<Event> filteredEvents;
 
     /**
      * Initializes a ModelManager with the given tr4cker and userPrefs.
@@ -49,6 +51,7 @@ public class ModelManager implements Model {
             Task::isCompleted));
         filteredModules = new FilteredList<>(this.tr4cker.getModuleList().filtered(x -> true));
         plannerFilteredTasks = new FilteredList<>(this.tr4cker.getTaskList());
+        filteredEvents = new FilteredList<>(this.tr4cker.getEventList());
     }
 
     public ModelManager() {
@@ -132,6 +135,22 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasEvent(Event task) {
+        requireNonNull(task);
+        return tr4cker.hasEvent(task);
+    }
+
+    @Override
+    public void deleteEvent(Event target) {
+        tr4cker.removeEvent(target);
+    }
+
+    @Override
+    public void addEvent(Event task) {
+        tr4cker.addEvent(task);
+        updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
+    }
+    @Override
     public boolean hasModule(Module module) {
         requireNonNull(module);
         return tr4cker.hasModule(module);
@@ -201,6 +220,15 @@ public class ModelManager implements Model {
         return plannerFilteredTasks;
     }
 
+    /**
+     * Returns an unmodifiable view of the list of {@code Event}
+     * backed by the internal list of {@code versionedTr4cker}.
+     */
+    @Override
+    public ObservableList<Event> getFilteredEventsList() {
+        return filteredEvents;
+    }
+
     @Override
     public void updateFilteredTaskList(Predicate<Task> predicate) {
         requireNonNull(predicate);
@@ -232,6 +260,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void updateFilteredEventList(Predicate<Event> predicate) {
+        requireNonNull(predicate);
+        filteredEvents.setPredicate(predicate);
+    }
+
+    @Override
     public boolean equals(Object obj) {
         // short circuit if same object
         if (obj == this) {
@@ -248,7 +282,8 @@ public class ModelManager implements Model {
         return tr4cker.equals(other.tr4cker)
                 && userPrefs.equals(other.userPrefs)
                 && filteredTasks.equals(other.filteredTasks)
-                && plannerFilteredTasks.equals(other.plannerFilteredTasks);
+                && plannerFilteredTasks.equals(other.plannerFilteredTasks)
+                && filteredEvents.equals(other.filteredEvents);
     }
 
 }

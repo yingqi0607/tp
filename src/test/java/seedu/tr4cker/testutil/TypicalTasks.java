@@ -16,6 +16,9 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.tr4cker.model.Tr4cker;
+import seedu.tr4cker.model.countdown.Event;
+import seedu.tr4cker.model.countdown.EventDate;
+import seedu.tr4cker.model.countdown.EventName;
 import seedu.tr4cker.model.task.Deadline;
 import seedu.tr4cker.model.task.Task;
 
@@ -54,6 +57,11 @@ public class TypicalTasks {
             .withDeadline("01-01-2021 0000")
             .withCompletionStatus(0).withTaskDescription("Task 7 description").build();
 
+    public static final Event EVENT1 = new Event(new EventName("Event1 Name"), new EventDate("01-01-2021"));
+    public static final Event EVENT2 = new Event(new EventName("Event2 Name"), new EventDate("10-10-2020"));
+    public static final Event EVENT3 = new Event(new EventName("Event3 Name"), new EventDate("30-11-2020"));
+
+
     // Manually added
     public static final Task TASK_H = new TaskBuilder().withName("TASK H").withDeadline("12-Jul-2021 0600")
             .withCompletionStatus(0).withTaskDescription("Task H description").build();
@@ -82,10 +90,17 @@ public class TypicalTasks {
         for (Task task : getTypicalTasks()) {
             tr4cker.addTask(task);
         }
+        for (Event event : getTypicalEvents()) {
+            tr4cker.addEvent(event);
+        }
         return tr4cker;
     }
 
     public static List<Task> getTypicalTasks() {
         return new ArrayList<>(Arrays.asList(TASK1, TASK2, TASK3, TASK4, TASK5, TASK6, TASK7));
+    }
+
+    public static List<Event> getTypicalEvents() {
+        return new ArrayList<>(Arrays.asList(EVENT1, EVENT2, EVENT3));
     }
 }
