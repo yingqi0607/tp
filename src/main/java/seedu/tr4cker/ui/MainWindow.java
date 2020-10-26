@@ -351,6 +351,7 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isShowHome()) {
                 handleShowTabHome();
             }
+
             if (commandResult.isShowModules()) {
                 handleShowTabModule();
             }
