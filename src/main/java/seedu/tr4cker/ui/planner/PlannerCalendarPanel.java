@@ -15,7 +15,6 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.tr4cker.commons.core.LogsCenter;
 import seedu.tr4cker.model.planner.PlannerDay;
-import seedu.tr4cker.model.util.GotoDateUtil;
 import seedu.tr4cker.ui.UiPart;
 
 /**
