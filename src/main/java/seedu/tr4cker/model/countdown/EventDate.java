@@ -1,11 +1,13 @@
 package seedu.tr4cker.model.countdown;
 
+import static java.time.temporal.ChronoUnit.DAYS;
 import static java.util.Objects.requireNonNull;
 import static seedu.tr4cker.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.Date;
 
 /**
  * Represents the date of an event in TR4CKER.
@@ -73,6 +75,23 @@ public class EventDate {
     public static boolean isFutureDate(String test) {
         LocalDate now = LocalDate.now();
         return LocalDate.parse(test, DATE_TIME_FORMAT).isAfter(now);
+    }
+
+    /**
+     * Returns the number of days remaining to the event as an int.
+     * Returns 0 if event has passed.
+     */
+    public int getDaysTill() {
+        long daysUntil = getCurrentDate().until(date, DAYS);
+        return (int) daysUntil;
+    }
+
+
+    /**
+     * Returns the current LocalDate, for use in {@code getDaysTill}.
+     */
+    public LocalDate getCurrentDate() {
+        return LocalDate.now();
     }
 
     @Override
