@@ -13,29 +13,31 @@
       <padding>
         <Insets bottom="5" left="15" right="5" top="5" />
       </padding>
-      <HBox alignment="CENTER_LEFT" spacing="5">
-        <Label fx:id="id" styleClass="cell_big_label">
-          <minWidth>
-            <!-- Ensures that the label text is never truncated -->
-            <Region fx:constant="USE_PREF_SIZE" />
-          </minWidth>
-              <HBox.margin>
-                  <Insets bottom="10.0" />
-              </HBox.margin>
-        </Label>
-        <Label fx:id="eventName" styleClass="cell_big_label" text="\$eventName">
-            <HBox.margin>
-                <Insets bottom="10.0" />
-            </HBox.margin></Label>
-        <Label fx:id="eventDate" styleClass="cell_small_label_deadline" text="\$eventDate">
-              <HBox.margin>
-                  <Insets bottom="10.0" left="10.0" />
-              </HBox.margin></Label>
-        <Label fx:id="daysRemaining" styleClass="cell_small_label_completionStatus" text="\$eventDate">
-            <HBox.margin>
-                <Insets bottom="10.0" left="10.0" />
-            </HBox.margin></Label>
-      </HBox>
+        <HBox alignment="CENTER_LEFT" spacing="5">
+            <Label fx:id="id" styleClass="cell_big_label">
+                <minWidth>
+                    <Region fx:constant="USE_PREF_SIZE" />
+                </minWidth>
+                <HBox.margin>
+                    <Insets bottom="10.0" />
+                </HBox.margin>
+            </Label>
+            <Label fx:id="eventName" styleClass="cell_big_label" text="\$eventName" wrapText="true">
+                <HBox.margin>
+                    <Insets bottom="10.0" />
+                </HBox.margin>
+            </Label>
+        </HBox>
+        <HBox>
+            <Label fx:id="eventDate" styleClass="cell_small_label_deadline" text="\$eventDate">
+                <HBox.margin>
+                    <Insets bottom="10.0" left="10.0" />
+                </HBox.margin></Label>
+            <Label fx:id="daysRemaining" styleClass="cell_small_label_completionStatus" text="\$eventDate">
+                <HBox.margin>
+                    <Insets bottom="10.0" left="10.0" />
+                </HBox.margin></Label>
+        </HBox>
     </VBox>
     <rowConstraints>
         <RowConstraints />

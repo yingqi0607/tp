@@ -22,7 +22,7 @@
                 <Insets left="10.0" />
             </VBox.margin>
         </Label>
-        <Label fx:id="eventName" styleClass="cell_big_label" text="\$eventName">
+        <Label fx:id="eventName" styleClass="cell_big_label" text="\$eventName" wrapText="true">
             <VBox.margin>
                 <Insets left="10.0" />
             </VBox.margin></Label>

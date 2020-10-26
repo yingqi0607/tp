@@ -38,7 +38,7 @@ public class CountdownFirstEventBadge extends UiPart<Region> {
         logger.fine("Initialising countdownFirstEventBadge");
         this.event = event;
         eventName.setText(event.getEventName().eventName);
-        daysRemaining.setText(String.valueOf(event.getDaysRemaining()));
+        daysRemaining.setText(String.valueOf(event.getDaysRemaining()) + " days!");
     }
 
     @Override

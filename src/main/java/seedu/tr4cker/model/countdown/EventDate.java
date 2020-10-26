@@ -82,8 +82,11 @@ public class EventDate {
      * Returns 0 if event has passed.
      */
     public int getDaysTill() {
-        long daysUntil = getCurrentDate().until(date, DAYS);
-        return (int) daysUntil;
+        int daysUntil = (int) getCurrentDate().until(date, DAYS);
+        if (daysUntil < 0) {
+            return 0;
+        }
+        return daysUntil;
     }
 
 
