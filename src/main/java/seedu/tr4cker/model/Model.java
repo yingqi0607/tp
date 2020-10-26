@@ -134,7 +134,7 @@ public interface Model {
     /** Returns the first event in events list. */
     Event getFirstEvent();
 
-    /** Returns the first event in events list. */
+    /** Returns the second event in events list. */
     Event getSecondEvent();
 
     /**

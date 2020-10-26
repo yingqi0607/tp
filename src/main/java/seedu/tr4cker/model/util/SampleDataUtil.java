@@ -72,13 +72,7 @@ public class SampleDataUtil {
             new Event(new EventName("CS2101 OP2 Demo"), new EventDate("03-11-2020")),
             new Event(new EventName("CS2101 OP2 Pitch"), new EventDate("06-11-2020")),
             new Event(new EventName("Christmas"), new EventDate("25-Dec-2020")),
-            new Event(new EventName("WL transcends to the placeWeCannotNameWithoutCussing" +
-                    " because she is undoubtedly rather dumb and this is a test using extremely" +
-                    " long text field to show you how amazing javafx is and to test the limits and BREAK THROUGH" +
-                    " because knowing the limits of the length of text that can be displayed is somewhat important" +
-                    " so that we dont wordICannotSay ourselves over because the someone decides to write an" +
-                    " event name that is extremely long"),
-                    new EventDate("26-10-2020"))
+
         };
     }
 

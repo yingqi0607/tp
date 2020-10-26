@@ -12,12 +12,12 @@ import seedu.tr4cker.ui.UiPart;
 import java.util.logging.Logger;
 
 /**
- * A UI component that displays the earliest upcoming event in Countdowns.
+ * A UI component that displays the second earliest upcoming event in Countdowns.
  */
-public class CountdownFirstEventBadge extends UiPart<Region> {
+public class CountdownSecondEventBadge extends UiPart<Region> {
 
     private static final String FXML = "CountdownEventBadge.fxml";
-    private final Logger logger = LogsCenter.getLogger(seedu.tr4cker.ui.countdown.CountdownFirstEventBadge.class);
+    private final Logger logger = LogsCenter.getLogger(seedu.tr4cker.ui.countdown.CountdownSecondEventBadge.class);
 
     private final Event event;
 
@@ -33,9 +33,9 @@ public class CountdownFirstEventBadge extends UiPart<Region> {
     /**
      * Creates a {@code CountdownFirstEventBadge} with the given {@code Event} to display.
      */
-    public CountdownFirstEventBadge(Event event) {
+    public CountdownSecondEventBadge(Event event) {
         super(FXML);
-        logger.fine("Initialising countdownFirstEventBadge");
+        logger.fine("Initialising countdownSecondEventBadge");
         this.event = event;
         eventName.setText(event.getEventName().eventName);
         daysRemaining.setText(String.valueOf(event.getDaysRemaining()) + " days!");
@@ -49,13 +49,13 @@ public class CountdownFirstEventBadge extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof seedu.tr4cker.ui.countdown.CountdownFirstEventBadge)) {
+        if (!(other instanceof seedu.tr4cker.ui.countdown.CountdownSecondEventBadge)) {
             return false;
         }
 
         // state check
-        seedu.tr4cker.ui.countdown.CountdownFirstEventBadge badge =
-                (seedu.tr4cker.ui.countdown.CountdownFirstEventBadge) other;
+        seedu.tr4cker.ui.countdown.CountdownSecondEventBadge badge =
+                (seedu.tr4cker.ui.countdown.CountdownSecondEventBadge) other;
         return event.equals(badge.event);
     }
 }

@@ -7,7 +7,7 @@
 <VBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
 <GridPane VBox.vgrow="NEVER">
     <rowConstraints>
-        <RowConstraints vgrow="NEVER" minHeight="100" prefHeight="200" />
+        <RowConstraints vgrow="NEVER" minHeight="200" prefHeight="200" />
     </rowConstraints>
     <VBox alignment="CENTER" minHeight="105" GridPane.columnIndex="0">
         <padding>

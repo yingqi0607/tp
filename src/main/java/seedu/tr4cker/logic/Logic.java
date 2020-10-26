@@ -53,7 +53,7 @@ public interface Logic {
     /** Returns the first upcoming event in list of events. */
     Event getFirstEvent();
 
-    /** Returns the first upcoming event in list of events. */
+    /** Returns the second upcoming event in list of events. */
     Event getSecondEvent();
 
     /** Updates an unmodifiable view of the filtered list of tasks for Module tab. */
