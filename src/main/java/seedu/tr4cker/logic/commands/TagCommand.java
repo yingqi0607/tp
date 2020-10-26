@@ -1,6 +1,6 @@
 package seedu.tr4cker.logic.commands;
 
-import static seedu.tr4cker.commons.util.CollectionUtil.requireAllNonNull;
+import static java.util.Objects.requireNonNull;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_DELETE_TAG;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_NEW_TAG;
 import static seedu.tr4cker.model.Model.PREDICATE_SHOW_PENDING_TASKS;
@@ -42,7 +42,7 @@ public class TagCommand extends Command {
      * @param tagsToDelete Tags to be deleted from the task.
      */
     public TagCommand(Index index, Set<Tag> tagsToAdd, Set<Tag> tagsToDelete) {
-        requireAllNonNull(index);
+        requireNonNull(index);
 
         this.index = index;
         this.tagsToAdd = tagsToAdd;
@@ -51,6 +51,7 @@ public class TagCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        requireNonNull(model);
         List<Task> lastShownList = model.getFilteredTaskList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
@@ -62,6 +63,8 @@ public class TagCommand extends Command {
         taskToEdit.deleteTags(tagsToDelete);
         Task editedTask = new Task(taskToEdit.getName(), taskToEdit.getDeadline(), taskToEdit.getCompletionStatus(),
                 taskToEdit.getTaskDescription(), taskToEdit.getModuleCode(), taskToEdit.getTags());
+
+        assert editedTask != null : "Edited task should not be null here.";
 
         model.setTask(taskToEdit, editedTask);
         model.updateFilteredTaskList(PREDICATE_SHOW_PENDING_TASKS);

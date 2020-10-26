@@ -1,5 +1,7 @@
 package seedu.tr4cker.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.tr4cker.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_PLANNER_GOTO;
 
 import java.time.LocalDate;
@@ -49,6 +51,7 @@ public class PlannerCommand extends Command {
         this.localDate = null;
         this.yearMonth = null;
         this.taskDueInPredicate = new TaskDueInPredicate(GotoDateUtil.getToday());
+        assert taskDueInPredicate != null : "Predicate should not be null in here.";
     }
 
     /**
@@ -56,6 +59,7 @@ public class PlannerCommand extends Command {
      */
     public PlannerCommand(String message, LocalDate localDate, YearMonth yearMonth,
                           TaskDueInPredicate taskDueInPredicate) {
+        requireAllNonNull(message, taskDueInPredicate);
         this.message = message;
         this.localDate = localDate;
         this.yearMonth = yearMonth;
@@ -64,6 +68,7 @@ public class PlannerCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) {
+        requireNonNull(model);
         if (message == null && localDate == null && yearMonth == null) {
             model.updatePlannerFilteredTaskList(taskDueInPredicate);
             return new CommandResult(MESSAGE_SWITCH_TAB_SUCCESS, null, null);
