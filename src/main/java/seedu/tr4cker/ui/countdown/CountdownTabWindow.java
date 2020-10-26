@@ -18,9 +18,13 @@ public class CountdownTabWindow extends UiPart<Region> {
     private static final String FXML = "CountdownTabWindow.fxml";
     private final Logger logger = LogsCenter.getLogger(PlannerCalendarPanel.class);
     private final CountdownEventListPanel countdownEventsListPanel;
+    private final CountdownFirstEventBadge countdownFirstEventBadge;
 
     @FXML
     private StackPane countdownListPanelPlaceholder;
+
+    @FXML
+    private StackPane countdownFirstEventBadgePlaceholder;
 
     /**
      * Constructor for CountdownTabWindow.
@@ -32,6 +36,8 @@ public class CountdownTabWindow extends UiPart<Region> {
         logger.fine("Initialising Countdown Tab Window...");
         this.countdownEventsListPanel = new CountdownEventListPanel(logic.getFilteredEventList());
         countdownListPanelPlaceholder.getChildren().add(countdownEventsListPanel.getRoot());
+        this.countdownFirstEventBadge = new CountdownFirstEventBadge(logic.getFirstEvent());
+        countdownFirstEventBadgePlaceholder.getChildren().add(countdownFirstEventBadge.getRoot());
         logger.fine("Created Countdown Tab Window.");
     }
 }
