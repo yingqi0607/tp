@@ -24,7 +24,7 @@ public class CountdownEventListPanel extends UiPart<Region> {
     private Label countdownEventListPanel;
 
     @FXML
-    private ListView<Event> eventListView = new ListView<>();
+    private ListView<Event> eventListView;
 
     /**
      * Creates a {@code CountdownEventsListPanel} with the given {@code ObservableList}.
