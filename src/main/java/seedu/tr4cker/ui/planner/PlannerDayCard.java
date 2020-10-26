@@ -1,5 +1,7 @@
 package seedu.tr4cker.ui.planner;
 
+import static java.util.Objects.requireNonNull;
+
 import java.time.LocalDate;
 import java.util.logging.Logger;
 
@@ -45,6 +47,8 @@ public class PlannerDayCard extends UiPart<Region> {
     public PlannerDayCard(PlannerDay plannerDay) {
         super(FXML);
         logger.fine("Initialising plannerDayCard...");
+        requireNonNull(plannerDay);
+
         this.plannerDay = plannerDay;
         dateNumber.setText(Integer.toString(plannerDay.getDay()));
         circle.setId("circle-not-today");
@@ -55,8 +59,10 @@ public class PlannerDayCard extends UiPart<Region> {
      * Clears the date number and highlight of a PlannerDayCard.
      */
     public void clear() {
+        logger.fine("Clearing dates...");
         dateNumber.setText("");
         circle.setId("circle-not-today");
+        logger.fine("Cleared dates.");
     }
 
     /**
@@ -84,6 +90,7 @@ public class PlannerDayCard extends UiPart<Region> {
      * Sets the indicator of a Planner Day Card depending on number of tasks due on that day.
      */
     private void setIndicator() {
+        logger.fine("Setting indicators...");
         setNoIndicator();
         ObservableList<Task> filteredList = MainWindow.getLogic().getFilteredTaskList();
         LocalDate localDate = plannerDay.getLocalDate();
@@ -95,6 +102,7 @@ public class PlannerDayCard extends UiPart<Region> {
         } else {
             setRedIndicator();
         }
+        logger.fine("Set indicators.");
     }
 
     /**

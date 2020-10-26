@@ -71,12 +71,16 @@ public class DoneCommand extends Command {
         model.updateFilteredTaskList(PREDICATE_SHOW_PENDING_TASKS);
         model.updateFilteredCompletedTaskList(PREDICATE_SHOW_COMPLETED_TASKS);
 
-        if (completedTask.getCompletionStatus()
-                .compareTo(taskToComplete.getCompletionStatus()) > 0) {
-            return new CommandResult(String.format(MESSAGE_DONE_TASK_SUCCESS_INCREASE, completedTask));
+        if (completedTask.getCompletionStatus().compareTo(taskToComplete.getCompletionStatus()) > 0) {
+            CommandResult commandResult =
+                    new CommandResult(String.format(MESSAGE_DONE_TASK_SUCCESS_INCREASE, completedTask));
+            commandResult.setHomeTab();
+            return commandResult;
         } else {
-            return new CommandResult(String.format(MESSAGE_DONE_TASK_SUCCESS_DECREASE, completedTask));
-
+            CommandResult commandResult =
+                    new CommandResult(String.format(MESSAGE_DONE_TASK_SUCCESS_DECREASE, completedTask));
+            commandResult.setHomeTab();
+            return commandResult;
         }
     }
 

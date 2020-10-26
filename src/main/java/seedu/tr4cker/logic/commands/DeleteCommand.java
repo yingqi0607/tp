@@ -42,7 +42,10 @@ public class DeleteCommand extends Command {
 
         Task taskToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteTask(taskToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_TASK_SUCCESS, taskToDelete));
+
+        CommandResult commandResult = new CommandResult(String.format(MESSAGE_DELETE_TASK_SUCCESS, taskToDelete));
+        commandResult.setHomeTab();
+        return commandResult;
     }
 
     @Override
