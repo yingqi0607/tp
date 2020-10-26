@@ -9,7 +9,7 @@
     <rowConstraints>
         <RowConstraints vgrow="NEVER" minHeight="100" prefHeight="200" />
     </rowConstraints>
-    <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
+    <VBox alignment="CENTER" minHeight="105" GridPane.columnIndex="0">
         <padding>
             <Insets bottom="5" left="15" right="5" top="5" />
         </padding>
