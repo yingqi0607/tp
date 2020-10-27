@@ -4,7 +4,8 @@
     "name" : "Task1Name",
     "deadline" : "20-Oct-2021 1800",
     "completionStatus" : 0,
-    "description" : "Task 1 description"
+    "description" : "Task 1 description",
+    "tagged" : [ ]
   }, {
     "name" : "Task2 Name",
     "deadline" : "30-09-2021 2359",
@@ -57,13 +58,13 @@
   "modules" : [
     {
       "moduleName": "Module1 Name",
-      "moduleCode": "Module1 Code"
+      "moduleCode": "Module1Code"
     }, {
       "moduleName": "Module2 Name",
-      "moduleCode": "Module2 Code"
+      "moduleCode": "Module2Code"
     }, {
       "moduleName": "Module3 Name",
-      "moduleCode": "Module3 Code"
+      "moduleCode": "Module3Code"
     }
   ]
 }

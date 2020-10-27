@@ -63,12 +63,12 @@ public class TypicalTasks {
     public static final Event EVENT2 = new Event(new EventName("Event2 Name"), new EventDate("10-10-2020"));
     public static final Event EVENT3 = new Event(new EventName("Event3 Name"), new EventDate("30-11-2020"));
 
-    public static final Module MODULE1 = new Module(
-            "Module1 Name", new ModuleCode("Module1 Code"));
+    public static final Module MODULE1 = new Module(// module code can't have spaces
+            "Module1 Name", new ModuleCode("Module1Code"));
     public static final Module MODULE2 = new Module(
-            "Module2 Name", new ModuleCode("Module2 Code"));
+            "Module2 Name", new ModuleCode("Module2Code"));
     public static final Module MODULE3 = new Module(
-            "Module3 Name", new ModuleCode("Module3 Code"));
+            "Module3 Name", new ModuleCode("Module3Code"));
 
     // Manually added
     public static final Task TASK_H = new TaskBuilder().withName("TASK H").withDeadline("12-Jul-2021 0600")

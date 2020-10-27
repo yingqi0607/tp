@@ -4,12 +4,15 @@
     "deadline": "20-Oct-2021 1800",
     "completionStatus": 0,
     "description": "description 1",
+    "moduleCode" : [ ],
     "tagged": [ "friends" ]
   }, {
     "name": "Alice Pauline",
     "deadline": "20-Oct-2021 1800",
     "completionStatus": 0,
-    "description": "description 1"
+    "description": "description 1",
+    "moduleCode" : [ ],
+    "tagged": [ "friends" ]
   } ],
   "events" : [
     {
