@@ -5,6 +5,7 @@ import static seedu.tr4cker.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.tr4cker.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.tr4cker.logic.parser.CliSyntax.*;
 
+import seedu.tr4cker.commons.core.index.Index;
 import seedu.tr4cker.logic.commands.CountdownCommand;
 import seedu.tr4cker.logic.parser.exceptions.ParseException;
 import seedu.tr4cker.model.countdown.EventDate;
@@ -31,7 +32,7 @@ public class CountdownCommandParser implements Parser<CountdownCommand> {
         String string = argMultimap.getPreamble();
         if (!string.isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    CountdownCommand.MESSAGE_SWITCH_TAB_USAGE));
+                    CountdownCommand.MESSAGE_USAGE));
         }
 
         // user wants to go to Countdown tab
@@ -47,8 +48,32 @@ public class CountdownCommandParser implements Parser<CountdownCommand> {
             EventDate eventDate = ParserUtil.parseEventDate(argMultimap.getValue(PREFIX_COUNTDOWN_DATE).get());
             return new CountdownCommand(eventName, eventDate);
         }
-        // user wants to goto a specific day/date/month
-        return parseGotoDay(argMultimap.getValue(PREFIX_PLANNER_GOTO).get());
+
+        // user wants to delete an event
+        if (argMultimap.getValue(PREFIX_COUNTDOWN_DELETE).isPresent()) {
+            Index index;
+            try {
+                index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_COUNTDOWN_DELETE).get());
+            } catch (ParseException pe) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        CountdownCommand.MESSAGE_USAGE), pe);
+            }
+            return new CountdownCommand(index, true); // true since have delete prefix
+        }
+
+        // user wants to add an event from tasks list
+        if (argMultimap.getValue(PREFIX_COUNTDOWN_TASK).isPresent()) {
+            //TODO: conversion method
+            Index index;
+            try {
+                index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_COUNTDOWN_DELETE).get());
+            } catch (ParseException pe) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        CountdownCommand.MESSAGE_USAGE), pe);
+            }
+            return new CountdownCommand();
+        }
+        throw new ParseException(CountdownCommand.MESSAGE_USAGE);
     }
 
     /**

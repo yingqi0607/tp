@@ -177,7 +177,7 @@ public class ParserUtil {
     public static EventDate parseEventDate(String eventDate) throws ParseException {
         requireNonNull(eventDate);
         String trimmedEventDate = eventDate.trim();
-        if (!EventName.isValidName(trimmedEventDate)) {
+        if (!EventDate.isValidDate(trimmedEventDate) || !EventDate.isFutureDate(trimmedEventDate)) {
             throw new ParseException(EventDate.MESSAGE_CONSTRAINTS);
         }
         return new EventDate(trimmedEventDate);

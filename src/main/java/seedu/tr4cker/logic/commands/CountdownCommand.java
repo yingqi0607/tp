@@ -22,7 +22,7 @@ public class CountdownCommand extends Command {
 
     public static final String COMMAND_WORD = "countdown";
 
-    public static final String MESSAGE_SWITCH_TAB_USAGE = COMMAND_WORD + ": Switches to Countdown tab\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Switches to Countdown tab\n"
             + "Example: " + COMMAND_WORD;
 
     public static final String MESSAGE_SWITCH_TAB_SUCCESS = "Switched to Countdown tab!";
