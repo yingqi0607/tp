@@ -18,16 +18,14 @@ public class CountdownTabWindow extends UiPart<Region> {
     private static final String FXML = "CountdownTabWindow.fxml";
     private final Logger logger = LogsCenter.getLogger(PlannerCalendarPanel.class);
     private final CountdownEventListPanel countdownEventsListPanel;
-    private final CountdownFirstEventBadge countdownFirstEventBadge;
-    private final CountdownSecondEventBadge countdownSecondEventBadge;
+    private final CountdownEventBadgePanel countdownEventBadgePanel;
 
     @FXML
     private StackPane countdownListPanelPlaceholder;
 
     @FXML
-    private StackPane countdownFirstEventBadgePlaceholder;
-    @FXML
-    private StackPane countdownSecondEventBadgePlaceholder;
+    private StackPane countdownBadgePanelPlaceholder = new StackPane();
+
     /**
      * Constructor for CountdownTabWindow.
      *
@@ -38,10 +36,8 @@ public class CountdownTabWindow extends UiPart<Region> {
         logger.fine("Initialising Countdown Tab Window...");
         this.countdownEventsListPanel = new CountdownEventListPanel(logic.getFilteredEventList());
         countdownListPanelPlaceholder.getChildren().add(countdownEventsListPanel.getRoot());
-        this.countdownFirstEventBadge = new CountdownFirstEventBadge(logic.getFirstEvent());
-        countdownFirstEventBadgePlaceholder.getChildren().add(countdownFirstEventBadge.getRoot());
-        this.countdownSecondEventBadge = new CountdownSecondEventBadge(logic.getSecondEvent());
-        countdownFirstEventBadgePlaceholder.getChildren().add(countdownSecondEventBadge.getRoot());
+        this.countdownEventBadgePanel = new CountdownEventBadgePanel(logic.getFilteredEventList());
+        countdownBadgePanelPlaceholder.getChildren().add(countdownEventBadgePanel.getRoot());
         logger.fine("Created Countdown Tab Window.");
     }
 }
