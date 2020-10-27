@@ -4,6 +4,9 @@ import static java.util.Objects.requireNonNull;
 import static seedu.tr4cker.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.tr4cker.model.Model.PREDICATE_SHOW_ALL_EVENTS;
 
+import java.util.List;
+import java.util.Objects;
+
 import seedu.tr4cker.commons.core.Messages;
 import seedu.tr4cker.commons.core.index.Index;
 import seedu.tr4cker.logic.commands.exceptions.CommandException;
@@ -11,9 +14,6 @@ import seedu.tr4cker.model.Model;
 import seedu.tr4cker.model.countdown.Event;
 import seedu.tr4cker.model.countdown.EventDate;
 import seedu.tr4cker.model.countdown.EventName;
-
-import java.util.List;
-import java.util.Objects;
 
 /**
  * Allows user to go to Countdown tab.

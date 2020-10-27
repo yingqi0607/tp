@@ -3,15 +3,18 @@ package seedu.tr4cker.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.tr4cker.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.tr4cker.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.tr4cker.logic.parser.CliSyntax.*;
+import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_COUNTDOWN_DATE;
+import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_COUNTDOWN_DELETE;
+import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_COUNTDOWN_NEW;
+import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_COUNTDOWN_TASK;
+
+import java.util.stream.Stream;
 
 import seedu.tr4cker.commons.core.index.Index;
 import seedu.tr4cker.logic.commands.CountdownCommand;
 import seedu.tr4cker.logic.parser.exceptions.ParseException;
 import seedu.tr4cker.model.countdown.EventDate;
 import seedu.tr4cker.model.countdown.EventName;
-
-import java.util.stream.Stream;
 
 /**
  * Parses input arguments and creates a new CountdownCommand object.
@@ -36,7 +39,7 @@ public class CountdownCommandParser implements Parser<CountdownCommand> {
         }
 
         // user wants to go to Countdown tab
-        if (!arePrefixesPresent(argMultimap, PREFIX_COUNTDOWN_NEW, PREFIX_DEADLINE,
+        if (!arePrefixesPresent(argMultimap, PREFIX_COUNTDOWN_NEW, PREFIX_COUNTDOWN_DATE,
                 PREFIX_COUNTDOWN_TASK, PREFIX_COUNTDOWN_DELETE)) {
             return new CountdownCommand();
         }
