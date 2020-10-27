@@ -19,6 +19,8 @@ import seedu.tr4cker.model.Tr4cker;
 import seedu.tr4cker.model.countdown.Event;
 import seedu.tr4cker.model.countdown.EventDate;
 import seedu.tr4cker.model.countdown.EventName;
+import seedu.tr4cker.model.module.Module;
+import seedu.tr4cker.model.module.ModuleCode;
 import seedu.tr4cker.model.task.Deadline;
 import seedu.tr4cker.model.task.Task;
 
@@ -61,6 +63,12 @@ public class TypicalTasks {
     public static final Event EVENT2 = new Event(new EventName("Event2 Name"), new EventDate("10-10-2020"));
     public static final Event EVENT3 = new Event(new EventName("Event3 Name"), new EventDate("30-11-2020"));
 
+    public static final Module MODULE1 = new Module(
+            "Module1 Name", new ModuleCode("Module1 Code"));
+    public static final Module MODULE2 = new Module(
+            "Module2 Name", new ModuleCode("Module2 Code"));
+    public static final Module MODULE3 = new Module(
+            "Module3 Name", new ModuleCode("Module3 Code"));
 
     // Manually added
     public static final Task TASK_H = new TaskBuilder().withName("TASK H").withDeadline("12-Jul-2021 0600")
@@ -87,6 +95,9 @@ public class TypicalTasks {
      */
     public static Tr4cker getTypicalTr4cker() {
         Tr4cker tr4cker = new Tr4cker();
+        for (Module module : getTypicalModules()) {
+            tr4cker.addModule(module);
+        }
         for (Task task : getTypicalTasks()) {
             tr4cker.addTask(task);
         }
@@ -102,5 +113,9 @@ public class TypicalTasks {
 
     public static List<Event> getTypicalEvents() {
         return new ArrayList<>(Arrays.asList(EVENT1, EVENT2, EVENT3));
+    }
+
+    public static List<Module> getTypicalModules() {
+        return new ArrayList<>(Arrays.asList(MODULE1, MODULE2, MODULE3));
     }
 }

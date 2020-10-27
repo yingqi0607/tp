@@ -54,5 +54,16 @@
       "eventDate": "30-11-2020"
     }
   ],
-  "modules" : [ ]
+  "modules" : [
+    {
+      "moduleName": "Module1 Name",
+      "moduleCode": "Module1 Code"
+    }, {
+      "moduleName": "Module2 Name",
+      "moduleCode": "Module2 Code"
+    }, {
+      "moduleName": "Module3 Name",
+      "moduleCode": "Module3 Code"
+    }
+  ]
 }
