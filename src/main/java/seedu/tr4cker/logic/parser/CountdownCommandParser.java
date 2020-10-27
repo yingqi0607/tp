@@ -35,7 +35,7 @@ public class CountdownCommandParser implements Parser<CountdownCommand> {
         String string = argMultimap.getPreamble();
         if (!string.isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    CountdownCommand.MESSAGE_USAGE));
+                    CountdownCommand.MESSAGE_SWITCH_TAB_USAGE));
         }
 
         // user wants to go to Countdown tab
@@ -59,7 +59,7 @@ public class CountdownCommandParser implements Parser<CountdownCommand> {
                 index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_COUNTDOWN_DELETE).get());
             } catch (ParseException pe) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                        CountdownCommand.MESSAGE_USAGE), pe);
+                        CountdownCommand.MESSAGE_SWITCH_TAB_USAGE), pe);
             }
             return new CountdownCommand(index, true); // true since have delete prefix
         }
@@ -69,14 +69,14 @@ public class CountdownCommandParser implements Parser<CountdownCommand> {
             //TODO: conversion method
             Index index;
             try {
-                index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_COUNTDOWN_DELETE).get());
+                index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_COUNTDOWN_TASK).get());
             } catch (ParseException pe) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                        CountdownCommand.MESSAGE_USAGE), pe);
+                        CountdownCommand.MESSAGE_SWITCH_TAB_USAGE), pe);
             }
-            return new CountdownCommand();
+            return new CountdownCommand(index, false); // false since has task prefix
         }
-        throw new ParseException(CountdownCommand.MESSAGE_USAGE);
+        throw new ParseException(CountdownCommand.MESSAGE_SWITCH_TAB_USAGE);
     }
 
     /**

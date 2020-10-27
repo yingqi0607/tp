@@ -14,6 +14,7 @@ import seedu.tr4cker.model.Model;
 import seedu.tr4cker.model.countdown.Event;
 import seedu.tr4cker.model.countdown.EventDate;
 import seedu.tr4cker.model.countdown.EventName;
+import seedu.tr4cker.model.task.Task;
 
 /**
  * Allows user to go to Countdown tab.
@@ -22,8 +23,9 @@ public class CountdownCommand extends Command {
 
     public static final String COMMAND_WORD = "countdown";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Switches to Countdown tab\n"
-            + "Example: " + COMMAND_WORD;
+    public static final String MESSAGE_SWITCH_TAB_USAGE = COMMAND_WORD + ": Switches to Countdown tab\n"
+            + "Example: " + COMMAND_WORD + "\n"
+            + "Note: ";
 
     public static final String MESSAGE_SWITCH_TAB_SUCCESS = "Switched to Countdown tab!";
 
@@ -83,19 +85,29 @@ public class CountdownCommand extends Command {
             if (isDeleteCountdown) {
                 return executeCountdownDelete(model, eventList);
             } else {
-                //TODO: add conversion method in tasks
-                return new CommandResult(MESSAGE_SWITCH_TAB_SUCCESS, true);
+                return executeCountdownAddFromTask(model);
             }
         }
 
         if (Objects.isNull(index)) {
-            return executeCountdownAdd(model);
+            return executeCountdownAddNew(model);
         }
 
         throw new CommandException(MESSAGE_INVALID_COMMAND_FORMAT);
     }
 
-    private CommandResult executeCountdownAdd(Model model) throws CommandException {
+    private CommandResult executeCountdownAddFromTask(Model model) throws CommandException {
+        List<Task> taskList = model.getFilteredTaskList();
+        if (index.getZeroBased() >= taskList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+        }
+        Task taskToConvert = taskList.get(index.getZeroBased());
+        Event eventToAdd = taskToConvert.toEvent();
+        model.addEvent(eventToAdd);
+        return new CommandResult(String.format(MESSAGE_ADD_EVENT_SUCCESS, eventToAdd));
+    }
+
+    private CommandResult executeCountdownAddNew(Model model) throws CommandException {
         Event eventToAdd = new Event(eventName, eventDate);
         if (model.hasEvent(eventToAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_EVENT);
