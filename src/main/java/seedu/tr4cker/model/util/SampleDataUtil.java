@@ -54,6 +54,8 @@ public class SampleDataUtil {
 
     public static Module[] getSampleModules() {
         return new Module[] {
+            new Module("Asking Questions", new ModuleCode("GEQ1000")),
+            new Module("Quantitative Reasoning", new ModuleCode("GER1000")),
             new Module("Programming Methodology", new ModuleCode("CS1101S")),
             new Module("Computer Organization", new ModuleCode("CS2100")),
             new Module("Software Engineering", new ModuleCode("CS2103T")),
