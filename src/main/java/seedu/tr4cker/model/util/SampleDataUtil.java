@@ -78,7 +78,9 @@ public class SampleDataUtil {
 
     public static ReadOnlyTr4cker getSampleTr4cker() {
         Tr4cker sampleTr4cker = new Tr4cker();
-        //todo add modules
+        for (Module sampleModule : getSampleModules()) {
+            sampleTr4cker.addModule(sampleModule);
+        }
         for (Task sampleTask : getSampleTasks()) {
             sampleTr4cker.addTask(sampleTask);
         }
