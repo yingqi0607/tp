@@ -2,8 +2,8 @@ package seedu.tr4cker.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.tr4cker.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_COMPLETION_STATUS;
 import static seedu.tr4cker.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_COMPLETION_STATUS;
 
 import java.util.stream.Stream;
 
