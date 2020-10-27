@@ -77,9 +77,9 @@ public class EditCommand extends Command {
         if (!taskToEdit.isSameTask(editedTask) && model.hasTask(editedTask)) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
-        if (!model.hasValidModuleField(editedTask)) {
-            throw new CommandException(MESSAGE_INVALID_MODULE);
-        }
+//        if (!model.hasValidModuleField(editedTask)) {
+//            throw new CommandException(MESSAGE_INVALID_MODULE);
+//        }
 
         assert taskToEdit != null : "Task to edit should not be null here.";
         assert editedTask != null : "Edited task should not be null here.";
