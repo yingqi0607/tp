@@ -12,12 +12,12 @@ import seedu.tr4cker.model.countdown.Event;
 import seedu.tr4cker.ui.UiPart;
 
 /**
- * A UI component that displays the second earliest upcoming event in Countdowns.
+ * A UI component that displays the earliest upcoming events in Countdowns.
  */
-public class CountdownSecondEventBadge extends UiPart<Region> {
+public class CountdownEventBadge extends UiPart<Region> {
 
     private static final String FXML = "CountdownEventBadge.fxml";
-    private final Logger logger = LogsCenter.getLogger(seedu.tr4cker.ui.countdown.CountdownSecondEventBadge.class);
+    private final Logger logger = LogsCenter.getLogger(seedu.tr4cker.ui.countdown.CountdownEventBadge.class);
 
     private final Event event;
 
@@ -34,11 +34,11 @@ public class CountdownSecondEventBadge extends UiPart<Region> {
     private Label eventName;
 
     /**
-     * Creates a {@code CountdownFirstEventBadge} with the given {@code Event} to display.
+     * Creates a {@code CountdownEventBadge} with the given {@code Event} to display.
      */
-    public CountdownSecondEventBadge(Event event) {
+    public CountdownEventBadge(Event event) {
         super(FXML);
-        logger.fine("Initialising countdownSecondEventBadge");
+        logger.fine("Initialising countdownEventBadge");
         this.event = event;
         eventName.setText(event.getEventName().eventName);
         daysRemaining.setText(String.valueOf(event.getDaysRemaining()) + " days!");
@@ -52,13 +52,13 @@ public class CountdownSecondEventBadge extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof seedu.tr4cker.ui.countdown.CountdownSecondEventBadge)) {
+        if (!(other instanceof seedu.tr4cker.ui.countdown.CountdownEventBadge)) {
             return false;
         }
 
         // state check
-        seedu.tr4cker.ui.countdown.CountdownSecondEventBadge badge =
-                (seedu.tr4cker.ui.countdown.CountdownSecondEventBadge) other;
+        seedu.tr4cker.ui.countdown.CountdownEventBadge badge =
+                (seedu.tr4cker.ui.countdown.CountdownEventBadge) other;
         return event.equals(badge.event);
     }
 }
