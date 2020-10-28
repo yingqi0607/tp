@@ -102,9 +102,9 @@ class JsonSerializableTr4cker {
      */
     public Tr4cker toModelType() throws IllegalValueException {
         Tr4cker tr4cker = new Tr4cker();
+        modulesToModelType(tr4cker);
         tasksToModelType(tr4cker);
         eventsToModelType(tr4cker);
-        modulesToModelType(tr4cker);
         return tr4cker;
     }
 
