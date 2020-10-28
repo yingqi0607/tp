@@ -279,12 +279,6 @@ Clears all entries from TR4CKER.
 
 Format: `clear`
 
-##### Exiting TR4CKER: `exit`
-
-Exits the program.
-
-
-
 #### Daily tab features
 
 #### Modules tab features
