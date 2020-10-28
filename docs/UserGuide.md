@@ -288,11 +288,13 @@ If you would like to switch to Daily tab without clicking on the Daily tab butto
 Format: `daily`
 
 Once you enter `daily` into the command box, TR4CKER should look like this:
+![switch tab](images/dailyTab_switchTab.png)
+Figure 1: TR4CKER after executing `daily`.
 
 Example: 
 * `daily` - Switches to Daily tab, showing a list of daily todo tasks that you have planned for the day.
 
-##### adding a daily todo task: `todo`
+##### Adding a daily todo task: `todo`
 
 You can add a todo task for the day into the daily todo list by providing the index number of the task that you want to add.
 
@@ -304,6 +306,8 @@ Format: `todo INDEX` [To be implemented: add multiple todo tasks at the same tim
 
 Examples:
 * `list` followed by `todo 1` adds the first task in the displayed task list into daily todo list.
+![todo result](images/dailyTab_todo1.png)
+Figure 2: TR4CKER after executing `todo 1`.
 
 #### Modules tab features
 
