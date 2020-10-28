@@ -59,7 +59,7 @@ class JsonAdaptedEvent {
         if (!EventDate.isValidDate(eventDate)) {
             throw new IllegalValueException(EventDate.MESSAGE_CONSTRAINTS);
         }
-        final EventDate modelDate = new EventDate(eventDate);
+        final EventDate modelDate = new EventDate(eventDate, false);
 
         return new Event(modelName, modelDate);
     }
