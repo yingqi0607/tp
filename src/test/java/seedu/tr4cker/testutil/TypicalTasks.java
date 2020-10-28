@@ -61,9 +61,12 @@ public class TypicalTasks {
             .withDeadline("01-01-2021 0000")
             .withCompletionStatus(0).withTaskDescription("Task 7 description").build();
 
-    public static final Event EVENT1 = new Event(new EventName("Event1 Name"), new EventDate("01-01-2021"));
-    public static final Event EVENT2 = new Event(new EventName("Event2 Name"), new EventDate("10-10-2020"));
-    public static final Event EVENT3 = new Event(new EventName("Event3 Name"), new EventDate("30-11-2020"));
+    public static final Event EVENT1 = new Event(new EventName("Event1 Name"),
+            new EventDate("01-01-2021", false));
+    public static final Event EVENT2 = new Event(new EventName("Event2 Name"),
+            new EventDate("10-10-2020", false));
+    public static final Event EVENT3 = new Event(new EventName("Event3 Name"),
+            new EventDate("30-11-2020", false));
 
     public static final Module MODULE1 = new Module(// module code can't have spaces
             "Module1 Name", new ModuleCode("Module1Code"));
