@@ -1,6 +1,6 @@
 {
   "tasks": [ {
-    "name": "Hans Muster",
+    "name": "Invalid Task",
     "deadline": "99990000 8888",
     "completionStatus": -1,
     "description": "description"

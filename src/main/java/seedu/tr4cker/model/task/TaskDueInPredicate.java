@@ -1,5 +1,7 @@
 package seedu.tr4cker.model.task;
 
+import static java.util.Objects.requireNonNull;
+
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.util.function.Predicate;
@@ -20,16 +22,19 @@ public class TaskDueInPredicate implements Predicate<Task> {
 
     /** Constructor for TaskDueInPredicate with dueDate to be inputted date. */
     public TaskDueInPredicate(LocalDate dueDate) {
+        requireNonNull(dueDate);
         this.dueDate = dueDate;
     }
 
     /** Constructor for TaskDueInPredicate with dueDate to be inputted month. */
     public TaskDueInPredicate(YearMonth month) {
+        requireNonNull(month);
         this.dueDate = month.atDay(1);
     }
 
     @Override
     public boolean test(Task task) {
+        requireNonNull(task);
         LocalDate taskDate = task.getDeadline().getDateTime().toLocalDate();
         return taskDate.isEqual(dueDate);
     }

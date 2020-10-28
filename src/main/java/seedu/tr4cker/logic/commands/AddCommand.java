@@ -58,7 +58,10 @@ public class AddCommand extends Command {
         }
 
         model.addTask(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+
+        CommandResult commandResult = new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        commandResult.setHomeTab();
+        return commandResult;
     }
 
     @Override

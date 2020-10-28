@@ -1,15 +1,18 @@
 {
   "tasks": [ {
-    "name": "Alice Pauline",
+    "name": "Duplicate Task",
     "deadline": "20-Oct-2021 1800",
     "completionStatus": 0,
     "description": "description 1",
-    "tagged": [ "friends" ]
+    "moduleCode" : [ ],
+    "tagged": [ "urgent" ]
   }, {
-    "name": "Alice Pauline",
+    "name": "Duplicate Task",
     "deadline": "20-Oct-2021 1800",
     "completionStatus": 0,
-    "description": "description 1"
+    "description": "description 1",
+    "moduleCode" : [ ],
+    "tagged": [ "urgent" ]
   } ],
   "events" : [
     {

@@ -27,18 +27,19 @@ public class DoneCommand extends Command {
 
     public static final String COMMAND_WORD = "done";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Marks the Completion Status of the task identified "
-            + "by the index number used in the displayed task list. "
-            + "Existing completion progress will be overwritten by the input value.\n"
-            + "Parameters: INDEX (must be a positive integer) "
-            + PREFIX_COMPLETION_STATUS + "COMPLETION_STATUS (must be different from current and not exceed 100)\n"
-            + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_COMPLETION_STATUS + "50 ";
+    public static final String MESSAGE_USAGE = "Looks like you're trying to use the " + COMMAND_WORD + " command: "
+            + "Marks the Completion Status of the task identified by the index number used in the Pending Tasks list\n"
+            + "Compulsory Parameter: INDEX (must be a positive integer and valid index number)\n"
+            + "Optional Parameter: " + PREFIX_COMPLETION_STATUS + "COMPLETION_STATUS (0-100)\n"
+            + "Please note the following:\n"
+            + "1. Completion status can be increased or decreased but must be different from the current value\n"
+            + "2. Completion status is a percentage of task done and therefore only accepts value from 0 - 100\n"
+            + "3. Completion status is set to 100 by default if not entered\n"
+            + "(E.g. " + COMMAND_WORD + " 2 " + PREFIX_COMPLETION_STATUS + "50)";
 
     public static final String MESSAGE_DONE_TASK_SUCCESS_DECREASE = "Decreased Completion Percentage of Task: %1$s";
     public static final String MESSAGE_DONE_TASK_SUCCESS_INCREASE = "Increased Completion Percentage of Task: %1$s";
     public static final String MESSAGE_COMPLETION_SAME = "Percentage must be different from current value.";
-    public static final String MESSAGE_EXCEEDS_RANGE = "Percentage should not exceed 100.";
 
     private final Index index;
     private final CompletionStatus completionStatus;
@@ -71,12 +72,16 @@ public class DoneCommand extends Command {
         model.updateFilteredTaskList(PREDICATE_SHOW_PENDING_TASKS);
         model.updateFilteredCompletedTaskList(PREDICATE_SHOW_COMPLETED_TASKS);
 
-        if (completedTask.getCompletionStatus()
-                .compareTo(taskToComplete.getCompletionStatus()) > 0) {
-            return new CommandResult(String.format(MESSAGE_DONE_TASK_SUCCESS_INCREASE, completedTask));
+        if (completedTask.getCompletionStatus().compareTo(taskToComplete.getCompletionStatus()) > 0) {
+            CommandResult commandResult =
+                    new CommandResult(String.format(MESSAGE_DONE_TASK_SUCCESS_INCREASE, completedTask));
+            commandResult.setHomeTab();
+            return commandResult;
         } else {
-            return new CommandResult(String.format(MESSAGE_DONE_TASK_SUCCESS_DECREASE, completedTask));
-
+            CommandResult commandResult =
+                    new CommandResult(String.format(MESSAGE_DONE_TASK_SUCCESS_DECREASE, completedTask));
+            commandResult.setHomeTab();
+            return commandResult;
         }
     }
 

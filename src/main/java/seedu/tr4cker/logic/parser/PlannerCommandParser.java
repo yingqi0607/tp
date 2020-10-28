@@ -2,6 +2,7 @@ package seedu.tr4cker.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.tr4cker.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.tr4cker.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_PLANNER_GOTO;
 
 import java.time.LocalDate;
@@ -24,6 +25,7 @@ public class PlannerCommandParser implements Parser<PlannerCommand> {
      * @throws ParseException if the user input does not conform the expected format.
      */
     public PlannerCommand parse(String args) throws ParseException {
+        requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_PLANNER_GOTO);
 
         // user wants to go to Planner tab
@@ -33,6 +35,7 @@ public class PlannerCommandParser implements Parser<PlannerCommand> {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                         PlannerCommand.MESSAGE_SWITCH_TAB_USAGE));
             }
+            assert string.isEmpty() : "There should not be any input after planner here.";
             return new PlannerCommand();
         }
 
@@ -45,6 +48,7 @@ public class PlannerCommandParser implements Parser<PlannerCommand> {
      * {@code ArgumentMultimap}.
      */
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        requireAllNonNull(argumentMultimap, prefixes);
         return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
@@ -91,6 +95,8 @@ public class PlannerCommandParser implements Parser<PlannerCommand> {
         } else {
             throw new ParseException(PlannerCommand.MESSAGE_GOTO_USAGE);
         }
+        assert message != null : "Message should not be null here.";
+        assert taskDueInPredicate != null : "Predicate should not be null here.";
         return new PlannerCommand(message, localDate, yearMonth, taskDueInPredicate);
     }
 

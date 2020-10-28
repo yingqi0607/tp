@@ -26,6 +26,7 @@ class JsonSerializableTr4cker {
     public static final String MESSAGE_DUPLICATE_EVENT = "Events list contains duplicate event(s).";
     public static final String MESSAGE_DUPLICATE_MODULE = "Module list contains duplicate module(s).";
     public static final String MESSAGE_DUPLICATE_TODO = "Daily todo list contains duplicate todo(s).";
+    public static final String MESSAGE_INVALID_MODULE = "Given module does not exist in TR4CKER.";
 
     private final List<JsonAdaptedTask> tasks = new ArrayList<>();
     private final List<JsonAdaptedEvent> events = new ArrayList<>();
@@ -69,7 +70,9 @@ class JsonSerializableTr4cker {
             if (tr4cker.hasTask(task)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_TASK);
             }
-            //todo throw exception if module not existent
+            if (!tr4cker.hasValidModuleField(task)) {
+                throw new IllegalValueException(MESSAGE_INVALID_MODULE);
+            }
             tr4cker.addTask(task);
         }
     }
@@ -120,6 +123,7 @@ class JsonSerializableTr4cker {
      */
     public Tr4cker toModelType() throws IllegalValueException {
         Tr4cker tr4cker = new Tr4cker();
+        modulesToModelType(tr4cker);
         tasksToModelType(tr4cker);
         eventsToModelType(tr4cker);
         modulesToModelType(tr4cker);

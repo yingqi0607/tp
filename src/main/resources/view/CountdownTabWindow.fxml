@@ -4,6 +4,7 @@
 <?import javafx.scene.layout.*?>
 
 <?import javafx.scene.shape.Box?>
+<?import javafx.geometry.Insets?>
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <SplitPane dividerPositions="0.5" prefHeight="400.0" prefWidth="600.0"
@@ -11,10 +12,18 @@
                    AnchorPane.topAnchor="0.0">
             <items>
 
-                <!--first 2 items-->
-                <Box width="300" height="400"/>
+                <VBox AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <children>
+                        <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                              AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                            <children>
+                                <StackPane fx:id="countdownEventBadgePanelPlaceholder" prefHeight="400.0" prefWidth="300.0" VBox.vgrow="ALWAYS" />
+                            </children>
+                        </VBox>
+                    </children>
+                </VBox>
 
-                <AnchorPane prefHeight="400.0" prefWidth="300.0">
+                <AnchorPane prefHeight="400.0" prefWidth="1000.0" minWidth="650">
                     <children>
                         <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
                               AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
