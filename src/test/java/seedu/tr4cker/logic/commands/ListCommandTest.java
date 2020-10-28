@@ -5,6 +5,8 @@ import static seedu.tr4cker.logic.commands.CommandTestUtil.showTaskAtIndex;
 import static seedu.tr4cker.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 import static seedu.tr4cker.testutil.TypicalTasks.getTypicalTr4cker;
 
+import java.util.List;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -12,7 +14,6 @@ import seedu.tr4cker.model.Model;
 import seedu.tr4cker.model.ModelManager;
 import seedu.tr4cker.model.UserPrefs;
 import seedu.tr4cker.model.task.Task;
-import java.util.List;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
