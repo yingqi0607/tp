@@ -20,9 +20,9 @@ public class EventDate {
                     + "2. Formats accepted: dd-MM-yyyy dd-MMM-yyyy\n"
                     + "(e.g. 25-01-2021 25-Jan-2021)\n"
                     + "3. First alphabet of Month is in upper-case, (e.g. Feb instead of feb)\n"
-                    + "4. Natural dates accepted: days of week (e.g. Today, Monday, Sunday)\n";
+                    + "4. Date should be in the future\n";
     public static final String MESSAGE_FUTURE_CONSTRAINT =
-            "Deadline should be a time in the future";
+            "Date should be in the future";
     public static final String VALIDATION_REGEX_MM = "\\d{2}-\\d{2}-\\d{4}";
     public static final String VALIDATION_REGEX_MMM = "\\d{2}-[a-zA-Z]{3}-\\d{4}";
 
