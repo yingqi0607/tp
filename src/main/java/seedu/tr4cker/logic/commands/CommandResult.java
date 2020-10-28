@@ -99,6 +99,10 @@ public class CommandResult {
     }
 
     /**
+<<<<<<< HEAD
+=======
+
+>>>>>>> cb4e72fc5d653a687ac9509b9814e7a4b886f4c1
      * Constructs a {@code CommandResult} with the specified {@code feedbackToUser}.
      * For usage of DailyCommand.
      */
@@ -108,10 +112,14 @@ public class CommandResult {
         newCommandResult.showPlanner = false;
         newCommandResult.showCountdown = false;
         newCommandResult.showDaily = true;
+<<<<<<< HEAD
         return newCommandResult;
     }
 
     /*
+=======
+
+>>>>>>> cb4e72fc5d653a687ac9509b9814e7a4b886f4c1
      * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
      * For usage of HomeCommand.
      */

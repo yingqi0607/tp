@@ -53,7 +53,11 @@ public interface Logic {
 
     /** Returns an unmodifiable view of the filtered list of todos. */
     ObservableList<Todo> getFilteredTodoList();
+<<<<<<< HEAD
 
+=======
+  
+>>>>>>> cb4e72fc5d653a687ac9509b9814e7a4b886f4c1
     /** Returns the first upcoming event in list of events. */
     Event getFirstEvent();
 

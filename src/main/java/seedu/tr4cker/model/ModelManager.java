@@ -59,9 +59,13 @@ public class ModelManager implements Model {
         plannerFilteredTasks = new FilteredList<>(this.tr4cker.getTaskList());
 
         filteredEvents = new FilteredList<>(this.tr4cker.getEventList());
+<<<<<<< HEAD
 
         filteredTodos = new FilteredList<>(this.tr4cker.getTodoList().filtered(x -> true));
 
+=======
+        filteredTodos = new FilteredList<>(this.tr4cker.getTodoList().filtered(x -> true));
+>>>>>>> cb4e72fc5d653a687ac9509b9814e7a4b886f4c1
         firstEvent = this.tr4cker.firstEvent();
 
         secondEvent = this.tr4cker.secondEvent();
