@@ -66,7 +66,7 @@ description`, with a deadline of `8 Sep 2020, 1700 hrs` and with an `urgent` tag
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about the command format:**<br>
+**Information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/tP week 7`.
@@ -173,7 +173,7 @@ Important points to note when entering Deadline:
         * mm: the minute the task is due
 
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="span" class="alert alert-primary">**Tip:**
 A task can have any number of tags (including 0)
 </div>
 
@@ -183,7 +183,7 @@ Examples:
 
 ##### Listing all tasks: `list`
 
-Shows a list of all tasks in TR4CKER.
+Displays a list of all tasks names in TR4CKER.
 
 Format: `list`
 
@@ -255,8 +255,8 @@ Format: `find [KEYWORD_1] [KEYWORD_2] ...`
 
 Examples:
 * `find CS2101` returns `CS2101 Oral Presentation 1`
-* `find CS1231S Mission` returns `CS1101S Mission`, `CS1231S Graded Assignment`<br>
-  ![result for 'find CS1231S Mission'](images/findCS1231SmissionResult.png)
+* `find CS2103T Quiz` returns `CS2103T Project`, `CS1101S Quiz`<br>
+  ![result for 'find CS1231S Mission'](images/findCS2103TQuizResult.png)
 
 ##### Deleting an existing task : `delete`
 
@@ -279,7 +279,31 @@ Clears all entries from TR4CKER.
 
 Format: `clear`
 
-#### Daily tab features
+#### Daily tab features (Yingqi)
+You can add all your daily plans of current tasks to a daily to do list so that you have a clearer idea of what you want to complete for the day.
+
+##### Switching to Daily tab: `daily`
+If you would like to switch to Daily tab without clicking on the Daily tab button, you can do so easily through the CLI, by just typing `daily`.
+
+Format: `daily`
+
+Once you enter `daily` into the command box, TR4CKER should look like this:
+
+Example: 
+* `daily` - Switches to Daily tab, showing a list of daily todo tasks that you have planned for the day.
+
+##### adding a daily todo task: `todo`
+
+You can add a todo task for the day into the daily todo list by providing the index number of the task that you want to add.
+
+Format: `todo INDEX` [To be implemented: add multiple todo tasks at the same time]
+
+* Adds the task at the specified `INDEX` to daily todo list.
+* The index refers to a valid index number shown in the displayed task list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `list` followed by `todo 1` adds the first task in the displayed task list into daily todo list.
 
 #### Modules tab features
 
