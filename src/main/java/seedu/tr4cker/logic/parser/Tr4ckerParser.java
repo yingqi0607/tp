@@ -10,6 +10,7 @@ import seedu.tr4cker.logic.commands.AddCommand;
 import seedu.tr4cker.logic.commands.ClearCommand;
 import seedu.tr4cker.logic.commands.Command;
 import seedu.tr4cker.logic.commands.CountdownCommand;
+import seedu.tr4cker.logic.commands.DailyCommand;
 import seedu.tr4cker.logic.commands.DeleteCommand;
 import seedu.tr4cker.logic.commands.DoneCommand;
 import seedu.tr4cker.logic.commands.EditCommand;
@@ -20,6 +21,7 @@ import seedu.tr4cker.logic.commands.ListCommand;
 import seedu.tr4cker.logic.commands.ModuleCommand;
 import seedu.tr4cker.logic.commands.PlannerCommand;
 import seedu.tr4cker.logic.commands.TagCommand;
+import seedu.tr4cker.logic.commands.TodoCommand;
 import seedu.tr4cker.logic.parser.exceptions.ParseException;
 
 /**
@@ -73,6 +75,9 @@ public class Tr4ckerParser {
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
 
+        case TodoCommand.COMMAND_WORD:
+            return new TodoCommandParser().parse(arguments);
+
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
 
@@ -87,6 +92,9 @@ public class Tr4ckerParser {
 
         case CountdownCommand.COMMAND_WORD:
             return new CountdownCommandParser().parse(arguments);
+
+        case DailyCommand.COMMAND_WORD:
+            return new DailyCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

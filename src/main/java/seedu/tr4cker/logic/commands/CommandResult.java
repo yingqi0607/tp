@@ -30,6 +30,9 @@ public class CommandResult {
     /** TR4CKER shows Countdown tab. */
     private boolean showCountdown;
 
+    /** TR4CKER shows Daily tab. */
+    private boolean showDaily;
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
@@ -59,6 +62,7 @@ public class CommandResult {
         this.exit = false;
         this.showPlanner = true;
         this.showCountdown = false;
+        this.showDaily = false;
         this.localDate = localDate;
         this.yearMonth = yearMonth;
     }
@@ -72,6 +76,7 @@ public class CommandResult {
         this.showHelp = false;
         this.exit = false;
         this.showPlanner = false;
+        this.showDaily = false;
         this.showCountdown = isShowCountdown;
         this.localDate = null;
         this.yearMonth = null;
@@ -86,6 +91,19 @@ public class CommandResult {
         newCommandResult.showModules = true;
         newCommandResult.showPlanner = false;
         newCommandResult.showCountdown = false;
+        return newCommandResult;
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser}.
+     * For usage of DailyCommand.
+     */
+    public static CommandResult createDailyTabSwitchCommandResult(String feedbackToUser) {
+        CommandResult newCommandResult = new CommandResult(feedbackToUser);
+        newCommandResult.showModules = false;
+        newCommandResult.showPlanner = false;
+        newCommandResult.showCountdown = false;
+        newCommandResult.showDaily = true;
         return newCommandResult;
     }
 
@@ -111,6 +129,10 @@ public class CommandResult {
 
     public boolean isShowCountdown() {
         return showCountdown;
+    }
+
+    public boolean isShowDaily() {
+        return showDaily;
     }
 
     public LocalDate getLocalDate() {
