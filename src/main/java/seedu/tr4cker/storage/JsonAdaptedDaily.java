@@ -1,12 +1,12 @@
 package seedu.tr4cker.storage;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import seedu.tr4cker.commons.exceptions.IllegalValueException;
 import seedu.tr4cker.model.daily.Todo;
 import seedu.tr4cker.model.task.Deadline;
 import seedu.tr4cker.model.task.Name;
-
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * Jackson-friendly version of {@link Todo}.

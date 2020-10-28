@@ -111,7 +111,7 @@ public class CommandResult {
         return newCommandResult;
     }
 
-    /*
+    /**
      * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
      * For usage of HomeCommand.
      */
