@@ -19,7 +19,7 @@ public class DailyCommand extends Command{
 
     @Override
     public CommandResult execute(Model model) {
-        return new CommandResult(MESSAGE_SWITCH_TAB_SUCCESS);
+        return CommandResult.createDailyTabSwitchCommandResult(MESSAGE_SWITCH_TAB_SUCCESS);
     }
 
     @Override
