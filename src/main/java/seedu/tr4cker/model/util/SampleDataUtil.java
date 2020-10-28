@@ -67,14 +67,15 @@ public class SampleDataUtil {
     }
 
     public static Event[] getSampleEvents() {
-        return new Event[] {
-            new Event(new EventName("CS2103T Final Exam"), new EventDate("02-Dec-2020")),
-            new Event(new EventName("CS2103T Practical Exam Dry Run"), new EventDate("30-10-2020")),
-            new Event(new EventName("CS2103T Practical Exam"), new EventDate("13-Nov-2020")),
-            new Event(new EventName("Han Wei Birthday"), new EventDate("09-10-2020")),
-            new Event(new EventName("CS2101 OP2 Demo"), new EventDate("03-11-2020")),
-            new Event(new EventName("CS2101 OP2 Pitch"), new EventDate("06-11-2020")),
-            new Event(new EventName("Christmas"), new EventDate("25-Dec-2020")),
+        return new Event[]{
+            new Event(new EventName("CS2103T Final Exam"), new EventDate("02-Dec-2020", false)),
+            new Event(new EventName("CS2103T Practical Exam Dry Run"),
+                    new EventDate("30-10-2020", false)),
+            new Event(new EventName("CS2103T Practical Exam"), new EventDate("13-Nov-2020", false)),
+            new Event(new EventName("Han Wei Birthday"), new EventDate("09-10-2020", false)),
+            new Event(new EventName("CS2101 OP2 Demo"), new EventDate("03-11-2020", false)),
+            new Event(new EventName("CS2101 OP2 Pitch"), new EventDate("06-11-2020", false)),
+            new Event(new EventName("Christmas"), new EventDate("25-Dec-2020", false)),
         };
     }
 

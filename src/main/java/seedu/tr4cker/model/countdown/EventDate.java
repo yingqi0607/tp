@@ -20,9 +20,9 @@ public class EventDate {
                     + "2. Formats accepted: dd-MM-yyyy dd-MMM-yyyy\n"
                     + "(e.g. 25-01-2021 25-Jan-2021)\n"
                     + "3. First alphabet of Month is in upper-case, (e.g. Feb instead of feb)\n"
-                    + "4. Natural dates accepted: days of week (e.g. Today, Monday, Sunday)\n";
+                    + "4. Date should be in the future\n";
     public static final String MESSAGE_FUTURE_CONSTRAINT =
-            "Deadline should be a time in the future";
+            "Date should be in the future";
     public static final String VALIDATION_REGEX_MM = "\\d{2}-\\d{2}-\\d{4}";
     public static final String VALIDATION_REGEX_MMM = "\\d{2}-[a-zA-Z]{3}-\\d{4}";
 
@@ -31,15 +31,18 @@ public class EventDate {
     private final LocalDate date;
 
     /**
-     * Constructs a {@code Deadline}.
+     * Constructs a {@code EventDate}.
      *
-     * @param date A valid deadline time.
+     * @param date A valid date.
+     * @param isNewEvent If event is a new event added from command line.
      */
-    public EventDate(String date) {
+    public EventDate(String date, boolean isNewEvent) {
         requireNonNull(date);
         checkArgument(isValidDate(date), MESSAGE_CONSTRAINTS);
-        // checkArgument(isFutureDate(date), MESSAGE_FUTURE_CONSTRAINT);
-        // would mean that you cant add events that have passed.
+        if (isNewEvent) {
+            checkArgument(isFutureDate(date), MESSAGE_FUTURE_CONSTRAINT);
+            // would mean that you cant add events that have passed.
+        }
         this.date = LocalDate.parse(date, DATE_TIME_FORMAT);
     }
 
@@ -78,12 +81,12 @@ public class EventDate {
 
     /**
      * Returns the number of days remaining to the event as an int.
-     * Returns 0 if event has passed.
+     * Returns -1 if event has passed.
      */
     public int getDaysTill() {
         int daysUntil = (int) getCurrentDate().until(date, DAYS);
         if (daysUntil < 0) {
-            return 0;
+            return -1;
         }
         return daysUntil;
     }
