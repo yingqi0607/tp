@@ -21,6 +21,7 @@ import seedu.tr4cker.model.ReadOnlyTr4cker;
 import seedu.tr4cker.model.ReadOnlyUserPrefs;
 import seedu.tr4cker.model.Tr4cker;
 import seedu.tr4cker.model.countdown.Event;
+import seedu.tr4cker.model.daily.Todo;
 import seedu.tr4cker.model.module.Module;
 import seedu.tr4cker.model.task.Task;
 import seedu.tr4cker.testutil.TaskBuilder;
@@ -176,6 +177,21 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean hasTodo(Todo todo) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteTodo(Todo todo) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addTodo(Todo todo) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Task> getFilteredTaskList() {
             throw new AssertionError("This method should not be called.");
         }
@@ -202,6 +218,11 @@ public class AddCommandTest {
 
         @Override
         public ObservableList<Event> getFilteredEventList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Todo> getFilteredTodoList() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -242,6 +263,11 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredEventList(Predicate<Event> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredTodoList(Predicate<Todo> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }
