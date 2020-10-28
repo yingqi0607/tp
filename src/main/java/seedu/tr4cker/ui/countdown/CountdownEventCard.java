@@ -49,7 +49,11 @@ public class CountdownEventCard extends UiPart<Region> {
         eventName.setText(event.getEventName().eventName);
         eventDate.setText(event.getEventDate().toString());
         int daysLeft = event.getDaysRemaining();
-        daysRemaining.setText(String.valueOf(daysLeft) + " days!");
+        if (daysLeft < 0) {
+            daysRemaining.setText("Over!");
+        } else {
+            daysRemaining.setText(String.valueOf(daysLeft) + " days!");
+        }
     }
 
     @Override
