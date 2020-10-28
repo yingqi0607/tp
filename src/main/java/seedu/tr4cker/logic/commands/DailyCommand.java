@@ -2,7 +2,7 @@ package seedu.tr4cker.logic.commands;
 
 import seedu.tr4cker.model.Model;
 
-public class DailyCommand extends Command{
+public class DailyCommand extends Command {
 
     public static final String COMMAND_WORD = "daily";
 

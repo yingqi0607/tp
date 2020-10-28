@@ -5,10 +5,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.tr4cker.model.daily.Todo;
-import seedu.tr4cker.model.task.Task;
-import seedu.tr4cker.ui.TaskCard;
 import seedu.tr4cker.ui.UiPart;
-import java.util.Comparator;
 
 /**
  * An UI component that displays information of a {@code Todo}.

@@ -1,13 +1,13 @@
 package seedu.tr4cker.ui.daily;
 
+import java.util.logging.Logger;
+
 import javafx.fxml.FXML;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import seedu.tr4cker.commons.core.LogsCenter;
 import seedu.tr4cker.logic.Logic;
 import seedu.tr4cker.ui.UiPart;
-import seedu.tr4cker.ui.countdown.CountdownEventListPanel;
-import java.util.logging.Logger;
 
 public class DailyTabWindow extends UiPart<Region> {
 

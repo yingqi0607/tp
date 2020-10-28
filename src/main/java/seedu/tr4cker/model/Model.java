@@ -31,7 +31,7 @@ public interface Model {
     Predicate<Event> PREDICATE_SHOW_ALL_EVENTS = unused -> true;
 
     /** {@code Predicate} that always evaluate to true. */
-    Predicate<Todo>  PREDICATE_SHOW_ALL_TODOS = unused -> true;
+    Predicate<Todo> PREDICATE_SHOW_ALL_TODOS = unused -> true;
 
     /** Replaces user prefs data with the data in {@code userPrefs}. */
     void setUserPrefs(ReadOnlyUserPrefs userPrefs);
@@ -156,8 +156,7 @@ public interface Model {
     /** Returns the second event in events list. */
     Event getSecondEvent();
 
-    /** Returns an unmodifiable view of the filtered todo list.
-     * @return*/
+    /** Returns an unmodifiable view of the filtered todo list.*/
     ObservableList<Todo> getFilteredTodoList();
 
     /**

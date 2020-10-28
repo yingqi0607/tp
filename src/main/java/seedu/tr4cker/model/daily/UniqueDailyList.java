@@ -1,20 +1,18 @@
 package seedu.tr4cker.model.daily;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import seedu.tr4cker.model.daily.exceptions.DuplicateTodoException;
-import seedu.tr4cker.model.daily.exceptions.TodoNotFoundException;
-import seedu.tr4cker.model.task.Task;
-import seedu.tr4cker.model.task.exceptions.DuplicateTaskException;
-import seedu.tr4cker.model.task.exceptions.TaskNotFoundException;
+import static java.util.Objects.requireNonNull;
+import static seedu.tr4cker.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.tr4cker.commons.util.CollectionUtil.requireAllNonNull;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import seedu.tr4cker.model.daily.exceptions.DuplicateTodoException;
+import seedu.tr4cker.model.daily.exceptions.TodoNotFoundException;
+
 
 /**
  * A list of todos that enforces uniqueness between its elements and does not allow nulls.

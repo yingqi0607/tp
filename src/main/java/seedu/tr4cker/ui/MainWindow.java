@@ -381,7 +381,7 @@ public class MainWindow extends UiPart<Stage> {
                 handleShowTabCountdown();
             }
 
-            if(commandResult.isShowDaily()){
+            if (commandResult.isShowDaily()) {
                 handleShowTabDaily();
             }
 

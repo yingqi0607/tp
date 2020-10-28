@@ -1,20 +1,9 @@
 package seedu.tr4cker.storage;
 
 import seedu.tr4cker.commons.exceptions.IllegalValueException;
-import seedu.tr4cker.model.countdown.Event;
 import seedu.tr4cker.model.daily.Todo;
-import seedu.tr4cker.model.module.ModuleCode;
-import seedu.tr4cker.model.tag.Tag;
-import seedu.tr4cker.model.task.CompletionStatus;
 import seedu.tr4cker.model.task.Deadline;
 import seedu.tr4cker.model.task.Name;
-import seedu.tr4cker.model.task.Task;
-import seedu.tr4cker.model.task.TaskDescription;
-
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;

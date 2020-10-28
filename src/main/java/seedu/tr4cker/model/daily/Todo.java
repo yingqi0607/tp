@@ -1,11 +1,9 @@
 package seedu.tr4cker.model.daily;
 
+import java.util.Objects;
+
 import seedu.tr4cker.model.task.Deadline;
 import seedu.tr4cker.model.task.Name;
-import seedu.tr4cker.model.task.Task;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Objects;
 
 /**
  * Represents a Todo task in Daily tab.
@@ -18,7 +16,7 @@ public class Todo {
     /**
      * Every field must be present and not null.
      */
-    public Todo(Name name, Deadline deadline){
+    public Todo(Name name, Deadline deadline) {
         this.name = name;
         this.deadline = deadline;
     }

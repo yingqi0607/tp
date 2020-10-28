@@ -1,10 +1,10 @@
 package seedu.tr4cker.logic.parser;
 
-import seedu.tr4cker.logic.commands.CountdownCommand;
+import static seedu.tr4cker.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
 import seedu.tr4cker.logic.commands.DailyCommand;
 import seedu.tr4cker.logic.parser.exceptions.ParseException;
 
-import static seedu.tr4cker.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 /**
  * Parses input arguments and creates a new DailyCommand object.

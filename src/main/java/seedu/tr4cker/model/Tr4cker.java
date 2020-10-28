@@ -270,7 +270,7 @@ public class Tr4cker implements ReadOnlyTr4cker {
     }
 
     @Override
-    public ObservableList<Todo> getTodoList(){
+    public ObservableList<Todo> getTodoList() {
         todos.sortTodosAccordingToDeadline();
         return todos.asUnmodifiableObservableList();
     }

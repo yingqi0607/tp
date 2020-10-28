@@ -1,5 +1,9 @@
 package seedu.tr4cker.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.List;
+
 import seedu.tr4cker.commons.core.Messages;
 import seedu.tr4cker.commons.core.index.Index;
 import seedu.tr4cker.logic.commands.exceptions.CommandException;
@@ -8,11 +12,9 @@ import seedu.tr4cker.model.daily.Todo;
 import seedu.tr4cker.model.task.Deadline;
 import seedu.tr4cker.model.task.Name;
 import seedu.tr4cker.model.task.Task;
-import java.util.List;
 
-import static java.util.Objects.requireNonNull;
 
-public class TodoCommand extends Command{
+public class TodoCommand extends Command {
 
     public static final String COMMAND_WORD = "todo";
 

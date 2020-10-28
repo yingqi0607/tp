@@ -1,11 +1,11 @@
 package seedu.tr4cker.logic.parser;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.tr4cker.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
 import seedu.tr4cker.commons.core.index.Index;
 import seedu.tr4cker.logic.commands.TodoCommand;
 import seedu.tr4cker.logic.parser.exceptions.ParseException;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.tr4cker.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 /**
  * Parses input arguments and creates a new TodoCommand object

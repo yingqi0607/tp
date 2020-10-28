@@ -26,7 +26,7 @@ public class ListCommand extends Command {
         ObservableList<Task> taskList = model.getFilteredTaskList();
         String displayListNames = "";
 
-        for(int i = 1; i <= taskList.size(); i++){
+        for (int i = 1; i <= taskList.size(); i++) {
             displayListNames += i + ". " + taskList.get(i - 1).getName().toString() + "\n";
         }
 

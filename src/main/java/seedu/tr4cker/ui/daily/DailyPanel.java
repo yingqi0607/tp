@@ -1,5 +1,7 @@
 package seedu.tr4cker.ui.daily;
 
+import java.util.logging.Logger;
+
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
@@ -8,7 +10,6 @@ import javafx.scene.layout.Region;
 import seedu.tr4cker.commons.core.LogsCenter;
 import seedu.tr4cker.model.daily.Todo;
 import seedu.tr4cker.ui.UiPart;
-import java.util.logging.Logger;
 
 /**
  * Panel containing the list of todos in Daily.
