@@ -3,6 +3,7 @@ package seedu.tr4cker.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.tr4cker.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.tr4cker.model.Model.PREDICATE_SHOW_ALL_EVENTS;
+import static seedu.tr4cker.model.countdown.EventDate.MESSAGE_FUTURE_CONSTRAINT;
 
 import java.util.List;
 import java.util.Objects;
@@ -15,6 +16,7 @@ import seedu.tr4cker.model.countdown.Event;
 import seedu.tr4cker.model.countdown.EventDate;
 import seedu.tr4cker.model.countdown.EventName;
 import seedu.tr4cker.model.task.Task;
+import seedu.tr4cker.model.task.exceptions.TaskConversionException;
 
 /**
  * Allows user to go to Countdown tab.
@@ -101,8 +103,18 @@ public class CountdownCommand extends Command {
         if (index.getZeroBased() >= taskList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
+
         Task taskToConvert = taskList.get(index.getZeroBased());
-        Event eventToAdd = taskToConvert.toEvent();
+
+        Event eventToAdd;
+        try {
+            eventToAdd = taskToConvert.toEvent();
+        } catch (TaskConversionException tce) {
+            throw new CommandException(MESSAGE_FUTURE_CONSTRAINT);
+        }
+        if (model.hasEvent(eventToAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_EVENT);
+        }
         model.addEvent(eventToAdd);
         return new CommandResult(String.format(MESSAGE_ADD_EVENT_SUCCESS, eventToAdd));
     }
