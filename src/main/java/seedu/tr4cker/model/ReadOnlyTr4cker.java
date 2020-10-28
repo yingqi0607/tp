@@ -32,7 +32,6 @@ public interface ReadOnlyTr4cker {
     /**
      * Returns an unmodifiable view of the daily todo list.
      * This list will not contain any duplicate todos.
-     * @return
      */
     ObservableList<Todo> getTodoList();
 }

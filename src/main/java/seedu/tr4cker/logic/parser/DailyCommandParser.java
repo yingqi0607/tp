@@ -11,8 +11,8 @@ import seedu.tr4cker.logic.parser.exceptions.ParseException;
  */
 public class DailyCommandParser implements Parser<DailyCommand> {
     /**
-     * Parses the given {@code String} of arguments in the context of the CountdownCommand
-     * and returns an CountdownCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the DailyCommand
+     * and returns an DailyCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format.
      */
     public DailyCommand parse(String args) throws ParseException {

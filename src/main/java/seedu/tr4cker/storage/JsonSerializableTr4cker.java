@@ -126,7 +126,6 @@ class JsonSerializableTr4cker {
         modulesToModelType(tr4cker);
         tasksToModelType(tr4cker);
         eventsToModelType(tr4cker);
-        modulesToModelType(tr4cker);
         todosToModelType(tr4cker);
         return tr4cker;
     }

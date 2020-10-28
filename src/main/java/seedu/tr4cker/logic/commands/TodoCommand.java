@@ -13,7 +13,9 @@ import seedu.tr4cker.model.task.Deadline;
 import seedu.tr4cker.model.task.Name;
 import seedu.tr4cker.model.task.Task;
 
-
+/**
+ * Allows users to add a todo task in Daily todo list
+ */
 public class TodoCommand extends Command {
 
     public static final String COMMAND_WORD = "todo";
@@ -38,13 +40,13 @@ public class TodoCommand extends Command {
         List<Task> lastShownList = model.getFilteredTaskList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_TODO_DISPLAYED_INDEX);
         }
 
         Task taskToAdd = lastShownList.get(targetIndex.getZeroBased());
-        Name nameOfTaskToAdd = taskToAdd.getName();
-        Deadline deadlineOfTaskToAdd = taskToAdd.getDeadline();
-        Todo todoToAdd = new Todo(nameOfTaskToAdd, deadlineOfTaskToAdd);
+        Name name = taskToAdd.getName();
+        Deadline deadline = taskToAdd.getDeadline();
+        Todo todoToAdd = new Todo(name, deadline);
         if (model.hasTodo(todoToAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_TODO_TASK);
         }
@@ -55,8 +57,11 @@ public class TodoCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
+        if (!(other instanceof TodoCommand)) {// instanceof handles nulls
+            return false;
+        }
         return other == this // short circuit if same object
-                || (other instanceof TodoCommand // instanceof handles nulls
+                || (other instanceof TodoCommand
                 && targetIndex.equals(((TodoCommand) other).targetIndex));
     }
 }

@@ -61,6 +61,9 @@ public class UniqueDailyList implements Iterable<Todo> {
         }
     }
 
+    /**
+     * Replaces the contents of this list with another {@code UniqueDailyList}.
+     */
     public void setTodos(UniqueDailyList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);

@@ -11,6 +11,8 @@ import org.junit.jupiter.api.Test;
 import seedu.tr4cker.model.Model;
 import seedu.tr4cker.model.ModelManager;
 import seedu.tr4cker.model.UserPrefs;
+import seedu.tr4cker.model.task.Task;
+import java.util.List;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
@@ -28,12 +30,28 @@ public class ListCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
+        List<Task> expectedTasksToList = expectedModel.getFilteredTaskList();
+
+        String expectedDisplayListNames = "";
+
+        for (int i = 0; i < expectedTasksToList.size(); i++) {
+            expectedDisplayListNames += (i + 1) + ". " + expectedTasksToList.get(i).getName().toString() + "\n";
+        }
+        String expectedMessage = ListCommand.MESSAGE_SUCCESS + expectedDisplayListNames;
+        assertCommandSuccess(new ListCommand(), model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
         showTaskAtIndex(model, INDEX_FIRST_TASK);
-        assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
+        List<Task> expectedTasksToList = expectedModel.getFilteredTaskList();
+
+        String expectedDisplayListNames = "";
+
+        for (int i = 0; i < expectedTasksToList.size(); i++) {
+            expectedDisplayListNames += (i + 1) + ". " + expectedTasksToList.get(i).getName().toString() + "\n";
+        }
+        String expectedMessage = ListCommand.MESSAGE_SUCCESS + expectedDisplayListNames;
+        assertCommandSuccess(new ListCommand(), model, expectedMessage, expectedModel);
     }
 }

@@ -29,7 +29,7 @@ public class DailyCommand extends Command {
         } else if (!(other instanceof DailyCommand)) {
             return false;
         } else {
-            return false; // to be implemented
+            return false;
         }
     }
 }

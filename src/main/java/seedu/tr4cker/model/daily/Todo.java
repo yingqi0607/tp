@@ -21,6 +21,7 @@ public class Todo {
         this.deadline = deadline;
     }
 
+
     public Name getName() {
         return name;
     }
