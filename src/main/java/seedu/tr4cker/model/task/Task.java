@@ -7,7 +7,6 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.tr4cker.logic.commands.exceptions.CommandException;
 import seedu.tr4cker.model.countdown.Event;
 import seedu.tr4cker.model.countdown.EventDate;
 import seedu.tr4cker.model.countdown.EventName;
@@ -160,7 +159,7 @@ public class Task {
     /**
      * Returns an Event with data from this Task.
      */
-    public Event toEvent()  {
+    public Event toEvent() {
         EventName eventName = new EventName(name.taskName);
         EventDate eventDate;
         try {
