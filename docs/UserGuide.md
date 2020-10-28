@@ -419,15 +419,6 @@ The indicator colours and their meanings are:
 * Green indicator - 2 or lesser tasks due on that date
 * Red indicator - more than 2 tasks due on that date
 
-#### Help tab features
-##### Viewing help : `help`
-
-Shows a message explaining how to access the help page.
-
-![help message](images/helpMessage.png)
-
-Format: `help`
-
 ##### Saving the data
 
 TR4CKER data are saved in the hard disk automatically after any command that changes the data.
