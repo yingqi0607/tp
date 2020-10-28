@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane VBox.vgrow="NEVER">
+    <rowConstraints>
+        <RowConstraints vgrow="NEVER" minHeight="200" prefHeight="200" />
+    </rowConstraints>
+    <VBox alignment="CENTER" minHeight="105" GridPane.columnIndex="0">
+        <padding>
+            <Insets bottom="5" left="15" right="5" top="5" />
+        </padding>
+        <Label fx:id="daysRemaining" styleClass="cell_big_label">
+            <minWidth>
+                <!-- Ensures that the label text is never truncated -->
+                <Region fx:constant="USE_PREF_SIZE" />
+            </minWidth>
+            <VBox.margin>
+                <Insets left="10.0" />
+            </VBox.margin>
+        </Label>
+        <Label fx:id="eventName" styleClass="cell_big_label" text="\$eventName" wrapText="true">
+            <VBox.margin>
+                <Insets left="10.0" />
+            </VBox.margin></Label>
+
+    </VBox>
+    <rowConstraints>
+        <RowConstraints />
+    </rowConstraints>
+</GridPane>
+
+</VBox>

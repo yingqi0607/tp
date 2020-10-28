@@ -54,6 +54,12 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of todos. */
     ObservableList<Todo> getFilteredTodoList();
 
+    /** Returns the first upcoming event in list of events. */
+    Event getFirstEvent();
+
+    /** Returns the second upcoming event in list of events. */
+    Event getSecondEvent();
+
     /** Updates an unmodifiable view of the filtered list of tasks for Module tab. */
     void updateFilteredModuleList(Predicate<Module> predicate);
 

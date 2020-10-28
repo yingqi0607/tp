@@ -1,5 +1,7 @@
 package seedu.tr4cker.logic;
 
+import static java.util.Objects.requireNonNull;
+
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.function.Predicate;
@@ -91,7 +93,17 @@ public class LogicManager implements Logic {
 
     @Override
     public ObservableList<Event> getFilteredEventList() {
-        return model.getFilteredEventsList();
+        return model.getFilteredEventList();
+    }
+
+    @Override
+    public Event getFirstEvent() {
+        return model.getFirstEvent();
+    }
+
+    @Override
+    public Event getSecondEvent() {
+        return model.getSecondEvent();
     }
 
     @Override
@@ -111,6 +123,7 @@ public class LogicManager implements Logic {
 
     @Override
     public void updatePlannerFilteredTaskList(TaskDueInPredicate taskDueInPredicate) {
+        requireNonNull(taskDueInPredicate);
         model.updatePlannerFilteredTaskList(taskDueInPredicate);
     }
 

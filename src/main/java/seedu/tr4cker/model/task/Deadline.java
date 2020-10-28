@@ -96,4 +96,11 @@ public class Deadline {
         return dateTime.hashCode();
     }
 
+    /**
+     * Returns the Date only component of {@code dateTime}.
+     */
+    public String toDate() {
+        return toString().split(" ")[0];
+    }
+
 }

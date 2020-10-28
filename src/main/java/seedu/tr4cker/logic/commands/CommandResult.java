@@ -24,6 +24,9 @@ public class CommandResult {
     /** TR4CKER shows Module tab. */
     private boolean showModules;
 
+    /** TR4CKER shows Home tab. */
+    private boolean showHome;
+
     /** TR4CKER shows Planner tab. */
     private boolean showPlanner;
 
@@ -91,6 +94,7 @@ public class CommandResult {
         newCommandResult.showModules = true;
         newCommandResult.showPlanner = false;
         newCommandResult.showCountdown = false;
+        newCommandResult.showDaily = false;
         return newCommandResult;
     }
 
@@ -107,8 +111,26 @@ public class CommandResult {
         return newCommandResult;
     }
 
+    /*
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
+     * For usage of HomeCommand.
+     */
+    public static CommandResult createHomeTabSwitchCommandResult(String feedbackToUser) {
+        CommandResult newCommandResult = new CommandResult(feedbackToUser);
+        newCommandResult.showHome = true;
+        newCommandResult.showModules = false;
+        newCommandResult.showPlanner = false;
+        newCommandResult.showCountdown = false;
+        newCommandResult.showDaily = false;
+        return newCommandResult;
+    }
+
     public String getFeedbackToUser() {
         return feedbackToUser;
+    }
+
+    public void setHomeTab() {
+        showHome = true;
     }
 
     public boolean isShowHelp() {
@@ -125,6 +147,10 @@ public class CommandResult {
 
     public boolean isShowPlanner() {
         return showPlanner;
+    }
+
+    public boolean isShowHome() {
+        return showHome;
     }
 
     public boolean isShowCountdown() {

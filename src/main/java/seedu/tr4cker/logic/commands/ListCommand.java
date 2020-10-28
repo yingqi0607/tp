@@ -30,6 +30,8 @@ public class ListCommand extends Command {
             displayListNames += i + ". " + taskList.get(i - 1).getName().toString() + "\n";
         }
 
-        return new CommandResult(MESSAGE_SUCCESS + displayListNames);
+        CommandResult commandResult = new CommandResult(MESSAGE_SUCCESS + displayListNames);
+        commandResult.setHomeTab();
+        return commandResult;
     }
 }
