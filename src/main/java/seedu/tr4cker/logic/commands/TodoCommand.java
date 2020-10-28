@@ -57,7 +57,7 @@ public class TodoCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        if (!(other instanceof TodoCommand)) {// instanceof handles nulls
+        if (!(other instanceof TodoCommand)) { // instanceof handles nulls
             return false;
         }
         return other == this // short circuit if same object

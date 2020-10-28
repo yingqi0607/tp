@@ -81,13 +81,13 @@ public class SampleDataUtil {
 
     public static Todo[] getSampleTodos() {
         return new Todo[] {
-                new Todo(new Name("GEQ1000 Tutorial 3"), new Deadline("10-Oct-2019 1800", false)),
-                new Todo(new Name("GER1000 Graded Assignment 4"), new Deadline("20-Oct-2019 1800", false)),
-                new Todo(new Name("CS2103T Project"), new Deadline("13-Sep-2021 1500", false)),
-                new Todo(new Name("CS2100 MidTerms"), new Deadline("12-Oct-2021 1200", false)),
-                new Todo(new Name("CS2101 OP2"), new Deadline("14-Apr-2021 1010", false)),
-                new Todo(new Name("CS1231S Graded Assignment"), new Deadline("25-Dec-2021 0000", false))
-
+            new Todo(new Name("GEQ1000 Tutorial 3"), new Deadline("10-Oct-2019 1800", false)),
+            new Todo(new Name("GER1000 Graded Assignment 4"), new Deadline("20-Oct-2019 1800", false)),
+            new Todo(new Name("CS2103T Project"), new Deadline("13-Sep-2021 1500", false)),
+            new Todo(new Name("CS2100 MidTerms"), new Deadline("12-Oct-2021 1200", false)),
+            new Todo(new Name("CS2101 OP2"), new Deadline("14-Apr-2021 1010", false)),
+            new Todo(new Name("CS1231S Graded Assignment"), new Deadline("25-Dec-2021 0000", false))
+                
         };
     }
 
