@@ -3,24 +3,40 @@ layout: page
 title: User Guide to TR4CKER
 ---
 
+1. [Overview](#Overview)
+    1. [About TR4CKER](#1.1.About TR4CKER)
+    2. [About this User Guide](#1.2.About this User Guide)
+2. [Quick Start](#2.Quick Start)    
+3. [Commands]()
+
+## 1. Overview
+
+### 1.1. About TR4CKER     
 TR4CKER is a desktop app that helps SoC students track their tasks, meet their deadlines, and stay productive. It is 
 optimized for Computing students familiar with Command Line Interface (CLI), who can manage their tasks efficiently by typing in commands.
 
-* Table of Contents
-{:toc}
+### 1.2. About this User Guide
+This User Guide explains how to use TR4CKER, as well as provides an understanding of the features and commands and some 
+common use cases of this application.  
+  
+In this guide, we cover:
+1. How to navigate the Graphical User Interface (GUI) 
+2. How to use the Command Line Interface (CLI)
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## 2. Quick Start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-2. Download the latest `tr4cker.jar` from [here](https://github.com/AY2021S1-CS2103T-T10-2/tp/releases/tag/v1.1).
+2. Download the latest `tr4cker.jar` from [here](https://github.com/AY2021S1-CS2103T-T10-2/tp/releases/tag/v1.3).
 
 3. Copy the file to the folder you want to use as the _home folder_ for your TR4CKER.
 
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
+   
+   Figure 1: Application home page populated with sample data
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -66,32 +82,104 @@ description`, with a deadline of `8 Sep 2020, 1700 hrs` and with an `urgent` tag
 
 </div>
 
-### Tabs
-- TR4CKER
-- Daily
-- Modules
-- Countdown
-- Planner
-- Help
+## 3. Commands
 
-#### TR4CKER tab features
-##### Adding a new task: `add`
+#### 3.1. Common Commands
 
-You can add a new task to TR4CKER.
+##### 3.1.1. Viewing help : `help`
+If you cannot recall the command you need, you can enter the help command in any panel.
+A help window will pop out with a link to this User Guide.
 
-Default deadline time would be set to 2359 if you do not provide a deadline time.
+![help message](images/helpMessage.png)
 
-You should enter time in this format: yyyy-MM-dd HHmm
+Figure 2: Expected result after running `help`
 
-Format: `add n/NAME dl/DEADLINE des/description [t/TAG]…​`
+##### 3.1.2. Exiting the program: `exit`
+
+You can exit the program anytime by entering the `exit` command in any panel.
+
+Format: `exit`
+
+##### 3.1.3. Switching between tabs
+
+You can switch between tabs by using the following commands:
+
+| Command    | Tab switched to |
+| :----------| :--------------:|
+|  `home`    | Home            |
+|  `daily`   | Daily           |
+|  `mod`     | Modules         |
+| `countdown`| Countdowns      | 
+|  `planner` | Planner         |
+
+Table 1: List of Switch Tab commands
+
+### 3.2. Home (Han Wei)
+
+TR4CKER is primarily a task management application that allows you to track and manage your tasks comprehensively.
+
+TR4CKER's Home page was built for this purpose and you will be directed to this page once you start TR4CKER.
+  
+#### 3.2.1. Reading the Task lists
+
+For the ease of reading, tasks are split into 3 sections and are displayed separately, namely:
+1. Pending Tasks
+2. Expired Tasks
+3. Completed Tasks
+
+![Ui](images/Ui.png)
+
+Figure 2: Application home page populated by sample data
+
+The leftmost panel displays Pending tasks that are not overdue and not completed.
+On the other hand, the Expired Tasks panel displays tasks that are overdue but have yet to be completed.
+Lastly, the Completed Tasks panel displays completed tasks for archive purposes.
+
+#### 3.2.2. Command format for Task list Commands
+
+The syntax of the `add` command is `add n/NAME des/DESCRIPTION [m/MODULE_CODE] [dl/DEADLINE] [t/TAG]... ` and it will be used as an
+example to explain the following points:
+
+1. Parts of the command in UPPER_CASE represent command parameters that have to be supplied by you. Using the given example, 
+DESCRIPTION represents a field where you provide the task description, such as des/Graded assignment 2.   
+
+2. Parameters in square brackets are optional, such as the Tag parameter in the given example.
+
+3. Parameters with a trailing `...` are optional and may be used as many times as you want, or even be omitted. 
+
+4. Parameters can be entered in any order.
+
+##### 3.1.3. Adding a task: `add`
+
+You can add a task to TR4CKER using the `add` command when you want to start working on a new task.
+
+Format: `add n/NAME des/description [m/MODULE_CODE] [dl/DEADLINE] [t/TAG]…​` 
+
+![AddCommand](images/AddCommand.png) 
+
+Figure 3: Example of an expected result after excecuting `add n/UG Introduction des/TableOfContents m/CS2103T t/Urgent t/Important`
+
+Important points to note when entering Deadline:
+1. While Deadline is an optional parameter, TR4CKER will set the Deadline to default values if you do not enter a Deadline:
+    * If Deadline is not entered, it will be set to Today, 2359 if Deadline
+    * If Deadline date is entered without time, Deadline time will be set to 2359
+2. DateTime formats accepted for Deadline:
+    * dd-MM-yyyy HHmm, dd-MMM-yyy HHmm, dd-MM-yyy, dd-MMM-yyyy
+        * dd: the corresponding days in 2 numbers
+        * MM: the corresponding month in 2 numbers
+        * MMM: the corresponding month in 3 letters
+        * yyyy: the corresponding year in 4 numbers
+        * HH: the hour the task is due, in 24-Hour format
+        * mm: the minute the task is due
+
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A task can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/CS1101S Quiz dl/2020-01-25 des/Post-Lecture quiz`
-* `add n/CS1231S Homework Assignment dl/2020-09-08 2200 des/task 1 description t/assignment t/urgent`
+* `add n/CS1101S Quiz dl/25-01-2020 m/CS1101S des/Post-Lecture quiz`
+* `add n/CS1231S Homework Assignment dl/09-Aug-2021 2200 des/Chapter 3 t/graded t/assignment`
 
 ##### Listing all tasks: `list`
 
@@ -190,12 +278,6 @@ Examples:
 Clears all entries from TR4CKER.
 
 Format: `clear`
-
-##### Exiting TR4CKER: `exit`
-
-Exits the program.
-
-Format: `exit`
 
 #### Daily tab features
 
@@ -330,15 +412,6 @@ The indicator colours and their meanings are:
 * No indicator - no tasks due on that date
 * Green indicator - 2 or lesser tasks due on that date
 * Red indicator - more than 2 tasks due on that date
-
-#### Help tab features
-##### Viewing help : `help`
-
-Shows a message explaining how to access the help page.
-
-![help message](images/helpMessage.png)
-
-Format: `help`
 
 ##### Saving the data
 
