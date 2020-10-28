@@ -12,6 +12,7 @@ import seedu.tr4cker.model.countdown.EventDate;
 import seedu.tr4cker.model.countdown.EventName;
 import seedu.tr4cker.model.module.ModuleCode;
 import seedu.tr4cker.model.tag.Tag;
+import seedu.tr4cker.model.task.exceptions.TaskConversionException;
 
 /**
  * Represents a Task in TR4CKER.
@@ -160,7 +161,12 @@ public class Task {
      */
     public Event toEvent() {
         EventName eventName = new EventName(name.taskName);
-        EventDate eventDate = new EventDate(deadline.toDate());
+        EventDate eventDate;
+        try {
+            eventDate = new EventDate(deadline.toDate(), true);
+        } catch (IllegalArgumentException iae) {
+            throw new TaskConversionException();
+        }
         return new Event(eventName, eventDate);
     }
 

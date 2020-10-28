@@ -2,7 +2,12 @@ package seedu.tr4cker.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.tr4cker.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_COUNTDOWN_DATE;
+import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_COUNTDOWN_DELETE;
+import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_COUNTDOWN_NEW;
+import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_COUNTDOWN_TASK;
 import static seedu.tr4cker.model.Model.PREDICATE_SHOW_ALL_EVENTS;
+import static seedu.tr4cker.model.countdown.EventDate.MESSAGE_FUTURE_CONSTRAINT;
 
 import java.util.List;
 import java.util.Objects;
@@ -15,6 +20,7 @@ import seedu.tr4cker.model.countdown.Event;
 import seedu.tr4cker.model.countdown.EventDate;
 import seedu.tr4cker.model.countdown.EventName;
 import seedu.tr4cker.model.task.Task;
+import seedu.tr4cker.model.task.exceptions.TaskConversionException;
 
 /**
  * Allows user to go to Countdown tab.
@@ -23,15 +29,19 @@ public class CountdownCommand extends Command {
 
     public static final String COMMAND_WORD = "countdown";
 
+    public static final String PROMPT = "Note:\n"
+            + PREFIX_COUNTDOWN_NEW + "NAME " + PREFIX_COUNTDOWN_DATE + "DATE " + "to add a new event\n"
+            + PREFIX_COUNTDOWN_DELETE + "INDEX " + "to delete an event\n"
+            + PREFIX_COUNTDOWN_TASK + "TASK_INDEX " + "to add an event based on a task in task list";
+
     public static final String MESSAGE_SWITCH_TAB_USAGE = COMMAND_WORD + ": Switches to Countdown tab\n"
-            + "Example: " + COMMAND_WORD + "\n"
-            + "Note: ";
+            + "Example: " + COMMAND_WORD + "\n" + PROMPT;
 
-    public static final String MESSAGE_SWITCH_TAB_SUCCESS = "Switched to Countdown tab!";
+    public static final String MESSAGE_SWITCH_TAB_SUCCESS = "Switched to Countdown tab!\n" + PROMPT;
 
-    public static final String MESSAGE_DELETE_EVENT_SUCCESS = "Deleted Event from Countdowns: %1$s";
+    public static final String MESSAGE_DELETE_EVENT_SUCCESS = "Deleted event from Countdowns: %1$s";
 
-    public static final String MESSAGE_ADD_EVENT_SUCCESS = "New Event added to Countdowns added: %1$s";
+    public static final String MESSAGE_ADD_EVENT_SUCCESS = "New event added to Countdowns added: %1$s";
 
     public static final String MESSAGE_DUPLICATE_EVENT = "This event already exists in TR4CKER.";
 
@@ -101,8 +111,18 @@ public class CountdownCommand extends Command {
         if (index.getZeroBased() >= taskList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
+
         Task taskToConvert = taskList.get(index.getZeroBased());
-        Event eventToAdd = taskToConvert.toEvent();
+
+        Event eventToAdd;
+        try {
+            eventToAdd = taskToConvert.toEvent();
+        } catch (TaskConversionException tce) {
+            throw new CommandException(MESSAGE_FUTURE_CONSTRAINT);
+        }
+        if (model.hasEvent(eventToAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_EVENT);
+        }
         model.addEvent(eventToAdd);
         return new CommandResult(String.format(MESSAGE_ADD_EVENT_SUCCESS, eventToAdd));
     }

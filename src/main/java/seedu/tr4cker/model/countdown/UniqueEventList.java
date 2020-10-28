@@ -157,7 +157,7 @@ public class UniqueEventList implements Iterable<Event> {
      * @return Second earliest upcoming event.
      */
     public Event secondEvent() {
-        if (internalUnmodifiableList.size() < 1) {
+        if (internalUnmodifiableList.size() < 2) {
             return null;
         }
         sortEventsByDate();
