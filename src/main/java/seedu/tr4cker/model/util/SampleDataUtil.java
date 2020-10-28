@@ -75,7 +75,6 @@ public class SampleDataUtil {
             new Event(new EventName("CS2101 OP2 Demo"), new EventDate("03-11-2020")),
             new Event(new EventName("CS2101 OP2 Pitch"), new EventDate("06-11-2020")),
             new Event(new EventName("Christmas"), new EventDate("25-Dec-2020")),
-
         };
     }
 
@@ -87,7 +86,6 @@ public class SampleDataUtil {
             new Todo(new Name("CS2100 MidTerms"), new Deadline("12-Oct-2021 1200", false)),
             new Todo(new Name("CS2101 OP2"), new Deadline("14-Apr-2021 1010", false)),
             new Todo(new Name("CS1231S Graded Assignment"), new Deadline("25-Dec-2021 0000", false))
-                
         };
     }
 
