@@ -10,13 +10,15 @@ title: User Guide to TR4CKER
 3. [Commands]()
 
 ## 1. Overview
+Welcome to the User Guide of TR4CKER!
 
 ### 1.1. About TR4CKER     
 TR4CKER is a desktop app that helps SoC students track their tasks, meet their deadlines, and stay productive. It is 
-optimized for Computing students familiar with Command Line Interface (CLI), who can manage their tasks efficiently by typing in commands.
+optimized for Computing students familiar with Command Line Interface (CLI), who can manage their tasks efficiently
+by typing in commands.
 
 ### 1.2. About this User Guide
-This User Guide explains how to use TR4CKER, as well as provides an understanding of the features and commands and some 
+This User Guide explains how to use TR4CKER, as well as provides an understanding of the features and commands, and some 
 common use cases of this application.  
   
 In this guide, we cover:
@@ -283,7 +285,7 @@ Format: `clear`
 
 #### Modules tab features
 
-#### Countdown tab features
+#### Countdown tab features (Wen Ling)
 You can countdown to your most essential upcoming events in the Countdown tab. You can know at a quick glance, how many
 you have left to that Final Exam or that birthday party.
 
@@ -292,7 +294,7 @@ To switch to the Countdown tab, simply type `countdown` into the command line. Y
 on the tabs menu at the top.
 
 Format: `countdown`
-Once you have enter this command, TR4CKER should look like this:
+Once you have entered this command, TR4CKER should look like this:
 ![switch tab](images/countdowntab_switchtab.png)
 Figure x: TR4CKER after executing `countdown`
 
@@ -324,7 +326,7 @@ Figure x: TR4CKER after executing `countdown n/ES2660 Final Presentation d/05-No
 
 ##### Adding an event from tasks list
 You can add an event that is based on a current task in the tasks list (as seen in the homepage of TR4CKER under the
-pending tasks panel) to your list of countdowns. TR4CKER will help you to countdown to this event, in addition to
+`Pending Tasks` panel) to your list of countdowns. TR4CKER will help you to countdown to this event, in addition to
 tracking it in the tasks list.
 
 Format: `countdown task/INDEX`
