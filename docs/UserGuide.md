@@ -4,27 +4,27 @@ title: User Guide to TR4CKER
 ---
 
 1. [Overview](#1-overview)
-    1. [About TR4CKER](#1.1.About TR4CKER)
-    2. [About this User Guide](#1.2.About this User Guide)
-2. [Quick Start](#2.Quick Start)    
-3. [Commands]()
-    * 3.1. Common Commands
-        * 3.1.1. Viewing help: `help`
-        * 3.1.2. Exiting the program: `exit`
-        * 3.1.3. Switching between tabs
-    * 3.2. Home Tab
-        * 3.2.1. Reading the Task lists
-        * 3.2.2. Command format for Task list Commands
-        * 3.2.3. Adding new tasks: `add`
-        * 3.2.4. Listing all tasks: `list`
-        * 3.2.5. Marking Pending tasks as done: `done`
-        * 3.2.6. Editing Pending tasks: `edit`
-        * 3.2.7. Editing tags for Pending tasks: `tag`
-        * 3.2.8. Locating Pending tasks by keywords: `find`
-        * 3.2.9. Deleting Pending tasks: `delete`
-        * 3.2.10. Editing Expired tasks: `edit expired`
-        * 3.2.11. Deleting Expired tasks: `delete expired`
-        * 3.2.12. Clearing all tasks: `clear`
+    1. [About TR4CKER](#11-about-tr4cker)
+    2. [About this User Guide](#12-about-this-user-guide)
+2. [Quick Start](#2-quick-start)    
+3. [Commands](#3-commands)
+    * 3.1. [Common Commands](#31-common-commands)
+        * 3.1.1. [Viewing help: `help`](#311-viewing-help--help)
+        * 3.1.2. [Exiting the program: `exit`](#312-exiting-the-program-exit)
+        * 3.1.3. [Switching between tabs](#313-switching-between-tabs)
+    * 3.2. [Home Tab](#32-home-han-wei)
+        * 3.2.1. [Reading the Task lists](#321-reading-the-task-lists)
+        * 3.2.2. [Command format for Task list Commands](#322-command-format-for-task-list-commands)
+        * 3.2.3. [Adding new tasks: `add`](#323-adding-new-tasks-add)
+        * 3.2.4. [Listing all tasks: `list`](#324-listing-all-tasks-list)
+        * 3.2.5. [Marking Pending tasks as done: `done`](#325-marking-tasks-as-done-done)
+        * 3.2.6. [Editing Pending tasks: `edit`](#326-editing-pending-tasks-edit)
+        * 3.2.7. [Editing tags of Pending tasks: `tag`](#327-editing-tags-of-pending-tasks-tag)
+        * 3.2.8. [Locating Pending tasks by keywords: `find`](#328-locating-pending-tasks-by-keyword-find)
+        * 3.2.9. [Deleting Pending tasks: `delete`](#329-deleting-pending-tasks--delete)
+        * 3.2.10. [Editing Expired tasks: `edit expired`](#3210-editing-expired-tasks-edit-expired)
+        * 3.2.11. [Deleting Expired tasks: `delete expired`](#3211-deleting-expired-tasks--delete-expired)
+        * 3.2.12. [Clearing all tasks: `clear`](#clearing-all-tasks-clear)
 
 ## 1. Overview
 
@@ -222,9 +222,7 @@ Examples:
 * `list` followed by `done 2 p/50` marks the 2nd task in the displayed task list as 50% done.
 * `find tutorial` followed by `done 1` marks the 1st task in the results of the `find` command as 100% done.
 
-##### 3.2.6. Editing a task
-
-##### 3.2.6.1. Editing a Pending Task: `edit`
+##### 3.2.6. Editing Pending tasks: `edit`
 
 You can edit an existing Pending task in TR4CKER by using the `edit` command when the need arises.
 
@@ -240,22 +238,7 @@ Examples:
 * `edit 1 n/prepare for tP tasks` - Edits the description of the 1st task to be `prepare for tP tasks`.
 * `edit 2 dl/13-Dec-2020 1930` - Edits the deadline time of the 2nd task to be 13 Dec 2020, 1930 hrs.
 
-##### 3.2.6.2. Editing an Expired Task: `edit expired`
-
-The usage of this command is similar to the `edit` command for a Pending task.
-
-Format: `edit expired INDEX [n/NAME] [dl/DEADLINE] [des/TASK_DESCRIPTION]`
-
-<div markdown="block" class="alert alert-info">
-
-**:information_source: If you edit the Deadline of an Expired Task:**<br>
-
-Editing the Deadline of an Expired task will turn the task into a Pending task because new Deadline entered
-must be a future Deadline. Hence, the edited task will be displayed under the Pending Task panel instead.
-
-</div>
-
-##### Editing tags: `tag`
+##### 3.2.7. Editing tags of Pending tasks: `tag`
 
 You can add or delete tags of a Pending task in TR4CKER.
 
@@ -277,25 +260,28 @@ Examples:
 * `tag 3 new/urgent del/assignment new/graded` - Adds 2 new tags `urgent` and `graded`, deletes the tag `assignment`
 from the 3rd task.
 
-##### Locating tasks by keyword: `find`
+##### 3.2.8. Locating Pending tasks by keyword: `find`
 
 You can find tasks whose names contain any of the given keywords.
 
 Format: `find [KEYWORD_1] [KEYWORD_2] ...`
 
-* The search is case-insensitive. e.g `cs2101` will match `CS2101`
-* The order of the keywords does not matter. e.g. `Presentation CS2101` will match `CS2101 Presentation`
+![FindCommand](images/FindCommand.png)
+
+Figure 5: Example of an expected result after executing `find cs2103T Assignment`
+
+* The search is case-insensitive. e.g `cs2103T` will match `CS21013T`
+* The order of the keywords does not matter. e.g. `Assignment CS2103T` will match `CS2103T Assignment`
 * Only the name is searched.
 * Only full words will be matched e.g. `2101` will not match `CS2101`
 * Tasks matching at least one keyword will be returned.
-  e.g. `find CS2101 project` will return `CS2101 Oral Presentation 1`, `CS2103T team project`
+  e.g. `find CS2103T Assignment` will return `CS2103T Project`, `CS2100 Assignment 3`
 
 Examples:
 * `find CS2101` returns `CS2101 Oral Presentation 1`
-* `find CS1231S Mission` returns `CS1101S Mission`, `CS1231S Graded Assignment`<br>
-  ![result for 'find CS1231S Mission'](images/findCS1231SmissionResult.png)
+* `find CS1231S Mission` returns `CS1101S Mission`, `CS1231S Graded Assignment`
 
-##### Deleting an existing task : `delete`
+##### 3.2.9. Deleting Pending tasks : `delete`
 
 You can delete an existing task from the task list by providing the 
 index number of the task that you want to delete.
@@ -310,9 +296,38 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd task in the displayed task list.
 * `find assignment` followed by `delete 1` deletes the 1st task in the results of the `find` command.
 
-##### Clearing all tasks: `clear`
+##### 3.2.10. Editing Expired tasks: `edit expired`
 
-Clears all entries from TR4CKER.
+The usage of this command is similar to the `edit` command for a Pending task.
+
+Format: `edit expired INDEX [n/NAME] [dl/DEADLINE] [des/TASK_DESCRIPTION]`
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: If you edit the Deadline of an Expired Task:**<br>
+
+Editing the Deadline of an Expired task will turn the task into a Pending task because new Deadline entered
+must be a future Deadline. Hence, the edited task will be displayed under the Pending Task panel instead.
+
+</div>
+
+##### 3.2.11. Deleting Expired tasks : `delete expired`
+
+The usage of this command is similar to the `delete` command for a Pending task.
+
+Format: `delete expired INDEX`
+
+* Deletes the task at the specified `INDEX`.
+* The index refers to a valid index number shown in the displayed task list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `list` followed by `delete 2` deletes the 2nd task in the displayed task list.
+* `find assignment` followed by `delete 1` deletes the 1st task in the results of the `find` command.
+
+##### 3.2.12. Clearing all tasks: `clear`
+
+Clears all entries in TR4CKER.
 
 Format: `clear`
 
