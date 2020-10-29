@@ -3,11 +3,13 @@ layout: page
 title: User Guide to TR4CKER
 ---
 
-1. [Overview](#Overview)
-    1. [About TR4CKER](#1.1.About TR4CKER)
-    2. [About this User Guide](#1.2.About this User Guide)
-2. [Quick Start](#2.Quick Start)    
-3. [Commands]()
+1. [Overview](#1.-Overview)
+    1.1. [About TR4CKER](#1.1.-About-TR4CKER)
+    1.2. [About this User Guide](#1.2.-About-this-User-Guide)
+2. [Quick Start](#2.-Quick-Start)    
+3. [Commands](#3.-Commands)
+    3.1 [Common Commands](#3.1.-Common-Commands)
+    3.2 [Home (Han Wei)](#3.2.-Home-(Han-Wei))
 
 ## 1. Overview
 Welcome to the User Guide of TR4CKER!
