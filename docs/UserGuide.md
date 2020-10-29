@@ -25,6 +25,8 @@ title: User Guide to TR4CKER
         * 3.2.10. [Editing Expired tasks: `edit expired`](#3210-editing-expired-tasks-edit-expired)
         * 3.2.11. [Deleting Expired tasks: `delete expired`](#3211-deleting-expired-tasks--delete-expired)
         * 3.2.12. [Clearing all tasks: `clear`](#clearing-all-tasks-clear)
+4. [FAQ](#faq)
+5. [Command Summary](#command-summary)
 
 ## 1. Overview
 Welcome to the User Guide of TR4CKER!
@@ -56,27 +58,6 @@ In this guide, we cover:
    ![Ui](images/Ui.png)
    
    Figure 1: Application home page populated with sample data
-
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
-
-    * **`add`**`n/task 1 dl/20-Dec-2020 1700 des/task 1 description t/urgent`: Adds a task named `task 1` with description `task 1
-description`, with a deadline of `20 Dec 2020, 1700 hrs` and with an `urgent` tag into TR4CKER.
-
-    * **`done`**`1`: Marks the 1st task as done.
-
-    * **`delete`**`3`: Deletes the 3rd task shown in the current task list.
-
-    * **`edit`**`1 n/actually task 2`: Edits 1st task's name to be `actually task 2`.
-
-    * **`tag`**`1 new/urgent`: Adds `urgent` tag to existing tags of 1st task.
-
-    * **`find`**`task`: Finds the tasks with `task` as a keyword.
-
-    * **`list`**: Lists all tasks in current task list.
-
-    * **`exit`**: Exits TR4CKER.
-
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -116,7 +97,8 @@ Table 1: List of Switch Tab commands
 
 TR4CKER is primarily a task management application that allows you to track and manage your tasks comprehensively.
 
-TR4CKER's Home page was built for this purpose and you will be directed to this page once you start TR4CKER.
+TR4CKER's Home page was built for this purpose and you will be directed to this page once you start TR4CKER. Alternatively,
+ you can use enter `home` on the Command Box to navigate to this page.
   
 #### 3.2.1. Reading the Task lists
 
@@ -157,11 +139,14 @@ DESCRIPTION represents a field where you provide the task description, such as d
 
 You can add a task to TR4CKER using the `add` command when you want to start working on a new task.
 
-Format: `add n/NAME des/description [m/MODULE_CODE] [dl/DEADLINE] [t/TAG]…​` 
+Format: `add n/NAME des/DESCRIPTION [m/MODULE_CODE] [dl/DEADLINE] [t/TAG]…​` 
 
 ![AddCommand](images/AddCommand.png) 
 
 Figure 3: Example of an expected result after executing `add n/UG Introduction des/TableOfContents m/CS2103T t/Urgent t/Important`
+
+Before you can add a task with module, you need to ensure that the module is already entered into TR4CKER. 
+You can refer to the section on Module Tab to find out more.
 
 <div markdown="block" class="alert alert-info">
 
@@ -228,7 +213,7 @@ Examples:
 
 You can edit an existing Pending task in TR4CKER by using the `edit` command when the need arises.
 
-Format: `edit INDEX [n/NAME] [dl/DEADLINE] [des/TASK_DESCRIPTION]`
+Format: `edit INDEX [n/NAME] [dl/DEADLINE] [des/DESCRIPTION]`
 
 * Edits the task's name, deadline and description at the specified `INDEX`.
 * The index refers to the index number shown in the task list.
@@ -302,7 +287,7 @@ Examples:
 
 The usage of this command is similar to the `edit` command for a Pending task.
 
-Format: `edit expired INDEX [n/NAME] [dl/DEADLINE] [des/TASK_DESCRIPTION]`
+Format: `edit expired INDEX [n/NAME] [dl/DEADLINE] [des/DESCRIPTION]`
 
 <div markdown="block" class="alert alert-info">
 
@@ -563,14 +548,17 @@ the data of your previous TR4CKER home folder.
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME dl/DEADLINE des/TASKDESCRIPTION [t/TAG]…​` <br> e.g., `add n/task 1 dl/2020-09-08 des/task 1 description t/urgent t/priority`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Done** | `done INDEX`<br> e.g., `done 1`
-**Edit** | `edit INDEX [n/NAME] [dl/DEADLINE] [des/TASKDESCRIPTION]`<br> e.g.,`edit 2 n/task 1 dl/2020-09-08`
-**Exit** | `exit`
-**Find** | `find [KEYWORD_1] [KEYWORD_2] ...`<br> e.g., `find task 1`
-**Help** | `help`
-**List** | `list`
+* **Help**: `help`
+* **Exit**: `exit`
+* **Add**: `add n/NAME des/DESCRIPTION [dl/DEADLINE] [m/MODULE_CODE] [t/TAG]...`
+* **List**: `list`
+* **Done**: `done INDEX [p/COMPLETION_STATUS]`
+* **Edit Pending tasks**: `edit INDEX [n/NAME] [des/DESCRIPTION] [dl/DEADLINE]`
+* **Edit Tags of Pending tasks**: `tag INDEX [old/TAG_TO_DELETE]... [new/NEW_TAG]...`
+* **Find Pending tasks**: `find [KEYWORD]...`
+* **Delete Pending tasks**: `delete INDEX`
+* **Edit Expired tasks**: `edit expired INDEX [n/NAME] [dl/DEADLINE] [des/DESCRIPTION]`
+* **Delete Expired tasks**: `delete expired INDEX`
+* **Clear all tasks**: `clear`
+
+
