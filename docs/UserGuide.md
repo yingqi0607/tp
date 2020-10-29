@@ -98,7 +98,7 @@ Table 1: List of Switch Tab commands
 TR4CKER is primarily a task management application that allows you to track and manage your tasks comprehensively.
 
 TR4CKER's Home page was built for this purpose and you will be directed to this page once you start TR4CKER. Alternatively,
- you can use enter `home` on the Command Box to navigate to this page.
+ you can enter `home` on the Command Box to navigate to this page.
   
 #### 3.2.1. Reading the Task lists
 
