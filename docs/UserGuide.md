@@ -26,6 +26,8 @@ title: User Guide
         * 3.2.11. [Deleting Expired tasks: `delete expired`](#3211-deleting-expired-tasks--delete-expired)
         * 3.2.12. [Clearing all tasks: `clear`](#3212-clearing-all-tasks-clear)
     * 3.3. [Daily Tab](#33-daily-yingqi)
+        * 3.3.1 [Switching to Daily tab: `countdown`](#331-switching-to-daily-tab-daily)
+        * 3.3.2 [Adding a daily todo task](#332-adding-a-daily-todo-task-todo)
     * 3.4. [Modules Tab](#34-modules-ethan)
     * 3.5. [Countdown Tab](#35-countdown-wen-ling)
         * 3.5.1 [Switching to Countdown tab: `countdown`](#351-switching-to-countdown-tab-countdown)
@@ -76,8 +78,7 @@ In this guide, we cover:
    Figure 1: Application home page populated with sample data
 
 --------------------------------------------------------------------------------------------------------------------
-
-## Features
+## 3. Commands
 
 <div markdown="block" class="alert alert-info">
 
@@ -97,7 +98,6 @@ In this guide, we cover:
 
 </div>
 
-## 3. Commands
 
 #### 3.1. Common Commands
 
@@ -359,7 +359,7 @@ Format: `clear`
 ### 3.3 Daily (Yingqi)
 You can add all your daily plans of current tasks to a daily to do list so that you have a clearer idea of what you want to complete for the day.
 
-##### Switching to Daily tab: `daily`
+#### 3.3.1 Switching to Daily tab: `daily`
 If you would like to switch to Daily tab without clicking on the Daily tab button, you can do so easily through the CLI, by just typing `daily`.
 
 Format: `daily`
@@ -371,7 +371,7 @@ Figure 1: TR4CKER after executing `daily`.
 Example: 
 * `daily` - Switches to Daily tab, showing a list of daily todo tasks that you have planned for the day.
 
-##### Adding a daily todo task: `todo`
+#### 3.3.2 Adding a daily todo task: `todo`
 
 You can add a todo task for the day into the daily todo list by providing the index number of the task that you want to add.
 
