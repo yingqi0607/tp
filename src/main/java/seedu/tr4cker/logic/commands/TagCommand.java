@@ -52,7 +52,7 @@ public class TagCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Task> lastShownList = model.getFilteredTaskList();
+        List<Task> lastShownList = model.getFilteredPendingTaskList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
@@ -67,7 +67,7 @@ public class TagCommand extends Command {
         assert editedTask != null : "Edited task should not be null here.";
 
         model.setTask(taskToEdit, editedTask);
-        model.updateFilteredTaskList(PREDICATE_SHOW_PENDING_TASKS);
+        model.updateFilteredPendingTaskList(PREDICATE_SHOW_PENDING_TASKS);
 
         return new CommandResult(generateSuccessMessage(editedTask));
     }

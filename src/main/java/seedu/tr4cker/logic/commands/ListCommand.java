@@ -20,7 +20,7 @@ public class ListCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredTaskList(PREDICATE_SHOW_PENDING_TASKS);
+        model.updateFilteredPendingTaskList(PREDICATE_SHOW_PENDING_TASKS);
         model.updateFilteredExpiredTaskList(PREDICATE_SHOW_EXPIRED_TASKS);
 
         ObservableList<Task> taskList = model.getFilteredTaskList();

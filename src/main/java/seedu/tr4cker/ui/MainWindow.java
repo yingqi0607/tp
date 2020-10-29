@@ -195,7 +195,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        taskListPanel = new TaskListPanel(logic.getFilteredTaskList());
+        taskListPanel = new TaskListPanel(logic.getFilteredPendingTaskList());
         taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
 
         expiredTaskListPanel = new ExpiredTaskListPanel(logic.getFilteredExpiredTaskList());

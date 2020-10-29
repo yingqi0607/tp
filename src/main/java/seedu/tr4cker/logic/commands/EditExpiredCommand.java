@@ -39,8 +39,7 @@ public class EditExpiredCommand extends EditCommand {
         }
 
         model.setTask(taskToEdit, editedTask);
-        //model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
-        model.updateFilteredTaskList(PREDICATE_SHOW_PENDING_TASKS);
+        model.updateFilteredPendingTaskList(PREDICATE_SHOW_PENDING_TASKS);
         model.updateFilteredExpiredTaskList(PREDICATE_SHOW_EXPIRED_TASKS);
 
         CommandResult commandResult = new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask));

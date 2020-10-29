@@ -29,7 +29,7 @@ public class DoneCommandTest {
 
     @Test
     public void execute_percentageIncreasesUnfilteredList_success() {
-        Task taskToComplete = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
+        Task taskToComplete = model.getFilteredPendingTaskList().get(INDEX_FIRST_TASK.getZeroBased());
         CompletionStatus percentage = new CompletionStatus(75);
         DoneCommand doneCommand = new DoneCommand(INDEX_FIRST_TASK, percentage);
         ModelManager expectedModel = new ModelManager(model.getTr4cker(), new UserPrefs());
@@ -37,42 +37,42 @@ public class DoneCommandTest {
                 new CompletionStatus(75), taskToComplete.getTaskDescription(),
                 taskToComplete.getModuleCode(), taskToComplete.getTags());
         String expectedMessage = String.format(DoneCommand.MESSAGE_DONE_TASK_SUCCESS_INCREASE, newTask);
-        expectedModel.setTask(model.getFilteredTaskList().get(0), newTask);
+        expectedModel.setTask(model.getFilteredPendingTaskList().get(0), newTask);
         assertCommandSuccess(doneCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_percentageDecreasesUnfilteredList_success() {
-        Task taskToComplete = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
+        Task taskToComplete = model.getFilteredPendingTaskList().get(INDEX_FIRST_TASK.getZeroBased());
         ModelManager expectedModel = new ModelManager(model.getTr4cker(), new UserPrefs());
 
         Task newTask = new Task(taskToComplete.getName(), taskToComplete.getDeadline(),
                 new CompletionStatus(75), taskToComplete.getTaskDescription(),
                 taskToComplete.getModuleCode(), taskToComplete.getTags());
-        expectedModel.setTask(model.getFilteredTaskList().get(0), newTask);
+        expectedModel.setTask(model.getFilteredPendingTaskList().get(0), newTask);
 
-        model.setTask(model.getFilteredTaskList().get(0), newTask);
+        model.setTask(model.getFilteredPendingTaskList().get(0), newTask);
         CompletionStatus percentage = new CompletionStatus(50);
         DoneCommand doneCommand = new DoneCommand(INDEX_FIRST_TASK, percentage);
         Task newTask2 = new Task(newTask.getName(), newTask.getDeadline(),
                 new CompletionStatus(50), newTask.getTaskDescription(),
                 taskToComplete.getModuleCode(), newTask.getTags());
         String expectedMessage = String.format(DoneCommand.MESSAGE_DONE_TASK_SUCCESS_DECREASE, newTask2);
-        expectedModel.setTask(model.getFilteredTaskList().get(0), newTask2);
+        expectedModel.setTask(model.getFilteredPendingTaskList().get(0), newTask2);
         assertCommandSuccess(doneCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_percentageConstantUnfilteredList_throwsCommandException() {
-        Task taskToComplete = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
+        Task taskToComplete = model.getFilteredPendingTaskList().get(INDEX_FIRST_TASK.getZeroBased());
         ModelManager expectedModel = new ModelManager(model.getTr4cker(), new UserPrefs());
 
         Task newTask = new Task(taskToComplete.getName(), taskToComplete.getDeadline(),
                 new CompletionStatus(75), taskToComplete.getTaskDescription(),
                 taskToComplete.getModuleCode(), taskToComplete.getTags());
-        expectedModel.setTask(model.getFilteredTaskList().get(0), newTask);
+        expectedModel.setTask(model.getFilteredPendingTaskList().get(0), newTask);
 
-        model.setTask(model.getFilteredTaskList().get(0), newTask);
+        model.setTask(model.getFilteredPendingTaskList().get(0), newTask);
         CompletionStatus percentage = new CompletionStatus(75);
         DoneCommand doneCommand = new DoneCommand(INDEX_FIRST_TASK, percentage);
         String expectedMessage = String.format(DoneCommand.MESSAGE_COMPLETION_SAME);
@@ -85,7 +85,7 @@ public class DoneCommandTest {
     public void execute_validIndexFilteredList_success() {
         showTaskAtIndex(model, INDEX_FIRST_TASK);
 
-        Task taskToComplete = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
+        Task taskToComplete = model.getFilteredPendingTaskList().get(INDEX_FIRST_TASK.getZeroBased());
         CompletionStatus percentage = new CompletionStatus(75);
         DoneCommand doneCommand = new DoneCommand(INDEX_FIRST_TASK, percentage);
 
@@ -95,7 +95,7 @@ public class DoneCommandTest {
         String expectedMessage = String.format(DoneCommand.MESSAGE_DONE_TASK_SUCCESS_INCREASE, newTask);
 
         Model expectedModel = new ModelManager(model.getTr4cker(), new UserPrefs());
-        expectedModel.setTask(model.getFilteredTaskList().get(0), newTask);
+        expectedModel.setTask(model.getFilteredPendingTaskList().get(0), newTask);
         assertCommandSuccess(doneCommand, model, expectedMessage, expectedModel);
     }
 
@@ -103,9 +103,7 @@ public class DoneCommandTest {
     public void execute_invalidIndexFilteredList_throwsCommandException() {
         showTaskAtIndex(model, INDEX_FIRST_TASK);
 
-        Index outOfBoundIndex = INDEX_SECOND_TASK;
-        // ensures that outOfBoundIndex is still in bounds of Tr4cker list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getTr4cker().getTaskList().size());
+        Index outOfBoundIndex = Index.fromOneBased(model.getTr4cker().getTaskList().size() + 1);
 
         CompletionStatus percentage = new CompletionStatus(75);
         DoneCommand doneCommand = new DoneCommand(outOfBoundIndex, percentage);
