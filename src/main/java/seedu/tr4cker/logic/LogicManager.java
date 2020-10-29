@@ -7,6 +7,7 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import seedu.tr4cker.commons.core.GuiSettings;
 import seedu.tr4cker.commons.core.LogsCenter;
@@ -98,6 +99,11 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Event> getFilteredEventList() {
         return model.getFilteredEventList();
+    }
+
+    @Override
+    public ObservableValue<Event> getEventFirst() {
+        return model.getEventFirst();
     }
 
     @Override
