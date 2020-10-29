@@ -288,7 +288,7 @@ You can countdown to your most essential upcoming events in the Countdown tab. Y
 you have left to that Final Exam or that birthday party.
 
 ##### Switching to Countdown tab: `countdown`
-To switch to the Countdown tab, simply type `planner` into the command line. You can also click on the Countdown button
+To switch to the Countdown tab, simply type `countdown` into the command line. You can also click on the Countdown button
 on the tabs menu at the top.
 
 Format: `countdown`
@@ -302,14 +302,14 @@ Example:
 * `countdown` - Switches to Countdown tab, showing the list of events.
 
 ##### Adding a new event to countdowns list
-You can add an event to the list of events, and TR4CKER help you to countdown to it.
+You can add an event to the list of events, and TR4CKER helps you to countdown to it.
 
 Format: `countdown n/NAME d/DATE`
 
 * Adds an event with name `NAME` and date `DATE` to the Countdown events list.
 * Both fields are compulsory and can be in any order.
 * `NAME` must be in the alphanumeric format (only containing letters and numbers) and preferably under 
-100 characters long.
+100 characters long, so that it can be displayed in the box without being truncated.
 * `DATE` must be a day in the future (i.e. NOT today or any day before today) and be in the format 
 `DD-MM-YYYY` or `DD-MMM-YYYY`.
 
