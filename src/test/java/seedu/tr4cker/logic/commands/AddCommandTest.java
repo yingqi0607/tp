@@ -13,6 +13,7 @@ import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import seedu.tr4cker.commons.core.GuiSettings;
 import seedu.tr4cker.logic.commands.exceptions.CommandException;
@@ -223,6 +224,11 @@ public class AddCommandTest {
 
         @Override
         public ObservableList<Event> getFilteredEventList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableValue<Event> getEventFirst() {
             throw new AssertionError("This method should not be called.");
         }
 
