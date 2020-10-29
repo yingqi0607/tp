@@ -6,7 +6,7 @@ title: User Guide
 1. [Overview](#1-overview)
     1.1. [About TR4CKER](#11-about-tr4cker)
     1.2. [About this User Guide](#12-about-this-user-guide)
-2. [Quick Start](#2-quick-start)    
+2. [Quick Start](#2-quick-start)
 3. [Commands](#3-commands)
     * 3.1. [Common Commands](#31-common-commands)
         * 3.1.1. [Viewing help: `help`](#311-viewing-help--help)
@@ -49,17 +49,17 @@ title: User Guide
 ## 1. Overview
 Welcome to the User Guide of TR4CKER!
 
-### 1.1. About TR4CKER     
-TR4CKER is a desktop app that helps SoC students track their tasks, meet their deadlines, and stay productive. It is 
+### 1.1. About TR4CKER
+TR4CKER is a desktop app that helps SoC students track their tasks, meet their deadlines, and stay productive. It is
 optimized for Computing students familiar with Command Line Interface (CLI), who can manage their tasks efficiently
 by typing in commands.
 
 ### 1.2. About this User Guide
-This User Guide explains how to use TR4CKER, as well as provides an understanding of the features and commands, and some 
-common use cases of this application.  
-  
+This User Guide explains how to use TR4CKER, as well as provides an understanding of the features and commands, and some
+common use cases of this application.
+
 In this guide, we cover:
-1. How to navigate the Graphical User Interface (GUI) 
+1. How to navigate the Graphical User Interface (GUI)
 2. How to use the Command Line Interface (CLI)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -74,7 +74,7 @@ In this guide, we cover:
 
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
-   
+
    Figure 1: Application home page populated with sample data
 
 --------------------------------------------------------------------------------------------------------------------
@@ -124,7 +124,7 @@ You can switch between tabs by using the following commands:
 |  `home`    | Home            |
 |  `daily`   | Daily           |
 |  `mod`     | Modules         |
-| `countdown`| Countdowns      | 
+| `countdown`| Countdowns      |
 |  `planner` | Planner         |
 
 Table 1: List of Switch Tab commands
@@ -135,7 +135,7 @@ TR4CKER is primarily a task management application that allows you to track and 
 
 TR4CKER's Home page was built for this purpose and you will be directed to this page once you start TR4CKER. Alternatively,
  you can enter `home` on the Command Box to navigate to this page.
-  
+
 #### 3.2.1. Reading the Task lists
 
 For the ease of reading, tasks are split into 3 sections and are displayed separately, namely:
@@ -160,12 +160,12 @@ example to explain the following points:
 
 **:information_source: Notes about the command format:**<br>
 
-1. Parts of the command in UPPER_CASE represent command parameters that have to be supplied by you. Using the given example, 
-DESCRIPTION represents a field where you provide the task description, such as des/Graded assignment 2.   
+1. Parts of the command in UPPER_CASE represent command parameters that have to be supplied by you. Using the given example,
+DESCRIPTION represents a field where you provide the task description, such as des/Graded assignment 2.
 
 2. Parameters in square brackets are optional, such as the Tag parameter in the given example.
 
-3. Parameters with a trailing `...` are optional and may be used as many times as you want, or even be omitted. 
+3. Parameters with a trailing `...` are optional and may be used as many times as you want, or even be omitted.
 
 4. Parameters can be entered in any order.
 
@@ -175,13 +175,13 @@ DESCRIPTION represents a field where you provide the task description, such as d
 
 You can add a task to TR4CKER using the `add` command when you want to start working on a new task.
 
-Format: `add n/NAME des/DESCRIPTION [m/MODULE_CODE] [dl/DEADLINE] [t/TAG]…​` 
+Format: `add n/NAME des/DESCRIPTION [m/MODULE_CODE] [dl/DEADLINE] [t/TAG]…​`
 
-![AddCommand](images/AddCommand.png) 
+![AddCommand](images/AddCommand.png)
 
 Figure 3: Example of an expected result after executing `add n/UG Introduction des/TableOfContents m/CS2103T t/Urgent t/Important`
 
-Before you can add a task with module, you need to ensure that the module is already entered into TR4CKER. 
+Before you can add a task with module, you need to ensure that the module is already entered into TR4CKER.
 You can refer to the section on Module Tab to find out more.
 
 <div markdown="block" class="alert alert-info">
@@ -227,7 +227,7 @@ TR4CKER allows you to track the progress of a task in TR4CKER and you can use th
 
 Format: `done INDEX [p/COMPLETION_STATUS]`
 
-![DoneCommand](images/DoneCommand.png) 
+![DoneCommand](images/DoneCommand.png)
 
 Figure 4: Example of an expected result after executing `done 1 p/50`
 
@@ -307,7 +307,7 @@ Examples:
 
 #### 3.2.9. Deleting Pending tasks : `delete`
 
-You can delete an existing task from the task list by providing the 
+You can delete an existing task from the task list by providing the
 index number of the task that you want to delete.
 
 Format: `delete INDEX`
@@ -368,7 +368,7 @@ Once you enter `daily` into the command box, TR4CKER should look like this:
 ![switch tab](images/dailyTab_switchTab.png)
 Figure 1: TR4CKER after executing `daily`.
 
-Example: 
+Example:
 * `daily` - Switches to Daily tab, showing a list of daily todo tasks that you have planned for the day.
 
 #### 3.3.2 Adding a daily todo task: `todo`
@@ -416,9 +416,9 @@ Format: `countdown n/NAME d/DATE`
 
 * Adds an event with name `NAME` and date `DATE` to the Countdown events list.
 * Both fields are compulsory and can be in any order.
-* `NAME` must be in the alphanumeric format (only containing letters and numbers) and preferably under 
+* `NAME` must be in the alphanumeric format (only containing letters and numbers) and preferably under
 100 characters long, so that it can be displayed in the box without being truncated.
-* `DATE` must be a day in the future (i.e. NOT today or any day before today) and be in the format 
+* `DATE` must be a day in the future (i.e. NOT today or any day before today) and be in the format
 `DD-MM-YYYY` or `DD-MMM-YYYY`.
 
 Examples:
@@ -438,7 +438,7 @@ tracking it in the tasks list.
 Format: `countdown task/INDEX`
 
 * Converts the task at index `INDEX` of the task list into an event, and adds this event to the Countdowns events list.
-* `INDEX` has to be a valid index, numbered according to the list in the home page of TR4CKER. 
+* `INDEX` has to be a valid index, numbered according to the list in the home page of TR4CKER.
 * The deadline of this task needs to be a day in the future (i.e. NOT today or any day before today).
 * Note: any subsequent changes to the task in the task list, such as editing the description or name of the task,
 will not be reflected in the event.
@@ -470,7 +470,7 @@ Example:
 Figure x: Countdown tab of TR4CKER which shows you the current list of events.
 
 ![delete_after](images/countdowntab_delete_after.png)
-Figure x: TR4CKER after executing `countdown del/2`. Event at index `2` of Figure x is deleted. 
+Figure x: TR4CKER after executing `countdown del/2`. Event at index `2` of Figure x is deleted.
 
 ### 3.6. Planner (Rui Ling)
 You can view an overview of your schedule in a calendar view and have your tasks list side-by-side using the Planner
@@ -515,7 +515,7 @@ Then, TR4CKER will change planner tab to today's calendar view and tasks due tod
 ![goto today result](images/plannertab_gototoday1.png)
 Figure 3: TR4CKER after executing `planner goto/tdy`
 
-Examples:  
+Examples:
 These 2 examples:
 * `planner goto/today`
 * `planner goto/tdy`
@@ -535,7 +535,7 @@ Then, TR4CKER will change planner tab to tomorrow's calendar view and tasks due 
 ![goto tomorrow result](images/plannertab_gototomorrow1.png)
 Figure 5: TR4CKER after executing `planner goto/tmr`
 
-Examples:  
+Examples:
 These 2 examples:
 * `planner goto/tomorrow`
 * `planner goto/tmr`
@@ -548,7 +548,7 @@ you can use!
 Format: `planner goto/dd-mm-yyyy` or `planner goto/dd-MMM-yyyy`
 
 * Input must be a valid date.
-* You can either use the month number or month name for the month field of the input date. 
+* You can either use the month number or month name for the month field of the input date.
 
 First, you enter the command into the command box to go to a specific date:
 ![goto date command](images/plannertab_gotodate.png)

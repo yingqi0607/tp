@@ -7,6 +7,9 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.beans.InvalidationListener;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.tr4cker.commons.core.GuiSettings;
@@ -280,6 +283,28 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Todo> getFilteredTodoList() {
         return filteredTodos;
+    }
+
+    @Override
+    public ObservableValue<Event> getEventFirst() {
+        return new ObservableValue() {
+            @Override
+            public void addListener(InvalidationListener listener) { }
+
+            @Override
+            public void addListener(ChangeListener listener) { }
+
+            @Override
+            public void removeListener(InvalidationListener listener) { }
+
+            @Override
+            public void removeListener(ChangeListener listener) { }
+
+            @Override
+            public Object getValue() {
+                return firstEvent;
+            }
+        };
     }
 
     @Override
