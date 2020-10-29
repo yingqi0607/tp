@@ -27,13 +27,15 @@ title: User Guide to TR4CKER
         * 3.2.12. [Clearing all tasks: `clear`](#clearing-all-tasks-clear)
 
 ## 1. Overview
+Welcome to the User Guide of TR4CKER!
 
 ### 1.1. About TR4CKER     
 TR4CKER is a desktop app that helps SoC students track their tasks, meet their deadlines, and stay productive. It is 
-optimized for Computing students familiar with Command Line Interface (CLI), who can manage their tasks efficiently by typing in commands.
+optimized for Computing students familiar with Command Line Interface (CLI), who can manage their tasks efficiently
+by typing in commands.
 
 ### 1.2. About this User Guide
-This User Guide explains how to use TR4CKER, as well as provides an understanding of the features and commands and some 
+This User Guide explains how to use TR4CKER, as well as provides an understanding of the features and commands, and some 
 common use cases of this application.  
   
 In this guide, we cover:
@@ -335,7 +337,86 @@ Format: `clear`
 
 #### Modules tab features
 
-#### Countdown tab features
+#### Countdown tab features (Wen Ling)
+You can countdown to your most essential upcoming events in the Countdown tab. You can know at a quick glance, how many
+you have left to that Final Exam or that birthday party.
+
+##### Switching to Countdown tab: `countdown`
+To switch to the Countdown tab, simply type `countdown` into the command line. You can also click on the Countdown button
+on the tabs menu at the top.
+
+Format: `countdown`
+Once you have entered this command, TR4CKER should look like this:
+![switch tab](images/countdowntab_switchtab.png)
+Figure x: TR4CKER after executing `countdown`
+
+The `Upcoming Events` panel shows the list of upcoming events that are counted down to.
+
+Example:
+* `countdown` - Switches to Countdown tab, showing the list of events.
+
+##### Adding a new event to countdowns list
+You can add an event to the list of events, and TR4CKER helps you to countdown to it.
+
+Format: `countdown n/NAME d/DATE`
+
+* Adds an event with name `NAME` and date `DATE` to the Countdown events list.
+* Both fields are compulsory and can be in any order.
+* `NAME` must be in the alphanumeric format (only containing letters and numbers) and preferably under 
+100 characters long, so that it can be displayed in the box without being truncated.
+* `DATE` must be a day in the future (i.e. NOT today or any day before today) and be in the format 
+`DD-MM-YYYY` or `DD-MMM-YYYY`.
+
+Examples:
+* `countdown d/31-12-2020 n/New Years Eve Countdown Party at Scarlets` - Adds an event `New Years Eve Countdown Party
+at Scarlets` with date `31-Dec-2020` to the Countdowns list of events.
+* `countdown n/CS1231 Final Exam d/30-Nov-2020` - Adds an event `CS1231 Final Exam` with date `30-Nov-2020` to the
+Countdowns list of events.
+
+![add_new](images/countdowntab_addnew.png)
+Figure x: TR4CKER after executing `countdown n/ES2660 Final Presentation d/05-Nov-2020`
+
+##### Adding an event from tasks list
+You can add an event that is based on a current task in the tasks list (as seen in the homepage of TR4CKER under the
+`Pending Tasks` panel) to your list of countdowns. TR4CKER will help you to countdown to this event, in addition to
+tracking it in the tasks list.
+
+Format: `countdown task/INDEX`
+
+* Converts the task at index `INDEX` of the task list into an event, and adds this event to the Countdowns events list.
+* `INDEX` has to be a valid index, numbered according to the list in the home page of TR4CKER. 
+* The deadline of this task needs to be a day in the future (i.e. NOT today or any day before today).
+* Note: any subsequent changes to the task in the task list, such as editing the description or name of the task,
+will not be reflected in the event.
+
+Example:
+* `countdown task/1` - Adds an event to the Countdowns list of events based on the task at index `1` of the tasks list.
+
+![add_task_before](images/countdowntab_addtask_before.png)
+Figure x: Home page of TR4CKER which shows the list of tasks that you can add as an event, in the `Pending Tasks` panel
+on the left.
+
+![add_task_after](images/countdowntab_addtask_after.png)
+Figure x: TR4CKER after executing `countdown task/2`. The task at index `2` in Figure x is added at index `9` of the
+Countdowns events list.
+
+##### Deleting an event from countdowns list
+You can delete an event from your list of events if you no longer want to countdown to it, or if it is over.
+
+Format: `countdown del/INDEX`
+
+* Deletes the task at index `INDEX` of the events list.
+* `INDEX` has to be a valid index, numbered according to the list in Countdown tab.
+* Warning: This action is irreversible!
+
+Example:
+* `countdown del/8` - Deletes the event at index `8` of the Countdowns list.
+
+![delete_before](images/countdowntab_delete_before.png)
+Figure x: Countdown tab of TR4CKER which shows you the current list of events.
+
+![delete_after](images/countdowntab_delete_after.png)
+Figure x: TR4CKER after executing `countdown del/2`. Event at index `2` of Figure x is deleted. 
 
 #### Planner tab features
 You can view an overview of your schedule in a calendar view and have your tasks list side-by-side using the Planner
@@ -467,7 +548,7 @@ The indicator colours and their meanings are:
 
 ##### Saving the data
 
-TR4CKER data are saved in the hard disk automatically after any command that changes the data.
+TR4CKER saves data in the hard disk automatically after any command that changes the data.
 There is no need to save manually.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -484,12 +565,12 @@ the data of your previous TR4CKER home folder.
 
 Action | Format, Examples
 --------|------------------
-**Help** | `help`
 **Add** | `add n/NAME dl/DEADLINE des/TASKDESCRIPTION [t/TAG]…​` <br> e.g., `add n/task 1 dl/2020-09-08 des/task 1 description t/urgent t/priority`
+**Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Done** | `done INDEX`<br> e.g., `done 1`
 **Edit** | `edit INDEX [n/NAME] [dl/DEADLINE] [des/TASKDESCRIPTION]`<br> e.g.,`edit 2 n/task 1 dl/2020-09-08`
-**Find** | `find [KEYWORD_1] [KEYWORD_2] ...`<br> e.g., `find task 1`
-**Clear** | `clear`
-**List** | `list`
 **Exit** | `exit`
+**Find** | `find [KEYWORD_1] [KEYWORD_2] ...`<br> e.g., `find task 1`
+**Help** | `help`
+**List** | `list`
