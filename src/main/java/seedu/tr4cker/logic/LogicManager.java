@@ -19,6 +19,7 @@ import seedu.tr4cker.logic.parser.exceptions.ParseException;
 import seedu.tr4cker.model.Model;
 import seedu.tr4cker.model.ReadOnlyTr4cker;
 import seedu.tr4cker.model.countdown.Event;
+import seedu.tr4cker.model.daily.Todo;
 import seedu.tr4cker.model.module.Module;
 import seedu.tr4cker.model.task.Task;
 import seedu.tr4cker.model.task.TaskDueInPredicate;
@@ -117,8 +118,18 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public ObservableList<Todo> getFilteredTodoList() {
+        return model.getFilteredTodoList();
+    }
+
+    @Override
     public void updateFilteredModuleList(Predicate<Module> predicate) {
         model.updateFilteredModuleList(predicate);
+    }
+
+    @Override
+    public void updateFilteredTodoList(Predicate<Todo> predicate) {
+        model.updateFilteredTodoList(predicate);
     }
 
     @Override

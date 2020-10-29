@@ -66,5 +66,17 @@
       "moduleName": "Module3 Name",
       "moduleCode": "Module3Code"
     }
+  ],
+  "todos" : [
+    {
+      "name": "Todo1 Name",
+      "deadline": "12-Jul-2021 0600"
+    }, {
+      "name": "Todo2 Name",
+      "deadline": "27-Sep-2021 2359"
+    }, {
+      "name": "Todo3 Name",
+      "deadline": "20-Oct-2021 1800"
+    }
   ]
 }
