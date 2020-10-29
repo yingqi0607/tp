@@ -1,8 +1,6 @@
 package seedu.tr4cker.logic.commands;
 
 import static seedu.tr4cker.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.tr4cker.logic.commands.CommandTestUtil.showTaskAtIndex;
-import static seedu.tr4cker.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 import static seedu.tr4cker.testutil.TypicalTasks.getTypicalTr4cker;
 
 import java.util.List;
