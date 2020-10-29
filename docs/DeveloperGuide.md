@@ -338,7 +338,7 @@ The 3 main functions of the Daily feature are to:
 #### Implementation
 The UI of the Daily feature is facilitated by the `DailyPanel` class which will show users all daily todo tasks as a list.
 
-To implement the the commands of this Daily feature, there are `TodoCommand` and `TodoCommandParser` classes in the `logic` package.
+To implement the commands of this Daily feature, there are `TodoCommand` and `TodoCommandParser` classes in the `logic` package.
 
 The following diagram shows the sequence flow when a task gets added into the `DailyPanel`:
 ![DailySequenceDiagram](images/DailySequenceDiagram.png)

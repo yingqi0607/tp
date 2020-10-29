@@ -8,6 +8,7 @@ import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_TAG_URGENT;
 import static seedu.tr4cker.testutil.Assert.assertThrows;
 import static seedu.tr4cker.testutil.TypicalTasks.MANUAL_TASK2;
 import static seedu.tr4cker.testutil.TypicalTasks.TASK1;
+import static seedu.tr4cker.testutil.TypicalTasks.TASK_J;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -166,5 +167,18 @@ public class UniqueTaskListTest {
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, ()
             -> uniqueTaskList.asUnmodifiableObservableList().remove(0));
+    }
+
+    @Test
+    void sortTasksAccordingToDeadline_listWithSameDeadlines() {
+        uniqueTaskList.add(TASK1);
+        uniqueTaskList.add(TASK_J);
+        uniqueTaskList.add(MANUAL_TASK2);
+        uniqueTaskList.sortTasksAccordingToDeadline();
+        UniqueTaskList expectedUniqueTaskList = new UniqueTaskList();
+        expectedUniqueTaskList.add(MANUAL_TASK2);
+        expectedUniqueTaskList.add(TASK1);
+        expectedUniqueTaskList.add(TASK_J);
+        assertEquals(expectedUniqueTaskList, uniqueTaskList);
     }
 }

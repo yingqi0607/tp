@@ -20,8 +20,11 @@ import seedu.tr4cker.logic.commands.CommandResult;
 import seedu.tr4cker.logic.commands.exceptions.CommandException;
 import seedu.tr4cker.logic.parser.exceptions.ParseException;
 import seedu.tr4cker.ui.countdown.CountdownTabWindow;
+import seedu.tr4cker.ui.daily.DailyPanel;
+import seedu.tr4cker.ui.daily.DailyTabWindow;
 import seedu.tr4cker.ui.module.ModuleListPanel;
 import seedu.tr4cker.ui.planner.PlannerTabWindow;
+
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -54,6 +57,8 @@ public class MainWindow extends UiPart<Stage> {
     private CountdownTabWindow countdownTabWindow;
     private ResultDisplay resultDisplay;
     private final HelpWindow helpWindow;
+    private DailyTabWindow dailyTabWindow;
+    private DailyPanel dailyListPanel;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -93,6 +98,12 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     private StackPane countdownTabWindowPlaceholder;
+
+    /*
+     * Daily tab content.
+     */
+    @FXML
+    private StackPane dailyTabWindowPlaceholder;
 
     /*
      * Tab related objects
@@ -213,6 +224,10 @@ public class MainWindow extends UiPart<Stage> {
         /*Countdown*/
         countdownTabWindow = new CountdownTabWindow(logic);
         countdownTabWindowPlaceholder.getChildren().add(countdownTabWindow.getRoot());
+
+        /*Daily*/
+        dailyTabWindow = new DailyTabWindow(logic);
+        dailyTabWindowPlaceholder.getChildren().add(dailyTabWindow.getRoot());
     }
 
     /**
@@ -364,6 +379,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowCountdown()) {
                 handleShowTabCountdown();
+            }
+
+            if (commandResult.isShowDaily()) {
+                handleShowTabDaily();
             }
 
             return commandResult;

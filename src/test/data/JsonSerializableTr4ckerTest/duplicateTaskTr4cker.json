@@ -20,5 +20,14 @@
       "eventDate": "01-01-2021"
     }
   ],
-  "modules" : [ ]
+  "modules" : [
+    {
+      "moduleName": "Module3 Name",
+      "moduleCode": "Module3Code"
+    } ],
+  "todos" : [
+    {
+      "name": "Todo1 Name",
+      "deadline": "12-Jul-2021 0600"
+    } ]
 }

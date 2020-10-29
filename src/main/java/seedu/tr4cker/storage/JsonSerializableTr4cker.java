@@ -12,6 +12,7 @@ import seedu.tr4cker.commons.exceptions.IllegalValueException;
 import seedu.tr4cker.model.ReadOnlyTr4cker;
 import seedu.tr4cker.model.Tr4cker;
 import seedu.tr4cker.model.countdown.Event;
+import seedu.tr4cker.model.daily.Todo;
 import seedu.tr4cker.model.module.Module;
 import seedu.tr4cker.model.task.Task;
 
@@ -24,11 +25,13 @@ class JsonSerializableTr4cker {
     public static final String MESSAGE_DUPLICATE_TASK = "Task list contains duplicate task(s).";
     public static final String MESSAGE_DUPLICATE_EVENT = "Events list contains duplicate event(s).";
     public static final String MESSAGE_DUPLICATE_MODULE = "Module list contains duplicate module(s).";
+    public static final String MESSAGE_DUPLICATE_TODO = "Daily todo list contains duplicate todo(s).";
     public static final String MESSAGE_INVALID_MODULE = "Given module does not exist in TR4CKER.";
 
     private final List<JsonAdaptedTask> tasks = new ArrayList<>();
     private final List<JsonAdaptedEvent> events = new ArrayList<>();
     private final List<JsonAdaptedModule> modules = new ArrayList<>();
+    private final List<JsonAdaptedDaily> todos = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableTr4cker} with the given tasks & modules.
@@ -36,10 +39,12 @@ class JsonSerializableTr4cker {
     @JsonCreator
     public JsonSerializableTr4cker(@JsonProperty("tasks") List<JsonAdaptedTask> tasks,
                                    @JsonProperty("events") List<JsonAdaptedEvent> events,
-                                   @JsonProperty("modules") List<JsonAdaptedModule> modules) {
+                                   @JsonProperty("modules") List<JsonAdaptedModule> modules,
+                                   @JsonProperty("todos") List<JsonAdaptedDaily> todos) {
         this.tasks.addAll(tasks);
         this.events.addAll(events);
         this.modules.addAll(modules);
+        this.todos.addAll(todos);
     }
 
     /**
@@ -51,6 +56,7 @@ class JsonSerializableTr4cker {
         tasks.addAll(source.getTaskList().stream().map(JsonAdaptedTask::new).collect(Collectors.toList()));
         events.addAll(source.getEventList().stream().map(JsonAdaptedEvent::new).collect(Collectors.toList()));
         modules.addAll(source.getModuleList().stream().map(JsonAdaptedModule::new).collect(Collectors.toList()));
+        todos.addAll(source.getTodoList().stream().map(JsonAdaptedDaily::new).collect(Collectors.toList()));
     }
 
     /**
@@ -96,6 +102,21 @@ class JsonSerializableTr4cker {
     }
 
     /**
+     * Converts todos into the model's {@code Tr4cker} object.
+     *
+     * @throws IllegalValueException if there were any data constraints violated.
+     */
+    private void todosToModelType(Tr4cker tr4cker) throws IllegalValueException {
+        for (JsonAdaptedDaily jsonAdaptedDaily : todos) {
+            Todo todo = jsonAdaptedDaily.toModelType();
+            if (tr4cker.hasTodo(todo)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_TODO);
+            }
+            tr4cker.addTodo(todo);
+        }
+    }
+
+    /**
      * Converts this Tr4cker into the model's {@code Tr4cker} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
@@ -105,6 +126,7 @@ class JsonSerializableTr4cker {
         modulesToModelType(tr4cker);
         tasksToModelType(tr4cker);
         eventsToModelType(tr4cker);
+        todosToModelType(tr4cker);
         return tr4cker;
     }
 
