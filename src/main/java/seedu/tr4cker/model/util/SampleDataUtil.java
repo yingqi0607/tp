@@ -25,6 +25,12 @@ import seedu.tr4cker.model.task.TaskDescription;
 public class SampleDataUtil {
     public static Task[] getSampleTasks() {
         return new Task[] {
+            new Task(new Name("CS2100 Lab 1"), new Deadline("10-Jun-2020 1800", false),
+                    new CompletionStatus(90), new TaskDescription("Warmup lab practice"),
+                    getModuleCodeSet("CS2100"), getTagSet("Urgent")),
+            new Task(new Name("CS2100 Lab 2"), new Deadline("10-Aug-2020 1800", false),
+                    new CompletionStatus(90), new TaskDescription("First official lab"),
+                    getModuleCodeSet("CS2100"), getTagSet("demo", "Important")),
             new Task(new Name("GEQ1000 Tutorial 3"), new Deadline("10-Oct-2019 1800", false),
                     new CompletionStatus(90), new TaskDescription("Too much reasoning"),
                     getModuleCodeSet("GEQ1000"), getTagSet("tutorial", "origami")),
