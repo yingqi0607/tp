@@ -2,8 +2,8 @@ package seedu.tr4cker.ui.countdown;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.Region;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
 import seedu.tr4cker.model.countdown.Event;
 import seedu.tr4cker.ui.UiPart;
 

@@ -3,7 +3,6 @@ package seedu.tr4cker.model;
 import java.nio.file.Path;
 import java.util.function.Predicate;
 
-import javafx.beans.Observable;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import seedu.tr4cker.commons.core.GuiSettings;

@@ -259,10 +259,10 @@ public class ModelManager implements Model {
             public void addListener(InvalidationListener listener) { }
 
             @Override
-            public void removeListener(InvalidationListener listener) { }
+            public void addListener(ChangeListener listener) { }
 
             @Override
-            public void addListener(ChangeListener listener) { }
+            public void removeListener(InvalidationListener listener) { }
 
             @Override
             public void removeListener(ChangeListener listener) { }

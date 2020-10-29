@@ -1,5 +1,7 @@
 package seedu.tr4cker.ui.countdown;
 
+import java.util.logging.Logger;
+
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
@@ -9,8 +11,6 @@ import seedu.tr4cker.model.countdown.Event;
 import seedu.tr4cker.model.countdown.EventDate;
 import seedu.tr4cker.model.countdown.EventName;
 import seedu.tr4cker.ui.UiPart;
-
-import java.util.logging.Logger;
 
 /** UI Component to display the first event in Countdown events list. */
 public class CountdownEventFirst extends UiPart<Region> {
