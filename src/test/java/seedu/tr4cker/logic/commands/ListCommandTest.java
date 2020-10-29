@@ -29,7 +29,7 @@ public class ListCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        List<Task> expectedTasksToList = expectedModel.getFilteredTaskList();
+        List<Task> expectedTasksToList = expectedModel.getFilteredPendingTaskList();
 
         String expectedDisplayListNames = "";
 
@@ -42,8 +42,8 @@ public class ListCommandTest {
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
-        model.updateFilteredTaskList(x -> true);
-        List<Task> expectedTasksToList = expectedModel.getFilteredTaskList();
+        model.updateFilteredPendingTaskList(x -> true);
+        List<Task> expectedTasksToList = expectedModel.getFilteredPendingTaskList();
 
         String expectedDisplayListNames = "";
 

@@ -23,7 +23,7 @@ public class ListCommand extends Command {
         model.updateFilteredPendingTaskList(PREDICATE_SHOW_PENDING_TASKS);
         model.updateFilteredExpiredTaskList(PREDICATE_SHOW_EXPIRED_TASKS);
 
-        ObservableList<Task> taskList = model.getFilteredTaskList();
+        ObservableList<Task> taskList = model.getFilteredPendingTaskList();
         String displayListNames = "";
 
         for (int i = 1; i <= taskList.size(); i++) {
