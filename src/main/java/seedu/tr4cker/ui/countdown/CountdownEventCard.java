@@ -40,7 +40,7 @@ public class CountdownEventCard extends UiPart<Region> {
     private Label daysRemaining;
 
     /**
-     * Creates a {@code EventCode} with the given {@code Event} and index to display.
+     * Creates a {@code CountdownEventCard} with the given {@code Event} and index to display.
      */
     public CountdownEventCard(Event event, int displayedIndex) {
         super(FXML);
@@ -52,7 +52,7 @@ public class CountdownEventCard extends UiPart<Region> {
         if (daysLeft < 0) {
             daysRemaining.setText("Over!");
         } else {
-            daysRemaining.setText(String.valueOf(daysLeft) + " days!");
+            daysRemaining.setText(daysLeft + " days!");
         }
     }
 
