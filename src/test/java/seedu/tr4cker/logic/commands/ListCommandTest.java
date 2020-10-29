@@ -44,7 +44,7 @@ public class ListCommandTest {
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
-        showTaskAtIndex(model, INDEX_FIRST_TASK);
+        model.updateFilteredTaskList(x -> true);
         List<Task> expectedTasksToList = expectedModel.getFilteredTaskList();
 
         String expectedDisplayListNames = "";
