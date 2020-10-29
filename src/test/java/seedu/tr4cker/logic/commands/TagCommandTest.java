@@ -2,12 +2,10 @@ package seedu.tr4cker.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.showTaskAtIndex;
 import static seedu.tr4cker.testutil.TypicalIndexes.INDEX_FIRST_TASK;
-import static seedu.tr4cker.testutil.TypicalIndexes.INDEX_SECOND_TASK;
 import static seedu.tr4cker.testutil.TypicalTasks.getTypicalTr4cker;
 
 import java.util.HashSet;
@@ -60,7 +58,7 @@ class TagCommandTest {
     public void execute_validIndexFilteredList_success() {
         showTaskAtIndex(model, INDEX_FIRST_TASK);
 
-        Task taskToEdit = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
+        Task taskToEdit = model.getFilteredPendingTaskList().get(INDEX_FIRST_TASK.getZeroBased());
         TagCommand tagCommand = new TagCommand(INDEX_FIRST_TASK, add, delete);
 
         String expectedMessage = String.format(TagCommand.MESSAGE_SUCCESS, taskToEdit);
@@ -76,9 +74,7 @@ class TagCommandTest {
     public void execute_invalidIndexFilteredList_throwsCommandException() {
         showTaskAtIndex(model, INDEX_FIRST_TASK);
 
-        Index outOfBoundIndex = INDEX_SECOND_TASK;
-        // ensures that outOfBoundIndex is still in bounds of Tr4cker list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getTr4cker().getTaskList().size());
+        Index outOfBoundIndex = Index.fromOneBased(model.getTr4cker().getTaskList().size() + 1);
 
         TagCommand tagCommand = new TagCommand(outOfBoundIndex, add, delete);
 

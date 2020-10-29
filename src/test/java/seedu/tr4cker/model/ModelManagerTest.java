@@ -124,7 +124,7 @@ public class ModelManagerTest {
 
         // different filteredList -> returns false
         String[] keywords = TASK1.getName().taskName.split("\\s+");
-        modelManager.updateFilteredTaskList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
+        modelManager.updatePlannerFilteredTaskList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
         ModelManager newModelManager = new ModelManager(tr4cker, userPrefs);
         assertNotEquals(newModelManager, modelManager);
 

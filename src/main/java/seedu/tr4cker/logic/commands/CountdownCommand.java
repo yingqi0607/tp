@@ -107,7 +107,7 @@ public class CountdownCommand extends Command {
     }
 
     private CommandResult executeCountdownAddFromTask(Model model) throws CommandException {
-        List<Task> taskList = model.getFilteredTaskList();
+        List<Task> taskList = model.getFilteredPendingTaskList();
         if (index.getZeroBased() >= taskList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }

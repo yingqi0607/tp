@@ -35,6 +35,9 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of tasks. */
     ObservableList<Task> getFilteredTaskList();
 
+    /** Returns an unmodifiable view of the filtered list of pending tasks. */
+    ObservableList<Task> getFilteredPendingTaskList();
+
     /** Returns an unmodifiable view of the filtered list of expired tasks. */
     ObservableList<Task> getFilteredExpiredTaskList();
 
