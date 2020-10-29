@@ -494,7 +494,7 @@ The indicator colours and their meanings are:
 
 ##### Saving the data
 
-TR4CKER data are saved in the hard disk automatically after any command that changes the data.
+TR4CKER saves data in the hard disk automatically after any command that changes the data.
 There is no need to save manually.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -511,12 +511,12 @@ the data of your previous TR4CKER home folder.
 
 Action | Format, Examples
 --------|------------------
-**Help** | `help`
 **Add** | `add n/NAME dl/DEADLINE des/TASKDESCRIPTION [t/TAG]…​` <br> e.g., `add n/task 1 dl/2020-09-08 des/task 1 description t/urgent t/priority`
+**Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Done** | `done INDEX`<br> e.g., `done 1`
 **Edit** | `edit INDEX [n/NAME] [dl/DEADLINE] [des/TASKDESCRIPTION]`<br> e.g.,`edit 2 n/task 1 dl/2020-09-08`
-**Find** | `find [KEYWORD_1] [KEYWORD_2] ...`<br> e.g., `find task 1`
-**Clear** | `clear`
-**List** | `list`
 **Exit** | `exit`
+**Find** | `find [KEYWORD_1] [KEYWORD_2] ...`<br> e.g., `find task 1`
+**Help** | `help`
+**List** | `list`
