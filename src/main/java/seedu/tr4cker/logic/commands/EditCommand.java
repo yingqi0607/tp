@@ -65,7 +65,7 @@ public class EditCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Task> lastShownList = model.getFilteredTaskList();
+        List<Task> lastShownList = model.getFilteredPendingTaskList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
@@ -85,7 +85,7 @@ public class EditCommand extends Command {
         assert taskToEdit != null : "Task to edit should not be null here.";
         assert editedTask != null : "Edited task should not be null here.";
         model.setTask(taskToEdit, editedTask);
-        model.updateFilteredTaskList(PREDICATE_SHOW_PENDING_TASKS);
+        model.updateFilteredPendingTaskList(PREDICATE_SHOW_PENDING_TASKS);
 
         CommandResult commandResult = new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask));
         commandResult.setHomeTab();

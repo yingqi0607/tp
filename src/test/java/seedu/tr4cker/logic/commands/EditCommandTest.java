@@ -42,15 +42,15 @@ public class EditCommandTest {
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask);
 
         Model expectedModel = new ModelManager(new Tr4cker(model.getTr4cker()), new UserPrefs());
-        expectedModel.setTask(model.getFilteredTaskList().get(0), editedTask);
+        expectedModel.setTask(model.getFilteredPendingTaskList().get(0), editedTask);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
-        Index indexLastTask = Index.fromOneBased(model.getFilteredTaskList().size());
-        Task lastTask = model.getFilteredTaskList().get(indexLastTask.getZeroBased());
+        Index indexLastTask = Index.fromOneBased(model.getFilteredPendingTaskList().size());
+        Task lastTask = model.getFilteredPendingTaskList().get(indexLastTask.getZeroBased());
 
         TaskBuilder taskInList = new TaskBuilder(lastTask);
         Task editedTask = taskInList.withName(VALID_NAME_2).withDeadline(VALID_DEADLINE_2).build();
@@ -70,7 +70,7 @@ public class EditCommandTest {
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
         EditCommand editCommand = new EditCommand(INDEX_FIRST_TASK, new EditTaskDescriptor());
-        Task editedTask = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
+        Task editedTask = model.getFilteredPendingTaskList().get(INDEX_FIRST_TASK.getZeroBased());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask);
 
@@ -83,7 +83,7 @@ public class EditCommandTest {
     public void execute_filteredList_success() {
         showTaskAtIndex(model, INDEX_FIRST_TASK);
 
-        Task taskInFilteredList = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
+        Task taskInFilteredList = model.getFilteredPendingTaskList().get(INDEX_FIRST_TASK.getZeroBased());
         Task editedTask = new TaskBuilder(taskInFilteredList).withName(VALID_NAME_2).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_TASK,
                 new EditTaskDescriptorBuilder().withName(VALID_NAME_2).build());
@@ -91,14 +91,14 @@ public class EditCommandTest {
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask);
 
         Model expectedModel = new ModelManager(new Tr4cker(model.getTr4cker()), new UserPrefs());
-        expectedModel.setTask(model.getFilteredTaskList().get(0), editedTask);
+        expectedModel.setTask(model.getFilteredPendingTaskList().get(0), editedTask);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_duplicateTaskUnfilteredList_failure() {
-        Task firstTask = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
+        Task firstTask = model.getFilteredPendingTaskList().get(INDEX_FIRST_TASK.getZeroBased());
         EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder(firstTask).build();
         EditCommand editCommand = new EditCommand(INDEX_SECOND_TASK, descriptor);
 
@@ -119,7 +119,7 @@ public class EditCommandTest {
 
     @Test
     public void execute_invalidTaskIndexUnfilteredList_failure() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredTaskList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPendingTaskList().size() + 1);
         EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withName(VALID_NAME_2).build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
 
@@ -133,9 +133,7 @@ public class EditCommandTest {
     @Test
     public void execute_invalidTaskIndexFilteredList_failure() {
         showTaskAtIndex(model, INDEX_FIRST_TASK);
-        Index outOfBoundIndex = INDEX_SECOND_TASK;
-        // ensures that outOfBoundIndex is still in bounds of Tr4cker list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getTr4cker().getTaskList().size());
+        Index outOfBoundIndex = Index.fromOneBased(model.getTr4cker().getTaskList().size() + 1);
 
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
                 new EditTaskDescriptorBuilder().withName(VALID_NAME_2).build());
