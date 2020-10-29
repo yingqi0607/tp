@@ -116,6 +116,9 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered task list. */
     ObservableList<Task> getFilteredTaskList();
 
+    /** Returns an unmodifiable view of the filtered pending task list. */
+    ObservableList<Task> getFilteredPendingTaskList();
+
     /** Returns an unmodifiable view of the filtered expired task list. */
     ObservableList<Task> getFilteredExpiredTaskList();
 
@@ -142,6 +145,12 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredTaskList(Predicate<Task> predicate);
+
+    /**
+     * Updates the filter of the filtered pending task list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredPendingTaskList(Predicate<Task> predicate);
 
     /**
      * Updates the filter of the filtered expired task list to filter by the given {@code predicate}.
