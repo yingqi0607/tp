@@ -369,12 +369,15 @@ Format: `todo INDEX` [To be implemented: add multiple todo tasks at the same tim
 
 Examples:
 * `list` followed by `todo 1` adds the first task in the displayed task list into daily todo list.
-![todo result](images/dailyTab_todo1.png)
-Figure 2: TR4CKER after executing `todo 1`.
+![todo before](images/dailyTab_todo1Before.png)
+Figure 2: Daily tab before executing `todo 1`.
+
+![todo result](images/dailyTab_todo1After.png)
+Figure 3: Daily tab after executing `todo 1`.
 
 #### Modules tab features
 
-#### Countdown tab features (Wen Ling)
+#### 3.4 Countdown tab features (Wen Ling)
 You can countdown to your most essential upcoming events in the Countdown tab. You can know at a quick glance, how many
 you have left to that Final Exam or that birthday party.
 
@@ -605,6 +608,7 @@ the data of your previous TR4CKER home folder.
 * **Add**: `add n/NAME des/DESCRIPTION [dl/DEADLINE] [m/MODULE_CODE] [t/TAG]...`
 * **List**: `list`
 * **Done**: `done INDEX [p/COMPLETION_STATUS]`
+* **Add todo task**: `todo INDEX`
 * **Edit Pending tasks**: `edit INDEX [n/NAME] [des/DESCRIPTION] [dl/DEADLINE]`
 * **Edit Tags of Pending tasks**: `tag INDEX [old/TAG_TO_DELETE]... [new/NEW_TAG]...`
 * **Find Pending tasks**: `find [KEYWORD]...`
