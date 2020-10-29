@@ -342,7 +342,7 @@ Clears all entries in TR4CKER.
 
 Format: `clear`
 
-#### Daily tab features (Yingqi)
+#### 3.3 Daily tab features (Yingqi)
 You can add all your daily plans of current tasks to a daily to do list so that you have a clearer idea of what you want to complete for the day.
 
 ##### Switching to Daily tab: `daily`
