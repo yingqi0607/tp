@@ -1,6 +1,6 @@
 ---
 layout: page
-title: User Guide to TR4CKER
+title: User Guide
 ---
 
 1. [Overview](#1-overview)
@@ -28,8 +28,12 @@ title: User Guide to TR4CKER
     * 3.3. [Daily Tab](#33-daily-yingqi)
     * 3.4. [Modules Tab](#34-modules-ethan)
     * 3.5. [Countdown Tab](#35-countdown-wen-ling)
+        * 3.5.1 [Switching to Countdown tab: `countdown`](#351-switching-to-countdown-tab-countdown)
+        * 3.5.2 [Adding a new event to countdowns list](#352-adding-a-new-event-to-countdowns-list)
+        * 3.5.3 [Adding an event from tasks list](#353-adding-an-event-from-tasks-list)
+        * 3.5.4 [Deleting an event from countdowns list](#354-deleting-an-event-from-countdowns-list)
     * 3.6. [Planner Tab](#36-planner-rui-ling)
-        * 3.6.1 [Switching to Planner tab](#361-switching-to-planner-tab-planner)
+        * 3.6.1 [Switching to Planner tab: `planner`](#361-switching-to-planner-tab-planner)
         * 3.6.2 [Switching calendar view and tasks list](#362-switching-calendar-view-and-tasks-list)
         * 3.6.3 [Today](#363-today)
         * 3.6.4 [Tomorrow](#364-tomorrow)
@@ -338,7 +342,7 @@ Format: `clear`
 You can countdown to your most essential upcoming events in the Countdown tab. You can know at a quick glance, how many
 you have left to that Final Exam or that birthday party.
 
-#### Switching to Countdown tab: `countdown`
+#### 3.5.1. Switching to Countdown tab: `countdown`
 To switch to the Countdown tab, simply type `countdown` into the command line. You can also click on the Countdown button
 on the tabs menu at the top.
 
@@ -352,7 +356,7 @@ The `Upcoming Events` panel shows the list of upcoming events that are counted d
 Example:
 * `countdown` - Switches to Countdown tab, showing the list of events.
 
-#### Adding a new event to countdowns list
+#### 3.5.2. Adding a new event to countdowns list
 You can add an event to the list of events, and TR4CKER helps you to countdown to it.
 
 Format: `countdown n/NAME d/DATE`
@@ -373,7 +377,7 @@ Countdowns list of events.
 ![add_new](images/countdowntab_addnew.png)
 Figure x: TR4CKER after executing `countdown n/ES2660 Final Presentation d/05-Nov-2020`
 
-#### Adding an event from tasks list
+#### 3.5.3. Adding an event from tasks list
 You can add an event that is based on a current task in the tasks list (as seen in the homepage of TR4CKER under the
 `Pending Tasks` panel) to your list of countdowns. TR4CKER will help you to countdown to this event, in addition to
 tracking it in the tasks list.
@@ -397,7 +401,7 @@ on the left.
 Figure x: TR4CKER after executing `countdown task/2`. The task at index `2` in Figure x is added at index `9` of the
 Countdowns events list.
 
-#### Deleting an event from countdowns list
+#### 3.5.4. Deleting an event from countdowns list
 You can delete an event from your list of events if you no longer want to countdown to it, or if it is over.
 
 Format: `countdown del/INDEX`
