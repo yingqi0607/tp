@@ -10,6 +10,7 @@ import seedu.tr4cker.model.Tr4cker;
 import seedu.tr4cker.model.countdown.Event;
 import seedu.tr4cker.model.countdown.EventDate;
 import seedu.tr4cker.model.countdown.EventName;
+import seedu.tr4cker.model.daily.Todo;
 import seedu.tr4cker.model.module.Module;
 import seedu.tr4cker.model.module.ModuleCode;
 import seedu.tr4cker.model.tag.Tag;
@@ -25,6 +26,12 @@ import seedu.tr4cker.model.task.TaskDescription;
 public class SampleDataUtil {
     public static Task[] getSampleTasks() {
         return new Task[] {
+            new Task(new Name("CS2100 Lab 1"), new Deadline("10-Jun-2020 1800", false),
+                    new CompletionStatus(90), new TaskDescription("Warmup lab practice"),
+                    getModuleCodeSet("CS2100"), getTagSet("Urgent")),
+            new Task(new Name("CS2100 Lab 2"), new Deadline("10-Aug-2020 1800", false),
+                    new CompletionStatus(90), new TaskDescription("First official lab"),
+                    getModuleCodeSet("CS2100"), getTagSet("demo", "Important")),
             new Task(new Name("GEQ1000 Tutorial 3"), new Deadline("10-Oct-2019 1800", false),
                     new CompletionStatus(90), new TaskDescription("Too much reasoning"),
                     getModuleCodeSet("GEQ1000"), getTagSet("tutorial", "origami")),
@@ -91,7 +98,7 @@ public class SampleDataUtil {
     }
 
     public static Event[] getSampleEvents() {
-        return new Event[] {
+        return new Event[]{
             new Event(new EventName("CS2103T Final Exam"), new EventDate("02-Dec-2020", false)),
             new Event(new EventName("CS2103T Practical Exam Dry Run"),
                     new EventDate("30-10-2020", false)),
@@ -100,7 +107,17 @@ public class SampleDataUtil {
             new Event(new EventName("CS2101 OP2 Demo"), new EventDate("03-11-2020", false)),
             new Event(new EventName("CS2101 OP2 Pitch"), new EventDate("06-11-2020", false)),
             new Event(new EventName("Christmas"), new EventDate("25-Dec-2020", false)),
+        };
+    }
 
+    public static Todo[] getSampleTodos() {
+        return new Todo[] {
+            new Todo(new Name("GEQ1000 Tutorial 3"), new Deadline("10-Oct-2019 1800", false)),
+            new Todo(new Name("GER1000 Graded Assignment 4"), new Deadline("20-Oct-2019 1800", false)),
+            new Todo(new Name("CS2103T Project"), new Deadline("13-Sep-2021 1500", false)),
+            new Todo(new Name("CS2100 MidTerms"), new Deadline("12-Oct-2021 1200", false)),
+            new Todo(new Name("CS2101 OP2"), new Deadline("14-Apr-2021 1010", false)),
+            new Todo(new Name("CS1231S Graded Assignment"), new Deadline("25-Dec-2021 0000", false))
         };
     }
 
@@ -114,6 +131,9 @@ public class SampleDataUtil {
         }
         for (Event sampleEvent : getSampleEvents()) {
             sampleTr4cker.addEvent(sampleEvent);
+        }
+        for (Todo sampleTodo : getSampleTodos()) {
+            sampleTr4cker.addTodo(sampleTodo);
         }
         return sampleTr4cker;
     }

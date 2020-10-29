@@ -2,6 +2,7 @@ package seedu.tr4cker.model;
 
 import javafx.collections.ObservableList;
 import seedu.tr4cker.model.countdown.Event;
+import seedu.tr4cker.model.daily.Todo;
 import seedu.tr4cker.model.module.Module;
 import seedu.tr4cker.model.task.Task;
 
@@ -27,4 +28,10 @@ public interface ReadOnlyTr4cker {
      * This list will not contain any duplicate modules.
      */
     ObservableList<Module> getModuleList();
+
+    /**
+     * Returns an unmodifiable view of the daily todo list.
+     * This list will not contain any duplicate todos.
+     */
+    ObservableList<Todo> getTodoList();
 }

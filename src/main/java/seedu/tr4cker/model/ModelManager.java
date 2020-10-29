@@ -15,6 +15,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.tr4cker.commons.core.GuiSettings;
 import seedu.tr4cker.commons.core.LogsCenter;
 import seedu.tr4cker.model.countdown.Event;
+import seedu.tr4cker.model.daily.Todo;
 import seedu.tr4cker.model.module.Module;
 import seedu.tr4cker.model.task.Deadline;
 import seedu.tr4cker.model.task.Task;
@@ -34,6 +35,7 @@ public class ModelManager implements Model {
     private final FilteredList<Module> filteredModules;
     private final FilteredList<Task> plannerFilteredTasks;
     private final FilteredList<Event> filteredEvents;
+    private final FilteredList<Todo> filteredTodos;
     private final Event firstEvent;
     private final Event secondEvent;
 
@@ -62,7 +64,11 @@ public class ModelManager implements Model {
         plannerFilteredTasks = new FilteredList<>(this.tr4cker.getTaskList());
 
         filteredEvents = new FilteredList<>(this.tr4cker.getEventList());
+
+        filteredTodos = new FilteredList<>(this.tr4cker.getTodoList().filtered(x -> true));
+
         firstEvent = this.tr4cker.firstEvent();
+
         secondEvent = this.tr4cker.secondEvent();
         //TODO: Make code more defensive
 
@@ -164,6 +170,7 @@ public class ModelManager implements Model {
         tr4cker.addEvent(task);
         updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
     }
+
     @Override
     public boolean hasModule(Module module) {
         requireNonNull(module);
@@ -184,6 +191,23 @@ public class ModelManager implements Model {
     public void addModule(Module module) {
         tr4cker.addModule(module);
         updateFilteredModuleList(x -> true);
+    }
+
+    @Override
+    public boolean hasTodo(Todo task) {
+        requireNonNull(task);
+        return tr4cker.hasTodo(task);
+    }
+
+    @Override
+    public void deleteTodo(Todo target) {
+        tr4cker.removeTodo(target);
+    }
+
+    @Override
+    public void addTodo(Todo task) {
+        tr4cker.addTodo(task);
+        updateFilteredTodoList(PREDICATE_SHOW_ALL_TODOS);
     }
 
     //=========== Filtered Task List Accessors =============================================================
@@ -252,6 +276,15 @@ public class ModelManager implements Model {
         return filteredEvents;
     }
 
+    /**
+     * Returns an unmodifiable view of the list of {@code Todo}
+     * backed by the internal list of {@code versionedTr4cker}.
+     */
+    @Override
+    public ObservableList<Todo> getFilteredTodoList() {
+        return filteredTodos;
+    }
+
     @Override
     public ObservableValue<Event> getEventFirst() {
         return new ObservableValue() {
@@ -312,6 +345,12 @@ public class ModelManager implements Model {
     public void updateFilteredModuleList(Predicate<Module> predicate) {
         requireNonNull(predicate);
         filteredModules.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredTodoList(Predicate<Todo> predicate) {
+        requireNonNull(predicate);
+        filteredTodos.setPredicate(predicate);
     }
 
     @Override

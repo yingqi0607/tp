@@ -1,11 +1,11 @@
 ---
 layout: page
-title: User Guide to TR4CKER
+title: User Guide
 ---
 
 1. [Overview](#1-overview)
-    1. [About TR4CKER](#11-about-tr4cker)
-    2. [About this User Guide](#12-about-this-user-guide)
+    1.1. [About TR4CKER](#11-about-tr4cker)
+    1.2. [About this User Guide](#12-about-this-user-guide)
 2. [Quick Start](#2-quick-start)    
 3. [Commands](#3-commands)
     * 3.1. [Common Commands](#31-common-commands)
@@ -24,7 +24,27 @@ title: User Guide to TR4CKER
         * 3.2.9. [Deleting Pending tasks: `delete`](#329-deleting-pending-tasks--delete)
         * 3.2.10. [Editing Expired tasks: `edit expired`](#3210-editing-expired-tasks-edit-expired)
         * 3.2.11. [Deleting Expired tasks: `delete expired`](#3211-deleting-expired-tasks--delete-expired)
-        * 3.2.12. [Clearing all tasks: `clear`](#clearing-all-tasks-clear)
+        * 3.2.12. [Clearing all tasks: `clear`](#3212-clearing-all-tasks-clear)
+    * 3.3. [Daily Tab](#33-daily-yingqi)
+        * 3.3.1 [Switching to Daily tab: `countdown`](#331-switching-to-daily-tab-daily)
+        * 3.3.2 [Adding a daily todo task](#332-adding-a-daily-todo-task-todo)
+    * 3.4. [Modules Tab](#34-modules-ethan)
+    * 3.5. [Countdown Tab](#35-countdown-wen-ling)
+        * 3.5.1 [Switching to Countdown tab: `countdown`](#351-switching-to-countdown-tab-countdown)
+        * 3.5.2 [Adding a new event to countdowns list](#352-adding-a-new-event-to-countdowns-list)
+        * 3.5.3 [Adding an event from tasks list](#353-adding-an-event-from-tasks-list)
+        * 3.5.4 [Deleting an event from countdowns list](#354-deleting-an-event-from-countdowns-list)
+    * 3.6. [Planner Tab](#36-planner-rui-ling)
+        * 3.6.1 [Switching to Planner tab: `planner`](#361-switching-to-planner-tab-planner)
+        * 3.6.2 [Switching calendar view and tasks list](#362-switching-calendar-view-and-tasks-list)
+        * 3.6.3 [Today](#363-today)
+        * 3.6.4 [Tomorrow](#364-tomorrow)
+        * 3.6.5 [Specific Date](#365-specific-date)
+        * 3.6.6 [Specific Month](#366-specific-month)
+        * 3.6.7 [Indicators on Calendar](#367-indicators-on-calendar)
+    * 3.7. [Saving of Data](#37-saving-the-data)
+4. [FAQ](#faq)
+5. [Command Summary](#command-summary)
 
 ## 1. Overview
 Welcome to the User Guide of TR4CKER!
@@ -57,30 +77,27 @@ In this guide, we cover:
    
    Figure 1: Application home page populated with sample data
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
-
-    * **`add`**`n/task 1 dl/20-Dec-2020 1700 des/task 1 description t/urgent`: Adds a task named `task 1` with description `task 1
-description`, with a deadline of `20 Dec 2020, 1700 hrs` and with an `urgent` tag into TR4CKER.
-
-    * **`done`**`1`: Marks the 1st task as done.
-
-    * **`delete`**`3`: Deletes the 3rd task shown in the current task list.
-
-    * **`edit`**`1 n/actually task 2`: Edits 1st task's name to be `actually task 2`.
-
-    * **`tag`**`1 new/urgent`: Adds `urgent` tag to existing tags of 1st task.
-
-    * **`find`**`task`: Finds the tasks with `task` as a keyword.
-
-    * **`list`**: Lists all tasks in current task list.
-
-    * **`exit`**: Exits TR4CKER.
-
-
 --------------------------------------------------------------------------------------------------------------------
-
 ## 3. Commands
+
+<div markdown="block" class="alert alert-info">
+
+**Information_source: Notes about the command format:**<br>
+
+* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/tP week 7`.
+
+* Items in square brackets are optional.<br>
+  e.g `n/ NAME [t/TAG]` can be used as `n/tP week 7 t/urgent` or as `n/tP week 7`.
+
+* Items with `…` after them can be used multiple times including zero times.<br>
+  e.g. `[t/TAG]…` can be used as ` ` (i.e. 0 times), `t/urgent`, `t/urgent t/cs2103t` etc.
+
+* Parameters can be in any order.<br>
+  e.g. if the command specifies `n/NAME dl/DEADLINE`, `dl/DEADLINE n/NAME` is also acceptable.
+
+</div>
+
 
 #### 3.1. Common Commands
 
@@ -116,7 +133,8 @@ Table 1: List of Switch Tab commands
 
 TR4CKER is primarily a task management application that allows you to track and manage your tasks comprehensively.
 
-TR4CKER's Home page was built for this purpose and you will be directed to this page once you start TR4CKER.
+TR4CKER's Home page was built for this purpose and you will be directed to this page once you start TR4CKER. Alternatively,
+ you can enter `home` on the Command Box to navigate to this page.
   
 #### 3.2.1. Reading the Task lists
 
@@ -153,15 +171,18 @@ DESCRIPTION represents a field where you provide the task description, such as d
 
 </div>
 
-##### 3.2.3. Adding new tasks: `add`
+#### 3.2.3. Adding new tasks: `add`
 
 You can add a task to TR4CKER using the `add` command when you want to start working on a new task.
 
-Format: `add n/NAME des/description [m/MODULE_CODE] [dl/DEADLINE] [t/TAG]…​` 
+Format: `add n/NAME des/DESCRIPTION [m/MODULE_CODE] [dl/DEADLINE] [t/TAG]…​` 
 
 ![AddCommand](images/AddCommand.png) 
 
 Figure 3: Example of an expected result after executing `add n/UG Introduction des/TableOfContents m/CS2103T t/Urgent t/Important`
+
+Before you can add a task with module, you need to ensure that the module is already entered into TR4CKER. 
+You can refer to the section on Module Tab to find out more.
 
 <div markdown="block" class="alert alert-info">
 
@@ -194,13 +215,13 @@ Examples:
 * `add n/CS1101S Quiz dl/25-11-2020 m/CS1101S des/Post-Lecture quiz`
 * `add n/CS1231S Homework Assignment dl/today 2200 m/CS1231S des/Chapter 3 t/graded t/assignment`
 
-##### 3.2.4. Listing all tasks: `list`
+#### 3.2.4. Listing all tasks: `list`
 
-Shows a list of all tasks in TR4CKER.
+Displays a list of all tasks names in TR4CKER.
 
 Format: `list`
 
-##### 3.2.5. Marking tasks as done: `done`
+#### 3.2.5. Marking tasks as done: `done`
 
 TR4CKER allows you to track the progress of a task in TR4CKER and you can use the `done` command when you want to update the Completion Status of a task.
 
@@ -224,11 +245,11 @@ Examples:
 * `list` followed by `done 2 p/50` marks the 2nd task in the displayed task list as 50% done.
 * `find tutorial` followed by `done 1` marks the 1st task in the results of the `find` command as 100% done.
 
-##### 3.2.6. Editing Pending tasks: `edit`
+#### 3.2.6. Editing Pending tasks: `edit`
 
 You can edit an existing Pending task in TR4CKER by using the `edit` command when the need arises.
 
-Format: `edit INDEX [n/NAME] [dl/DEADLINE] [des/TASK_DESCRIPTION]`
+Format: `edit INDEX [n/NAME] [dl/DEADLINE] [des/DESCRIPTION]`
 
 * Edits the task's name, deadline and description at the specified `INDEX`.
 * The index refers to the index number shown in the task list.
@@ -240,7 +261,7 @@ Examples:
 * `edit 1 n/prepare for tP tasks` - Edits the description of the 1st task to be `prepare for tP tasks`.
 * `edit 2 dl/13-Dec-2020 1930` - Edits the deadline time of the 2nd task to be 13 Dec 2020, 1930 hrs.
 
-##### 3.2.7. Editing tags of Pending tasks: `tag`
+#### 3.2.7. Editing tags of Pending tasks: `tag`
 
 You can add or delete tags of a Pending task in TR4CKER.
 
@@ -262,7 +283,7 @@ Examples:
 * `tag 3 new/urgent del/assignment new/graded` - Adds 2 new tags `urgent` and `graded`, deletes the tag `assignment`
 from the 3rd task.
 
-##### 3.2.8. Locating Pending tasks by keyword: `find`
+#### 3.2.8. Locating Pending tasks by keyword: `find`
 
 You can find tasks whose names contain any of the given keywords.
 
@@ -281,9 +302,10 @@ Figure 5: Example of an expected result after executing `find cs2103T Assignment
 
 Examples:
 * `find CS2101` returns `CS2101 Oral Presentation 1`
-* `find CS1231S Mission` returns `CS1101S Mission`, `CS1231S Graded Assignment`
+* `find CS2103T Quiz` returns `CS2103T Project`, `CS1101S Quiz`<br>
+  ![result for 'find CS1231S Mission'](images/findCS2103TQuizResult.png)
 
-##### 3.2.9. Deleting Pending tasks : `delete`
+#### 3.2.9. Deleting Pending tasks : `delete`
 
 You can delete an existing task from the task list by providing the 
 index number of the task that you want to delete.
@@ -298,11 +320,11 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd task in the displayed task list.
 * `find assignment` followed by `delete 1` deletes the 1st task in the results of the `find` command.
 
-##### 3.2.10. Editing Expired tasks: `edit expired`
+#### 3.2.10. Editing Expired tasks: `edit expired`
 
 The usage of this command is similar to the `edit` command for a Pending task.
 
-Format: `edit expired INDEX [n/NAME] [dl/DEADLINE] [des/TASK_DESCRIPTION]`
+Format: `edit expired INDEX [n/NAME] [dl/DEADLINE] [des/DESCRIPTION]`
 
 <div markdown="block" class="alert alert-info">
 
@@ -313,7 +335,7 @@ must be a future Deadline. Hence, the edited task will be displayed under the Pe
 
 </div>
 
-##### 3.2.11. Deleting Expired tasks : `delete expired`
+#### 3.2.11. Deleting Expired tasks : `delete expired`
 
 The usage of this command is similar to the `delete` command for a Pending task.
 
@@ -327,21 +349,53 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd task in the displayed task list.
 * `find assignment` followed by `delete 1` deletes the 1st task in the results of the `find` command.
 
-##### 3.2.12. Clearing all tasks: `clear`
+#### 3.2.12. Clearing all tasks: `clear`
 
 Clears all entries in TR4CKER.
 
 Format: `clear`
 
-#### Daily tab features
 
-#### Modules tab features
+### 3.3 Daily (Yingqi)
+You can add all your daily plans of current tasks to a daily to do list so that you have a clearer idea of what you want to complete for the day.
 
-#### Countdown tab features (Wen Ling)
+#### 3.3.1 Switching to Daily tab: `daily`
+If you would like to switch to Daily tab without clicking on the Daily tab button, you can do so easily through the CLI, by just typing `daily`.
+
+Format: `daily`
+
+Once you enter `daily` into the command box, TR4CKER should look like this:
+![switch tab](images/dailyTab_switchTab.png)
+Figure 1: TR4CKER after executing `daily`.
+
+Example: 
+* `daily` - Switches to Daily tab, showing a list of daily todo tasks that you have planned for the day.
+
+#### 3.3.2 Adding a daily todo task: `todo`
+
+You can add a todo task for the day into the daily todo list by providing the index number of the task that you want to add.
+
+Format: `todo INDEX` [To be implemented: add multiple todo tasks at the same time]
+
+* Adds the task at the specified `INDEX` to daily todo list.
+* The index refers to a valid index number shown in the displayed task list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `list` followed by `todo 1` adds the first task in the displayed task list into daily todo list.
+![todo before](images/dailyTab_todo1Before.png)
+Figure 2: Daily tab before executing `todo 1`.
+
+![todo result](images/dailyTab_todo1After.png)
+Figure 3: Daily tab after executing `todo 1`.
+
+### 3.4. Modules (Ethan)
+
+### 3.5. Countdown (Wen Ling)
 You can countdown to your most essential upcoming events in the Countdown tab. You can know at a quick glance, how many
 you have left to that Final Exam or that birthday party.
 
-##### Switching to Countdown tab: `countdown`
+#### 3.5.1. Switching to Countdown tab: `countdown`
 To switch to the Countdown tab, simply type `countdown` into the command line. You can also click on the Countdown button
 on the tabs menu at the top.
 
@@ -355,7 +409,7 @@ The `Upcoming Events` panel shows the list of upcoming events that are counted d
 Example:
 * `countdown` - Switches to Countdown tab, showing the list of events.
 
-##### Adding a new event to countdowns list
+#### 3.5.2. Adding a new event to countdowns list
 You can add an event to the list of events, and TR4CKER helps you to countdown to it.
 
 Format: `countdown n/NAME d/DATE`
@@ -376,7 +430,7 @@ Countdowns list of events.
 ![add_new](images/countdowntab_addnew.png)
 Figure x: TR4CKER after executing `countdown n/ES2660 Final Presentation d/05-Nov-2020`
 
-##### Adding an event from tasks list
+#### 3.5.3. Adding an event from tasks list
 You can add an event that is based on a current task in the tasks list (as seen in the homepage of TR4CKER under the
 `Pending Tasks` panel) to your list of countdowns. TR4CKER will help you to countdown to this event, in addition to
 tracking it in the tasks list.
@@ -400,7 +454,7 @@ on the left.
 Figure x: TR4CKER after executing `countdown task/2`. The task at index `2` in Figure x is added at index `9` of the
 Countdowns events list.
 
-##### Deleting an event from countdowns list
+#### 3.5.4. Deleting an event from countdowns list
 You can delete an event from your list of events if you no longer want to countdown to it, or if it is over.
 
 Format: `countdown del/INDEX`
@@ -418,12 +472,12 @@ Figure x: Countdown tab of TR4CKER which shows you the current list of events.
 ![delete_after](images/countdowntab_delete_after.png)
 Figure x: TR4CKER after executing `countdown del/2`. Event at index `2` of Figure x is deleted. 
 
-#### Planner tab features
+### 3.6. Planner (Rui Ling)
 You can view an overview of your schedule in a calendar view and have your tasks list side-by-side using the Planner
 tab. By having an overview of your upcoming schedule, you would be able to better manage your time and hence
 be more productive!
 
-##### Switching to Planner tab: `planner`
+#### 3.6.1. Switching to Planner tab: `planner`
 If you would like to switch to Planner tab without clicking on the Planner tab button, you can do so easily through the
 CLI, by just typing `planner`.
 
@@ -438,7 +492,7 @@ By default, TR4CKER will circle today's date and the show you the tasks due on t
 Example:
 * `planner` - Switches to Planner tab, showing calendar view of today and tasks due today.
 
-##### Switching calendar view and tasks list
+#### 3.6.2. Switching calendar view and tasks list
 If you would like to view the calendar on specific date/month, and with the tasks due on that date beside, you can
 use this command.
 
@@ -448,7 +502,7 @@ General format: `planner goto/INPUT`
 
 For the ease of accessing today's and tomorrow's tasks list, TR4CKER has provided you with 2 commands that you can use!
 Short forms like "tdy" for "today" and "tmr" for "tomorrow" also allow you to save time without typing the full words.
-##### Today
+#### 3.6.3. Today
 Format: `planner goto/today` or `planner goto/tdy`
 
 * Input can only be `today` or `tdy`. There are no other alternatives.
@@ -468,7 +522,7 @@ These 2 examples:
 
 will both give you today's calendar view and tasks due today.
 
-##### Tomorrow
+#### 3.6.4. Tomorrow
 Format: `planner goto/tomorrow` or `planner goto/tmr`
 
 * Input can only be `tomorrow` or `tmr`. There are no other alternatives.
@@ -490,7 +544,7 @@ will both give you tomorrow's calendar view and tasks due tomorrow.
 
 For the ease of accessing of a specific date's or month's tasks list, TR4CKER has provided you with 2 commands that
 you can use!
-##### Specific date
+#### 3.6.5. Specific date
 Format: `planner goto/dd-mm-yyyy` or `planner goto/dd-MMM-yyyy`
 
 * Input must be a valid date.
@@ -510,7 +564,7 @@ shows you the tasks due on 2nd December 2020.
 * `planner goto/28-Feb-2021` - Shows you the calendar view of February 2021, with 28th February 2021 being circled, and
 shows you the tasks due on 28th February 2021.
 
-##### Specific month
+#### 3.6.6. Specific month
 Format: `planner goto/mm-yyyy` or `planner goto/MMM-yyyy`
 
 * Input must be a valid month.
@@ -533,7 +587,7 @@ shows you the tasks due on 1st December 2020.
 * `planner goto/Feb-2021` - Shows you the calendar view of February 2021, with 1st February 2021 being circled, and
 shows you the tasks due on 1st February 2021.
 
-##### Indicators on Calendar
+#### 3.6.7. Indicators on Calendar
 You would have realised there are different colours tagged to every day in the calendar. To allow you to have a better
 overview of your schedule, Planner tab allows you to check if your upcoming days are busy!
 
@@ -546,7 +600,7 @@ The indicator colours and their meanings are:
 * Green indicator - 2 or lesser tasks due on that date
 * Red indicator - more than 2 tasks due on that date
 
-##### Saving the data
+#### 3.7. Saving the data
 
 TR4CKER saves data in the hard disk automatically after any command that changes the data.
 There is no need to save manually.
@@ -563,14 +617,18 @@ the data of your previous TR4CKER home folder.
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME dl/DEADLINE des/TASKDESCRIPTION [t/TAG]…​` <br> e.g., `add n/task 1 dl/2020-09-08 des/task 1 description t/urgent t/priority`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Done** | `done INDEX`<br> e.g., `done 1`
-**Edit** | `edit INDEX [n/NAME] [dl/DEADLINE] [des/TASKDESCRIPTION]`<br> e.g.,`edit 2 n/task 1 dl/2020-09-08`
-**Exit** | `exit`
-**Find** | `find [KEYWORD_1] [KEYWORD_2] ...`<br> e.g., `find task 1`
-**Help** | `help`
-**List** | `list`
+* **Help**: `help`
+* **Exit**: `exit`
+* **Add**: `add n/NAME des/DESCRIPTION [dl/DEADLINE] [m/MODULE_CODE] [t/TAG]...`
+* **List**: `list`
+* **Done**: `done INDEX [p/COMPLETION_STATUS]`
+* **Add todo task**: `todo INDEX`
+* **Edit Pending tasks**: `edit INDEX [n/NAME] [des/DESCRIPTION] [dl/DEADLINE]`
+* **Edit Tags of Pending tasks**: `tag INDEX [old/TAG_TO_DELETE]... [new/NEW_TAG]...`
+* **Find Pending tasks**: `find [KEYWORD]...`
+* **Delete Pending tasks**: `delete INDEX`
+* **Edit Expired tasks**: `edit expired INDEX [n/NAME] [dl/DEADLINE] [des/DESCRIPTION]`
+* **Delete Expired tasks**: `delete expired INDEX`
+* **Clear all tasks**: `clear`
+
+

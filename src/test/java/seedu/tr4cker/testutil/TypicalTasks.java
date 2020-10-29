@@ -19,9 +19,11 @@ import seedu.tr4cker.model.Tr4cker;
 import seedu.tr4cker.model.countdown.Event;
 import seedu.tr4cker.model.countdown.EventDate;
 import seedu.tr4cker.model.countdown.EventName;
+import seedu.tr4cker.model.daily.Todo;
 import seedu.tr4cker.model.module.Module;
 import seedu.tr4cker.model.module.ModuleCode;
 import seedu.tr4cker.model.task.Deadline;
+import seedu.tr4cker.model.task.Name;
 import seedu.tr4cker.model.task.Task;
 
 /**
@@ -73,11 +75,17 @@ public class TypicalTasks {
     public static final Module MODULE3 = new Module(
             "Module3 Name", new ModuleCode("Module3Code"));
 
+    public static final Todo TODO1 = new Todo(new Name("Todo1 Name"), new Deadline("12-Jul-2021 0600", false));
+    public static final Todo TODO2 = new Todo(new Name("Todo2 Name"), new Deadline("27-Sep-2021 2359", false));
+    public static final Todo TODO3 = new Todo(new Name("Todo3 Name"), new Deadline("20-Oct-2021 1800", false));
+
     // Manually added
     public static final Task TASK_H = new TaskBuilder().withName("TASK H").withDeadline("12-Jul-2021 0600")
             .withCompletionStatus(0).withTaskDescription("Task H description").build();
     public static final Task TASK_I = new TaskBuilder().withName("TASK I").withDeadline("27-Sep-2021 2359")
             .withCompletionStatus(0).withTaskDescription("Task I description").build();
+    public static final Task TASK_J = new TaskBuilder().withName("TASK J").withDeadline("20-Oct-2021 1800")
+            .withCompletionStatus(0).withTaskDescription("Task J description").build();
 
     // Manually added - Task's details found in {@code CommandTestUtil}
     public static final Task MANUAL_TASK1 = new TaskBuilder().withName(VALID_NAME_1).withDeadline(VALID_DEADLINE_1)
@@ -107,6 +115,10 @@ public class TypicalTasks {
         for (Event event : getTypicalEvents()) {
             tr4cker.addEvent(event);
         }
+
+        for (Todo todo : getTypicalTodos()) {
+            tr4cker.addTodo(todo);
+        }
         return tr4cker;
     }
 
@@ -120,5 +132,9 @@ public class TypicalTasks {
 
     public static List<Module> getTypicalModules() {
         return new ArrayList<>(Arrays.asList(MODULE1, MODULE2, MODULE3));
+    }
+
+    public static List<Todo> getTypicalTodos() {
+        return new ArrayList<>(Arrays.asList(TODO1, TODO2, TODO3));
     }
 }
