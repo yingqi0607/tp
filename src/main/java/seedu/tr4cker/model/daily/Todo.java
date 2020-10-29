@@ -5,6 +5,8 @@ import java.util.Objects;
 import seedu.tr4cker.model.task.Deadline;
 import seedu.tr4cker.model.task.Name;
 
+import static seedu.tr4cker.commons.util.CollectionUtil.requireAllNonNull;
+
 /**
  * Represents a Todo task in Daily tab.
  * Guarantees: details are present and not null, field values are validated, immutable.
@@ -17,15 +19,21 @@ public class Todo {
      * Every field must be present and not null.
      */
     public Todo(Name name, Deadline deadline) {
+        requireAllNonNull(name, deadline);
         this.name = name;
         this.deadline = deadline;
     }
 
-
+    /**
+     * Returns name of a todo task
+     */
     public Name getName() {
         return name;
     }
 
+    /**
+     * Returns deadline of a todo task
+     */
     public Deadline getDeadline() {
         return deadline;
     }
