@@ -3,13 +3,28 @@ layout: page
 title: User Guide to TR4CKER
 ---
 
-1. [Overview](#1.-Overview)
-    1.1. [About TR4CKER](#1.1.-About-TR4CKER)
-    1.2. [About this User Guide](#1.2.-About-this-User-Guide)
-2. [Quick Start](#2.-Quick-Start)    
-3. [Commands](#3.-Commands)
-    3.1 [Common Commands](#3.1.-Common-Commands)
-    3.2 [Home (Han Wei)](#3.2.-Home-(Han-Wei))
+1. [Overview](#1-overview)
+    1. [About TR4CKER](#11-about-tr4cker)
+    2. [About this User Guide](#12-about-this-user-guide)
+2. [Quick Start](#2-quick-start)    
+3. [Commands](#3-commands)
+    * 3.1. [Common Commands](#31-common-commands)
+        * 3.1.1. [Viewing help: `help`](#311-viewing-help--help)
+        * 3.1.2. [Exiting the program: `exit`](#312-exiting-the-program-exit)
+        * 3.1.3. [Switching between tabs](#313-switching-between-tabs)
+    * 3.2. [Home Tab](#32-home-han-wei)
+        * 3.2.1. [Reading the Task lists](#321-reading-the-task-lists)
+        * 3.2.2. [Command format for Task list Commands](#322-command-format-for-task-list-commands)
+        * 3.2.3. [Adding new tasks: `add`](#323-adding-new-tasks-add)
+        * 3.2.4. [Listing all tasks: `list`](#324-listing-all-tasks-list)
+        * 3.2.5. [Marking Pending tasks as done: `done`](#325-marking-tasks-as-done-done)
+        * 3.2.6. [Editing Pending tasks: `edit`](#326-editing-pending-tasks-edit)
+        * 3.2.7. [Editing tags of Pending tasks: `tag`](#327-editing-tags-of-pending-tasks-tag)
+        * 3.2.8. [Locating Pending tasks by keywords: `find`](#328-locating-pending-tasks-by-keyword-find)
+        * 3.2.9. [Deleting Pending tasks: `delete`](#329-deleting-pending-tasks--delete)
+        * 3.2.10. [Editing Expired tasks: `edit expired`](#3210-editing-expired-tasks-edit-expired)
+        * 3.2.11. [Deleting Expired tasks: `delete expired`](#3211-deleting-expired-tasks--delete-expired)
+        * 3.2.12. [Clearing all tasks: `clear`](#clearing-all-tasks-clear)
 
 ## 1. Overview
 Welcome to the User Guide of TR4CKER!
@@ -45,8 +60,8 @@ In this guide, we cover:
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-    * **`add`**`n/task 1 dl/2020-09-08 1700 des/task 1 description t/urgent`: Adds a task named `task 1` with description `task 1
-description`, with a deadline of `8 Sep 2020, 1700 hrs` and with an `urgent` tag into TR4CKER.
+    * **`add`**`n/task 1 dl/20-Dec-2020 1700 des/task 1 description t/urgent`: Adds a task named `task 1` with description `task 1
+description`, with a deadline of `20 Dec 2020, 1700 hrs` and with an `urgent` tag into TR4CKER.
 
     * **`done`**`1`: Marks the 1st task as done.
 
@@ -62,29 +77,8 @@ description`, with a deadline of `8 Sep 2020, 1700 hrs` and with an `urgent` tag
 
     * **`exit`**: Exits TR4CKER.
 
-6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
-
-## Features
-
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Notes about the command format:**<br>
-
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/tP week 7`.
-
-* Items in square brackets are optional.<br>
-  e.g `n/ NAME [t/TAG]` can be used as `n/tP week 7 t/urgent` or as `n/tP week 7`.
-
-* Items with `…` after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…` can be used as ` ` (i.e. 0 times), `t/urgent`, `t/urgent t/cs2103t` etc.
-
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME dl/DEADLINE`, `dl/DEADLINE n/NAME` is also acceptable.
-
-</div>
 
 ## 3. Commands
 
@@ -144,6 +138,10 @@ Lastly, the Completed Tasks panel displays completed tasks for archive purposes.
 The syntax of the `add` command is `add n/NAME des/DESCRIPTION [m/MODULE_CODE] [dl/DEADLINE] [t/TAG]... ` and it will be used as an
 example to explain the following points:
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about the command format:**<br>
+
 1. Parts of the command in UPPER_CASE represent command parameters that have to be supplied by you. Using the given example, 
 DESCRIPTION represents a field where you provide the task description, such as des/Graded assignment 2.   
 
@@ -153,7 +151,9 @@ DESCRIPTION represents a field where you provide the task description, such as d
 
 4. Parameters can be entered in any order.
 
-##### 3.1.3. Adding a task: `add`
+</div>
+
+##### 3.2.3. Adding new tasks: `add`
 
 You can add a task to TR4CKER using the `add` command when you want to start working on a new task.
 
@@ -161,70 +161,88 @@ Format: `add n/NAME des/description [m/MODULE_CODE] [dl/DEADLINE] [t/TAG]…​`
 
 ![AddCommand](images/AddCommand.png) 
 
-Figure 3: Example of an expected result after excecuting `add n/UG Introduction des/TableOfContents m/CS2103T t/Urgent t/Important`
+Figure 3: Example of an expected result after executing `add n/UG Introduction des/TableOfContents m/CS2103T t/Urgent t/Important`
 
-Important points to note when entering Deadline:
-1. While Deadline is an optional parameter, TR4CKER will set the Deadline to default values if you do not enter a Deadline:
-    * If Deadline is not entered, it will be set to Today, 2359 if Deadline
-    * If Deadline date is entered without time, Deadline time will be set to 2359
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Important points to note when entering Deadline:**<br>
+
+1. While Deadline is an optional parameter, TR4CKER will set the Deadline to default values if you do not enter them:
+    * If you do not enter a Deadline, it will be set to Today, 2359.
+    * If you enter a Deadline date without specifying a time, Deadline time will be set to 2359.
 2. DateTime formats accepted for Deadline:
     * dd-MM-yyyy HHmm, dd-MMM-yyy HHmm, dd-MM-yyy, dd-MMM-yyyy
-        * dd: the corresponding days in 2 numbers
-        * MM: the corresponding month in 2 numbers
-        * MMM: the corresponding month in 3 letters
-        * yyyy: the corresponding year in 4 numbers
-        * HH: the hour the task is due, in 24-Hour format
-        * mm: the minute the task is due
+        * dd: the corresponding days in 2 numbers.
+        * MM: the corresponding month in 2 numbers.
+        * MMM: the corresponding month in 3 letters (First letter must be capitalised, e.g. Jan, Sep).
+        * yyyy: the corresponding year in 4 numbers.
+        * HH: the hour the task is due, in 24-Hour format.
+        * mm: the minute the task is due.
+    * Natural Dates
+        * Today
+        * Days of week (e.g. Monday, Sunday)
+            * If Monday is entered, it refers to the upcoming Monday.
 
+</div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A task can have any number of tags (including 0)
+Tags cannot contain spaces and must be alphanumeric!
 </div>
 
 Examples:
-* `add n/CS1101S Quiz dl/25-01-2020 m/CS1101S des/Post-Lecture quiz`
-* `add n/CS1231S Homework Assignment dl/09-Aug-2021 2200 des/Chapter 3 t/graded t/assignment`
+* `add n/tP PE m/CS2103T des/Practical Exam`
+* `add n/CS1101S Quiz dl/25-11-2020 m/CS1101S des/Post-Lecture quiz`
+* `add n/CS1231S Homework Assignment dl/today 2200 m/CS1231S des/Chapter 3 t/graded t/assignment`
 
-##### Listing all tasks: `list`
+##### 3.2.4. Listing all tasks: `list`
 
 Shows a list of all tasks in TR4CKER.
 
 Format: `list`
 
-##### Marking tasks as done: `done`
+##### 3.2.5. Marking tasks as done: `done`
 
-Marks the tasks you have completed as 'done' in TR4CKER.
+TR4CKER allows you to track the progress of a task in TR4CKER and you can use the `done` command when you want to update the Completion Status of a task.
 
-Format: `done [INDEX]`
+Format: `done INDEX [p/COMPLETION_STATUS]`
+
+![DoneCommand](images/DoneCommand.png) 
+
+Figure 4: Example of an expected result after executing `done 1 p/50`
 
 * Marks the task as done at the specified `INDEX`.
-* The index refers to a valid index number shown in the displayed task list.
+* The index refers to a valid index number shown in the specified Pending Tasks list.
 * The index **must be a positive integer** 1, 2, 3, …​
+* Completion Status is a percentage of task done and therefore only accept integer values from 0 to 100.
+* If Completion Status is not entered, TR4CKER will mark the task as 100% done.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Completion Status can either be increased or decreased!
+</div>
 
 Examples:
-* `list` followed by `done 2` marks the 2nd task in the displayed task list as done.
-* `find essay` followed by `done 1` marks the 1st task in the results of the `find` command as done.
+* `list` followed by `done 2 p/50` marks the 2nd task in the displayed task list as 50% done.
+* `find tutorial` followed by `done 1` marks the 1st task in the results of the `find` command as 100% done.
 
-##### Editing a task: `edit`
+##### 3.2.6. Editing Pending tasks: `edit`
 
-Edits an existing task’s details in TR4CKER.
+You can edit an existing Pending task in TR4CKER by using the `edit` command when the need arises.
 
-Format: `edit INDEX [n/NAME] [dl/DEADLINE] [des/TASKDESCRIPTION]`
+Format: `edit INDEX [n/NAME] [dl/DEADLINE] [des/TASK_DESCRIPTION]`
 
 * Edits the task's name, deadline and description at the specified `INDEX`.
 * The index refers to the index number shown in the task list.
 * The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
-* Existing task’s details will be updated to the new task’s details being inputted.
-* Editing of tags can be done using `tag` command.
+* Editing of tags is done using `tag` command instead (Refer to the TagCommand section).
 
 Examples:
 * `edit 1 n/prepare for tP tasks` - Edits the description of the 1st task to be `prepare for tP tasks`.
-* `edit 2 dl/2020-09-13 1930` - Edits the deadline time of the 2nd task to be 13 Sep 2020, 1930 hrs.
+* `edit 2 dl/13-Dec-2020 1930` - Edits the deadline time of the 2nd task to be 13 Dec 2020, 1930 hrs.
 
-##### Editing tags: `tag`
+##### 3.2.7. Editing tags of Pending tasks: `tag`
 
-Adds and/or deletes tag(s) from an existing task in TR4CKER.
+You can add or delete tags of a Pending task in TR4CKER.
 
 Format: `tag INDEX [new/NEW_TAG]…​ [del/TAG_TO_DELETE]…​`
 
@@ -244,25 +262,28 @@ Examples:
 * `tag 3 new/urgent del/assignment new/graded` - Adds 2 new tags `urgent` and `graded`, deletes the tag `assignment`
 from the 3rd task.
 
-##### Locating tasks by keyword: `find`
+##### 3.2.8. Locating Pending tasks by keyword: `find`
 
-Finds tasks whose names contain any of the given keywords.
+You can find tasks whose names contain any of the given keywords.
 
 Format: `find [KEYWORD_1] [KEYWORD_2] ...`
 
-* The search is case-insensitive. e.g `cs2101` will match `CS2101`
-* The order of the keywords does not matter. e.g. `Presentation CS2101` will match `CS2101 Presentation`
+![FindCommand](images/FindCommand.png)
+
+Figure 5: Example of an expected result after executing `find cs2103T Assignment`
+
+* The search is case-insensitive. e.g `cs2103T` will match `CS21013T`
+* The order of the keywords does not matter. e.g. `Assignment CS2103T` will match `CS2103T Assignment`
 * Only the name is searched.
 * Only full words will be matched e.g. `2101` will not match `CS2101`
 * Tasks matching at least one keyword will be returned.
-  e.g. `find CS2101 project` will return `CS2101 Oral Presentation 1`, `CS2103T team project`
+  e.g. `find CS2103T Assignment` will return `CS2103T Project`, `CS2100 Assignment 3`
 
 Examples:
 * `find CS2101` returns `CS2101 Oral Presentation 1`
-* `find CS1231S Mission` returns `CS1101S Mission`, `CS1231S Graded Assignment`<br>
-  ![result for 'find CS1231S Mission'](images/findCS1231SmissionResult.png)
+* `find CS1231S Mission` returns `CS1101S Mission`, `CS1231S Graded Assignment`
 
-##### Deleting an existing task : `delete`
+##### 3.2.9. Deleting Pending tasks : `delete`
 
 You can delete an existing task from the task list by providing the 
 index number of the task that you want to delete.
@@ -277,9 +298,38 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd task in the displayed task list.
 * `find assignment` followed by `delete 1` deletes the 1st task in the results of the `find` command.
 
-##### Clearing all tasks: `clear`
+##### 3.2.10. Editing Expired tasks: `edit expired`
 
-Clears all entries from TR4CKER.
+The usage of this command is similar to the `edit` command for a Pending task.
+
+Format: `edit expired INDEX [n/NAME] [dl/DEADLINE] [des/TASK_DESCRIPTION]`
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: If you edit the Deadline of an Expired Task:**<br>
+
+Editing the Deadline of an Expired task will turn the task into a Pending task because new Deadline entered
+must be a future Deadline. Hence, the edited task will be displayed under the Pending Task panel instead.
+
+</div>
+
+##### 3.2.11. Deleting Expired tasks : `delete expired`
+
+The usage of this command is similar to the `delete` command for a Pending task.
+
+Format: `delete expired INDEX`
+
+* Deletes the task at the specified `INDEX`.
+* The index refers to a valid index number shown in the displayed task list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `list` followed by `delete 2` deletes the 2nd task in the displayed task list.
+* `find assignment` followed by `delete 1` deletes the 1st task in the results of the `find` command.
+
+##### 3.2.12. Clearing all tasks: `clear`
+
+Clears all entries in TR4CKER.
 
 Format: `clear`
 
