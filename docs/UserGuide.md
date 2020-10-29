@@ -26,6 +26,8 @@ title: User Guide
         * 3.2.11. [Deleting Expired tasks: `delete expired`](#3211-deleting-expired-tasks--delete-expired)
         * 3.2.12. [Clearing all tasks: `clear`](#3212-clearing-all-tasks-clear)
     * 3.3. [Daily Tab](#33-daily-yingqi)
+        * 3.3.1 [Switching to Daily tab: `countdown`](#331-switching-to-daily-tab-daily)
+        * 3.3.2 [Adding a daily todo task](#332-adding-a-daily-todo-task-todo)
     * 3.4. [Modules Tab](#34-modules-ethan)
     * 3.5. [Countdown Tab](#35-countdown-wen-ling)
         * 3.5.1 [Switching to Countdown tab: `countdown`](#351-switching-to-countdown-tab-countdown)
@@ -76,8 +78,26 @@ In this guide, we cover:
    Figure 1: Application home page populated with sample data
 
 --------------------------------------------------------------------------------------------------------------------
-
 ## 3. Commands
+
+<div markdown="block" class="alert alert-info">
+
+**Information_source: Notes about the command format:**<br>
+
+* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/tP week 7`.
+
+* Items in square brackets are optional.<br>
+  e.g `n/ NAME [t/TAG]` can be used as `n/tP week 7 t/urgent` or as `n/tP week 7`.
+
+* Items with `…` after them can be used multiple times including zero times.<br>
+  e.g. `[t/TAG]…` can be used as ` ` (i.e. 0 times), `t/urgent`, `t/urgent t/cs2103t` etc.
+
+* Parameters can be in any order.<br>
+  e.g. if the command specifies `n/NAME dl/DEADLINE`, `dl/DEADLINE n/NAME` is also acceptable.
+
+</div>
+
 
 #### 3.1. Common Commands
 
@@ -197,7 +217,7 @@ Examples:
 
 #### 3.2.4. Listing all tasks: `list`
 
-Shows a list of all tasks in TR4CKER.
+Displays a list of all tasks names in TR4CKER.
 
 Format: `list`
 
@@ -282,7 +302,8 @@ Figure 5: Example of an expected result after executing `find cs2103T Assignment
 
 Examples:
 * `find CS2101` returns `CS2101 Oral Presentation 1`
-* `find CS1231S Mission` returns `CS1101S Mission`, `CS1231S Graded Assignment`
+* `find CS2103T Quiz` returns `CS2103T Project`, `CS1101S Quiz`<br>
+  ![result for 'find CS1231S Mission'](images/findCS2103TQuizResult.png)
 
 #### 3.2.9. Deleting Pending tasks : `delete`
 
@@ -334,7 +355,39 @@ Clears all entries in TR4CKER.
 
 Format: `clear`
 
-### 3.3. Daily (Yingqi)
+
+### 3.3 Daily (Yingqi)
+You can add all your daily plans of current tasks to a daily to do list so that you have a clearer idea of what you want to complete for the day.
+
+#### 3.3.1 Switching to Daily tab: `daily`
+If you would like to switch to Daily tab without clicking on the Daily tab button, you can do so easily through the CLI, by just typing `daily`.
+
+Format: `daily`
+
+Once you enter `daily` into the command box, TR4CKER should look like this:
+![switch tab](images/dailyTab_switchTab.png)
+Figure 1: TR4CKER after executing `daily`.
+
+Example: 
+* `daily` - Switches to Daily tab, showing a list of daily todo tasks that you have planned for the day.
+
+#### 3.3.2 Adding a daily todo task: `todo`
+
+You can add a todo task for the day into the daily todo list by providing the index number of the task that you want to add.
+
+Format: `todo INDEX` [To be implemented: add multiple todo tasks at the same time]
+
+* Adds the task at the specified `INDEX` to daily todo list.
+* The index refers to a valid index number shown in the displayed task list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `list` followed by `todo 1` adds the first task in the displayed task list into daily todo list.
+![todo before](images/dailyTab_todo1Before.png)
+Figure 2: Daily tab before executing `todo 1`.
+
+![todo result](images/dailyTab_todo1After.png)
+Figure 3: Daily tab after executing `todo 1`.
 
 ### 3.4. Modules (Ethan)
 
@@ -569,6 +622,7 @@ the data of your previous TR4CKER home folder.
 * **Add**: `add n/NAME des/DESCRIPTION [dl/DEADLINE] [m/MODULE_CODE] [t/TAG]...`
 * **List**: `list`
 * **Done**: `done INDEX [p/COMPLETION_STATUS]`
+* **Add todo task**: `todo INDEX`
 * **Edit Pending tasks**: `edit INDEX [n/NAME] [des/DESCRIPTION] [dl/DEADLINE]`
 * **Edit Tags of Pending tasks**: `tag INDEX [old/TAG_TO_DELETE]... [new/NEW_TAG]...`
 * **Find Pending tasks**: `find [KEYWORD]...`
