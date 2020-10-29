@@ -1,8 +1,8 @@
 package seedu.tr4cker.model.daily;
 
-import java.util.Objects;
-
 import static seedu.tr4cker.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.util.Objects;
 
 import seedu.tr4cker.model.task.Deadline;
 import seedu.tr4cker.model.task.Name;
