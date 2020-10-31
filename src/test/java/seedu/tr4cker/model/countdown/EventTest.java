@@ -47,8 +47,8 @@ public class EventTest {
         // different name -> return false
         assertFalse(event00.isSameEvent(event10));
 
-        // different date -> return false
-        assertFalse(event00.isSameEvent(event01));
+        // different date same name -> return true
+        assertTrue(event00.isSameEvent(event01));
     }
 
     @Test

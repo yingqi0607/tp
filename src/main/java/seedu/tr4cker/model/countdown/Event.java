@@ -40,7 +40,7 @@ public class Event {
     }
 
     /**
-     * Returns true if both events of the same name have at least one other identity field that is the same.
+     * Returns true if both events have the same name.
      * This defines a weaker notion of equality between two events.
      */
     public boolean isSameEvent(seedu.tr4cker.model.countdown.Event otherEvent) {
@@ -48,8 +48,7 @@ public class Event {
             return true;
         }
         return otherEvent != null
-                && otherEvent.getEventName().equals(getEventName())
-                && (otherEvent.getEventDate().equals(getEventDate()));
+                && otherEvent.getEventName().equals(getEventName());
     }
 
     /**
