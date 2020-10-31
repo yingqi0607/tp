@@ -3,6 +3,7 @@ package seedu.tr4cker.logic;
 import java.nio.file.Path;
 import java.util.function.Predicate;
 
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import seedu.tr4cker.commons.core.GuiSettings;
 import seedu.tr4cker.logic.commands.CommandResult;
@@ -10,6 +11,7 @@ import seedu.tr4cker.logic.commands.exceptions.CommandException;
 import seedu.tr4cker.logic.parser.exceptions.ParseException;
 import seedu.tr4cker.model.ReadOnlyTr4cker;
 import seedu.tr4cker.model.countdown.Event;
+import seedu.tr4cker.model.daily.Todo;
 import seedu.tr4cker.model.module.Module;
 import seedu.tr4cker.model.task.Task;
 import seedu.tr4cker.model.task.TaskDueInPredicate;
@@ -35,6 +37,9 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of tasks. */
     ObservableList<Task> getFilteredTaskList();
 
+    /** Returns an unmodifiable view of the filtered list of pending tasks. */
+    ObservableList<Task> getFilteredPendingTaskList();
+
     /** Returns an unmodifiable view of the filtered list of expired tasks. */
     ObservableList<Task> getFilteredExpiredTaskList();
 
@@ -50,6 +55,12 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of events. */
     ObservableList<Event> getFilteredEventList();
 
+    /** Returns an unmodifiable view of the filtered list of todos. */
+    ObservableList<Todo> getFilteredTodoList();
+
+    /** Returns the first upcoming event in the list of events. */
+    ObservableValue<Event> getEventFirst();
+
     /** Returns the first upcoming event in list of events. */
     Event getFirstEvent();
 
@@ -58,6 +69,9 @@ public interface Logic {
 
     /** Updates an unmodifiable view of the filtered list of tasks for Module tab. */
     void updateFilteredModuleList(Predicate<Module> predicate);
+
+    /** Updates an unmodifiable view of the filtered list of tasks for Daily tab. */
+    void updateFilteredTodoList(Predicate<Todo> predicate);
 
     /** Updates an unmodifiable view of the filtered list of tasks for Planner tab. */
     void updatePlannerFilteredTaskList(TaskDueInPredicate taskDueInPredicate);

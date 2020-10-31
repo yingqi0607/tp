@@ -7,6 +7,8 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.tr4cker.model.countdown.Event;
 import seedu.tr4cker.model.countdown.UniqueEventList;
+import seedu.tr4cker.model.daily.Todo;
+import seedu.tr4cker.model.daily.UniqueDailyList;
 import seedu.tr4cker.model.module.Module;
 import seedu.tr4cker.model.module.UniqueModuleList;
 import seedu.tr4cker.model.task.Task;
@@ -21,6 +23,7 @@ public class Tr4cker implements ReadOnlyTr4cker {
     private final UniqueTaskList tasks;
     private final UniqueModuleList modules; //todo pair with ui
     private final UniqueEventList events;
+    private final UniqueDailyList todos;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -33,6 +36,7 @@ public class Tr4cker implements ReadOnlyTr4cker {
         tasks = new UniqueTaskList();
         events = new UniqueEventList();
         modules = new UniqueModuleList();
+        todos = new UniqueDailyList();
     }
 
     public Tr4cker() {}
@@ -68,6 +72,14 @@ public class Tr4cker implements ReadOnlyTr4cker {
      */
     public void setModules(List<Module> modules) {
         this.modules.setModules(modules);
+    }
+
+    /**
+     * Replaces the contents of the daily list with {@code todos}.
+     * {@code todos} must not contain duplicate todos.
+     */
+    public void setTodos(List<Todo> todos) {
+        this.todos.setTodos(todos);
     }
 
     /**
@@ -208,6 +220,30 @@ public class Tr4cker implements ReadOnlyTr4cker {
         modules.remove(key);
     }
 
+    /**
+     * Returns true if a module with the same identity as {@code module} exists in Tr4cker.
+     */
+    public boolean hasTodo(Todo task) {
+        requireNonNull(task);
+        return todos.contains(task);
+    }
+
+    /**
+     * Adds a todo task in Daily tab.
+     * The task must not already exist in Daily tab.
+     */
+    public void addTodo(Todo task) {
+        todos.add(task);
+    }
+
+    /**
+     * Removes {@code key} from this {@code Tr4cker}.
+     * {@code key} must exist in Tr4cker.
+     */
+    public void removeTodo(Todo key) {
+        todos.remove(key);
+    }
+
     //// util methods
 
     @Override
@@ -231,6 +267,12 @@ public class Tr4cker implements ReadOnlyTr4cker {
     @Override
     public ObservableList<Module> getModuleList() {
         return modules.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Todo> getTodoList() {
+        todos.sortTodosAccordingToDeadline();
+        return todos.asUnmodifiableObservableList();
     }
 
     @Override

@@ -48,7 +48,7 @@
           </Menu>
           <Menu>
             <graphic>
-              <Label fx:id="tabCountdown" onMouseClicked="#handleShowTabCountdown" text="Countdowns" />
+              <Label fx:id="tabCountdown" onMouseClicked="#handleShowTabCountdown" text="Countdown" />
             </graphic>
           </Menu>
           <Menu>
@@ -83,7 +83,7 @@
             </Tab>
             <Tab text="Daily">
               <content>
-
+                <StackPane fx:id="dailyTabWindowPlaceholder" prefHeight="110.0" prefWidth="200.0" />
               </content>
             </Tab>
             <Tab text="Module">

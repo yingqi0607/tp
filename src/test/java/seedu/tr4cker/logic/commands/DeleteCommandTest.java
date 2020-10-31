@@ -28,7 +28,7 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Task taskToDelete = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
+        Task taskToDelete = model.getFilteredPendingTaskList().get(INDEX_FIRST_TASK.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_TASK);
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_TASK_SUCCESS, taskToDelete);
@@ -41,7 +41,7 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredTaskList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPendingTaskList().size() + 1);
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
@@ -51,7 +51,7 @@ public class DeleteCommandTest {
     public void execute_validIndexFilteredList_success() {
         showTaskAtIndex(model, INDEX_FIRST_TASK);
 
-        Task taskToDelete = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
+        Task taskToDelete = model.getFilteredPendingTaskList().get(INDEX_FIRST_TASK.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_TASK);
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_TASK_SUCCESS, taskToDelete);
@@ -67,9 +67,7 @@ public class DeleteCommandTest {
     public void execute_invalidIndexFilteredList_throwsCommandException() {
         showTaskAtIndex(model, INDEX_FIRST_TASK);
 
-        Index outOfBoundIndex = INDEX_SECOND_TASK;
-        // ensures that outOfBoundIndex is still in bounds of Tr4cker list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getTr4cker().getTaskList().size());
+        Index outOfBoundIndex = Index.fromOneBased(model.getTr4cker().getTaskList().size() + 1);
 
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
 

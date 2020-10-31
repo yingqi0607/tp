@@ -7,11 +7,15 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.beans.InvalidationListener;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.tr4cker.commons.core.GuiSettings;
 import seedu.tr4cker.commons.core.LogsCenter;
 import seedu.tr4cker.model.countdown.Event;
+import seedu.tr4cker.model.daily.Todo;
 import seedu.tr4cker.model.module.Module;
 import seedu.tr4cker.model.task.Deadline;
 import seedu.tr4cker.model.task.Task;
@@ -25,11 +29,13 @@ public class ModelManager implements Model {
     private final Tr4cker tr4cker;
     private final UserPrefs userPrefs;
     private final FilteredList<Task> filteredTasks;
+    private final FilteredList<Task> filteredPendingTasks;
     private final FilteredList<Task> filteredExpiredTasks;
     private final FilteredList<Task> filteredCompletedTasks;
     private final FilteredList<Module> filteredModules;
     private final FilteredList<Task> plannerFilteredTasks;
     private final FilteredList<Event> filteredEvents;
+    private final FilteredList<Todo> filteredTodos;
     private final Event firstEvent;
     private final Event secondEvent;
 
@@ -44,8 +50,9 @@ public class ModelManager implements Model {
 
         this.tr4cker = new Tr4cker(tr4cker);
         this.userPrefs = new UserPrefs(userPrefs);
-        //filteredTasks = new FilteredList<>(this.tr4cker.getTaskList();
-        filteredTasks = new FilteredList<>(this.tr4cker.getTaskList().filtered(
+
+        filteredTasks = new FilteredList<>(this.tr4cker.getTaskList());
+        filteredPendingTasks = new FilteredList<>(this.tr4cker.getTaskList().filtered(
             x -> Deadline.isFutureDeadline(x.getDeadline().toString()) && !x.isCompleted()));
         filteredExpiredTasks = new FilteredList<>(this.tr4cker.getTaskList().filtered(
             x -> !Deadline.isFutureDeadline(x.getDeadline().toString()) && !x.isCompleted()));
@@ -57,7 +64,11 @@ public class ModelManager implements Model {
         plannerFilteredTasks = new FilteredList<>(this.tr4cker.getTaskList());
 
         filteredEvents = new FilteredList<>(this.tr4cker.getEventList());
+
+        filteredTodos = new FilteredList<>(this.tr4cker.getTodoList().filtered(x -> true));
+
         firstEvent = this.tr4cker.firstEvent();
+
         secondEvent = this.tr4cker.secondEvent();
         //TODO: Make code more defensive
 
@@ -133,7 +144,7 @@ public class ModelManager implements Model {
     @Override
     public void addTask(Task task) {
         tr4cker.addTask(task);
-        updateFilteredTaskList(PREDICATE_SHOW_PENDING_TASKS);
+        updateFilteredPendingTaskList(PREDICATE_SHOW_PENDING_TASKS);
     }
 
     @Override
@@ -159,6 +170,7 @@ public class ModelManager implements Model {
         tr4cker.addEvent(task);
         updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
     }
+
     @Override
     public boolean hasModule(Module module) {
         requireNonNull(module);
@@ -181,6 +193,23 @@ public class ModelManager implements Model {
         updateFilteredModuleList(x -> true);
     }
 
+    @Override
+    public boolean hasTodo(Todo task) {
+        requireNonNull(task);
+        return tr4cker.hasTodo(task);
+    }
+
+    @Override
+    public void deleteTodo(Todo target) {
+        tr4cker.removeTodo(target);
+    }
+
+    @Override
+    public void addTodo(Todo task) {
+        tr4cker.addTodo(task);
+        updateFilteredTodoList(PREDICATE_SHOW_ALL_TODOS);
+    }
+
     //=========== Filtered Task List Accessors =============================================================
 
     /**
@@ -190,6 +219,15 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Task> getFilteredTaskList() {
         return filteredTasks;
+    }
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Task}
+     * backed by the internal list of {@code versionedTr4cker}.
+     */
+    @Override
+    public ObservableList<Task> getFilteredPendingTaskList() {
+        return filteredPendingTasks;
     }
 
     /**
@@ -238,6 +276,37 @@ public class ModelManager implements Model {
         return filteredEvents;
     }
 
+    /**
+     * Returns an unmodifiable view of the list of {@code Todo}
+     * backed by the internal list of {@code versionedTr4cker}.
+     */
+    @Override
+    public ObservableList<Todo> getFilteredTodoList() {
+        return filteredTodos;
+    }
+
+    @Override
+    public ObservableValue<Event> getEventFirst() {
+        return new ObservableValue() {
+            @Override
+            public void addListener(InvalidationListener listener) { }
+
+            @Override
+            public void addListener(ChangeListener listener) { }
+
+            @Override
+            public void removeListener(InvalidationListener listener) { }
+
+            @Override
+            public void removeListener(ChangeListener listener) { }
+
+            @Override
+            public Object getValue() {
+                return firstEvent;
+            }
+        };
+    }
+
     @Override
     public Event getFirstEvent() {
         return firstEvent;
@@ -252,6 +321,12 @@ public class ModelManager implements Model {
     public void updateFilteredTaskList(Predicate<Task> predicate) {
         requireNonNull(predicate);
         filteredTasks.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredPendingTaskList(Predicate<Task> predicate) {
+        requireNonNull(predicate);
+        filteredPendingTasks.setPredicate(predicate);
     }
 
     @Override
@@ -270,6 +345,12 @@ public class ModelManager implements Model {
     public void updateFilteredModuleList(Predicate<Module> predicate) {
         requireNonNull(predicate);
         filteredModules.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredTodoList(Predicate<Todo> predicate) {
+        requireNonNull(predicate);
+        filteredTodos.setPredicate(predicate);
     }
 
     @Override
@@ -300,7 +381,7 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return tr4cker.equals(other.tr4cker)
                 && userPrefs.equals(other.userPrefs)
-                && filteredTasks.equals(other.filteredTasks)
+                && filteredPendingTasks.equals(other.filteredPendingTasks)
                 && plannerFilteredTasks.equals(other.plannerFilteredTasks)
                 && filteredEvents.equals(other.filteredEvents);
     }

@@ -59,7 +59,7 @@ public class DoneCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Task> lastShownList = model.getFilteredTaskList();
+        List<Task> lastShownList = model.getFilteredPendingTaskList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
@@ -69,7 +69,7 @@ public class DoneCommand extends Command {
         Task completedTask = createCompletedTask(taskToComplete, completionStatus);
 
         model.setTask(taskToComplete, completedTask);
-        model.updateFilteredTaskList(PREDICATE_SHOW_PENDING_TASKS);
+        model.updateFilteredPendingTaskList(PREDICATE_SHOW_PENDING_TASKS);
         model.updateFilteredCompletedTaskList(PREDICATE_SHOW_COMPLETED_TASKS);
 
         if (completedTask.getCompletionStatus().compareTo(taskToComplete.getCompletionStatus()) > 0) {
