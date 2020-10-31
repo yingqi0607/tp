@@ -48,7 +48,7 @@
           </Menu>
           <Menu>
             <graphic>
-              <Label fx:id="tabCountdown" onMouseClicked="#handleShowTabCountdown" text="Countdowns" />
+              <Label fx:id="tabCountdown" onMouseClicked="#handleShowTabCountdown" text="Countdown" />
             </graphic>
           </Menu>
           <Menu>
