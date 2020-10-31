@@ -39,6 +39,7 @@ public class TaskBuilder {
         taskDescription = new TaskDescription(DEFAULT_DESCRIPTION);
         moduleCode = new HashSet<>();
         tags = new HashSet<>();
+        tags.add(new Tag("homework"));
     }
 
     /**
