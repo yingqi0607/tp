@@ -76,20 +76,34 @@ public class Task {
      * Adds tag(s) to existing tags.
      *
      * @param tags Tags to be added.
+     * @return A set of duplicated tags.
      */
-    public void addTags(Set<Tag> tags) {
+    public Set<Tag> addTags(Set<Tag> tags) {
+        Set<Tag> duplicateTags = new HashSet<>();
+        for (Tag tag : tags) {
+            if (this.tags.contains(tag)) {
+                duplicateTags.add(tag);
+            }
+        }
         this.tags.addAll(tags);
+        return duplicateTags;
     }
 
     /**
      * Deletes tag(s) from existing tags (if there exists).
      *
      * @param tags Tags to be deleted.
+     * @return A set of non existing tags.
      */
-    public void deleteTags(Set<Tag> tags) {
+    public Set<Tag> deleteTags(Set<Tag> tags) {
+        Set<Tag> nonExistingTags = new HashSet<>();
         for (Tag tag : tags) {
+            if (!this.tags.contains(tag)) {
+                nonExistingTags.add(tag);
+            }
             this.tags.remove(tag);
         }
+        return nonExistingTags;
     }
 
     /**
