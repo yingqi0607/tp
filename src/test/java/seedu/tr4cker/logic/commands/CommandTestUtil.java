@@ -3,6 +3,9 @@ package seedu.tr4cker.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_COMPLETION_STATUS;
+import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_COUNTDOWN_DATE;
+import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_COUNTDOWN_DELETE;
+import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_COUNTDOWN_NEW;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_DELETE_TAG;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
@@ -43,6 +46,10 @@ public class CommandTestUtil {
     public static final String VALID_MODULE_NAME_2 = "Module 2";
     public static final String VALID_MODULE_CODE_1 = "CS1111";
     public static final String VALID_MODULE_CODE_2 = "CS2222";
+    public static final String VALID_EVENT_NAME_1 = "event 1";
+    public static final String VALID_EVENT_NAME_2 = "event 2";
+    public static final String VALID_EVENT_DATE_1 = "10-10-2021";
+    public static final String VALID_EVENT_DATE_2 = "20-10-2021";
     public static final String VALID_TAG_URGENT = "urgent";
     public static final String VALID_TAG_HELP = "help";
     public static final String VALID_TAG_HOMEWORK = "homework";
@@ -63,6 +70,11 @@ public class CommandTestUtil {
     public static final String MODULE_CODE_DESC_1 = " " + PREFIX_MODULE_CODE + VALID_MODULE_CODE_1;
     public static final String MODULE_CODE_DESC_2 = " " + PREFIX_MODULE_CODE + VALID_MODULE_CODE_2;
     public static final String MODULE_DELETE_DESC = " " + PREFIX_MODULE_DELETE + "1";
+    public static final String EVENT_NAME_DESC_1 = " " + PREFIX_COUNTDOWN_NEW + VALID_EVENT_NAME_1;
+    public static final String EVENT_NAME_DESC_2 = " " + PREFIX_COUNTDOWN_NEW + VALID_EVENT_NAME_2;
+    public static final String EVENT_DATE_DESC_1 = " " + PREFIX_COUNTDOWN_DATE + VALID_EVENT_DATE_1;
+    public static final String EVENT_DATE_DESC_2 = " " + PREFIX_COUNTDOWN_DATE + VALID_EVENT_DATE_2;
+    public static final String EVENT_DELETE_DESC_1 = " " + PREFIX_COUNTDOWN_DELETE + "1";
     public static final String TAG_DESC_HELP = " " + PREFIX_TAG + VALID_TAG_HELP;
     public static final String TAG_DESC_URGENT = " " + PREFIX_TAG + VALID_TAG_URGENT;
 
