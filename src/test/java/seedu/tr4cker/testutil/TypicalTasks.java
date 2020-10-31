@@ -33,14 +33,24 @@ public class TypicalTasks {
 
     public static final Task TASK1 = new TaskBuilder().withName("Task1Name")
             .withTaskDescription("Task 1 description").withCompletionStatus(0)
-            .withDeadline("20-Oct-2021 1800").build();
+            .withDeadline("20-Oct-2021 1800")
+            .withTags("homework").build();
+    public static final Task TASK1_BEFORE_ADD = new TaskBuilder().withName("Task1Name")
+            .withTaskDescription("Task 1 description").withCompletionStatus(0)
+            .withDeadline("20-Oct-2021 1800")
+            .withTags("tag1", "tag2", "homework").build();
     public static final Task TASK1_ADD = new TaskBuilder().withName("Task1Name")
             .withTaskDescription("Task 1 description").withCompletionStatus(0)
             .withDeadline("20-Oct-2021 1800")
-            .withTags("tag1", "tag2").build();
+            .withTags("tag1", "tag2", "homework").build();
+    public static final Task TASK1_BEFORE_DELETE = new TaskBuilder().withName("Task1Name")
+            .withTaskDescription("Task 1 description").withCompletionStatus(0)
+            .withDeadline("20-Oct-2021 1800")
+            .withTags("homework").build();
     public static final Task TASK1_DELETE = new TaskBuilder().withName("Task1Name")
             .withTaskDescription("Task 1 description").withCompletionStatus(0)
-            .withDeadline("20-Oct-2021 1800").build();
+            .withDeadline("20-Oct-2021 1800")
+            .withTags("homework").build();
     public static final Task TASK2 = new TaskBuilder().withName("Task2 Name")
             .withTaskDescription("Task 2 description").withCompletionStatus(0)
             .withDeadline("30-09-2021 2359")
@@ -59,7 +69,8 @@ public class TypicalTasks {
             .withCompletionStatus(0).withTaskDescription("Task 6 description").build();
     public static final Task TASK7 = new TaskBuilder().withName("Task7 Name")
             .withDeadline("01-01-2021 0000")
-            .withCompletionStatus(0).withTaskDescription("Task 7 description").build();
+            .withCompletionStatus(0).withTaskDescription("Task 7 description")
+            .withTags("homework").build();
 
     public static final Event EVENT1 = new Event(new EventName("Event1 Name"),
             new EventDate("01-01-2021", false));
