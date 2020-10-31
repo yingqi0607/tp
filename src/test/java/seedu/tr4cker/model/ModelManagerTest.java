@@ -4,8 +4,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.tr4cker.model.Model.PREDICATE_SHOW_ALL_EVENTS;
 import static seedu.tr4cker.model.Model.PREDICATE_SHOW_ALL_TASKS;
 import static seedu.tr4cker.testutil.Assert.assertThrows;
+import static seedu.tr4cker.testutil.TypicalTasks.EVENT1;
+import static seedu.tr4cker.testutil.TypicalTasks.EVENT2;
 import static seedu.tr4cker.testutil.TypicalTasks.TASK1;
 import static seedu.tr4cker.testutil.TypicalTasks.TASK2;
 
@@ -90,6 +93,22 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void hasEvent_nullEvent_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasEvent(null));
+    }
+
+    @Test
+    public void hasEvent_eventNotInTr4cker_returnsFalse() {
+        assertFalse(modelManager.hasEvent(EVENT1));
+    }
+
+    @Test
+    public void hasEvent_eventInTr4cker_returnsTrue() {
+        modelManager.addEvent(EVENT1);
+        assertTrue(modelManager.hasEvent(EVENT1));
+    }
+
+    @Test
     public void getFilteredTaskList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredTaskList().remove(0));
     }
@@ -100,8 +119,14 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void getFilteredEventList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredEventList().remove(0));
+    }
+
+    @Test
     public void equals() {
-        Tr4cker tr4cker = new Tr4ckerBuilder().withTask(TASK1).withTask(TASK2).build();
+        Tr4cker tr4cker = new Tr4ckerBuilder().withTask(TASK1).withTask(TASK2)
+                .withEvent(EVENT1).withEvent(EVENT2).build();
         Tr4cker differentTr4cker = new Tr4cker();
         UserPrefs userPrefs = new UserPrefs();
 
@@ -135,6 +160,7 @@ public class ModelManagerTest {
         // resets modelManager to initial state for upcoming tests
         modelManager.updatePlannerFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
         modelManager.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+        modelManager.updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
