@@ -22,7 +22,7 @@ public class EventNameTest {
     }
 
     @Test
-    public void isValidName() {
+    public void testIsValidName() {
         // null name
         assertThrows(NullPointerException.class, () -> EventName.isValidName(null));
 

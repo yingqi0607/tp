@@ -9,7 +9,6 @@ import static seedu.tr4cker.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-
 public class EventDateTest {
 
     @Test

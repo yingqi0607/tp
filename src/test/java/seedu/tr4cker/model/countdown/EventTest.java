@@ -74,7 +74,6 @@ public class EventTest {
         EventName eventName = new EventName("Event Name Question Mark");
         EventDate eventDate = new EventDate("31-Oct-2021", true);
         assertEquals(event11.hashCode(), Objects.hash(eventName, eventDate));
-
     }
 
 }
