@@ -5,7 +5,11 @@ import static seedu.tr4cker.commons.core.Messages.MESSAGE_INVALID_TASK_DISPLAYED
 import static seedu.tr4cker.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.DEADLINE_DESC_1;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.DESCRIPTION_DESC_1;
+import static seedu.tr4cker.logic.commands.CommandTestUtil.EVENT_DATE_DESC_1;
+import static seedu.tr4cker.logic.commands.CommandTestUtil.EVENT_NAME_DESC_1;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.NAME_DESC_1;
+import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_EVENT_DATE_1;
+import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_EVENT_NAME_1;
 import static seedu.tr4cker.testutil.Assert.assertThrows;
 import static seedu.tr4cker.testutil.TypicalTasks.MANUAL_TASK1;
 
@@ -19,6 +23,7 @@ import org.junit.jupiter.api.io.TempDir;
 import seedu.tr4cker.commons.core.GuiSettings;
 import seedu.tr4cker.logic.commands.AddCommand;
 import seedu.tr4cker.logic.commands.CommandResult;
+import seedu.tr4cker.logic.commands.CountdownCommand;
 import seedu.tr4cker.logic.commands.ListCommand;
 import seedu.tr4cker.logic.commands.exceptions.CommandException;
 import seedu.tr4cker.logic.parser.exceptions.ParseException;
@@ -27,6 +32,9 @@ import seedu.tr4cker.model.ModelManager;
 import seedu.tr4cker.model.ReadOnlyTr4cker;
 import seedu.tr4cker.model.Tr4cker;
 import seedu.tr4cker.model.UserPrefs;
+import seedu.tr4cker.model.countdown.Event;
+import seedu.tr4cker.model.countdown.EventDate;
+import seedu.tr4cker.model.countdown.EventName;
 import seedu.tr4cker.model.task.Task;
 import seedu.tr4cker.storage.JsonTr4cker;
 import seedu.tr4cker.storage.JsonUserPrefsStorage;
@@ -85,8 +93,14 @@ public class LogicManagerTest {
         Task expectedTask = new TaskBuilder(MANUAL_TASK1).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addTask(expectedTask);
-        String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
-        assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
+        String expectedMessage1 = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
+        assertCommandFailure(addCommand, CommandException.class, expectedMessage1, expectedModel);
+
+        String addCountdown = CountdownCommand.COMMAND_WORD + EVENT_NAME_DESC_1 + EVENT_DATE_DESC_1;
+        Event expectedEvent = new Event(new EventName(VALID_EVENT_NAME_1), new EventDate(VALID_EVENT_DATE_1, false));
+        expectedModel.addEvent(expectedEvent);
+        String expectedMessage2 = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
+        assertCommandFailure(addCountdown, CommandException.class, expectedMessage2, expectedModel);
     }
 
     @Test
@@ -97,6 +111,11 @@ public class LogicManagerTest {
     @Test
     public void getPlannerFilteredTaskList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> logic.getPlannerFilteredTaskList().remove(0));
+    }
+
+    @Test
+    public void getFilteredEventList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredEventList().remove(0));
     }
 
     @Test

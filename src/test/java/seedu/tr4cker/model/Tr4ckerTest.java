@@ -4,11 +4,16 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_DESCRIPTION_2;
+import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_EVENT_DATE_1;
+import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_EVENT_DATE_2;
+import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_EVENT_NAME_1;
+import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_EVENT_NAME_2;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_MODULE_CODE_1;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_MODULE_NAME_1;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_MODULE_NAME_2;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_TAG_URGENT;
 import static seedu.tr4cker.testutil.Assert.assertThrows;
+import static seedu.tr4cker.testutil.TypicalTasks.EVENT1;
 import static seedu.tr4cker.testutil.TypicalTasks.TASK1;
 import static seedu.tr4cker.testutil.TypicalTasks.getTypicalTr4cker;
 
@@ -23,6 +28,9 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.tr4cker.model.countdown.Event;
+import seedu.tr4cker.model.countdown.EventDate;
+import seedu.tr4cker.model.countdown.EventName;
+import seedu.tr4cker.model.countdown.exceptions.DuplicateEventException;
 import seedu.tr4cker.model.daily.Todo;
 import seedu.tr4cker.model.module.Module;
 import seedu.tr4cker.model.module.ModuleCode;
@@ -58,7 +66,7 @@ public class Tr4ckerTest {
         Task editedAlice = new TaskBuilder(TASK1).withTaskDescription(VALID_DESCRIPTION_2).withTags(VALID_TAG_URGENT)
                 .build();
         List<Task> newTasks = Arrays.asList(TASK1, editedAlice);
-        Tr4ckerStub newData = new Tr4ckerStub(newTasks, new ArrayList<>());
+        Tr4ckerStub newData = new Tr4ckerStub(newTasks, new ArrayList<>(), new ArrayList<>());
 
         assertThrows(DuplicateTaskException.class, () -> tr4cker.resetData(newData));
 
@@ -66,9 +74,17 @@ public class Tr4ckerTest {
         Module module = new Module(VALID_MODULE_NAME_1, new ModuleCode(VALID_MODULE_CODE_1));
         Module sameCodeModule = new Module(VALID_MODULE_NAME_2, new ModuleCode(VALID_MODULE_CODE_1));
         List<Module> newModules = Arrays.asList(module, sameCodeModule);
-        Tr4ckerStub newModuleData = new Tr4ckerStub(new ArrayList<>(), newModules);
+        Tr4ckerStub newModuleData = new Tr4ckerStub(new ArrayList<>(), newModules, new ArrayList<>());
 
         assertThrows(DuplicateModuleException.class, () -> tr4cker.resetData(newModuleData));
+
+        // Two Events with same name
+        Event event = new Event(new EventName(VALID_EVENT_NAME_1), new EventDate(VALID_EVENT_DATE_1, false));
+        Event sameEventName = new Event(new EventName(VALID_EVENT_NAME_1), new EventDate(VALID_EVENT_DATE_2, false));
+        List<Event> newEvents = Arrays.asList(event, sameEventName);
+        Tr4ckerStub newEventData = new Tr4ckerStub(new ArrayList<>(), new ArrayList<>(), newEvents);
+
+        assertThrows(DuplicateEventException.class, () -> tr4cker.resetData(newEventData));
     }
 
     @Test
@@ -121,6 +137,47 @@ public class Tr4ckerTest {
         assertFalse(tr4cker.hasModule(module));
     }
 
+    @Test
+    public void hasEvent_nullEvent_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> tr4cker.hasEvent(null));
+    }
+
+    @Test
+    public void hasEvent_eventNotInTr4cker_returnsFalse() {
+        assertFalse(tr4cker.hasEvent(EVENT1));
+    }
+
+    @Test
+    public void hasEvent_eventInTr4cker_returnsTrue() {
+        tr4cker.addEvent(EVENT1);
+        assertTrue(tr4cker.hasEvent(EVENT1));
+    }
+
+    @Test
+    public void hasEvent_eventWithSameIdentityFieldsInTr4cker_returnsTrue() {
+        tr4cker.addEvent(EVENT1);
+        Event sameEvent = new Event(new EventName("Event1 Name"),
+                new EventDate("01-10-2021", false));
+        assertTrue(tr4cker.hasEvent(sameEvent));
+    }
+
+    @Test
+    public void getEventList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> tr4cker.getEventList().remove(0));
+    }
+
+    @Test
+    public void removeEvent_eventAddedAndRemoved_changesData() {
+        Event event = new Event(new EventName(VALID_EVENT_NAME_2), new EventDate(VALID_EVENT_DATE_2, false));
+        tr4cker.addEvent(event);
+
+        assertTrue(tr4cker.hasEvent(event));
+
+        tr4cker.removeEvent(event);
+
+        assertFalse(tr4cker.hasEvent(event));
+    }
+
     /**
      * A stub ReadOnlyTr4cker whose tasks list can violate interface constraints.
      */
@@ -130,9 +187,10 @@ public class Tr4ckerTest {
         private final ObservableList<Module> modules = FXCollections.observableArrayList();
         private final ObservableList<Todo> todos = FXCollections.observableArrayList();
 
-        Tr4ckerStub(Collection<Task> tasks, Collection<Module> modules) {
+        Tr4ckerStub(Collection<Task> tasks, Collection<Module> modules, Collection<Event> events) {
             this.tasks.setAll(tasks);
             this.modules.setAll(modules);
+            this.events.setAll(events);
         }
 
         @Override

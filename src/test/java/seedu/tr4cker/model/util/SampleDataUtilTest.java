@@ -1,11 +1,15 @@
 package seedu.tr4cker.model.util;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static seedu.tr4cker.model.util.SampleDataUtil.getModuleCodeSet;
 import static seedu.tr4cker.model.util.SampleDataUtil.getTagSet;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.tr4cker.model.countdown.Event;
+import seedu.tr4cker.model.countdown.EventDate;
+import seedu.tr4cker.model.countdown.EventName;
 import seedu.tr4cker.model.module.Module;
 import seedu.tr4cker.model.module.ModuleCode;
 import seedu.tr4cker.model.task.CompletionStatus;
@@ -85,6 +89,17 @@ class SampleDataUtilTest {
         new Module("Thai 1", new ModuleCode("LAT1201"))
     };
 
+    private final Event[] events = new Event[]{
+        new Event(new EventName("CS2103T Final Exam"), new EventDate("02-Dec-2020", false)),
+        new Event(new EventName("CS2103T Practical Exam Dry Run"),
+                new EventDate("30-10-2020", false)),
+        new Event(new EventName("CS2103T Practical Exam"), new EventDate("13-Nov-2020", false)),
+        new Event(new EventName("Han Wei Birthday"), new EventDate("09-10-2020", false)),
+        new Event(new EventName("CS2101 OP2 Demo"), new EventDate("03-11-2020", false)),
+        new Event(new EventName("CS2101 OP2 Pitch"), new EventDate("06-11-2020", false)),
+        new Event(new EventName("Christmas"), new EventDate("25-Dec-2020", false)),
+    };
+
     @Test
     public void testGetSampleData() {
         assertArrayEquals(SampleDataUtil.getSampleTasks(), tasks);
@@ -95,4 +110,13 @@ class SampleDataUtilTest {
         assertArrayEquals(SampleDataUtil.getSampleModules(), modules);
     }
 
+    @Test
+    public void testGetSampleEvents() {
+        assertArrayEquals(SampleDataUtil.getSampleEvents(), events);
+    }
+
+    @Test
+    public void testGetSampleTr4cker_doesNotThrow() {
+        assertDoesNotThrow(SampleDataUtil::getSampleTr4cker);
+    }
 }
