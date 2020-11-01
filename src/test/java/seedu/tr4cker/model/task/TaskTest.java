@@ -12,6 +12,8 @@ import static seedu.tr4cker.testutil.Assert.assertThrows;
 import static seedu.tr4cker.testutil.TypicalTasks.MANUAL_TASK2;
 import static seedu.tr4cker.testutil.TypicalTasks.TASK1;
 import static seedu.tr4cker.testutil.TypicalTasks.TASK1_ADD;
+import static seedu.tr4cker.testutil.TypicalTasks.TASK1_BEFORE_ADD;
+import static seedu.tr4cker.testutil.TypicalTasks.TASK1_BEFORE_DELETE;
 import static seedu.tr4cker.testutil.TypicalTasks.TASK1_DELETE;
 
 import java.util.HashSet;
@@ -40,6 +42,14 @@ public class TaskTest {
         tags.add(tag2);
         TASK1.addTags(tags);
         assertEquals(TASK1_ADD, TASK1);
+
+        Tag tag3 = new Tag("tag1");
+        Tag tag4 = new Tag("tag2");
+        Set<Tag> duplicateTags = new HashSet<>();
+        duplicateTags.add(tag3);
+        duplicateTags.add(tag4);
+        TASK1_ADD.addTags(duplicateTags);
+        assertEquals(TASK1_BEFORE_ADD, TASK1_ADD);
     }
 
     @Test
@@ -51,6 +61,14 @@ public class TaskTest {
         tags.add(tag2);
         TASK1.deleteTags(tags);
         assertEquals(TASK1_DELETE, TASK1);
+
+        Tag tag3 = new Tag("tag1");
+        Tag tag4 = new Tag("tag2");
+        Set<Tag> nonExistingTags = new HashSet<>();
+        nonExistingTags.add(tag3);
+        nonExistingTags.add(tag4);
+        TASK1_DELETE.deleteTags(nonExistingTags);
+        assertEquals(TASK1_BEFORE_DELETE, TASK1_DELETE);
     }
 
     @Test

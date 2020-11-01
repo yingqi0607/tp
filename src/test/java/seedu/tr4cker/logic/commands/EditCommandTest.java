@@ -31,7 +31,7 @@ import seedu.tr4cker.testutil.TaskBuilder;
  */
 public class EditCommandTest {
 
-    private Model model = new ModelManager(getTypicalTr4cker(), new UserPrefs());
+    private final Model model = new ModelManager(getTypicalTr4cker(), new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -44,7 +44,9 @@ public class EditCommandTest {
         Model expectedModel = new ModelManager(new Tr4cker(model.getTr4cker()), new UserPrefs());
         expectedModel.setTask(model.getFilteredPendingTaskList().get(0), editedTask);
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage);
+        expectedCommandResult.setHomeTab();
+        assertCommandSuccess(editCommand, model, expectedCommandResult, expectedModel);
     }
 
     @Test
@@ -93,7 +95,9 @@ public class EditCommandTest {
         Model expectedModel = new ModelManager(new Tr4cker(model.getTr4cker()), new UserPrefs());
         expectedModel.setTask(model.getFilteredPendingTaskList().get(0), editedTask);
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage);
+        expectedCommandResult.setHomeTab();
+        assertCommandSuccess(editCommand, model, expectedCommandResult, expectedModel);
     }
 
     @Test

@@ -45,6 +45,10 @@ public class CommandResult {
         this.exit = exit;
         this.localDate = null;
         this.yearMonth = null;
+        this.showPlanner = false;
+        this.showCountdown = false;
+        this.showDaily = false;
+        this.showHome = false;
     }
 
     /**
@@ -53,6 +57,10 @@ public class CommandResult {
      */
     public CommandResult(String feedbackToUser) {
         this(feedbackToUser, false, false);
+        this.showPlanner = false;
+        this.showCountdown = false;
+        this.showDaily = false;
+        this.showHome = false;
     }
 
     /**
@@ -66,6 +74,7 @@ public class CommandResult {
         this.showPlanner = true;
         this.showCountdown = false;
         this.showDaily = false;
+        this.showHome = false;
         this.localDate = localDate;
         this.yearMonth = yearMonth;
     }
@@ -81,6 +90,7 @@ public class CommandResult {
         this.showPlanner = false;
         this.showDaily = false;
         this.showCountdown = isShowCountdown;
+        this.showHome = false;
         this.localDate = null;
         this.yearMonth = null;
     }
@@ -95,6 +105,7 @@ public class CommandResult {
         newCommandResult.showPlanner = false;
         newCommandResult.showCountdown = false;
         newCommandResult.showDaily = false;
+        newCommandResult.showHome = false;
         return newCommandResult;
     }
 
@@ -108,6 +119,7 @@ public class CommandResult {
         newCommandResult.showPlanner = false;
         newCommandResult.showCountdown = false;
         newCommandResult.showDaily = true;
+        newCommandResult.showHome = false;
         return newCommandResult;
     }
 

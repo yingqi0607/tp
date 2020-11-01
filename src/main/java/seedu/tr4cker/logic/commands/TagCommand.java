@@ -31,6 +31,8 @@ public class TagCommand extends Command {
             + PREFIX_DELETE_TAG + "stillHaveTime";
 
     public static final String MESSAGE_SUCCESS = "Tags edited for Task: %1$s";
+    public static final String MESSAGE_SUCCESS_DUPLICATE_TAGS = "\nAddition of duplicate tags detected: %1$s";
+    public static final String MESSAGE_SUCCESS_NON_EXISTING_TAGS = "\nDeletion of non-existing tags detected: %1$s";
 
     private final Index index;
     private final Set<Tag> tagsToAdd;
@@ -59,8 +61,8 @@ public class TagCommand extends Command {
         }
 
         Task taskToEdit = lastShownList.get(index.getZeroBased());
-        taskToEdit.addTags(tagsToAdd);
-        taskToEdit.deleteTags(tagsToDelete);
+        Set<Tag> duplicateTags = taskToEdit.addTags(tagsToAdd);
+        Set<Tag> nonExistingTags = taskToEdit.deleteTags(tagsToDelete);
         Task editedTask = new Task(taskToEdit.getName(), taskToEdit.getDeadline(), taskToEdit.getCompletionStatus(),
                 taskToEdit.getTaskDescription(), taskToEdit.getModuleCode(), taskToEdit.getTags());
 
@@ -69,15 +71,29 @@ public class TagCommand extends Command {
         model.setTask(taskToEdit, editedTask);
         model.updateFilteredPendingTaskList(PREDICATE_SHOW_PENDING_TASKS);
 
-        return new CommandResult(generateSuccessMessage(editedTask));
+        return new CommandResult(generateSuccessMessage(editedTask, duplicateTags, nonExistingTags));
     }
 
     /**
      * Generates a command execution success message when tag(s) are added
      * to and/or removed from {@code taskToEdit}.
      */
-    private String generateSuccessMessage(Task taskToEdit) {
-        return String.format(MESSAGE_SUCCESS, taskToEdit);
+    private String generateSuccessMessage(Task taskToEdit, Set<Tag> duplicateTags, Set<Tag> nonExistingTags) {
+        String message = "";
+        if (duplicateTags.isEmpty() && nonExistingTags.isEmpty()) {
+            return String.format(MESSAGE_SUCCESS, taskToEdit);
+        } else if (!duplicateTags.isEmpty() && nonExistingTags.isEmpty()) {
+            message += String.format(MESSAGE_SUCCESS, taskToEdit);
+            message += String.format(MESSAGE_SUCCESS_DUPLICATE_TAGS, duplicateTags);
+        } else if (duplicateTags.isEmpty()) {
+            message += String.format(MESSAGE_SUCCESS, taskToEdit);
+            message += String.format(MESSAGE_SUCCESS_NON_EXISTING_TAGS, nonExistingTags);
+        } else {
+            message += String.format(MESSAGE_SUCCESS, taskToEdit);
+            message += String.format(MESSAGE_SUCCESS_DUPLICATE_TAGS, duplicateTags);
+            message += String.format(MESSAGE_SUCCESS_NON_EXISTING_TAGS, nonExistingTags);
+        }
+        return message;
     }
 
     @Override
