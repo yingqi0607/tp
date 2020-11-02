@@ -168,7 +168,11 @@ public class CountdownCommand extends Command {
         } else if (!(other instanceof CountdownCommand)) {
             return false;
         } else {
-            return false; // to be implemented
+            CountdownCommand countdownCommand = (CountdownCommand) other;
+            return (eventDate == countdownCommand.eventDate || eventDate.equals(countdownCommand.eventDate))
+                    && (eventName == countdownCommand.eventName || eventName.equals(countdownCommand.eventName))
+                    && (index == countdownCommand.index || index.equals(countdownCommand.index))
+                    && isDeleteCountdown == countdownCommand.isDeleteCountdown;
         }
     }
 }
