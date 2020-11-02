@@ -61,10 +61,17 @@ public class CountdownCommandParser implements Parser<CountdownCommand> {
         // user wants to add an event from tasks list
         if (argMultimap.getValue(PREFIX_COUNTDOWN_TASK).isPresent()
                 && !arePrefixesPresent(argMultimap, PREFIX_COUNTDOWN_DATE,
-                PREFIX_COUNTDOWN_DELETE, PREFIX_COUNTDOWN_TASK)) {
+                PREFIX_COUNTDOWN_DELETE, PREFIX_COUNTDOWN_NEW)) {
             return getCountdownCommandAddFromTask(argMultimap);
         }
-        throw new ParseException(CountdownCommand.MESSAGE_SWITCH_TAB_USAGE);
+
+        // insufficient params for add
+        if (arePrefixesPresent(argMultimap, PREFIX_COUNTDOWN_NEW, PREFIX_COUNTDOWN_DATE)
+                && !arePrefixesPresent(argMultimap, PREFIX_COUNTDOWN_DELETE, PREFIX_COUNTDOWN_TASK)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    CountdownCommand.MESSAGE_ADD_COUNTDOWN_USAGE));
+        }
+        throw new ParseException(CountdownCommand.MESSAGE_GENERIC_COUNTDOWN_USAGE);
     }
 
     private CountdownCommand getCountdownCommandAddFromTask(ArgumentMultimap argMultimap) throws ParseException {
@@ -84,15 +91,20 @@ public class CountdownCommandParser implements Parser<CountdownCommand> {
             index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_COUNTDOWN_DELETE).get());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    CountdownCommand.MESSAGE_SWITCH_TAB_USAGE), pe);
+                    CountdownCommand.MESSAGE_DELETE_COUNTDOWN_USAGE), pe);
         }
         return new CountdownCommand(index, true); // true since have delete prefix
     }
 
     private CountdownCommand getCountdownCommandAdd(ArgumentMultimap argMultimap) throws ParseException {
-        EventName eventName = ParserUtil.parseEventName(argMultimap.getValue(PREFIX_COUNTDOWN_NEW).get());
-        EventDate eventDate = ParserUtil.parseEventDate(argMultimap.getValue(PREFIX_COUNTDOWN_DATE).get());
-        return new CountdownCommand(eventName, eventDate);
+        try {
+            EventName eventName = ParserUtil.parseEventName(argMultimap.getValue(PREFIX_COUNTDOWN_NEW).get());
+            EventDate eventDate = ParserUtil.parseEventDate(argMultimap.getValue(PREFIX_COUNTDOWN_DATE).get());
+            return new CountdownCommand(eventName, eventDate);
+        } catch (ParseException pe) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    CountdownCommand.MESSAGE_ADD_COUNTDOWN_USAGE), pe);
+        }
     }
 
     /**
