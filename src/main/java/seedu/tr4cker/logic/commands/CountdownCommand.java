@@ -5,7 +5,6 @@ import static seedu.tr4cker.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_COUNTDOWN_DATE;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_COUNTDOWN_DELETE;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_COUNTDOWN_NEW;
-import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_COUNTDOWN_TASK;
 import static seedu.tr4cker.model.Model.PREDICATE_SHOW_ALL_EVENTS;
 import static seedu.tr4cker.model.countdown.EventDate.MESSAGE_FUTURE_CONSTRAINT;
 
@@ -29,15 +28,32 @@ public class CountdownCommand extends Command {
 
     public static final String COMMAND_WORD = "countdown";
 
-    public static final String PROMPT = "Note:\n"
-            + PREFIX_COUNTDOWN_NEW + "NAME " + PREFIX_COUNTDOWN_DATE + "DATE " + "to add a new event\n"
-            + PREFIX_COUNTDOWN_DELETE + "INDEX " + "to delete an event\n"
-            + PREFIX_COUNTDOWN_TASK + "TASK_INDEX " + "to add an event based on a task in task list";
-
     public static final String MESSAGE_SWITCH_TAB_USAGE = COMMAND_WORD + ": Switches to Countdown tab\n"
-            + "Example: " + COMMAND_WORD + "\n" + PROMPT;
+            + "Example: " + COMMAND_WORD;
 
-    public static final String MESSAGE_SWITCH_TAB_SUCCESS = "Switched to Countdown tab!\n" + PROMPT;
+    public static final String MESSAGE_ADD_COUNTDOWN_USAGE = COMMAND_WORD + ": Adds an event to list in Countdown\n"
+            + "Parameters: "
+            + PREFIX_COUNTDOWN_NEW + "NAME " + PREFIX_COUNTDOWN_DATE + "DATE\n"
+            + "Note: NAME must be alphanumeric, spaces are possible, and DATE must be a valid date in the future!\n"
+            + "Examples: \n"
+            + COMMAND_WORD + " " + PREFIX_COUNTDOWN_NEW + "Halloween Party " + PREFIX_COUNTDOWN_DATE + "31-Oct-2021\n";
+
+    public static final String MESSAGE_DELETE_COUNTDOWN_USAGE = COMMAND_WORD
+            + ": Deletes an event from countdown list\n"
+            + "Parameters: "
+            + PREFIX_COUNTDOWN_DELETE + "INDEX\n"
+            + "Note: INDEX must be a valid index!\n"
+            + "Examples: \n"
+            + COMMAND_WORD + " " + PREFIX_COUNTDOWN_DELETE + "1\n";
+
+    public static final String MESSAGE_GENERIC_COUNTDOWN_USAGE = "Countdown tab: Add an event,"
+            + "delete an event, or switch to countdowns tab.\n"
+            + COMMAND_WORD + " : Switches to Countdown tab\n"
+            + COMMAND_WORD + " " + PREFIX_COUNTDOWN_NEW + "NAME " + PREFIX_COUNTDOWN_DATE + "DATE"
+            + " : Adds an event to list in Countdown\n"
+            + COMMAND_WORD + " " + PREFIX_COUNTDOWN_DELETE + "INDEX" + " : Deletes an event from countdown list\n";
+
+    public static final String MESSAGE_SWITCH_TAB_SUCCESS = "Switched to Countdown tab!\n";
 
     public static final String MESSAGE_DELETE_EVENT_SUCCESS = "Deleted event from Countdowns: %1$s";
 
@@ -152,7 +168,11 @@ public class CountdownCommand extends Command {
         } else if (!(other instanceof CountdownCommand)) {
             return false;
         } else {
-            return false; // to be implemented
+            CountdownCommand countdownCommand = (CountdownCommand) other;
+            return (eventDate == countdownCommand.eventDate || eventDate.equals(countdownCommand.eventDate))
+                    && (eventName == countdownCommand.eventName || eventName.equals(countdownCommand.eventName))
+                    && (index == countdownCommand.index || index.equals(countdownCommand.index))
+                    && isDeleteCountdown == countdownCommand.isDeleteCountdown;
         }
     }
 }
