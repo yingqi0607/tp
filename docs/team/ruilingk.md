@@ -8,25 +8,60 @@ title: Koh Rui Ling's Project Portfolio Page
 TR4CKER is a desktop app that helps SoC students track their tasks, meet their deadlines, and stay productive. It is
 optimized for Computing students familiar with CLI, who can manage their tasks efficiently by typing in commands.
 
-Given below are my contributions to the project.
+Given below are my contributions to the project:
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=ruilingk)
 
 * **Morphing of AddressBook:**
-  * Refactor Person class to Task class.
+  * Refactor Person class to Task class: [\#14](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/14)
+
+* **Change to existing feature**: Updated edit command.
+  * Change: Edit command now no longer edit tags for tasks as there is a tag command to meet this purpose.
 
 * **New Feature**: Added tag command.
   * What it does: Allows users to add and/or delete tag(s) from an existing task.
   * Justification: This feature makes TR4CKER more intuitive for users to use as it does not override current tags
-  (which was what it used to do in AB3). It can add tags to existing tags.
+  (which was what it used to do in AB3). It can add tags to existing tags, and delete specific existing tags without
+  having to delete all the tags.
   * Highlights: This new feature can add and/or delete multiple tags at one go without users having to type multiple commands.
+  Users will also be provided feedback on their inputs. If users try to add tags which already existed, or users try to
+  delete tags which do not exist, TR4CKER will inform users the specific tags in the result box.
+  
+* **New Feature**: Added planner tab.
+  * What it does: Allows users to view their tasks in a calendar view with tasks list side-by-side.
+  * Justification: This feature provides users another perspective of their tasks. By viewing their tasks in a monthly
+  calendar view with different indicators, they would be able to plan their time ahead and hence be more productive.
+  Users can also view their tasks on the specific dates they input, so it will be clearer than just a tasks list sorted
+  in chronological order.
+  * Highlights: This new feature has a calendar and tasks list. The calendar shows a monthly view, with indicators on the
+  dates. For example, no indicator means there are no tasks due on that day. Green indicator means there is less than 2
+  tasks due on that day, and red indicator means there is more than 2 tasks due on that day. The tasks list also updates
+  accordingly to the date inputs users provide. 
 
-* **Documentation:**
+* **Enhancements**:
+  * Updated GUI colour scheme for tasks box: [\#68](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/68)
+  * Wrote additional tests for existing features to increase coverage from 73.07% to 75.23%: [\#81](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/81)
+  * Polished GUI colour scheme for Planner tab: [\#104](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/104)
+
+* **Documentation**:
   * User Guide:
     * Edited documentation for `Quickstart`, `Features` and the feature `edit`: [\#50](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/50)
-    * Added documentation for the feature `tag`.
+    * Added documentation for the feature `tag`: [\#61](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/61)
+    * Added documentation for the feature `planner`: [\#105](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/105), [\#131](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/131)
   * Developer Guide:
     * Added Non-Functional Requirements (NFRs) under Appendix: Requirements: [\#13](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/13)
+    * Added documentation for the feature `planner`: [\#88](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/88), [\#97](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/97)
 
-* **Community:**
-  * PRs reviewed (with non-trivial review comments): [\#15](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/15)
+* **Team-based tasks**:
+  * Setting up tools:
+    * Update `README.md` with `CI` and `CodeCov`: [\#49](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/49)
+    * Enable assertions in `build.gradle`: [\#88](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/88)
+  * Project management:
+    * Managed release `v1.1` on GitHub
+    * Maintained issue tracker on GitHub
+
+* **Community**:
+  * PRs reviewed (with non-trivial review comments): [\#15](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/15), [\#101](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/101),
+  [\#112](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/112), [\#125](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/125),
+  [\#126](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/126), [\#175](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/175)
+  * Reported bugs and suggestions for other teams in the class (during Practical Dry Run): [Issues link](https://github.com/ruilingk/ped/issues)
