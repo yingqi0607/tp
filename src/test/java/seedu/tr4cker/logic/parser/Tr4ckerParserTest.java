@@ -19,6 +19,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.tr4cker.logic.commands.AddCommand;
 import seedu.tr4cker.logic.commands.ClearCommand;
+import seedu.tr4cker.logic.commands.CountdownCommand;
 import seedu.tr4cker.logic.commands.DeleteCommand;
 import seedu.tr4cker.logic.commands.DoneCommand;
 import seedu.tr4cker.logic.commands.EditCommand;
@@ -132,6 +133,24 @@ public class Tr4ckerParserTest {
         assertTrue(parser.parseCommand(PlannerCommand.COMMAND_WORD + " goto/10-Oct-2020") instanceof PlannerCommand);
         assertTrue(parser.parseCommand(PlannerCommand.COMMAND_WORD + " goto/10-2020") instanceof PlannerCommand);
         assertTrue(parser.parseCommand(PlannerCommand.COMMAND_WORD + " goto/10-10-2020") instanceof PlannerCommand);
+    }
+
+    @Test
+    public void parseCommand_countdown() throws Exception {
+        assertTrue(parser.parseCommand(CountdownCommand.COMMAND_WORD) instanceof CountdownCommand);
+        assertTrue(parser.parseCommand(CountdownCommand.COMMAND_WORD + " n/Halloween Party" + " d/31-Oct-2021")
+                instanceof CountdownCommand);
+        assertThrows(ParseException.class, ()
+            -> parser.parseCommand(CountdownCommand.COMMAND_WORD + " n/Halloween Party"));
+        assertThrows(ParseException.class, ()
+            -> parser.parseCommand(CountdownCommand.COMMAND_WORD + " d/31-Oct-2021"));
+        assertThrows(ParseException.class, ()
+            -> parser.parseCommand(CountdownCommand.COMMAND_WORD + " d/31-Oct-2021" + " del/5"));
+        assertThrows(ParseException.class, ()
+            -> parser.parseCommand(CountdownCommand.COMMAND_WORD + " n/Halloween Party" + " del/5"));
+        assertTrue(parser.parseCommand(CountdownCommand.COMMAND_WORD + " del/1") instanceof CountdownCommand);
+        assertThrows(ParseException.class, ()
+            -> parser.parseCommand(CountdownCommand.COMMAND_WORD + " del/-1"));
     }
 
     @Test
