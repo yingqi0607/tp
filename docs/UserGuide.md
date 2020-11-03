@@ -29,7 +29,7 @@ title: User Guide
         * 3.3.1. [Switching to Daily tab: `daily`](#331-switching-to-daily-tab-daily)
         * 3.3.2. [Adding a daily todo task](#332-adding-a-daily-todo-task-todo)
     * 3.4. [Modules Tab](#34-modules-ethan)
-        * 3.4.1. [Switching to Module tab: `mod`](#341-switching-to-module-tab-mod)
+        * 3.4.1. [Switching to Module tab: `modules`](#341-switching-to-module-tab-mod)
         * 3.4.2. [Adding a new module to modules list](#342-adding-a-new-module-to-modules-list)
         * 3.4.3. [Assigning a task to a module](#343-assigning-a-task-to-a-module)
         * 3.4.4. [Un-assigning a task from a module](#344-un-assigning-a-task-from-a-module)
@@ -130,7 +130,7 @@ You can switch between tabs by using the following commands:
 | :----------| :--------------:|
 |  `home`    | Home            |
 |  `daily`   | Daily           |
-|  `mod`     | Modules         |
+|  `modules`     | Modules         |
 | `countdown`| Countdowns      |
 |  `planner` | Planner         |
 
@@ -401,41 +401,43 @@ You can organize your tasks according to their respective modules using the Modu
 allows you to know exactly how many tasks are still due for each of the modules you take, if you wish to work on a
 particular module first.
 
-### 3.4.1 Switching to Module tab: `mod`
-To switch to the Module tab, simply type `mod` into the command line. You can also click on the Module button on the tabs
+### 3.4.1 Switching to Module tab: `modules`
+To switch to the Module tab, simply type `modules` into the command line. You can also click on the Module button on the tabs
 menu at the top.
 
-Format: `mod`
+Format: `modules`
 Once you have entered this command, TR4CKER should look like this:
 ![switch tab](images/moduletab_switchtab.png)
-Figure 10: TR4CKER after executing `mod`
+Figure 10: TR4CKER after executing `modules`
 
 The `All Modules` panel shows the list of all modules and their tasks.<br>
 The page will be blank if no modules have been created yet.
 
 Example:
-* `mod` - Switches to Module tab, showing the list of modules.
+* `modules` - Switches to Module tab, showing the list of modules.
 
 ### 3.4.2 Adding a new module to modules list:
 You can add a new module to the list of modules, that TR4CKER can use to categorize tasks.
 
-Format: `mod n/NAME m/MODULECODE`
+Format: `modules n/NAME m/MODULECODE`
 
 * Adds a module with name `NAME` and module code `MODULECODE` to the modules list.
 * Both fields are compulsory and can be in any order.
 * `NAME` must be in the alphanumeric format (only containing letters and numbers) and preferably under
 100 characters long, so that it can be displayed in the box without being truncated.
 * `MODULECODE` must be in the alphanumeric format (only containing letters and numbers) and must not include any spacings.
+* `MODULECODE` is case-insensitive.
+* The keyword `DEL` is not a valid `MODULECODE`.
 
 Examples:
-* `mod n/Computer Graphics m/CS3241` - Adds a module `Computer Graphics` with module code `CS3241`
+* `modules n/Computer Graphics m/CS3241` - Adds a module `Computer Graphics` with module code `CS3241`
 to the modules list.
-* `mod n/Effective Communication for Computing Professionals m/CS2101` - Adds a module `Effective Communication
+* `modules n/Effective Communication for Computing Professionals m/CS2101` - Adds a module `Effective Communication
 for Computing Professionals` with module code `CS2101` to the modules list.
 
 Once enter the command into the command box, the module should appear at the bottom of the modules list:
 ![add_module](images/moduletab_addmodule.png)
-Figure 11: TR4CKER after executing `mod n/Effective Communication for Computing Professionals m/CS2101`
+Figure 11: TR4CKER after executing `modules n/Effective Communication for Computing Professionals m/CS2101`
 
 ### 3.4.3 Assigning a task to a module
 Now with modules being created in the previous section, you may want to start assigning tasks to those modules.
@@ -448,6 +450,7 @@ Format: `edit INDEX [m/MODULECODE]`
 * The index **must be a positive integer** 1, 2, 3, …
 * At least one of the optional fields must be provided.
 * The module code `MODULECODE` must match one of the module codes of a module in the modules list.
+* Note: Editing a task that already has a module assigned will replace it with the edited module.
 
 Examples:
 * `edit 1 m/CS3241` - Edits the 1st task to be tagged to the module with module code `CS3241`.
@@ -500,7 +503,7 @@ After finishing up a semester and bringing things to a close, it's time to remov
 needing them anymore.<br>
 Make sure that no remaining tasks are still assigned to the module first before you can delete it.
 
-Format: `mod del/INDEX`
+Format: `modules del/INDEX`
 
 * Deletes a module at the specified `INDEX`.
 * The index refers to a valid index number shown in the module list.
@@ -508,15 +511,15 @@ Format: `mod del/INDEX`
 * Warning: This action is irreversible!
 
 Examples:
-* `mod del/1` - Deletes the 1st module in the modules list.
+* `modules del/1` - Deletes the 1st module in the modules list.
 
 First, look for the module index beside the module code and name, here **Computer Graphics** has an `INDEX` of `9`:
 ![delete module before](images/moduletab_deletemodule_before.png)
-Figure 16: TR4CKER before executing `mod del/9`
+Figure 16: TR4CKER before executing `modules del/9`
 
 After entering the command with the specified `INDEX` into the command box, the module should have been removed:
 ![delete module after](images/moduletab_deletemodule_after.png)
-Figure 17: TR4CKER after executing `mod del/9`
+Figure 17: TR4CKER after executing `modules del/9`
 
 ## 3.5. Countdown (Wen Ling)
 You can countdown to your most essential upcoming events in the Countdown tab. You can know at a quick glance, how many
