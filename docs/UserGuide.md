@@ -426,6 +426,7 @@ Format: `mod n/NAME m/MODULECODE`
 * `NAME` must be in the alphanumeric format (only containing letters and numbers) and preferably under
 100 characters long, so that it can be displayed in the box without being truncated.
 * `MODULECODE` must be in the alphanumeric format (only containing letters and numbers) and must not include any spacings.
+* `MODULECODE` is case-insensitive.
 
 Examples:
 * `mod n/Computer Graphics m/CS3241` - Adds a module `Computer Graphics` with module code `CS3241`

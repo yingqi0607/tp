@@ -9,7 +9,7 @@ import static seedu.tr4cker.commons.util.AppUtil.checkArgument;
  */
 public class ModuleCode {
 
-    public static final String MESSAGE_CONSTRAINTS = "Module codes should only contain "
+    public static final String MESSAGE_CONSTRAINTS = "Module codes are case-insensitive, should only contain "
             + "alphanumeric characters, and it should not be blank or contain any spaces.";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
@@ -23,7 +23,7 @@ public class ModuleCode {
     public ModuleCode(String codeName) {
         requireNonNull(codeName);
         checkArgument(isValidModuleCode(codeName), MESSAGE_CONSTRAINTS);
-        this.codeName = codeName;
+        this.codeName = codeName.toUpperCase(); // All module codes are uppercase
     }
 
     /**
