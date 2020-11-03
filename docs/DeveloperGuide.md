@@ -173,6 +173,124 @@ Once the user marks a task as complete, it will automatically appear under Compl
 This design filters the tasks into 3 lists according to their completion statuses and deadlines which will be useful to the users,
 as opposed to having browse through a long task list.
 
+### Daily feature \[coming in v1.3] (Yingqi)
+Tracker has a daily feature that allows users to add current tasks to a todo list for the day.
+This feature allows users to plan for what they want to do for a particular day.
+
+The 3 main functions of the Daily feature are to:
+1. Add tasks from existing task list to a todo list
+2. Display all tasks that the user wants to do for the day
+3. The daily todo list is cleared everyday
+
+#### Implementation
+The UI of the Daily feature is facilitated by the `DailyPanel` class which will show users all daily todo tasks as a list.
+
+To implement the commands of this Daily feature, there are `TodoCommand` and `TodoCommandParser` classes in the `logic` package.
+
+The following diagram shows the sequence flow when a task gets added into the `DailyPanel`:
+![DailySequenceDiagram](images/DailySequenceDiagram.png)
+
+#### Design Considerations
+
+##### Aspect 1: How users can plan for the things he/she wants to complete for the day
+
+* **Current Choice:** When users use list command to view all tasks, only task names are shown.
+  * Pros: A neater list is being shown.
+  * Pros: Users can look through the list quickly and decide what to add to daily todo list.
+  * Cons: Important details such and deadline and descriptions are omitted, users may not know which task is more urgent to do.
+
+* **Alternative 1:** When users decides to add a particular task to daily todo list, details of that task is shown.
+  * Pros: Users have clearer idea of the details of the tasks that he/she wants to complete for the day.
+  * Cons: Details are shown only when the tasks is already added, if the user do not want to do it for the day, he/she has to delete it from todo list.
+
+**Justification for current choice:** Users would already have details of the tasks in mind and therefore they will tend
+to add the tasks they feel that are more urgent to daily todo list. Hence details can be ommited when users select tasks
+to add into daily todo list.
+
+### Module feature \[coming in v1.3] (Ethan)
+TR4CKER has a module tab which provides users with an alternate view of tasks. Tasks are arranged in shorter lists categorized by modules.
+This feature is to allow users to have a more focused overview of tasks, and know how many tasks are
+pending for each module as opposed to the most-urgent-task-first organization in  main task list.
+
+The 2 main functions of the Module feature are to:
+1. Display all modules taken by the user.
+2. Display the list of yet to be completed tasks under each module.
+
+#### Implementation
+To implement the UI of this Module feature, there will be a `ModuleTaskCard` & `ModuleTaskListPanel` classes
+in the `ui` package, modified from the `TaskCard` and `TaskListPanel` classes. To implement the commands of
+this module feature, there are `ModuleCommnad` and `ModuleCommandParser` classes in the `logic` package.
+
+A module in the Modules tab has its own `ModuleTaskListPanel`, updated whenever new tasks are added with the module or are
+edited to be associated under the module.
+
+The following diagram shows the sequence flow when a task gets added to the `ModuleTaskListPanel` of a module:
+![TaskWithModuleActivityDiagram](images/TaskWithModuleActivityDiagram.png)
+Figure 1: Adding task to `ModuleTaskListPanel` of a module.
+
+#### Design considerations:
+
+##### Aspect 1: How modules are deleted and added to tasks
+
+* **Current Choice:** Modules cannot be deleted if there are existing tasks tagged with the module. Tasks can only be
+tagged with an existing module.
+  * Pros: Safer, will not have stray tasks with non-existent modules.
+  * Pros: User has safeguard against deleting modules that still has pending tasks.
+  * Cons: Less flexible, extra steps for the user to create modules before assigning tasks, and delete tasks before
+  deleting a module.
+
+* **Alternative 1:** Allow both modules to be deleted and tasks to be tagged regardless of the others' existence.
+  * Pros: More convenient for user to use without restrictions.
+  * Cons: Prone to error, user may assign incorrectly with typos.
+
+**Justification for current choice:** Better reliability of the feature by reducing possible errors by the user. As errors
+will cause more time wasted for the user to fix them anyway, it seems that it is better to incur some overhead to
+prevent making a mess altogether.
+
+### Countdown feature \[coming in v1.3] (Wen Ling)
+TR4CKER has a countdowns tab which allows users to add important events that they would like TR4CKER to countdown to.
+This feature allows users to isolate the most important time sensitive events and deadlines, and tells the user exactly
+how many days do they have to a certain event, which enhances the tracking experience.
+
+The 3 main functions of the Countdown feature are to:
+1. Display a list of all countdown events
+2. Display prominently the 2 earliest upcoming events
+
+#### Implementation \[will be updated with UML diagrams]
+The countdown panel is facilitated by the `CountdownPanel` class, which serves as the entry point to show users the
+countdown events as a list.
+
+To allow TR4CKER to countdown to events, users can add new events by 2 methods using Countdown Command.
+
+1. Add event based on task in task list (Note: Countdowns list is separate from tasks list, and subsequent changes
+to tasks in task list will not be reflected in countdowns list.)
+
+2. Add independent event
+
+Users can also use Countdown Command to
+
+The following activity diagram shows the flow of executing a Countdown Command:
+![CountdownCommandActivityDiagram](images/CountdownActivityDiagram.png)
+
+
+#### Design considerations:
+
+##### Aspect 1: Users should be able to easily view the next most recent event
+
+* **Current Choice:** Use the same `countdown` command to navigate to the next event or previous event. For example,
+`countdown first` would display the earliest upcoming event, `countdown next` will display the event after the one
+currently displayed, and `countdown previous` with display the event before the one currently displayed.
+  * Pros: Users can easily know the chronological sequence of events.
+  * Cons: May be difficult to navigate if there is a long list of events.
+
+* **Alternative 1:** Another command to allow users to navigate to the events in a specified day.
+  * Pros: More user-friendly as it is faster to navigate to a particular event on a particular day.
+  * Cons: Requires user to already know what days have events in the countdown list.
+
+**Justification for current choice:** Considering how users who are using the countdown feature will prefer to be able
+to know what is the next upcoming event, for example what is the next exam that they have to prepare for. The first implementation
+is also less prone to errors as users do are able to know what is the next event without knowing beforehand what day is it on.
+
 ### Planner feature \[coming in v1.3] (Rui Ling)
 TR4CKER has a planner feature which provides users to view the calendar side-by-side with the tasks that are due on
 specified day. This feature is to allow users to have a clearer view of their schedules and allow them to plan their
@@ -255,122 +373,6 @@ The problem of users not knowing the existence of this command could be solved b
 User Guide of TR4CKER.
 
 ##### Aspect 2: \[tbc]
-
-### Countdown feature \[coming in v1.3] (Wen Ling)
-TR4CKER has a countdowns tab which allows users to add important events that they would like TR4CKER to countdown to.
-This feature allows users to isolate the most important time sensitive events and deadlines, and tells the user exactly
-how many days do they have to a certain event, which enhances the tracking experience.
-
-The 3 main functions of the Countdown feature are to:
-1. Display a list of all countdown events
-2. Display prominently the 2 earliest upcoming events
-
-#### Implementation \[will be updated with UML diagrams]
-The countdown panel is facilitated by the `CountdownPanel` class, which serves as the entry point to show users the
-countdown events as a list.
-
-To allow TR4CKER to countdown to events, users can add new events by 2 methods using Countdown Command.
-
-1. Add event based on task in task list (Note: Countdowns list is separate from tasks list, and subsequent changes
-to tasks in task list will not be reflected in countdowns list.)
-
-2. Add independent event
-
-Users can also use Countdown Command to
-
-The following activity diagram shows the flow of executing a Countdown Command:
-![CountdownCommandActivityDiagram](images/CountdownActivityDiagram.png)
-
-
-#### Design considerations:
-
-##### Aspect 1: Users should be able to easily view the next most recent event
-
-* **Current Choice:** Use the same `countdown` command to navigate to the next event or previous event. For example,
-`countdown first` would display the earliest upcoming event, `countdown next` will display the event after the one
-currently displayed, and `countdown previous` with display the event before the one currently displayed.
-  * Pros: Users can easily know the chronological sequence of events.
-  * Cons: May be difficult to navigate if there is a long list of events.
-
-* **Alternative 1:** Another command to allow users to navigate to the events in a specified day.
-  * Pros: More user-friendly as it is faster to navigate to a particular event on a particular day.
-  * Cons: Requires user to already know what days have events in the countdown list.
-
-**Justification for current choice:** Considering how users who are using the countdown feature will prefer to be able
-to know what is the next upcoming event, for example what is the next exam that they have to prepare for. The first implementation
-is also less prone to errors as users do are able to know what is the next event without knowing beforehand what day is it on.
-
-### Module feature \[coming in v1.3] (Ethan)
-TR4CKER has a module tab which provides users with an alternate view of tasks. Tasks are arranged in shorter lists categorized by modules.
-This feature is to allow users to have a more focused overview of tasks, and know how many tasks are
-pending for each module as opposed to the most-urgent-task-first organization in  main task list.
-
-The 2 main functions of the Module feature are to:
-1. Display all modules taken by the user.
-2. Display the list of yet to be completed tasks under each module.
-
-#### Implementation
-To implement the UI of this Module feature, there will be a `ModuleTaskCard` & `ModuleTaskListPanel` classes
-in the `ui` package, modified from the `TaskCard` and `TaskListPanel` classes. To implement the commands of
-this module feature, there are `ModuleCommnad` and `ModuleCommandParser` classes in the `logic` package.
-
-A module in the Modules tab has its own `ModuleTaskListPanel`, updated whenever new tasks are added with the module or are
-edited to be associated under the module.
-
-The following diagram shows the sequence flow when a task gets added to the `ModuleTaskListPanel` of a module:
-![TaskWithModuleActivityDiagram](images/TaskWithModuleActivityDiagram.png)
-Figure 1: Adding task to `ModuleTaskListPanel` of a module.
-
-#### Design considerations:
-
-##### Aspect 1: How modules are deleted and added to tasks
-
-* **Current Choice:** Modules cannot be deleted if there are existing tasks tagged with the module. Tasks can only be
-tagged with an existing module.
-  * Pros: Safer, will not have stray tasks with non-existent modules.
-  * Pros: User has safeguard against deleting modules that still has pending tasks.
-  * Cons: Less flexible, extra steps for the user to create modules before assigning tasks, and delete tasks before
-  deleting a module.
-
-* **Alternative 1:** Allow both modules to be deleted and tasks to be tagged regardless of the others' existence.
-  * Pros: More convenient for user to use without restrictions.
-  * Cons: Prone to error, user may assign incorrectly with typos.
-
-**Justification for current choice:** Better reliability of the feature by reducing possible errors by the user. As errors
-will cause more time wasted for the user to fix them anyway, it seems that it is better to incur some overhead to
-prevent making a mess altogether.
-
-### Daily feature \[coming in v1.3] (Yingqi)
-Tracker has a daily feature that allows users to add current tasks to a todo list for the day.
-This feature allows users to plan for what they want to do for a particular day.
-
-The 3 main functions of the Daily feature are to:
-1. Add tasks from existing task list to a todo list
-2. Display all tasks that the user wants to do for the day
-3. The daily todo list is cleared everyday
-
-#### Implementation
-The UI of the Daily feature is facilitated by the `DailyPanel` class which will show users all daily todo tasks as a list.
-
-To implement the commands of this Daily feature, there are `TodoCommand` and `TodoCommandParser` classes in the `logic` package.
-
-The following diagram shows the sequence flow when a task gets added into the `DailyPanel`:
-![DailySequenceDiagram](images/DailySequenceDiagram.png)
-
-#### Design Considerations
-
-##### Aspect 1: How users can plan for the things he/she wants to complete for the day
-
-* **Current Choice:** When users use list command to view all tasks, only task names are shown.
-  * Pros: A neater list is being shown.
-  * Pros: Users can look through the list quickly and decide what to add to daily todo list.
-  * Cons: Important details such and deadline and descriptions are omitted, users may not know which task is more urgent to do.
-
-* **Alternative 1:** When users decides to add a particular task to daily todo list, details of that task is shown.
-  * Pros: Users have clearer idea of the details of the tasks that he/she wants to complete for the day.
-  * Cons: Details are shown only when the tasks is already added, if the user do not want to do it for the day, he/she has to delete it from todo list.
-
-**Justification for current choice:** Users would already have details of the tasks in mind and therefore they will tend to add the tasks they feel that are more urgent to daily todo list. Hence details can be ommited when users select tasks to add into daily todo list.
 
 --------------------------------------------------------------------------------------------------------------------
 
