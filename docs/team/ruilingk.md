@@ -14,6 +14,7 @@ Given below are my contributions to the project:
 
 * **Morphing of AddressBook:**
   * Refactor Person class to Task class: [\#14](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/14)
+  * Changed AB3 traces to TR4CKER in Developer Guide: [\#186](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/186)
 
 * **Change to existing feature**: Updated edit command.
   * Change: Edit command now no longer edit tags for tasks as there is a tag command to meet this purpose.
@@ -52,6 +53,7 @@ Given below are my contributions to the project:
   * Developer Guide:
     * Added Non-Functional Requirements (NFRs) under Appendix: Requirements: [\#13](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/13)
     * Added documentation for the feature `planner`: [\#88](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/88), [\#97](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/97)
+    * Updated documentation for the feature `planner`: [\#186](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/186)
 
 * **Team-based tasks**:
   * Setting up tools:
