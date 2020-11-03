@@ -33,13 +33,13 @@ class PlannerDay {
     +createFirstDayOfMonth(): PlannerDay
 }
 
-class TaskListPanel {
-    +TaskListPanel(ObservableList<Task>)
+class PlannerTaskListPanel {
+    +PlannerTaskListPanel(ObservableList<Task>)
 }
 
 PlannerTabWindow -right-> Logic
 PlannerTabWindow "1" *-down-> "1" PlannerCalendarPanel : < is stored in
-PlannerTabWindow "1" *-down-> "1" TaskListPanel : < is stored in
+PlannerTabWindow "1" *-down-> "1" PlannerTaskListPanel : < is stored in
 PlannerCalendarPanel "1" *-down-> "plannerDayCards *" PlannerDayCard
 PlannerCalendarPanel "1" --> "*" PlannerDay
 PlannerDayCard "1" --> "1" PlannerDay

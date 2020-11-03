@@ -291,7 +291,7 @@ currently displayed, and `countdown previous` with display the event before the 
 to know what is the next upcoming event, for example what is the next exam that they have to prepare for. The first implementation
 is also less prone to errors as users do are able to know what is the next event without knowing beforehand what day is it on.
 
-### Planner feature \[coming in v1.3] (Rui Ling)
+### Planner feature (Rui Ling)
 TR4CKER has a planner feature which provides users to view the calendar side-by-side with the tasks that are due on
 specified day. This feature is to allow users to have a clearer view of their schedules and allow them to plan their
 time ahead, and hence increasing productivity.
@@ -308,7 +308,7 @@ The following class diagram (Figure 1) summarises how the UI aspect of this plan
 Figure 1: Planner Class Diagram
 
 During the initialisation of TR4CKER, `PlannerTabWindow` will be initialised, together with `PlannerCalendarPanel` and
-`TaskListPanel`. `PlannerTabWindow` will execute `Logic#getPlannerFilteredTaskList` to update the tasks list shown in
+`PlannerTaskListPanel`. `PlannerTabWindow` will execute `Logic#getPlannerFilteredTaskList` to update the tasks list shown in
 Planner tab. The month and year of the calendar will be set in `PlannerCalendarPanel`. There are multiple `PlannerDayCard`
 in 1 `PlannerCalendarPanel`. `PlannerDayCard` serves to store the details of each `PlannerDay`, which contains the date
 of each grid in the `PlannerCalendarPanel`. When users execute planner commands, The month and year of the calendar will
@@ -352,7 +352,30 @@ the user and a feedback is provided.
 
 #### Design considerations:
 
-##### Aspect 1: How users can easily navigate to today's/tomorrow's tasks list
+##### Aspect 1: How to represent tasks list for Planner tab
+
+* **Current Choice:** Have a separate tasks list for Planner tab, which is the `PlannerTaskListPanel`class. This class
+is different from the `TaskListPanel` class which is mainly used for the TR4CKER tab.
+  * Pros: Obey Single Responsibility Principle whereby each class should only have one responsibility.
+  * Pros: Developers using `PlannerTaskListPanel` class would not need to change the functionality of `TaskListPanel`
+  class to suit what functionalities they want for the tasks list in Planner tab.
+  * Cons: Additional coding and time would be required to create another class to cater to only tasks list in Planner tab.
+
+* **Alternative 1:** Use the existing `TaskListPanel` class for the tasks list in Planner tab.
+  * Pros: Do not need to code for another class and more time could have been spent on other features.
+  * Cons: Do not obey Single Responsibility Principle as now a class would need to have 2 types of functionalities for
+  different purposes.
+  * Cons: Some functionalities for tasks list in TR4CKER tab and Planner tab differ, so accomodating for both functionalities
+  in a single class is quite difficult.
+
+**Justification for current choice:** After thinking about how having a separate class for the tasks list in Planner tab
+would require more time and effort, I still choose to implement the current choice. This is because there are varying
+functionalities to the tasks list in TR4CKER tab and Planner tab. For example, tasks list in TR4CKER tab only shows non-expired
+tasks and shows every task on the list. However, tasks list in Planner tab shows any date that the user wants to go to
+and can even show expired tasks if user chooses to go to a date in the past. Therefore, although it required more time
+and effort, I think that having a separate class would be better since the tasks list in both tabs act differently.
+
+##### Aspect 2: How users can easily navigate to today's/tomorrow's tasks list
 
 * **Current Choice:** Use the same `planner` command to navigate to today's/tomorrow's tasks list. For example,
 `planner goto/today` would navigate users to today's tasks list and `planner goto/tomorrow` would navigate users to
@@ -371,8 +394,6 @@ I chose to implement the current choice. The current implementation would allow 
 fairly be more user-friendly, especially after considering how TR4CKER also has many other commands available.
 The problem of users not knowing the existence of this command could be solved by documenting this feature clearly in the
 User Guide of TR4CKER.
-
-##### Aspect 2: \[tbc]
 
 --------------------------------------------------------------------------------------------------------------------
 
