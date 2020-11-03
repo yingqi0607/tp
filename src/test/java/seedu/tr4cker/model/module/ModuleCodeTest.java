@@ -21,6 +21,8 @@ class ModuleCodeTest {
         assertFalse(ModuleCode.isValidModuleCode("      ")); // spaces
         assertFalse(ModuleCode.isValidModuleCode("")); // empty string
         assertFalse(ModuleCode.isValidModuleCode("a b")); // spaces
+        assertFalse(ModuleCode.isValidModuleCode("del")); // delete prefix
+        assertFalse(ModuleCode.isValidModuleCode("DEL")); // delete caps
 
         // valid code
         assertTrue(ModuleCode.isValidModuleCode("a"));

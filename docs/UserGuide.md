@@ -427,6 +427,7 @@ Format: `modules n/NAME m/MODULECODE`
 100 characters long, so that it can be displayed in the box without being truncated.
 * `MODULECODE` must be in the alphanumeric format (only containing letters and numbers) and must not include any spacings.
 * `MODULECODE` is case-insensitive.
+* The keyword `DEL` is not a valid `MODULECODE`.
 
 Examples:
 * `modules n/Computer Graphics m/CS3241` - Adds a module `Computer Graphics` with module code `CS3241`
@@ -449,6 +450,7 @@ Format: `edit INDEX [m/MODULECODE]`
 * The index **must be a positive integer** 1, 2, 3, …
 * At least one of the optional fields must be provided.
 * The module code `MODULECODE` must match one of the module codes of a module in the modules list.
+* Note: Editing a task that already has a module assigned will replace it with the edited module.
 
 Examples:
 * `edit 1 m/CS3241` - Edits the 1st task to be tagged to the module with module code `CS3241`.
