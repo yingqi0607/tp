@@ -48,6 +48,7 @@ Given below are my contributions to the project:
     * Edited documentation for `Quickstart`, `Features` and the feature `edit`: [\#50](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/50)
     * Added documentation for the feature `tag`: [\#61](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/61)
     * Added documentation for the feature `planner`: [\#105](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/105), [\#131](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/131)
+    * Updated formatting and update documentation for the feature `planner`: [\#184](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/184)
   * Developer Guide:
     * Added Non-Functional Requirements (NFRs) under Appendix: Requirements: [\#13](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/13)
     * Added documentation for the feature `planner`: [\#88](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/88), [\#97](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/97)
