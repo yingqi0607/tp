@@ -1,14 +1,17 @@
 package seedu.tr4cker.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.tr4cker.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.tr4cker.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.tr4cker.commons.core.Messages;
 import seedu.tr4cker.commons.core.index.Index;
 import seedu.tr4cker.commons.util.StringUtil;
+import seedu.tr4cker.logic.commands.EditCommand;
 import seedu.tr4cker.logic.parser.exceptions.ParseException;
 import seedu.tr4cker.model.countdown.EventDate;
 import seedu.tr4cker.model.countdown.EventName;
@@ -37,6 +40,21 @@ public class ParserUtil {
         String trimmedIndex = oneBasedIndex.trim();
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
             throw new ParseException(MESSAGE_INVALID_INDEX);
+        }
+        return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
+
+    /**
+     * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
+     * trimmed.
+     * @throws ParseException if the specified task index is invalid (not non-zero unsigned integer).
+     */
+    public static Index parseTaskIndex(String oneBasedIndex) throws ParseException {
+        String trimmedIndex = oneBasedIndex.trim();
+        if (StringUtil.isInteger(trimmedIndex) && !StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
+            throw new ParseException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+        } else if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
