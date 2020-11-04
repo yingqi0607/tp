@@ -9,20 +9,6 @@
                    AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
                    AnchorPane.topAnchor="0.0">
             <items>
-
-                <!--
-                <AnchorPane prefHeight="400.0" prefWidth="300" minWidth="300">
-                    <children>
-                        <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-                              AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                            <children>
-                                <StackPane fx:id="countdownEventFirstPlaceholder" prefHeight="400.0" prefWidth="300.0" VBox.vgrow="ALWAYS" />
-                            </children>
-                        </VBox>
-                    </children>
-                </AnchorPane>
-                -->
-
                 <AnchorPane prefHeight="400.0" prefWidth="1000.0" minWidth="650">
                     <children>
                         <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"

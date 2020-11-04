@@ -31,6 +31,7 @@ public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
 
+    public static final String MESSAGE_INVALID_DAYS = "Number of days given is not a non-zero  unsigned integer.";
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
@@ -204,6 +205,26 @@ public class ParserUtil {
         return new EventDate(trimmedEventDate, true);
     }
 
+    /**
+     * Parses a {@code String numDays} into an {@code int numDays}.
+     * Leading and trailing whitespace will be trimmed.
+     *
+     * @throws ParseException if the {@code numDays} is invalid.
+     */
+    public static int parseNumDays(String numDays) throws ParseException {
+        requireNonNull(numDays);
+        String trimmedNumDays = numDays.trim();
+        int numDaysInt;
+        try {
+            numDaysInt = Integer.parseInt(trimmedNumDays);
+        } catch (NumberFormatException nfe) {
+            throw new ParseException(MESSAGE_INVALID_DAYS);
+        }
+        if (numDaysInt < 0) {
+            throw new ParseException(MESSAGE_INVALID_DAYS);
+        }
+        return numDaysInt;
+    }
     /**
      * Parses a {@code String tag} into a {@code Tag}.
      * Leading and trailing whitespaces will be trimmed.
