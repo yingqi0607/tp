@@ -62,5 +62,5 @@ Given below are my contributions to the project.
   [\#51](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/51), [\#61](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/61),
   [\#62](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/62), [\#65](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/65),
   [\#81](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/81), [\#105](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/105),
-  [\#126](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/126), 
+  [\#126](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/126)
   * Reported bugs and suggestions for other teams in the class (during Practical Dry Run): [Issues link](https://github.com/cwenling/ped/issues)
