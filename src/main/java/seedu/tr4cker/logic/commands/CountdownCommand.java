@@ -3,6 +3,7 @@ package seedu.tr4cker.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.tr4cker.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_COUNTDOWN_DATE;
+import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_COUNTDOWN_DAYS;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_COUNTDOWN_DELETE;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_COUNTDOWN_NEW;
 import static seedu.tr4cker.model.Model.PREDICATE_SHOW_ALL_EVENTS;
@@ -46,6 +47,14 @@ public class CountdownCommand extends Command {
             + "Examples: \n"
             + COMMAND_WORD + " " + PREFIX_COUNTDOWN_DELETE + "1\n";
 
+    public static final String MESSAGE_COUNT_DAYS_USAGE = COMMAND_WORD
+            + ": Count the number of events in the specified number of days\n"
+            + "Parameters: "
+            + PREFIX_COUNTDOWN_DAYS + "DAYS\n"
+            + "Note: DAYS must be a valid non-negative number!\n"
+            + "Examples: \n"
+            + COMMAND_WORD + " " + PREFIX_COUNTDOWN_DAYS + "7\n";
+
     public static final String MESSAGE_GENERIC_COUNTDOWN_USAGE = "Countdown tab: Add an event,"
             + "delete an event, or switch to countdowns tab.\n"
             + COMMAND_WORD + " : Switches to Countdown tab\n"
@@ -61,10 +70,13 @@ public class CountdownCommand extends Command {
 
     public static final String MESSAGE_DUPLICATE_EVENT = "This event already exists in TR4CKER.";
 
+    public static final String MESSAGE_COUNT_EVENTS_IN_DAYS_SUCCESS = "There are %s event(s) in %s days :\n%s";
+
     private final EventName eventName;
     private final EventDate eventDate;
     private final Index index;
     private final boolean isDeleteCountdown;
+    private final int numDays;
 
     /**
      * Constructor for CountdownCommand when user wants to switch to Countdown tab.
@@ -74,6 +86,7 @@ public class CountdownCommand extends Command {
         this.eventDate = null;
         this.index = null;
         this.isDeleteCountdown = false;
+        this.numDays = -1;
     }
 
     /**
@@ -84,6 +97,7 @@ public class CountdownCommand extends Command {
         this.eventDate = eventDate;
         this.index = null;
         this.isDeleteCountdown = false;
+        this.numDays = -1;
     }
 
     /**
@@ -95,6 +109,18 @@ public class CountdownCommand extends Command {
         this.eventDate = null;
         this.index = index;
         this.isDeleteCountdown = isDeleteCountdown;
+        this.numDays = -1;
+    }
+
+    /**
+     * Constructor for CountdownCommand when user wants to list number of countdowns in {@code days}.
+     */
+    public CountdownCommand(int numDays) {
+        this.eventName = null;
+        this.eventDate = null;
+        this.index = null;
+        this.isDeleteCountdown = false;
+        this.numDays = numDays;
     }
 
     @Override
@@ -102,12 +128,12 @@ public class CountdownCommand extends Command {
         requireNonNull(model);
         List<Event> eventList = model.getFilteredEventList();
 
-        if (Objects.isNull(eventName) && Objects.isNull(eventDate) && Objects.isNull(index)) {
+        if (Objects.isNull(eventName) && Objects.isNull(eventDate) && Objects.isNull(index) && numDays == -1) {
             model.updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
             return new CommandResult(MESSAGE_SWITCH_TAB_SUCCESS, true);
         }
 
-        if (Objects.isNull(eventName) && Objects.isNull(eventDate)) {
+        if (Objects.isNull(eventName) && Objects.isNull(eventDate) && numDays == -1) {
             if (isDeleteCountdown) {
                 return executeCountdownDelete(model, eventList);
             } else {
@@ -115,15 +141,33 @@ public class CountdownCommand extends Command {
             }
         }
 
-        if (Objects.isNull(index)) {
+        if (Objects.isNull(index) && numDays == -1) {
             return executeCountdownAddNew(model);
+        }
+
+        if (Objects.isNull(eventName) && Objects.isNull(eventDate) && Objects.isNull(index)) {
+            return executeCountEventsInDays(eventList);
         }
 
         throw new CommandException(MESSAGE_INVALID_COMMAND_FORMAT);
     }
 
+    private CommandResult executeCountEventsInDays(List<Event> eventList) {
+        int numEventsInDays = 0;
+        StringBuilder listEvents = new StringBuilder();
+        for (Event event : eventList) {
+            if (event.getDaysRemaining() <= numDays && event.getDaysRemaining() >= 0) {
+                numEventsInDays++;
+                listEvents.append(String.format("%d. %s\n", numEventsInDays, event));
+            }
+        }
+        return new CommandResult(String.format(MESSAGE_COUNT_EVENTS_IN_DAYS_SUCCESS,
+                numEventsInDays, numDays, listEvents.toString()));
+    }
+
     private CommandResult executeCountdownAddFromTask(Model model) throws CommandException {
         List<Task> taskList = model.getFilteredPendingTaskList();
+        assert index != null;
         if (index.getZeroBased() >= taskList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
@@ -153,6 +197,7 @@ public class CountdownCommand extends Command {
     }
 
     private CommandResult executeCountdownDelete(Model model, List<Event> eventList) throws CommandException {
+        assert index != null;
         if (index.getZeroBased() >= eventList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
         }

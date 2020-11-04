@@ -187,6 +187,26 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String numDays} into an {@code int numDays}.
+     * Leading and trailing whitespace will be trimmed.
+     *
+     * @throws ParseException if the {@code numDays} is invalid.
+     */
+    public static int parseNumDays(String numDays) throws ParseException {
+        requireNonNull(numDays);
+        String trimmedNumDays = numDays.trim();
+        int numDaysInt;
+        try {
+            numDaysInt = Integer.parseInt(trimmedNumDays);
+        } catch (NumberFormatException nfe) {
+            throw new ParseException("Number of days must be a valid positive integer.");
+        }
+        if (numDaysInt < 0) {
+            throw new ParseException("Number of days must be a valid positive integer.");
+        }
+        return numDaysInt;
+    }
+    /**
      * Parses a {@code String tag} into a {@code Tag}.
      * Leading and trailing whitespaces will be trimmed.
      *
