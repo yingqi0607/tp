@@ -11,7 +11,6 @@ import static seedu.tr4cker.model.Model.PREDICATE_SHOW_ALL_EVENTS;
 import static seedu.tr4cker.model.countdown.EventDate.MESSAGE_FUTURE_CONSTRAINT;
 
 import java.util.List;
-import java.util.Objects;
 
 import seedu.tr4cker.commons.core.Messages;
 import seedu.tr4cker.commons.core.index.Index;
