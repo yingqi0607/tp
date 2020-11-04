@@ -3,7 +3,6 @@ package seedu.tr4cker.model;
 import java.nio.file.Path;
 import java.util.function.Predicate;
 
-import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import seedu.tr4cker.commons.core.GuiSettings;
 import seedu.tr4cker.model.countdown.Event;
@@ -153,15 +152,6 @@ public interface Model {
 
     /** Returns an unmodifiable view of the filtered completed task list. */
     ObservableList<Event> getFilteredEventList();
-
-    /** Returns the first event in the events list. */
-    ObservableValue<Event> getEventFirst();
-
-    /** Returns the first event in events list. */
-    Event getFirstEvent();
-
-    /** Returns the second event in events list. */
-    Event getSecondEvent();
 
     /** Returns an unmodifiable view of the filtered todo list.*/
     ObservableList<Todo> getFilteredTodoList();
