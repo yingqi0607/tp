@@ -13,18 +13,18 @@ import seedu.tr4cker.model.task.CompletionStatus;
 
 public class DoneCommandParserTest {
 
-    private static final String VALID_COMPLETION_STATUS_ZERO = "0";
-    private static final String VALID_COMPLETION_STATUS_HALF = "50";
-    private static final String VALID_COMPLETION_STATUS_DONE = "100";
-    private static final String INVALID_COMPLETION_STATUS_1 = "1000"; //  More than 100
-    private static final String INVALID_COMPLETION_STATUS_2 = "-10"; // Less than 0
-    private static final String NOT_A_COMPLETION_STATUS = "HelloWorld"; // NaN
+    public static final String VALID_COMPLETION_STATUS_ZERO = "0";
+    public static final String VALID_COMPLETION_STATUS_HALF = "50";
+    public static final String VALID_COMPLETION_STATUS_DONE = "100";
+    public static final String INVALID_COMPLETION_STATUS_1 = "1000"; //  More than 100
+    public static final String INVALID_COMPLETION_STATUS_2 = "-10"; // Less than 0
+    public static final String NOT_A_COMPLETION_STATUS = "HelloWorld"; // NaN
 
     private static final String VALID_DONE_NO_COMPLETION_STATUS_DESC = "1";
 
     private static final CompletionStatus COMPLETION_STATUS_1 =
             new CompletionStatus(Integer.parseInt(VALID_COMPLETION_STATUS_ZERO));
-    private static final CompletionStatus COMPLETION_STATUS_2 =
+    public static final CompletionStatus COMPLETION_STATUS_2 =
             new CompletionStatus(Integer.parseInt(VALID_COMPLETION_STATUS_HALF));
     private static final CompletionStatus COMPLETION_STATUS_3 =
             new CompletionStatus(Integer.parseInt(VALID_COMPLETION_STATUS_DONE));
