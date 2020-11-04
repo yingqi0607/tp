@@ -28,6 +28,7 @@ public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
 
+    public static final String MESSAGE_INVALID_DAYS = "Number of days given is not a non-zero  unsigned integer.";
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
@@ -199,10 +200,10 @@ public class ParserUtil {
         try {
             numDaysInt = Integer.parseInt(trimmedNumDays);
         } catch (NumberFormatException nfe) {
-            throw new ParseException("Number of days must be a valid positive integer.");
+            throw new ParseException(MESSAGE_INVALID_DAYS);
         }
         if (numDaysInt < 0) {
-            throw new ParseException("Number of days must be a valid positive integer.");
+            throw new ParseException(MESSAGE_INVALID_DAYS);
         }
         return numDaysInt;
     }
