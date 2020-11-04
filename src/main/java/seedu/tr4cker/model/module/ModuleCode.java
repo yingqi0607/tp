@@ -9,8 +9,9 @@ import static seedu.tr4cker.commons.util.AppUtil.checkArgument;
  */
 public class ModuleCode {
 
-    public static final String MESSAGE_CONSTRAINTS = "Module codes should only contain "
-            + "alphanumeric characters, and it should not be blank or contain any spaces.";
+    public static final String MESSAGE_CONSTRAINTS = "Module codes are case-insensitive, should only contain "
+            + "alphanumeric characters, and it should not be blank or contain any spaces\n"
+            + "\"DEL\" is not a valid module code";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
     public final String codeName;
@@ -23,14 +24,15 @@ public class ModuleCode {
     public ModuleCode(String codeName) {
         requireNonNull(codeName);
         checkArgument(isValidModuleCode(codeName), MESSAGE_CONSTRAINTS);
-        this.codeName = codeName;
+        this.codeName = codeName.toUpperCase(); // All module codes are uppercase
     }
 
     /**
      * Returns true if a given string is a valid module code.
      */
     public static boolean isValidModuleCode(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.matches(VALIDATION_REGEX)
+                && !test.toLowerCase().equals("del"); // module code cannot be del
     }
 
     @Override

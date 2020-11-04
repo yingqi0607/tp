@@ -19,7 +19,7 @@ import seedu.tr4cker.model.module.Module;
  */
 public class ModuleCommand extends Command {
 
-    public static final String COMMAND_WORD = "mod";
+    public static final String COMMAND_WORD = "modules";
 
     public static final String MESSAGE_SWITCH_TAB_USAGE = COMMAND_WORD + ": Switches to Module tab\n"
             + "Example: " + COMMAND_WORD;
