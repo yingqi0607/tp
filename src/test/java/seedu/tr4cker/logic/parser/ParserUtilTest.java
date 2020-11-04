@@ -18,7 +18,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.tr4cker.logic.parser.exceptions.ParseException;
 import seedu.tr4cker.model.tag.Tag;
-import seedu.tr4cker.model.task.CompletionStatus;
 import seedu.tr4cker.model.task.Deadline;
 import seedu.tr4cker.model.task.Name;
 import seedu.tr4cker.model.task.TaskDescription;
@@ -26,8 +25,6 @@ import seedu.tr4cker.model.util.NaturalDateUtil;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
-    private static final String INVALID_COMPLETION_STATUS_1 = "1000";
-    private static final String INVALID_COMPLETION_STATUS_2 = "-5";
     private static final String INVALID_DEADLINE = "90-90-2021 9999";
     private static final String INVALID_NATURAL_DEADLINE_1 = "Tuesdday";
     private static final String INVALID_NATURAL_DEADLINE_2 = "Tuesday 2500";
@@ -36,7 +33,6 @@ public class ParserUtilTest {
     private static final String EXPIRED_DEADLINE = "01-01-2020 2359";
 
     private static final String VALID_NAME = "Rachel Walker";
-    private static final String VALID_COMPLETION_STATUS = "50";
     private static final String VALID_DEADLINE_MM = "25-12-2021 2359";
     private static final String VALID_DEADLINE_MMM = "25-Dec-2021 2359";
     private static final String VALID_DEADLINE_NO_TIME_MM = "25-12-2021";
@@ -98,21 +94,27 @@ public class ParserUtilTest {
 
     @Test
     public void parseCompletionStatus_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseCompletionStatus(INVALID_COMPLETION_STATUS_1));
-        assertThrows(ParseException.class, () -> ParserUtil.parseCompletionStatus(INVALID_COMPLETION_STATUS_2));
+        assertThrows(ParseException.class, () -> ParserUtil
+                .parseCompletionStatus(DoneCommandParserTest.INVALID_COMPLETION_STATUS_1));
+        assertThrows(ParseException.class, () -> ParserUtil
+                .parseCompletionStatus(DoneCommandParserTest.INVALID_COMPLETION_STATUS_2));
+        assertThrows(ParseException.class, () -> ParserUtil
+                .parseCompletionStatus(DoneCommandParserTest.NOT_A_COMPLETION_STATUS));
     }
 
     @Test
     public void parseCompletionStatus_validValueWithoutWhitespace_returnsCompletionStatus() throws Exception {
-        CompletionStatus expectedCompletionStatus = new CompletionStatus(50);
-        assertEquals(expectedCompletionStatus, ParserUtil.parseCompletionStatus(VALID_COMPLETION_STATUS));
+        assertEquals(DoneCommandParserTest.COMPLETION_STATUS_2,
+                ParserUtil.parseCompletionStatus(DoneCommandParserTest.VALID_COMPLETION_STATUS_HALF));
     }
 
     @Test
     public void parseCompletionStatus_validValueWithWhitespace_returnsTrimmedCompletionStatus() throws Exception {
-        String completionStatusWithWhitespace = WHITESPACE + VALID_COMPLETION_STATUS + WHITESPACE;
-        CompletionStatus expectedCompletionStatus = new CompletionStatus(50);
-        assertEquals(expectedCompletionStatus, ParserUtil.parseCompletionStatus(completionStatusWithWhitespace));
+        String completionStatusWithWhitespace = WHITESPACE
+                + DoneCommandParserTest.VALID_COMPLETION_STATUS_HALF + WHITESPACE;
+
+        assertEquals(DoneCommandParserTest.COMPLETION_STATUS_2,
+                ParserUtil.parseCompletionStatus(completionStatusWithWhitespace));
     }
 
     @Test
