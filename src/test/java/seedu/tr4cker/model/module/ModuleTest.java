@@ -17,6 +17,8 @@ class ModuleTest {
             new Module("NAME1", new ModuleCode("CODE2"));
     private Module moduleWithDiffName =
             new Module("NAME2", new ModuleCode("CODE1"));
+    private Module moduleWithLowerCaseCode =
+            new Module("NAME1", new ModuleCode("code1"));
 
     @Test
     void isValidModuleName() {
@@ -49,6 +51,9 @@ class ModuleTest {
 
         // same code different name -> returns true
         assertTrue(exampleModule.isSameModule(moduleWithDiffName));
+
+        // case insensitive module code
+        assertTrue(exampleModule.isSameModule(moduleWithLowerCaseCode));
     }
 
     @Test
