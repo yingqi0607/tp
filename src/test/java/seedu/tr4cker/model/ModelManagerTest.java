@@ -6,6 +6,9 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.tr4cker.model.Model.PREDICATE_SHOW_ALL_EVENTS;
 import static seedu.tr4cker.model.Model.PREDICATE_SHOW_ALL_TASKS;
+import static seedu.tr4cker.model.Model.PREDICATE_SHOW_COMPLETED_TASKS;
+import static seedu.tr4cker.model.Model.PREDICATE_SHOW_EXPIRED_TASKS;
+import static seedu.tr4cker.model.Model.PREDICATE_SHOW_PENDING_TASKS;
 import static seedu.tr4cker.testutil.Assert.assertThrows;
 import static seedu.tr4cker.testutil.TypicalTasks.EVENT1;
 import static seedu.tr4cker.testutil.TypicalTasks.EVENT2;
@@ -93,6 +96,20 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void hasEditedTask_taskInTr4cker_returnsTrue() {
+        modelManager.addTask(TASK1);
+        modelManager.setTask(TASK1, TASK2);
+        assertTrue(modelManager.hasTask(TASK2));
+    }
+
+    @Test
+    public void hasDeletedTask_taskInTr4cker_returnsFalse() {
+        modelManager.addTask(TASK1);
+        modelManager.deleteTask(TASK1);
+        assertFalse(modelManager.hasTask(TASK1));
+    }
+
+    @Test
     public void hasEvent_nullEvent_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.hasEvent(null));
     }
@@ -112,6 +129,22 @@ public class ModelManagerTest {
     public void getFilteredTaskList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredTaskList().remove(0));
     }
+
+    @Test
+    public void getFilteredPendingTaskList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPendingTaskList().remove(0));
+    }
+
+    @Test
+    public void getFilteredExpiredTaskList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredExpiredTaskList().remove(0));
+    }
+
+    @Test
+    public void getFilteredCompletedTaskList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredCompletedTaskList().remove(0));
+    }
+
 
     @Test
     public void getPlannerFilteredTaskList_modifyList_throwsUnsupportedOperationException() {
@@ -147,20 +180,43 @@ public class ModelManagerTest {
         // different tr4cker -> returns false
         assertNotEquals(new ModelManager(differentTr4cker, userPrefs), modelManager);
 
-        // different filteredList -> returns false
+        // different plannerFilteredList -> returns false
         String[] keywords = TASK1.getName().taskName.split("\\s+");
         modelManager.updatePlannerFilteredTaskList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
         ModelManager newModelManager = new ModelManager(tr4cker, userPrefs);
         assertNotEquals(newModelManager, modelManager);
 
-        // different plannerFilteredList -> returns false
+        // different filteredList -> returns false
         modelManager.updateFilteredTaskList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertNotEquals(newModelManager, modelManager);
+        // resets modelManager to initial state for upcoming tests
+        modelManager.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+
+        // different filteredPendingTaskList -> returns false
+        modelManager.updateFilteredPendingTaskList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
+        assertNotEquals(newModelManager, modelManager);
+        // resets modelManager to initial state for upcoming tests
+        modelManager.updateFilteredPendingTaskList(PREDICATE_SHOW_PENDING_TASKS);
+
+        // different filteredExpiredTaskList -> returns false
+        modelManager.updateFilteredExpiredTaskList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
+        assertNotEquals(newModelManager, modelManager);
+        // resets modelManager to initial state for upcoming tests
+        modelManager.updateFilteredExpiredTaskList(PREDICATE_SHOW_EXPIRED_TASKS);
+
+        // different filteredCompletedTaskList -> returns false
+        modelManager.updateFilteredCompletedTaskList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
+        assertNotEquals(newModelManager, modelManager);
+        // resets modelManager to initial state for upcoming tests
+        modelManager.updateFilteredCompletedTaskList(PREDICATE_SHOW_COMPLETED_TASKS);
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updatePlannerFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
-        modelManager.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
         modelManager.updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
+
+        // different filteredPendingList -> returns false
+        modelManager.updateFilteredPendingTaskList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
+        assertNotEquals(newModelManager, modelManager);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
