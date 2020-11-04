@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.tr4cker.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.tr4cker.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_COUNTDOWN_DATE;
+import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_COUNTDOWN_DAYS;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_COUNTDOWN_DELETE;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_COUNTDOWN_NEW;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_COUNTDOWN_TASK;
@@ -29,7 +30,8 @@ public class CountdownCommandParser implements Parser<CountdownCommand> {
     public CountdownCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
-                PREFIX_COUNTDOWN_NEW, PREFIX_COUNTDOWN_DATE, PREFIX_COUNTDOWN_TASK, PREFIX_COUNTDOWN_DELETE);
+                PREFIX_COUNTDOWN_NEW, PREFIX_COUNTDOWN_DATE, PREFIX_COUNTDOWN_TASK,
+                PREFIX_COUNTDOWN_DELETE, PREFIX_COUNTDOWN_DAYS);
 
         // should not have preamble whatsoever
         String string = argMultimap.getPreamble();
@@ -39,39 +41,57 @@ public class CountdownCommandParser implements Parser<CountdownCommand> {
         }
 
         // user wants to go to Countdown tab
-        if (!arePrefixesPresent(argMultimap, PREFIX_COUNTDOWN_NEW, PREFIX_COUNTDOWN_DATE,
-                PREFIX_COUNTDOWN_TASK, PREFIX_COUNTDOWN_DELETE)) {
+        if (areNonePrefixesPresent(argMultimap, PREFIX_COUNTDOWN_NEW, PREFIX_COUNTDOWN_DATE,
+                PREFIX_COUNTDOWN_TASK, PREFIX_COUNTDOWN_DELETE, PREFIX_COUNTDOWN_DAYS)) {
             return new CountdownCommand();
         }
 
         // user wants to add a new event
-        if (argMultimap.getValue(PREFIX_COUNTDOWN_NEW).isPresent()
-                && argMultimap.getValue(PREFIX_COUNTDOWN_DATE).isPresent()
-                && !arePrefixesPresent(argMultimap, PREFIX_COUNTDOWN_DELETE, PREFIX_COUNTDOWN_TASK)) {
+        if (areAllPrefixesPresent(argMultimap, PREFIX_COUNTDOWN_NEW, PREFIX_COUNTDOWN_DATE)
+                && areNonePrefixesPresent(argMultimap, PREFIX_COUNTDOWN_DELETE,
+                PREFIX_COUNTDOWN_TASK, PREFIX_COUNTDOWN_DAYS)) {
             return getCountdownCommandAdd(argMultimap);
         }
 
         // user wants to delete an event
-        if (argMultimap.getValue(PREFIX_COUNTDOWN_DELETE).isPresent()
-                && !arePrefixesPresent(argMultimap, PREFIX_COUNTDOWN_NEW,
-                PREFIX_COUNTDOWN_DATE, PREFIX_COUNTDOWN_TASK)) {
+        if (areAllPrefixesPresent(argMultimap, PREFIX_COUNTDOWN_DELETE)
+                && areNonePrefixesPresent(argMultimap, PREFIX_COUNTDOWN_NEW,
+                PREFIX_COUNTDOWN_DATE, PREFIX_COUNTDOWN_TASK, PREFIX_COUNTDOWN_DAYS)) {
             return getCountdownCommandDelete(argMultimap);
         }
 
         // user wants to add an event from tasks list
-        if (argMultimap.getValue(PREFIX_COUNTDOWN_TASK).isPresent()
-                && !arePrefixesPresent(argMultimap, PREFIX_COUNTDOWN_DATE,
-                PREFIX_COUNTDOWN_DELETE, PREFIX_COUNTDOWN_NEW)) {
+        if (areAllPrefixesPresent(argMultimap, PREFIX_COUNTDOWN_TASK)
+                && areNonePrefixesPresent(argMultimap, PREFIX_COUNTDOWN_DATE,
+                PREFIX_COUNTDOWN_DELETE, PREFIX_COUNTDOWN_NEW, PREFIX_COUNTDOWN_DAYS)) {
             return getCountdownCommandAddFromTask(argMultimap);
         }
 
+        // user wants to count number of events in x days
+        if (areNonePrefixesPresent(argMultimap, PREFIX_COUNTDOWN_DELETE, PREFIX_COUNTDOWN_DATE,
+                PREFIX_COUNTDOWN_NEW, PREFIX_COUNTDOWN_TASK)
+                && areAllPrefixesPresent(argMultimap, PREFIX_COUNTDOWN_DAYS)) {
+            return getCountdownCommand(argMultimap);
+        }
+
         // insufficient params for add
-        if (arePrefixesPresent(argMultimap, PREFIX_COUNTDOWN_NEW, PREFIX_COUNTDOWN_DATE)
-                && !arePrefixesPresent(argMultimap, PREFIX_COUNTDOWN_DELETE, PREFIX_COUNTDOWN_TASK)) {
+        if (areAnyPrefixesPresent(argMultimap, PREFIX_COUNTDOWN_NEW, PREFIX_COUNTDOWN_DATE)
+                && !areAnyPrefixesPresent(argMultimap, PREFIX_COUNTDOWN_DELETE, PREFIX_COUNTDOWN_TASK)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     CountdownCommand.MESSAGE_ADD_COUNTDOWN_USAGE));
         }
         throw new ParseException(CountdownCommand.MESSAGE_GENERIC_COUNTDOWN_USAGE);
+    }
+
+    private CountdownCommand getCountdownCommand(ArgumentMultimap argMultimap) throws ParseException {
+        int numDays;
+        try {
+            numDays = ParserUtil.parseNumDays(argMultimap.getValue(PREFIX_COUNTDOWN_DAYS).get());
+        } catch (ParseException pe) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    CountdownCommand.MESSAGE_COUNT_DAYS_USAGE));
+        }
+        return new CountdownCommand(numDays);
     }
 
     private CountdownCommand getCountdownCommandAddFromTask(ArgumentMultimap argMultimap) throws ParseException {
@@ -108,11 +128,29 @@ public class CountdownCommandParser implements Parser<CountdownCommand> {
     }
 
     /**
-     * Returns true if any of the prefixes contains empty {@code Optional} values in the given
+     * Returns true if any of the prefixes contains non empty {@code Optional} values in the given
      * {@code ArgumentMultimap}.
      */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+    private static boolean areAnyPrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         requireAllNonNull(argumentMultimap, prefixes);
         return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+
+    /**
+     * Returns true if all of the prefixes contain non empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    public static boolean areAllPrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        requireAllNonNull(argumentMultimap, prefixes);
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+
+    /**
+     * Returns true if all of the prefixes contain empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    public static boolean areNonePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        requireAllNonNull(argumentMultimap, prefixes);
+        return Stream.of(prefixes).noneMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 }
