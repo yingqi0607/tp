@@ -19,39 +19,48 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <img src="images/ArchitectureDiagram.png" width="450" />
 
-The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview of each component.
+The ***Architecture Diagram*** given above explains the high-level design of TR4CKER. Given below is a quick overview
+of each component.
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2021S1-CS2103T-T10-2/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the
+[diagrams](https://github.com/AY2021S1-CS2103T-T10-2/tp/tree/master/docs/diagrams/) folder. Refer to the
+[_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create
+and edit diagrams.
 
 </div>
 
-**`Main`** has two classes called [`Main`](https://github.com/AY2021S1-CS2103T-T10-2/tp/tree/master/src/main/java/seedu/tr4cker/Main.java) and [`MainApp`](https://github.com/AY2021S1-CS2103T-T10-2/tp/tree/master/src/main/java/seedu/tr4cker/MainApp.java). It is responsible for,
-* At app launch: Initializes the components in the correct sequence, and connects them up with each other.
+**`Main`** has two classes called [`Main`](https://github.com/AY2021S1-CS2103T-T10-2/tp/tree/master/src/main/java/seedu/tr4cker/Main.java)
+and [`MainApp`](https://github.com/AY2021S1-CS2103T-T10-2/tp/tree/master/src/main/java/seedu/tr4cker/MainApp.java).
+It is responsible for,
+* At TR4CKER launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
 
-The rest of the App consists of four components.
+The rest of TR4CKER consists of four components.
 
-* [**`UI`**](#ui-component): The UI of the App.
+* [**`UI`**](#ui-component): The UI of TR4CKER.
 * [**`Logic`**](#logic-component): The command executor.
-* [**`Model`**](#model-component): Holds the data of the App in memory.
+* [**`Model`**](#model-component): Holds the data of TR4CKER in memory.
 * [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
 Each of the four components,
 
 * defines its *API* in an `interface` with the same name as the Component.
-* exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding API `interface` mentioned in the previous point.
+* exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding API
+`interface` mentioned in the previous point.
 
-For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
+For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and
+exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
 
 ![Class Diagram of the Logic Component](images/LogicClassDiagram.png)
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues
+the command `delete 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -64,9 +73,12 @@ The sections below give more details of each component.
 **API** :
 [`Ui.java`](https://github.com/AY2021S1-CS2103T-T10-2/tp/tree/master/src/main/java/seedu/tr4cker/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `TaskListPanel`,
+`StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2021S1-CS2103T-T10-2/tp/tree/master/src/main/java/seedu/tr4cker/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are
+in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2021S1-CS2103T-T10-2/tp/tree/master/src/main/java/seedu/tr4cker/ui/MainWindow.java)
+is specified in [`MainWindow.fxml`](https://github.com/AY2021S1-CS2103T-T10-2/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -90,7 +102,8 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should
+end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 ### Model component
@@ -103,15 +116,16 @@ The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
 * stores the TR4CKER data.
-* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* exposes an unmodifiable `ObservableList<Task>` that can be 'observed' e.g. the UI can be bound to this list so that
+the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `tr4cker`, which `Person` references. This allows `tr4cker` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model
+is given below. It has a `Tag` list in the `Tr4cker`, which `Task` references. This allows `Tr4cker` to only require one
+`Tag` object per unique `Tag`, instead of each `Task` needing their own `Tag` object.<br>
 ![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
 
 </div>
-
 
 ### Storage component
 
@@ -119,9 +133,9 @@ The `Model`,
 
 **API** : [`Storage.java`](https://github.com/AY2021S1-CS2103T-T10-2/tp/tree/master/src/main/java/seedu/tr4cker/storage/Storage.java)
 
-The `Storage` component,
-* can save `UserPref` objects in json format and read it back.
-* can save the tr4cker data in json format and read it back.
+The `Storage` component:
+* can save `UserPref` objects in json format and read it back
+* can save TR4CKER data in json format and read it back
 
 ### Common classes
 
@@ -144,7 +158,7 @@ This feature comes in the form of a Task List panel, which is made up of three s
 2. Expired tasks (Incomplete tasks that are overdue)
 3. Completed tasks (Archived tasks)
 
-Upon starting the app or refreshing of task lists, tasks which deadlines have passed will automatically appear under Expired tasks panel.
+Upon starting TR4CKER or refreshing of task lists, tasks which deadlines have passed will automatically appear under Expired tasks panel.
 Users can modify tasks displayed in the Expired task panel using the Edit command.
 
 The following diagram shows the sequence flow of a EditCommand which modifies the deadline of a task in the Expired task list:
@@ -159,88 +173,79 @@ Once the user marks a task as complete, it will automatically appear under Compl
 This design filters the tasks into 3 lists according to their completion statuses and deadlines which will be useful to the users,
 as opposed to having browse through a long task list.
 
-### Planner feature \[coming in v1.3] (Rui Ling)
-TR4CKER has a planner feature which provides users to view the calendar side-by-side with the tasks that are due on
-specified day. This feature is to allow users to have a clearer view of their schedules and allow them to plan their
-time ahead, and hence increasing productivity.
+### Daily feature \[coming in v1.3] (Yingqi)
+Tracker has a daily feature that allows users to add current tasks to a todo list for the day.
+This feature allows users to plan for what they want to do for a particular day.
 
-The 2 main functions of Planner command are to:
-1. Switch to planner tab
-2. Display an overview of tasks for today/tomorrow and on specified date/month
+The 3 main functions of the Daily feature are to:
+1. Add tasks from existing task list to a todo list
+2. Display all tasks that the user wants to do for the day
+3. The daily todo list is cleared everyday
 
 #### Implementation
-To implement the UI of this planner feature, there is a `planner` package in `model` and `ui` packages. To implement
-the commands of this planner feature, there are `PlannerCommand` and `PlannerCommandParser` classes in `logic` package.
-The following class diagram (Figure 1) summarises how the UI aspect of this planner feature is being implemented:
-![PlannerClassDiagram](images/PlannerClassDiagram.png)
-Figure 1: Planner Class Diagram
+The UI of the Daily feature is facilitated by the `DailyPanel` class which will show users all daily todo tasks as a list.
 
-During the initialisation of TR4CKER, `PlannerTabWindow` will be initialised, together with `PlannerCalendarPanel` and
-`TaskListPanel`. `PlannerTabWindow` will execute `Logic#getPlannerFilteredTaskList` to update the tasks list shown in
-Planner tab. The month and year of the calendar will be set in `PlannerCalendarPanel`. There are multiple `PlannerDayCard`
-in 1 `PlannerCalendarPanel`. `PlannerDayCard` serves to store the details of each `PlannerDay`, which contains the date
-of each grid in the `PlannerCalendarPanel`. When users execute planner commands, The month and year of the calendar will
-be updated in `PlannerCalendarPanel`. Existing details of the calendar will also be cleared through
-`PlannerCalendarPanel#clearCalendar()` and `PlannerDayCard#clear()`. At the same time, the tasks list will also be updated.
+To implement the commands of this Daily feature, there are `TodoCommand` and `TodoCommandParser` classes in the `logic` package.
 
-The following sequence diagram (Figure 2) shows how the planner feature works when a user executes `planner goto/today`:
-![PlannerSequenceDiagram](images/PlannerSequenceDiagram.png)
-Figure 2: Planner Sequence Diagram during execution of `planner goto/today`
+The following diagram shows the sequence flow when a task gets added into the `DailyPanel`:
+![DailySequenceDiagram](images/DailySequenceDiagram.png)
 
-When a user executes a `PlannerCommand` of `planner goto/today`, `MainWindow` will be called to execute the command. It will
-then call `LogicManager` to execute, followed by parsing of command in `Tr4ckerParser`. `Tr4ckerParser` will create a new
-instance of `PlannerCommandParser` to parse the user's input. After parsing and checking the validity of user's input, a
-new `PlannerCommand` instance is created. This new instance `plannerCommand` will be passed back to `LogicManager` to execute
-on the `Model` in `PlannerCommand`. After executing, a new instance `CommandResult` `commandResult` is created. `commandResult`
-will be passed back to `MainWindow`, then it will be checked in `PlannerTabWindow` if the user wants to switch to Planner
-tab, or to view a specific date/month. After that, the calendar and tasks list are updated in Planner tab, and user can
-now see the results.
+#### Design Considerations
 
-The following activity diagram (Figure 3) summarises what happens when a user executes the 2 main functions of
-`PlannerCommand`:
-![PlannerActivityDiagram](images/PlannerActivityDiagram.png)
-Figure 3: Planner Activity Diagram
+##### Aspect 1: How users can plan for the things he/she wants to complete for the day
 
-This activity diagram shows all the possible paths TR4CKER can take when a user executes a `PlannerCommand`. After
-inputting a command, the command is parsed. By checking the arguments provided by the user, it can either mean the
-user wants to:
-1. switch to Planner tab
-2. display an overview of tasks for today/tomorrow and on a specified date/month.
+* **Current Choice:** When users use list command to view all tasks, only task names are shown.
+  * Pros: A neater list is being shown.
+  * Pros: Users can look through the list quickly and decide what to add to daily todo list.
+  * Cons: Important details such and deadline and descriptions are omitted, users may not know which task is more urgent to do.
 
-If user wants to switch to Planner tab, TR4CKER will display the planner, and a feedback will be provided to the user. If
-user wants to display an overview of tasks, the validity of input will be checked. The input can take these 5 different paths:
-1. today
-2. tomorrow
-3. specified date
-4. specified month
-5. error (not shown here).
+* **Alternative 1:** When users decides to add a particular task to daily todo list, details of that task is shown.
+  * Pros: Users have clearer idea of the details of the tasks that he/she wants to complete for the day.
+  * Cons: Details are shown only when the tasks is already added, if the user do not want to do it for the day, he/she has to delete it from todo list.
 
-Depending on the inputs, the calendar view and tasks list will be updated accordingly. Planner tab is then displayed to
-the user and a feedback is provided.
+**Justification for current choice:** Users would already have details of the tasks in mind and therefore they will tend
+to add the tasks they feel that are more urgent to daily todo list. Hence details can be ommited when users select tasks
+to add into daily todo list.
+
+### Module feature \[coming in v1.3] (Ethan)
+TR4CKER has a module tab which provides users with an alternate view of tasks. Tasks are arranged in shorter lists categorized by modules.
+This feature is to allow users to have a more focused overview of tasks, and know how many tasks are
+pending for each module as opposed to the most-urgent-task-first organization in  main task list.
+
+The 2 main functions of the Module feature are to:
+1. Display all modules taken by the user.
+2. Display the list of yet to be completed tasks under each module.
+
+#### Implementation
+To implement the UI of this Module feature, there will be a `ModuleTaskCard` & `ModuleTaskListPanel` classes
+in the `ui` package, modified from the `TaskCard` and `TaskListPanel` classes. To implement the commands of
+this module feature, there are `ModuleCommnad` and `ModuleCommandParser` classes in the `logic` package.
+
+A module in the Modules tab has its own `ModuleTaskListPanel`, updated whenever new tasks are added with the module or are
+edited to be associated under the module.
+
+The following diagram shows the sequence flow when a task gets added to the `ModuleTaskListPanel` of a module:
+![TaskWithModuleActivityDiagram](images/TaskWithModuleActivityDiagram.png)
+Figure 1: Adding task to `ModuleTaskListPanel` of a module.
 
 #### Design considerations:
 
-##### Aspect 1: How users can easily navigate to today's/tomorrow's tasks list
+##### Aspect 1: How modules are deleted and added to tasks
 
-* **Current Choice:** Use the same `planner` command to navigate to today's/tomorrow's tasks list. For example,
-`planner goto/today` would navigate users to today's tasks list and `planner goto/tomorrow` would navigate users to
-tomorrow's tasks list. Short forms are also provided such as `tdy` and `tmr`.
-  * Pros: User-friendly as users would only need to know 1 command.
-  * Pros: Users can use short forms, which increase convenience.
-  * Cons: Users may not utilise this feature as they do not know the existence of it.
+* **Current Choice:** Modules cannot be deleted if there are existing tasks tagged with the module. Tasks can only be
+tagged with an existing module.
+  * Pros: Safer, will not have stray tasks with non-existent modules.
+  * Pros: User has safeguard against deleting modules that still has pending tasks.
+  * Cons: Less flexible, extra steps for the user to create modules before assigning tasks, and delete tasks before
+  deleting a module.
 
-* **Alternative 1:** Separate commands to allow users to navigate to today's/tomorrow's tasks list.
-  * Pros: Clearer error messages to prompt users that the input does not conform to standard.
-  * Cons: Need to ensure that the implementation of each individual command is correct.
-  * Cons: Not as user-friendly as users would need to know multiple commands now.
+* **Alternative 1:** Allow both modules to be deleted and tasks to be tagged regardless of the others' existence.
+  * Pros: More convenient for user to use without restrictions.
+  * Cons: Prone to error, user may assign incorrectly with typos.
 
-**Justification for current choice:** After thinking about how different commands would also have their own advantages,
-I chose to implement the current choice. The current implementation would allow users to only know 1 command, which would
-fairly be more user-friendly, especially after considering how TR4CKER also has many other commands available.
-The problem of users not knowing the existence of this command could be solved by documenting this feature clearly in the
-User Guide of TR4CKER.
-
-##### Aspect 2: \[tbc]
+**Justification for current choice:** Better reliability of the feature by reducing possible errors by the user. As errors
+will cause more time wasted for the user to fix them anyway, it seems that it is better to incur some overhead to
+prevent making a mess altogether.
 
 ### Countdown feature \[coming in v1.3] (Wen Ling)
 TR4CKER has a countdowns tab which allows users to add important events that they would like TR4CKER to countdown to.
@@ -286,183 +291,109 @@ currently displayed, and `countdown previous` with display the event before the 
 to know what is the next upcoming event, for example what is the next exam that they have to prepare for. The first implementation
 is also less prone to errors as users do are able to know what is the next event without knowing beforehand what day is it on.
 
-### Module feature \[coming in v1.3] (Ethan)
-TR4CKER has a module tab which provides users with an alternate view of tasks. Tasks are arranged in shorter lists categorized by modules.
-This feature is to allow users to have a more focused overview of tasks, and know how many tasks are
-pending for each module as opposed to the most-urgent-task-first organization in  main task list.
+### Planner feature (Rui Ling)
+TR4CKER has a planner feature which provides users to view the calendar side-by-side with the tasks that are due on
+specified day. This feature is to allow users to have a clearer view of their schedules and allow them to plan their
+time ahead, and hence increasing productivity.
 
-The 2 main functions of the Module feature are to:
-1. Display all modules taken by the user.
-2. Display the list of yet to be completed tasks under each module.
+The 2 main functions of Planner command are to:
+1. Switch to planner tab
+2. Display an overview of tasks for today/tomorrow and on specified date/month
 
 #### Implementation
-To implement the UI of this Module feature, there will be a `ModuleTaskCard` & `ModuleTaskListPanel` classes
-in the `ui` package, modified from the `TaskCard` and `TaskListPanel` classes. To implement the commands of
-this module feature, there are `ModuleCommnad` and `ModuleCommandParser` classes in the `logic` package.
+To implement the UI of this planner feature, there is a `planner` package in `model` and `ui` packages. To implement
+the commands of this planner feature, there are `PlannerCommand` and `PlannerCommandParser` classes in `logic` package.
+The following class diagram (Figure 1) summarises how the UI aspect of this planner feature is being implemented:
+![PlannerClassDiagram](images/PlannerClassDiagram.png)
+Figure 1: Planner Class Diagram
 
-A module in the Modules tab has its own `ModuleTaskListPanel`, updated whenever new tasks are added with the module or are
-edited to be associated under the module.
+During the initialisation of TR4CKER, `PlannerTabWindow` will be initialised, together with `PlannerCalendarPanel` and
+`PlannerTaskListPanel`. `PlannerTabWindow` will execute `Logic#getPlannerFilteredTaskList` to update the tasks list shown in
+Planner tab. The month and year of the calendar will be set in `PlannerCalendarPanel`. There are multiple `PlannerDayCard`
+in 1 `PlannerCalendarPanel`. `PlannerDayCard` serves to store the details of each `PlannerDay`, which contains the date
+of each grid in the `PlannerCalendarPanel`. When users execute planner commands, The month and year of the calendar will
+be updated in `PlannerCalendarPanel`. Existing details of the calendar will also be cleared through
+`PlannerCalendarPanel#clearCalendar()` and `PlannerDayCard#clear()`. At the same time, the tasks list will also be updated.
 
-The following diagram shows the sequence flow when a task gets added to the `ModuleTaskListPanel` of a module:
-![TaskWithModuleActivityDiagram](images/TaskWithModuleActivityDiagram.png)
-Figure 1: Adding task to `ModuleTaskListPanel` of a module.
+The following sequence diagram (Figure 2) shows how the planner feature works when a user executes `planner goto/today`:
+![PlannerSequenceDiagram](images/PlannerSequenceDiagram.png)
+Figure 2: Planner Sequence Diagram during execution of `planner goto/today`
+
+When a user executes a `PlannerCommand` of `planner goto/today`, `MainWindow` will be called to execute the command. It will
+then call `LogicManager` to execute, followed by parsing of command in `Tr4ckerParser`. `Tr4ckerParser` will create a new
+instance of `PlannerCommandParser` to parse the user's input. After parsing and checking the validity of user's input, a
+new `PlannerCommand` instance is created. This new instance `plannerCommand` will be passed back to `LogicManager` to execute
+on the `Model` in `PlannerCommand`. After executing, a new instance `CommandResult` `commandResult` is created. `commandResult`
+will be passed back to `MainWindow`, then it will be checked in `PlannerTabWindow` if the user wants to switch to Planner
+tab, or to view a specific date/month. After that, the calendar and tasks list are updated in Planner tab, and user can
+now see the results.
+
+The following activity diagram (Figure 3) summarises what happens when a user executes the 2 main functions of
+`PlannerCommand`:
+![PlannerActivityDiagram](images/PlannerActivityDiagram.png)
+Figure 3: Planner Activity Diagram
+
+This activity diagram shows all the possible paths TR4CKER can take when a user executes a `PlannerCommand`. After
+inputting a command, the command is parsed. By checking the arguments provided by the user, it can either mean the
+user wants to:
+1. switch to Planner tab
+2. display an overview of tasks for today/tomorrow and on a specified date/month.
+
+If user wants to switch to Planner tab, TR4CKER will display the planner, and a feedback will be provided to the user. If
+user wants to display an overview of tasks, the validity of input will be checked. The input can take these 5 different paths:
+1. today
+2. tomorrow
+3. specified date
+4. specified month
+5. error (not shown here).
+
+Depending on the inputs, the calendar view and tasks list will be updated accordingly. Planner tab is then displayed to
+the user and a feedback is provided.
 
 #### Design considerations:
 
-##### Aspect 1: How modules are deleted and added to tasks
+##### Aspect 1: How to represent tasks list for Planner tab
 
-* **Current Choice:** Modules cannot be deleted if there are existing tasks tagged with the module. Tasks can only be
-tagged with an existing module.
-  * Pros: Safer, will not have stray tasks with non-existent modules.
-  * Pros: User has safeguard against deleting modules that still has pending tasks.
-  * Cons: Less flexible, extra steps for the user to create modules before assigning tasks, and delete tasks before
-  deleting a module.
+* **Current Choice:** Have a separate tasks list for Planner tab, which is the `PlannerTaskListPanel`class. This class
+is different from the `TaskListPanel` class which is mainly used for the TR4CKER tab.
+  * Pros: Obey Single Responsibility Principle whereby each class should only have one responsibility.
+  * Pros: Developers using `PlannerTaskListPanel` class would not need to change the functionality of `TaskListPanel`
+  class to suit what functionalities they want for the tasks list in Planner tab.
+  * Cons: Additional coding and time would be required to create another class to cater to only tasks list in Planner tab.
 
-* **Alternative 1:** Allow both modules to be deleted and tasks to be tagged regardless of the others' existence.
-  * Pros: More convenient for user to use without restrictions.
-  * Cons: Prone to error, user may assign incorrectly with typos.
+* **Alternative 1:** Use the existing `TaskListPanel` class for the tasks list in Planner tab.
+  * Pros: Do not need to code for another class and more time could have been spent on other features.
+  * Cons: Do not obey Single Responsibility Principle as now a class would need to have 2 types of functionalities for
+  different purposes.
+  * Cons: Some functionalities for tasks list in TR4CKER tab and Planner tab differ, so accomodating for both functionalities
+  in a single class is quite difficult.
 
-**Justification for current choice:** Better reliability of the feature by reducing possible errors by the user. As errors
-will cause more time wasted for the user to fix them anyway, it seems that it is better to incur some overhead to
-prevent making a mess altogether.
+**Justification for current choice:** After thinking about how having a separate class for the tasks list in Planner tab
+would require more time and effort, I still choose to implement the current choice. This is because there are varying
+functionalities to the tasks list in TR4CKER tab and Planner tab. For example, tasks list in TR4CKER tab only shows non-expired
+tasks and shows every task on the list. However, tasks list in Planner tab shows any date that the user wants to go to
+and can even show expired tasks if user chooses to go to a date in the past. Therefore, although it required more time
+and effort, I think that having a separate class would be better since the tasks list in both tabs act differently.
 
-### Daily feature \[coming in v1.3] (Yingqi)
-Tracker has a daily feature that allows users to add current tasks to a todo list for the day.
-This feature allows users to plan for what they want to do for a particular day.
+##### Aspect 2: How users can easily navigate to today's/tomorrow's tasks list
 
-The 3 main functions of the Daily feature are to:
-1. Add tasks from existing task list to a todo list
-2. Display all tasks that the user wants to do for the day
-3. The daily todo list is cleared everyday
+* **Current Choice:** Use the same `planner` command to navigate to today's/tomorrow's tasks list. For example,
+`planner goto/today` would navigate users to today's tasks list and `planner goto/tomorrow` would navigate users to
+tomorrow's tasks list. Short forms are also provided such as `tdy` and `tmr`.
+  * Pros: User-friendly as users would only need to know 1 command.
+  * Pros: Users can use short forms, which increase convenience.
+  * Cons: Users may not utilise this feature as they do not know the existence of it.
 
-#### Implementation
-The UI of the Daily feature is facilitated by the `DailyPanel` class which will show users all daily todo tasks as a list.
+* **Alternative 1:** Separate commands to allow users to navigate to today's/tomorrow's tasks list.
+  * Pros: Clearer error messages to prompt users that the input does not conform to standard.
+  * Cons: Need to ensure that the implementation of each individual command is correct.
+  * Cons: Not as user-friendly as users would need to know multiple commands now.
 
-To implement the commands of this Daily feature, there are `TodoCommand` and `TodoCommandParser` classes in the `logic` package.
-
-The following diagram shows the sequence flow when a task gets added into the `DailyPanel`:
-![DailySequenceDiagram](images/DailySequenceDiagram.png)
-
-#### Design Considerations
-
-##### Aspect 1: How users can plan for the things he/she wants to complete for the day
-
-* **Current Choice:** When users use list command to view all tasks, only task names are shown.
-  * Pros: A neater list is being shown.
-  * Pros: Users can look through the list quickly and decide what to add to daily todo list.
-  * Cons: Important details such and deadline and descriptions are omitted, users may not know which task is more urgent to do.
-
-* **Alternative 1:** When users decides to add a particular task to daily todo list, details of that task is shown.
-  * Pros: Users have clearer idea of the details of the tasks that he/she wants to complete for the day.
-  * Cons: Details are shown only when the tasks is already added, if the user do not want to do it for the day, he/she has to delete it from todo list.
-
-**Justification for current choice:** Users would already have details of the tasks in mind and therefore they will tend to add the tasks they feel that are more urgent to daily todo list. Hence details can be ommited when users select tasks to add into daily todo list.
-### \[Proposed\] Undo/redo feature
-
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo
-history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the
-following operations:
-
-* `VersionedAddressBook#commit()` — Saves the current tr4cker state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous tr4cker state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone tr4cker state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and
-`Model#redoAddressBook()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the
-initial tr4cker state, and the `currentStatePointer` pointing to that single tr4cker state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th task in the tr4cker. The `delete` command calls
-`Model#commitAddressBook()`, causing the modified state of the tr4cker after the `delete 5` command executes to be saved
-in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted tr4cker state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/task 1 …​` to add a new task. The `add` command also calls
-`Model#commitAddressBook()`, causing another modified tr4cker state to be saved into the `tr4ckerStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will
-not call `Model#commitAddressBook()`, so the tr4cker state will not be saved into the `tr4ckerStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the task was a mistake, and decides to undo that action by executing the `undo`
-command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the
-left, pointing it to the previous tr4cker state, and restores the tr4cker to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0,
-pointing to the initial tr4cker state, then there are no previous tr4cker states to restore. The `undo` command uses
-`Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end
-at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer`
-once to the right, pointing to the previously undone state, and restores the tr4cker to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index
-`addressBookStateList.size() - 1`, pointing to the latest tr4cker state, then there are no undone AddressBook states to
-restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error
-to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the tr4cker, such as `list`,
-will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the
-`addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not
-pointing at the end of the `addressBookStateList`, all tr4cker states after the `currentStatePointer` will be purged.
-Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop
-applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-![CommitActivityDiagram](images/CommitActivityDiagram.png)
-
-#### Design consideration:
-
-##### Aspect: How undo & redo executes
-
-* **Alternative 1 (current choice):** Saves the entire tr4cker.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
+**Justification for current choice:** After thinking about how different commands would also have their own advantages,
+I chose to implement the current choice. The current implementation would allow users to only know 1 command, which would
+fairly be more user-friendly, especially after considering how TR4CKER also has many other commands available.
+The problem of users not knowing the existence of this command could be solved by documenting this feature clearly in the
+User Guide of TR4CKER.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -484,12 +415,12 @@ _{Explain here how the data archiving feature will be implemented}_
 
 * busy SoC students
 * has a need to manage a significant number of tasks, such as assignments
-* prefer desktop apps over other types
+* prefer desktop applications over other types
 * can type fast
 * prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* is reasonably comfortable using CLI applications
 
-**Value proposition**: TR4CKER is a desktop app that helps SoC students track their tasks, meet their deadlines,
+**Value proposition**: TR4CKER is a desktop application that helps SoC students track their tasks, meet their deadlines,
 and stay productive. It is optimized for Computing students familiar with CLI, who can manage their tasks efficiently
 by typing in commands.
 
@@ -678,7 +609,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ## **Appendix: Instructions for manual testing**
 
-Given below are instructions to test the app manually.
+Given below are instructions to test TR4CKER manually.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
@@ -697,7 +628,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+   1. Re-launch TR4CKER by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
 1. _{ more test cases …​ }_
