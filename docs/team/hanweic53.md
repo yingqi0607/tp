@@ -48,7 +48,7 @@ Given below are my contributions to the project.
   * User Guide:
     * Added Table of Contents and Summary of Commands table.
     * Added Navigation guide for switching between tabs.
-    * Edited documentation for `add' command.
+    * Edited documentation for `add` command.
   * Developer Guide:
     * Added Use cases (UC01 - UC03) under Appendix: Requirements.
 
