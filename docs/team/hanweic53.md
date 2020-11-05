@@ -38,7 +38,7 @@ Given below are my contributions to the project.
   * Justification: Adds convenience to users especially in cases whereby the users know that they have a tasks due next week, and they don't
   need to check the calendar for the exact date when they add the task into TR4CKER.
   * Highlights: Users can just enter the date without the time and TR4CKER will set 2359 as the default Deadline timing.
-  This adds conveience to the users when they only have the deadline day in mind and a specific timing is not required. 
+  This adds convenience to the users when they only have the deadline day in mind and a specific timing is not required. 
 
 * **Enhancements**:
   * Updated UI appearance of Command Box and Home tab.
