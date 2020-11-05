@@ -38,4 +38,3 @@ Given below are my contributions to the project.
 
 * **Community**:
   * Reported bugs and suggestions for other teams in the class (during Practical Dry Run): [Issues link](https://github.com/yingqi0607/ped/issues)
- 
