@@ -50,28 +50,28 @@ public class CountdownCommandParser implements Parser<CountdownCommand> {
         if (areAllPrefixesPresent(argMultimap, PREFIX_COUNTDOWN_NEW, PREFIX_COUNTDOWN_DATE)
                 && areNonePrefixesPresent(argMultimap, PREFIX_COUNTDOWN_DELETE,
                 PREFIX_COUNTDOWN_TASK, PREFIX_COUNTDOWN_DAYS)) {
-            return getCountdownCommandAdd(argMultimap);
+            return parseCountdownCommandAdd(argMultimap);
         }
 
         // user wants to delete an event
         if (areAllPrefixesPresent(argMultimap, PREFIX_COUNTDOWN_DELETE)
                 && areNonePrefixesPresent(argMultimap, PREFIX_COUNTDOWN_NEW,
                 PREFIX_COUNTDOWN_DATE, PREFIX_COUNTDOWN_TASK, PREFIX_COUNTDOWN_DAYS)) {
-            return getCountdownCommandDelete(argMultimap);
+            return parseCountdownCommandDelete(argMultimap);
         }
 
         // user wants to add an event from tasks list
         if (areAllPrefixesPresent(argMultimap, PREFIX_COUNTDOWN_TASK)
                 && areNonePrefixesPresent(argMultimap, PREFIX_COUNTDOWN_DATE,
                 PREFIX_COUNTDOWN_DELETE, PREFIX_COUNTDOWN_NEW, PREFIX_COUNTDOWN_DAYS)) {
-            return getCountdownCommandAddFromTask(argMultimap);
+            return parseCountdownCommandAddFromTask(argMultimap);
         }
 
         // user wants to count number of events in x days
         if (areNonePrefixesPresent(argMultimap, PREFIX_COUNTDOWN_DELETE, PREFIX_COUNTDOWN_DATE,
                 PREFIX_COUNTDOWN_NEW, PREFIX_COUNTDOWN_TASK)
                 && areAllPrefixesPresent(argMultimap, PREFIX_COUNTDOWN_DAYS)) {
-            return getCountdownCommand(argMultimap);
+            return parseCountdownCommandDays(argMultimap);
         }
 
         // insufficient params for add
@@ -83,7 +83,7 @@ public class CountdownCommandParser implements Parser<CountdownCommand> {
         throw new ParseException(CountdownCommand.MESSAGE_GENERIC_COUNTDOWN_USAGE);
     }
 
-    private CountdownCommand getCountdownCommand(ArgumentMultimap argMultimap) throws ParseException {
+    private CountdownCommand parseCountdownCommandDays(ArgumentMultimap argMultimap) throws ParseException {
         int numDays;
         try {
             numDays = ParserUtil.parseNumDays(argMultimap.getValue(PREFIX_COUNTDOWN_DAYS).get());
@@ -94,7 +94,7 @@ public class CountdownCommandParser implements Parser<CountdownCommand> {
         return new CountdownCommand(numDays);
     }
 
-    private CountdownCommand getCountdownCommandAddFromTask(ArgumentMultimap argMultimap) throws ParseException {
+    private CountdownCommand parseCountdownCommandAddFromTask(ArgumentMultimap argMultimap) throws ParseException {
         Index index;
         try {
             index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_COUNTDOWN_TASK).get());
@@ -105,7 +105,7 @@ public class CountdownCommandParser implements Parser<CountdownCommand> {
         return new CountdownCommand(index, false); // false since has task prefix
     }
 
-    private CountdownCommand getCountdownCommandDelete(ArgumentMultimap argMultimap) throws ParseException {
+    private CountdownCommand parseCountdownCommandDelete(ArgumentMultimap argMultimap) throws ParseException {
         Index index;
         try {
             index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_COUNTDOWN_DELETE).get());
@@ -116,7 +116,7 @@ public class CountdownCommandParser implements Parser<CountdownCommand> {
         return new CountdownCommand(index, true); // true since have delete prefix
     }
 
-    private CountdownCommand getCountdownCommandAdd(ArgumentMultimap argMultimap) throws ParseException {
+    private CountdownCommand parseCountdownCommandAdd(ArgumentMultimap argMultimap) throws ParseException {
         try {
             EventName eventName = ParserUtil.parseEventName(argMultimap.getValue(PREFIX_COUNTDOWN_NEW).get());
             EventDate eventDate = ParserUtil.parseEventDate(argMultimap.getValue(PREFIX_COUNTDOWN_DATE).get());

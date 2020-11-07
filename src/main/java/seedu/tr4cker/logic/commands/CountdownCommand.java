@@ -133,7 +133,7 @@ public class CountdownCommand extends Command {
         // no valid parameters, is a switch tab command
         if (isAllNull(eventName, eventDate, index) && queryDays == INVALID_QUERY_DAYS) {
             model.updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
-            return new CommandResult(MESSAGE_SWITCH_TAB_SUCCESS, true);
+            return CommandResult.createCountdownTabSwitchCommandResult(MESSAGE_SWITCH_TAB_SUCCESS);
         }
 
         // is a delete or add from task command
@@ -145,7 +145,7 @@ public class CountdownCommand extends Command {
             }
         }
 
-        // is a  add new countdown command
+        // is a add new countdown command
         if (isAllNull(index) && queryDays == INVALID_QUERY_DAYS) {
             return executeCountdownAddNew(model);
         }
@@ -168,7 +168,7 @@ public class CountdownCommand extends Command {
             }
         }
         return new CommandResult(String.format(MESSAGE_COUNT_EVENTS_IN_DAYS_SUCCESS,
-                numEventsInDays, queryDays, listEvents.toString()));
+                numEventsInDays, queryDays, listEvents.toString()), true);
     }
 
     private CommandResult executeCountdownAddFromTask(Model model) throws CommandException {
@@ -190,7 +190,7 @@ public class CountdownCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_EVENT);
         }
         model.addEvent(eventToAdd);
-        return new CommandResult(String.format(MESSAGE_ADD_EVENT_SUCCESS, eventToAdd));
+        return new CommandResult(String.format(MESSAGE_ADD_EVENT_SUCCESS, eventToAdd), true);
     }
 
     private CommandResult executeCountdownAddNew(Model model) throws CommandException {
@@ -199,7 +199,7 @@ public class CountdownCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_EVENT);
         }
         model.addEvent(eventToAdd);
-        return new CommandResult(String.format(MESSAGE_ADD_EVENT_SUCCESS, eventToAdd));
+        return new CommandResult(String.format(MESSAGE_ADD_EVENT_SUCCESS, eventToAdd), true);
     }
 
     private CommandResult executeCountdownDelete(Model model, List<Event> eventList) throws CommandException {
@@ -209,7 +209,7 @@ public class CountdownCommand extends Command {
         }
         Event eventToDelete = eventList.get(index.getZeroBased());
         model.deleteEvent(eventToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_EVENT_SUCCESS, eventToDelete));
+        return new CommandResult(String.format(MESSAGE_DELETE_EVENT_SUCCESS, eventToDelete), true);
     }
 
     @Override
