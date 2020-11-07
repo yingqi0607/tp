@@ -68,6 +68,9 @@ public class EventDate {
         return isDate(test);
     }
 
+    /**
+     * Returns true if given string is a valid date based on month of year and whether it is a leap year.
+     */
     public static boolean isDate(String test) {
         LocalDate localDate = LocalDate.parse(test, DATE_TIME_FORMAT);
         Month month = localDate.getMonth();
