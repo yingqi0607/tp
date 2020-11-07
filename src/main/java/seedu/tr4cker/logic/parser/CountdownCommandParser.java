@@ -86,7 +86,7 @@ public class CountdownCommandParser implements Parser<CountdownCommand> {
     private CountdownCommand parseCountdownCommandDays(ArgumentMultimap argMultimap) throws ParseException {
         int numDays;
         try {
-            numDays = ParserUtil.parseNumDays(argMultimap.getValue(PREFIX_COUNTDOWN_DAYS).get());
+            numDays = ParserUtil.parseQueryDays(argMultimap.getValue(PREFIX_COUNTDOWN_DAYS).get());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     CountdownCommand.MESSAGE_COUNT_DAYS_USAGE));
