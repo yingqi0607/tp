@@ -429,17 +429,41 @@ by typing in commands.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | user                                       | add a new task                 |                                                                        |
-| `* * *`  | user                                       | delete a task                  | remove tasks that I have completed or no longer need                   |
-| `* * *`  | user                                       | edit a task                    | change the tasks that I have entered wrongly without deleting it       |
-| `* * *`  | user                                       | view all tasks                 | have a overview of all tasks that I have                               |
-| `* * *`  | user                                       | find a task                    | find the tasks that match the keywords that I want to find             |
-| `* * *`  | user                                       | mark a task as completed       | when I complete a task, I want to mark it as completed                 |
-| `* * *`  | user                                       | exit from the program          | indicate that I am done with what I wanted to do                       |
-
-*{More to be added}*
+| Priority | As a …​                                | I want to …​                                          | So that I can…​                                                     |
+| -------- | ----------------------------------------- | -------------------------------------------------------- | ---------------------------------------------------------------------- |
+| `* * *`  | student                                   | add a new task                                           |                                                                        |
+| `* * *`  | student                                   | delete a task                                            | remove tasks that I have completed or no longer need                   |
+| `* * *`  | student                                   | edit a task                                              | change the tasks that I have entered wrongly without deleting it       |
+| `* * *`  | organised student                         | view all pending tasks                                   | have an overview of all tasks that I currently have                    |
+| `* * *`  | forgetful student                         | view all expired tasks                                   | know which tasks I have not yet completed but are already expired      |
+| `* * *`  | goal-oriented student                     | view all completed tasks                                 | know how productive I have been                                        |
+| `* * *`  | student                                   | find a task                                              | find the tasks that match the keywords that I want to find             |
+| `* * *`  | student                                   | mark a task as completed                                 | when I complete a task, I want to mark it as completed                 |
+| `* * *`  | forgetful student                         | view my tasks in chronological order                     | know which tasks are due soon                                          |
+| `* * *`  | user                                      | exit from TR4CKER                                        | indicate that I am done with what I wanted to do                       |
+| `* * *`  | task-oriented student                     | add my tasks to daily to-dos                             | set a goal for each day                                                |
+| `* * *`  | student who wants to plan future tasks    | tag my assignments and tasks with module codes           | I can have an overview of the tasks I need to complete for each module |
+| `* * *`  | student                                   | view the tasks tagged to each module                     | know how much time is required for each module                         |
+| `* * *`  | unmotivated student                       | add countdowns                                           | countdown to special events to motivate me                             |
+| `* * *`  | student                                   | delete countdowns                                        | delete unwanted countdowns                                             |
+| `* * *`  | visual student                            | view my tasks in a calendar view                         | know how busy I will be for that particular month                      |
+| `* * *`  | visual student                            | view my tasks due on certain date                        | know how busy I will be for that day                                   |
+| `* * *`  | organised student                         | know how many tasks are due on a certain day             | plan ahead of my schedule                                              |
+| `* *`    | potential user                            | see the sample data                                      | I know what TR4CKER can do when I am using it in the future            |
+| `* *`    | user who is ready to use TR4CKER          | purge all sample data                                    | I can input my own data and explore the usage of it                    |
+| `* *`    | forgetful student                         | see the upcoming task deadlines                          | I do not miss my deadlines                                             |
+| `* *`    | student who wants to finish tasks on time | set my own target deadlines                              | I can complete them before the actual deadlines to plan future tasks   |
+| `* *`    | lazy user                                 | use shortcuts for some features that are used frequently | it is more convenient to use TR4CKER                                   |
+| `*`      | beginner in using TR4CKER                 | key in one module I am currently taking                  | I can know how TR4CKER works                                           |
+| `*`      | student with high workload                | track the modules I am currently taking                  | I do not forgot what modules I am taking                               |
+| `*`      | student                                   | track my assignment weightage                            | I can know how much I need to score to get my desired grade            |
+| `*`      | clumsy student                            | undo some accidental edits                               | I do not need to type the same inputs again                            |
+| `*`      | busy student                              | use TR4CKER quickly                                      | I can get back to my tasks                                             |
+| `*`      | animal lover                              | feed a cat by completing my tasks                        | to motivate myself to complete tasks on time                           |
+| `*`      | forgetful student                         | receive reminders on upcoming tasks                      | I will not miss out any assignments                                    |
+| `*`      | student who wants to know his time usage  | view my weekly progress reports                          | I can plan my future time well                                         |
+| `*`      | professional user                         | utilise all the features that are available to me        | I can maximise my efficiency                                           |
+| `*`      | student                                   | keep short notes of my modules                           | remind myself what is important                                        |
 
 ### Use cases
 
