@@ -71,7 +71,7 @@ public class CountdownCommandParser implements Parser<CountdownCommand> {
         if (areNonePrefixesPresent(argMultimap, PREFIX_COUNTDOWN_DELETE, PREFIX_COUNTDOWN_DATE,
                 PREFIX_COUNTDOWN_NEW, PREFIX_COUNTDOWN_TASK)
                 && areAllPrefixesPresent(argMultimap, PREFIX_COUNTDOWN_DAYS)) {
-            return getCountdownCommand(argMultimap);
+            return getCountdownCommandCountEvents(argMultimap);
         }
 
         // insufficient params for add
@@ -83,10 +83,10 @@ public class CountdownCommandParser implements Parser<CountdownCommand> {
         throw new ParseException(CountdownCommand.MESSAGE_GENERIC_COUNTDOWN_USAGE);
     }
 
-    private CountdownCommand getCountdownCommand(ArgumentMultimap argMultimap) throws ParseException {
+    private CountdownCommand getCountdownCommandCountEvents(ArgumentMultimap argMultimap) throws ParseException {
         int numDays;
         try {
-            numDays = ParserUtil.parseNumDays(argMultimap.getValue(PREFIX_COUNTDOWN_DAYS).get());
+            numDays = ParserUtil.parseQueryDays(argMultimap.getValue(PREFIX_COUNTDOWN_DAYS).get());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     CountdownCommand.MESSAGE_COUNT_DAYS_USAGE));
