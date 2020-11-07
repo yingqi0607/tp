@@ -11,6 +11,7 @@ import static seedu.tr4cker.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.showTaskAtIndex;
 import static seedu.tr4cker.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 import static seedu.tr4cker.testutil.TypicalIndexes.INDEX_SECOND_TASK;
+import static seedu.tr4cker.testutil.TypicalIndexes.INDEX_THIRD_TASK;
 import static seedu.tr4cker.testutil.TypicalTasks.getTypicalTr4cker;
 
 import org.junit.jupiter.api.Test;
@@ -111,10 +112,10 @@ public class EditCommandTest {
 
     @Test
     public void execute_duplicateTaskFilteredList_failure() {
-        showTaskAtIndex(model, INDEX_FIRST_TASK);
+        showTaskAtIndex(model, INDEX_SECOND_TASK);
 
-        // edit task in filtered list into a duplicate in Tr4cker
-        Task taskInList = model.getTr4cker().getTaskList().get(INDEX_SECOND_TASK.getZeroBased());
+        // edit task in filtered pending list into a duplicate in Tr4cker
+        Task taskInList = model.getTr4cker().getTaskList().get(INDEX_THIRD_TASK.getZeroBased());
         EditCommand editCommand = new EditCommand(INDEX_FIRST_TASK,
                 new EditTaskDescriptorBuilder(taskInList).build());
 
