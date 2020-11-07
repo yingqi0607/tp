@@ -13,34 +13,42 @@ import seedu.tr4cker.model.task.CompletionStatus;
 
 public class DoneCommandParserTest {
 
-    private static final String VALID_COMPLETION_STATUS_1 = "0";
-    private static final String VALID_COMPLETION_STATUS_2 = "50";
-    private static final String VALID_COMPLETION_STATUS_3 = "100";
-    private static final String INVALID_COMPLETION_STATUS_1 = "1000";
-    private static final String INVALID_COMPLETION_STATUS_2 = "-10";
-    private static final String NOT_A_COMPLETION_STATUS = "HEHEXD";
+    public static final String VALID_COMPLETION_STATUS_ZERO = "0";
+    public static final String VALID_COMPLETION_STATUS_HALF = "50";
+    public static final String VALID_COMPLETION_STATUS_DONE = "100";
+    public static final String INVALID_COMPLETION_STATUS_1 = "1000"; //  More than 100
+    public static final String INVALID_COMPLETION_STATUS_2 = "-10"; // Less than 0
+    public static final String NOT_A_COMPLETION_STATUS = "HelloWorld"; // NaN
 
-    private static final String VALID_DONE_DESC_1 = "1"
-            + " " + PREFIX_COMPLETION_STATUS + VALID_COMPLETION_STATUS_1;
-    private static final String VALID_DONE_DESC_2 = "1"
-            + " " + PREFIX_COMPLETION_STATUS + VALID_COMPLETION_STATUS_2;
-    private static final String VALID_DONE_DESC_3 = "1"
-            + " " + PREFIX_COMPLETION_STATUS + VALID_COMPLETION_STATUS_3;
-    private static final String INVALID_DONE_DESC_1 = "1"
+    private static final String VALID_DONE_NO_COMPLETION_STATUS_DESC = "1";
+
+    private static final CompletionStatus COMPLETION_STATUS_1 =
+            new CompletionStatus(Integer.parseInt(VALID_COMPLETION_STATUS_ZERO));
+    public static final CompletionStatus COMPLETION_STATUS_2 =
+            new CompletionStatus(Integer.parseInt(VALID_COMPLETION_STATUS_HALF));
+    private static final CompletionStatus COMPLETION_STATUS_3 =
+            new CompletionStatus(Integer.parseInt(VALID_COMPLETION_STATUS_DONE));
+
+    private static final String VALID_DONE_DESC_1 = VALID_DONE_NO_COMPLETION_STATUS_DESC
+            + " " + PREFIX_COMPLETION_STATUS + VALID_COMPLETION_STATUS_ZERO;
+    private static final String VALID_DONE_DESC_2 = VALID_DONE_NO_COMPLETION_STATUS_DESC
+            + " " + PREFIX_COMPLETION_STATUS + VALID_COMPLETION_STATUS_HALF;
+    private static final String VALID_DONE_DESC_3 = VALID_DONE_NO_COMPLETION_STATUS_DESC
+            + " " + PREFIX_COMPLETION_STATUS + VALID_COMPLETION_STATUS_DONE;
+
+    private static final String INVALID_DONE_DESC_1 = VALID_DONE_NO_COMPLETION_STATUS_DESC
             + " " + PREFIX_COMPLETION_STATUS + INVALID_COMPLETION_STATUS_1;
-    private static final String INVALID_DONE_DESC_2 = "1"
+    private static final String INVALID_DONE_DESC_2 = VALID_DONE_NO_COMPLETION_STATUS_DESC
             + " " + PREFIX_COMPLETION_STATUS + INVALID_COMPLETION_STATUS_2;
-    private static final String INVALID_DONE_DESC_3 = "1"
+    private static final String INVALID_DONE_DESC_3 = VALID_DONE_NO_COMPLETION_STATUS_DESC
             + " " + PREFIX_COMPLETION_STATUS + NOT_A_COMPLETION_STATUS;
-
-    private static final CompletionStatus COMPLETION_STATUS_1 = new CompletionStatus(0);
-    private static final CompletionStatus COMPLETION_STATUS_2 = new CompletionStatus(50);
-    private static final CompletionStatus COMPLETION_STATUS_3 = new CompletionStatus(100);
 
     private final DoneCommandParser parser = new DoneCommandParser();
 
     @Test
     public void parse_validArgs_returnsDoneCommand() {
+        assertParseSuccess(parser, VALID_DONE_NO_COMPLETION_STATUS_DESC,
+                new DoneCommand(INDEX_FIRST_TASK, COMPLETION_STATUS_3));
         assertParseSuccess(parser, VALID_DONE_DESC_1,
                 new DoneCommand(INDEX_FIRST_TASK, COMPLETION_STATUS_1));
         assertParseSuccess(parser, VALID_DONE_DESC_2,

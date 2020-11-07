@@ -21,7 +21,7 @@ import seedu.tr4cker.model.task.UniqueTaskList;
 public class Tr4cker implements ReadOnlyTr4cker {
 
     private final UniqueTaskList tasks;
-    private final UniqueModuleList modules; //todo pair with ui
+    private final UniqueModuleList modules;
     private final UniqueEventList events;
     private final UniqueDailyList todos;
 
@@ -169,19 +169,6 @@ public class Tr4cker implements ReadOnlyTr4cker {
         events.remove(key);
     }
 
-    /**
-     * Returns the earliest upcoming (@code Event}.
-     */
-    public Event firstEvent() {
-        return events.firstEvent();
-    }
-
-    /**
-     * Returns the second earliest upcoming (@code Event}.
-     */
-    public Event secondEvent() {
-        return events.secondEvent();
-    }
     //// module-level operations
 
     /**
@@ -248,7 +235,10 @@ public class Tr4cker implements ReadOnlyTr4cker {
 
     @Override
     public String toString() {
-        return tasks.asUnmodifiableObservableList().size() + " tasks"; // Consider accounting for events
+        return tasks.asUnmodifiableObservableList().size() + " tasks"
+                + events.asUnmodifiableObservableList().size() + " events"
+                + modules.asUnmodifiableObservableList().size() + " modules"
+                + todos.asUnmodifiableObservableList().size() + " todos";
         // TODO: refine later
     }
 

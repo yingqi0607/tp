@@ -429,17 +429,41 @@ by typing in commands.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | user                                       | add a new task                 |                                                                        |
-| `* * *`  | user                                       | delete a task                  | remove tasks that I have completed or no longer need                   |
-| `* * *`  | user                                       | edit a task                    | change the tasks that I have entered wrongly without deleting it       |
-| `* * *`  | user                                       | view all tasks                 | have a overview of all tasks that I have                               |
-| `* * *`  | user                                       | find a task                    | find the tasks that match the keywords that I want to find             |
-| `* * *`  | user                                       | mark a task as completed       | when I complete a task, I want to mark it as completed                 |
-| `* * *`  | user                                       | exit from the program          | indicate that I am done with what I wanted to do                       |
-
-*{More to be added}*
+| Priority | As a …​                                | I want to …​                                          | So that I can…​                                                     |
+| -------- | ----------------------------------------- | -------------------------------------------------------- | ---------------------------------------------------------------------- |
+| `* * *`  | student                                   | add a new task                                           |                                                                        |
+| `* * *`  | student                                   | delete a task                                            | remove tasks that I have completed or no longer need                   |
+| `* * *`  | student                                   | edit a task                                              | change the tasks that I have entered wrongly without deleting it       |
+| `* * *`  | organised student                         | view all pending tasks                                   | have an overview of all tasks that I currently have                    |
+| `* * *`  | forgetful student                         | view all expired tasks                                   | know which tasks I have not yet completed but are already expired      |
+| `* * *`  | goal-oriented student                     | view all completed tasks                                 | know how productive I have been                                        |
+| `* * *`  | student                                   | find a task                                              | find the tasks that match the keywords that I want to find             |
+| `* * *`  | student                                   | mark a task as completed                                 | when I complete a task, I want to mark it as completed                 |
+| `* * *`  | forgetful student                         | view my tasks in chronological order                     | know which tasks are due soon                                          |
+| `* * *`  | user                                      | exit from TR4CKER                                        | indicate that I am done with what I wanted to do                       |
+| `* * *`  | task-oriented student                     | add my tasks to daily to-dos                             | set a goal for each day                                                |
+| `* * *`  | student who wants to plan future tasks    | tag my assignments and tasks with module codes           | I can have an overview of the tasks I need to complete for each module |
+| `* * *`  | student                                   | view the tasks tagged to each module                     | know how much time is required for each module                         |
+| `* * *`  | unmotivated student                       | add countdowns                                           | countdown to special events to motivate me                             |
+| `* * *`  | student                                   | delete countdowns                                        | delete unwanted countdowns                                             |
+| `* * *`  | visual student                            | view my tasks in a calendar view                         | know how busy I will be for that particular month                      |
+| `* * *`  | visual student                            | view my tasks due on certain date                        | know how busy I will be for that day                                   |
+| `* * *`  | organised student                         | know how many tasks are due on a certain day             | plan ahead of my schedule                                              |
+| `* *`    | potential user                            | see the sample data                                      | I know what TR4CKER can do when I am using it in the future            |
+| `* *`    | user who is ready to use TR4CKER          | purge all sample data                                    | I can input my own data and explore the usage of it                    |
+| `* *`    | forgetful student                         | see the upcoming task deadlines                          | I do not miss my deadlines                                             |
+| `* *`    | student who wants to finish tasks on time | set my own target deadlines                              | I can complete them before the actual deadlines to plan future tasks   |
+| `* *`    | lazy user                                 | use shortcuts for some features that are used frequently | it is more convenient to use TR4CKER                                   |
+| `*`      | beginner in using TR4CKER                 | key in one module I am currently taking                  | I can know how TR4CKER works                                           |
+| `*`      | student with high workload                | track the modules I am currently taking                  | I do not forgot what modules I am taking                               |
+| `*`      | student                                   | track my assignment weightage                            | I can know how much I need to score to get my desired grade            |
+| `*`      | clumsy student                            | undo some accidental edits                               | I do not need to type the same inputs again                            |
+| `*`      | busy student                              | use TR4CKER quickly                                      | I can get back to my tasks                                             |
+| `*`      | animal lover                              | feed a cat by completing my tasks                        | to motivate myself to complete tasks on time                           |
+| `*`      | forgetful student                         | receive reminders on upcoming tasks                      | I will not miss out any assignments                                    |
+| `*`      | student who wants to know his time usage  | view my weekly progress reports                          | I can plan my future time well                                         |
+| `*`      | professional user                         | utilise all the features that are available to me        | I can maximise my efficiency                                           |
+| `*`      | student                                   | keep short notes of my modules                           | remind myself what is important                                        |
 
 ### Use cases
 
@@ -620,18 +644,17 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+   1.1. Download the jar file and copy into an empty folder.
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1.2. Double-click the jar file.<br>
+   Expected: Shows the GUI with a set of sample tasks. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+   2.1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch TR4CKER by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
-
-1. _{ more test cases …​ }_
+   2.2. Re-launch TR4CKER by double-clicking the jar file.<br>
+   Expected: The most recent window size and location is retained.
 
 ### Deleting a person
 
@@ -650,10 +673,93 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+### Planner feature
+1. Switching to Planner tab<br>
+
+    1.1. Prerequisitie: Current tab must not be Planner tab.<br>
+    
+    1.2. Test case: `planner`<br>
+    
+    Expected: TR4CKER switches to Planner tab with a result message saying `Switched to Planner tab!`. Current date is
+    circled on calendar and tasks list shows tasks due today.
+    
+2. Navigating to today's calendar view and tasks list<br>
+
+    2.1. Prerequisite: Current date is not selected.<br>
+    
+    2.2. Test case: `planner goto/today`<br>
+    
+    Expected: TR4CKER switches to Planner tab with a result message saying `Showed tasks on: TODAYS_DATE (TODAY)`. 
+    TR4CKER switches to the monthly calendar view of today's date and tasks list shows tasks due today.
+    
+    2.3. Test case: `planner goto/tdy`<br>
+    
+    Expected: TR4CKER switches to Planner tab with a result message saying `Showed tasks on: TODAYS_DATE (TODAY)`. 
+    TR4CKER switches to the monthly calendar view of today's date and tasks list shows tasks due today.
+    
+    2.4. Incorrect planner goto commands to try: `planner goto/wrong input`<br>
+    
+    Expected: TR4CKER shows an error message. No switching to planner tab, calendar view and tasks list.
+    
+3. Navigating to tomorrow's calendar view and tasks list<br>
+
+    3.1. Prerequisite: Tomorrow's date is not selected.<br>
+    
+    3.2. Test case: `planner goto/tomorrow`<br>
+    
+    Expected: TR4CKER switches to Planner tab with a result message saying `Showed tasks on: TOMORROWS_DATE (TOMORROW)`. 
+    TR4CKER switches to the monthly calendar view of tomorrow's date and tasks list shows tasks due tomorrow.
+    
+    3.3. Test case: `planner goto/tmr`<br>
+    
+    Expected: TR4CKER switches to Planner tab with a result message saying `Showed tasks on: TOMORROWS_DATE (TOMORROW)`. 
+    TR4CKER switches to the monthly calendar view of tomorrow's date and tasks list shows tasks due tomorrow.
+    
+    3.4. Incorrect planner goto commands to try: `planner goto/wrong input`<br>
+    
+    Expected: TR4CKER shows an error message. No switching to planner tab, calendar view and tasks list.
+    
+4. Navigating to a specific date's calendar view and tasks list<br>
+
+    4.1. Prerequisite: The date to input is not selected.<br>
+    
+    4.2. Test case: `planner goto/19-10-2020`<br>
+    
+    Expected: TR4CKER switches to Planner tab with a result message saying `Showed tasks on: 19-Oct-2020`. 
+    TR4CKER switches to the monthly calendar view of the date and tasks list shows tasks due on that day.
+    
+    4.3. Test case: `planner goto/19-Oct-2020`<br>
+    
+    Expected: TR4CKER switches to Planner tab with a result message saying `Showed tasks on: 19-Oct-2020`. 
+    TR4CKER switches to the monthly calendar view of the date and tasks list shows tasks due on that day.
+    
+    4.4. Incorrect planner goto commands to try: `planner goto/wrong input`<br>
+    
+    Expected: TR4CKER shows an error message. No switching to planner tab, calendar view and tasks list.
+    
+5. Navigating to a specific month's calendar view and tasks list<br>
+
+    5.1. Prerequisite: The month to input is not selected.<br>
+    
+    5.2. Test case: `planner goto/10-2020`<br>
+    
+    Expected: TR4CKER switches to Planner tab with a result message saying `Showed tasks on: 01-Oct-2020`. 
+    TR4CKER switches to the monthly calendar view of the month and tasks list shows tasks due on first day of the month.
+    
+    5.3. Test case: `planner goto/Oct-2020`<br>
+    
+    Expected: TR4CKER switches to Planner tab with a result message saying `Showed tasks on: 01-Oct-2020`.
+    TR4CKER switches to the monthly calendar view of the month and tasks list shows tasks due on first day of the month.
+    
+    5.4. Incorrect planner goto commands to try: `planner goto/wrong input`<br>
+    
+    Expected: TR4CKER shows an error message. No switching to planner tab, calendar view and tasks list.
+
 ### Saving data
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
+   1.1. Open the `/data/` folder and delete all `.json` files in that folder.
+   
+   1.2. Launch TR4CKER by double-clicking the `tr4cker.jar` file.<br>
+   Expected Outcome: TR4CKER starts up with sample data in the GUI. Sample tasks should show up.
