@@ -1,5 +1,8 @@
 package seedu.tr4cker.logic.parser;
 
+import static seedu.tr4cker.commons.core.Messages.MESSAGE_EMPTY;
+import static seedu.tr4cker.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -21,8 +24,6 @@ import seedu.tr4cker.logic.commands.ResetCommand;
 import seedu.tr4cker.logic.commands.TagCommand;
 import seedu.tr4cker.logic.commands.TodoCommand;
 import seedu.tr4cker.logic.parser.exceptions.ParseException;
-
-import static seedu.tr4cker.commons.core.Messages.*;
 
 /**
  * Parses user input.

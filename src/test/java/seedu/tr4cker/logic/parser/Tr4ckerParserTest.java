@@ -2,7 +2,7 @@ package seedu.tr4cker.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.tr4cker.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.tr4cker.commons.core.Messages.MESSAGE_EMPTY;
 import static seedu.tr4cker.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.TAG_DELETE_ASSIGNMENT;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.TAG_NEW_HOMEWORK;
@@ -155,7 +155,7 @@ public class Tr4ckerParserTest {
 
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
-        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
+        assertThrows(ParseException.class, String.format(MESSAGE_EMPTY, HelpCommand.MESSAGE_USAGE), ()
             -> parser.parseCommand(""));
     }
 
