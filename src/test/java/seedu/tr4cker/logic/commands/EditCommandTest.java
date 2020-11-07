@@ -35,7 +35,7 @@ public class EditCommandTest {
     private final Model model = new ModelManager(getTypicalTr4cker(), new UserPrefs());
 
     @Test
-    public void execute_allFieldsSpecifiedUnfilteredList_success() {
+    public void execute_allFieldsSpecifiedUnfilteredPendingList_success() {
         Task editedTask = new TaskBuilder().build();
         EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder(editedTask).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_TASK, descriptor);
@@ -51,7 +51,7 @@ public class EditCommandTest {
     }
 
     @Test
-    public void execute_someFieldsSpecifiedUnfilteredList_success() {
+    public void execute_someFieldsSpecifiedUnfilteredPendingList_success() {
         Index indexLastTask = Index.fromOneBased(model.getFilteredPendingTaskList().size());
         Task lastTask = model.getFilteredPendingTaskList().get(indexLastTask.getZeroBased());
 
@@ -71,19 +71,14 @@ public class EditCommandTest {
     }
 
     @Test
-    public void execute_noFieldSpecifiedUnfilteredList_success() {
+    public void execute_noFieldSpecifiedUnfilteredPendingList_failure() {
         EditCommand editCommand = new EditCommand(INDEX_FIRST_TASK, new EditTaskDescriptor());
-        Task editedTask = model.getFilteredPendingTaskList().get(INDEX_FIRST_TASK.getZeroBased());
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask);
-
-        Model expectedModel = new ModelManager(new Tr4cker(model.getTr4cker()), new UserPrefs());
-
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_UNCHANGED);
     }
 
     @Test
-    public void execute_filteredList_success() {
+    public void execute_filteredPendingList_success() {
         showTaskAtIndex(model, INDEX_FIRST_TASK);
 
         Task taskInFilteredList = model.getFilteredPendingTaskList().get(INDEX_FIRST_TASK.getZeroBased());
@@ -102,7 +97,7 @@ public class EditCommandTest {
     }
 
     @Test
-    public void execute_duplicateTaskUnfilteredList_failure() {
+    public void execute_duplicateTaskUnfilteredPendingList_failure() {
         Task firstTask = model.getFilteredPendingTaskList().get(INDEX_FIRST_TASK.getZeroBased());
         EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder(firstTask).build();
         EditCommand editCommand = new EditCommand(INDEX_SECOND_TASK, descriptor);
@@ -111,7 +106,7 @@ public class EditCommandTest {
     }
 
     @Test
-    public void execute_duplicateTaskFilteredList_failure() {
+    public void execute_duplicateTaskFilteredPendingList_failure() {
         showTaskAtIndex(model, INDEX_SECOND_TASK);
 
         // edit task in filtered pending list into a duplicate in Tr4cker
@@ -123,7 +118,7 @@ public class EditCommandTest {
     }
 
     @Test
-    public void execute_invalidTaskIndexUnfilteredList_failure() {
+    public void execute_invalidTaskIndexUnfilteredPendingList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPendingTaskList().size() + 1);
         EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withName(VALID_NAME_2).build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
@@ -136,7 +131,7 @@ public class EditCommandTest {
      * but smaller than size of Tr4cker
      */
     @Test
-    public void execute_invalidTaskIndexFilteredList_failure() {
+    public void execute_invalidTaskIndexFilteredPendingList_failure() {
         showTaskAtIndex(model, INDEX_FIRST_TASK);
         Index outOfBoundIndex = Index.fromOneBased(model.getTr4cker().getTaskList().size() + 1);
 
