@@ -19,6 +19,8 @@ class CountdownCommandParserTest {
             CountdownCommand.MESSAGE_ADD_COUNTDOWN_USAGE);
     private static final String MESSAGE_INVALID_DELETE_FORMAT = String.format(MESSAGE_INVALID_COMMAND_FORMAT,
             CountdownCommand.MESSAGE_DELETE_COUNTDOWN_USAGE);
+    private static final String MESSAGE_INVALID_COUNT_EVENTS_FORMAT = String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+            CountdownCommand.MESSAGE_COUNT_DAYS_USAGE);
 
     private final CountdownCommandParser countdownCommandParser = new CountdownCommandParser();
     private final CountdownCommand countdownCommand = new CountdownCommand();
@@ -69,4 +71,16 @@ class CountdownCommandParserTest {
         assertParseFailure(countdownCommandParser, " del/haha", MESSAGE_INVALID_DELETE_FORMAT);
     }
 
+    @Test
+    public void parse_countEventsInDays_success() {
+        int queryDays = 365;
+        CountdownCommand expected = new CountdownCommand(queryDays);
+        assertParseSuccess(countdownCommandParser, " days/365", expected);
+    }
+
+    @Test
+    public void parse_countEventsInDays_failure() {
+        assertParseFailure(countdownCommandParser, " days/-1", MESSAGE_INVALID_COUNT_EVENTS_FORMAT);
+        assertParseFailure(countdownCommandParser, " days/two", MESSAGE_INVALID_COUNT_EVENTS_FORMAT);
+    }
 }

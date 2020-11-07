@@ -211,7 +211,7 @@ public class ParserUtil {
      *
      * @throws ParseException if the {@code numDays} is invalid.
      */
-    public static int parseNumDays(String numDays) throws ParseException {
+    public static int parseQueryDays(String numDays) throws ParseException {
         requireNonNull(numDays);
         String trimmedNumDays = numDays.trim();
         int numDaysInt;
