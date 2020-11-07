@@ -49,8 +49,8 @@ title: User Guide
             * 3.6.2.3. [Go to specific month](#3623-go-to-specific-month)
         * 3.6.3 [Indicators on Calendar](#363-indicators-on-calendar)
     * 3.7. [Saving of Data](#37-saving-the-data)
-4. [FAQ](#faq)
-5. [Command Summary](#command-summary)
+4. [FAQ](#4-faq)
+5. [Command Summary](#5-command-summary)
 
 # 1. Overview
 Welcome to the User Guide of TR4CKER!
@@ -767,7 +767,7 @@ There is no need to save manually.
 
 --------------------------------------------------------------------------------------------------------------------
 
-# FAQ
+# 4. FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
@@ -775,22 +775,35 @@ the data of your previous TR4CKER home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
-# Command summary
+# 5. Command summary
 
-* **Help**: `help`
-* **Exit**: `exit`
-* **Add**: `add n/NAME des/DESCRIPTION [dl/DEADLINE] [m/MODULE_CODE] [t/TAG]...`
-* **List**: `list`
-* **Done**: `done INDEX [p/COMPLETION_STATUS]`
-* **Add todo task**: `todo INDEX`
-* **Edit Pending tasks**: `edit INDEX [n/NAME] [des/DESCRIPTION] [dl/DEADLINE]`
-* **Edit Tags of Pending tasks**: `tag INDEX [old/TAG_TO_DELETE]... [new/NEW_TAG]...`
-* **Find Pending tasks**: `find [KEYWORD]...`
-* **Delete Pending tasks**: `delete INDEX`
-* **Edit Expired tasks**: `edit expired INDEX [n/NAME] [dl/DEADLINE] [des/DESCRIPTION]`
-* **Delete Expired tasks**: `delete expired INDEX`
-* **View today's tasks in Planner**: `planner goto/today` or `planner goto/tdy`
-* **View tomorrow's tasks in Planner**: `planner goto/tomorrow` or `planner goto/tmr`
-* **View a specific date's tasks in Planner**: `planner goto/DATE`
-* **View a specific month's tasks in Planner**: `planner goto/MONTH`
-* **Clear all tasks**: `clear`
+| Tab | Command | Command Format | 
+| --- | ------- | -------------- |
+| - | Clear all tasks | `clear` |
+| - | Help | `help` |
+| - | Exit TR4CKER | `exit` |
+| - | Switch to TR4CKER tab | `home` |
+| - | Switch to Daily tab | `daily` |
+| - | Switch to Modules tab | `modules` |
+| - | Switch to Countdown tab | `countdown` |
+| - | Switch to Planner tab | `planner` |
+| TR4CKER | Add tasks | `add n/NAME des/DESCRIPTION [dl/DEADLINE] [m/MODULE_CODE] [t/TAG]...` |
+| TR4CKER | Delete Expired tasks | `delete expired INDEX` |
+| TR4CKER | Delete Pending tasks | `delete INDEX` |
+| TR4CKER | Edit Expired tasks | `edit expired INDEX [n/NAME] [dl/DEADLINE] [des/DESCRIPTION]` |
+| TR4CKER | Edit Pending tasks | `edit INDEX [n/NAME] [des/DESCRIPTION] [dl/DEADLINE]` |
+| TR4CKER | Edit Tags of Pending tasks | `tag INDEX [old/TAG_TO_DELETE]... [new/NEW_TAG]...` |
+| TR4CKER | Find Pending tasks | `find [KEYWORD]...` |
+| TR4CKER | Mark tasks as done | `done INDEX [p/COMPLETION_STATUS]` |
+| TR4CKER | List tasks | `list` |
+| Daily | Add todo tasks | `todo INDEX` |
+| Modules | Add new modules to modules list | `modules n/NAME m/MODULECODE` |
+| Modules | Assign tasks to modules | `edit INDEX [m/MODULECODE]`|
+| Modules | Delete modules | `modules del/INDEX` |
+| Modules | Un-assign tasks from modules | `edit INDEX m/del` |
+| Countdown | Add new events to countdowns list | `countdown n/NAME d/DATE` |
+| Countdown | Delete events from countdowns list | `countdown del/INDEX` |
+| Planner | View a specific date's tasks in planner tab | `planner goto/DATE` |
+| Planner | View a specific month's tasks in planner tab | `planner goto/MONTH` |
+| Planner | View today's tasks in planner tab | `planner goto/today` or `planner goto/tdy` |
+| Planner | View tomorrow's tasks in planner tab | `planner goto/tomorrow` or `planner goto/tmr` |
