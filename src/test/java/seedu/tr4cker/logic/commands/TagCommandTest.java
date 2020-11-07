@@ -6,6 +6,7 @@ import static seedu.tr4cker.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.showTaskAtIndex;
 import static seedu.tr4cker.testutil.TypicalIndexes.INDEX_FIRST_TASK;
+import static seedu.tr4cker.testutil.TypicalIndexes.INDEX_SECOND_TASK;
 import static seedu.tr4cker.testutil.TypicalTasks.getTypicalTr4cker;
 
 import java.util.HashSet;
@@ -36,7 +37,7 @@ class TagCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Task taskToEdit = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
+        Task taskToEdit = model.getFilteredTaskList().get(INDEX_SECOND_TASK.getZeroBased());
         TagCommand tagCommand = new TagCommand(INDEX_FIRST_TASK, add, delete);
 
         String expectedMessage = String.format(TagCommand.MESSAGE_SUCCESS, taskToEdit);

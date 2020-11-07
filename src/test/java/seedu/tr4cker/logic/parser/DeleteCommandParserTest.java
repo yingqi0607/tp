@@ -8,6 +8,7 @@ import static seedu.tr4cker.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 import org.junit.jupiter.api.Test;
 
 import seedu.tr4cker.logic.commands.DeleteCommand;
+import seedu.tr4cker.logic.commands.DeleteExpiredCommand;
 
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations
@@ -26,8 +27,16 @@ public class DeleteCommandParserTest {
     }
 
     @Test
+    public void parse_validArgs_returnsDeleteExpiredCommand() {
+        assertParseSuccess(parser, "expired 1", new DeleteExpiredCommand(INDEX_FIRST_TASK));
+    }
+
+    @Test
     public void parse_invalidArgs_throwsParseException() {
-        assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+        assertParseFailure(parser, "a d", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 DeleteCommand.MESSAGE_USAGE));
+
+        assertParseFailure(parser, "expired a", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                DeleteExpiredCommand.MESSAGE_USAGE));
     }
 }
