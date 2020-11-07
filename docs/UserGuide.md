@@ -613,12 +613,17 @@ CLI, by just typing `planner`.
 
 Format: `planner`
 
-Once you enter `planner` into the command box, TR4CKER should look like this:
+1. You enter `planner` into the command box.
 ![switch tab](images/plannertab_switchtab.png)
-Figure 24: TR4CKER after executing `planner`
+Figure 24: TR4CKER before executing `planner`
+
+2. Press enter and TR4CKER should switch to Planner tab.
+![switch tab](images/plannertab_switchtab1.png)
+Figure 25: TR4CKER after executing `planner`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Note:**
 By default, TR4CKER will circle today's date and the show you the tasks due on that day.
+In this User Guide, today's date is taken as 7 November 2020.
 </div>
 
 Example:
@@ -637,13 +642,13 @@ You can view today's tasks list using this command.
 
 Format: `planner goto/today` or `planner goto/tdy`
 
-First, you enter the command into the command box to go to today:
+1. You enter the command into the command box to navigate to today.
 ![goto today command](images/plannertab_gototoday.png)
-Figure 25: TR4CKER before executing `planner goto/tdy`
+Figure 26: TR4CKER before executing `planner goto/tdy`
 
-Then, TR4CKER will change planner tab to today's calendar view and tasks due today:
+2. Press enter and TR4CKER will change planner tab to today's calendar view and tasks due today.
 ![goto today result](images/plannertab_gototoday1.png)
-Figure 26: TR4CKER after executing `planner goto/tdy`
+Figure 27: TR4CKER after executing `planner goto/tdy`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Note:**
 Input can only be `today` or `tdy`. There are no other alternatives.
@@ -651,7 +656,7 @@ Input can only be `today` or `tdy`. There are no other alternatives.
 
 Examples:
 * `planner goto/today`
-* `planner goto/tdy`
+* `planner goto/tdy`<br>
 will both give you today's calendar view and tasks due today.
 
 ##### 3.6.2.1.2. Tomorrow
@@ -659,13 +664,13 @@ You can view tomorrow's tasks list using this command.
 
 Format: `planner goto/tomorrow` or `planner goto/tmr`
 
-First, you enter the command into the command box to go to tomorrow:
+1. You enter the command into the command box to navigate to tomorrow.
 ![goto tomorrow command](images/plannertab_gototomorrow.png)
-Figure 27: TR4CKER before executing `planner goto/tmr`
+Figure 28: TR4CKER before executing `planner goto/tmr`
 
-Then, TR4CKER will change planner tab to tomorrow's calendar view and tasks due tomorrow:
+2. Press enter and TR4CKER will change planner tab to tomorrow's calendar view and tasks due tomorrow.
 ![goto tomorrow result](images/plannertab_gototomorrow1.png)
-Figure 28: TR4CKER after executing `planner goto/tmr`
+Figure 29: TR4CKER after executing `planner goto/tmr`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Note:**
 Input can only be `tomorrow` or `tmr`. There are no other alternatives.
@@ -673,7 +678,7 @@ Input can only be `tomorrow` or `tmr`. There are no other alternatives.
 
 Examples:
 * `planner goto/tomorrow`
-* `planner goto/tmr`
+* `planner goto/tmr`<br>
 will both give you tomorrow's calendar view and tasks due tomorrow.
 
 ### 3.6.2.2. Go to specific date
@@ -681,13 +686,13 @@ For the ease of accessing of a specific date's tasks list, TR4CKER has provided 
 
 Format: `planner goto/DATE`
 
-First, you enter the command into the command box to go to a specific date:
+1. You enter the command into the command box to navigate to a specific date, let's say 27 October 2020.
 ![goto date command](images/plannertab_gotodate.png)
-Figure 29: TR4CKER before executing `planner goto/08-11-2020`
+Figure 30: TR4CKER before executing `planner goto/27-10-2020`
 
-Then, TR4CKER will change planner tab to the calendar view and tasks due on the input date you provided:
+2. Press enter and TR4CKER will change planner tab to the date's calendar view and tasks due on that date.
 ![goto date result](images/plannertab_gotodate1.png)
-Figure 30: TR4CKER after executing `planner goto/08-11-2020`
+Figure 31: TR4CKER after executing `planner goto/27-10-2020`
 
 <div markdown="block" class="alert alert-info">
 
@@ -712,13 +717,13 @@ For the ease of accessing of a specific month's tasks list, TR4CKER has provided
 
 Format: `planner goto/MONTH`
 
-First, you enter the command into the command box to go to a specific month:
+1. You enter the command into the command box to navigate to a specific month, let's say September 2021.
 ![goto month command](images/plannertab_gotomonth.png)
-Figure 31: TR4CKER before executing `planner goto/Sep-2021`
+Figure 32: TR4CKER before executing `planner goto/Sep-2021`
 
-Then, TR4CKER will change planner tab to the calendar view and tasks due on the input month you provided:
+2. Press enter and TR4CKER will change planner tab to the month's calendar view and tasks due on first day of the month.
 ![goto month result](images/plannertab_gotomonth1.png)
-Figure 32: TR4CKER after executing `planner goto/Sep-2021`
+Figure 33: TR4CKER after executing `planner goto/Sep-2021`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Note:**
 By default, TR4CKER will circle the first day of the month you inputted and show you the tasks due on the first day of
@@ -748,7 +753,7 @@ overview of your schedule, Planner tab allows you to check if your upcoming days
 
 The figure below shows the indicators:
 ![indicator](images/plannertab_indicator.png)
-Figure 33: Indicators (circled in red) on calendar
+Figure 34: Indicators (circled in red) on calendar
 
 The indicator colours and their meanings are:
 * No indicator - no tasks due on that date
