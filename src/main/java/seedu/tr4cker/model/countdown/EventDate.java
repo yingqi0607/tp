@@ -68,7 +68,7 @@ public class EventDate {
         return isDate(test);
     }
 
-    private static boolean isDate(String test) {
+    public static boolean isDate(String test) {
         LocalDate localDate = LocalDate.parse(test, DATE_TIME_FORMAT);
         Month month = localDate.getMonth();
         int dayOfMonth = Integer.parseInt(test.substring(0, 2));

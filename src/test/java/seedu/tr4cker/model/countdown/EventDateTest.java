@@ -64,6 +64,16 @@ public class EventDateTest {
     }
 
     @Test
+    public void isDateTest() {
+        // invalid date
+        assertFalse(EventDate.isDate("29-Feb-2021"));
+        assertFalse(EventDate.isDate("31-11-2021"));
+
+        // valid date
+        assertTrue(EventDate.isDate("31-Oct-2021"));
+    }
+
+    @Test
     void isFutureDateTest() {
         // null date
         assertThrows(NullPointerException.class, () -> EventDate.isFutureDate(null));
