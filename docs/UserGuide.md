@@ -29,7 +29,7 @@ title: User Guide
         * 3.3.1. [Switching to Daily tab: `daily`](#331-switching-to-daily-tab-daily)
         * 3.3.2. [Adding a daily todo task](#332-adding-a-daily-todo-task-todo)
     * 3.4. [Modules Tab](#34-modules-ethan)
-        * 3.4.1. [Switching to Module tab: `modules`](#341-switching-to-module-tab-mod)
+        * 3.4.1. [Switching to Module tab: `modules`](#341-switching-to-module-tab-modules)
         * 3.4.2. [Adding a new module to modules list](#342-adding-a-new-module-to-modules-list)
         * 3.4.3. [Assigning a task to a module](#343-assigning-a-task-to-a-module)
         * 3.4.4. [Un-assigning a task from a module](#344-un-assigning-a-task-from-a-module)
@@ -37,8 +37,7 @@ title: User Guide
     * 3.5. [Countdown Tab](#35-countdown-wen-ling)
         * 3.5.1. [Switching to Countdown tab: `countdown`](#351-switching-to-countdown-tab-countdown)
         * 3.5.2. [Adding a new event to countdowns list](#352-adding-a-new-event-to-countdowns-list)
-        * 3.5.3. [Adding an event from tasks list](#353-adding-an-event-from-tasks-list)
-        * 3.5.4. [Deleting an event from countdowns list](#354-deleting-an-event-from-countdowns-list)
+        * 3.5.3. [Deleting an event from countdowns list](#353-deleting-an-event-from-countdowns-list)
     * 3.6. [Planner Tab](#36-planner-rui-ling)
         * 3.6.1. [Switching to Planner tab: `planner`](#361-switching-to-planner-tab-planner)
         * 3.6.2. [Switching calendar view and tasks list](#362-switching-calendar-view-and-tasks-list)
@@ -560,31 +559,7 @@ Countdowns list of events.
 ![add_new](images/countdowntab_addnew.png)
 Figure 19: TR4CKER after executing `countdown n/ES2660 Final Presentation d/05-Nov-2020`
 
-### 3.5.3. Adding an event from tasks list
-You can add an event that is based on a current task in the tasks list (as seen in the homepage of TR4CKER under the
-`Pending Tasks` panel) to your list of countdowns. TR4CKER will help you to countdown to this event, in addition to
-tracking it in the tasks list.
-
-Format: `countdown task/INDEX`
-
-* Converts the task at index `INDEX` of the task list into an event, and adds this event to the Countdowns events list.
-* `INDEX` has to be a valid index, numbered according to the list in the home page of TR4CKER.
-* The deadline of this task needs to be a day in the future (i.e. NOT today or any day before today).
-* Note: any subsequent changes to the task in the task list, such as editing the description or name of the task,
-will not be reflected in the event.
-
-Example:
-* `countdown task/1` - Adds an event to the Countdowns list of events based on the task at index `1` of the tasks list.
-
-![add_task_before](images/countdowntab_addtask_before.png)
-Figure 20: Home page of TR4CKER which shows the list of tasks that you can add as an event, in the `Pending Tasks` panel
-on the left.
-
-![add_task_after](images/countdowntab_addtask_after.png)
-Figure 21: TR4CKER after executing `countdown task/2`. The task at index `2` in Figure 20 is added at index `9` of the
-Countdowns events list.
-
-### 3.5.4. Deleting an event from countdowns list
+### 3.5.3. Deleting an event from countdowns list
 You can delete an event from your list of events if you no longer want to countdown to it, or if it is over.
 
 Format: `countdown del/INDEX`
