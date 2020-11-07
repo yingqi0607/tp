@@ -7,7 +7,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.tr4cker.logic.commands.AddCommand;
-import seedu.tr4cker.logic.commands.ClearCommand;
 import seedu.tr4cker.logic.commands.Command;
 import seedu.tr4cker.logic.commands.CountdownCommand;
 import seedu.tr4cker.logic.commands.DailyCommand;
@@ -21,6 +20,7 @@ import seedu.tr4cker.logic.commands.HomeCommand;
 import seedu.tr4cker.logic.commands.ListCommand;
 import seedu.tr4cker.logic.commands.ModuleCommand;
 import seedu.tr4cker.logic.commands.PlannerCommand;
+import seedu.tr4cker.logic.commands.ResetCommand;
 import seedu.tr4cker.logic.commands.TagCommand;
 import seedu.tr4cker.logic.commands.TodoCommand;
 import seedu.tr4cker.logic.parser.exceptions.ParseException;
@@ -67,8 +67,8 @@ public class Tr4ckerParser {
         case DoneCommand.COMMAND_WORD:
             return new DoneCommandParser().parse(arguments);
 
-        case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
+        case ResetCommand.COMMAND_WORD:
+            return new ResetCommand();
 
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);

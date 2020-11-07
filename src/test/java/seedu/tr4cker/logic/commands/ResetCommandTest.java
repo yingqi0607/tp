@@ -10,14 +10,14 @@ import seedu.tr4cker.model.ModelManager;
 import seedu.tr4cker.model.Tr4cker;
 import seedu.tr4cker.model.UserPrefs;
 
-public class ClearCommandTest {
+public class ResetCommandTest {
 
     @Test
     public void execute_emptyTr4cker_success() {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
 
-        assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ResetCommand(), model, ResetCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
@@ -26,7 +26,7 @@ public class ClearCommandTest {
         Model expectedModel = new ModelManager(getTypicalTr4cker(), new UserPrefs());
         expectedModel.setTr4cker(new Tr4cker());
 
-        assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ResetCommand(), model, ResetCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
 }
