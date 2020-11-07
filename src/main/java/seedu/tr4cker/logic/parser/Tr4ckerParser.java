@@ -1,8 +1,5 @@
 package seedu.tr4cker.logic.parser;
 
-import static seedu.tr4cker.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.tr4cker.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -25,6 +22,8 @@ import seedu.tr4cker.logic.commands.TagCommand;
 import seedu.tr4cker.logic.commands.TodoCommand;
 import seedu.tr4cker.logic.parser.exceptions.ParseException;
 
+import static seedu.tr4cker.commons.core.Messages.*;
+
 /**
  * Parses user input.
  */
@@ -45,7 +44,7 @@ public class Tr4ckerParser {
     public Command parseCommand(String userInput) throws ParseException {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         if (!matcher.matches()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_EMPTY, HelpCommand.MESSAGE_USAGE));
         }
 
         final String commandWord = matcher.group("commandWord");
