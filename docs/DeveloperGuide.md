@@ -254,7 +254,7 @@ how many days do they have to a certain event, which enhances the tracking exper
 
 These are the main functions of the Countdown feature:
 1. Display a list of all events
-2. Display the number of days left to an event,as well as the date of an event
+2. Display the number of days left to an event and the date of an event
 3. Add an event
 4. Delete an event
 5. Count the total number of events in a specified number of days from current date
@@ -316,7 +316,7 @@ near the bottom of the GUI.
 * **Current Choice:** Display all events in the `upcoming events` list in the Countdown tab, where users can add or
 delete an event and have it be directly reflected in the list.
   * Pros: Users can see an overview of all events.
-  * Pros: Users mistake in adding any event is easier to spot.
+  * Pros: Users will be able to spot any mistakes in adding an event easily.
   * Cons: Less visually attractive as it is just a list.
 
 * **Alternative 1:** Display only the earliest upcoming event prominently, and allow users to navigate to view
