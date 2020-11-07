@@ -97,6 +97,20 @@ public class CommandResult {
 
     /**
      * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
+     * For usage of CountdownCommand.
+     */
+    public static CommandResult createCountdownTabSwitchCommandResult(String feedbackToUser) {
+        CommandResult newCommandResult = new CommandResult(feedbackToUser);
+        newCommandResult.showModules = false;
+        newCommandResult.showPlanner = false;
+        newCommandResult.showCountdown = true;
+        newCommandResult.showDaily = false;
+        newCommandResult.showHome = false;
+        return newCommandResult;
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
      * For usage of ModuleCommand.
      */
     public static CommandResult createModuleTabSwitchCommandResult(String feedbackToUser) {
