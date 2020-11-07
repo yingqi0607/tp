@@ -35,6 +35,7 @@ public class ParserUtilTest {
     private static final String EXPIRED_DEADLINE = "01-01-2020 2359";
     private static final String INVALID_EVENT_NAME = "Exciting!!! Stuff";
     private static final String INVALID_DATE = "55-66-7777";
+    private static final String INVALID_DATE_2 = "31-Nov-2021";
     private static final String EXPIRED_DATE = "01-01-2020";
     private static final String INVALID_QUERY_DAYS = "-10";
 
@@ -300,6 +301,7 @@ public class ParserUtilTest {
     public void parseEventDate_invalidValue_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseEventDate(INVALID_DATE));
         assertThrows(ParseException.class, () -> ParserUtil.parseEventDate(EXPIRED_DATE));
+        assertThrows(ParseException.class, () -> ParserUtil.parseEventDate(INVALID_DATE_2));
         assertThrows(ParseException.class, () -> ParserUtil.parseEventDate(VALID_DEADLINE_MM)); // cannot have time
     }
 

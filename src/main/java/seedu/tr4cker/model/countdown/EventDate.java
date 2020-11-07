@@ -6,10 +6,8 @@ import static seedu.tr4cker.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDate;
 import java.time.Month;
-import java.time.MonthDay;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.util.Date;
 
 /**
  * Represents the date of an event in TR4CKER.
