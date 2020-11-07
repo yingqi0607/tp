@@ -10,9 +10,52 @@ optimized for Computing students familiar with CLI, who can manage their tasks e
 
 Given below are my contributions to the project.
 
-* **Morphing of AddressBook:**
-  * Refactor Person name to Task name.
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=hanweic53)
 
+* **Morphing of AddressBook:**
+  * Refactor Person name to Task name. [#39](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/39)
+
+* **Change to existing feature**: Updated `add` command.
+    * Change: Let Deadline be an optional parameter and set a default Deadline (Today, 2359) when users do not enter a Deadline.
+    * Justification: Adds convenience to users especially when users want to create a Task that's due by Today to include in the Daily Tab.
+
+* **New Feature**: Tasks are split into 3 Categories.
+  * What it does: Displays tasks separately as 3 Task lists namely Pending Tasks, Expired Tasks and Completed Tasks, in the Home tab.
+  * Justification: Makes the viewing of Tasks easier as compared to one long consolidated task list. 
+  * Highlights: Allows users to manipulate tasks in different Categories separately.
+
+* **New Feature**: Add `delete expired` and `edit expired` commands.
+  * What it does: Allows users to edit the deadlines of expired tasks that are overdue but incomplete.
+   It also gives users a chance to remove the tasks completely. 
+  * Justification: Having overdue incomplete tasks is an area of concern to the users and users will want to either 
+  continue working on them or remove them from TR4CKER completely. 
+  * Highlights: Once users edit the Deadline of an expired task, they can only enter a future Deadline and the expired task
+  will be shifted from the Expired Tasks panel to the Pending Tasks Panel immediately.
+      
+* **New Feature**: Support the use of Natural Deadlines and more than one DateTime format.
+  * What it does: Allows users to use natural deadlines (E.g. Today, Monday, Sunday) 
+  and other DateTime formats (E.g. 01-01-2020, 01-Jan-2020).
+  * Justification: Adds convenience to users especially in cases whereby the users know that they have a tasks due next week, and they don't
+  need to check the calendar for the exact date when they add the task into TR4CKER.
+  * Highlights: Users can just enter the date without the time and TR4CKER will set 2359 as the default Deadline timing.
+  This adds convenience to the users when they only have the deadline day in mind and a specific timing is not required. 
+
+* **Enhancements**:
+  * Updated UI appearance of Command Box and Home tab.
+  * Wrote additional tests for existing features to increase coverage from % to %:
+  
 * **Documentation**:
+  * User Guide:
+    * Added Table of Contents and Summary of Commands table.
+    * Added Navigation guide for switching between tabs.
+    * Edited documentation for `add` command.
   * Developer Guide:
     * Added Use cases (UC01 - UC03) under Appendix: Requirements.
+
+* **Team-based tasks**:
+  * Project management:
+    * Managed release `v1.2`, `v1.3` on GitHub
+
+* **Community**:
+  * PRs reviewed (with non-trivial review comments):
+  * Reported bugs and suggestions for other teams in the class (during Practical Dry Run): [Issues link](https://github.com/hanweic53/ped/issues)
