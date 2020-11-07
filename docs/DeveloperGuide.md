@@ -247,49 +247,105 @@ tagged with an existing module.
 will cause more time wasted for the user to fix them anyway, it seems that it is better to incur some overhead to
 prevent making a mess altogether.
 
-### Countdown feature \[coming in v1.3] (Wen Ling)
-TR4CKER has a countdowns tab which allows users to add important events that they would like TR4CKER to countdown to.
+### Countdown feature (Wen Ling)
+TR4CKER has a Countdown tab which allows users to add important events that they would like TR4CKER to countdown to.
 This feature allows users to isolate the most important time sensitive events and deadlines, and tells the user exactly
 how many days do they have to a certain event, which enhances the tracking experience.
 
-The 3 main functions of the Countdown feature are to:
-1. Display a list of all countdown events
-2. Display prominently the 2 earliest upcoming events
+These are the main functions of the Countdown feature:
+1. Display a list of all events
+2. Display the number of days left to an event,as well as the date of an event
+3. Add an event
+4. Delete an event
+5. Count the total number of events in a specified number of days from current date
 
-#### Implementation \[will be updated with UML diagrams]
-The countdown panel is facilitated by the `CountdownPanel` class, which serves as the entry point to show users the
-countdown events as a list.
+#### Implementation
+The UI of the Countdown feature is facilitated by the `countdown` package in `model` and `ui` packages. `CountdownCommand`
+and `CountdownCommandParser` classes in the `logic` package implements this feature.
+The class diagram (Figure 1) shown below summarises the implementation of the UI of the countdown feature:
 
-To allow TR4CKER to countdown to events, users can add new events by 2 methods using Countdown Command.
+![CountdownClassDiagram](images/CountdownClassDiagram.png)
+Figure 1: Countdown Class Diagram
 
-1. Add event based on task in task list (Note: Countdowns list is separate from tasks list, and subsequent changes
-to tasks in task list will not be reflected in countdowns list.)
+During the initialisation of TR4CKER, `CountdownTabWindow` will be initialised, together with `CountdownEventListPanel`.
+`CountdownTabWindow` will execute `Logic#getfilteredEventList` to update the events list shown in Countdown tab.
+The list of events will be sorted before it is displayed in the `CountdownEventListPanel`, and the events which has
+passed will be placed at the end of the list, behind all the upcoming events.
 
-2. Add independent event
+When users execute countdown commands, mainly the commands to add or delete an event, the events in the
+`CountdownEventListPanel` will be updated to reflect the new list of events, and the sorted order will be maintained.
+This is done by initialising new `CountdownEventCard` objects to be placed in the `CountdownEventListPanel`, or by
+removing those that are deleted.
 
-Users can also use Countdown Command to
+The following sequence diagram (Figure 2) shows the execution of `countdown days/7`:
 
-The following activity diagram shows the flow of executing a Countdown Command:
+![CountdownSequenceDiagram](images/CountdownSequenceDiagram.png)
+Figure 2: Countdown Sequence Diagram
+
+When a user executes `CountdownCommand`, `countdown days/7` to count the number of events in the upcoming 7 days from
+from today, `MainWindow` begins the execution of the command. `LogicManager` is then called to execute the
+command. The command is then parsed in `Tr4ckerParser`, and `Tr4ckerParser` will create a new instance of
+`CountdownCommandParser` to parse the user's input. After parsing and checking the validity of user's input, a
+new `CountdownCommand` instance is created. This new instance `countdownCommand` will be passed back to `LogicManager`
+to execute it on `Model` in the `CountdownCommand`. After executing, a new instance `CommandResult`, `commandResult` is
+created. `commandResult` will be passed back to `MainWindow`, then it will be displayed in the results display box in
+`CountdownTabWindow`.
+
+Within the execution of `countdownCommand`, the list in `Model#getfilteredEventList`, to used to get a list of events
+for `countdownCommand` to work on.
+
+The following activity diagram summarises the flow of executing the various functions of `CountdownCommand`:
 ![CountdownCommandActivityDiagram](images/CountdownActivityDiagram.png)
+Figure 3: Countdown Activity Diagram
 
+The activity diagram shows all the possible paths TR4CKER can take when a user executes a `CountdownCommand`, which is
+identified by the use of the command word, `countdown`. After a command is entered, it's arguments are parsed, to know
+which function the user wants to use:
+1. Add an event
+2. Delete an event
+3. Count the number of events in a certain number of upcoming days
+4. Switch to Countdown tab
+
+The result of the command will be displayed accordingly, either in the events list box, or the result display box at
+near the bottom of the GUI.
 
 #### Design considerations:
 
-##### Aspect 1: Users should be able to easily view the next most recent event
+##### Aspect 1: Viewing events in Countdowns
 
-* **Current Choice:** Use the same `countdown` command to navigate to the next event or previous event. For example,
-`countdown first` would display the earliest upcoming event, `countdown next` will display the event after the one
-currently displayed, and `countdown previous` with display the event before the one currently displayed.
-  * Pros: Users can easily know the chronological sequence of events.
+* **Current Choice:** Display all events in the `upcoming events` list in the Countdown tab, where users can add or
+delete an event and have it be directly reflected in the list.
+  * Pros: Users can see an overview of all events.
+  * Pros: Users mistake in adding any event is easier to spot.
+  * Cons: Less visually attractive as it is just a list.
+
+* **Alternative 1:** Display only the earliest upcoming event prominently, and allow users to navigate to view
+subsequent or previous events using `countdown next` and `countdown previous` commands.
+  * Pros: More visually attractive, less cluttered, as users only see one event at a time.
   * Cons: May be difficult to navigate if there is a long list of events.
+  * Cons: User will not know how many events they have in total.
 
-* **Alternative 1:** Another command to allow users to navigate to the events in a specified day.
-  * Pros: More user-friendly as it is faster to navigate to a particular event on a particular day.
-  * Cons: Requires user to already know what days have events in the countdown list.
+**Justification for current choice:** We consider how users who are using the countdown feature will prefer to be able
+to have a bird's eve view of all their events, and be able to gauge at a glance how many upcoming events they have.
+(For example, how many exams they have and what is the range of dates that they fall on.) The first implementation
+is also less prone to user errors as they can easily see whether the event is present in the list.
 
-**Justification for current choice:** Considering how users who are using the countdown feature will prefer to be able
-to know what is the next upcoming event, for example what is the next exam that they have to prepare for. The first implementation
-is also less prone to errors as users do are able to know what is the next event without knowing beforehand what day is it on.
+##### Aspect 2: Adding an event to Countdowns
+
+* **Current Choice:** Add an event using the `countdown n/NAME d/DATE` command, to add directly to the list of events.
+  * Pros: Command is short and sweet and is easy for users to remember.
+  * Pros: Not reliant on the main TaskList in TR4CKER.
+  * Cons: Users have to use a separate command if they want to track the same item as a task and as an event.
+
+* **Alternative 1:** Allow users to add an event to events list, based on an existing task in task list, through a
+command to convert a task to an event.
+  * Pros: Users can type a shorter command if they want to add a task that is already in tasks list.
+  * Cons: An event has lesser fields than a task, so using tasks to add an event is more complicated than necessary.
+
+**Justification for current choice:** We recognise that an item in tasks lists is often very different from an item in
+events list, (a user might add an exam or a festival to events list, whereas a task might be an assignment or a piece
+of homework) so it would be better to have separate commands to reduce dependency between different types of things
+that are being tracked, as well as to reduce confusion as to which tab to use.
 
 ### Planner feature (Rui Ling)
 TR4CKER has a planner feature which provides users to view the calendar side-by-side with the tasks that are due on

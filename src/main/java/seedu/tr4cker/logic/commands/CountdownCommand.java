@@ -133,7 +133,7 @@ public class CountdownCommand extends Command {
         // no valid parameters, is a switch tab command
         if (isAllNull(eventName, eventDate, index) && queryDays == INVALID_QUERY_DAYS) {
             model.updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
-            return new CommandResult(MESSAGE_SWITCH_TAB_SUCCESS, true);
+            return CommandResult.createCountdownTabSwitchCommandResult(MESSAGE_SWITCH_TAB_SUCCESS);
         }
 
         // is a delete or add from task command
@@ -145,7 +145,7 @@ public class CountdownCommand extends Command {
             }
         }
 
-        // is a  add new countdown command
+        // is a add new countdown command
         if (isAllNull(index) && queryDays == INVALID_QUERY_DAYS) {
             return executeCountdownAddNew(model);
         }
