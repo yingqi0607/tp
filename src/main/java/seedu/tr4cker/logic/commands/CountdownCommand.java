@@ -223,7 +223,8 @@ public class CountdownCommand extends Command {
             return (eventDate == countdownCommand.eventDate || eventDate.equals(countdownCommand.eventDate))
                     && (eventName == countdownCommand.eventName || eventName.equals(countdownCommand.eventName))
                     && (index == countdownCommand.index || index.equals(countdownCommand.index))
-                    && isDeleteCountdown == countdownCommand.isDeleteCountdown;
+                    && isDeleteCountdown == countdownCommand.isDeleteCountdown
+                    && queryDays == countdownCommand.queryDays;
         }
     }
 

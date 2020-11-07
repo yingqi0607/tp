@@ -57,6 +57,25 @@ public class CountdownCommandTest {
     }
 
     @Test
+    public void execute_countEventsInDays_success() {
+        int queryDays = 365;
+        CountdownCommand countdownCommand = new CountdownCommand(queryDays);
+
+        int numEventsInDays = 0;
+        StringBuilder listEvents = new StringBuilder();
+        for (Event event : model.getFilteredEventList()) {
+            if (event.getDaysRemaining() <= queryDays && event.getDaysRemaining() >= 0) {
+                numEventsInDays++;
+                listEvents.append(String.format("%d. %s\n", numEventsInDays, event));
+            }
+        }
+        String expectedMessage = String.format(CountdownCommand.MESSAGE_COUNT_EVENTS_IN_DAYS_SUCCESS,
+                numEventsInDays, queryDays, listEvents.toString());
+
+        assertCommandSuccess(countdownCommand, model, expectedMessage, model);
+    }
+
+    @Test
     public void testEquals() {
         CountdownCommand countdownCommand1 = new CountdownCommand();
         CountdownCommand countdownCommand2 = new CountdownCommand();
@@ -74,21 +93,31 @@ public class CountdownCommandTest {
         CountdownCommand countdownCommand9 = new CountdownCommand(eventName1, eventDate1);
         CountdownCommand countdownCommand10 = new CountdownCommand(index1, true);
 
+        int queryDays1 = 7;
+        int queryDays2 = 8;
+        CountdownCommand countdownCommand11 = new CountdownCommand(queryDays1);
+        CountdownCommand countdownCommand12 = new CountdownCommand(queryDays1);
+        CountdownCommand countdownCommand13 = new CountdownCommand(queryDays2);
+
         // same object -> return true
         assertEquals(countdownCommand1, countdownCommand1);
         assertEquals(countdownCommand3, countdownCommand3);
         assertEquals(countdownCommand5, countdownCommand5);
+        assertEquals(countdownCommand11, countdownCommand11);
 
         // same values -> return true
         assertEquals(countdownCommand1, countdownCommand2);
         assertEquals(countdownCommand3, countdownCommand4);
         assertEquals(countdownCommand5, countdownCommand6);
+        assertEquals(countdownCommand11, countdownCommand12);
 
         // different values -> return false
         assertNotEquals(countdownCommand3, countdownCommand7);
         assertNotEquals(countdownCommand3, countdownCommand8);
         assertNotEquals(countdownCommand3, countdownCommand9);
         assertNotEquals(countdownCommand5, countdownCommand10);
+        assertNotEquals(countdownCommand11, countdownCommand13);
+        assertNotEquals(countdownCommand13, countdownCommand1);
 
         // different types -> return false
         assertNotEquals(countdownCommand1, "countdown");
