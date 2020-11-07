@@ -644,18 +644,17 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+   1.1. Download the jar file and copy into an empty folder.
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1.2. Double-click the jar file.<br>
+   Expected: Shows the GUI with a set of sample tasks. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+   2.1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch TR4CKER by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
-
-1. _{ more test cases …​ }_
+   2.2. Re-launch TR4CKER by double-clicking the jar file.<br>
+   Expected: The most recent window size and location is retained.
 
 ### Deleting a person
 
@@ -674,10 +673,93 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+### Planner feature
+1. Switching to Planner tab<br>
+
+    1.1. Prerequisitie: Current tab must not be Planner tab.<br>
+    
+    1.2. Test case: `planner`<br>
+    
+    Expected: TR4CKER switches to Planner tab with a result message saying `Switched to Planner tab!`. Current date is
+    circled on calendar and tasks list shows tasks due today.
+    
+2. Navigating to today's calendar view and tasks list<br>
+
+    2.1. Prerequisite: Current date is not selected.<br>
+    
+    2.2. Test case: `planner goto/today`<br>
+    
+    Expected: TR4CKER switches to Planner tab with a result message saying `Showed tasks on: TODAYS_DATE (TODAY)`. 
+    TR4CKER switches to the monthly calendar view of today's date and tasks list shows tasks due today.
+    
+    2.3. Test case: `planner goto/tdy`<br>
+    
+    Expected: TR4CKER switches to Planner tab with a result message saying `Showed tasks on: TODAYS_DATE (TODAY)`. 
+    TR4CKER switches to the monthly calendar view of today's date and tasks list shows tasks due today.
+    
+    2.4. Incorrect planner goto commands to try: `planner goto/wrong input`<br>
+    
+    Expected: TR4CKER shows an error message. No switching to planner tab, calendar view and tasks list.
+    
+3. Navigating to tomorrow's calendar view and tasks list<br>
+
+    3.1. Prerequisite: Tomorrow's date is not selected.<br>
+    
+    3.2. Test case: `planner goto/tomorrow`<br>
+    
+    Expected: TR4CKER switches to Planner tab with a result message saying `Showed tasks on: TOMORROWS_DATE (TOMORROW)`. 
+    TR4CKER switches to the monthly calendar view of tomorrow's date and tasks list shows tasks due tomorrow.
+    
+    3.3. Test case: `planner goto/tmr`<br>
+    
+    Expected: TR4CKER switches to Planner tab with a result message saying `Showed tasks on: TOMORROWS_DATE (TOMORROW)`. 
+    TR4CKER switches to the monthly calendar view of tomorrow's date and tasks list shows tasks due tomorrow.
+    
+    3.4. Incorrect planner goto commands to try: `planner goto/wrong input`<br>
+    
+    Expected: TR4CKER shows an error message. No switching to planner tab, calendar view and tasks list.
+    
+4. Navigating to a specific date's calendar view and tasks list<br>
+
+    4.1. Prerequisite: The date to input is not selected.<br>
+    
+    4.2. Test case: `planner goto/19-10-2020`<br>
+    
+    Expected: TR4CKER switches to Planner tab with a result message saying `Showed tasks on: 19-Oct-2020`. 
+    TR4CKER switches to the monthly calendar view of the date and tasks list shows tasks due on that day.
+    
+    4.3. Test case: `planner goto/19-Oct-2020`<br>
+    
+    Expected: TR4CKER switches to Planner tab with a result message saying `Showed tasks on: 19-Oct-2020`. 
+    TR4CKER switches to the monthly calendar view of the date and tasks list shows tasks due on that day.
+    
+    4.4. Incorrect planner goto commands to try: `planner goto/wrong input`<br>
+    
+    Expected: TR4CKER shows an error message. No switching to planner tab, calendar view and tasks list.
+    
+5. Navigating to a specific month's calendar view and tasks list<br>
+
+    5.1. Prerequisite: The month to input is not selected.<br>
+    
+    5.2. Test case: `planner goto/10-2020`<br>
+    
+    Expected: TR4CKER switches to Planner tab with a result message saying `Showed tasks on: 01-Oct-2020`. 
+    TR4CKER switches to the monthly calendar view of the month and tasks list shows tasks due on first day of the month.
+    
+    5.3. Test case: `planner goto/Oct-2020`<br>
+    
+    Expected: TR4CKER switches to Planner tab with a result message saying `Showed tasks on: 01-Oct-2020`.
+    TR4CKER switches to the monthly calendar view of the month and tasks list shows tasks due on first day of the month.
+    
+    5.4. Incorrect planner goto commands to try: `planner goto/wrong input`<br>
+    
+    Expected: TR4CKER shows an error message. No switching to planner tab, calendar view and tasks list.
+
 ### Saving data
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
+   1.1. Open the `/data/` folder and delete all `.json` files in that folder.
+   
+   1.2. Launch TR4CKER by double-clicking the `tr4cker.jar` file.<br>
+   Expected Outcome: TR4CKER starts up with sample data in the GUI. Sample tasks should show up.
