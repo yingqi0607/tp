@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.tr4cker.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDate;
+import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
@@ -64,11 +65,23 @@ public class EventDate {
         } catch (DateTimeParseException ex) {
             return false;
         }
-        return true;
+        return isDate(test);
     }
 
+    /**
+     * Returns true if given string is a valid date based on month of year and whether it is a leap year.
+     */
     public static boolean isDate(String test) {
-        return test.matches(VALIDATION_REGEX_MM) || test.matches(VALIDATION_REGEX_MMM);
+        LocalDate localDate = LocalDate.parse(test, DATE_TIME_FORMAT);
+        Month month = localDate.getMonth();
+        int dayOfMonth = Integer.parseInt(test.substring(0, 2));
+        if (month == Month.APRIL || month == Month.JUNE || month == Month.SEPTEMBER || month == Month.NOVEMBER) {
+            return dayOfMonth <= 30;
+        } else if (month == Month.FEBRUARY) {
+            return localDate.isLeapYear() ? dayOfMonth <= 29 : dayOfMonth <= 28;
+        } else {
+            return dayOfMonth <= 31;
+        }
     }
 
     /**
