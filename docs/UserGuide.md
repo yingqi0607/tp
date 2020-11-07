@@ -794,8 +794,8 @@ the data of your previous TR4CKER home folder.
 | TR4CKER | Edit Pending tasks | `edit INDEX [n/NAME] [des/DESCRIPTION] [dl/DEADLINE]` |
 | TR4CKER | Edit Tags of Pending tasks | `tag INDEX [old/TAG_TO_DELETE]... [new/NEW_TAG]...` |
 | TR4CKER | Find Pending tasks | `find [KEYWORD]...` |
-| TR4CKER | Mark tasks as done | `done INDEX [p/COMPLETION_STATUS]` |
 | TR4CKER | List tasks | `list` |
+| TR4CKER | Mark tasks as done | `done INDEX [p/COMPLETION_STATUS]` |
 | Daily | Add todo tasks | `todo INDEX` |
 | Modules | Add new modules to modules list | `modules n/NAME m/MODULECODE` |
 | Modules | Assign tasks to modules | `edit INDEX [m/MODULECODE]`|
