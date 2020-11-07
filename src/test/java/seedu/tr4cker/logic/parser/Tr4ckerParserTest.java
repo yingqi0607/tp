@@ -2,7 +2,7 @@ package seedu.tr4cker.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.tr4cker.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.tr4cker.commons.core.Messages.MESSAGE_EMPTY;
 import static seedu.tr4cker.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.TAG_DELETE_ASSIGNMENT;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.TAG_NEW_HOMEWORK;
@@ -18,7 +18,6 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.tr4cker.logic.commands.AddCommand;
-import seedu.tr4cker.logic.commands.ClearCommand;
 import seedu.tr4cker.logic.commands.CountdownCommand;
 import seedu.tr4cker.logic.commands.DeleteCommand;
 import seedu.tr4cker.logic.commands.DoneCommand;
@@ -29,6 +28,7 @@ import seedu.tr4cker.logic.commands.FindCommand;
 import seedu.tr4cker.logic.commands.HelpCommand;
 import seedu.tr4cker.logic.commands.ListCommand;
 import seedu.tr4cker.logic.commands.PlannerCommand;
+import seedu.tr4cker.logic.commands.ResetCommand;
 import seedu.tr4cker.logic.commands.TagCommand;
 import seedu.tr4cker.logic.parser.exceptions.ParseException;
 import seedu.tr4cker.model.tag.Tag;
@@ -52,8 +52,8 @@ public class Tr4ckerParserTest {
 
     @Test
     public void parseCommand_clear() throws Exception {
-        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD) instanceof ClearCommand);
-        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD + " 3") instanceof ClearCommand);
+        assertTrue(parser.parseCommand(ResetCommand.COMMAND_WORD) instanceof ResetCommand);
+        assertTrue(parser.parseCommand(ResetCommand.COMMAND_WORD + " 3") instanceof ResetCommand);
     }
 
     @Test
@@ -155,7 +155,7 @@ public class Tr4ckerParserTest {
 
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
-        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
+        assertThrows(ParseException.class, String.format(MESSAGE_EMPTY, HelpCommand.MESSAGE_USAGE), ()
             -> parser.parseCommand(""));
     }
 

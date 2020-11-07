@@ -38,6 +38,10 @@ public class EditExpiredCommand extends EditCommand {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
 
+        if (!taskToEdit.isEdited(editedTask)) {
+            throw new CommandException(MESSAGE_UNCHANGED);
+        }
+
         model.setTask(taskToEdit, editedTask);
         model.updateFilteredPendingTaskList(PREDICATE_SHOW_PENDING_TASKS);
         model.updateFilteredExpiredTaskList(PREDICATE_SHOW_EXPIRED_TASKS);

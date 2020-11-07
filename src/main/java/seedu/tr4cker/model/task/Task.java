@@ -120,6 +120,21 @@ public class Task {
                 && (otherTask.getDeadline().equals(getDeadline()));
     }
 
+    /**
+     * Returns true if both tasks have the same fields.
+     * This defines a weaker notion of equality between two tasks.
+     */
+    public boolean isEdited(Task editedTask) {
+        if (editedTask == this || editedTask == null) {
+            return true;
+        }
+
+        return !(editedTask.getName().equals(getName())
+                && editedTask.getTaskDescription().equals(getTaskDescription())
+                && editedTask.getDeadline().equals(getDeadline())
+                && editedTask.getModuleCode().equals(getModuleCode()));
+    }
+
     public boolean isCompleted() {
         return completionStatus.value == 100;
     }

@@ -22,13 +22,13 @@ public class AddCommand extends Command {
             + "Adds a task to TR4CKER\n"
             + "Compulsory Parameters: " + PREFIX_NAME + "NAME " + PREFIX_TASK_DESCRIPTION + "TASKDESCRIPTION\n"
             + "Optional Parameters: " + PREFIX_DEADLINE + "DEADLINE "
-            + PREFIX_MODULE_CODE + "MODULECODE (must be of existing module)"
+            + PREFIX_MODULE_CODE + "MODULECODE (must be of existing module) "
             + PREFIX_TAG + "TAG...(more than one tag is allowed)\n"
             + "(E.g. " + COMMAND_WORD + " "
             + PREFIX_NAME + "CS2103T tP "
             + PREFIX_DEADLINE + "10-Oct-2021 1010 "
             + PREFIX_TASK_DESCRIPTION + "Update User Guide "
-            + PREFIX_MODULE_CODE + "CS2103T"
+            + PREFIX_MODULE_CODE + "CS2103T "
             + PREFIX_TAG + "CS2103T "
             + PREFIX_TAG + "UG" + ")";
 
