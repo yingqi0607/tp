@@ -5,8 +5,11 @@ import static java.util.Objects.requireNonNull;
 import static seedu.tr4cker.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDate;
+import java.time.Month;
+import java.time.MonthDay;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.Date;
 
 /**
  * Represents the date of an event in TR4CKER.
@@ -64,11 +67,20 @@ public class EventDate {
         } catch (DateTimeParseException ex) {
             return false;
         }
-        return true;
+        return isDate(test);
     }
 
-    public static boolean isDate(String test) {
-        return test.matches(VALIDATION_REGEX_MM) || test.matches(VALIDATION_REGEX_MMM);
+    private static boolean isDate(String test) {
+        LocalDate localDate = LocalDate.parse(test, DATE_TIME_FORMAT);
+        Month month = localDate.getMonth();
+        int dayOfMonth = Integer.parseInt(test.substring(0, 2));
+        if (month == Month.APRIL || month == Month.JUNE || month == Month.SEPTEMBER || month == Month.NOVEMBER) {
+            return dayOfMonth <= 30;
+        } else if (month == Month.FEBRUARY) {
+            return localDate.isLeapYear() ? dayOfMonth <= 29 : dayOfMonth <= 28;
+        } else {
+            return dayOfMonth <= 31;
+        }
     }
 
     /**
