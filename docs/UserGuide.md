@@ -38,7 +38,7 @@ title: User Guide
         * 3.5.1. [Switching to Countdown tab: `countdown`](#351-switching-to-countdown-tab-countdown)
         * 3.5.2. [Adding a new event to countdowns list](#352-adding-a-new-event-to-countdowns-list)
         * 3.5.3. [Deleting an event from countdowns list](#353-deleting-an-event-from-countdowns-list)
-        * 3.5.3. [Counting the number of events in `X` days](#354-counting-the-number-of-events-in-x-days)
+        * 3.5.4. [Counting the number of events in `X` days](#354-counting-the-number-of-events-in-x-days)
     * 3.6. [Planner Tab](#36-planner-rui-ling)
         * 3.6.1. [Switching to Planner tab: `planner`](#361-switching-to-planner-tab-planner)
         * 3.6.2. [Switching calendar view and tasks list](#362-switching-calendar-view-and-tasks-list)
