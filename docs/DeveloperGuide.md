@@ -685,6 +685,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Task**: An item to be completed by a certain deadline.
+* **Todo**: An item planned to be completed in a day.
 * **CLI**: Command-Line Interface, a method of interacting with computer programs by typing lines of text.
 
 --------------------------------------------------------------------------------------------------------------------
