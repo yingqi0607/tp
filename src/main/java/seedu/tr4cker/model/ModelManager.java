@@ -60,7 +60,7 @@ public class ModelManager implements Model {
 
         filteredEvents = new FilteredList<>(this.tr4cker.getEventList());
 
-        filteredTodos = new FilteredList<>(this.tr4cker.getTodoList().filtered(x -> true));
+        filteredTodos = new FilteredList<>(this.tr4cker.getTodoList().filtered(x -> Deadline.isFutureDeadline(x.getDeadline().toString())));
 
     }
 
@@ -198,6 +198,12 @@ public class ModelManager implements Model {
     public void addTodo(Todo task) {
         tr4cker.addTodo(task);
         updateFilteredTodoList(PREDICATE_SHOW_ALL_TODOS);
+    }
+
+    @Override
+    public void setTodo(Todo target, Todo editedTodo) {
+        requireAllNonNull(target, editedTodo);
+        tr4cker.setTodo(target, editedTodo);
     }
 
     //=========== Filtered Task List Accessors =============================================================

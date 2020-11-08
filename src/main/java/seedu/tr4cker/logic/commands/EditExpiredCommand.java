@@ -18,8 +18,8 @@ public class EditExpiredCommand extends EditCommand {
      * @param index of the task in the filtered task list to edit
      * @param editTaskDescriptor details to edit the task with
      */
-    public EditExpiredCommand(Index index, EditTaskDescriptor editTaskDescriptor) {
-        super(index, editTaskDescriptor);
+    public EditExpiredCommand(Index index, EditTaskDescriptor editTaskDescriptor, EditTodoDescriptor editTodoDescriptor) {
+        super(index, editTaskDescriptor, editTodoDescriptor);
     }
 
     @Override

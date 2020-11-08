@@ -43,6 +43,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
 
         EditCommand.EditTaskDescriptor editTaskDescriptor = new EditCommand.EditTaskDescriptor();
+        EditCommand.EditTodoDescriptor editTodoDescriptor = new EditCommand.EditTodoDescriptor();
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             editTaskDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
@@ -62,14 +63,21 @@ public class EditCommandParser implements Parser<EditCommand> {
             }
         }
 
+        if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
+            editTodoDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
+        }
+        if (argMultimap.getValue(PREFIX_DEADLINE).isPresent()) {
+            editTodoDescriptor.setDeadline(ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_DEADLINE).get()));
+        }
+
         if (!editTaskDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
 
         if (isEditExpiredTask) {
-            return new EditExpiredCommand(index, editTaskDescriptor);
+            return new EditExpiredCommand(index, editTaskDescriptor, editTodoDescriptor);
         } else {
-            return new EditCommand(index, editTaskDescriptor);
+            return new EditCommand(index, editTaskDescriptor, editTodoDescriptor);
         }
     }
 

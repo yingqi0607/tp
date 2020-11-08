@@ -58,8 +58,6 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private final HelpWindow helpWindow;
     private DailyTabWindow dailyTabWindow;
-    private DailyPanel dailyListPanel;
-
     @FXML
     private StackPane commandBoxPlaceholder;
 
