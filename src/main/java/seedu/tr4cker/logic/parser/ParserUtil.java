@@ -69,7 +69,6 @@ public class ParserUtil {
         if (StringUtil.isInteger(trimmedIndex) && !StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
             throw new ParseException(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
         } else if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
-            // throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, invalidMsg));
             throw new ParseException(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
