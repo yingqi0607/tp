@@ -38,6 +38,7 @@ title: User Guide
         * 3.5.1. [Switching to Countdown tab: `countdown`](#351-switching-to-countdown-tab-countdown)
         * 3.5.2. [Adding a new event to countdowns list](#352-adding-a-new-event-to-countdowns-list)
         * 3.5.3. [Deleting an event from countdowns list](#353-deleting-an-event-from-countdowns-list)
+        * 3.5.3. [Counting the number of events in `X` days](#354-counting-the-number-of-events-in-x-days)
     * 3.6. [Planner Tab](#36-planner-rui-ling)
         * 3.6.1. [Switching to Planner tab: `planner`](#361-switching-to-planner-tab-planner)
         * 3.6.2. [Switching calendar view and tasks list](#362-switching-calendar-view-and-tasks-list)
@@ -76,11 +77,11 @@ In this section, it will guide you through on how to get TR4CKER started for the
 
 2. TR4CKER works best on screen resolutions of at least `1600x900`.
 
-2. Download the latest `tr4cker.jar` from [here](https://github.com/AY2021S1-CS2103T-T10-2/tp/releases/tag/v1.3).
+3. Download the latest `tr4cker.jar` from [here](https://github.com/AY2021S1-CS2103T-T10-2/tp/releases/tag/v1.3).
 
-3. Copy the file to the folder you want to use as the _home folder_ for your TR4CKER.
+4. Copy the file to the folder you want to use as the _home folder_ for your TR4CKER.
 
-4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+5. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
    Figure 1: Application home page populated with sample data
