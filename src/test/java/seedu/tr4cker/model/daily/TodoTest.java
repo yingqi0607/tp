@@ -7,11 +7,12 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.tr4cker.testutil.Assert.assertThrows;
 
+import java.util.Objects;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.tr4cker.model.task.Deadline;
 import seedu.tr4cker.model.task.Name;
-import java.util.Objects;
 
 
 public class TodoTest {

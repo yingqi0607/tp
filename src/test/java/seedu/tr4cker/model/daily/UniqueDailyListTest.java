@@ -162,6 +162,6 @@ public class UniqueDailyListTest {
     @Test
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, ()
-                -> uniqueDailyList.asUnmodifiableObservableList().remove(0));
+            -> uniqueDailyList.asUnmodifiableObservableList().remove(0));
     }
 }

@@ -38,7 +38,7 @@ public class DailyCommandTest {
     }
 
     @Test
-    public void execute_deleteTodo_validIndex_success() {
+    public void execute_validIndex_success() {
         Todo todoToDelete = model.getFilteredTodoList().get(INDEX_FIRST_TASK.getZeroBased());
         DailyCommand dailyCommand = new DailyCommand(INDEX_FIRST_TASK);
 
@@ -51,7 +51,7 @@ public class DailyCommandTest {
     }
 
     @Test
-    public void execute_deleteTodo_invalidIndex_throwsCommandException() {
+    public void execute_invalidIndex_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredTodoList().size() + 1);
         DailyCommand dailyCommand = new DailyCommand(outOfBoundIndex);
 
