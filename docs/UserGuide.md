@@ -28,6 +28,9 @@ title: User Guide
     * 3.3. [Daily Tab](#33-daily-yingqi)
         * 3.3.1. [Switching to Daily tab: `daily`](#331-switching-to-daily-tab-daily)
         * 3.3.2. [Adding a daily todo task](#332-adding-a-daily-todo-task-todo)
+        * 3.3.3. [Editing a daily todo task](#333-editing-a-daily-todo-task)
+        * 3.3.4. [Deleting a daily todo task](#334-deleting-a-daily-todo-task)
+        * 3.3.5. [Expired and Completed todo tasks](#335-expired-and-completed-todo-tasks)
     * 3.4. [Modules Tab](#34-modules-ethan)
         * 3.4.1. [Switching to Module tab: `modules`](#341-switching-to-module-tab-modules)
         * 3.4.2. [Adding a new module to modules list](#342-adding-a-new-module-to-modules-list)
@@ -48,8 +51,9 @@ title: User Guide
             * 3.6.2.3. [Go to specific month](#3623-go-to-specific-month)
         * 3.6.3 [Indicators on Calendar](#363-indicators-on-calendar)
     * 3.7. [Saving of Data](#37-saving-the-data)
-4. [FAQ](#4-faq)
-5. [Command Summary](#5-command-summary)
+4. [Glossary](#4-glossary)
+5. [FAQ](#5-faq)
+6. [Command Summary](#6-command-summary)
 
 # 1. Overview
 Welcome to the User Guide of TR4CKER!
@@ -109,7 +113,7 @@ Here are some commands that you might find it handy when using TR4CKER.
 
 ### 3.1.1. Viewing help : `help`
 If you cannot recall the command you need, you can enter the help command in any panel.
-A help window will pop out with a link to this User Guide.
+You will be switched to help tab and a help window will pop out with a link to this User Guide.
 
 ![help message](images/helpMessage.png)
 
@@ -129,9 +133,10 @@ You can switch between tabs by using the following commands:
 | :----------| :--------------:|
 |  `home`    | Home            |
 |  `daily`   | Daily           |
-|  `modules`     | Modules         |
+|  `modules` | Modules         |
 | `countdown`| Countdowns      |
 |  `planner` | Planner         |
+|  `help`    | Help            |
 
 Table 1: List of Switch Tab commands
 
@@ -223,7 +228,7 @@ Examples:
 
 ### 3.2.4. Listing all tasks: `list`
 
-Displays a list of all tasks names in TR4CKER.
+Displays a list of all pending tasks names in TR4CKER.
 
 Format: `list`
 
@@ -369,7 +374,7 @@ If you would like to switch to Daily tab without clicking on the Daily tab butto
 
 Format: `daily`
 
-Once you enter `daily` into the command box, TR4CKER should look like this:
+Once y`ou enter `daily` into the command box, TR4CKER should look like this:
 ![switch tab](images/dailyTab_switchTab.png)
 Figure 7: TR4CKER after executing `daily`
 
@@ -377,22 +382,59 @@ Example:
 * `daily` - Switches to Daily tab, showing a list of daily todo tasks that you have planned for the day.
 
 ### 3.3.2 Adding a daily todo task: `todo`
-
 You can add a todo task for the day into the daily todo list by providing the index number of the task that you want to add.
 
-Format: `todo INDEX` [To be implemented: add multiple todo tasks at the same time]
+Format: `todo INDEX`
 
 * Adds the task at the specified `INDEX` to daily todo list.
 * The index refers to a valid index number shown in the displayed task list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `todo 1` adds the first task in the displayed task list into daily todo list.
+1. Enter `list` to see a list of pending tasks.
+![list of pending]()
+2. Enter `todo 1` to add the first task into daily todo list.
+3. The task has been added to daily todo list
 ![todo before](images/dailyTab_todo1Before.png)
 Figure 8: Daily tab before executing `todo 1`
 
 ![todo result](images/dailyTab_todo1After.png)
 Figure 9: Daily tab after executing `todo 1`
+
+### 3.3.3 Editing a daily todo task:
+You can edit details of a daily todo task using the `edit` command that is used for pending task.
+
+* When you edit the task name or deadline of a pending task, if this task has been added into daily todo list using the `todo` command, the 
+details of the corresponding todo task will be updated as well.
+
+### 3.3.4 Deleting a daily todo task:
+You can delete a daily todo task to indicate that you have completed this todo task for the day. The corresponding task 
+in pending task list will not be deleted.
+
+Format: `daily del/INDEX`
+
+* Deletes the todo task at the specified `INDEX` in daily todo list.
+* The index refers to a valid index number shown in the displayed task list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+1. Enter `daily del/1` to delete the first task in daily todo list.
+2. The first todo task is deleted
+![daily delete before]()
+Figure 10: Daily tab before executing `daily del/1`
+
+![daily delete after]()
+Figure 11: Daily tab after executing `daily del/1`
+
+* Alternatively, when you delete a pending task using the `delete` command, the corresponding daily todo task will be 
+removed as well if it has been added to daily todo list.
+
+### 3.3.5 Expired and Completed todo tasks
+The daily todo task list will update automatically when todo tasks are expired or completed.
+
+* When a todo task is expired, it would be removed from daily todo task list instantly.
+* When the completion status of a pending task is changed to 100 using the `done` command, the corresponding todo task
+will be removed from daily todo task list.
 
 ## 3.4. Modules (Ethan)
 
@@ -741,8 +783,12 @@ TR4CKER saves data in the hard disk automatically after any command that changes
 There is no need to save manually.
 
 --------------------------------------------------------------------------------------------------------------------
+# 4. Glossary
 
-# 4. FAQ
+* 
+--------------------------------------------------------------------------------------------------------------------
+
+# 5. FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
@@ -750,7 +796,7 @@ the data of your previous TR4CKER home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
-# 5. Command summary
+# 6. Command summary
 
 | Tab | Command | Command Format | 
 | --- | ------- | -------------- |
@@ -772,6 +818,7 @@ the data of your previous TR4CKER home folder.
 | TR4CKER | List tasks | `list` |
 | TR4CKER | Mark tasks as done | `done INDEX [p/COMPLETION_STATUS]` |
 | Daily | Add todo tasks | `todo INDEX` |
+| Daily | Delete todo tasks | `daily del/INDEX` |
 | Modules | Add new modules to modules list | `modules n/NAME m/MODULECODE` |
 | Modules | Assign tasks to modules | `edit INDEX [m/MODULECODE]`|
 | Modules | Delete modules | `modules del/INDEX` |
