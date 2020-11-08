@@ -134,7 +134,7 @@ public class EditCommand extends Command {
      * edited with {@code editTodoDescriptor}.
      */
     protected static Todo createEditedTodo(Todo todoToEdit, EditTodoDescriptor editTodoDescriptor) {
-        assert todoToEdit != null;
+        requireNonNull(todoToEdit);
 
         Name updatedName = editTodoDescriptor.getName().orElse(todoToEdit.getName());
         Deadline updatedDeadline = editTodoDescriptor.getDeadline().orElse(todoToEdit.getDeadline());
@@ -298,6 +298,9 @@ public class EditCommand extends Command {
             return CollectionUtil.isAnyNonNull(name, deadline);
         }
 
+        /**
+         * Sets name of an edited Todo
+         */
         public void setName(Name name) {
             this.name = name;
         }
@@ -306,6 +309,9 @@ public class EditCommand extends Command {
             return Optional.ofNullable(name);
         }
 
+        /**
+         * Sets deadline of an edited Todo
+         */
         public void setDeadline(Deadline deadline) {
             this.deadline = deadline;
         }

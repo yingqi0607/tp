@@ -21,7 +21,9 @@ public class DailyCommand extends Command {
     public static final String MESSAGE_SWITCH_TAB_SUCCESS = "Switched to Daily tab!";
 
     public static final String MESSAGE_USAGE = "Looks like you're trying to use the " + COMMAND_WORD + " command: "
-            + "Deletes the todo task identified by the index number used in the specified Daily Todos Task List\n"
+            + "Switch to daily tab or delete a todo task\n"
+            + "Switch to daily tab:  + COMMAND_WORD \n"
+            + "Deletes a todo task: "
             + "Compulsory Parameter: INDEX (must be a positive integer and valid index number)\n"
             + "To delete task from Daily Todo Task List: (E.g. " + COMMAND_WORD + " " + PREFIX_DAILY_DELETE + "1)";
 
@@ -58,6 +60,7 @@ public class DailyCommand extends Command {
 
         Todo todoToDelete = lastShownList.get(toDeleteIndex.getZeroBased());
         model.deleteTodo(todoToDelete);
+
         return new CommandResult(String.format(MESSAGE_TODO_DELETE_SUCCESS, todoToDelete));
     }
 
