@@ -58,6 +58,7 @@ Given below are my contributions to the project:
     * Added documentation for the feature `planner`: [\#88](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/88), [\#97](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/97)
     * Updated documentation for the feature `planner`: [\#186](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/186)
     * Updated User Stories and added instructions for manual testing for the feature `planner`: [\#194](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/194)
+    * Added table of contents: [\#216](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/216)
 
 * **Team-based tasks**:
   * Setting up tools:
