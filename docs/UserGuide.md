@@ -394,7 +394,7 @@ Format: `todo INDEX`
 
 Examples:
 1. You enter `list` and press enter to see a list of pending tasks .
-![list of pending]()
+![list of pending](images/listCommand.png)
 2. Enter `todo 1` to add the first task into daily todo list.
 3. Press enter and the task has been added to daily todo list
 ![todo before](images/dailyTab_todo1Before.png)
@@ -422,10 +422,10 @@ Format: `daily del/INDEX`
 Examples:
 1. You enter `daily del/1` to delete the first task in daily todo list.
 2. Press enter and the first todo task is deleted
-![daily delete before]()
+![daily delete before](images/dailyTab_del1Before.png)
 Figure 10: Daily tab before executing `daily del/1`
 
-![daily delete after]()
+![daily delete after](images/dailyTab_del1After.png)
 Figure 11: Daily tab after executing `daily del/1`
 
 * Alternatively, when you delete a pending task using the `delete` command, the corresponding daily todo task will be 
@@ -870,7 +870,12 @@ There is no need to save manually.
 --------------------------------------------------------------------------------------------------------------------
 # 4. Glossary
 
-* 
+* **CLI**: Command-Line Interface, a method of interacting with computer programs by typing lines of text.
+* **Task**: An item to be completed by a certain deadline, with specified task names, deadline, task description, tags(optional) and module code.
+* **Todo**: An item planned to be completed in a day.
+* **Event**: An item showing number of days before the occurrence of an event.
+* **Module**: A subject taken by NUS students with specific module code and module name.
+* **Planner**: A display of tasks due on certain days in a calendar.
 --------------------------------------------------------------------------------------------------------------------
 
 # 5. FAQ
