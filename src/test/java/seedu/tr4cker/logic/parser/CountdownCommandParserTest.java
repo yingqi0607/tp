@@ -6,6 +6,7 @@ import static seedu.tr4cker.logic.parser.CommandParserTestUtil.assertParseSucces
 
 import org.junit.jupiter.api.Test;
 
+import seedu.tr4cker.commons.core.Messages;
 import seedu.tr4cker.commons.core.index.Index;
 import seedu.tr4cker.logic.commands.CountdownCommand;
 import seedu.tr4cker.model.countdown.EventDate;
@@ -21,6 +22,11 @@ class CountdownCommandParserTest {
             CountdownCommand.MESSAGE_DELETE_COUNTDOWN_USAGE);
     private static final String MESSAGE_INVALID_COUNT_EVENTS_FORMAT = String.format(MESSAGE_INVALID_COMMAND_FORMAT,
             CountdownCommand.MESSAGE_COUNT_DAYS_USAGE);
+    private static final String MESSAGE_INVALID_INDEX_FORMAT = Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX;
+    private static final String MESSAGE_INVALID_DAYS_FORMAT = ParserUtil.MESSAGE_INVALID_DAYS;
+    private static final String MESSAGE_INVALID_EVENT_NAME_FORMAT = EventName.MESSAGE_CONSTRAINTS;
+    private static final String MESSAGE_INVALID_EVENT_DATE_FORMAT = EventDate.MESSAGE_CONSTRAINTS;
+    private static final String MESSAGE_PAST_EVENT_DATE = EventDate.MESSAGE_FUTURE_CONSTRAINT;
 
     private final CountdownCommandParser countdownCommandParser = new CountdownCommandParser();
     private final CountdownCommand countdownCommand = new CountdownCommand();
@@ -48,11 +54,14 @@ class CountdownCommandParserTest {
 
     @Test
     public void parse_addCountdown_failure() {
-        assertParseFailure(countdownCommandParser, " n/Halloween Party d/31-10-2020", MESSAGE_INVALID_ADD_FORMAT);
-        assertParseFailure(countdownCommandParser, " n/Halloween Party d/31-Oct-2020", MESSAGE_INVALID_ADD_FORMAT);
-        assertParseFailure(countdownCommandParser, " n/Hall'ween Party d/31-Oct-2020", MESSAGE_INVALID_ADD_FORMAT);
-        assertParseFailure(countdownCommandParser, " n/Halloween Party d/31-Oct", MESSAGE_INVALID_ADD_FORMAT);
-        assertParseFailure(countdownCommandParser, " n/Halloween Party d/The Day", MESSAGE_INVALID_ADD_FORMAT);
+        assertParseFailure(countdownCommandParser, " n/Halloween Party d/31-10-2020",
+                MESSAGE_PAST_EVENT_DATE);
+        assertParseFailure(countdownCommandParser, " n/Halloween Party d/31-Oct-2020",
+                MESSAGE_PAST_EVENT_DATE);
+        assertParseFailure(countdownCommandParser, " n/Hall'ween Party d/31-Oct-2020",
+                MESSAGE_INVALID_EVENT_NAME_FORMAT);
+        assertParseFailure(countdownCommandParser, " n/Halloween Party d/31-Oct", MESSAGE_INVALID_EVENT_DATE_FORMAT);
+        assertParseFailure(countdownCommandParser, " n/Halloween Party d/The Day", MESSAGE_INVALID_EVENT_DATE_FORMAT);
         assertParseFailure(countdownCommandParser, " d/31-Oct-2021", MESSAGE_INVALID_ADD_FORMAT);
         assertParseFailure(countdownCommandParser, " n/Halloween Party", MESSAGE_INVALID_ADD_FORMAT);
     }
@@ -66,9 +75,9 @@ class CountdownCommandParserTest {
 
     @Test
     public void parse_deleteCountdown_failure() {
-        assertParseFailure(countdownCommandParser, " del/0", MESSAGE_INVALID_DELETE_FORMAT);
-        assertParseFailure(countdownCommandParser, " del/-1", MESSAGE_INVALID_DELETE_FORMAT);
-        assertParseFailure(countdownCommandParser, " del/haha", MESSAGE_INVALID_DELETE_FORMAT);
+        assertParseFailure(countdownCommandParser, " del/0", MESSAGE_INVALID_INDEX_FORMAT);
+        assertParseFailure(countdownCommandParser, " del/-1", MESSAGE_INVALID_INDEX_FORMAT);
+        assertParseFailure(countdownCommandParser, " del/haha", MESSAGE_INVALID_INDEX_FORMAT);
     }
 
     @Test
@@ -80,7 +89,7 @@ class CountdownCommandParserTest {
 
     @Test
     public void parse_countEventsInDays_failure() {
-        assertParseFailure(countdownCommandParser, " days/-1", MESSAGE_INVALID_COUNT_EVENTS_FORMAT);
-        assertParseFailure(countdownCommandParser, " days/two", MESSAGE_INVALID_COUNT_EVENTS_FORMAT);
+        assertParseFailure(countdownCommandParser, " days/-1", MESSAGE_INVALID_DAYS_FORMAT);
+        assertParseFailure(countdownCommandParser, " days/two", MESSAGE_INVALID_DAYS_FORMAT);
     }
 }

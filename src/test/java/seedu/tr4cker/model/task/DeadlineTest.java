@@ -32,6 +32,7 @@ public class DeadlineTest {
         assertFalse(Deadline.isValidDeadline("deadline")); // non-numeric
         assertFalse(Deadline.isValidDeadline("02-12-2021   0000")); // additional spaces within digits
         assertFalse(Deadline.isValidDeadline("10/10/2021 2359")); // wrong format
+        assertFalse(Deadline.isValidDeadline("29/02/2021 2359")); // invalid leap year
 
         // valid deadline times
         assertTrue(Deadline.isValidDeadline("02-12-2021 0000"));

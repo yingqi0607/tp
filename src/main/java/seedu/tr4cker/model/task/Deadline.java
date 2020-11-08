@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.tr4cker.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDateTime;
+import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
@@ -60,7 +61,16 @@ public class Deadline {
      */
     public static boolean isValidDeadline(String test) {
         try {
-            LocalDateTime.parse(test, DATE_TIME_FORMAT);
+            LocalDateTime localDateTime = LocalDateTime.parse(test, DATE_TIME_FORMAT);
+            Month month = localDateTime.getMonth();
+            int day = Integer.parseInt(test.substring(0, 2));
+            if (month.equals(Month.APRIL) || month.equals(Month.JUNE)
+                    || month.equals(Month.SEPTEMBER) || month.equals(Month.NOVEMBER)) {
+                return day <= 30;
+            } else if (month.equals(Month.FEBRUARY)) {
+                return localDateTime.toLocalDate().isLeapYear() ? day <= 29 : day <= 28;
+            }
+
         } catch (DateTimeParseException ex) {
             return false;
         }
