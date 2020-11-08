@@ -15,7 +15,7 @@ public class ListCommand extends Command {
 
     public static final String COMMAND_WORD = "list";
 
-    public static final String MESSAGE_SUCCESS = "Here are the tasks in your list:" + "\n";
+    public static final String MESSAGE_SUCCESS = "Here are your pending tasks:" + "\n";
 
     @Override
     public CommandResult execute(Model model) {
@@ -26,12 +26,11 @@ public class ListCommand extends Command {
         ObservableList<Task> taskList = model.getFilteredPendingTaskList();
         String displayListNames = "";
 
-        for (int i = 1; i <= taskList.size(); i++) {
-            displayListNames += i + ". " + taskList.get(i - 1).getName().toString() + "\n";
+        for (int i = 0; i < taskList.size(); i++) {
+            displayListNames += (i + 1) + ". " + taskList.get(i).getName().toString() + "\n";
         }
 
         CommandResult commandResult = new CommandResult(MESSAGE_SUCCESS + displayListNames);
-        commandResult.setHomeTab();
         return commandResult;
     }
 }

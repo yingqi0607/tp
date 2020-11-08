@@ -15,6 +15,11 @@ class GotoDateUtilTest {
     public void testIsValidGotoDate_success() {
         assertTrue(GotoDateUtil.isValidGotoDate("18-10-2020"));
         assertTrue(GotoDateUtil.isValidGotoDate("18-Oct-2020"));
+        assertTrue(GotoDateUtil.isValidGotoDate("29-Feb-2020"));
+        assertTrue(GotoDateUtil.isValidGotoDate("30-Apr-2020"));
+        assertTrue(GotoDateUtil.isValidGotoDate("30-Jun-2020"));
+        assertTrue(GotoDateUtil.isValidGotoDate("31-Jan-2021"));
+        assertTrue(GotoDateUtil.isValidGotoDate("31-Dec-2021"));
     }
 
     @Test
@@ -23,6 +28,13 @@ class GotoDateUtilTest {
         assertFalse(GotoDateUtil.isValidGotoDate("Oct-2020"));
         assertFalse(GotoDateUtil.isValidGotoDate("32-Oct-2020"));
         assertFalse(GotoDateUtil.isValidGotoDate("22-hhh-2020"));
+        assertFalse(GotoDateUtil.isValidGotoDate("29-Feb-2021"));
+        assertFalse(GotoDateUtil.isValidGotoDate("30-Feb-2021"));
+        assertFalse(GotoDateUtil.isValidGotoDate("31-04-2020"));
+        assertFalse(GotoDateUtil.isValidGotoDate("31-06-2020"));
+        assertFalse(GotoDateUtil.isValidGotoDate("31-09-2022"));
+        assertFalse(GotoDateUtil.isValidGotoDate("31-11-2024"));
+        assertFalse(GotoDateUtil.isValidGotoDate("32-11-2024"));
     }
 
     @Test

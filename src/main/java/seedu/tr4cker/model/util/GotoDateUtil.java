@@ -14,6 +14,11 @@ public class GotoDateUtil {
     private static final DateTimeFormatter MONTH_FORMAT = DateTimeFormatter.ofPattern("[MM][MMM]-yyyy");
     private static final DateTimeFormatter STRING_DATE_FORMAT = DateTimeFormatter.ofPattern("dd-MMM-yyyy");
     private static final DateTimeFormatter STRING_MONTH_FORMAT = DateTimeFormatter.ofPattern("MMM-yyyy");
+    private static final int FEBRUARY = 2;
+    private static final int APRIL = 4;
+    private static final int JUNE = 6;
+    private static final int SEPTEMBER = 9;
+    private static final int NOVEMBER = 11;
 
     /**
      * Returns true if a given string is a valid goto date.
@@ -27,7 +32,26 @@ public class GotoDateUtil {
         } catch (DateTimeParseException ex) {
             return false;
         }
-        return true;
+        return isDate(test);
+    }
+
+    /**
+     * Returns true if given string is a valid date based on month of year and whether it is a leap year.
+     *
+     * @param test Input string.
+     * @return true if given string is a valid date based on month of year and whether it is a leap year.
+     */
+    private static boolean isDate(String test) {
+        LocalDate localDate = LocalDate.parse(test, DATE_FORMAT);
+        int month = localDate.getMonthValue();
+        int day = Integer.parseInt(test.substring(0, 2));
+        if (month == APRIL || month == JUNE || month == SEPTEMBER || month == NOVEMBER) {
+            return day <= 30;
+        } else if (month == FEBRUARY) {
+            return localDate.isLeapYear() ? day <= 29 : day <= 28;
+        } else {
+            return true;
+        }
     }
 
     /**

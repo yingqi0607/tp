@@ -16,7 +16,7 @@ public class CommandResult {
     private final YearMonth yearMonth;
 
     /** Help information should be shown to the user. */
-    private final boolean showHelp;
+    private boolean showHelp;
 
     /** The application should exit. */
     private final boolean exit;
@@ -49,6 +49,7 @@ public class CommandResult {
         this.showCountdown = false;
         this.showDaily = false;
         this.showHome = false;
+        this.showHelp = false;
     }
 
     /**
@@ -61,6 +62,7 @@ public class CommandResult {
         this.showCountdown = false;
         this.showDaily = false;
         this.showHome = false;
+        this.showHelp = false;
     }
 
     /**
@@ -75,6 +77,7 @@ public class CommandResult {
         this.showCountdown = false;
         this.showDaily = false;
         this.showHome = false;
+        this.showHelp = false;
         this.localDate = localDate;
         this.yearMonth = yearMonth;
     }
@@ -91,6 +94,7 @@ public class CommandResult {
         this.showDaily = false;
         this.showCountdown = isShowCountdown;
         this.showHome = false;
+        this.showHelp = false;
         this.localDate = null;
         this.yearMonth = null;
     }
@@ -106,6 +110,7 @@ public class CommandResult {
         newCommandResult.showCountdown = true;
         newCommandResult.showDaily = false;
         newCommandResult.showHome = false;
+        newCommandResult.showHelp = false;
         return newCommandResult;
     }
 
@@ -120,6 +125,7 @@ public class CommandResult {
         newCommandResult.showCountdown = false;
         newCommandResult.showDaily = false;
         newCommandResult.showHome = false;
+        newCommandResult.showHelp = false;
         return newCommandResult;
     }
 
@@ -134,6 +140,7 @@ public class CommandResult {
         newCommandResult.showCountdown = false;
         newCommandResult.showDaily = true;
         newCommandResult.showHome = false;
+        newCommandResult.showHelp = false;
         return newCommandResult;
     }
 
@@ -148,6 +155,22 @@ public class CommandResult {
         newCommandResult.showPlanner = false;
         newCommandResult.showCountdown = false;
         newCommandResult.showDaily = false;
+        newCommandResult.showHelp = false;
+        return newCommandResult;
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser}.
+     * For usage of HelpCommand.
+     */
+    public static CommandResult createHelpTabSwitchCommandResult(String feedbackToUser) {
+        CommandResult newCommandResult = new CommandResult(feedbackToUser);
+        newCommandResult.showModules = false;
+        newCommandResult.showPlanner = false;
+        newCommandResult.showCountdown = false;
+        newCommandResult.showDaily = false;
+        newCommandResult.showHome = false;
+        newCommandResult.showHelp = true;
         return newCommandResult;
     }
 
@@ -216,5 +239,4 @@ public class CommandResult {
     public int hashCode() {
         return Objects.hash(feedbackToUser, showHelp, exit);
     }
-
 }
