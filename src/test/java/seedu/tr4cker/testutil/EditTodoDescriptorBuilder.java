@@ -4,7 +4,6 @@ import seedu.tr4cker.logic.commands.EditCommand;
 import seedu.tr4cker.model.daily.Todo;
 import seedu.tr4cker.model.task.Deadline;
 import seedu.tr4cker.model.task.Name;
-import seedu.tr4cker.model.task.Task;
 
 /**
  * A utility class to help with building EditTodoDescriptor objects.
