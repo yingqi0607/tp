@@ -28,6 +28,9 @@ title: User Guide
     * 3.3. [Daily Tab](#33-daily-yingqi)
         * 3.3.1. [Switching to Daily tab: `daily`](#331-switching-to-daily-tab-daily)
         * 3.3.2. [Adding a daily todo task](#332-adding-a-daily-todo-task-todo)
+        * 3.3.3. [Editing a daily todo task](#333-editing-a-daily-todo-task)
+        * 3.3.4. [Deleting a daily todo task](#334-deleting-a-daily-todo-task)
+        * 3.3.5. [Expired and Completed todo tasks](#335-expired-and-completed-todo-tasks)
     * 3.4. [Modules Tab](#34-modules-ethan)
         * 3.4.1. [Switching to Module tab: `modules`](#341-switching-to-module-tab-modules)
         * 3.4.2. [Adding a new module to modules list](#342-adding-a-new-module-to-modules-list)
@@ -49,8 +52,9 @@ title: User Guide
             * 3.6.2.3. [Go to specific month](#3623-go-to-specific-month)
         * 3.6.3 [Indicators on Calendar](#363-indicators-on-calendar)
     * 3.7. [Saving of Data](#37-saving-the-data)
-4. [FAQ](#4-faq)
-5. [Command Summary](#5-command-summary)
+4. [Glossary](#4-glossary)
+5. [FAQ](#5-faq)
+6. [Command Summary](#6-command-summary)
 
 # 1. Overview
 Welcome to the User Guide of TR4CKER!
@@ -81,11 +85,14 @@ In this section, it will guide you through on how to get TR4CKER started for the
 
 4. Copy the file to the folder you want to use as the _home folder_ for your TR4CKER.
 
-5. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+5. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how
+TR4CKER contains some sample data.<br>
+![Ui](images/Ui.png)
+Figure 1: TR4CKER home page populated with sample data
 
-   Figure 1: Application home page populated with sample data
-
+6. Here is a labelled diagram of the GUI to help you familiarise with TR4CKER.
+![Labelled Ui](images/labelledUi.png)
+Figure 2: Labelled GUI of TR4CKER
 --------------------------------------------------------------------------------------------------------------------
 # 3. Commands
 
@@ -112,7 +119,7 @@ Here are some commands that you might find handy when using TR4CKER.
 
 ### 3.1.1. Viewing help : `help`
 If you cannot recall the command you need, you can enter the help command in any panel.
-A help window will pop out with a link to this User Guide.
+TR4CKER will switch to help tab and a help window will pop out with a link to this User Guide.
 
 ![help message](images/helpMessage.png)
 
@@ -226,8 +233,15 @@ Examples:
 * `add n/CS1101S Quiz dl/25-11-2020 m/CS1101S des/Post-Lecture quiz`
 * `add n/CS1231S Homework Assignment dl/today 2200 m/CS1231S des/Chapter 3 t/graded t/assignment`
 
+<<<<<<< HEAD
 ### 3.2.4. Listing Pending tasks: `list`
 Suppose you used the `find` command previously to locate some of your Pending tasks. You may use the `list` command to go back to viewing the entire Pending Taks list again.
+=======
+### 3.2.4. Listing all tasks: `list`
+
+If you want to view a list of all pending task names in TR4CKER, you can enter `list`. TR4CKER will display a list of 
+all pending tasks names in TR4CKER.
+>>>>>>> upstream/master
 
 Format: `list`
 
@@ -429,30 +443,75 @@ If you would like to switch to Daily tab without clicking on the Daily tab butto
 
 Format: `daily`
 
-Once you enter `daily` into the command box, TR4CKER should look like this:
+Example:
+1. You enter `daily` into the command box 
+2. Press enter and TR4CKER should look like this:
 ![switch tab](images/dailyTab_switchTab.png)
 Figure 7: TR4CKER after executing `daily`
 
-Example:
-* `daily` - Switches to Daily tab, showing a list of daily todo tasks that you have planned for the day.
-
 ### 3.3.2 Adding a daily todo task: `todo`
-
 You can add a todo task for the day into the daily todo list by providing the index number of the task that you want to add.
 
-Format: `todo INDEX` [To be implemented: add multiple todo tasks at the same time]
+Format: `todo INDEX`
 
 * Adds the task at the specified `INDEX` to daily todo list.
 * The index refers to a valid index number shown in the displayed task list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
-Examples:
-* `list` followed by `todo 1` adds the first task in the displayed task list into daily todo list.
+Example:
+1. You enter `list` and press enter to see a list of pending tasks .
+![list of pending](images/listCommand.png)
+2. Enter `todo 1` to add the first task into daily todo list.
+3. Press enter and the task has been added to daily todo list
 ![todo before](images/dailyTab_todo1Before.png)
 Figure 8: Daily tab before executing `todo 1`
 
 ![todo result](images/dailyTab_todo1After.png)
 Figure 9: Daily tab after executing `todo 1`
+
+### 3.3.3 Editing a daily todo task:
+You can edit details of a daily todo task using the `edit` command that is used for pending task.
+
+* When you edit the task name or deadline of a pending task, if this task has been added into daily todo list using the `todo` command, the 
+details of the corresponding todo task will be updated as well.
+
+Example:
+1. You enter `edit 1 n/CS2101 Oral Presentation 2` to edit task name of the first pending task.
+![home edit before](images/homeTab_edit1Before.png)
+![daily edit before](images/dailyTab_edit1Before.png)
+Figures 10 & 11: Home tab and Daily tab before executing `edit 1 n/CS2101 Oral Presentation 2`.
+2. Press enter and name of the corresponding todo task is edited as well.
+![home edit after](images/hometab_edit1After.png)
+![daily edit after](images/dailyTab_edit1After.png)
+
+### 3.3.4 Deleting a daily todo task:
+You can delete a daily todo task to indicate that you have completed this todo task for the day. The corresponding task 
+in pending task list will not be deleted.
+
+Format: `daily del/INDEX`
+
+* Deletes the todo task at the specified `INDEX` in daily todo list.
+* The index refers to a valid index number shown in the displayed task list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Example:
+1. You enter `daily del/1` to delete the first task in daily todo list.
+2. Press enter and the first todo task is deleted
+![daily delete before](images/dailyTab_del1Before.png)
+Figure 10: Daily tab before executing `daily del/1`
+
+![daily delete after](images/dailyTab_del1After.png)
+Figure 11: Daily tab after executing `daily del/1`
+
+* Alternatively, when you delete a pending task using the `delete` command, the corresponding daily todo task will be 
+removed as well if it has been added to daily todo list.
+
+### 3.3.5 Expired and Completed todo tasks
+The daily todo task list will update automatically when todo tasks are expired or completed.
+
+* When a todo task is expired, it would be removed from daily todo task list instantly.
+* When the completion status of a pending task is changed to 100 using the `done` command, the corresponding todo task
+will be removed from daily todo task list.
 
 ## 3.4. Modules (Ethan)
 
@@ -497,12 +556,6 @@ Format: `modules n/NAME m/MODULECODE`
 * `MODULECODE` is case-insensitive.
 * The keyword `DEL` is not a valid `MODULECODE`.
 
-Examples:
-* `modules n/Computer Graphics m/CS3241` - Adds a module `Computer Graphics` with module code `CS3241`
-to the modules list.
-* `modules n/Effective Communication for Computing Professionals m/CS2101` - Adds a module `Effective Communication
-for Computing Professionals` with module code `CS2101` to the modules list.
-
 1. You enter a command into the command box to create a module, let's say Computer Graphics with module code CS3241.
 ![add module before](images/moduletab_addmodule_before.png)
 Figure 12: TR4CKER before executing `modules n/Computer Graphics m/CS3241`
@@ -510,6 +563,12 @@ Figure 12: TR4CKER before executing `modules n/Computer Graphics m/CS3241`
 2. Press enter and the module should appear at the bottom of the modules list:
 ![add_module after](images/moduletab_addmodule_after.png)
 Figure 13: TR4CKER after executing `modules n/Computer Graphics m/CS3241`
+
+Examples:
+* `modules n/Computer Graphics m/CS3241` - Adds a module `Computer Graphics` with module code `CS3241`
+to the modules list.
+* `modules n/Effective Communication for Computing Professionals m/CS2101` - Adds a module `Effective Communication
+for Computing Professionals` with module code `CS2101` to the modules list.
 
 ### 3.4.3 Assigning a task to a module
 Now with modules being created in the previous section, you may want to start assigning tasks to those modules.
@@ -524,9 +583,6 @@ Format: `edit INDEX [m/MODULECODE]`
 * The module code `MODULECODE` must match one of the module codes of a module in the modules list.
 * Note: Editing a task that already has a module assigned will replace it with the edited module.
 
-Examples:
-* `edit 1 m/CS3241` - Edits the 1st task to be tagged to the module with module code `CS3241`.
-
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Assigning a module code when creating a Task:**<br>
@@ -539,18 +595,21 @@ to assign tasks to modules straight away.
 
 1. You enter a command into the command box to assign a module, let's say to assign task 1 to CS3241.
 ![assign module before](images/moduletab_assignmodule_before.png)
-Figure 14: TR4CKER before executing `edit 3 m/CS3241`
+Figure 14: TR4CKER before executing `edit 1 m/CS3241`
 
 2. Press enter and the module code should have been tagged with the module code.
 ![assign module after](images/moduletab_assignmodule_after.png)
-Figure 15: TR4CKER after executing `edit 3 m/CS3241`
+Figure 15: TR4CKER after executing `edit 1 m/CS3241`
 
 3. Switch to the Module tab, and the task should appear under CS3241.
 ![assign module result](images/moduletab_assignmodule_result.png)
-Figure 16: TR4CKER updated Module tab after executing `edit 3 m/CS3241`
+Figure 16: TR4CKER updated Module tab after executing `edit 1 m/CS3241`
 
-As seen from *Figure 12* and *Figure 13* above, module codes tagged onto tasks will appear as a pink coloured tag under the
+As seen from *Figure 14* and *Figure 15* above, module codes tagged onto tasks will appear as a pink coloured tag under the
 tasks' name.
+
+Example:
+* `edit 1 m/CS3241` - Edits the 1st task to be tagged to the module with module code `CS3241`.
 
 ### 3.4.4 Un-assigning a task from a module
 Maybe you have assigned the wrong module to your task? Or maybe you just want to get rid of it. Modules can be un-assigned
@@ -563,9 +622,6 @@ Format: `edit INDEX m/del`
 * The index **must be a positive integer** 1, 2, 3, …
 * Instead of providing a module code with `m/MODULECODE`, the input `m/del` signifies deleting a module code.
 
-Examples:
-* `edit 3 m/del` - Deletes the module code from the 3rd task.
-
 1. You enter a command into the command box to delete a module assignment, let's say from tasks 1.
 ![unassign module before](images/moduletab_unassignmodule_before.png)
 Figure 17: TR4CKER before executing `edit 1 m/del`
@@ -573,6 +629,9 @@ Figure 17: TR4CKER before executing `edit 1 m/del`
 2. Press enter and the module should be unassigned from task 1.
 ![unassign module](images/moduletab_unassignmodule_after.png)
 Figure 18: TR4CKER after executing `edit 1 m/del`
+
+Example:
+* `edit 3 m/del` - Deletes the module code from the 3rd task.
 
 ### 3.4.5 Deleting a module
 After finishing up a semester and bringing things to a close, it's time to remove these modules as you will not be
@@ -586,9 +645,6 @@ Format: `modules del/INDEX`
 * The index **must be a positive integer** 1, 2, 3, …
 * Warning: This action is irreversible!
 
-Examples:
-* `modules del/1` - Deletes the 1st module in the modules list.
-
 1. You enter a command into the command box to delete a module, let's say module number 9 that we created previously.
 ![delete module before](images/moduletab_deletemodule_before.png)
 Figure 19: TR4CKER before executing `modules del/9`
@@ -596,6 +652,9 @@ Figure 19: TR4CKER before executing `modules del/9`
 2. Press enter and the module should be removed from the list.
 ![delete module after](images/moduletab_deletemodule_after.png)
 Figure 20: TR4CKER after executing `modules del/9`
+
+Example:
+* `modules del/1` - Deletes the 1st module in the modules list.
 
 ## 3.5. Countdown (Wen Ling)
 You can countdown to your most essential upcoming events in the Countdown tab. The Countdown tab tells you how many days
@@ -674,8 +733,8 @@ Format: `countdown del/INDEX`
 Figure 19: TR4CKER before executing `countdown del/2`
 
 3. Press enter, and TR4CKER will delete the event.
-![delete_after](images/countdowntab_delete_before.png)
-Figure 19: TR4CKER before executing `countdown del/2`
+![delete_after](images/countdowntab_delete_after.png)
+Figure 19: TR4CKER after executing `countdown del/2`
 
 <div markdown="block" class="alert alert-info">
 
@@ -704,7 +763,7 @@ Figure 19: TR4CKER before executing `countdown days/28`
 
 3. Press enter, and TR4CKER will count the events occurring in the next `DAYS` number of days.
 ![days_after](images/countdowntab_days_after.png)
-Figure 19: TR4CKER before executing `countdown days/28`
+Figure 19: TR4CKER after executing `countdown days/28`
 
 <div markdown="block" class="alert alert-info">
 
@@ -884,8 +943,17 @@ TR4CKER saves data in the hard disk automatically after any command that changes
 There is no need to save manually.
 
 --------------------------------------------------------------------------------------------------------------------
+# 4. Glossary
 
-# 4. FAQ
+* **CLI**: Command-Line Interface, a method of interacting with computer programs by typing lines of text.
+* **Task**: An item to be completed by a certain deadline, with specified task names, deadline, task description, tags(optional) and module code.
+* **Todo**: An item planned to be completed in a day.
+* **Event**: An item showing number of days before the occurrence of an event.
+* **Module**: A subject taken by NUS students with specific module code and module name.
+* **Planner**: A display of tasks due on certain days in a calendar.
+--------------------------------------------------------------------------------------------------------------------
+
+# 5. FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
@@ -915,7 +983,7 @@ the data of your previous TR4CKER home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
-# 5. Command summary
+# 6. Command summary
 
 | Tab | Command | Command Format | 
 | --- | ------- | -------------- |
@@ -928,7 +996,7 @@ the data of your previous TR4CKER home folder.
 | - | Switch to Countdown tab | `countdown` |
 | - | Switch to Planner tab | `planner` |
 | TR4CKER | Add tasks | `add n/NAME des/DESCRIPTION [dl/DEADLINE] [m/MODULE_CODE] [t/TAG]...` |
-| TR4CKER | Delete Expired tasks | `delete expired INDEX` |
+| TR4CKER | Delete Expired tasks | `delete expired INDEX` |****
 | TR4CKER | Delete Pending tasks | `delete INDEX` |
 | TR4CKER | Edit Expired tasks | `edit expired INDEX [n/NAME] [dl/DEADLINE] [des/DESCRIPTION]` |
 | TR4CKER | Edit Pending tasks | `edit INDEX [n/NAME] [des/DESCRIPTION] [dl/DEADLINE]` |
@@ -937,6 +1005,7 @@ the data of your previous TR4CKER home folder.
 | TR4CKER | List Pending tasks | `list` |
 | TR4CKER | Mark Pending tasks as done | `done INDEX [p/COMPLETION_STATUS]` |
 | Daily | Add todo tasks | `todo INDEX` |
+| Daily | Delete todo tasks | `daily del/INDEX` |
 | Modules | Add new modules to modules list | `modules n/NAME m/MODULECODE` |
 | Modules | Assign tasks to modules | `edit INDEX [m/MODULECODE]`|
 | Modules | Delete modules | `modules del/INDEX` |
