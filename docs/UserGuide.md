@@ -116,7 +116,7 @@ Here are some commands that you might find it handy when using TR4CKER.
 
 ### 3.1.1. Viewing help : `help`
 If you cannot recall the command you need, you can enter the help command in any panel.
-You will be switched to help tab and a help window will pop out with a link to this User Guide.
+TR4CKER will switch to help tab and a help window will pop out with a link to this User Guide.
 
 ![help message](images/helpMessage.png)
 
@@ -231,7 +231,8 @@ Examples:
 
 ### 3.2.4. Listing all tasks: `list`
 
-Displays a list of all pending tasks names in TR4CKER.
+If you want to view a list of all pending task names in TR4CKER, you can enter `list`. TR4CKER will display a list of 
+all pending tasks names in TR4CKER.
 
 Format: `list`
 
@@ -392,7 +393,7 @@ Format: `todo INDEX`
 * The index refers to a valid index number shown in the displayed task list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
-Examples:
+Example:
 1. You enter `list` and press enter to see a list of pending tasks .
 ![list of pending](images/listCommand.png)
 2. Enter `todo 1` to add the first task into daily todo list.
@@ -409,6 +410,15 @@ You can edit details of a daily todo task using the `edit` command that is used 
 * When you edit the task name or deadline of a pending task, if this task has been added into daily todo list using the `todo` command, the 
 details of the corresponding todo task will be updated as well.
 
+Example:
+1. You enter `edit 1 n/CS2101 Oral Presentation 2` to edit task name of the first pending task.
+![home edit before](images/homeTab_edit1Before.png)
+![daily edit before](images/dailyTab_edit1Before.png)
+Figures 10 & 11: Home tab and Daily tab before executing `edit 1 n/CS2101 Oral Presentation 2`.
+2. Press enter and name of the corresponding todo task is edited as well.
+![home edit after](images/hometab_edit1After.png)
+![daily edit after](images/dailyTab_edit1After.png)
+
 ### 3.3.4 Deleting a daily todo task:
 You can delete a daily todo task to indicate that you have completed this todo task for the day. The corresponding task 
 in pending task list will not be deleted.
@@ -419,7 +429,7 @@ Format: `daily del/INDEX`
 * The index refers to a valid index number shown in the displayed task list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
-Examples:
+Example:
 1. You enter `daily del/1` to delete the first task in daily todo list.
 2. Press enter and the first todo task is deleted
 ![daily delete before](images/dailyTab_del1Before.png)
