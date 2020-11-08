@@ -479,17 +479,17 @@ to assign tasks to modules straight away.
 
 1. You enter a command into the command box to assign a module, let's say to assign task 1 to CS3241.
 ![assign module before](images/moduletab_assignmodule_before.png)
-Figure 14: TR4CKER before executing `edit 3 m/CS3241`
+Figure 14: TR4CKER before executing `edit 1 m/CS3241`
 
 2. Press enter and the module code should have been tagged with the module code.
 ![assign module after](images/moduletab_assignmodule_after.png)
-Figure 15: TR4CKER after executing `edit 3 m/CS3241`
+Figure 15: TR4CKER after executing `edit 1 m/CS3241`
 
 3. Switch to the Module tab, and the task should appear under CS3241.
 ![assign module result](images/moduletab_assignmodule_result.png)
-Figure 16: TR4CKER updated Module tab after executing `edit 3 m/CS3241`
+Figure 16: TR4CKER updated Module tab after executing `edit 1 m/CS3241`
 
-As seen from *Figure 12* and *Figure 13* above, module codes tagged onto tasks will appear as a pink coloured tag under the
+As seen from *Figure 14* and *Figure 15* above, module codes tagged onto tasks will appear as a pink coloured tag under the
 tasks' name.
 
 ### 3.4.4 Un-assigning a task from a module
@@ -593,7 +593,7 @@ Example:
 Figure 23: Countdown tab of TR4CKER which shows you the current list of events.
 
 ![delete_after](images/countdowntab_delete_after.png)
-Figure 24: TR4CKER after executing `countdown del/2`. Event at index `2` of Figure 22 is deleted.
+Figure 24: TR4CKER after executing `countdown del/2`. Event at index `2` of Figure 23 is deleted.
 
 ## 3.6. Planner (Rui Ling)
 You can view an overview of your schedule in a calendar view and have your tasks list side-by-side using the Planner
