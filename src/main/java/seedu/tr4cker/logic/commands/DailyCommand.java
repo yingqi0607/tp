@@ -69,8 +69,8 @@ public class DailyCommand extends Command {
     public boolean equals(Object other) {
         if (this == other) { // short circuit if same object
             return true;
-        } else if (other instanceof DailyCommand &&
-                Objects.equals(toDeleteIndex, ((DailyCommand) other).toDeleteIndex)) {
+        } else if (other instanceof DailyCommand
+                && Objects.equals(toDeleteIndex, ((DailyCommand) other).toDeleteIndex)) {
             return true;
         } else {
             return false;
