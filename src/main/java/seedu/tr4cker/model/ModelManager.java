@@ -61,7 +61,7 @@ public class ModelManager implements Model {
         filteredEvents = new FilteredList<>(this.tr4cker.getEventList());
 
         filteredTodos = new FilteredList<>(this.tr4cker.getTodoList().filtered(
-                x -> Deadline.isFutureDeadline(x.getDeadline().toString())));
+            x -> Deadline.isFutureDeadline(x.getDeadline().toString())));
 
     }
 

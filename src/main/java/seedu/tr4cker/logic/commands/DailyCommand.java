@@ -1,7 +1,6 @@
 package seedu.tr4cker.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_DAILY_DELETE;
 
 import java.util.List;
