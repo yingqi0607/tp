@@ -13,18 +13,18 @@ title: User Guide
         * 3.1.2. [Exiting the program: `exit`](#312-exiting-the-program-exit)
         * 3.1.3. [Switching between tabs](#313-switching-between-tabs)
     * 3.2. [Home Tab](#32-home-han-wei)
-        * 3.2.1. [Reading the Task lists](#321-reading-the-task-lists)
-        * 3.2.2. [Command format for Task list Commands](#322-command-format-for-task-list-commands)
+        * 3.2.1. [Switching to the Home tab: `home`](#321-switching-to-the-home-tab-home)
+        * 3.2.2. [Reading the Task lists](#322-reading-the-task-lists)
         * 3.2.3. [Adding new tasks: `add`](#323-adding-new-tasks-add)
-        * 3.2.4. [Listing all tasks: `list`](#324-listing-all-tasks-list)
-        * 3.2.5. [Marking Pending tasks as done: `done`](#325-marking-tasks-as-done-done)
+        * 3.2.4. [Listing Pending tasks: `list`](#324-listing-pending-tasks-list)
+        * 3.2.5. [Marking Pending tasks as done: `done`](#325-marking-pending-tasks-as-done-done)
         * 3.2.6. [Editing Pending tasks: `edit`](#326-editing-pending-tasks-edit)
         * 3.2.7. [Editing tags of Pending tasks: `tag`](#327-editing-tags-of-pending-tasks-tag)
         * 3.2.8. [Locating Pending tasks by keywords: `find`](#328-locating-pending-tasks-by-keyword-find)
         * 3.2.9. [Deleting Pending tasks: `delete`](#329-deleting-pending-tasks--delete)
         * 3.2.10. [Editing Expired tasks: `edit expired`](#3210-editing-expired-tasks-edit-expired)
         * 3.2.11. [Deleting Expired tasks: `delete expired`](#3211-deleting-expired-tasks--delete-expired)
-        * 3.2.12. [Clearing all tasks: `clear`](#3212-clearing-all-tasks-clear)
+        * 3.2.12. [Resetting all data: `reset`](#3212-resetting-all-data-reset)
     * 3.3. [Daily Tab](#33-daily-yingqi)
         * 3.3.1. [Switching to Daily tab: `daily`](#331-switching-to-daily-tab-daily)
         * 3.3.2. [Adding a daily todo task](#332-adding-a-daily-todo-task-todo)
@@ -95,6 +95,7 @@ Figure 1: TR4CKER home page populated with sample data
 Figure 2: Labelled GUI of TR4CKER
 --------------------------------------------------------------------------------------------------------------------
 # 3. Commands
+In this section, it will guide you through the different commands of TR4CKER.
 
 <div markdown="block" class="alert alert-info">
 
@@ -115,7 +116,7 @@ Figure 2: Labelled GUI of TR4CKER
 </div>
 
 ## 3.1. Common Commands
-Here are some commands that you might find it handy when using TR4CKER. 
+Here are some commands that you might find handy when using TR4CKER. 
 
 ### 3.1.1. Viewing help : `help`
 If you cannot recall the command you need, you can enter the help command in any panel.
@@ -123,7 +124,7 @@ TR4CKER will switch to help tab and a help window will pop out with a link to th
 
 ![help message](images/helpMessage.png)
 
-Figure 2: Expected result after running `help`
+Figure 3: Expected result after running `help`
 
 ### 3.1.2. Exiting the program: `exit`
 
@@ -150,43 +151,38 @@ Table 1: List of Switch Tab commands
 
 TR4CKER is primarily a task management application that allows you to track and manage your tasks comprehensively.
 
-TR4CKER's Home page was built for this purpose and you will be directed to this page once you start TR4CKER. Alternatively,
- you can enter `home` on the Command Box to navigate to this page.
+TR4CKER's Home page was built for this purpose and you will be directed to this page once you start TR4CKER.
+ 
+### 3.2.1 Switching to the Home tab: `home`
+Suppose you are on other tabs, you can switch to the Home tab simply by using the home command. 
+You can also click on the Home button on the tabs menu at the top of the screen.
 
-### 3.2.1. Reading the Task lists
+Format: `home`
 
-For the ease of reading, tasks are split into 3 sections and are displayed separately, namely:
+1. Type `home` into the command box.
+![BeforeHomeCommand](images/BeforeHomeCommand.png)
+Figure 4: TR4CKER before executing `home`
+
+2. Press enter, and TR4CKER switches to the Home tab.
+![AfterHomeCommand](images/AfterHomeCommand.png)
+Figure 5: TR4CKER after executing `home`
+
+Example:
+* `home` - Switches to Home tab, showing the task lists.
+
+### 3.2.2. Reading the Task lists
+
+For the ease of reading, tasks are split into 3 sections and displayed separately, namely:
 1. Pending Tasks
 2. Expired Tasks
 3. Completed Tasks
 
 ![Ui](images/Ui.png)
+Figure 6: Application home page populated by sample data
 
-Figure 3: Application home page populated by sample data
-
-The leftmost panel displays Pending tasks that are not overdue and not completed.
-On the other hand, the Expired Tasks panel displays tasks that are overdue but have yet to be completed.
-Lastly, the Completed Tasks panel displays completed tasks for archive purposes.
-
-### 3.2.2. Command format for Task list Commands
-
-The syntax of the `add` command is `add n/NAME des/DESCRIPTION [m/MODULE_CODE] [dl/DEADLINE] [t/TAG]... ` and it will be used as an
-example to explain the following points:
-
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Notes about the command format:**<br>
-
-1. Parts of the command in UPPER_CASE represent command parameters that have to be supplied by you. Using the given example,
-DESCRIPTION represents a field where you provide the task description, such as des/Graded assignment 2.
-
-2. Parameters in square brackets are optional, such as the Tag parameter in the given example.
-
-3. Parameters with a trailing `...` are optional and may be used as many times as you want, or even be omitted.
-
-4. Parameters can be entered in any order.
-
-</div>
+The Pending Tasks panel will display tasks that you have not completed but have yet to be overdue.
+For tasks that are overdue but are not completed, they will be displayed under the Expired Tasks panel.
+Lastly, the Completed Tasks panel will display all your completed tasks for archive purposes.
 
 ### 3.2.3. Adding new tasks: `add`
 
@@ -194,12 +190,18 @@ You can add a task to TR4CKER using the `add` command when you want to start wor
 
 Format: `add n/NAME des/DESCRIPTION [m/MODULE_CODE] [dl/DEADLINE] [t/TAG]…​`
 
-![AddCommand](images/AddCommand.png)
+1. Type out details of your task in the command box using the `add` command.
+ 
+    ![BeforeAddCommand](images/BeforeAddCommand.png)
+    Figure 7: TR4CKER before executing `add n/Update DG dl/today des/draw UML diagrams m/CS2103T t/urgent t/important`
 
-Figure 4: Example of an expected result after executing `add n/UG Introduction des/TableOfContents m/CS2103T t/Urgent t/Important`
+2. Press enter, and TR4CKER will add the task.
 
-Before you can add a task with module, you need to ensure that the module is already entered into TR4CKER.
-You can refer to the section on Module Tab to find out more.
+    ![AfterAddCommand](images/AfterAddCommand.png)
+    Figure 8: TR4CKER after executing `add n/Update DG dl/today des/draw UML diagrams m/CS2103T t/urgent t/important`
+
+You need to add the module into TR4CKER's modules list before you can link a task to that module.
+To find out how to add a module in TR4CKER, you may refer to [_Section 3.4.2 - Adding a new module into the modules list_](#342-adding-a-new-module-to-modules-list).
 
 <div markdown="block" class="alert alert-info">
 
@@ -232,40 +234,56 @@ Examples:
 * `add n/CS1101S Quiz dl/25-11-2020 m/CS1101S des/Post-Lecture quiz`
 * `add n/CS1231S Homework Assignment dl/today 2200 m/CS1231S des/Chapter 3 t/graded t/assignment`
 
-### 3.2.4. Listing all tasks: `list`
+### 3.2.4. Listing Pending tasks: `list`
+Suppose you used the `find` command previously to locate some of your Pending tasks. You may use the `list` command to
+go back to viewing the entire Pending Tasks list again.
 
-If you want to view a list of all pending task names in TR4CKER, you can enter `list`. TR4CKER will display a list of 
+If you want to view a list of all pending tasks names in TR4CKER, you can enter `list`. TR4CKER will display a list of 
 all pending tasks names in TR4CKER.
 
 Format: `list`
 
-### 3.2.5. Marking tasks as done: `done`
+1. Type out the `list` command into the command box.
+    ![BeforeListCommand](images/BeforeListCommand.png)
+    Figure 9: TR4CKER before executing `list`
+
+2. Press enter, and TR4CKER will list out all the Pending tasks.
+    ![AfterListCommand](images/AfterListCommand.png)
+    Figure 10: TR4CKER displaying the entire Pending Tasks list after executing `list`
+
+### 3.2.5. Marking Pending tasks as done: `done`
 
 TR4CKER allows you to track the progress of a task in TR4CKER and you can use the `done` command when you want to update the Completion Status of a task.
 
 Format: `done INDEX [p/COMPLETION_STATUS]`
 
-![DoneCommand](images/DoneCommand.png)
-
-Figure 5: Example of an expected result after executing `done 1 p/50`
-
-* Marks the task as done at the specified `INDEX`.
+* Updates the Completion Status of the task at the specified `INDEX`.
 * The index refers to a valid index number shown in the specified Pending Tasks list.
 * The index **must be a positive integer** 1, 2, 3, …​
 * Completion Status is a percentage of task done and therefore only accept integer values from 0 to 100.
 * If Completion Status is not entered, TR4CKER will mark the task as 100% done.
 
+1.  Type the index number of the task and the new Completion Status into the command box using the `done` command.
+    ![BeforeDoneCommand](images/BeforeDoneCommand.png)
+    Figure 11: TR4CKER before executing `done 1 p/50`
+
+2.  Press enter, and TR4CKER will update the Completion Status of the task.
+    ![AfterDoneCommand](images/AfterDoneCommand.png)
+    Figure 12: TR4CKER after executing `done 1 p/50`
+
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Completion Status can either be increased or decreased!
+Completion Status can either be increased or decreased! However, once a task is 100% completed, it will be regarded as
+completed and its Completion Status cannot be edited anymore.
 </div>
 
 Examples:
-* `list` followed by `done 2 p/50` marks the 2nd task in the displayed task list as 50% done.
+* `list` followed by `done 2 p/50` marks the 2nd task in the Pending Tasks list as 50% done.
 * `find tutorial` followed by `done 1` marks the 1st task in the results of the `find` command as 100% done.
 
 ### 3.2.6. Editing Pending tasks: `edit`
 
-You can edit an existing Pending task in TR4CKER by using the `edit` command when the need arises.
+Suppose you made a spelling mistake when you were adding a task in TR4CKER.
+You can edit the fields of a task by using the `edit` command.
 
 Format: `edit INDEX [n/NAME] [dl/DEADLINE] [des/DESCRIPTION]`
 
@@ -273,7 +291,15 @@ Format: `edit INDEX [n/NAME] [dl/DEADLINE] [des/DESCRIPTION]`
 * The index refers to the index number shown in the task list.
 * The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
-* Editing of tags is done using `tag` command instead (Refer to the TagCommand section).
+* Editing of tags is done using `tag` command instead (Refer to the next section on [_Section 3.2.7 - Editing tags of Pending tasks_](#327-editing-tags-of-pending-tasks-tag)).
+
+1.  Type the index number of the Pending task and its edited fields that you want to update in the command box using the `edit` command.
+    ![BeforeEditCommand](images/BeforeEditCommand.png)
+    Figure 13: TR4CKER before executing `edit 2 n/CS2100 Lab 3`
+
+2. Press enter, and TR4CKER will edit the Pending task.
+    ![AfterEditCommand](images/AfterEditCommand.png)
+    Figure 14: TR4CKER after executing `edit 2 n/CS2100 Lab 3`
 
 Examples:
 * `edit 1 n/prepare for tP tasks` - Edits the description of the 1st task to be `prepare for tP tasks`.
@@ -281,7 +307,7 @@ Examples:
 
 ### 3.2.7. Editing tags of Pending tasks: `tag`
 
-You can add or delete tags of a Pending task in TR4CKER.
+You can add or delete tags of a Pending task in TR4CKER. You may use the `tag` command to edit the tags of a task when the need arises.
 
 Format: `tag INDEX [new/NEW_TAG]…​ [del/TAG_TO_DELETE]…​`
 
@@ -295,6 +321,14 @@ Format: `tag INDEX [new/NEW_TAG]…​ [del/TAG_TO_DELETE]…​`
 * Adding and deleting of tags can be used concurrently.
 * Multiple tags can be added and deleted at the same time.
 
+1.  Type the index number of the Pending task and its tags that you want to add or delete in the command box using the `tag` command.
+    ![BeforeTagCommand](images/BeforeTagCommand.png)
+    Figure 15: TR4CKER before executing `tag 1 del/urgent`
+
+2.  Press enter, and TR4CKER will edit the tag of the Pending task.
+    ![AfterTagCommand](images/AfterTagCommand.png)
+    Figure 16: TR4CKER after executing `tag 1 del/urgent` with the urgent tag removed
+
 Examples:
 * `tag 1 new/urgent` - Adds a new tag `urgent` to the existing tags of 1st task (if the tag does not already exist).
 * `tag 2 del/assignment` - Deletes the tag `assignment` from the 2nd task (if the tag exists).
@@ -303,30 +337,32 @@ from the 3rd task.
 
 ### 3.2.8. Locating Pending tasks by keyword: `find`
 
-You can find tasks whose names contain any of the given keywords.
+When you have too many Pending tasks and you want to locate some of them, you may use the `find` command.
+The `find` command allows you to find tasks which names contain any of the given keywords.
 
 Format: `find [KEYWORD_1] [KEYWORD_2] ...`
 
-![FindCommand](images/FindCommand.png)
-
-Figure 6: Example of an expected result after executing `find cs2103T Assignment`
-
-* The search is case-insensitive. e.g `cs2103T` will match `CS21013T`
-* The order of the keywords does not matter. e.g. `Assignment CS2103T` will match `CS2103T Assignment`
+* The search is case-insensitive. e.g `cs2103T` will match `CS21013T`.
+* The order of the keywords does not matter. e.g. `Assignment CS2103T` will match `CS2103T Assignment`.
 * Only the name is searched.
-* Only full words will be matched e.g. `2101` will not match `CS2101`
-* Tasks matching at least one keyword will be returned.
-  e.g. `find CS2103T Assignment` will return `CS2103T Project`, `CS2100 Assignment 3`
+* Tasks matching at least one keyword will be returned (e.g. `find CS2103T Assignment` will return `CS2103T Project`,
+`CS2100 Assignment 3`).
+
+1.  Type the keywords in the command box using the `find` command.
+    ![BeforeFindCommand](images/BeforeFindCommand.png)
+    Figure 17: TR4CKER before executing `find quiz`
+
+2.  Press enter, and TR4CKER will list out all the Pending tasks that match the keywords.
+    ![AfterFindCommand](images/AfterFindCommand.png)
+    Figure 18: TR4CKER after executing `find quiz` with the search results
 
 Examples:
 * `find CS2101` returns `CS2101 Oral Presentation 1`
-* `find CS2103T Quiz` returns `CS2103T Project`, `CS1101S Quiz`<br>
-  ![result for 'find CS1231S Mission'](images/findCS2103TQuizResult.png)
+* `find CS2103T Quiz` returns `CS2103T Project`, `CS1101S Quiz`
 
 ### 3.2.9. Deleting Pending tasks : `delete`
 
-You can delete an existing task from the task list by providing the
-index number of the task that you want to delete.
+When you no longer want to keep track of a Pending task, you may delete it from TR4CKER using the `delete` command.
 
 Format: `delete INDEX`
 
@@ -334,13 +370,21 @@ Format: `delete INDEX`
 * The index refers to a valid index number shown in the displayed task list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
+1.  Type the index of the Pending task that you wish to delete in the command box using the `delete` command.
+    ![BeforeDeleteCommand](images/BeforeDeleteCommand.png)
+    Figure 19: TR4CKER before executing `delete 1`
+
+2.  Press enter, and TR4CKER will delete the Pending task.
+    ![AfterDeleteCommand](images/AfterDeleteCommand.png)
+    Figure 20: TR4CKER after executing `delete 1` with the task at index 1 under the Pending Tasks panel removed from TR4CKER
+
 Examples:
 * `list` followed by `delete 2` deletes the 2nd task in the displayed task list.
 * `find assignment` followed by `delete 1` deletes the 1st task in the results of the `find` command.
 
 ### 3.2.10. Editing Expired tasks: `edit expired`
 
-The usage of this command is similar to the `edit` command for a Pending task.
+The usage of this command is similar to the command explained in [_Section 3.2.6. - Editing Pending Tasks_](#326-editing-pending-tasks-edit).
 
 Format: `edit expired INDEX [n/NAME] [dl/DEADLINE] [des/DESCRIPTION]`
 
@@ -353,25 +397,41 @@ must be a future Deadline. Hence, the edited task will be displayed under the Pe
 
 </div>
 
+1.  Type the index number of the Expired task and its edited fields that you want to update in the command box using the `edit expired` command.
+    ![BeforeEditExpiredCommand](images/BeforeEditExpiredCommand.png)
+    Figure 21: TR4CKER before executing `edit expired 1 dl/today`
+
+2.  Press enter, and TR4CKER will edit the Expired task with the new field.
+    ![AfterEditExpiredCommand](images/AfterEditExpiredCommand.png)
+    Figure 22: TR4CKER after executing `edit expired 1 dl/today` with the edited task being displayed under Pending Tasks
+
 ### 3.2.11. Deleting Expired tasks : `delete expired`
 
-The usage of this command is similar to the `delete` command for a Pending task.
+When a task is already overdue and you do not want to work on it anymore, you may delete the expired task from TR4CKER. 
+The usage of this command is similar to the command explained in [_Section 3.2.9. - Deleting Pending Tasks_](#329-deleting-pending-tasks--delete).
 
 Format: `delete expired INDEX`
 
 * Deletes the task at the specified `INDEX`.
-* The index refers to a valid index number shown in the displayed task list.
+* The index refers to a valid index number shown in the Expired Tasks list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
-Examples:
-* `list` followed by `delete 2` deletes the 2nd task in the displayed task list.
-* `find assignment` followed by `delete 1` deletes the 1st task in the results of the `find` command.
+1.  Type the index of the Expired task that you wish to delete in the command box using the `delete expired` command.
+    ![BeforeDeleteExpiredCommand](images/BeforeDeleteExpiredCommand.png)
+    Figure 23: TR4CKER before executing `delete expired 1`
 
-### 3.2.12. Clearing all tasks: `clear`
+2.  Press enter, and TR4CKER will delete the Pending task.
+    ![AfterDeleteExpiredCommand](images/AfterDeleteExpiredCommand.png)
+    Figure 24: TR4CKER after executing `delete expired 1` with the task at index 1 from the Expired Tasks panel removed from TR4CKER.
 
-Clears all entries in TR4CKER.
+### 3.2.12. Resetting all data: `reset`
 
-Format: `clear`
+You may use the `reset` command to reset all data during the start of a new school semester instead of having to delete them one by one.  
+
+Format: `reset`
+
+![AfterResetCommand](images/AfterResetCommand.png)
+Figure 25: TR4CKER after executing `reset` with all the data purged in TR4CKER
 
 ## 3.3 Daily (Yingqi)
 You can add all your daily plans of current tasks to a daily to do list so that you have a clearer idea of what you want to complete for the day.
@@ -382,10 +442,16 @@ If you would like to switch to Daily tab without clicking on the Daily tab butto
 Format: `daily`
 
 Example:
-1. You enter `daily` into the command box 
+1. You enter `daily` into the command box.
+![switch tab before](images/dailyTab_switchTabBefore.png)
+Figure 26: TR4CKER before executing `daily`
+
 2. Press enter and TR4CKER should look like this:
-![switch tab](images/dailyTab_switchTab.png)
-Figure 7: TR4CKER after executing `daily`
+![switch tab](images/dailyTab_switchTabAfter.png)
+Figure 27: TR4CKER after executing `daily`
+
+Example:
+* `daily` - Switches to Daily tab.
 
 ### 3.3.2 Adding a daily todo task: `todo`
 You can add a todo task for the day into the daily todo list by providing the index number of the task that you want to add.
@@ -396,53 +462,66 @@ Format: `todo INDEX`
 * The index refers to a valid index number shown in the displayed task list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
-Example:
-1. You enter `list` and press enter to see a list of pending tasks .
+1. You enter `list` and press enter to see a list of pending tasks.
 ![list of pending](images/listCommand.png)
+Figure 28: TR4CKER after executing `list`
+
 2. Enter `todo 1` to add the first task into daily todo list.
-3. Press enter and the task has been added to daily todo list
 ![todo before](images/dailyTab_todo1Before.png)
-Figure 8: Daily tab before executing `todo 1`
+Figure 29: TR4CKER before executing `todo 1`
 
+3. Press enter and the task has been added to daily todo list
 ![todo result](images/dailyTab_todo1After.png)
-Figure 9: Daily tab after executing `todo 1`
+Figure 30: TR4CKER after executing `todo 1`
 
-### 3.3.3 Editing a daily todo task:
-You can edit details of a daily todo task using the `edit` command that is used for pending task.
+Examples:
+* `todo 2` - Adds the 2nd Pending task into Daily task.
+* `todo 3` - Adds the 3rd Pending task into Daily task.
 
-* When you edit the task name or deadline of a pending task, if this task has been added into daily todo list using the `todo` command, the 
-details of the corresponding todo task will be updated as well.
+### 3.3.3 Editing a daily todo task
+You can edit details of a daily todo task using the `edit` command. 
+When you edit the details of a pending task that is also in Daily todo list, the corresponding todo task will be updated as well.
 
-Example:
 1. You enter `edit 1 n/CS2101 Oral Presentation 2` to edit task name of the first pending task.
-![home edit before](images/homeTab_edit1Before.png)
-![daily edit before](images/dailyTab_edit1Before.png)
-Figures 10 & 11: Home tab and Daily tab before executing `edit 1 n/CS2101 Oral Presentation 2`.
-2. Press enter and name of the corresponding todo task is edited as well.
-![home edit after](images/hometab_edit1After.png)
-![daily edit after](images/dailyTab_edit1After.png)
+    ![home edit before](images/homeTab_edit1Before.png)
+    Figure 31: Home tab before executing `edit 1 n/CS2101 Oral Presentation 2`
+    
+    ![daily edit before](images/dailyTab_edit1Before.png)
+    Figure 32: Daily tab before executing `edit 1 n/CS2101 Oral Presentation 2`
 
-### 3.3.4 Deleting a daily todo task:
+2. Press enter and the name of the corresponding todo task is edited as well.
+    ![home edit after](images/hometab_edit1After.png)
+    Figure 33: Home tab after executing `edit 1 n/CS2101 Oral Presentation 2`
+    
+    ![daily edit after](images/dailyTab_edit1After.png)
+    Figure 34: Daily tab after executing `edit 1 n/CS2101 Oral Presentation 2`
+
+Examples:
+* `edit 2 n/CS2100 Assignment 4` - Edits the name of 2nd task to be `CS2100 Assignment 4`.
+* `edit 3 dl/25-12-2020` - Edits the deadline of the 3rd task to be `25 Dec 2020`.
+
+### 3.3.4 Deleting a daily todo task
 You can delete a daily todo task to indicate that you have completed this todo task for the day. The corresponding task 
 in pending task list will not be deleted.
 
 Format: `daily del/INDEX`
 
 * Deletes the todo task at the specified `INDEX` in daily todo list.
-* The index refers to a valid index number shown in the displayed task list.
+* The index refers to a valid index number shown in the daily todo list.
 * The index **must be a positive integer** 1, 2, 3, …​
+* If you delete a pending task using the `delete` command, the corresponding daily todo task will be removed as well.
 
-Example:
-1. You enter `daily del/1` to delete the first task in daily todo list.
-2. Press enter and the first todo task is deleted
+1. You enter `daily del/1` to delete the first todo task in daily todo list.
 ![daily delete before](images/dailyTab_del1Before.png)
-Figure 10: Daily tab before executing `daily del/1`
+Figure 35: Daily tab before executing `daily del/1`
 
+2. Press enter and the first todo task is deleted.
 ![daily delete after](images/dailyTab_del1After.png)
-Figure 11: Daily tab after executing `daily del/1`
+Figure 36: Daily tab after executing `daily del/1`
 
-* Alternatively, when you delete a pending task using the `delete` command, the corresponding daily todo task will be 
-removed as well if it has been added to daily todo list.
+Examples:
+* `daily del/2` - Deletes the 2nd todo task from the daily todo list.
+* `daily del/10` - Deletes the 10th todo task from the daily todo list.
 
 ### 3.3.5 Expired and Completed todo tasks
 The daily todo task list will update automatically when todo tasks are expired or completed.
@@ -453,7 +532,7 @@ will be removed from daily todo task list.
 
 ## 3.4. Modules (Ethan)
 
-You can organize your tasks according to their respective modules using the Module tab. Categorizing tasks by module
+You can organize your tasks according to their respective modules using the Module tab. Categorizing tasks by modules
 allows you to know exactly how many tasks are still due for each of the modules you take, if you wish to work on a
 particular module first.
 
@@ -465,11 +544,11 @@ Format: `modules`
 
 1. You enter `modules` into the command box.
 ![switch tab before](images/moduletab_switchtab_before.png)
-Figure 10: TR4CKER before executing `modules`
+Figure 37: TR4CKER before executing `modules`
 
 2. Press enter and TR4CKER should switch to the Module tab:
 ![switch tab](images/moduletab_switchtab_after.png)
-Figure 11: TR4CKER after executing `modules`
+Figure 38: TR4CKER after executing `modules`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Note:**
 
@@ -496,11 +575,11 @@ Format: `modules n/NAME m/MODULECODE`
 
 1. You enter a command into the command box to create a module, let's say Computer Graphics with module code CS3241.
 ![add module before](images/moduletab_addmodule_before.png)
-Figure 12: TR4CKER before executing `modules n/Computer Graphics m/CS3241`
+Figure 39: TR4CKER before executing `modules n/Computer Graphics m/CS3241`
 
 2. Press enter and the module should appear at the bottom of the modules list:
 ![add_module after](images/moduletab_addmodule_after.png)
-Figure 13: TR4CKER after executing `modules n/Computer Graphics m/CS3241`
+Figure 40: TR4CKER after executing `modules n/Computer Graphics m/CS3241`
 
 Examples:
 * `modules n/Computer Graphics m/CS3241` - Adds a module `Computer Graphics` with module code `CS3241`
@@ -510,7 +589,7 @@ for Computing Professionals` with module code `CS2101` to the modules list.
 
 ### 3.4.3 Assigning a task to a module
 Now with modules being created in the previous section, you may want to start assigning tasks to those modules.
-This will be done through the edit command in [_section 3.2.6_](#326-editing-pending-tasks-edit).
+This will be done through the edit command in [_Section 3.2.6. - Editing Pending Tasks_](#326-editing-pending-tasks-edit).
 
 Format: `edit INDEX [m/MODULECODE]`
 
@@ -533,17 +612,17 @@ to assign tasks to modules straight away.
 
 1. You enter a command into the command box to assign a module, let's say to assign task 1 to CS3241.
 ![assign module before](images/moduletab_assignmodule_before.png)
-Figure 14: TR4CKER before executing `edit 1 m/CS3241`
+Figure 41: TR4CKER before executing `edit 1 m/CS3241`
 
 2. Press enter and the module code should have been tagged with the module code.
 ![assign module after](images/moduletab_assignmodule_after.png)
-Figure 15: TR4CKER after executing `edit 1 m/CS3241`
+Figure 42: TR4CKER after executing `edit 1 m/CS3241`
 
 3. Switch to the Module tab, and the task should appear under CS3241.
 ![assign module result](images/moduletab_assignmodule_result.png)
-Figure 16: TR4CKER updated Module tab after executing `edit 1 m/CS3241`
+Figure 43: TR4CKER updated Module tab after executing `edit 1 m/CS3241`
 
-As seen from *Figure 14* and *Figure 15* above, module codes tagged onto tasks will appear as a pink coloured tag under the
+As seen from *Figure 41* and *Figure 42* above, module codes tagged onto tasks will appear as a pink coloured tag under the
 tasks' name.
 
 Example:
@@ -560,13 +639,13 @@ Format: `edit INDEX m/del`
 * The index **must be a positive integer** 1, 2, 3, …
 * Instead of providing a module code with `m/MODULECODE`, the input `m/del` signifies deleting a module code.
 
-1. You enter a command into the command box to delete a module assignment, let's say from tasks 1.
+1. You enter a command into the command box to delete a module assignment, let's say from task 1.
 ![unassign module before](images/moduletab_unassignmodule_before.png)
-Figure 17: TR4CKER before executing `edit 1 m/del`
+Figure 44: TR4CKER before executing `edit 1 m/del`
 
 2. Press enter and the module should be unassigned from task 1.
 ![unassign module](images/moduletab_unassignmodule_after.png)
-Figure 18: TR4CKER after executing `edit 1 m/del`
+Figure 45: TR4CKER after executing `edit 1 m/del`
 
 Example:
 * `edit 3 m/del` - Deletes the module code from the 3rd task.
@@ -585,11 +664,11 @@ Format: `modules del/INDEX`
 
 1. You enter a command into the command box to delete a module, let's say module number 9 that we created previously.
 ![delete module before](images/moduletab_deletemodule_before.png)
-Figure 19: TR4CKER before executing `modules del/9`
+Figure 46: TR4CKER before executing `modules del/9`
 
 2. Press enter and the module should be removed from the list.
 ![delete module after](images/moduletab_deletemodule_after.png)
-Figure 20: TR4CKER after executing `modules del/9`
+Figure 47: TR4CKER after executing `modules del/9`
 
 Example:
 * `modules del/1` - Deletes the 1st module in the modules list.
@@ -606,11 +685,11 @@ Format: `countdown`
 
 1. Type `countdown` into the command box.
 ![switch tab_before](images/countdowntab_switchtab_before.png)
-Figure x: TR4CKER before executing `countdown`
+Figure 48: TR4CKER before executing `countdown`
 
 2. Press enter, and TR4CKER switches to the Countdown tab.
 ![switch tab_after](images/countdowntab_switchtab_after.png)
-Figure 18: TR4CKER after executing `countdown`
+Figure 49: TR4CKER after executing `countdown`
 
 The `Upcoming Events` panel shows your list of events in TR4CKER.
 
@@ -629,21 +708,6 @@ You can add an event to your list of events, and TR4CKER will help you to countd
 
 Format: `countdown n/NAME d/DATE`
 
-1. Switch to the Countdown tab to view your current list of events.
-
-2. Type `countdown n/NAME d/DATE` into the command box, where `NAME` is the name of the event and `DATE` is the date of
-the event.
-![add_new_before](images/countdowntab_addnew_before.png)
-Figure 19: TR4CKER before executing `countdown n/ST2334 Final Examination d/23-Nov-2020`
-
-3. Press enter, and TR4CKER will add the event.
-![add_new_after](images/countdowntab_addnew_after.png)
-Figure 19: TR4CKER before executing `countdown n/ST2334 Final Examination d/23-Nov-2020`
-
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Important points to note about the command:**<br>
-
 * This command adds an event with name `NAME` and date `DATE` to the Countdown events list.
 * Both fields are compulsory and can be in any order.
 * `NAME` must be in the alphanumeric format (only containing letters and numbers).
@@ -651,7 +715,16 @@ Figure 19: TR4CKER before executing `countdown n/ST2334 Final Examination d/23-N
 `DD-MM-YYYY` or `DD-MMM-YYYY`.
 * Duplicate events (events with the same `NAME`) are NOT allowed.
 
-</div>
+1. Switch to the Countdown tab to view your current list of events.
+
+2. Type `countdown n/NAME d/DATE` into the command box, where `NAME` is the name of the event and `DATE` is the date of
+the event.
+![add_new_before](images/countdowntab_addnew_before.png)
+Figure 50: TR4CKER before executing `countdown n/ST2334 Final Examination d/23-Nov-2020`
+
+3. Press enter, and TR4CKER will add the event.
+![add_new_after](images/countdowntab_addnew_after.png)
+Figure 51: TR4CKER before executing `countdown n/ST2334 Final Examination d/23-Nov-2020`
 
 Examples:
 * `countdown d/31-12-2020 n/New Years Eve Countdown Party at Scarlets` - Adds the event `New Years Eve Countdown Party
@@ -664,25 +737,19 @@ You can delete an event from your events list when it is over, or if you no long
 
 Format: `countdown del/INDEX`
 
-1. Switch to the Countdown tab to view your current list of events.
-
-2. Type `countdown del/INDEX` into the command box, where `INDEX` is the index of the event in the events list.
-![delete_before](images/countdowntab_delete_before.png)
-Figure 19: TR4CKER before executing `countdown del/2`
-
-3. Press enter, and TR4CKER will delete the event.
-![delete_after](images/countdowntab_delete_after.png)
-Figure 19: TR4CKER after executing `countdown del/2`
-
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Important points to note about the command:**<br>
-
 * This command deletes the event at index `INDEX` of the events list.
 * `INDEX` has to be a valid index of an event, numbered according to the list in Countdown tab.
 * Warning: :warning: This action is irreversible!
 
-</div>
+1. Switch to the Countdown tab to view your current list of events.
+
+2. Type `countdown del/INDEX` into the command box, where `INDEX` is the index of the event in the events list.
+![delete_before](images/countdowntab_delete_before.png)
+Figure 52: TR4CKER before executing `countdown del/2`
+
+3. Press enter, and TR4CKER will delete the event.
+![delete_after](images/countdowntab_delete_after.png)
+Figure 53: TR4CKER after executing `countdown del/2`
 
 Example:
 * `countdown del/8` - Deletes the event at index `8` of the Countdowns list.
@@ -693,26 +760,20 @@ summary of the events in the next `x` number of days.
 
 Format: `countdown days/DAYS`
 
+* This command counts and summarizes the events in the next `DAYS` number of days.
+* `DAYS` has to be a non-negative integer.
+
 1. Switch to the Countdown tab to view your current list of events.
 
 2. Type `countdown days/DAYS` into the command box, where `DAYS` is the number of days.
 ![days_before](images/countdowntab_days_before.png)
-Figure 19: TR4CKER before executing `countdown days/28`
+Figure 54: TR4CKER before executing `countdown days/28`
 
 3. Press enter, and TR4CKER will count the events occurring in the next `DAYS` number of days.
 ![days_after](images/countdowntab_days_after.png)
-Figure 19: TR4CKER after executing `countdown days/28`
+Figure 55: TR4CKER after executing `countdown days/28`
 
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Important points to note about the command:**<br>
-
-* This command counts and summarizes the events in the next `DAYS` number of days.
-* `DAYS` has to be a non-negative integer.
-
-</div>
-
-Example:
+Examples:
 * `countdown days/7` - Counts and summarizes the events in the next 7 days.
 * `countdown days/0` - Counts and summarizes the events occurring today.
 * `countdown days/90` - Counts and summarizes the events in the next 90 days.
@@ -730,11 +791,11 @@ Format: `planner`
 
 1. You enter `planner` into the command box.
 ![switch tab](images/plannertab_switchtab.png)
-Figure 25: TR4CKER before executing `planner`
+Figure 56: TR4CKER before executing `planner`
 
 2. Press enter and TR4CKER should switch to Planner tab.
 ![switch tab](images/plannertab_switchtab1.png)
-Figure 26: TR4CKER after executing `planner`
+Figure 57: TR4CKER after executing `planner`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Note:**
 By default, TR4CKER will circle today's date and the show you the tasks due on that day.
@@ -759,11 +820,11 @@ Format: `planner goto/today` or `planner goto/tdy`
 
 1. You enter the command into the command box to navigate to today.
 ![goto today command](images/plannertab_gototoday.png)
-Figure 27: TR4CKER before executing `planner goto/tdy`
+Figure 58: TR4CKER before executing `planner goto/tdy`
 
 2. Press enter and TR4CKER will change planner tab to today's calendar view and tasks due today.
 ![goto today result](images/plannertab_gototoday1.png)
-Figure 28: TR4CKER after executing `planner goto/tdy`
+Figure 59: TR4CKER after executing `planner goto/tdy`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Note:**
 Input can only be `today` or `tdy`. There are no other alternatives.
@@ -781,11 +842,11 @@ Format: `planner goto/tomorrow` or `planner goto/tmr`
 
 1. You enter the command into the command box to navigate to tomorrow.
 ![goto tomorrow command](images/plannertab_gototomorrow.png)
-Figure 29: TR4CKER before executing `planner goto/tmr`
+Figure 60: TR4CKER before executing `planner goto/tmr`
 
 2. Press enter and TR4CKER will change planner tab to tomorrow's calendar view and tasks due tomorrow.
 ![goto tomorrow result](images/plannertab_gototomorrow1.png)
-Figure 30: TR4CKER after executing `planner goto/tmr`
+Figure 61: TR4CKER after executing `planner goto/tmr`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Note:**
 Input can only be `tomorrow` or `tmr`. There are no other alternatives.
@@ -803,11 +864,11 @@ Format: `planner goto/DATE`
 
 1. You enter the command into the command box to navigate to a specific date, let's say 27 October 2020.
 ![goto date command](images/plannertab_gotodate.png)
-Figure 31: TR4CKER before executing `planner goto/27-10-2020`
+Figure 62: TR4CKER before executing `planner goto/27-10-2020`
 
 2. Press enter and TR4CKER will change planner tab to the date's calendar view and tasks due on that date.
 ![goto date result](images/plannertab_gotodate1.png)
-Figure 32: TR4CKER after executing `planner goto/27-10-2020`
+Figure 63: TR4CKER after executing `planner goto/27-10-2020`
 
 <div markdown="block" class="alert alert-info">
 
@@ -834,11 +895,11 @@ Format: `planner goto/MONTH`
 
 1. You enter the command into the command box to navigate to a specific month, let's say September 2021.
 ![goto month command](images/plannertab_gotomonth.png)
-Figure 33: TR4CKER before executing `planner goto/Sep-2021`
+Figure 64: TR4CKER before executing `planner goto/Sep-2021`
 
 2. Press enter and TR4CKER will change planner tab to the month's calendar view and tasks due on first day of the month.
 ![goto month result](images/plannertab_gotomonth1.png)
-Figure 34: TR4CKER after executing `planner goto/Sep-2021`
+Figure 65: TR4CKER after executing `planner goto/Sep-2021`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Note:**
 By default, TR4CKER will circle the first day of the month you inputted and show you the tasks due on the first day of
@@ -868,7 +929,7 @@ overview of your schedule, Planner tab allows you to check if your upcoming days
 
 The figure below shows the indicators:
 ![indicator](images/plannertab_indicator.png)
-Figure 35: Indicators (circled in red) on calendar
+Figure 66: Indicators (circled in red) on calendar
 
 The indicator colours and their meanings are:
 * No indicator - no tasks due on that date
@@ -884,11 +945,11 @@ There is no need to save manually.
 # 4. Glossary
 
 * **CLI**: Command-Line Interface, a method of interacting with computer programs by typing lines of text.
-* **Task**: An item to be completed by a certain deadline, with specified task names, deadline, task description, tags(optional) and module code.
+* **Task**: An item to be completed by a certain deadline, with specified task names, deadline, task description, tags (optional) and module code.
 * **Todo**: An item planned to be completed in a day.
-* **Event**: An item showing number of days before the occurrence of an event.
+* **Event**: An item representing an event that occurs on a specific date.
 * **Module**: A subject taken by NUS students with specific module code and module name.
-* **Planner**: A display of tasks due on certain days in a calendar.
+* **Planner**: A monthly display of tasks due on certain days in a calendar.
 --------------------------------------------------------------------------------------------------------------------
 
 # 5. FAQ
@@ -905,13 +966,13 @@ the data of your previous TR4CKER home folder.
 
 **Q**: What do I do if my tasks expire?<br>
 **A**: Don't worry, you can still edit or delete them using these commands:
-[Edit expired](#3210-editing-expired-tasks-edit-expired) & [Delete expired](#3211-deleting-expired-tasks--delete-expired).
+[_Section 3.2.10. - Edit expired tasks_](#3210-editing-expired-tasks-edit-expired) & [_Section 3.2.11. - Delete expired tasks_](#3211-deleting-expired-tasks--delete-expired).
 
 **Q**: Can I add multiple items at once? Multiple tasks / modules / countdowns, together in one line?<br>
 **A**: Unfortunately, TR4CKER can only do one at a time.
 
-**Q**: Can I manually make changes to TR4CKER's save file?<br>
-**A**: This is **NOT** recommended as you could corrupt the save file, but it is possible.
+**Q**: Can I manually make changes to TR4CKER's saved file?<br>
+**A**: This is **NOT** recommended as you could corrupt the saved file.
 
 **Q**: Do I need an internet connection?<br>
 **A**: Once you have downloaded TR4CKER, you can continue to use it without internet connection.
@@ -925,9 +986,9 @@ the data of your previous TR4CKER home folder.
 
 | Tab | Command | Command Format | 
 | --- | ------- | -------------- |
-| - | Clear all tasks | `clear` |
-| - | Help | `help` |
 | - | Exit TR4CKER | `exit` |
+| - | Help | `help` |
+| - | Reset all data | `reset` |
 | - | Switch to TR4CKER tab | `home` |
 | - | Switch to Daily tab | `daily` |
 | - | Switch to Modules tab | `modules` |
@@ -940,8 +1001,8 @@ the data of your previous TR4CKER home folder.
 | TR4CKER | Edit Pending tasks | `edit INDEX [n/NAME] [des/DESCRIPTION] [dl/DEADLINE]` |
 | TR4CKER | Edit Tags of Pending tasks | `tag INDEX [old/TAG_TO_DELETE]... [new/NEW_TAG]...` |
 | TR4CKER | Find Pending tasks | `find [KEYWORD]...` |
-| TR4CKER | List tasks | `list` |
-| TR4CKER | Mark tasks as done | `done INDEX [p/COMPLETION_STATUS]` |
+| TR4CKER | List Pending tasks | `list` |
+| TR4CKER | Mark Pending tasks as done | `done INDEX [p/COMPLETION_STATUS]` |
 | Daily | Add todo tasks | `todo INDEX` |
 | Daily | Delete todo tasks | `daily del/INDEX` |
 | Modules | Add new modules to modules list | `modules n/NAME m/MODULECODE` |
