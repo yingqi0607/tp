@@ -74,6 +74,8 @@ In this section, it will guide you through on how to get TR4CKER started for the
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
+2. TR4CKER works best on screen resolutions of at least `1600x900`.
+
 2. Download the latest `tr4cker.jar` from [here](https://github.com/AY2021S1-CS2103T-T10-2/tp/releases/tag/v1.3).
 
 3. Copy the file to the folder you want to use as the _home folder_ for your TR4CKER.
@@ -521,61 +523,127 @@ After entering the command with the specified `INDEX` into the command box, the 
 Figure 17: TR4CKER after executing `modules del/9`
 
 ## 3.5. Countdown (Wen Ling)
-You can countdown to your most essential upcoming events in the Countdown tab. You can know at a quick glance, how many
-you have left to that Final Exam or that birthday party.
+You can countdown to your most essential upcoming events in the Countdown tab. The Countdown tab tells you how many days
+you have left to that Final Exam or that birthday party, with just a quick glance.
 
 ### 3.5.1. Switching to Countdown tab: `countdown`
-To switch to the Countdown tab, simply type `countdown` into the command line. You can also click on the Countdown button
-on the tabs menu at the top.
+You can switch to the Countdown tab simply by using the `countdown` command. You can also click on the Countdown button
+on the tabs menu at the top of the screen.
 
 Format: `countdown`
-Once you have entered this command, TR4CKER should look like this:
-![switch tab](images/countdowntab_switchtab.png)
+
+1. Type `countdown` into the command box.
+![switch tab_before](images/countdowntab_switchtab_before.png)
+Figure x: TR4CKER before executing `countdown`
+
+2. Press enter, and TR4CKER switches to the Countdown tab.
+![switch tab_after](images/countdowntab_switchtab_after.png)
 Figure 18: TR4CKER after executing `countdown`
 
-The `Upcoming Events` panel shows the list of upcoming events that are counted down to.
+The `Upcoming Events` panel shows your list of events in TR4CKER.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Note:**
+TR4CKER automatically sorts your upcoming events according to the date they are due, with earlier events being shown
+first. Events which occur **today** are shown right at the top, with `0 days!` shown as the number of days left, while
+events which are have passed are shown at the very bottom of the list in **no particular order**. You can delete them to
+stop seeing them!
+</div>
 
 Example:
-* `countdown` - Switches to Countdown tab, showing the list of events.
+* `countdown` - Switches to Countdown tab, showing the list of upcoming events.
 
-### 3.5.2. Adding a new event to countdowns list
-You can add an event to the list of events, and TR4CKER helps you to countdown to it.
+### 3.5.2. Adding a new event to Countdown events list
+You can add an event to your list of events, and TR4CKER will help you to countdown to it.
 
 Format: `countdown n/NAME d/DATE`
 
-* Adds an event with name `NAME` and date `DATE` to the Countdown events list.
+1. Switch to the Countdown tab to view your current list of events.
+
+2. Type `countdown n/NAME d/DATE` into the command box, where `NAME` is the name of the event and `DATE` is the date of
+the event.
+![add_new_before](images/countdowntab_addnew_before.png)
+Figure 19: TR4CKER before executing `countdown n/ST2334 Final Examination d/23-Nov-2020`
+
+3. Press enter, and TR4CKER will add the event.
+![add_new_after](images/countdowntab_addnew_after.png)
+Figure 19: TR4CKER before executing `countdown n/ST2334 Final Examination d/23-Nov-2020`
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Important points to note about the command:**<br>
+
+* This command adds an event with name `NAME` and date `DATE` to the Countdown events list.
 * Both fields are compulsory and can be in any order.
-* `NAME` must be in the alphanumeric format (only containing letters and numbers) and preferably under
-100 characters long, so that it can be displayed in the box without being truncated.
+* `NAME` must be in the alphanumeric format (only containing letters and numbers).
 * `DATE` must be a day in the future (i.e. NOT today or any day before today) and be in the format
 `DD-MM-YYYY` or `DD-MMM-YYYY`.
+* Duplicate events (events with the same `NAME`) are NOT allowed.
+
+</div>
 
 Examples:
-* `countdown d/31-12-2020 n/New Years Eve Countdown Party at Scarlets` - Adds an event `New Years Eve Countdown Party
-at Scarlets` with date `31-Dec-2020` to the Countdowns list of events.
+* `countdown d/31-12-2020 n/New Years Eve Countdown Party at Scarlets` - Adds the event `New Years Eve Countdown Party
+at Scarlets` which occurs on `31-Dec-2020` to the Countdown events list.
 * `countdown n/CS1231 Final Exam d/30-Nov-2020` - Adds an event `CS1231 Final Exam` with date `30-Nov-2020` to the
-Countdowns list of events.
-
-![add_new](images/countdowntab_addnew.png)
-Figure 19: TR4CKER after executing `countdown n/ES2660 Final Presentation d/05-Nov-2020`
+Countdown events list.
 
 ### 3.5.3. Deleting an event from countdowns list
-You can delete an event from your list of events if you no longer want to countdown to it, or if it is over.
+You can delete an event from your events list when it is over, or if you no longer want to countdown to it.
 
 Format: `countdown del/INDEX`
 
-* Deletes the task at index `INDEX` of the events list.
-* `INDEX` has to be a valid index, numbered according to the list in Countdown tab.
-* Warning: This action is irreversible!
+1. Switch to the Countdown tab to view your current list of events.
+
+2. Type `countdown del/INDEX` into the command box, where `INDEX` is the index of the event in the events list.
+![delete_before](images/countdowntab_delete_before.png)
+Figure 19: TR4CKER before executing `countdown del/2`
+
+3. Press enter, and TR4CKER will delete the event.
+![delete_after](images/countdowntab_delete_before.png)
+Figure 19: TR4CKER before executing `countdown del/2`
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Important points to note about the command:**<br>
+
+* This command deletes the event at index `INDEX` of the events list.
+* `INDEX` has to be a valid index of an event, numbered according to the list in Countdown tab.
+* Warning: :warning: This action is irreversible!
+
+</div>
 
 Example:
 * `countdown del/8` - Deletes the event at index `8` of the Countdowns list.
 
-![delete_before](images/countdowntab_delete_before.png)
-Figure 22: Countdown tab of TR4CKER which shows you the current list of events.
+### 3.5.4 Counting the number of events in `X` days
+Ever find yourself wondering how many events you have in the next `x` number of days? TR4CKER can count and give you a
+summary of the events in the next `x` number of days.
 
-![delete_after](images/countdowntab_delete_after.png)
-Figure 23: TR4CKER after executing `countdown del/2`. Event at index `2` of Figure 22 is deleted.
+Format: `countdown days/DAYS`
+
+1. Switch to the Countdown tab to view your current list of events.
+
+2. Type `countdown days/DAYS` into the command box, where `DAYS` is the number of days.
+![days_before](images/countdowntab_days_before.png)
+Figure 19: TR4CKER before executing `countdown days/28`
+
+3. Press enter, and TR4CKER will count the events occurring in the next `DAYS` number of days.
+![days_after](images/countdowntab_days_after.png)
+Figure 19: TR4CKER before executing `countdown days/28`
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Important points to note about the command:**<br>
+
+* This command counts and summarizes the events in the next `DAYS` number of days.
+* `DAYS` has to be a non-negative integer.
+
+</div>
+
+Example:
+* `countdown days/7` - Counts and summarizes the events in the next 7 days.
+* `countdown days/0` - Counts and summarizes the events occurring today.
+* `countdown days/90` - Counts and summarizes the events in the next 90 days.
 
 ## 3.6. Planner (Rui Ling)
 You can view an overview of your schedule in a calendar view and have your tasks list side-by-side using the Planner
@@ -777,6 +845,7 @@ the data of your previous TR4CKER home folder.
 | Modules | Delete modules | `modules del/INDEX` |
 | Modules | Un-assign tasks from modules | `edit INDEX m/del` |
 | Countdown | Add new events to countdowns list | `countdown n/NAME d/DATE` |
+| Countdown | Count the events in the next `x` days | `countdown days/DAYS` |
 | Countdown | Delete events from countdowns list | `countdown del/INDEX` |
 | Planner | View a specific date's tasks in planner tab | `planner goto/DATE` |
 | Planner | View a specific month's tasks in planner tab | `planner goto/MONTH` |
