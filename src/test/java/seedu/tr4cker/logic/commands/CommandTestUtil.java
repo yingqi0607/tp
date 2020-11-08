@@ -28,6 +28,7 @@ import seedu.tr4cker.model.Tr4cker;
 import seedu.tr4cker.model.task.NameContainsKeywordsPredicate;
 import seedu.tr4cker.model.task.Task;
 import seedu.tr4cker.testutil.EditTaskDescriptorBuilder;
+import seedu.tr4cker.testutil.EditTodoDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -99,6 +100,8 @@ public class CommandTestUtil {
 
     public static final EditCommand.EditTaskDescriptor DESC_1;
     public static final EditCommand.EditTaskDescriptor DESC_2;
+    public static final EditCommand.EditTodoDescriptor DESC_3;
+    public static final EditCommand.EditTodoDescriptor DESC_4;
 
     public static final String TAG_NEW_HOMEWORK = " " + PREFIX_NEW_TAG + VALID_TAG_HOMEWORK;
     public static final String TAG_NEW_WORK = " " + PREFIX_NEW_TAG + VALID_TAG_WORK;
@@ -114,6 +117,10 @@ public class CommandTestUtil {
         DESC_2 = new EditTaskDescriptorBuilder().withName(VALID_NAME_2)
                 .withDeadline(VALID_DEADLINE_2).withTaskDescription(VALID_DESCRIPTION_2)
                 .withTags(VALID_TAG_URGENT, VALID_TAG_HELP).build();
+        DESC_3 = new EditTodoDescriptorBuilder().withName(VALID_NAME_1)
+                .withDeadline(VALID_DEADLINE_1).build();
+        DESC_4 = new EditTodoDescriptorBuilder().withName(VALID_NAME_2)
+                .withDeadline(VALID_DEADLINE_2).build();
     }
 
     /**
