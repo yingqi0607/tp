@@ -55,12 +55,14 @@ public class CountdownCommand extends Command {
             + "Examples: \n"
             + COMMAND_WORD + " " + PREFIX_COUNTDOWN_DAYS + "7\n";
 
-    public static final String MESSAGE_GENERIC_COUNTDOWN_USAGE = "Countdown tab: Add an event,"
-            + "delete an event, or switch to countdowns tab.\n"
-            + COMMAND_WORD + " : Switches to Countdown tab\n"
+    public static final String MESSAGE_GENERIC_COUNTDOWN_USAGE = "Countdown tab: Add an event, "
+            + "delete an event, or switch to countdowns tab.\n - "
+            + COMMAND_WORD + " : Switches to Countdown tab\n - "
             + COMMAND_WORD + " " + PREFIX_COUNTDOWN_NEW + "NAME " + PREFIX_COUNTDOWN_DATE + "DATE"
-            + " : Adds an event to list in Countdown\n"
-            + COMMAND_WORD + " " + PREFIX_COUNTDOWN_DELETE + "INDEX" + " : Deletes an event from countdown list\n";
+            + " : Adds an event to list in Countdown\n - "
+            + COMMAND_WORD + " " + PREFIX_COUNTDOWN_DELETE + "INDEX" + " : Deletes an event from countdown list\n - "
+            + COMMAND_WORD + " " + PREFIX_COUNTDOWN_DAYS + "DAYS"
+            + " : Counts the number of events in the next DAYS days\n";
 
     public static final String MESSAGE_SWITCH_TAB_SUCCESS = "Switched to Countdown tab!\n";
 

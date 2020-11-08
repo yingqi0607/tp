@@ -52,6 +52,7 @@ Given below are my contributions to the project.
     * Added documentation for the feature `countdown`: [\#96](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/96)
     * Updated documentation for the feature `countdown`: [\#102](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/102),
     [\#196](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/196)
+    * Add instructions for manual testing: [\#208](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/208)
 
 * **Team-based tasks**:
   * Setting up GitHub team organisation and repo:
