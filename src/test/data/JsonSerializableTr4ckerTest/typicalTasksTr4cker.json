@@ -42,6 +42,12 @@
     "completionStatus" : 0,
     "description" : "Task 7 description",
     "tagged" : [ "homework" ]
+  }, {
+    "name" : "An expired task",
+    "deadline" : "01-02-2020 0000",
+    "completionStatus" : 0,
+    "description" : "This is an expired task",
+    "tagged" : [ "overdue" ]
   } ],
   "events" : [
     {

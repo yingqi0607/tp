@@ -1,34 +1,35 @@
 @startuml
 start
-:User inputs an Add Countdown Command;
-:TR4CKER parses Add Countdown Command;
+:User inputs an Countdown Command;
+:TR4CKER parses Countdown Command;
+:TR4CKER parses arguments;
+note right
+Error in parsing, such as using the wrong
+prefix or giving insufficient arguments
+will result in a Parse Exception.
+end note
 
-if () then ([input has no additional arguments])
+if () then ([has arguments to add event])
+    :TR4CKER parses the given parameters
+    to create a new countdown event;
+    :TR4CKER adds new countdown event to list
+    of countdown events;
+elseif () then ([has arguments to delete event])
+    :TR4CKER parses the given index;
+    :TR4CKER deletes the countdown
+        event at the given index;
+elseif () then ([count number of events in specified days])
+     :TR4CKER counts the number of events
+     within the specified number of days
+     from today;
     :TR4CKER switches to Countdown tab;
-else ([input has additional arguments])
-    :TR4CKER parses arguments;
-    note right
-    Error in parsing, such as using the wrong
-    prefix or giving insufficient arguments
-    will result in a Parse Exception.
-    end note
+else ([no additional arguments])
+endif
 
-    if () then ([add countdown from tasklist])
-        :TR4CKER converts task at given
-        index to a countdown event;
-        :TR4CKER adds converted event
-        to list of countdown events;
-    else ([add new countdown not from tasklist])
-         :TR4CKER parses the given parameters
-         to create a new countdown event;
-         :TR4CKER adds new countdown event to list
-         of countdown events;
-     endif
 :TR4CKER switches to Countdown tab;
 :TR4CKER displays result of Countdown
 Command in feedback display box;
 :TR4CKER displays updated countdown list
 in countdown list panel;
-endif
 stop
 @enduml

@@ -11,7 +11,6 @@ import java.util.Set;
 import seedu.tr4cker.commons.core.Messages;
 import seedu.tr4cker.commons.core.index.Index;
 import seedu.tr4cker.commons.util.StringUtil;
-import seedu.tr4cker.logic.commands.EditCommand;
 import seedu.tr4cker.logic.parser.exceptions.ParseException;
 import seedu.tr4cker.model.countdown.EventDate;
 import seedu.tr4cker.model.countdown.EventName;
@@ -31,7 +30,7 @@ public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
 
-    public static final String MESSAGE_INVALID_DAYS = "Number of days given is not a non-zero  unsigned integer.";
+    public static final String MESSAGE_INVALID_DAYS = "Number of days given is not a non-zero unsigned integer.";
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
@@ -50,12 +49,12 @@ public class ParserUtil {
      * trimmed.
      * @throws ParseException if the specified task index is invalid (not non-zero unsigned integer).
      */
-    public static Index parseTaskIndex(String oneBasedIndex) throws ParseException {
+    public static Index parseTaskIndex(String oneBasedIndex, String invalidMsg) throws ParseException {
         String trimmedIndex = oneBasedIndex.trim();
         if (StringUtil.isInteger(trimmedIndex) && !StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
             throw new ParseException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         } else if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, invalidMsg));
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
@@ -211,7 +210,7 @@ public class ParserUtil {
      *
      * @throws ParseException if the {@code numDays} is invalid.
      */
-    public static int parseNumDays(String numDays) throws ParseException {
+    public static int parseQueryDays(String numDays) throws ParseException {
         requireNonNull(numDays);
         String trimmedNumDays = numDays.trim();
         int numDaysInt;

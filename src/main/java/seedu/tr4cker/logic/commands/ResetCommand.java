@@ -6,13 +6,13 @@ import seedu.tr4cker.model.Model;
 import seedu.tr4cker.model.Tr4cker;
 
 /**
- * Clears TR4CKER.
+ * Resets TR4CKER.
  */
-public class ClearCommand extends Command {
+public class ResetCommand extends Command {
 
-    public static final String COMMAND_WORD = "clear";
+    public static final String COMMAND_WORD = "reset";
 
-    public static final String MESSAGE_SUCCESS = "TR4CKER has been cleared!";
+    public static final String MESSAGE_SUCCESS = "TR4CKER has been reset!";
 
     @Override
     public CommandResult execute(Model model) {
