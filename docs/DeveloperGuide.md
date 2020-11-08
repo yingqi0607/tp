@@ -173,18 +173,17 @@ Once the user marks a task as complete, it will automatically appear under Compl
 This design filters the tasks into 3 lists according to their completion statuses and deadlines which will be useful to the users,
 as opposed to having browse through a long task list.
 
-### Daily feature \[coming in v1.3] (Yingqi)
+### Daily feature (Yingqi)
 Tracker has a daily feature that allows users to add current tasks to a todo list for the day.
 This feature allows users to plan for what they want to do for a particular day.
 
 The 3 main functions of the Daily feature are to:
-1. Add tasks from existing task list to a todo list
+1. Add tasks from existing pending task list to a todo list
 2. Display all tasks that the user wants to do for the day
-3. The daily todo list is cleared everyday
+3. Delete a daily todo task when it is done for the day
 
 #### Implementation
 The UI of the Daily feature is facilitated by the `DailyPanel` class which will show users all daily todo tasks as a list.
-
 To implement the commands of this Daily feature, there are `TodoCommand` and `TodoCommandParser` classes in the `logic` package.
 
 The following diagram shows the sequence flow when a task gets added into the `DailyPanel`:
@@ -206,6 +205,23 @@ The following diagram shows the sequence flow when a task gets added into the `D
 **Justification for current choice:** Users would already have details of the tasks in mind and therefore they will tend
 to add the tasks they feel that are more urgent to daily todo list. Hence details can be ommited when users select tasks
 to add into daily todo list.
+
+#### Aspect 2: How users indicate that they have completed a daily todo task
+* **Current Choice:** 
+There are 3 ways for users to remove a todo from daily todo list:
+1. Delete the pending task from home page, the corresponding task in daily todo list will be removed.
+2. Delete directly from daily todo list, the corresponding pending task in home page is still present.
+3. Indicate that they have completed a pending task, the corresponding todo task will be removed from daily todo list.
+  * Pros: Users can remove a daily todo task under different scenarios.
+  * Cons: May delete a daily todo task unexpectedly and have to add it back again.
+
+* **Alternative 1:** When users want to delete a todo task, prompt a message to double check with the user.
+  *Pros: Prevent users from deleting tasks unexpectedly.
+  *Cons: Users have to enter more commands for deleting
+  
+* **Justification for current choice:** Users would have decided what to remove from their list before deciding to delete.
+It is not necessary to prompt the user on whether to delete a task.
+  
 
 ### Module feature \[coming in v1.3] (Ethan)
 TR4CKER has a module tab which provides users with an alternate view of tasks. Tasks are arranged in shorter lists categorized by modules.
@@ -683,6 +699,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Task**: An item to be completed by a certain deadline.
+* **Todo**: An item planned to be completed in a day.
 * **CLI**: Command-Line Interface, a method of interacting with computer programs by typing lines of text.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -729,8 +746,49 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+### Daily feature
+1. Switching to Daily tab.<br>
+
+    1.1 Prerequisite: Current tab must not be Daily tab.<br>
+    
+    1.2 Test case: `daily`<br>
+    
+    Expected: TR4CKER switches to Daily tab with a result message saying `Switched to Daily tab!`. Daily tab will be
+                  empty if there are no todos.
+
+2. Adding a todo to Daily tab.<br>
+
+    1.1 Prerequisite: List all pending task using the `list` Command. Names of all pending tasks are shown.<br>
+    
+    1.2 Test case: `todo 1`<br>
+    
+    Expected: First pending task is added to Daily tab. TR4CKER shows details of the added task.
+    
+    1.3 Test case: `todo 0`<br>
+    
+    Expected: No todo is added. TR4CKER shows an error message as the index entered is invalid.
+    
+    1.4 Other incorrect todo commands to try: `todo`, `todo x`, `...` (where `x` is larger than the pending list size)<br>
+    
+    Expected: Similar to previous.
+
+3. Deleting a todo in Daily tab.<br>
+    
+    1.1 Prerequisite: There is at least 1 todo in Daily tab to be deleted.<br>
+    
+    1.2 Test case: `daily del/1`<br>
+    
+    Expected: First todo in Daily tab is deleted. TR4CKER shows details of the deleted todo.
+    
+    1.3 Test case: `daily del/0`<br>
+    
+    Expected: No todo is deleted. TR4CKER shows an error message as the index entered is invalid.
+    
+    1.4 Other incorrect delete todo commands to try: `daily del/`, `daily del/x`, `...` (where `x` is larger than the daily todo list size)<br>
+    
+    Expected: Similar to previous.
 ### Module feature
-1. Switching to Module tab<br>
+1. Switching to Module tab.<br>
 
     1.1. Prerequisite: Current tab must not be Module tab.<br>
 
