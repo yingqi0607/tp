@@ -1,15 +1,16 @@
 package seedu.tr4cker.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
+import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_DAILY_DELETE;
+
+import java.util.List;
+
 import seedu.tr4cker.commons.core.Messages;
 import seedu.tr4cker.commons.core.index.Index;
 import seedu.tr4cker.logic.commands.exceptions.CommandException;
 import seedu.tr4cker.model.Model;
 import seedu.tr4cker.model.daily.Todo;
-
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_DAILY_DELETE;
 
 public class DailyCommand extends Command {
 
@@ -23,8 +24,7 @@ public class DailyCommand extends Command {
     public static final String MESSAGE_USAGE = "Looks like you're trying to use the " + COMMAND_WORD + " command: "
             + "Deletes the todo task identified by the index number used in the specified Daily Todos Task List\n"
             + "Compulsory Parameter: INDEX (must be a positive integer and valid index number)\n"
-            + "To delete task from Daily Todo Task List: (E.g. " + COMMAND_WORD + " " +
-            PREFIX_DAILY_DELETE + "1)";
+            + "To delete task from Daily Todo Task List: (E.g. " + COMMAND_WORD + " " + PREFIX_DAILY_DELETE + "1)";
 
     public static final String MESSAGE_TODO_DELETE_SUCCESS = "Deleted todo tasks: %1$s";
 
@@ -37,6 +37,9 @@ public class DailyCommand extends Command {
         this.toDeleteIndex = null;
     }
 
+    /**
+     * Constructor for DailyCommand when user wants to delete a todo task.
+     */
     public DailyCommand(Index toDeleteIndex) {
         requireNonNull(toDeleteIndex);
         this.toDeleteIndex = toDeleteIndex;

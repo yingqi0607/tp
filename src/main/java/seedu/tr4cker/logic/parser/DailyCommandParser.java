@@ -3,10 +3,11 @@ package seedu.tr4cker.logic.parser;
 import static seedu.tr4cker.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_DAILY_DELETE;
 
+import java.util.stream.Stream;
+
 import seedu.tr4cker.commons.core.index.Index;
 import seedu.tr4cker.logic.commands.DailyCommand;
 import seedu.tr4cker.logic.parser.exceptions.ParseException;
-import java.util.stream.Stream;
 
 
 /**
