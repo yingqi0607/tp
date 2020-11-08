@@ -389,13 +389,14 @@ Format: `todo INDEX` [To be implemented: add multiple todo tasks at the same tim
 * The index refers to a valid index number shown in the displayed task list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
-Examples:
-* `list` followed by `todo 1` adds the first task in the displayed task list into daily todo list.
 ![todo before](images/dailyTab_todo1Before.png)
 Figure 8: Daily tab before executing `todo 1`
 
 ![todo result](images/dailyTab_todo1After.png)
 Figure 9: Daily tab after executing `todo 1`
+
+Example:
+* `list` followed by `todo 1` adds the first task in the displayed task list into daily todo list.
 
 ## 3.4. Modules (Ethan)
 
@@ -440,12 +441,6 @@ Format: `modules n/NAME m/MODULECODE`
 * `MODULECODE` is case-insensitive.
 * The keyword `DEL` is not a valid `MODULECODE`.
 
-Examples:
-* `modules n/Computer Graphics m/CS3241` - Adds a module `Computer Graphics` with module code `CS3241`
-to the modules list.
-* `modules n/Effective Communication for Computing Professionals m/CS2101` - Adds a module `Effective Communication
-for Computing Professionals` with module code `CS2101` to the modules list.
-
 1. You enter a command into the command box to create a module, let's say Computer Graphics with module code CS3241.
 ![add module before](images/moduletab_addmodule_before.png)
 Figure 12: TR4CKER before executing `modules n/Computer Graphics m/CS3241`
@@ -453,6 +448,12 @@ Figure 12: TR4CKER before executing `modules n/Computer Graphics m/CS3241`
 2. Press enter and the module should appear at the bottom of the modules list:
 ![add_module after](images/moduletab_addmodule_after.png)
 Figure 13: TR4CKER after executing `modules n/Computer Graphics m/CS3241`
+
+Examples:
+* `modules n/Computer Graphics m/CS3241` - Adds a module `Computer Graphics` with module code `CS3241`
+to the modules list.
+* `modules n/Effective Communication for Computing Professionals m/CS2101` - Adds a module `Effective Communication
+for Computing Professionals` with module code `CS2101` to the modules list.
 
 ### 3.4.3 Assigning a task to a module
 Now with modules being created in the previous section, you may want to start assigning tasks to those modules.
@@ -467,9 +468,6 @@ Format: `edit INDEX [m/MODULECODE]`
 * The module code `MODULECODE` must match one of the module codes of a module in the modules list.
 * Note: Editing a task that already has a module assigned will replace it with the edited module.
 
-Examples:
-* `edit 1 m/CS3241` - Edits the 1st task to be tagged to the module with module code `CS3241`.
-
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Assigning a module code when creating a Task:**<br>
@@ -482,18 +480,21 @@ to assign tasks to modules straight away.
 
 1. You enter a command into the command box to assign a module, let's say to assign task 1 to CS3241.
 ![assign module before](images/moduletab_assignmodule_before.png)
-Figure 14: TR4CKER before executing `edit 3 m/CS3241`
+Figure 14: TR4CKER before executing `edit 1 m/CS3241`
 
 2. Press enter and the module code should have been tagged with the module code.
 ![assign module after](images/moduletab_assignmodule_after.png)
-Figure 15: TR4CKER after executing `edit 3 m/CS3241`
+Figure 15: TR4CKER after executing `edit 1 m/CS3241`
 
 3. Switch to the Module tab, and the task should appear under CS3241.
 ![assign module result](images/moduletab_assignmodule_result.png)
-Figure 16: TR4CKER updated Module tab after executing `edit 3 m/CS3241`
+Figure 16: TR4CKER updated Module tab after executing `edit 1 m/CS3241`
 
-As seen from *Figure 12* and *Figure 13* above, module codes tagged onto tasks will appear as a pink coloured tag under the
+As seen from *Figure 14* and *Figure 15* above, module codes tagged onto tasks will appear as a pink coloured tag under the
 tasks' name.
+
+Example:
+* `edit 1 m/CS3241` - Edits the 1st task to be tagged to the module with module code `CS3241`.
 
 ### 3.4.4 Un-assigning a task from a module
 Maybe you have assigned the wrong module to your task? Or maybe you just want to get rid of it. Modules can be un-assigned
@@ -506,9 +507,6 @@ Format: `edit INDEX m/del`
 * The index **must be a positive integer** 1, 2, 3, …
 * Instead of providing a module code with `m/MODULECODE`, the input `m/del` signifies deleting a module code.
 
-Examples:
-* `edit 3 m/del` - Deletes the module code from the 3rd task.
-
 1. You enter a command into the command box to delete a module assignment, let's say from tasks 1.
 ![unassign module before](images/moduletab_unassignmodule_before.png)
 Figure 17: TR4CKER before executing `edit 1 m/del`
@@ -516,6 +514,9 @@ Figure 17: TR4CKER before executing `edit 1 m/del`
 2. Press enter and the module should be unassigned from task 1.
 ![unassign module](images/moduletab_unassignmodule_after.png)
 Figure 18: TR4CKER after executing `edit 1 m/del`
+
+Example:
+* `edit 3 m/del` - Deletes the module code from the 3rd task.
 
 ### 3.4.5 Deleting a module
 After finishing up a semester and bringing things to a close, it's time to remove these modules as you will not be
@@ -529,9 +530,6 @@ Format: `modules del/INDEX`
 * The index **must be a positive integer** 1, 2, 3, …
 * Warning: This action is irreversible!
 
-Examples:
-* `modules del/1` - Deletes the 1st module in the modules list.
-
 1. You enter a command into the command box to delete a module, let's say module number 9 that we created previously.
 ![delete module before](images/moduletab_deletemodule_before.png)
 Figure 19: TR4CKER before executing `modules del/9`
@@ -539,6 +537,9 @@ Figure 19: TR4CKER before executing `modules del/9`
 2. Press enter and the module should be removed from the list.
 ![delete module after](images/moduletab_deletemodule_after.png)
 Figure 20: TR4CKER after executing `modules del/9`
+
+Example:
+* `modules del/1` - Deletes the 1st module in the modules list.
 
 ## 3.5. Countdown (Wen Ling)
 You can countdown to your most essential upcoming events in the Countdown tab. The Countdown tab tells you how many days
@@ -617,8 +618,8 @@ Format: `countdown del/INDEX`
 Figure 19: TR4CKER before executing `countdown del/2`
 
 3. Press enter, and TR4CKER will delete the event.
-![delete_after](images/countdowntab_delete_before.png)
-Figure 19: TR4CKER before executing `countdown del/2`
+![delete_after](images/countdowntab_delete_after.png)
+Figure 19: TR4CKER after executing `countdown del/2`
 
 <div markdown="block" class="alert alert-info">
 
@@ -647,7 +648,7 @@ Figure 19: TR4CKER before executing `countdown days/28`
 
 3. Press enter, and TR4CKER will count the events occurring in the next `DAYS` number of days.
 ![days_after](images/countdowntab_days_after.png)
-Figure 19: TR4CKER before executing `countdown days/28`
+Figure 19: TR4CKER after executing `countdown days/28`
 
 <div markdown="block" class="alert alert-info">
 
