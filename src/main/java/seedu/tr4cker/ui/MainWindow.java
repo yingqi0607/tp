@@ -20,7 +20,6 @@ import seedu.tr4cker.logic.commands.CommandResult;
 import seedu.tr4cker.logic.commands.exceptions.CommandException;
 import seedu.tr4cker.logic.parser.exceptions.ParseException;
 import seedu.tr4cker.ui.countdown.CountdownTabWindow;
-import seedu.tr4cker.ui.daily.DailyPanel;
 import seedu.tr4cker.ui.daily.DailyTabWindow;
 import seedu.tr4cker.ui.module.ModuleListPanel;
 import seedu.tr4cker.ui.planner.PlannerTabWindow;
@@ -58,8 +57,6 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private final HelpWindow helpWindow;
     private DailyTabWindow dailyTabWindow;
-    private DailyPanel dailyListPanel;
-
     @FXML
     private StackPane commandBoxPlaceholder;
 

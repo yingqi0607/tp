@@ -30,8 +30,8 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true. */
     Predicate<Event> PREDICATE_SHOW_ALL_EVENTS = unused -> true;
 
-    /** {@code Predicate} that always evaluate to true. */
-    Predicate<Todo> PREDICATE_SHOW_ALL_TODOS = unused -> true;
+    /** {@code Predicate} that always evaluate to true when todo is not expired. */
+    Predicate<Todo> PREDICATE_SHOW_ALL_TODOS = todo -> Deadline.isFutureDeadline(todo.getDeadline().toString());
 
     /** Replaces user prefs data with the data in {@code userPrefs}. */
     void setUserPrefs(ReadOnlyUserPrefs userPrefs);
@@ -131,6 +131,13 @@ public interface Model {
      * {@code todo} must not already exist in Tr4cker.
      */
     void addTodo(Todo task);
+
+    /**
+     * Replaces the given todo {@code target} with {@code editedTodo}.
+     * {@code target} must exist in the tr4cker.
+     * The todo identity of {@code editedTask} must not be the same as another existing todo in Tr4cker.
+     */
+    void setTodo(Todo target, Todo editedTodo);
 
     /** Returns an unmodifiable view of the filtered task list. */
     ObservableList<Task> getFilteredTaskList();
