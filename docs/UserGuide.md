@@ -546,6 +546,7 @@ To switch to the Countdown tab, simply type `countdown` into the command line. Y
 on the tabs menu at the top.
 
 Format: `countdown`
+
 Once you have entered this command, TR4CKER should look like this:
 ![switch tab](images/countdowntab_switchtab.png)
 Figure 21: TR4CKER after executing `countdown`
@@ -574,7 +575,7 @@ at Scarlets` with date `31-Dec-2020` to the Countdowns list of events.
 Countdowns list of events.
 
 ![add_new](images/countdowntab_addnew.png)
-Figure 22: TR4CKER after executing `countdown n/ES2660 Final Presentation d/05-Nov-2020`
+Figure 22: TR4CKER after executing `countdown n/ES2660 Final Presentation d/30-Nov-2020`
 
 ### 3.5.3. Deleting an event from countdowns list
 You can delete an event from your list of events if you no longer want to countdown to it, or if it is over.
