@@ -23,6 +23,7 @@ import seedu.tr4cker.logic.commands.DeleteCommand;
 import seedu.tr4cker.logic.commands.DoneCommand;
 import seedu.tr4cker.logic.commands.EditCommand;
 import seedu.tr4cker.logic.commands.EditCommand.EditTaskDescriptor;
+import seedu.tr4cker.logic.commands.EditCommand.EditTodoDescriptor;
 import seedu.tr4cker.logic.commands.ExitCommand;
 import seedu.tr4cker.logic.commands.FindCommand;
 import seedu.tr4cker.logic.commands.HelpCommand;
@@ -31,11 +32,13 @@ import seedu.tr4cker.logic.commands.PlannerCommand;
 import seedu.tr4cker.logic.commands.ResetCommand;
 import seedu.tr4cker.logic.commands.TagCommand;
 import seedu.tr4cker.logic.parser.exceptions.ParseException;
+import seedu.tr4cker.model.daily.Todo;
 import seedu.tr4cker.model.tag.Tag;
 import seedu.tr4cker.model.task.CompletionStatus;
 import seedu.tr4cker.model.task.NameContainsKeywordsPredicate;
 import seedu.tr4cker.model.task.Task;
 import seedu.tr4cker.testutil.EditTaskDescriptorBuilder;
+import seedu.tr4cker.testutil.EditTodoDescriptorBuilder;
 import seedu.tr4cker.testutil.TaskBuilder;
 import seedu.tr4cker.testutil.TaskUtil;
 
@@ -66,10 +69,12 @@ public class Tr4ckerParserTest {
     @Test
     public void parseCommand_edit() throws Exception {
         Task task = new TaskBuilder().build();
-        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder(task).build();
+        Todo todo = new Todo(task.getName(), task.getDeadline());
+        EditTaskDescriptor descriptor1 = new EditTaskDescriptorBuilder(task).build();
+        EditTodoDescriptor descriptor2 = new EditTodoDescriptorBuilder(todo).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_TASK.getOneBased() + " " + TaskUtil.getEditTaskDescriptorDetails(descriptor));
-        EditCommand expectedCommand = new EditCommand(INDEX_FIRST_TASK, descriptor);
+                + INDEX_FIRST_TASK.getOneBased() + " " + TaskUtil.getEditTaskDescriptorDetails(descriptor1));
+        EditCommand expectedCommand = new EditCommand(INDEX_FIRST_TASK, descriptor1, descriptor2);
         assertEquals(expectedCommand, command);
     }
 

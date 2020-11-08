@@ -40,16 +40,19 @@ Given below are my contributions to the project.
   [\#115](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/115)
   * Update tab menu of GUI to have more consistent naming: [\#174](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/174)
   * Wrote additional tests for existing features to increase coverage from 56.16% to 59.86%: [\#175](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/175)
+  * Bug fixes:[\#198](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/198), [\#202](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/202)
 
 * **Documentation**:
   * User Guide:
     * Added documentation for the feature `done`: [\#52](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/52)
     * Added documentation for the feature `countdown`: [\#125](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/125)
+    * Updated documentation for the feature `countdown`: [\#207](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/207)
   * Developer Guide:
     * Update the Project Scope and Glossary under Appendix: Requirements: [\#12](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/12)
     * Added documentation for the feature `countdown`: [\#96](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/96)
     * Updated documentation for the feature `countdown`: [\#102](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/102),
     [\#196](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/196)
+    * Add instructions for manual testing: [\#208](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/208)
 
 * **Team-based tasks**:
   * Setting up GitHub team organisation and repo:

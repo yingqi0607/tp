@@ -91,6 +91,7 @@ public class Tr4cker implements ReadOnlyTr4cker {
         setTasks(newData.getTaskList());
         setEvents(newData.getEventList());
         setModules(newData.getModuleList());
+        setTodos(newData.getTodoList());
     }
 
     //// task-level operations
@@ -229,6 +230,17 @@ public class Tr4cker implements ReadOnlyTr4cker {
      */
     public void removeTodo(Todo key) {
         todos.remove(key);
+    }
+
+    /**
+     * Replaces the given todo {@code target} in the list with {@code editedTodo}.
+     * {@code target} must exist in Tr4cker.
+     * The todo identity of {@code editedTask} must not be the same as another existing todo in Tr4cker.
+     */
+    public void setTodo(Todo target, Todo editedTodo) {
+        requireNonNull(editedTodo);
+
+        todos.setTodo(target, editedTodo);
     }
 
     //// util methods

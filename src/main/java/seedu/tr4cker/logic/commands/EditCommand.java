@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_TASK_DESCRIPTION;
+import static seedu.tr4cker.model.Model.PREDICATE_SHOW_ALL_TODOS;
 import static seedu.tr4cker.model.Model.PREDICATE_SHOW_PENDING_TASKS;
 
 import java.util.Collections;
@@ -17,6 +18,7 @@ import seedu.tr4cker.commons.core.index.Index;
 import seedu.tr4cker.commons.util.CollectionUtil;
 import seedu.tr4cker.logic.commands.exceptions.CommandException;
 import seedu.tr4cker.model.Model;
+import seedu.tr4cker.model.daily.Todo;
 import seedu.tr4cker.model.module.ModuleCode;
 import seedu.tr4cker.model.tag.Tag;
 import seedu.tr4cker.model.task.CompletionStatus;
@@ -50,17 +52,19 @@ public class EditCommand extends Command {
 
     protected final Index index;
     protected final EditTaskDescriptor editTaskDescriptor;
+    protected final EditTodoDescriptor editTodoDescriptor;
 
     /**
      * @param index of the task in the filtered task list to edit
      * @param editTaskDescriptor details to edit the task with
      */
-    public EditCommand(Index index, EditTaskDescriptor editTaskDescriptor) {
+    public EditCommand(Index index, EditTaskDescriptor editTaskDescriptor, EditTodoDescriptor editTodoDescriptor) {
         requireNonNull(index);
         requireNonNull(editTaskDescriptor);
 
         this.index = index;
         this.editTaskDescriptor = new EditTaskDescriptor(editTaskDescriptor);
+        this.editTodoDescriptor = new EditTodoDescriptor(editTodoDescriptor);
     }
 
     @Override
@@ -73,7 +77,9 @@ public class EditCommand extends Command {
         }
 
         Task taskToEdit = lastShownList.get(index.getZeroBased());
+        Todo todoToEdit = new Todo(taskToEdit.getName(), taskToEdit.getDeadline());
         Task editedTask = createEditedTask(taskToEdit, editTaskDescriptor);
+        Todo editedTodo = createEditedTodo(todoToEdit, editTodoDescriptor);
 
         if (!taskToEdit.isSameTask(editedTask) && model.hasTask(editedTask)) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
@@ -85,6 +91,11 @@ public class EditCommand extends Command {
 
         if (!model.hasValidModuleField(editedTask)) {
             throw new CommandException(MESSAGE_INVALID_MODULE);
+        }
+
+        if (model.hasTodo(todoToEdit)) {
+            model.setTodo(todoToEdit, editedTodo);
+            model.updateFilteredTodoList(PREDICATE_SHOW_ALL_TODOS);
         }
 
         assert taskToEdit != null : "Task to edit should not be null here.";
@@ -116,6 +127,19 @@ public class EditCommand extends Command {
 
         return new Task(updatedName, updatedDeadline, initialCompletionStatus,
                 updatedTaskDescription, updatedModuleCode, initialTags);
+    }
+
+    /**
+     * Creates and returns a {@code Todo} with the details of {@code todoToEdit}
+     * edited with {@code editTodoDescriptor}.
+     */
+    protected static Todo createEditedTodo(Todo todoToEdit, EditTodoDescriptor editTodoDescriptor) {
+        requireNonNull(todoToEdit);
+
+        Name updatedName = editTodoDescriptor.getName().orElse(todoToEdit.getName());
+        Deadline updatedDeadline = editTodoDescriptor.getDeadline().orElse(todoToEdit.getDeadline());
+
+        return new Todo(updatedName, updatedDeadline);
     }
 
     @Override
@@ -245,6 +269,74 @@ public class EditCommand extends Command {
                     && getDeadline().equals(e.getDeadline())
                     && getTaskDescription().equals(e.getTaskDescription())
                     && getModuleCode().equals(e.getModuleCode());
+        }
+    }
+
+    /**
+     * Stores the details to edit the todo with. Each non-empty field value will replace the
+     * corresponding field value of the todo.
+     */
+    public static class EditTodoDescriptor {
+        private Name name;
+        private Deadline deadline;
+
+        public EditTodoDescriptor() {}
+
+        /**
+         * Copy constructor.
+         */
+        public EditTodoDescriptor(EditTodoDescriptor toCopy) {
+            requireNonNull(toCopy);
+            setName(toCopy.name);
+            setDeadline(toCopy.deadline);
+        }
+
+        /**
+         * Returns true if at least one field is edited.
+         */
+        public boolean isAnyFieldEdited() {
+            return CollectionUtil.isAnyNonNull(name, deadline);
+        }
+
+        /**
+         * Sets name of an edited Todo
+         */
+        public void setName(Name name) {
+            this.name = name;
+        }
+
+        public Optional<Name> getName() {
+            return Optional.ofNullable(name);
+        }
+
+        /**
+         * Sets deadline of an edited Todo
+         */
+        public void setDeadline(Deadline deadline) {
+            this.deadline = deadline;
+        }
+
+        public Optional<Deadline> getDeadline() {
+            return Optional.ofNullable(deadline);
+        }
+
+        @Override
+        public boolean equals(Object other) {
+            // short circuit if same object
+            if (other == this) {
+                return true;
+            }
+
+            // instanceof handles nulls
+            if (!(other instanceof EditTodoDescriptor)) {
+                return false;
+            }
+
+            // state check
+            EditTodoDescriptor e = (EditTodoDescriptor) other;
+
+            return getName().equals(e.getName())
+                    && getDeadline().equals(e.getDeadline());
         }
     }
 

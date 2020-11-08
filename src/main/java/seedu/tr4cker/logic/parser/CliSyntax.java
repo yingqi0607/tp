@@ -22,5 +22,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_COUNTDOWN_DELETE = new Prefix("del/");
     public static final Prefix PREFIX_COUNTDOWN_DATE = new Prefix("d/");
     public static final Prefix PREFIX_COUNTDOWN_DAYS = new Prefix("days/");
+    public static final Prefix PREFIX_DAILY_DELETE = new Prefix("del/");
 
 }
