@@ -405,12 +405,21 @@ To switch to the Module tab, simply type `modules` into the command line. You ca
 menu at the top.
 
 Format: `modules`
-Once you have entered this command, TR4CKER should look like this:
-![switch tab](images/moduletab_switchtab.png)
-Figure 10: TR4CKER after executing `modules`
+
+1. You enter `modules` into the command box.
+![switch tab before](images/moduletab_switchtab_before.png)
+Figure 10: TR4CKER before executing `modules`
+
+2. Press enter and TR4CKER should switch to the Module tab:
+![switch tab](images/moduletab_switchtab_after.png)
+Figure 11: TR4CKER after executing `modules`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Note:**
 
 The `All Modules` panel shows the list of all modules and their tasks.<br>
 The page will be blank if no modules have been created yet.
+
+</div>
 
 Example:
 * `modules` - Switches to Module tab, showing the list of modules.
@@ -434,9 +443,13 @@ to the modules list.
 * `modules n/Effective Communication for Computing Professionals m/CS2101` - Adds a module `Effective Communication
 for Computing Professionals` with module code `CS2101` to the modules list.
 
-Once enter the command into the command box, the module should appear at the bottom of the modules list:
-![add_module](images/moduletab_addmodule.png)
-Figure 11: TR4CKER after executing `modules n/Effective Communication for Computing Professionals m/CS2101`
+1. You enter a command into the command box to create a module, let's say Computer Graphics with module code CS3241.
+![add module before](images/moduletab_addmodule_before.png)
+Figure 12: TR4CKER before executing `modules n/Computer Graphics m/CS3241`
+
+2. Press enter and the module should appear at the bottom of the modules list:
+![add_module after](images/moduletab_addmodule_after.png)
+Figure 13: TR4CKER after executing `modules n/Computer Graphics m/CS3241`
 
 ### 3.4.3 Assigning a task to a module
 Now with modules being created in the previous section, you may want to start assigning tasks to those modules.
@@ -464,17 +477,17 @@ to assign tasks to modules straight away.
 
 </div>
 
-This shows task 3 under **Pending Tasks** that has not been assigned a module:
+1. You enter a command into the command box to assign a module, let's say to assign task 1 to CS3241.
 ![assign module before](images/moduletab_assignmodule_before.png)
-Figure 12: TR4CKER before executing `edit 3 m/CS3241`
+Figure 14: TR4CKER before executing `edit 3 m/CS3241`
 
-After entering the command into the command box, the edited task should be tagged with the module code:
+2. Press enter and the module code should have been tagged with the module code.
 ![assign module after](images/moduletab_assignmodule_after.png)
-Figure 13: TR4CKER after executing `edit 3 m/CS3241`
+Figure 15: TR4CKER after executing `edit 3 m/CS3241`
 
-Now that the task has been assigned a module code, it should appear in the Module tab under its module:
+3. Switch to the Module tab, and the task should appear under CS3241.
 ![assign module result](images/moduletab_assignmodule_result.png)
-Figure 14: TR4CKER updated Module tab after executing `edit 3 m/CS3241`
+Figure 16: TR4CKER updated Module tab after executing `edit 3 m/CS3241`
 
 As seen from *Figure 12* and *Figure 13* above, module codes tagged onto tasks will appear as a pink coloured tag under the
 tasks' name.
@@ -493,9 +506,13 @@ Format: `edit INDEX m/del`
 Examples:
 * `edit 3 m/del` - Deletes the module code from the 3rd task.
 
-After entering the command into the command box, the module code should be removed from the task:
-![unassign module](images/moduletab_unassignmodule.png)
-Figure 15: TR4CKER after executing `edit 3 m/del`
+1. You enter a command into the command box to delete a module assignment, let's say from tasks 1.
+![unassign module before](images/moduletab_unassignmodule_before.png)
+Figure 17: TR4CKER before executing `edit 1 m/del`
+
+2. Press enter and the module should be unassigned from task 1.
+![unassign module](images/moduletab_unassignmodule_after.png)
+Figure 18: TR4CKER after executing `edit 1 m/del`
 
 ### 3.4.5 Deleting a module
 After finishing up a semester and bringing things to a close, it's time to remove these modules as you will not be
@@ -512,13 +529,13 @@ Format: `modules del/INDEX`
 Examples:
 * `modules del/1` - Deletes the 1st module in the modules list.
 
-First, look for the module index beside the module code and name, here **Computer Graphics** has an `INDEX` of `9`:
+1. You enter a command into the command box to delete a module, let's say module number 9 that we created previously.
 ![delete module before](images/moduletab_deletemodule_before.png)
-Figure 16: TR4CKER before executing `modules del/9`
+Figure 19: TR4CKER before executing `modules del/9`
 
-After entering the command with the specified `INDEX` into the command box, the module should have been removed:
+2. Press enter and the module should be removed from the list.
 ![delete module after](images/moduletab_deletemodule_after.png)
-Figure 17: TR4CKER after executing `modules del/9`
+Figure 20: TR4CKER after executing `modules del/9`
 
 ## 3.5. Countdown (Wen Ling)
 You can countdown to your most essential upcoming events in the Countdown tab. You can know at a quick glance, how many
@@ -531,7 +548,7 @@ on the tabs menu at the top.
 Format: `countdown`
 Once you have entered this command, TR4CKER should look like this:
 ![switch tab](images/countdowntab_switchtab.png)
-Figure 18: TR4CKER after executing `countdown`
+Figure 21: TR4CKER after executing `countdown`
 
 The `Upcoming Events` panel shows the list of upcoming events that are counted down to.
 
@@ -557,7 +574,7 @@ at Scarlets` with date `31-Dec-2020` to the Countdowns list of events.
 Countdowns list of events.
 
 ![add_new](images/countdowntab_addnew.png)
-Figure 19: TR4CKER after executing `countdown n/ES2660 Final Presentation d/05-Nov-2020`
+Figure 22: TR4CKER after executing `countdown n/ES2660 Final Presentation d/05-Nov-2020`
 
 ### 3.5.3. Deleting an event from countdowns list
 You can delete an event from your list of events if you no longer want to countdown to it, or if it is over.
@@ -572,10 +589,10 @@ Example:
 * `countdown del/8` - Deletes the event at index `8` of the Countdowns list.
 
 ![delete_before](images/countdowntab_delete_before.png)
-Figure 22: Countdown tab of TR4CKER which shows you the current list of events.
+Figure 23: Countdown tab of TR4CKER which shows you the current list of events.
 
 ![delete_after](images/countdowntab_delete_after.png)
-Figure 23: TR4CKER after executing `countdown del/2`. Event at index `2` of Figure 22 is deleted.
+Figure 24: TR4CKER after executing `countdown del/2`. Event at index `2` of Figure 22 is deleted.
 
 ## 3.6. Planner (Rui Ling)
 You can view an overview of your schedule in a calendar view and have your tasks list side-by-side using the Planner
@@ -590,11 +607,11 @@ Format: `planner`
 
 1. You enter `planner` into the command box.
 ![switch tab](images/plannertab_switchtab.png)
-Figure 24: TR4CKER before executing `planner`
+Figure 25: TR4CKER before executing `planner`
 
 2. Press enter and TR4CKER should switch to Planner tab.
 ![switch tab](images/plannertab_switchtab1.png)
-Figure 25: TR4CKER after executing `planner`
+Figure 26: TR4CKER after executing `planner`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Note:**
 By default, TR4CKER will circle today's date and the show you the tasks due on that day.
@@ -619,11 +636,11 @@ Format: `planner goto/today` or `planner goto/tdy`
 
 1. You enter the command into the command box to navigate to today.
 ![goto today command](images/plannertab_gototoday.png)
-Figure 26: TR4CKER before executing `planner goto/tdy`
+Figure 27: TR4CKER before executing `planner goto/tdy`
 
 2. Press enter and TR4CKER will change planner tab to today's calendar view and tasks due today.
 ![goto today result](images/plannertab_gototoday1.png)
-Figure 27: TR4CKER after executing `planner goto/tdy`
+Figure 28: TR4CKER after executing `planner goto/tdy`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Note:**
 Input can only be `today` or `tdy`. There are no other alternatives.
@@ -641,11 +658,11 @@ Format: `planner goto/tomorrow` or `planner goto/tmr`
 
 1. You enter the command into the command box to navigate to tomorrow.
 ![goto tomorrow command](images/plannertab_gototomorrow.png)
-Figure 28: TR4CKER before executing `planner goto/tmr`
+Figure 29: TR4CKER before executing `planner goto/tmr`
 
 2. Press enter and TR4CKER will change planner tab to tomorrow's calendar view and tasks due tomorrow.
 ![goto tomorrow result](images/plannertab_gototomorrow1.png)
-Figure 29: TR4CKER after executing `planner goto/tmr`
+Figure 30: TR4CKER after executing `planner goto/tmr`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Note:**
 Input can only be `tomorrow` or `tmr`. There are no other alternatives.
@@ -663,11 +680,11 @@ Format: `planner goto/DATE`
 
 1. You enter the command into the command box to navigate to a specific date, let's say 27 October 2020.
 ![goto date command](images/plannertab_gotodate.png)
-Figure 30: TR4CKER before executing `planner goto/27-10-2020`
+Figure 31: TR4CKER before executing `planner goto/27-10-2020`
 
 2. Press enter and TR4CKER will change planner tab to the date's calendar view and tasks due on that date.
 ![goto date result](images/plannertab_gotodate1.png)
-Figure 31: TR4CKER after executing `planner goto/27-10-2020`
+Figure 32: TR4CKER after executing `planner goto/27-10-2020`
 
 <div markdown="block" class="alert alert-info">
 
@@ -694,11 +711,11 @@ Format: `planner goto/MONTH`
 
 1. You enter the command into the command box to navigate to a specific month, let's say September 2021.
 ![goto month command](images/plannertab_gotomonth.png)
-Figure 32: TR4CKER before executing `planner goto/Sep-2021`
+Figure 33: TR4CKER before executing `planner goto/Sep-2021`
 
 2. Press enter and TR4CKER will change planner tab to the month's calendar view and tasks due on first day of the month.
 ![goto month result](images/plannertab_gotomonth1.png)
-Figure 33: TR4CKER after executing `planner goto/Sep-2021`
+Figure 34: TR4CKER after executing `planner goto/Sep-2021`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Note:**
 By default, TR4CKER will circle the first day of the month you inputted and show you the tasks due on the first day of
@@ -728,7 +745,7 @@ overview of your schedule, Planner tab allows you to check if your upcoming days
 
 The figure below shows the indicators:
 ![indicator](images/plannertab_indicator.png)
-Figure 34: Indicators (circled in red) on calendar
+Figure 35: Indicators (circled in red) on calendar
 
 The indicator colours and their meanings are:
 * No indicator - no tasks due on that date
@@ -747,6 +764,28 @@ There is no need to save manually.
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
 the data of your previous TR4CKER home folder.
+
+**Q**: Is TR4CKER free?<br>
+**A**: Yes! TR4CKER is totally free to use.
+
+**Q**: Where can I find the latest version of TR4CKER?<br>
+**A**: You can download the latest **tr4cker.jar** from [here](https://github.com/AY2021S1-CS2103T-T10-2/tp/releases).
+
+**Q**: What do I do if my tasks expire?<br>
+**A**: Don't worry, you can still edit or delete them using these commands:
+[Edit expired](#3210-editing-expired-tasks-edit-expired) & [Delete expired](#3211-deleting-expired-tasks--delete-expired).
+
+**Q**: Can I add multiple items at once? Multiple tasks / modules / countdowns, together in one line?<br>
+**A**: Unfortunately, TR4CKER can only do one at a time.
+
+**Q**: Can I manually make changes to TR4CKER's save file?<br>
+**A**: This is **NOT** recommended as you could corrupt the save file, but it is possible.
+
+**Q**: Do I need an internet connection?<br>
+**A**: Once you have downloaded TR4CKER, you can continue to use it without internet connection.
+
+**Q**: Is TR4CKER available on my mobile device?<br>
+**A**: TR4CKER is only available on desktop for now, but we are hoping to include mobile support in version 2.0!
 
 --------------------------------------------------------------------------------------------------------------------
 
