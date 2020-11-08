@@ -768,6 +768,49 @@ testers are expected to do more *exploratory* testing.
     3.3. Test case: `edit 1 m/invalid code`
         Expected: TR4CKER shows an error message. First task not assigned to any module. Error details shown in status message.
         
+### Countdown feature
+1. Switching to Countdown tab<br>
+
+    1.1. Prerequisite: Current tab must not be Countdown tab.<br>
+
+    1.2. Test case: `countdown`<br>
+
+    Expected: TR4CKER switches to Countdown tab with a result message saying `Switched to Countdown tab!`. Upcoming
+    events are sorted in chronologial order, with expired events listed at the bottom.
+
+    1.3. Incorrect countdown commands to try:<br>
+        * `countdowns`
+        * `countdown tab`
+
+2. Adding an event to Countdown tab<br>
+
+    2.1. Prerequisite: Must not have another event with the same name. (Tasks in the Home tab with the same name are fine.)
+
+    2.2. Test case: `countdown n/Internship Begins d/01-06-2021`<br>
+    Expected: TR4CKER adds the event to Countdown tab, with a result message saying `New event added to Countdowns
+    added: Internship Begins Date: 01-Jun-2021`.
+
+    2.3. Incorrect countdown commands to try:`countdown n/TR@CKER d/13-11-2020`<br>
+    Expected: TR4CKER shows an `Invalid command format!` error message since `NAME` is not alphanumeric.
+
+3. Deleting an event from Countdown tab<br>
+
+    3.1. Prerequisite: Event is present in events list.
+
+    3.2. Test case: `countdown del/1`
+    Expected: TR4CKER deletes the event at index 1, with a result message saying `Deleted event from Countdowns: ...`.
+
+    3.3. Incorrect countdown commands to try:`countdown del/0`<br>
+    Expected: TR4CKER shows an `Invalid command format!` error message since `INDEX` is not a valid index.
+
+4. Counting the number of events in specified number of days
+
+    4.1. Test case: `countdown days/10`
+    Expected: TR4CKER counts the events in the next 10 days , with a result message saying `There are x event(s) in 10 days :...`.
+
+    4.2. Incorrect countdown commands to try:`countdown days/-10`<br>
+    Expected: TR4CKER shows an `Invalid command format!` error message since `DAYS` is not a valid number of days.
+
 ### Planner feature
 1. Switching to Planner tab<br>
 
