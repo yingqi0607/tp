@@ -53,7 +53,8 @@ public class CommandResultTest {
         assertNotEquals(commandResult.hashCode(), new CommandResult("different").hashCode());
 
         // different showHelp value -> returns different hashcode
-        assertNotEquals(commandResult.hashCode(), CommandResult.createHelpTabSwitchCommandResult("feedback").hashCode());
+        assertNotEquals(commandResult.hashCode(), CommandResult.createHelpTabSwitchCommandResult("feedback")
+                .hashCode());
 
         // different exit value -> returns different hashcode
         assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false, true).hashCode());
