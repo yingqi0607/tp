@@ -327,7 +327,7 @@ Format: `tag INDEX [new/NEW_TAG]…​ [del/TAG_TO_DELETE]…​`
 
 2.  Press enter, and TR4CKER will edit the tag of the Pending task.
     ![AfterTagCommand](images/AfterTagCommand.png)
-    Figure 16: TR4CKER after executing `tag 1 del/urgent` with the urgent tag removed.
+    Figure 16: TR4CKER after executing `tag 1 del/urgent` with the urgent tag removed
 
 Examples:
 * `tag 1 new/urgent` - Adds a new tag `urgent` to the existing tags of 1st task (if the tag does not already exist).
@@ -354,7 +354,7 @@ Format: `find [KEYWORD_1] [KEYWORD_2] ...`
 
 2.  Press enter, and TR4CKER will list out all the Pending tasks that match the keywords.
     ![AfterFindCommand](images/AfterFindCommand.png)
-    Figure 18: TR4CKER after executing `find quiz` with the search results.
+    Figure 18: TR4CKER after executing `find quiz` with the search results
 
 Examples:
 * `find CS2101` returns `CS2101 Oral Presentation 1`
@@ -376,7 +376,7 @@ Format: `delete INDEX`
 
 2.  Press enter, and TR4CKER will delete the Pending task.
     ![AfterDeleteCommand](images/AfterDeleteCommand.png)
-    Figure 20: TR4CKER after executing `delete 1` with the task at index 1 under the Pending Tasks panel removed from TR4CKER.
+    Figure 20: TR4CKER after executing `delete 1` with the task at index 1 under the Pending Tasks panel removed from TR4CKER
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd task in the displayed task list.
@@ -772,8 +772,6 @@ Figure 54: TR4CKER before executing `countdown days/28`
 3. Press enter, and TR4CKER will count the events occurring in the next `DAYS` number of days.
 ![days_after](images/countdowntab_days_after.png)
 Figure 55: TR4CKER after executing `countdown days/28`
-
-<div markdown="block" class="alert alert-info">
 
 Examples:
 * `countdown days/7` - Counts and summarizes the events in the next 7 days.
