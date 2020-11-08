@@ -2,6 +2,7 @@ package seedu.tr4cker.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_COMPLETION_STATUS;
+import static seedu.tr4cker.model.Model.PREDICATE_SHOW_ALL_TODOS;
 import static seedu.tr4cker.model.Model.PREDICATE_SHOW_COMPLETED_TASKS;
 import static seedu.tr4cker.model.Model.PREDICATE_SHOW_PENDING_TASKS;
 
@@ -12,6 +13,7 @@ import seedu.tr4cker.commons.core.Messages;
 import seedu.tr4cker.commons.core.index.Index;
 import seedu.tr4cker.logic.commands.exceptions.CommandException;
 import seedu.tr4cker.model.Model;
+import seedu.tr4cker.model.daily.Todo;
 import seedu.tr4cker.model.module.ModuleCode;
 import seedu.tr4cker.model.tag.Tag;
 import seedu.tr4cker.model.task.CompletionStatus;
@@ -66,11 +68,18 @@ public class DoneCommand extends Command {
         }
 
         Task taskToComplete = lastShownList.get(index.getZeroBased());
+        Todo todoToComplete = new Todo(taskToComplete.getName(), taskToComplete.getDeadline());
         Task completedTask = createCompletedTask(taskToComplete, completionStatus);
+
+        if (model.hasTodo(todoToComplete) && completedTask.isCompleted()) {
+            model.deleteTodo(todoToComplete);
+        }
 
         model.setTask(taskToComplete, completedTask);
         model.updateFilteredPendingTaskList(PREDICATE_SHOW_PENDING_TASKS);
         model.updateFilteredCompletedTaskList(PREDICATE_SHOW_COMPLETED_TASKS);
+        model.updateFilteredTodoList(PREDICATE_SHOW_ALL_TODOS);
+
 
         if (completedTask.getCompletionStatus().compareTo(taskToComplete.getCompletionStatus()) > 0) {
             CommandResult commandResult =
