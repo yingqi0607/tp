@@ -36,7 +36,7 @@ public class CommandResultTest {
         assertNotEquals(new CommandResult("different"), commandResult);
 
         // different showHelp value -> returns false
-        assertNotEquals(new CommandResult("feedback", true, false), commandResult);
+        assertNotEquals(CommandResult.createHelpTabSwitchCommandResult("feedback"), commandResult);
 
         // different exit value -> returns false
         assertNotEquals(new CommandResult("feedback", false, true), commandResult);
@@ -53,7 +53,7 @@ public class CommandResultTest {
         assertNotEquals(commandResult.hashCode(), new CommandResult("different").hashCode());
 
         // different showHelp value -> returns different hashcode
-        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", true, false).hashCode());
+        assertNotEquals(commandResult.hashCode(), CommandResult.createHelpTabSwitchCommandResult("feedback").hashCode());
 
         // different exit value -> returns different hashcode
         assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false, true).hashCode());
@@ -61,9 +61,9 @@ public class CommandResultTest {
 
     @Test
     public void testBoolean() {
-        CommandResult commandResult = new CommandResult("feedback", true, true);
+        CommandResult commandResult = CommandResult.createHelpTabSwitchCommandResult("feedback");
         assertTrue(commandResult.isShowHelp());
-        assertTrue(commandResult.isExit());
+        assertFalse(commandResult.isExit());
         assertFalse(commandResult.isShowPlanner());
     }
 }
