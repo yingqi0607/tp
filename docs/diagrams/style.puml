@@ -35,6 +35,8 @@
 
 !define PLANNER_COLOR #CC0066
 
+!define COUNTDOWN_COLOR #00ACC6
+
 skinparam BackgroundColor #FFFFFFF
 
 skinparam Shadowing false

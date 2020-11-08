@@ -3,6 +3,7 @@ package seedu.tr4cker.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.tr4cker.model.module.ModuleCode;
 import seedu.tr4cker.model.tag.Tag;
 import seedu.tr4cker.model.task.CompletionStatus;
 import seedu.tr4cker.model.task.Deadline;
@@ -25,6 +26,7 @@ public class TaskBuilder {
     private Deadline deadline;
     private CompletionStatus completionStatus;
     private TaskDescription taskDescription;
+    private Set<ModuleCode> moduleCode;
     private Set<Tag> tags;
 
     /**
@@ -35,7 +37,9 @@ public class TaskBuilder {
         deadline = new Deadline(DEFAULT_DEADLINE, false);
         completionStatus = new CompletionStatus(DEFAULT_COMPLETION_STATUS);
         taskDescription = new TaskDescription(DEFAULT_DESCRIPTION);
+        moduleCode = new HashSet<>();
         tags = new HashSet<>();
+        tags.add(new Tag("homework"));
     }
 
     /**
@@ -46,6 +50,7 @@ public class TaskBuilder {
         deadline = taskToCopy.getDeadline();
         completionStatus = taskToCopy.getCompletionStatus();
         taskDescription = taskToCopy.getTaskDescription();
+        moduleCode = new HashSet<>(taskToCopy.getModuleCode());
         tags = new HashSet<>(taskToCopy.getTags());
     }
 
@@ -54,6 +59,16 @@ public class TaskBuilder {
      */
     public TaskBuilder withName(String name) {
         this.name = new Name(name);
+        return this;
+    }
+
+    /**
+     * Sets the {@code moduleCode} to a new {@code Set<ModuleCode>}.
+     * Parses the {@code codeName} into a {@code ModuleCode} adds it to {@code moduleCode} of
+     * the {@code Task} we are building.
+     */
+    public TaskBuilder withModule(String codeName) {
+        this.moduleCode = SampleDataUtil.getModuleCodeSet(codeName);
         return this;
     }
 
@@ -91,7 +106,7 @@ public class TaskBuilder {
     }
 
     public Task build() {
-        return new Task(name, deadline, completionStatus, taskDescription, tags);
+        return new Task(name, deadline, completionStatus, taskDescription, moduleCode, tags);
     }
 
 }

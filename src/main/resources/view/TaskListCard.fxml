@@ -23,19 +23,22 @@
                   <Insets bottom="10.0" />
                </HBox.margin>
         </Label>
-        <Label fx:id="name" styleClass="cell_big_label" text="\$name">
+        <Label fx:id="name" styleClass="cell_big_label" text="\$name" wrapText="true" minWidth="30">
                <HBox.margin>
                   <Insets bottom="10.0" />
                </HBox.margin></Label>
-         <Label fx:id="deadline" styleClass="cell_small_label_deadline" text="\$deadline">
+         <Label fx:id="deadline" styleClass="cell_small_label_deadline" text="\$deadline"
+         wrapText="true" minWidth="100">
                <HBox.margin>
                   <Insets bottom="10.0" left="10.0" />
                </HBox.margin></Label>
-         <Label fx:id="completionStatus" styleClass="cell_small_label_completionStatus" text="\$completionStatus">
+         <Label fx:id="completionStatus" styleClass="cell_small_label_completionStatus" text="\$completionStatus"
+         wrapText="true" minWidth="80">
                <HBox.margin>
                   <Insets bottom="10.0" left="10.0" />
                </HBox.margin></Label>
       </HBox>
+      <FlowPane fx:id="moduleCode" prefHeight="9.0" prefWidth="130.0" />
       <FlowPane fx:id="tags" prefHeight="9.0" prefWidth="130.0" />
       <Label fx:id="description" styleClass="cell_small_label" text="\$description" wrapText="true">
             <VBox.margin>

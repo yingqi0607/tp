@@ -39,6 +39,8 @@ public class TaskCard extends UiPart<Region> {
     @FXML
     private Label completionStatus;
     @FXML
+    private FlowPane moduleCode;
+    @FXML
     private FlowPane tags;
 
     /**
@@ -52,6 +54,8 @@ public class TaskCard extends UiPart<Region> {
         deadline.setText(task.getDeadline().toString());
         description.setText(task.getTaskDescription().value);
         completionStatus.setText("Progress | " + task.getCompletionStatus().toString());
+        task.getModuleCode().stream()
+                .forEach(code -> moduleCode.getChildren().add(new Label(code.codeName)));
         task.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

@@ -1,6 +1,6 @@
 package seedu.tr4cker.logic.commands;
 
-import static seedu.tr4cker.commons.util.CollectionUtil.requireAllNonNull;
+import static java.util.Objects.requireNonNull;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_DELETE_TAG;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_NEW_TAG;
 import static seedu.tr4cker.model.Model.PREDICATE_SHOW_PENDING_TASKS;
@@ -31,6 +31,8 @@ public class TagCommand extends Command {
             + PREFIX_DELETE_TAG + "stillHaveTime";
 
     public static final String MESSAGE_SUCCESS = "Tags edited for Task: %1$s";
+    public static final String MESSAGE_SUCCESS_DUPLICATE_TAGS = "\nAddition of duplicate tags detected: %1$s";
+    public static final String MESSAGE_SUCCESS_NON_EXISTING_TAGS = "\nDeletion of non-existing tags detected: %1$s";
 
     private final Index index;
     private final Set<Tag> tagsToAdd;
@@ -42,7 +44,7 @@ public class TagCommand extends Command {
      * @param tagsToDelete Tags to be deleted from the task.
      */
     public TagCommand(Index index, Set<Tag> tagsToAdd, Set<Tag> tagsToDelete) {
-        requireAllNonNull(index);
+        requireNonNull(index);
 
         this.index = index;
         this.tagsToAdd = tagsToAdd;
@@ -51,30 +53,47 @@ public class TagCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        List<Task> lastShownList = model.getFilteredTaskList();
+        requireNonNull(model);
+        List<Task> lastShownList = model.getFilteredPendingTaskList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
 
         Task taskToEdit = lastShownList.get(index.getZeroBased());
-        taskToEdit.addTags(tagsToAdd);
-        taskToEdit.deleteTags(tagsToDelete);
+        Set<Tag> duplicateTags = taskToEdit.addTags(tagsToAdd);
+        Set<Tag> nonExistingTags = taskToEdit.deleteTags(tagsToDelete);
         Task editedTask = new Task(taskToEdit.getName(), taskToEdit.getDeadline(), taskToEdit.getCompletionStatus(),
-                taskToEdit.getTaskDescription(), taskToEdit.getTags());
+                taskToEdit.getTaskDescription(), taskToEdit.getModuleCode(), taskToEdit.getTags());
+
+        assert editedTask != null : "Edited task should not be null here.";
 
         model.setTask(taskToEdit, editedTask);
-        model.updateFilteredTaskList(PREDICATE_SHOW_PENDING_TASKS);
+        model.updateFilteredPendingTaskList(PREDICATE_SHOW_PENDING_TASKS);
 
-        return new CommandResult(generateSuccessMessage(editedTask));
+        return new CommandResult(generateSuccessMessage(editedTask, duplicateTags, nonExistingTags));
     }
 
     /**
      * Generates a command execution success message when tag(s) are added
      * to and/or removed from {@code taskToEdit}.
      */
-    private String generateSuccessMessage(Task taskToEdit) {
-        return String.format(MESSAGE_SUCCESS, taskToEdit);
+    private String generateSuccessMessage(Task taskToEdit, Set<Tag> duplicateTags, Set<Tag> nonExistingTags) {
+        String message = "";
+        if (duplicateTags.isEmpty() && nonExistingTags.isEmpty()) {
+            return String.format(MESSAGE_SUCCESS, taskToEdit);
+        } else if (!duplicateTags.isEmpty() && nonExistingTags.isEmpty()) {
+            message += String.format(MESSAGE_SUCCESS, taskToEdit);
+            message += String.format(MESSAGE_SUCCESS_DUPLICATE_TAGS, duplicateTags);
+        } else if (duplicateTags.isEmpty()) {
+            message += String.format(MESSAGE_SUCCESS, taskToEdit);
+            message += String.format(MESSAGE_SUCCESS_NON_EXISTING_TAGS, nonExistingTags);
+        } else {
+            message += String.format(MESSAGE_SUCCESS, taskToEdit);
+            message += String.format(MESSAGE_SUCCESS_DUPLICATE_TAGS, duplicateTags);
+            message += String.format(MESSAGE_SUCCESS_NON_EXISTING_TAGS, nonExistingTags);
+        }
+        return message;
     }
 
     @Override

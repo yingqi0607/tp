@@ -24,8 +24,8 @@ import seedu.tr4cker.model.task.NameContainsKeywordsPredicate;
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindCommandTest {
-    private Model model = new ModelManager(getTypicalTr4cker(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalTr4cker(), new UserPrefs());
+    private final Model model = new ModelManager(getTypicalTr4cker(), new UserPrefs());
+    private final Model expectedModel = new ModelManager(getTypicalTr4cker(), new UserPrefs());
 
     @Test
     public void equals() {
@@ -59,9 +59,9 @@ public class FindCommandTest {
         String expectedMessage = String.format(MESSAGE_TASKS_LISTED_OVERVIEW, 0);
         NameContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindCommand command = new FindCommand(predicate);
-        expectedModel.updateFilteredTaskList(predicate);
+        expectedModel.updateFilteredPendingTaskList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredTaskList());
+        assertEquals(Collections.emptyList(), model.getFilteredPendingTaskList());
     }
 
     @Test
@@ -69,9 +69,9 @@ public class FindCommandTest {
         String expectedMessage = String.format(MESSAGE_TASKS_LISTED_OVERVIEW, 3);
         NameContainsKeywordsPredicate predicate = preparePredicate("Task3 Task5 Task6");
         FindCommand command = new FindCommand(predicate);
-        expectedModel.updateFilteredTaskList(predicate);
+        expectedModel.updateFilteredPendingTaskList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(TASK3, TASK5, TASK6), model.getFilteredTaskList());
+        assertEquals(Arrays.asList(TASK3, TASK5, TASK6), model.getFilteredPendingTaskList());
     }
 
     /**

@@ -32,15 +32,14 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
 
         try {
             if (isDeleteExpiredTask) {
-                Index index = ParserUtil.parseIndex(trimmedArgsTokens[1]);
+                Index index = ParserUtil.parseTaskIndex(trimmedArgsTokens[1], DeleteCommand.MESSAGE_USAGE);
                 return new DeleteExpiredCommand(index);
             } else {
-                Index index = ParserUtil.parseIndex(trimmedArgsTokens[0]);
+                Index index = ParserUtil.parseTaskIndex(trimmedArgsTokens[0], DeleteExpiredCommand.MESSAGE_USAGE);
                 return new DeleteCommand(index);
             }
-        } catch (ParseException | ArrayIndexOutOfBoundsException pe) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe);
+        } catch (ParseException pe) {
+            throw new ParseException(pe.getMessage());
         }
     }
 }

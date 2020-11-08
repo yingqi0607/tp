@@ -18,7 +18,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="775" minWidth="950" onCloseRequest="#handleExit" title="TR4CKER" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="775" minWidth="1500" onCloseRequest="#handleExit" title="TR4CKER" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/soccat.png" />
   </icons>
@@ -48,7 +48,7 @@
           </Menu>
           <Menu>
             <graphic>
-              <Label fx:id="tabCountdown" onMouseClicked="#handleShowTabCountdown" text="Countdowns" />
+              <Label fx:id="tabCountdown" onMouseClicked="#handleShowTabCountdown" text="Countdown" />
             </graphic>
           </Menu>
           <Menu>
@@ -73,9 +73,9 @@
                   </padding>
 
                   <SplitPane dividerPositions="0.33, 0.66" minWidth="900">
-                    <StackPane fx:id="taskListPanelPlaceholder" prefWidth="300" minWidth="-Infinity" VBox.vgrow="NEVER" />
-                    <StackPane fx:id="expiredTaskListPanelPlaceholder" prefWidth="300" minWidth="-Infinity" VBox.vgrow="NEVER" />
-                    <StackPane fx:id="completedTaskListPanelPlaceholder" prefWidth="300" minWidth="-Infinity" VBox.vgrow="NEVER" />
+                    <StackPane fx:id="taskListPanelPlaceholder" prefWidth="400" minWidth="-Infinity" VBox.vgrow="NEVER" />
+                    <StackPane fx:id="expiredTaskListPanelPlaceholder" prefWidth="400" minWidth="-Infinity" VBox.vgrow="NEVER" />
+                    <StackPane fx:id="completedTaskListPanelPlaceholder" prefWidth="400" minWidth="-Infinity" VBox.vgrow="NEVER" />
                   </SplitPane>
 
                 </VBox>
@@ -83,12 +83,12 @@
             </Tab>
             <Tab text="Daily">
               <content>
-
+                <StackPane fx:id="dailyTabWindowPlaceholder" prefHeight="110.0" prefWidth="200.0" />
               </content>
             </Tab>
             <Tab text="Module">
               <content>
-
+                  <StackPane fx:id="moduleListPanelPlaceholder" prefWidth="900" minWidth="-Infinity" VBox.vgrow="NEVER" />
               </content>
             </Tab>
             <Tab text="Countdown">

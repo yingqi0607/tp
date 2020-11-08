@@ -20,7 +20,10 @@ import seedu.tr4cker.logic.commands.CommandResult;
 import seedu.tr4cker.logic.commands.exceptions.CommandException;
 import seedu.tr4cker.logic.parser.exceptions.ParseException;
 import seedu.tr4cker.ui.countdown.CountdownTabWindow;
+import seedu.tr4cker.ui.daily.DailyTabWindow;
+import seedu.tr4cker.ui.module.ModuleListPanel;
 import seedu.tr4cker.ui.planner.PlannerTabWindow;
+
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -38,20 +41,22 @@ public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
 
+    private static Logic logic;
+
     private final Logger logger = LogsCenter.getLogger(getClass());
 
     private final Stage primaryStage;
-    private final Logic logic;
 
     // Independent Ui parts residing in this Ui container
     private TaskListPanel taskListPanel;
     private ExpiredTaskListPanel expiredTaskListPanel;
     private CompletedTaskListPanel completedTaskListPanel;
+    private ModuleListPanel moduleListPanel;
     private PlannerTabWindow plannerTabWindow;
     private CountdownTabWindow countdownTabWindow;
     private ResultDisplay resultDisplay;
     private final HelpWindow helpWindow;
-
+    private DailyTabWindow dailyTabWindow;
     @FXML
     private StackPane commandBoxPlaceholder;
 
@@ -74,13 +79,28 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane statusbarPlaceholder;
 
     /*
+     * Module tab content.
+     */
+    @FXML
+    private StackPane moduleListPanelPlaceholder;
+
+    /*
      * Planner tab content.
      */
     @FXML
     private StackPane plannerTabWindowPlaceholder;
 
+    /*
+     * Countdown tab content.
+     */
     @FXML
     private StackPane countdownTabWindowPlaceholder;
+
+    /*
+     * Daily tab content.
+     */
+    @FXML
+    private StackPane dailyTabWindowPlaceholder;
 
     /*
      * Tab related objects
@@ -114,7 +134,7 @@ public class MainWindow extends UiPart<Stage> {
 
         // Set dependencies
         this.primaryStage = primaryStage;
-        this.logic = logic;
+        MainWindow.logic = logic;
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
@@ -124,6 +144,10 @@ public class MainWindow extends UiPart<Stage> {
         setTabColors(0);
 
         helpWindow = new HelpWindow();
+    }
+
+    public static Logic getLogic() {
+        return logic;
     }
 
     public Stage getPrimaryStage() {
@@ -168,7 +192,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        taskListPanel = new TaskListPanel(logic.getFilteredTaskList());
+        taskListPanel = new TaskListPanel(logic.getFilteredPendingTaskList());
         taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
 
         expiredTaskListPanel = new ExpiredTaskListPanel(logic.getFilteredExpiredTaskList());
@@ -186,11 +210,21 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
+        /*Modules */
+        moduleListPanel = new ModuleListPanel(logic.getFilteredModuleList(), logic.getFilteredTaskList());
+        moduleListPanelPlaceholder.getChildren().add(moduleListPanel.getRoot());
+
+        /*Planner */
         plannerTabWindow = new PlannerTabWindow(logic);
         plannerTabWindowPlaceholder.getChildren().add(plannerTabWindow.getRoot());
 
+        /*Countdown*/
         countdownTabWindow = new CountdownTabWindow(logic);
         countdownTabWindowPlaceholder.getChildren().add(countdownTabWindow.getRoot());
+
+        /*Daily*/
+        dailyTabWindow = new DailyTabWindow(logic);
+        dailyTabWindowPlaceholder.getChildren().add(dailyTabWindow.getRoot());
     }
 
     /**
@@ -255,6 +289,7 @@ public class MainWindow extends UiPart<Stage> {
     public void handleShowTabCountdown() {
         tabPane.getSelectionModel().select(COUNTDOWN);
         setTabColors(COUNTDOWN);
+        logger.info("Countdown tab is selected");
     }
 
     /**
@@ -316,6 +351,7 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            plannerTabWindow.updateIndicator();
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
@@ -325,6 +361,14 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
+            if (commandResult.isShowHome()) {
+                handleShowTabHome();
+            }
+
+            if (commandResult.isShowModules()) {
+                handleShowTabModule();
+            }
+
             if (commandResult.isShowPlanner()) {
                 plannerTabWindow.updateCalendar(commandResult);
                 handleShowTabPlanner();
@@ -332,6 +376,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowCountdown()) {
                 handleShowTabCountdown();
+            }
+
+            if (commandResult.isShowDaily()) {
+                handleShowTabDaily();
             }
 
             return commandResult;

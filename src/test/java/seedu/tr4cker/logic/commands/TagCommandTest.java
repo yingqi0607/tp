@@ -2,7 +2,6 @@ package seedu.tr4cker.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.showTaskAtIndex;
@@ -33,10 +32,12 @@ class TagCommandTest {
     private final Tag tag2 = new Tag("assignment");
     private final Set<Tag> add = new HashSet<>();
     private final Set<Tag> delete = new HashSet<>();
+    private final Set<Tag> duplicateTags = new HashSet<>();
+    private final Set<Tag> nonExistingTags = new HashSet<>();
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Task taskToEdit = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
+        Task taskToEdit = model.getFilteredTaskList().get(INDEX_SECOND_TASK.getZeroBased());
         TagCommand tagCommand = new TagCommand(INDEX_FIRST_TASK, add, delete);
 
         String expectedMessage = String.format(TagCommand.MESSAGE_SUCCESS, taskToEdit);
@@ -60,7 +61,7 @@ class TagCommandTest {
     public void execute_validIndexFilteredList_success() {
         showTaskAtIndex(model, INDEX_FIRST_TASK);
 
-        Task taskToEdit = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
+        Task taskToEdit = model.getFilteredPendingTaskList().get(INDEX_FIRST_TASK.getZeroBased());
         TagCommand tagCommand = new TagCommand(INDEX_FIRST_TASK, add, delete);
 
         String expectedMessage = String.format(TagCommand.MESSAGE_SUCCESS, taskToEdit);
@@ -76,13 +77,81 @@ class TagCommandTest {
     public void execute_invalidIndexFilteredList_throwsCommandException() {
         showTaskAtIndex(model, INDEX_FIRST_TASK);
 
-        Index outOfBoundIndex = INDEX_SECOND_TASK;
-        // ensures that outOfBoundIndex is still in bounds of Tr4cker list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getTr4cker().getTaskList().size());
+        Index outOfBoundIndex = Index.fromOneBased(model.getTr4cker().getTaskList().size() + 1);
 
         TagCommand tagCommand = new TagCommand(outOfBoundIndex, add, delete);
 
         assertCommandFailure(tagCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_duplicateTags_success() {
+        add.add(tag1);
+        duplicateTags.add(tag1);
+
+        showTaskAtIndex(model, INDEX_FIRST_TASK);
+
+        Task taskToEdit = model.getFilteredPendingTaskList().get(INDEX_FIRST_TASK.getZeroBased());
+        TagCommand tagCommand = new TagCommand(INDEX_FIRST_TASK, add, delete);
+
+        Task newTask = new Task(taskToEdit.getName(), taskToEdit.getDeadline(),
+                taskToEdit.getCompletionStatus(), taskToEdit.getTaskDescription(),
+                taskToEdit.getModuleCode(), add);
+
+        String expectedMessage = String.format(TagCommand.MESSAGE_SUCCESS, newTask);
+        expectedMessage += String.format(TagCommand.MESSAGE_SUCCESS_DUPLICATE_TAGS, duplicateTags);
+
+        Model expectedModel = new ModelManager(model.getTr4cker(), new UserPrefs());
+        expectedModel.setTask(model.getFilteredPendingTaskList().get(0), newTask);
+        assertCommandSuccess(tagCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_nonExistingTags_success() {
+        delete.add(tag2);
+        nonExistingTags.add(tag2);
+
+        showTaskAtIndex(model, INDEX_FIRST_TASK);
+
+        Task taskToEdit = model.getFilteredPendingTaskList().get(INDEX_FIRST_TASK.getZeroBased());
+        TagCommand tagCommand = new TagCommand(INDEX_FIRST_TASK, add, delete);
+
+        Task newTask = new Task(taskToEdit.getName(), taskToEdit.getDeadline(),
+                taskToEdit.getCompletionStatus(), taskToEdit.getTaskDescription(),
+                taskToEdit.getModuleCode(), taskToEdit.getTags());
+        newTask.deleteTags(delete);
+
+        String expectedMessage = String.format(TagCommand.MESSAGE_SUCCESS, newTask);
+        expectedMessage += String.format(TagCommand.MESSAGE_SUCCESS_NON_EXISTING_TAGS, nonExistingTags);
+
+        Model expectedModel = new ModelManager(model.getTr4cker(), new UserPrefs());
+        expectedModel.setTask(model.getFilteredPendingTaskList().get(0), newTask);
+        assertCommandSuccess(tagCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_duplicateAndNonExistingTags_success() {
+        add.add(tag1);
+        duplicateTags.add(tag1);
+        delete.add(tag2);
+        nonExistingTags.add(tag2);
+
+        showTaskAtIndex(model, INDEX_FIRST_TASK);
+
+        Task taskToEdit = model.getFilteredPendingTaskList().get(INDEX_FIRST_TASK.getZeroBased());
+        TagCommand tagCommand = new TagCommand(INDEX_FIRST_TASK, add, delete);
+
+        Task newTask = new Task(taskToEdit.getName(), taskToEdit.getDeadline(),
+                taskToEdit.getCompletionStatus(), taskToEdit.getTaskDescription(),
+                taskToEdit.getModuleCode(), taskToEdit.getTags());
+
+        String expectedMessage = String.format(TagCommand.MESSAGE_SUCCESS, newTask);
+        expectedMessage += String.format(TagCommand.MESSAGE_SUCCESS_DUPLICATE_TAGS, duplicateTags);
+        expectedMessage += String.format(TagCommand.MESSAGE_SUCCESS_NON_EXISTING_TAGS, nonExistingTags);
+
+        Model expectedModel = new ModelManager(model.getTr4cker(), new UserPrefs());
+        expectedModel.setTask(model.getFilteredPendingTaskList().get(0), newTask);
+        assertCommandSuccess(tagCommand, model, expectedMessage, expectedModel);
     }
 
     @Test

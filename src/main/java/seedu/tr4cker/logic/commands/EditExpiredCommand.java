@@ -18,8 +18,9 @@ public class EditExpiredCommand extends EditCommand {
      * @param index of the task in the filtered task list to edit
      * @param editTaskDescriptor details to edit the task with
      */
-    public EditExpiredCommand(Index index, EditTaskDescriptor editTaskDescriptor) {
-        super(index, editTaskDescriptor);
+    public EditExpiredCommand(Index index, EditTaskDescriptor editTaskDescriptor,
+                              EditTodoDescriptor editTodoDescriptor) {
+        super(index, editTaskDescriptor, editTodoDescriptor);
     }
 
     @Override
@@ -38,11 +39,16 @@ public class EditExpiredCommand extends EditCommand {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
 
+        if (!taskToEdit.isEdited(editedTask)) {
+            throw new CommandException(MESSAGE_UNCHANGED);
+        }
+
         model.setTask(taskToEdit, editedTask);
-        //model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
-        model.updateFilteredTaskList(PREDICATE_SHOW_PENDING_TASKS);
+        model.updateFilteredPendingTaskList(PREDICATE_SHOW_PENDING_TASKS);
         model.updateFilteredExpiredTaskList(PREDICATE_SHOW_EXPIRED_TASKS);
 
-        return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask));
+        CommandResult commandResult = new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask));
+        commandResult.setHomeTab();
+        return commandResult;
     }
 }

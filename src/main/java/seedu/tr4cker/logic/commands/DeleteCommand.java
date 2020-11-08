@@ -8,6 +8,7 @@ import seedu.tr4cker.commons.core.Messages;
 import seedu.tr4cker.commons.core.index.Index;
 import seedu.tr4cker.logic.commands.exceptions.CommandException;
 import seedu.tr4cker.model.Model;
+import seedu.tr4cker.model.daily.Todo;
 import seedu.tr4cker.model.task.Task;
 
 /**
@@ -34,15 +35,23 @@ public class DeleteCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Task> lastShownList = model.getFilteredTaskList();
+        List<Task> lastShownList = model.getFilteredPendingTaskList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
 
         Task taskToDelete = lastShownList.get(targetIndex.getZeroBased());
+        Todo todoToDelete = new Todo(taskToDelete.getName(), taskToDelete.getDeadline());
         model.deleteTask(taskToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_TASK_SUCCESS, taskToDelete));
+
+        if (model.hasTodo(todoToDelete)) {
+            model.deleteTodo(todoToDelete);
+        }
+
+        CommandResult commandResult = new CommandResult(String.format(MESSAGE_DELETE_TASK_SUCCESS, taskToDelete));
+        commandResult.setHomeTab();
+        return commandResult;
     }
 
     @Override

@@ -1,6 +1,6 @@
 {
   "tasks": [ {
-    "name": "Person with invalid name field: Ha!ns Mu@ster",
+    "name": "Task with invalid name field: Ta!sk Du@e",
     "deadline": "9482424",
     "completionStatus": -1,
     "description": "invalid description"

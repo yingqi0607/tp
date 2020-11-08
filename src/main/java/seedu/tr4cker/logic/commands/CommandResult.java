@@ -21,11 +21,20 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
+    /** TR4CKER shows Module tab. */
+    private boolean showModules;
+
+    /** TR4CKER shows Home tab. */
+    private boolean showHome;
+
     /** TR4CKER shows Planner tab. */
     private boolean showPlanner;
 
     /** TR4CKER shows Countdown tab. */
     private boolean showCountdown;
+
+    /** TR4CKER shows Daily tab. */
+    private boolean showDaily;
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
@@ -36,6 +45,10 @@ public class CommandResult {
         this.exit = exit;
         this.localDate = null;
         this.yearMonth = null;
+        this.showPlanner = false;
+        this.showCountdown = false;
+        this.showDaily = false;
+        this.showHome = false;
     }
 
     /**
@@ -44,6 +57,10 @@ public class CommandResult {
      */
     public CommandResult(String feedbackToUser) {
         this(feedbackToUser, false, false);
+        this.showPlanner = false;
+        this.showCountdown = false;
+        this.showDaily = false;
+        this.showHome = false;
     }
 
     /**
@@ -56,6 +73,8 @@ public class CommandResult {
         this.exit = false;
         this.showPlanner = true;
         this.showCountdown = false;
+        this.showDaily = false;
+        this.showHome = false;
         this.localDate = localDate;
         this.yearMonth = yearMonth;
     }
@@ -69,13 +88,75 @@ public class CommandResult {
         this.showHelp = false;
         this.exit = false;
         this.showPlanner = false;
+        this.showDaily = false;
         this.showCountdown = isShowCountdown;
+        this.showHome = false;
         this.localDate = null;
         this.yearMonth = null;
     }
 
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
+     * For usage of CountdownCommand.
+     */
+    public static CommandResult createCountdownTabSwitchCommandResult(String feedbackToUser) {
+        CommandResult newCommandResult = new CommandResult(feedbackToUser);
+        newCommandResult.showModules = false;
+        newCommandResult.showPlanner = false;
+        newCommandResult.showCountdown = true;
+        newCommandResult.showDaily = false;
+        newCommandResult.showHome = false;
+        return newCommandResult;
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
+     * For usage of ModuleCommand.
+     */
+    public static CommandResult createModuleTabSwitchCommandResult(String feedbackToUser) {
+        CommandResult newCommandResult = new CommandResult(feedbackToUser);
+        newCommandResult.showModules = true;
+        newCommandResult.showPlanner = false;
+        newCommandResult.showCountdown = false;
+        newCommandResult.showDaily = false;
+        newCommandResult.showHome = false;
+        return newCommandResult;
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser}.
+     * For usage of DailyCommand.
+     */
+    public static CommandResult createDailyTabSwitchCommandResult(String feedbackToUser) {
+        CommandResult newCommandResult = new CommandResult(feedbackToUser);
+        newCommandResult.showModules = false;
+        newCommandResult.showPlanner = false;
+        newCommandResult.showCountdown = false;
+        newCommandResult.showDaily = true;
+        newCommandResult.showHome = false;
+        return newCommandResult;
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
+     * For usage of HomeCommand.
+     */
+    public static CommandResult createHomeTabSwitchCommandResult(String feedbackToUser) {
+        CommandResult newCommandResult = new CommandResult(feedbackToUser);
+        newCommandResult.showHome = true;
+        newCommandResult.showModules = false;
+        newCommandResult.showPlanner = false;
+        newCommandResult.showCountdown = false;
+        newCommandResult.showDaily = false;
+        return newCommandResult;
+    }
+
     public String getFeedbackToUser() {
         return feedbackToUser;
+    }
+
+    public void setHomeTab() {
+        showHome = true;
     }
 
     public boolean isShowHelp() {
@@ -86,12 +167,24 @@ public class CommandResult {
         return exit;
     }
 
+    public boolean isShowModules() {
+        return showModules;
+    }
+
     public boolean isShowPlanner() {
         return showPlanner;
     }
 
+    public boolean isShowHome() {
+        return showHome;
+    }
+
     public boolean isShowCountdown() {
         return showCountdown;
+    }
+
+    public boolean isShowDaily() {
+        return showDaily;
     }
 
     public LocalDate getLocalDate() {
