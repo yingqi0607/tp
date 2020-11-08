@@ -26,10 +26,12 @@ import seedu.tr4cker.commons.core.Messages;
 import seedu.tr4cker.commons.core.index.Index;
 import seedu.tr4cker.logic.commands.EditCommand;
 import seedu.tr4cker.logic.commands.EditCommand.EditTaskDescriptor;
+import seedu.tr4cker.logic.commands.EditCommand.EditTodoDescriptor;
 import seedu.tr4cker.model.task.Deadline;
 import seedu.tr4cker.model.task.Name;
 import seedu.tr4cker.model.task.TaskDescription;
 import seedu.tr4cker.testutil.EditTaskDescriptorBuilder;
+import seedu.tr4cker.testutil.EditTodoDescriptorBuilder;
 
 public class EditCommandParserTest {
 
@@ -90,9 +92,11 @@ public class EditCommandParserTest {
         String userInput = targetIndex.getOneBased() + DEADLINE_DESC_2
                 + DESCRIPTION_DESC_1 + NAME_DESC_1;
 
-        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withName(VALID_NAME_1)
+        EditTaskDescriptor descriptor1 = new EditTaskDescriptorBuilder().withName(VALID_NAME_1)
                 .withDeadline(VALID_DEADLINE_2).withTaskDescription(VALID_DESCRIPTION_1).build();
-        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+        EditTodoDescriptor descriptor2 = new EditTodoDescriptorBuilder().withName(VALID_NAME_1)
+                .withDeadline(VALID_DEADLINE_2).build();
+        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor1, descriptor2);
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -102,9 +106,10 @@ public class EditCommandParserTest {
         Index targetIndex = INDEX_FIRST_TASK;
         String userInput = targetIndex.getOneBased() + DEADLINE_DESC_2 + DESCRIPTION_DESC_1;
 
-        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withDeadline(VALID_DEADLINE_2)
+        EditTaskDescriptor descriptor1 = new EditTaskDescriptorBuilder().withDeadline(VALID_DEADLINE_2)
                 .withTaskDescription(VALID_DESCRIPTION_1).build();
-        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+        EditTodoDescriptor descriptor2 = new EditTodoDescriptorBuilder().withDeadline(VALID_DEADLINE_2).build();
+        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor1, descriptor2);
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -114,20 +119,23 @@ public class EditCommandParserTest {
         // name
         Index targetIndex = INDEX_THIRD_TASK;
         String userInput = targetIndex.getOneBased() + NAME_DESC_1;
-        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withName(VALID_NAME_1).build();
-        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+        EditTaskDescriptor descriptor1 = new EditTaskDescriptorBuilder().withName(VALID_NAME_1).build();
+        EditTodoDescriptor descriptor2 = new EditTodoDescriptorBuilder().withName(VALID_NAME_1).build();
+        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor1, descriptor2);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // deadline
         userInput = targetIndex.getOneBased() + DEADLINE_DESC_1;
-        descriptor = new EditTaskDescriptorBuilder().withDeadline(VALID_DEADLINE_1).build();
-        expectedCommand = new EditCommand(targetIndex, descriptor);
+        descriptor1 = new EditTaskDescriptorBuilder().withDeadline(VALID_DEADLINE_1).build();
+        descriptor2 = new EditTodoDescriptorBuilder().withDeadline(VALID_DEADLINE_1).build();
+        expectedCommand = new EditCommand(targetIndex, descriptor1, descriptor2);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // description
         userInput = targetIndex.getOneBased() + DESCRIPTION_DESC_1;
-        descriptor = new EditTaskDescriptorBuilder().withTaskDescription(VALID_DESCRIPTION_1).build();
-        expectedCommand = new EditCommand(targetIndex, descriptor);
+        descriptor1 = new EditTaskDescriptorBuilder().withTaskDescription(VALID_DESCRIPTION_1).build();
+        descriptor2 = new EditTodoDescriptorBuilder().build();
+        expectedCommand = new EditCommand(targetIndex, descriptor1, descriptor2);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
@@ -138,9 +146,10 @@ public class EditCommandParserTest {
                 + DEADLINE_DESC_1 + DESCRIPTION_DESC_1
                 + DEADLINE_DESC_2 + DESCRIPTION_DESC_2;
 
-        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withDeadline(VALID_DEADLINE_2)
+        EditTaskDescriptor descriptor1 = new EditTaskDescriptorBuilder().withDeadline(VALID_DEADLINE_2)
                 .withTaskDescription(VALID_DESCRIPTION_2).build();
-        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+        EditTodoDescriptor descriptor2 = new EditTodoDescriptorBuilder().withDeadline(VALID_DEADLINE_2).build();
+        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor1, descriptor2);
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -150,16 +159,18 @@ public class EditCommandParserTest {
         // no other valid values specified
         Index targetIndex = INDEX_FIRST_TASK;
         String userInput = targetIndex.getOneBased() + INVALID_DEADLINE_DESC + DEADLINE_DESC_2;
-        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withDeadline(VALID_DEADLINE_2).build();
-        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+        EditTaskDescriptor descriptor1 = new EditTaskDescriptorBuilder().withDeadline(VALID_DEADLINE_2).build();
+        EditTodoDescriptor descriptor2 = new EditTodoDescriptorBuilder().withDeadline(VALID_DEADLINE_2).build();
+        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor1, descriptor2);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // other valid values specified
         userInput = targetIndex.getOneBased() + INVALID_DEADLINE_DESC + DESCRIPTION_DESC_2
                 + DEADLINE_DESC_2;
-        descriptor = new EditTaskDescriptorBuilder().withDeadline(VALID_DEADLINE_2)
+        descriptor1 = new EditTaskDescriptorBuilder().withDeadline(VALID_DEADLINE_2)
                 .withTaskDescription(VALID_DESCRIPTION_2).build();
-        expectedCommand = new EditCommand(targetIndex, descriptor);
+        descriptor2 = new EditTodoDescriptorBuilder().withDeadline(VALID_DEADLINE_2).build();
+        expectedCommand = new EditCommand(targetIndex, descriptor1, descriptor2);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 

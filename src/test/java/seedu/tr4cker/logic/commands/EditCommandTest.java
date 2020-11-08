@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.DESC_1;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.DESC_2;
+import static seedu.tr4cker.logic.commands.CommandTestUtil.DESC_3;
+import static seedu.tr4cker.logic.commands.CommandTestUtil.DESC_4;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_DEADLINE_2;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.VALID_NAME_2;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -18,12 +20,15 @@ import org.junit.jupiter.api.Test;
 import seedu.tr4cker.commons.core.Messages;
 import seedu.tr4cker.commons.core.index.Index;
 import seedu.tr4cker.logic.commands.EditCommand.EditTaskDescriptor;
+import seedu.tr4cker.logic.commands.EditCommand.EditTodoDescriptor;
 import seedu.tr4cker.model.Model;
 import seedu.tr4cker.model.ModelManager;
 import seedu.tr4cker.model.Tr4cker;
 import seedu.tr4cker.model.UserPrefs;
+import seedu.tr4cker.model.daily.Todo;
 import seedu.tr4cker.model.task.Task;
 import seedu.tr4cker.testutil.EditTaskDescriptorBuilder;
+import seedu.tr4cker.testutil.EditTodoDescriptorBuilder;
 import seedu.tr4cker.testutil.TaskBuilder;
 
 /**
@@ -36,8 +41,10 @@ public class EditCommandTest {
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
         Task editedTask = new TaskBuilder().build();
-        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder(editedTask).build();
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_TASK, descriptor);
+        Todo editedTodo = new Todo(editedTask.getName(), editedTask.getDeadline());
+        EditTaskDescriptor descriptor1 = new EditTaskDescriptorBuilder(editedTask).build();
+        EditTodoDescriptor descriptor2 = new EditTodoDescriptorBuilder(editedTodo).build();
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_TASK, descriptor1, descriptor2);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask);
 
@@ -53,13 +60,15 @@ public class EditCommandTest {
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
         Index indexLastTask = Index.fromOneBased(model.getFilteredPendingTaskList().size());
         Task lastTask = model.getFilteredPendingTaskList().get(indexLastTask.getZeroBased());
-
         TaskBuilder taskInList = new TaskBuilder(lastTask);
         Task editedTask = taskInList.withName(VALID_NAME_2).withDeadline(VALID_DEADLINE_2).build();
+        Todo editedTodo = new Todo(editedTask.getName(), editedTask.getDeadline());
 
-        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withName(VALID_NAME_2)
+        EditTaskDescriptor descriptor1 = new EditTaskDescriptorBuilder().withName(VALID_NAME_2)
                 .withDeadline(VALID_DEADLINE_2).build();
-        EditCommand editCommand = new EditCommand(indexLastTask, descriptor);
+        EditTodoDescriptor descriptor2 = new EditTodoDescriptorBuilder().withName(VALID_NAME_2)
+                .withDeadline(VALID_DEADLINE_2).build();
+        EditCommand editCommand = new EditCommand(indexLastTask, descriptor1, descriptor2);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask);
 
@@ -71,7 +80,7 @@ public class EditCommandTest {
 
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_TASK, new EditTaskDescriptor());
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_TASK, new EditTaskDescriptor(), new EditTodoDescriptor());
         Task editedTask = model.getFilteredPendingTaskList().get(INDEX_FIRST_TASK.getZeroBased());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask);
@@ -88,7 +97,8 @@ public class EditCommandTest {
         Task taskInFilteredList = model.getFilteredPendingTaskList().get(INDEX_FIRST_TASK.getZeroBased());
         Task editedTask = new TaskBuilder(taskInFilteredList).withName(VALID_NAME_2).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_TASK,
-                new EditTaskDescriptorBuilder().withName(VALID_NAME_2).build());
+                new EditTaskDescriptorBuilder().withName(VALID_NAME_2).build(),
+                new EditTodoDescriptorBuilder().withName(VALID_NAME_2).build());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask);
 
@@ -103,8 +113,10 @@ public class EditCommandTest {
     @Test
     public void execute_duplicateTaskUnfilteredList_failure() {
         Task firstTask = model.getFilteredPendingTaskList().get(INDEX_FIRST_TASK.getZeroBased());
-        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder(firstTask).build();
-        EditCommand editCommand = new EditCommand(INDEX_SECOND_TASK, descriptor);
+        Todo firstTodo = new Todo(firstTask.getName(), firstTask.getDeadline());
+        EditTaskDescriptor descriptor1 = new EditTaskDescriptorBuilder(firstTask).build();
+        EditTodoDescriptor descriptor2 = new EditTodoDescriptorBuilder(firstTodo).build();
+        EditCommand editCommand = new EditCommand(INDEX_SECOND_TASK, descriptor1, descriptor2);
 
         assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_TASK);
     }
@@ -115,8 +127,10 @@ public class EditCommandTest {
 
         // edit task in filtered list into a duplicate in Tr4cker
         Task taskInList = model.getTr4cker().getTaskList().get(INDEX_SECOND_TASK.getZeroBased());
+        Todo todoInList = new Todo(taskInList.getName(), taskInList.getDeadline());
         EditCommand editCommand = new EditCommand(INDEX_FIRST_TASK,
-                new EditTaskDescriptorBuilder(taskInList).build());
+                new EditTaskDescriptorBuilder(taskInList).build(),
+                new EditTodoDescriptorBuilder(todoInList).build());
 
         assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_TASK);
     }
@@ -124,8 +138,9 @@ public class EditCommandTest {
     @Test
     public void execute_invalidTaskIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPendingTaskList().size() + 1);
-        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withName(VALID_NAME_2).build();
-        EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
+        EditTaskDescriptor descriptor1 = new EditTaskDescriptorBuilder().withName(VALID_NAME_2).build();
+        EditTodoDescriptor descriptor2 = new EditTodoDescriptorBuilder().withName(VALID_NAME_2).build();
+        EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor1, descriptor2);
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
     }
@@ -140,18 +155,20 @@ public class EditCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getTr4cker().getTaskList().size() + 1);
 
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
-                new EditTaskDescriptorBuilder().withName(VALID_NAME_2).build());
+                new EditTaskDescriptorBuilder().withName(VALID_NAME_2).build(),
+                new EditTodoDescriptorBuilder().withName(VALID_NAME_2).build());
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        final EditCommand standardCommand = new EditCommand(INDEX_FIRST_TASK, DESC_1);
+        final EditCommand standardCommand = new EditCommand(INDEX_FIRST_TASK, DESC_1, DESC_3);
 
         // same values -> returns true
-        EditTaskDescriptor copyDescriptor = new EditTaskDescriptor(DESC_1);
-        EditCommand commandWithSameValues = new EditCommand(INDEX_FIRST_TASK, copyDescriptor);
+        EditTaskDescriptor copyDescriptor1 = new EditTaskDescriptor(DESC_1);
+        EditTodoDescriptor copyDescriptor2 = new EditTodoDescriptor(DESC_3);
+        EditCommand commandWithSameValues = new EditCommand(INDEX_FIRST_TASK, copyDescriptor1, copyDescriptor2);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
         // same object -> returns true
@@ -164,10 +181,10 @@ public class EditCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(INDEX_SECOND_TASK, DESC_1)));
+        assertFalse(standardCommand.equals(new EditCommand(INDEX_SECOND_TASK, DESC_1, DESC_3)));
 
         // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_TASK, DESC_2)));
+        assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_TASK, DESC_2, DESC_4)));
     }
 
 }
