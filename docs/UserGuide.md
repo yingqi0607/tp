@@ -374,12 +374,11 @@ If you would like to switch to Daily tab without clicking on the Daily tab butto
 
 Format: `daily`
 
-Once y`ou enter `daily` into the command box, TR4CKER should look like this:
+Example:
+1. You enter `daily` into the command box 
+2. Press enter and TR4CKER should look like this:
 ![switch tab](images/dailyTab_switchTab.png)
 Figure 7: TR4CKER after executing `daily`
-
-Example:
-* `daily` - Switches to Daily tab, showing a list of daily todo tasks that you have planned for the day.
 
 ### 3.3.2 Adding a daily todo task: `todo`
 You can add a todo task for the day into the daily todo list by providing the index number of the task that you want to add.
@@ -391,10 +390,10 @@ Format: `todo INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-1. Enter `list` to see a list of pending tasks.
+1. You enter `list` and press enter to see a list of pending tasks .
 ![list of pending]()
 2. Enter `todo 1` to add the first task into daily todo list.
-3. The task has been added to daily todo list
+3. Press enter and the task has been added to daily todo list
 ![todo before](images/dailyTab_todo1Before.png)
 Figure 8: Daily tab before executing `todo 1`
 
@@ -418,8 +417,8 @@ Format: `daily del/INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-1. Enter `daily del/1` to delete the first task in daily todo list.
-2. The first todo task is deleted
+1. You enter `daily del/1` to delete the first task in daily todo list.
+2. Press enter and the first todo task is deleted
 ![daily delete before]()
 Figure 10: Daily tab before executing `daily del/1`
 
