@@ -13,18 +13,18 @@ title: User Guide
         * 3.1.2. [Exiting the program: `exit`](#312-exiting-the-program-exit)
         * 3.1.3. [Switching between tabs](#313-switching-between-tabs)
     * 3.2. [Home Tab](#32-home-han-wei)
-        * 3.2.1. [Reading the Task lists](#321-reading-the-task-lists)
-        * 3.2.2. [Command format for Task list Commands](#322-command-format-for-task-list-commands)
+        * 3.2.1. [Switching to the Home tab: `home`](#321-switching-to-the-home-tab-home)
+        * 3.2.1. [Reading the Task lists](#322-reading-the-task-lists)
         * 3.2.3. [Adding new tasks: `add`](#323-adding-new-tasks-add)
-        * 3.2.4. [Listing all tasks: `list`](#324-listing-all-tasks-list)
-        * 3.2.5. [Marking Pending tasks as done: `done`](#325-marking-tasks-as-done-done)
+        * 3.2.4. [Listing Pending tasks: `list`](#324-listing-pending-tasks-list)
+        * 3.2.5. [Marking Pending tasks as done: `done`](#325-marking-pending-tasks-as-done-done)
         * 3.2.6. [Editing Pending tasks: `edit`](#326-editing-pending-tasks-edit)
         * 3.2.7. [Editing tags of Pending tasks: `tag`](#327-editing-tags-of-pending-tasks-tag)
         * 3.2.8. [Locating Pending tasks by keywords: `find`](#328-locating-pending-tasks-by-keyword-find)
         * 3.2.9. [Deleting Pending tasks: `delete`](#329-deleting-pending-tasks--delete)
         * 3.2.10. [Editing Expired tasks: `edit expired`](#3210-editing-expired-tasks-edit-expired)
         * 3.2.11. [Deleting Expired tasks: `delete expired`](#3211-deleting-expired-tasks--delete-expired)
-        * 3.2.12. [Clearing all tasks: `clear`](#3212-clearing-all-tasks-clear)
+        * 3.2.12. [Resetting all data: `reset`](#3212-resetting-all-data-reset)
     * 3.3. [Daily Tab](#33-daily-yingqi)
         * 3.3.1. [Switching to Daily tab: `daily`](#331-switching-to-daily-tab-daily)
         * 3.3.2. [Adding a daily todo task](#332-adding-a-daily-todo-task-todo)
@@ -115,7 +115,7 @@ Figure 2: Labelled GUI of TR4CKER
 </div>
 
 ## 3.1. Common Commands
-Here are some commands that you might find it handy when using TR4CKER. 
+Here are some commands that you might find handy when using TR4CKER. 
 
 ### 3.1.1. Viewing help : `help`
 If you cannot recall the command you need, you can enter the help command in any panel.
@@ -150,43 +150,38 @@ Table 1: List of Switch Tab commands
 
 TR4CKER is primarily a task management application that allows you to track and manage your tasks comprehensively.
 
-TR4CKER's Home page was built for this purpose and you will be directed to this page once you start TR4CKER. Alternatively,
- you can enter `home` on the Command Box to navigate to this page.
+TR4CKER's Home page was built for this purpose and you will be directed to this page once you start TR4CKER.
+ 
+### 3.2.1 Switching to the Home tab: `home`
+Suppose you are on other tabs, you can switch to the Home tab simply by using the home command. 
+You can also click on the Home button on the tabs menu at the top of the screen.
 
-### 3.2.1. Reading the Task lists
+Format: `home`
 
-For the ease of reading, tasks are split into 3 sections and are displayed separately, namely:
+1. Type `home` into the command box.
+![BeforeHomaCommand](images/BeforeHomeCommand.png)
+Figure x: TR4CKER before executing `home`
+
+2. Press enter, and TR4CKER switches to the Home tab.
+![AfterHomaCommand](images/AfterHomeCommand.png)
+Figure x: TR4CKER after executing `home`
+
+Example:
+* `home` - Switches to Home tab, showing the task lists.
+
+### 3.2.2. Reading the Task lists
+
+For the ease of reading, tasks are split into 3 sections and displayed separately, namely:
 1. Pending Tasks
 2. Expired Tasks
 3. Completed Tasks
 
 ![Ui](images/Ui.png)
-
 Figure 3: Application home page populated by sample data
 
-The leftmost panel displays Pending tasks that are not overdue and not completed.
-On the other hand, the Expired Tasks panel displays tasks that are overdue but have yet to be completed.
-Lastly, the Completed Tasks panel displays completed tasks for archive purposes.
-
-### 3.2.2. Command format for Task list Commands
-
-The syntax of the `add` command is `add n/NAME des/DESCRIPTION [m/MODULE_CODE] [dl/DEADLINE] [t/TAG]... ` and it will be used as an
-example to explain the following points:
-
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Notes about the command format:**<br>
-
-1. Parts of the command in UPPER_CASE represent command parameters that have to be supplied by you. Using the given example,
-DESCRIPTION represents a field where you provide the task description, such as des/Graded assignment 2.
-
-2. Parameters in square brackets are optional, such as the Tag parameter in the given example.
-
-3. Parameters with a trailing `...` are optional and may be used as many times as you want, or even be omitted.
-
-4. Parameters can be entered in any order.
-
-</div>
+The Pending Tasks panel will display tasks that you have not completed but have yet to be overdue.
+For tasks that are overdue but are not completed, they will be displayed under the Expired Tasks panel.
+Lastly, the Completed Tasks panel will display all your completed tasks for archive purposes.
 
 ### 3.2.3. Adding new tasks: `add`
 
@@ -194,12 +189,18 @@ You can add a task to TR4CKER using the `add` command when you want to start wor
 
 Format: `add n/NAME des/DESCRIPTION [m/MODULE_CODE] [dl/DEADLINE] [t/TAG]…​`
 
-![AddCommand](images/AddCommand.png)
+1. Type out details of your task in the command box using the `add` command.
+ 
+    ![BeforeAddCommand](images/BeforeAddCommand.png)
+    Figure X: TR4CKER before executing `add n/Update DG dl/today des/draw UML diagrams m/CS2103T t/urgent t/important`
 
-Figure 4: Example of an expected result after executing `add n/UG Introduction des/TableOfContents m/CS2103T t/Urgent t/Important`
+2. Press enter, and TR4CKER will add the task.
 
-Before you can add a task with module, you need to ensure that the module is already entered into TR4CKER.
-You can refer to the section on Module Tab to find out more.
+    ![AfterAddCommand](images/AfterAddCommand.png)
+    Figure 4: TR4CKER after executing `add n/Update DG dl/today des/draw UML diagrams m/CS2103T t/urgent t/important`
+
+You need to add the module into TR4CKER's modules list before you can link a task to that module.
+To find out how to add a module in TR4CKER, you may refer to [_section 3.4.2 - Adding a new module into the modules list_](#342-adding-a-new-module-to-modules-list).
 
 <div markdown="block" class="alert alert-info">
 
@@ -232,40 +233,58 @@ Examples:
 * `add n/CS1101S Quiz dl/25-11-2020 m/CS1101S des/Post-Lecture quiz`
 * `add n/CS1231S Homework Assignment dl/today 2200 m/CS1231S des/Chapter 3 t/graded t/assignment`
 
+<<<<<<< HEAD
+### 3.2.4. Listing Pending tasks: `list`
+Suppose you used the `find` command previously to locate some of your Pending tasks. You may use the `list` command to go back to viewing the entire Pending Taks list again.
+=======
 ### 3.2.4. Listing all tasks: `list`
 
 If you want to view a list of all pending task names in TR4CKER, you can enter `list`. TR4CKER will display a list of 
 all pending tasks names in TR4CKER.
+>>>>>>> upstream/master
 
 Format: `list`
 
-### 3.2.5. Marking tasks as done: `done`
+1. Type out the `list` command into the command box.
+    ![BeforeListCommand](images/BeforeListCommand.png)
+    Figure X: TR4CKER before executing `list`
+
+2. Press enter, and TR4CKER will list out all the Pending tasks.
+    ![AfterListCommand](images/AfterListCommand.png)
+    Figure X: TR4CKER displaying the entire Pending Task list after executing `list`.
+
+### 3.2.5. Marking Pending tasks as done: `done`
 
 TR4CKER allows you to track the progress of a task in TR4CKER and you can use the `done` command when you want to update the Completion Status of a task.
 
 Format: `done INDEX [p/COMPLETION_STATUS]`
 
-![DoneCommand](images/DoneCommand.png)
-
-Figure 5: Example of an expected result after executing `done 1 p/50`
-
-* Marks the task as done at the specified `INDEX`.
+* Updates the Completion Status of the task at the specified `INDEX`.
 * The index refers to a valid index number shown in the specified Pending Tasks list.
 * The index **must be a positive integer** 1, 2, 3, …​
 * Completion Status is a percentage of task done and therefore only accept integer values from 0 to 100.
 * If Completion Status is not entered, TR4CKER will mark the task as 100% done.
+
+1.  Type the index number of the task and the new Completion Status into the command box using the `done` command.
+    ![BeforeDoneCommand](images/BeforeDoneCommand.png)
+    Figure X: TR4CKER before executing `done 1 p/50`
+
+2.  Press enter, and TR4CKER will update the Completion Status of the task.
+    ![AfterDoneCommand](images/AfterDoneCommand.png)
+    Figure X: TR4CKER after executing `done 1 p/50`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Completion Status can either be increased or decreased!
 </div>
 
 Examples:
-* `list` followed by `done 2 p/50` marks the 2nd task in the displayed task list as 50% done.
+* `list` followed by `done 2 p/50` marks the 2nd task in the Pending Tasks list as 50% done.
 * `find tutorial` followed by `done 1` marks the 1st task in the results of the `find` command as 100% done.
 
 ### 3.2.6. Editing Pending tasks: `edit`
 
-You can edit an existing Pending task in TR4CKER by using the `edit` command when the need arises.
+Suppose you made a spelling mistake when you were adding a task in TR4CKER.
+You can edit the fields of a task by using the `edit` command.
 
 Format: `edit INDEX [n/NAME] [dl/DEADLINE] [des/DESCRIPTION]`
 
@@ -273,7 +292,15 @@ Format: `edit INDEX [n/NAME] [dl/DEADLINE] [des/DESCRIPTION]`
 * The index refers to the index number shown in the task list.
 * The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
-* Editing of tags is done using `tag` command instead (Refer to the TagCommand section).
+* Editing of tags is done using `tag` command instead (Refer to the next section on [_Editing tags of Pending tasks_](#327-editing-tags-of-pending-tasks-tag)).
+
+1.  Type the index number of the Pending task and its edited fields that you want to update in the command box using the `edit` command.
+    ![BeforeEditCommand](images/BeforeEditCommand.png)
+    Figure X: TR4CKER before executing `edit 2 n/CS2100 Lab 3`
+
+2. Press enter, and TR4CKER will edit the Pending task.
+    ![AfterEditCommand](images/AfterEditCommand.png)
+    Figure X: TR4CKER after executing `edit 2 n/CS2100 Lab 3`
 
 Examples:
 * `edit 1 n/prepare for tP tasks` - Edits the description of the 1st task to be `prepare for tP tasks`.
@@ -281,7 +308,7 @@ Examples:
 
 ### 3.2.7. Editing tags of Pending tasks: `tag`
 
-You can add or delete tags of a Pending task in TR4CKER.
+You can add or delete tags of a Pending task in TR4CKER. You may use the `tag` command to edit the tags of a task when the need arises.
 
 Format: `tag INDEX [new/NEW_TAG]…​ [del/TAG_TO_DELETE]…​`
 
@@ -295,6 +322,14 @@ Format: `tag INDEX [new/NEW_TAG]…​ [del/TAG_TO_DELETE]…​`
 * Adding and deleting of tags can be used concurrently.
 * Multiple tags can be added and deleted at the same time.
 
+1.  Type the index number of the Pending task and its tags that you want to add or delete in the command box using the `tag` command.
+    ![BeforeTagCommand](images/BeforeTagCommand.png)
+    Figure X: TR4CKER before executing `tag 1 del/urgent`
+
+2.  Press enter, and TR4CKER will edit the tag of the Pending task.
+    ![AfterTagCommand](images/AfterTagCommand.png)
+    Figure X: TR4CKER after executing `tag 1 del/urgent` with the urgent tag removed.
+
 Examples:
 * `tag 1 new/urgent` - Adds a new tag `urgent` to the existing tags of 1st task (if the tag does not already exist).
 * `tag 2 del/assignment` - Deletes the tag `assignment` from the 2nd task (if the tag exists).
@@ -303,30 +338,32 @@ from the 3rd task.
 
 ### 3.2.8. Locating Pending tasks by keyword: `find`
 
-You can find tasks whose names contain any of the given keywords.
+When you have too many Pending tasks and you want to locate some of them, you may use the `find` command.
+The `find` command allows you to find tasks which names contain any of the given keywords.
 
 Format: `find [KEYWORD_1] [KEYWORD_2] ...`
-
-![FindCommand](images/FindCommand.png)
-
-Figure 6: Example of an expected result after executing `find cs2103T Assignment`
 
 * The search is case-insensitive. e.g `cs2103T` will match `CS21013T`
 * The order of the keywords does not matter. e.g. `Assignment CS2103T` will match `CS2103T Assignment`
 * Only the name is searched.
-* Only full words will be matched e.g. `2101` will not match `CS2101`
 * Tasks matching at least one keyword will be returned.
   e.g. `find CS2103T Assignment` will return `CS2103T Project`, `CS2100 Assignment 3`
 
+1.  Type the keywords in the command box using the `find` command.
+    ![BeforeFindCommand](images/BeforeFindCommand.png)
+    Figure X: TR4CKER before executing `find quiz`
+
+2.  Press enter, and TR4CKER will list out all the Pending tasks that match the keywords.
+    ![AfterFindCommand](images/AfterFindCommand.png)
+    Figure X: TR4CKER after executing `find quiz` with the search results.
+
 Examples:
 * `find CS2101` returns `CS2101 Oral Presentation 1`
-* `find CS2103T Quiz` returns `CS2103T Project`, `CS1101S Quiz`<br>
-  ![result for 'find CS1231S Mission'](images/findCS2103TQuizResult.png)
+* `find CS2103T Quiz` returns `CS2103T Project`, `CS1101S Quiz`
 
 ### 3.2.9. Deleting Pending tasks : `delete`
 
-You can delete an existing task from the task list by providing the
-index number of the task that you want to delete.
+When you no longer want to keep track of a Pending task, you may delete it from TR4CKER using the `delete` command.
 
 Format: `delete INDEX`
 
@@ -334,13 +371,21 @@ Format: `delete INDEX`
 * The index refers to a valid index number shown in the displayed task list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
+1.  Type the index of the Pending task that you wish to delete in the command box using the `delete` command.
+    ![BeforeDeleteCommand](images/BeforeDeleteCommand.png)
+    Figure X: TR4CKER before executing `delete 1`
+
+2.  Press enter, and TR4CKER will delete the Pending task.
+    ![AfterDeleteCommand](images/AfterDeleteCommand.png)
+    Figure X: TR4CKER after executing `delete 1` with the task at index 1 under the Pending Tasks panel removed from TR4CKER.
+
 Examples:
 * `list` followed by `delete 2` deletes the 2nd task in the displayed task list.
 * `find assignment` followed by `delete 1` deletes the 1st task in the results of the `find` command.
 
 ### 3.2.10. Editing Expired tasks: `edit expired`
 
-The usage of this command is similar to the `edit` command for a Pending task.
+The usage of this command is similar to the [`edit` command of a Pending task](#326-editing-pending-tasks-edit).
 
 Format: `edit expired INDEX [n/NAME] [dl/DEADLINE] [des/DESCRIPTION]`
 
@@ -353,25 +398,42 @@ must be a future Deadline. Hence, the edited task will be displayed under the Pe
 
 </div>
 
+1.  Type the index number of the Expired task and its edited fields that you want to update in the command box using the `edit expired` command.
+    ![BeforeEditExpiredCommand](images/BeforeEditExpiredCommand.png)
+    Figure X: TR4CKER before executing `edit expired 1 dl/today`
+
+2.  Press enter, and TR4CKER will edit the Expired task with the new field.
+    ![AfterEditExpiredCommand](images/AfterEditExpiredCommand.png)
+    Figure X: TR4CKER after executing `edit expired 1 dl/today` with the edited task being displayed under Pending Tasks.
+
 ### 3.2.11. Deleting Expired tasks : `delete expired`
 
-The usage of this command is similar to the `delete` command for a Pending task.
+When a task is already overdue and you do not want to work on it anymore, you may delete the expired task from TR4CKER. 
+The usage of this command is similar to the [`delete` command for a Pending task](#329-deleting-pending-tasks--delete).
 
 Format: `delete expired INDEX`
 
 * Deletes the task at the specified `INDEX`.
-* The index refers to a valid index number shown in the displayed task list.
+* The index refers to a valid index number shown in the Expired Tasks list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
-Examples:
-* `list` followed by `delete 2` deletes the 2nd task in the displayed task list.
-* `find assignment` followed by `delete 1` deletes the 1st task in the results of the `find` command.
+1.  Type the index of the Expired task that you wish to delete in the command box using the `delete expired` command.
+    ![BeforeDeleteExpiredCommand](images/BeforeDeleteExpiredCommand.png)
+    Figure X: TR4CKER before executing `delete expired 1`
 
-### 3.2.12. Clearing all tasks: `clear`
+2.  Press enter, and TR4CKER will delete the Pending task.
+    ![AfterDeleteExpiredCommand](images/AfterDeleteExpiredCommand.png)
+    Figure X: TR4CKER after executing `delete expired 1` with the task at index 1 from the Expired Tasks panel removed from TR4CKER.
 
-Clears all entries in TR4CKER.
 
-Format: `clear`
+### 3.2.12. Resetting all data: `reset`
+
+You may use the `reset` command to reset all data during the start of a new school semester instead of having to delete them one by one.  
+
+Format: `reset`
+
+![AfterResetCommand](images/AfterResetCommand.png)
+Figure X: TR4CKER after executing `reset` with all the data purged in TR4CKER.
 
 ## 3.3 Daily (Yingqi)
 You can add all your daily plans of current tasks to a daily to do list so that you have a clearer idea of what you want to complete for the day.
@@ -925,23 +987,23 @@ the data of your previous TR4CKER home folder.
 
 | Tab | Command | Command Format | 
 | --- | ------- | -------------- |
-| - | Clear all tasks | `clear` |
-| - | Help | `help` |
 | - | Exit TR4CKER | `exit` |
+| - | Help | `help` |
+| - | Reset all data | `reset` |
 | - | Switch to TR4CKER tab | `home` |
 | - | Switch to Daily tab | `daily` |
 | - | Switch to Modules tab | `modules` |
 | - | Switch to Countdown tab | `countdown` |
 | - | Switch to Planner tab | `planner` |
 | TR4CKER | Add tasks | `add n/NAME des/DESCRIPTION [dl/DEADLINE] [m/MODULE_CODE] [t/TAG]...` |
-| TR4CKER | Delete Expired tasks | `delete expired INDEX` |
+| TR4CKER | Delete Expired tasks | `delete expired INDEX` |****
 | TR4CKER | Delete Pending tasks | `delete INDEX` |
 | TR4CKER | Edit Expired tasks | `edit expired INDEX [n/NAME] [dl/DEADLINE] [des/DESCRIPTION]` |
 | TR4CKER | Edit Pending tasks | `edit INDEX [n/NAME] [des/DESCRIPTION] [dl/DEADLINE]` |
 | TR4CKER | Edit Tags of Pending tasks | `tag INDEX [old/TAG_TO_DELETE]... [new/NEW_TAG]...` |
 | TR4CKER | Find Pending tasks | `find [KEYWORD]...` |
-| TR4CKER | List tasks | `list` |
-| TR4CKER | Mark tasks as done | `done INDEX [p/COMPLETION_STATUS]` |
+| TR4CKER | List Pending tasks | `list` |
+| TR4CKER | Mark Pending tasks as done | `done INDEX [p/COMPLETION_STATUS]` |
 | Daily | Add todo tasks | `todo INDEX` |
 | Daily | Delete todo tasks | `daily del/INDEX` |
 | Modules | Add new modules to modules list | `modules n/NAME m/MODULECODE` |
