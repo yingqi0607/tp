@@ -741,7 +741,7 @@ testers are expected to do more *exploratory* testing.
 
 2. Deleting a module while switched to Module tab.<br>
 
-    2.1. Prerequisites: Module must not have any tasks listed under it.
+    2.1. Prerequisite: Module must not have any tasks listed under it.
 
     2.2. Test case: `modules del/INDEX` (where `INDEX` is the number of the module in the list)<br>
         Expected: Module is deleted from the list with result message saying `Deleted module: [ CODE | NAME ]`
