@@ -23,7 +23,7 @@ public class PlannerCommand extends Command {
 
     public static final String MESSAGE_GOTO_USAGE = COMMAND_WORD + ": Goes to a specific date/month on Planner tab\n"
             + "Parameters: "
-            + "[" + PREFIX_PLANNER_GOTO + "DAY]\n"
+            + PREFIX_PLANNER_GOTO + "DAY\n"
             + "Examples: \n"
             + COMMAND_WORD + " " + PREFIX_PLANNER_GOTO + "today OR "
             + COMMAND_WORD + " " + PREFIX_PLANNER_GOTO + "tdy\n"

@@ -62,6 +62,26 @@ public class UniqueDailyList implements Iterable<Todo> {
     }
 
     /**
+     * Replaces the todo {@code target} in the list with {@code editedTodo}.
+     * {@code target} must exist in the list.
+     * The todo identity of {@code editedTodo} must not be the same as another existing todo in the list.
+     */
+    public void setTodo(Todo target, Todo editedTodo) {
+        requireAllNonNull(target, editedTodo);
+
+        int index = internalList.indexOf(target);
+        if (index == -1) {
+            throw new TodoNotFoundException();
+        }
+
+        if (!target.isSameTodo(editedTodo) && contains(editedTodo)) {
+            throw new DuplicateTodoException();
+        }
+
+        internalList.set(index, editedTodo);
+    }
+
+    /**
      * Replaces the contents of this list with another {@code UniqueDailyList}.
      */
     public void setTodos(UniqueDailyList replacement) {
@@ -123,7 +143,7 @@ public class UniqueDailyList implements Iterable<Todo> {
     }
 
     /**
-     * Returns true if {@code tasks} contains only unique tasks.
+     * Returns true if {@code todos} contains only unique todos.
      */
     private boolean todosAreUnique(List<Todo> todos) {
         for (int i = 0; i < todos.size() - 1; i++) {
