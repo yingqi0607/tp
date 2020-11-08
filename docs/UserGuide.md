@@ -765,6 +765,28 @@ There is no need to save manually.
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
 the data of your previous TR4CKER home folder.
 
+**Q**: Is TR4CKER free?<br>
+**A**: Yes! TR4CKER is totally free to use.
+
+**Q**: Where can I find the latest version of TR4CKER?<br>
+**A**: You can download the latest **tr4cker.jar** from [here](https://github.com/AY2021S1-CS2103T-T10-2/tp/releases).
+
+**Q**: What do I do if my tasks expire?<br>
+**A**: Don't worry, you can still edit or delete them using these commands:
+[Edit expired](#3210-editing-expired-tasks-edit-expired) & [Delete expired](#3211-deleting-expired-tasks--delete-expired).
+
+**Q**: Can I add multiple items at once? Multiple tasks / modules / countdowns, together in one line?<br>
+**A**: Unfortunately, TR4CKER can only do one at a time.
+
+**Q**: Can I manually make changes to TR4CKER's save file?<br>
+**A**: This is **NOT** recommended as you could corrupt the save file, but it is possible.
+
+**Q**: Do I need an internet connection?<br>
+**A**: Once you have downloaded TR4CKER, you can continue to use it without internet connection.
+
+**Q**: Is TR4CKER available on my mobile device?<br>
+**A**: TR4CKER is only available on desktop for now, but we are hoping to include mobile support in version 2.0!
+
 --------------------------------------------------------------------------------------------------------------------
 
 # 5. Command summary
