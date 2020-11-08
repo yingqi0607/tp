@@ -2,20 +2,71 @@
 layout: page
 title: Developer Guide
 ---
-* Table of Contents
-{:toc}
+
+1. [Setting Up and Getting Started](#1-setting-up-and-getting-started)
+2. [Design](#2-design)
+    * 2.1. [Architecture](#21-architecture)
+    * 2.2. [UI Component](#22-ui-component)
+    * 2.3. [Logic Component](#23-logic-component)
+    * 2.4. [Model Component](#24-model-component)
+    * 2.5. [Storage Component](#25-storage-component)
+    * 2.6. [Common Classes](#26-common-classes)
+3. [Implementation](#3-implementation)
+    * 3.1. [Categorised Tasks Handling feature in Home tab](#31-categorised-tasks-handling-feature-in-home-tab-han-wei)
+        * 3.1.1. [Feature Introduction](#311-feature-introduction)
+        * 3.1.2. [Implementation Details](#312-implementation-details)
+        * 3.1.3. [Design Considerations](#313-design-considerations)
+            * 3.1.3.1. [Aspect 1](#3131-aspect-1-how-users-can-easily-view-and-control-all-the-tasks)
+    * 3.2. [Daily Feature (Yingqi)](#32-daily-feature-yingqi)
+        * 3.2.1. [Implementation](#321-implementation)
+        * 3.2.2. [Design Considerations](#322-design-considerations)
+            * 3.2.2.1. [Aspect 1](#3221-aspect-1-how-users-can-plan-for-the-things-heshe-wants-to-complete-for-the-day)
+            * 3.2.2.2. [Aspect 2](#3222-aspect-2-how-users-indicate-that-they-have-completed-a-daily-todo-task)
+    * 3.3. [Modules Feature (Ethan)](#33-module-feature-ethan)
+        * 3.3.1. [Implementation](#331-implementation)
+        * 3.3.2. [Design Considerations](#332-design-considerations)
+            * 3.3.2.1. [Aspect 1](#3321-aspect-1-how-modules-are-deleted-and-added-to-tasks)
+    * 3.4. [Countdown Feature (Wen Ling)](#34-countdown-feature-wen-ling)
+        * 3.4.1. [Implementation](#341-implementation)
+        * 3.4.2. [Design Considerations](#342-design-considerations)
+            * 3.4.2.1. [Aspect 1](#3421-aspect-1-viewing-events-in-countdowns)
+            * 3.4.2.2. [Aspect 2](#3422-aspect-2-adding-an-event-to-countdowns)
+    * 3.5. [Planner Feature (Rui Ling)](#35-planner-feature-rui-ling)
+        * 3.5.1. [Implementation](#351-implementation)
+        * 3.5.2. [Design Considerations](#352-design-considerations)
+            * 3.5.2.1. [Aspect 1](#3521-aspect-1-how-to-represent-tasks-list-for-planner-tab)
+            * 3.5.2.2. [Aspect 2](#3522-aspect-2-how-users-can-easily-navigate-to-todaystomorrows-tasks-list)
+4. [Documentation](#4-documentation)
+5. [Testing](#5-testing)
+6. [Logging](#6-logging)
+7. [Configuration](#7-configuration)
+8. [Dev-ops](#8-dev-ops)
+* Appendix A. [Requirements](#appendix-a-requirements)
+    * A.1. [Product Scope](#a1-product-scope)
+    * A.2. [User Stories](#a2-user-stories)
+    * A.3. [Use Cases](#a3-use-cases)
+    * A.4. [Non-Functional Requirements](#a4-non-functional-requirements)
+    * A.5. [Glossary](#a5-glossary)
+* Appendix B. [Instructions for Manual Testing](#appendix-b-instructions-for-manual-testing)
+    * B.1. [Launch and Shutdown](#b1-launch-and-shutdown)
+    * B.2. [HAN WEI UR PART HERE](#b2-deleting-a-task)
+    * B.3. [Daily Feature](#b3-daily-feature)
+    * B.4. [Module Feature](#b4-module-feature)
+    * B.5. [Countdown Feature](#b5-countdown-feature)
+    * B.6. [Planner Feature](#b6-planner-feature)
+    * B.7. [Saving Data](#b7-saving-data)
+    
+--------------------------------------------------------------------------------------------------------------------
+
+# 1. Setting up and getting started
+
+You can refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Setting up, getting started**
+# 2. Design
 
-Refer to the guide [_Setting up and getting started_](SettingUp.md).
-
---------------------------------------------------------------------------------------------------------------------
-
-## **Design**
-
-### Architecture
+## 2.1. Architecture
 
 <img src="images/ArchitectureDiagram.png" width="450" />
 
@@ -66,7 +117,7 @@ the command `delete 1`.
 
 The sections below give more details of each component.
 
-### UI component
+## 2.2. UI component
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
@@ -85,7 +136,7 @@ The `UI` component,
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
 
-### Logic component
+## 2.3. Logic component
 
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
@@ -106,7 +157,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-### Model component
+## 2.4. Model component
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
@@ -127,7 +178,7 @@ is given below. It has a `Tag` list in the `Tr4cker`, which `Task` references. T
 
 </div>
 
-### Storage component
+## 2.5. Storage component
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
@@ -137,22 +188,22 @@ The `Storage` component:
 * can save `UserPref` objects in json format and read it back
 * can save TR4CKER data in json format and read it back
 
-### Common classes
+## 2.6. Common classes
 
 Classes used by multiple components are in the `seedu.tr4cker.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Implementation**
+# 3. Implementation
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Categorised Tasks Handling feature in Home tab \[coming in v1.3] (Han Wei)
+## 3.1. Categorised Tasks Handling feature in Home tab (Han Wei)
 
-### Feature introduction
+### 3.1.1. Feature introduction
 This feature allows users to view and handle tasks under 3 categories separately.
 
-### Implementation details
+### 3.1.2. Implementation details
 This feature comes in the form of a Task List panel, which is made up of three sub-panels:
 1. Pending tasks (Incomplete tasks that are not overdue)
 2. Expired tasks (Incomplete tasks that are overdue)
@@ -167,13 +218,13 @@ Figure 1: Edit deadline of expired task Activity Diagram
 
 Once the user marks a task as complete, it will automatically appear under Completed tasks.
 
-### Design considerations:
+### 3.1.3. Design considerations:
 
-#### Aspect 1: How users can easily view and control all the tasks
+#### 3.1.3.1. Aspect 1: How users can easily view and control all the tasks
 This design filters the tasks into 3 lists according to their completion statuses and deadlines which will be useful to the users,
 as opposed to having browse through a long task list.
 
-### Daily feature (Yingqi)
+## 3.2. Daily feature (Yingqi)
 Tracker has a daily feature that allows users to add current tasks to a todo list for the day.
 This feature allows users to plan for what they want to do for a particular day.
 
@@ -182,16 +233,16 @@ The 3 main functions of the Daily feature are to:
 2. Display all tasks that the user wants to do for the day
 3. Delete a daily todo task when it is done for the day
 
-#### Implementation
+### 3.2.1. Implementation
 The UI of the Daily feature is facilitated by the `DailyPanel` class which will show users all daily todo tasks as a list.
 To implement the commands of this Daily feature, there are `TodoCommand` and `TodoCommandParser` classes in the `logic` package.
 
 The following diagram shows the sequence flow when a task gets added into the `DailyPanel`:
 ![DailySequenceDiagram](images/DailySequenceDiagram.png)
 
-#### Design Considerations
+### 3.2.2. Design Considerations
 
-##### Aspect 1: How users can plan for the things he/she wants to complete for the day
+#### 3.2.2.1. Aspect 1: How users can plan for the things he/she wants to complete for the day
 
 * **Current Choice:** When users use list command to view all tasks, only task names are shown.
   * Pros: A neater list is being shown.
@@ -206,7 +257,7 @@ The following diagram shows the sequence flow when a task gets added into the `D
 to add the tasks they feel that are more urgent to daily todo list. Hence details can be ommited when users select tasks
 to add into daily todo list.
 
-#### Aspect 2: How users indicate that they have completed a daily todo task
+#### 3.2.2.2. Aspect 2: How users indicate that they have completed a daily todo task
 * **Current Choice:** 
 There are 3 ways for users to remove a todo from daily todo list:
 1. Delete the pending task from home page, the corresponding task in daily todo list will be removed.
@@ -222,8 +273,7 @@ There are 3 ways for users to remove a todo from daily todo list:
 * **Justification for current choice:** Users would have decided what to remove from their list before deciding to delete.
 It is not necessary to prompt the user on whether to delete a task.
   
-
-### Module feature \[coming in v1.3] (Ethan)
+## 3.3. Module feature (Ethan)
 TR4CKER has a module tab which provides users with an alternate view of tasks. Tasks are arranged in shorter lists categorized by modules.
 This feature is to allow users to have a more focused overview of tasks, and know how many tasks are
 pending for each module as opposed to the most-urgent-task-first organization in  main task list.
@@ -232,7 +282,7 @@ The 2 main functions of the Module feature are to:
 1. Display all modules taken by the user.
 2. Display the list of yet to be completed tasks under each module.
 
-#### Implementation
+### 3.3.1. Implementation
 To implement the UI of this Module feature, there will be a `ModuleTaskCard` & `ModuleTaskListPanel` classes
 in the `ui` package, modified from the `TaskCard` and `TaskListPanel` classes. To implement the commands of
 this module feature, there are `ModuleCommnad` and `ModuleCommandParser` classes in the `logic` package.
@@ -244,9 +294,9 @@ The following diagram shows the sequence flow when a task gets added to the `Mod
 ![TaskWithModuleActivityDiagram](images/TaskWithModuleActivityDiagram.png)
 Figure 1: Adding task to `ModuleTaskListPanel` of a module.
 
-#### Design considerations:
+### 3.3.2. Design considerations:
 
-##### Aspect 1: How modules are deleted and added to tasks
+#### 3.3.2.1. Aspect 1: How modules are deleted and added to tasks
 
 * **Current Choice:** Modules cannot be deleted if there are existing tasks tagged with the module. Tasks can only be
 tagged with an existing module.
@@ -263,7 +313,7 @@ tagged with an existing module.
 will cause more time wasted for the user to fix them anyway, it seems that it is better to incur some overhead to
 prevent making a mess altogether.
 
-### Countdown feature (Wen Ling)
+## 3.4. Countdown feature (Wen Ling)
 TR4CKER has a Countdown tab which allows users to add important events that they would like TR4CKER to countdown to.
 This feature allows users to isolate the most important time sensitive events and deadlines, and tells the user exactly
 how many days do they have to a certain event, which enhances the tracking experience.
@@ -275,7 +325,7 @@ These are the main functions of the Countdown feature:
 4. Delete an event
 5. Count the total number of events in a specified number of days from current date
 
-#### Implementation
+### 3.4.1. Implementation
 The UI of the Countdown feature is facilitated by the `countdown` package in `model` and `ui` packages. `CountdownCommand`
 and `CountdownCommandParser` classes in the `logic` package implements this feature.
 The class diagram (Figure 1) shown below summarises the implementation of the UI of the countdown feature:
@@ -325,9 +375,9 @@ which function the user wants to use:
 The result of the command will be displayed accordingly, either in the events list box, or the result display box at
 near the bottom of the GUI.
 
-#### Design considerations:
+### 3.4.2. Design considerations:
 
-##### Aspect 1: Viewing events in Countdowns
+#### 3.4.2.1. Aspect 1: Viewing events in Countdowns
 
 * **Current Choice:** Display all events in the `upcoming events` list in the Countdown tab, where users can add or
 delete an event and have it be directly reflected in the list.
@@ -346,7 +396,7 @@ to have a bird's eve view of all their events, and be able to gauge at a glance 
 (For example, how many exams they have and what is the range of dates that they fall on.) The first implementation
 is also less prone to user errors as they can easily see whether the event is present in the list.
 
-##### Aspect 2: Adding an event to Countdowns
+#### 3.4.2.2. Aspect 2: Adding an event to Countdowns
 
 * **Current Choice:** Add an event using the `countdown n/NAME d/DATE` command, to add directly to the list of events.
   * Pros: Command is short and sweet and is easy for users to remember.
@@ -363,7 +413,7 @@ events list, (a user might add an exam or a festival to events list, whereas a t
 of homework) so it would be better to have separate commands to reduce dependency between different types of things
 that are being tracked, as well as to reduce confusion as to which tab to use.
 
-### Planner feature (Rui Ling)
+## 3.5. Planner feature (Rui Ling)
 TR4CKER has a planner feature which provides users to view the calendar side-by-side with the tasks that are due on
 specified day. This feature is to allow users to have a clearer view of their schedules and allow them to plan their
 time ahead, and hence increasing productivity.
@@ -372,7 +422,7 @@ The 2 main functions of Planner command are to:
 1. Switch to planner tab
 2. Display an overview of tasks for today/tomorrow and on specified date/month
 
-#### Implementation
+### 3.5.1. Implementation
 To implement the UI of this planner feature, there is a `planner` package in `model` and `ui` packages. To implement
 the commands of this planner feature, there are `PlannerCommand` and `PlannerCommandParser` classes in `logic` package.
 The following class diagram (Figure 1) summarises how the UI aspect of this planner feature is being implemented:
@@ -422,9 +472,9 @@ user wants to display an overview of tasks, the validity of input will be checke
 Depending on the inputs, the calendar view and tasks list will be updated accordingly. Planner tab is then displayed to
 the user and a feedback is provided.
 
-#### Design considerations:
+### 3.5.2. Design considerations:
 
-##### Aspect 1: How to represent tasks list for Planner tab
+#### 3.5.2.1. Aspect 1: How to represent tasks list for Planner tab
 
 * **Current Choice:** Have a separate tasks list for Planner tab, which is the `PlannerTaskListPanel`class. This class
 is different from the `TaskListPanel` class which is mainly used for the TR4CKER tab.
@@ -447,7 +497,7 @@ tasks and shows every task on the list. However, tasks list in Planner tab shows
 and can even show expired tasks if user chooses to go to a date in the past. Therefore, although it required more time
 and effort, I think that having a separate class would be better since the tasks list in both tabs act differently.
 
-##### Aspect 2: How users can easily navigate to today's/tomorrow's tasks list
+#### 3.5.2.2. Aspect 2: How users can easily navigate to today's/tomorrow's tasks list
 
 * **Current Choice:** Use the same `planner` command to navigate to today's/tomorrow's tasks list. For example,
 `planner goto/today` would navigate users to today's tasks list and `planner goto/tomorrow` would navigate users to
@@ -469,19 +519,26 @@ User Guide of TR4CKER.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Documentation, logging, testing, configuration, dev-ops**
+# 4. Documentation
+To understand more about the documentation used in TR4CKER, you can read up the [Documentation guide](Documentation.md).
 
-* [Documentation guide](Documentation.md)
-* [Testing guide](Testing.md)
-* [Logging guide](Logging.md)
-* [Configuration guide](Configuration.md)
-* [DevOps guide](DevOps.md)
+# 5. Testing
+To understand more about the testing used in TR4CKER, you can read up the [Testing guide](Testing.md).
+
+# 6. Logging
+To understand more about the logging used in TR4CKER, you can read up the [Logging guide](Logging.md).
+
+# 7. Configuration
+To understand more about the configuration used in TR4CKER, you can read up the [Configuration guide](Configuration.md).
+
+# 8. Dev-Ops
+To understand more about the Dev-Ops used in TR4CKER, you can read up the [DevOps guide](DevOps.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Requirements**
+# Appendix A: Requirements
 
-### Product scope
+## A.1. Product scope
 
 **Target user profile**:
 
@@ -496,8 +553,7 @@ User Guide of TR4CKER.
 and stay productive. It is optimized for Computing students familiar with CLI, who can manage their tasks efficiently
 by typing in commands.
 
-
-### User stories
+## A.2. User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
@@ -537,7 +593,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | professional user                         | utilise all the features that are available to me        | I can maximise my efficiency                                           |
 | `*`      | student                                   | keep short notes of my modules                           | remind myself what is important                                        |
 
-### Use cases
+## A.3. Use cases
 
 (For all use cases below, the **System** is the `TR4CKER`: application and the **Actor** is the `user`, unless specified otherwise)
 
@@ -682,7 +738,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-### Non-Functional Requirements
+## A.4. Non-Functional Requirements
 
 1.  TR4CKER should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  TR4CKER should be able to hold up to **1000 tasks** without any noticeable sluggishness in performance for typical usage.
@@ -695,7 +751,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 7.  The response to any inputted commands should become visible within 5 seconds.
 8.  The source code should be open source.
 
-### Glossary
+## A.5. Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Task**: An item to be completed by a certain deadline.
@@ -704,7 +760,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Instructions for manual testing**
+# Appendix B: Instructions for manual testing
 
 Given below are instructions to test TR4CKER manually.
 
@@ -713,7 +769,7 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-### Launch and shutdown
+## B.1. Launch and shutdown
 
 1. Initial launch
 
@@ -729,7 +785,7 @@ testers are expected to do more *exploratory* testing.
    2.2. Re-launch TR4CKER by double-clicking the jar file.<br>
    Expected: The most recent window size and location is retained.
 
-### Deleting a task
+## B.2. Deleting a task
 
 1. Deleting a task while all tasks are being shown
 
@@ -746,7 +802,7 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Daily feature
+## B.3. Daily feature
 1. Switching to Daily tab.<br>
 
     1.1 Prerequisite: Current tab must not be Daily tab.<br>
@@ -787,7 +843,8 @@ testers are expected to do more *exploratory* testing.
     1.4 Other incorrect delete todo commands to try: `daily del/`, `daily del/x`, `...` (where `x` is larger than the daily todo list size)<br>
     
     Expected: Similar to previous.
-### Module feature
+
+## B.4. Module feature
 1. Switching to Module tab.<br>
 
     1.1. Prerequisite: Current tab must not be Module tab.<br>
@@ -824,7 +881,7 @@ testers are expected to do more *exploratory* testing.
     3.3. Test case: `edit 1 m/invalid code`
         Expected: TR4CKER shows an error message. First task not assigned to any module. Error details shown in status message.
         
-### Countdown feature
+## B.5. Countdown feature
 1. Switching to Countdown tab<br>
 
     1.1. Prerequisite: Current tab must not be Countdown tab.<br>
@@ -867,7 +924,7 @@ testers are expected to do more *exploratory* testing.
     4.2. Incorrect countdown commands to try:`countdown days/-10`<br>
     Expected: TR4CKER shows an `Invalid command format!` error message since `DAYS` is not a valid number of days.
 
-### Planner feature
+## B.6. Planner feature
 1. Switching to Planner tab<br>
 
     1.1. Prerequisite: Current tab must not be Planner tab.<br>
@@ -949,7 +1006,7 @@ testers are expected to do more *exploratory* testing.
     
     Expected: TR4CKER shows an error message. No switching to planner tab, calendar view and tasks list.
 
-### Saving data
+## B.7. Saving data
 
 1. Dealing with missing/corrupted data files
 
