@@ -17,6 +17,8 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.tr4cker.logic.parser.exceptions.ParseException;
+import seedu.tr4cker.model.countdown.EventDate;
+import seedu.tr4cker.model.countdown.EventName;
 import seedu.tr4cker.model.tag.Tag;
 import seedu.tr4cker.model.task.Deadline;
 import seedu.tr4cker.model.task.Name;
@@ -31,6 +33,11 @@ public class ParserUtilTest {
     private static final String INVALID_DESCRIPTION = " ";
     private static final String INVALID_TAG = "#friend";
     private static final String EXPIRED_DEADLINE = "01-01-2020 2359";
+    private static final String INVALID_EVENT_NAME = "Exciting!!! Stuff";
+    private static final String INVALID_DATE = "55-66-7777";
+    private static final String INVALID_DATE_2 = "31-Nov-2021";
+    private static final String EXPIRED_DATE = "01-01-2020";
+    private static final String INVALID_QUERY_DAYS = "-10";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_DEADLINE_MM = "25-12-2021 2359";
@@ -40,6 +47,10 @@ public class ParserUtilTest {
     private static final String VALID_DESCRIPTION = "description";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
+    private static final String VALID_EVENT_NAME = "Exciting Stuff";
+    private static final String VALID_DATE_MM = "09-08-2025";
+    private static final String VALID_DATE_MMM = "09-Aug-2025";
+    private static final String VALID_QUERY_DAYS = "10";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -240,5 +251,95 @@ public class ParserUtilTest {
         Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
+    }
+
+    @Test
+    public void parseEventName_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseEventName((String) null));
+    }
+
+    @Test
+    public void parseEventName_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseName(INVALID_EVENT_NAME));
+    }
+
+    @Test
+    public void parseEventName_validValueWithoutWhitespace_returnsName() throws Exception {
+        EventName expectedName = new EventName(VALID_EVENT_NAME);
+        assertEquals(expectedName, ParserUtil.parseEventName(VALID_EVENT_NAME));
+    }
+
+    @Test
+    public void parseEventName_validValueWithWhitespace_returnsTrimmedName() throws Exception {
+        String nameWithWhitespace = WHITESPACE + VALID_EVENT_NAME + WHITESPACE;
+        EventName expectedName = new EventName(VALID_EVENT_NAME);
+        assertEquals(expectedName, ParserUtil.parseEventName(nameWithWhitespace));
+    }
+
+    @Test
+    public void parseEventDate_expiredEventDate_throwsIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, () -> new EventDate(EXPIRED_DATE, true));
+    }
+
+    @Test
+    public void parseEventDate_expiredEventDate_returnsEventDate() {
+        boolean isCreated = true;
+        try {
+            EventDate expectedDate = new EventDate(EXPIRED_DATE, false);
+        } catch (IllegalArgumentException e) {
+            isCreated = false;
+        }
+        assertTrue(isCreated);
+    }
+
+    @Test
+    public void parseEventDate_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseEventDate((String) null));
+    }
+
+    @Test
+    public void parseEventDate_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseEventDate(INVALID_DATE));
+        assertThrows(ParseException.class, () -> ParserUtil.parseEventDate(EXPIRED_DATE));
+        assertThrows(ParseException.class, () -> ParserUtil.parseEventDate(INVALID_DATE_2));
+        assertThrows(ParseException.class, () -> ParserUtil.parseEventDate(VALID_DEADLINE_MM)); // cannot have time
+    }
+
+    @Test
+    public void parseEventDate_validValueWithoutWhitespace_returnsEventDate() throws Exception {
+        EventDate expectedDate = new EventDate(VALID_DATE_MM, false);
+        assertEquals(expectedDate, ParserUtil.parseEventDate(VALID_DATE_MM));
+        assertEquals(expectedDate, ParserUtil.parseEventDate(VALID_DATE_MMM));
+    }
+
+    @Test
+    public void parseEventDate_validValueWithWhitespace_returnsTrimmedEventDate() throws Exception {
+        String dateWithWhitespace = WHITESPACE + VALID_DATE_MM + WHITESPACE;
+        EventDate expectedDate = new EventDate(VALID_DATE_MM, false);
+        assertEquals(expectedDate, ParserUtil.parseEventDate(dateWithWhitespace));
+    }
+
+    @Test
+    public void parseQueryDays_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseQueryDays((String) null));
+    }
+
+    @Test
+    public void parseQueryDays_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseQueryDays(INVALID_QUERY_DAYS));
+        assertThrows(ParseException.class, () -> ParserUtil.parseQueryDays(INVALID_NAME));
+    }
+
+    @Test
+    public void parseQueryDays_validValueWithoutWhitespace_returnsQueryDays() throws Exception {
+        int expectedQueryDays = 10;
+        assertEquals(expectedQueryDays, ParserUtil.parseQueryDays(VALID_QUERY_DAYS));
+    }
+
+    @Test
+    public void parseQueryDays_validValueWithWhitespace_returnsTrimmedQueryDays() throws Exception {
+        String queryDaysWithWhitespace = WHITESPACE + VALID_QUERY_DAYS + WHITESPACE;
+        int expectedQueryDays = 10;
+        assertEquals(expectedQueryDays, ParserUtil.parseQueryDays(queryDaysWithWhitespace));
     }
 }

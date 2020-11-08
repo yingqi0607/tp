@@ -1,13 +1,12 @@
 package seedu.tr4cker.logic.parser;
 
-import static seedu.tr4cker.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.tr4cker.commons.core.Messages.MESSAGE_EMPTY;
 import static seedu.tr4cker.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.tr4cker.logic.commands.AddCommand;
-import seedu.tr4cker.logic.commands.ClearCommand;
 import seedu.tr4cker.logic.commands.Command;
 import seedu.tr4cker.logic.commands.CountdownCommand;
 import seedu.tr4cker.logic.commands.DailyCommand;
@@ -21,6 +20,7 @@ import seedu.tr4cker.logic.commands.HomeCommand;
 import seedu.tr4cker.logic.commands.ListCommand;
 import seedu.tr4cker.logic.commands.ModuleCommand;
 import seedu.tr4cker.logic.commands.PlannerCommand;
+import seedu.tr4cker.logic.commands.ResetCommand;
 import seedu.tr4cker.logic.commands.TagCommand;
 import seedu.tr4cker.logic.commands.TodoCommand;
 import seedu.tr4cker.logic.parser.exceptions.ParseException;
@@ -45,7 +45,7 @@ public class Tr4ckerParser {
     public Command parseCommand(String userInput) throws ParseException {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         if (!matcher.matches()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_EMPTY, HelpCommand.MESSAGE_USAGE));
         }
 
         final String commandWord = matcher.group("commandWord");
@@ -67,8 +67,8 @@ public class Tr4ckerParser {
         case DoneCommand.COMMAND_WORD:
             return new DoneCommandParser().parse(arguments);
 
-        case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
+        case ResetCommand.COMMAND_WORD:
+            return new ResetCommand();
 
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);

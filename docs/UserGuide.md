@@ -29,7 +29,7 @@ title: User Guide
         * 3.3.1. [Switching to Daily tab: `daily`](#331-switching-to-daily-tab-daily)
         * 3.3.2. [Adding a daily todo task](#332-adding-a-daily-todo-task-todo)
     * 3.4. [Modules Tab](#34-modules-ethan)
-        * 3.4.1. [Switching to Module tab: `modules`](#341-switching-to-module-tab-mod)
+        * 3.4.1. [Switching to Module tab: `modules`](#341-switching-to-module-tab-modules)
         * 3.4.2. [Adding a new module to modules list](#342-adding-a-new-module-to-modules-list)
         * 3.4.3. [Assigning a task to a module](#343-assigning-a-task-to-a-module)
         * 3.4.4. [Un-assigning a task from a module](#344-un-assigning-a-task-from-a-module)
@@ -37,8 +37,7 @@ title: User Guide
     * 3.5. [Countdown Tab](#35-countdown-wen-ling)
         * 3.5.1. [Switching to Countdown tab: `countdown`](#351-switching-to-countdown-tab-countdown)
         * 3.5.2. [Adding a new event to countdowns list](#352-adding-a-new-event-to-countdowns-list)
-        * 3.5.3. [Adding an event from tasks list](#353-adding-an-event-from-tasks-list)
-        * 3.5.4. [Deleting an event from countdowns list](#354-deleting-an-event-from-countdowns-list)
+        * 3.5.3. [Deleting an event from countdowns list](#353-deleting-an-event-from-countdowns-list)
     * 3.6. [Planner Tab](#36-planner-rui-ling)
         * 3.6.1. [Switching to Planner tab: `planner`](#361-switching-to-planner-tab-planner)
         * 3.6.2. [Switching calendar view and tasks list](#362-switching-calendar-view-and-tasks-list)
@@ -49,8 +48,8 @@ title: User Guide
             * 3.6.2.3. [Go to specific month](#3623-go-to-specific-month)
         * 3.6.3 [Indicators on Calendar](#363-indicators-on-calendar)
     * 3.7. [Saving of Data](#37-saving-the-data)
-4. [FAQ](#faq)
-5. [Command Summary](#command-summary)
+4. [FAQ](#4-faq)
+5. [Command Summary](#5-command-summary)
 
 # 1. Overview
 Welcome to the User Guide of TR4CKER!
@@ -560,31 +559,7 @@ Countdowns list of events.
 ![add_new](images/countdowntab_addnew.png)
 Figure 19: TR4CKER after executing `countdown n/ES2660 Final Presentation d/05-Nov-2020`
 
-### 3.5.3. Adding an event from tasks list
-You can add an event that is based on a current task in the tasks list (as seen in the homepage of TR4CKER under the
-`Pending Tasks` panel) to your list of countdowns. TR4CKER will help you to countdown to this event, in addition to
-tracking it in the tasks list.
-
-Format: `countdown task/INDEX`
-
-* Converts the task at index `INDEX` of the task list into an event, and adds this event to the Countdowns events list.
-* `INDEX` has to be a valid index, numbered according to the list in the home page of TR4CKER.
-* The deadline of this task needs to be a day in the future (i.e. NOT today or any day before today).
-* Note: any subsequent changes to the task in the task list, such as editing the description or name of the task,
-will not be reflected in the event.
-
-Example:
-* `countdown task/1` - Adds an event to the Countdowns list of events based on the task at index `1` of the tasks list.
-
-![add_task_before](images/countdowntab_addtask_before.png)
-Figure 20: Home page of TR4CKER which shows the list of tasks that you can add as an event, in the `Pending Tasks` panel
-on the left.
-
-![add_task_after](images/countdowntab_addtask_after.png)
-Figure 21: TR4CKER after executing `countdown task/2`. The task at index `2` in Figure 20 is added at index `9` of the
-Countdowns events list.
-
-### 3.5.4. Deleting an event from countdowns list
+### 3.5.3. Deleting an event from countdowns list
 You can delete an event from your list of events if you no longer want to countdown to it, or if it is over.
 
 Format: `countdown del/INDEX`
@@ -613,12 +588,17 @@ CLI, by just typing `planner`.
 
 Format: `planner`
 
-Once you enter `planner` into the command box, TR4CKER should look like this:
+1. You enter `planner` into the command box.
 ![switch tab](images/plannertab_switchtab.png)
-Figure 24: TR4CKER after executing `planner`
+Figure 24: TR4CKER before executing `planner`
+
+2. Press enter and TR4CKER should switch to Planner tab.
+![switch tab](images/plannertab_switchtab1.png)
+Figure 25: TR4CKER after executing `planner`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Note:**
 By default, TR4CKER will circle today's date and the show you the tasks due on that day.
+In this User Guide, today's date is taken as 7 November 2020.
 </div>
 
 Example:
@@ -637,13 +617,13 @@ You can view today's tasks list using this command.
 
 Format: `planner goto/today` or `planner goto/tdy`
 
-First, you enter the command into the command box to go to today:
+1. You enter the command into the command box to navigate to today.
 ![goto today command](images/plannertab_gototoday.png)
-Figure 25: TR4CKER before executing `planner goto/tdy`
+Figure 26: TR4CKER before executing `planner goto/tdy`
 
-Then, TR4CKER will change planner tab to today's calendar view and tasks due today:
+2. Press enter and TR4CKER will change planner tab to today's calendar view and tasks due today.
 ![goto today result](images/plannertab_gototoday1.png)
-Figure 26: TR4CKER after executing `planner goto/tdy`
+Figure 27: TR4CKER after executing `planner goto/tdy`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Note:**
 Input can only be `today` or `tdy`. There are no other alternatives.
@@ -651,7 +631,7 @@ Input can only be `today` or `tdy`. There are no other alternatives.
 
 Examples:
 * `planner goto/today`
-* `planner goto/tdy`
+* `planner goto/tdy`<br>
 will both give you today's calendar view and tasks due today.
 
 ##### 3.6.2.1.2. Tomorrow
@@ -659,13 +639,13 @@ You can view tomorrow's tasks list using this command.
 
 Format: `planner goto/tomorrow` or `planner goto/tmr`
 
-First, you enter the command into the command box to go to tomorrow:
+1. You enter the command into the command box to navigate to tomorrow.
 ![goto tomorrow command](images/plannertab_gototomorrow.png)
-Figure 27: TR4CKER before executing `planner goto/tmr`
+Figure 28: TR4CKER before executing `planner goto/tmr`
 
-Then, TR4CKER will change planner tab to tomorrow's calendar view and tasks due tomorrow:
+2. Press enter and TR4CKER will change planner tab to tomorrow's calendar view and tasks due tomorrow.
 ![goto tomorrow result](images/plannertab_gototomorrow1.png)
-Figure 28: TR4CKER after executing `planner goto/tmr`
+Figure 29: TR4CKER after executing `planner goto/tmr`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Note:**
 Input can only be `tomorrow` or `tmr`. There are no other alternatives.
@@ -673,7 +653,7 @@ Input can only be `tomorrow` or `tmr`. There are no other alternatives.
 
 Examples:
 * `planner goto/tomorrow`
-* `planner goto/tmr`
+* `planner goto/tmr`<br>
 will both give you tomorrow's calendar view and tasks due tomorrow.
 
 ### 3.6.2.2. Go to specific date
@@ -681,13 +661,13 @@ For the ease of accessing of a specific date's tasks list, TR4CKER has provided 
 
 Format: `planner goto/DATE`
 
-First, you enter the command into the command box to go to a specific date:
+1. You enter the command into the command box to navigate to a specific date, let's say 27 October 2020.
 ![goto date command](images/plannertab_gotodate.png)
-Figure 29: TR4CKER before executing `planner goto/08-11-2020`
+Figure 30: TR4CKER before executing `planner goto/27-10-2020`
 
-Then, TR4CKER will change planner tab to the calendar view and tasks due on the input date you provided:
+2. Press enter and TR4CKER will change planner tab to the date's calendar view and tasks due on that date.
 ![goto date result](images/plannertab_gotodate1.png)
-Figure 30: TR4CKER after executing `planner goto/08-11-2020`
+Figure 31: TR4CKER after executing `planner goto/27-10-2020`
 
 <div markdown="block" class="alert alert-info">
 
@@ -712,13 +692,13 @@ For the ease of accessing of a specific month's tasks list, TR4CKER has provided
 
 Format: `planner goto/MONTH`
 
-First, you enter the command into the command box to go to a specific month:
+1. You enter the command into the command box to navigate to a specific month, let's say September 2021.
 ![goto month command](images/plannertab_gotomonth.png)
-Figure 31: TR4CKER before executing `planner goto/Sep-2021`
+Figure 32: TR4CKER before executing `planner goto/Sep-2021`
 
-Then, TR4CKER will change planner tab to the calendar view and tasks due on the input month you provided:
+2. Press enter and TR4CKER will change planner tab to the month's calendar view and tasks due on first day of the month.
 ![goto month result](images/plannertab_gotomonth1.png)
-Figure 32: TR4CKER after executing `planner goto/Sep-2021`
+Figure 33: TR4CKER after executing `planner goto/Sep-2021`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Note:**
 By default, TR4CKER will circle the first day of the month you inputted and show you the tasks due on the first day of
@@ -748,7 +728,7 @@ overview of your schedule, Planner tab allows you to check if your upcoming days
 
 The figure below shows the indicators:
 ![indicator](images/plannertab_indicator.png)
-Figure 33: Indicators (circled in red) on calendar
+Figure 34: Indicators (circled in red) on calendar
 
 The indicator colours and their meanings are:
 * No indicator - no tasks due on that date
@@ -762,7 +742,7 @@ There is no need to save manually.
 
 --------------------------------------------------------------------------------------------------------------------
 
-# FAQ
+# 4. FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
@@ -770,22 +750,35 @@ the data of your previous TR4CKER home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
-# Command summary
+# 5. Command summary
 
-* **Help**: `help`
-* **Exit**: `exit`
-* **Add**: `add n/NAME des/DESCRIPTION [dl/DEADLINE] [m/MODULE_CODE] [t/TAG]...`
-* **List**: `list`
-* **Done**: `done INDEX [p/COMPLETION_STATUS]`
-* **Add todo task**: `todo INDEX`
-* **Edit Pending tasks**: `edit INDEX [n/NAME] [des/DESCRIPTION] [dl/DEADLINE]`
-* **Edit Tags of Pending tasks**: `tag INDEX [old/TAG_TO_DELETE]... [new/NEW_TAG]...`
-* **Find Pending tasks**: `find [KEYWORD]...`
-* **Delete Pending tasks**: `delete INDEX`
-* **Edit Expired tasks**: `edit expired INDEX [n/NAME] [dl/DEADLINE] [des/DESCRIPTION]`
-* **Delete Expired tasks**: `delete expired INDEX`
-* **View today's tasks in Planner**: `planner goto/today` or `planner goto/tdy`
-* **View tomorrow's tasks in Planner**: `planner goto/tomorrow` or `planner goto/tmr`
-* **View a specific date's tasks in Planner**: `planner goto/DATE`
-* **View a specific month's tasks in Planner**: `planner goto/MONTH`
-* **Clear all tasks**: `clear`
+| Tab | Command | Command Format | 
+| --- | ------- | -------------- |
+| - | Clear all tasks | `clear` |
+| - | Help | `help` |
+| - | Exit TR4CKER | `exit` |
+| - | Switch to TR4CKER tab | `home` |
+| - | Switch to Daily tab | `daily` |
+| - | Switch to Modules tab | `modules` |
+| - | Switch to Countdown tab | `countdown` |
+| - | Switch to Planner tab | `planner` |
+| TR4CKER | Add tasks | `add n/NAME des/DESCRIPTION [dl/DEADLINE] [m/MODULE_CODE] [t/TAG]...` |
+| TR4CKER | Delete Expired tasks | `delete expired INDEX` |
+| TR4CKER | Delete Pending tasks | `delete INDEX` |
+| TR4CKER | Edit Expired tasks | `edit expired INDEX [n/NAME] [dl/DEADLINE] [des/DESCRIPTION]` |
+| TR4CKER | Edit Pending tasks | `edit INDEX [n/NAME] [des/DESCRIPTION] [dl/DEADLINE]` |
+| TR4CKER | Edit Tags of Pending tasks | `tag INDEX [old/TAG_TO_DELETE]... [new/NEW_TAG]...` |
+| TR4CKER | Find Pending tasks | `find [KEYWORD]...` |
+| TR4CKER | List tasks | `list` |
+| TR4CKER | Mark tasks as done | `done INDEX [p/COMPLETION_STATUS]` |
+| Daily | Add todo tasks | `todo INDEX` |
+| Modules | Add new modules to modules list | `modules n/NAME m/MODULECODE` |
+| Modules | Assign tasks to modules | `edit INDEX [m/MODULECODE]`|
+| Modules | Delete modules | `modules del/INDEX` |
+| Modules | Un-assign tasks from modules | `edit INDEX m/del` |
+| Countdown | Add new events to countdowns list | `countdown n/NAME d/DATE` |
+| Countdown | Delete events from countdowns list | `countdown del/INDEX` |
+| Planner | View a specific date's tasks in planner tab | `planner goto/DATE` |
+| Planner | View a specific month's tasks in planner tab | `planner goto/MONTH` |
+| Planner | View today's tasks in planner tab | `planner goto/today` or `planner goto/tdy` |
+| Planner | View tomorrow's tasks in planner tab | `planner goto/tomorrow` or `planner goto/tmr` |

@@ -46,6 +46,7 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Task: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+    public static final String MESSAGE_UNCHANGED = "Looks like nothing has been changed.";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in TR4CKER.";
     public static final String MESSAGE_INVALID_MODULE = "Given module does not exist in TR4CKER.";
 
@@ -82,6 +83,10 @@ public class EditCommand extends Command {
 
         if (!taskToEdit.isSameTask(editedTask) && model.hasTask(editedTask)) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
+        }
+
+        if (!taskToEdit.isEdited(editedTask)) {
+            throw new CommandException(MESSAGE_UNCHANGED);
         }
 
         if (!model.hasValidModuleField(editedTask)) {

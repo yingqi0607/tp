@@ -71,6 +71,10 @@ public class TypicalTasks {
             .withDeadline("01-01-2021 0000")
             .withCompletionStatus(0).withTaskDescription("Task 7 description")
             .withTags("homework").build();
+    public static final Task EXPIRED_TASK = new TaskBuilder().withName("An expired task")
+            .withDeadline("01-02-2020 0000")
+            .withCompletionStatus(0).withTaskDescription("This is an expired task")
+            .withTags("overdue").build();
 
     public static final Event EVENT1 = new Event(new EventName("Event1 Name"),
             new EventDate("01-01-2021", false));
@@ -134,7 +138,7 @@ public class TypicalTasks {
     }
 
     public static List<Task> getTypicalTasks() {
-        return new ArrayList<>(Arrays.asList(TASK1, TASK2, TASK3, TASK4, TASK5, TASK6, TASK7));
+        return new ArrayList<>(Arrays.asList(TASK1, TASK2, TASK3, TASK4, TASK5, TASK6, TASK7, EXPIRED_TASK));
     }
 
     public static List<Event> getTypicalEvents() {
