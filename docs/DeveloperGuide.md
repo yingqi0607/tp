@@ -173,14 +173,14 @@ Once the user marks a task as complete, it will automatically appear under Compl
 This design filters the tasks into 3 lists according to their completion statuses and deadlines which will be useful to the users,
 as opposed to having browse through a long task list.
 
-### Daily feature \[coming in v1.3] (Yingqi)
+### Daily feature (Yingqi)
 Tracker has a daily feature that allows users to add current tasks to a todo list for the day.
 This feature allows users to plan for what they want to do for a particular day.
 
 The 3 main functions of the Daily feature are to:
 1. Add tasks from existing task list to a todo list
 2. Display all tasks that the user wants to do for the day
-3. The daily todo list is cleared everyday
+3. Delete a daily todo when it is done for the day
 
 #### Implementation
 The UI of the Daily feature is facilitated by the `DailyPanel` class which will show users all daily todo tasks as a list.
@@ -206,6 +206,8 @@ The following diagram shows the sequence flow when a task gets added into the `D
 **Justification for current choice:** Users would already have details of the tasks in mind and therefore they will tend
 to add the tasks they feel that are more urgent to daily todo list. Hence details can be ommited when users select tasks
 to add into daily todo list.
+
+#### Aspect 2: How users
 
 ### Module feature \[coming in v1.3] (Ethan)
 TR4CKER has a module tab which provides users with an alternate view of tasks. Tasks are arranged in shorter lists categorized by modules.
