@@ -712,27 +712,64 @@ testers are expected to do more *exploratory* testing.
    2.2. Re-launch TR4CKER by double-clicking the jar file.<br>
    Expected: The most recent window size and location is retained.
 
-### Deleting a person
+### Deleting a task
 
-1. Deleting a person while all persons are being shown
+1. Deleting a task while all tasks are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all tasks using the `list` command. Multiple tasks in the list.
 
    1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+      Expected: First task is deleted from the list. Details of the deleted task shown in the status message. Timestamp in the status bar is updated.
 
    1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No task is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where `x` is larger than the list size)<br>
       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
 
+### Module feature
+1. Switching to Module tab<br>
+
+    1.1. Prerequisite: Current tab must not be Module tab.<br>
+
+    1.2. Test case: `modules`<br>
+
+    Expected: TR4CKER switches to Module tab with a result message saying `Switched to Module tab!`. Module tab will be
+    empty if there are no modules.
+
+2. Deleting a module while switched to Module tab.<br>
+
+    2.1. Prerequisites: Module must not have any tasks listed under it.
+
+    2.2. Test case: `modules del/INDEX` (where `INDEX` is the number of the module in the list)<br>
+        Expected: Module is deleted from the list with result message saying `Deleted module: [ CODE | NAME ]`
+        (where `CODE` and `NAME` are the module code and name of the module)
+
+    2.3. Test case: `modules del/x` (where `x` is the number of a module that still has tasks)<br>
+        Expected: Module is not deleted. Error details shown in status message.
+
+    2.4. Test case: `modules del/0`<br>
+        Expected: No module is deleted. Error details shown in status message.
+
+    2.5. Other incorrect delete commands to try: `modules del/`, `delete del/x`, `...` (where `x` is larger than the list size)<br>
+        Expected: Similar to previous.
+
+3. Assigning a task to a module.<br>
+
+    3.1. Prerequisites: Have at least one created module and task. List all tasks using the `list` command.<br>
+
+    3.2. Test case: `edit 1 m/MODULECODE` (where `MODULECODE` is the code of an existing module)<br>
+        Expected: First task is tagged with that module code. Task appears under in the Module tab under the respective module.
+
+    3.3. Test case: `edit 1 m/invalid code`
+        Expected: TR4CKER shows an error message. First task not assigned to any module. Error details shown in status message.
+        
 ### Planner feature
 1. Switching to Planner tab<br>
 
-    1.1. Prerequisitie: Current tab must not be Planner tab.<br>
+    1.1. Prerequisite: Current tab must not be Planner tab.<br>
     
     1.2. Test case: `planner`<br>
     
