@@ -22,7 +22,6 @@ elseif () then ([count number of events in specified days])
      :TR4CKER counts the number of events
      within the specified number of days
      from today;
-    :TR4CKER switches to Countdown tab;
 else ([no additional arguments])
 endif
 
