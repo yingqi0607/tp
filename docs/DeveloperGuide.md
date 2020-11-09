@@ -949,7 +949,7 @@ changing other task fields.
 
     Use case ends.
 
-**Use case: UC12 - Switching to Countdown tab**
+**Use case: UC17 - Switching to Countdown tab**
 
 **MSS**
 
@@ -967,11 +967,11 @@ changing other task fields.
 
     Use case ends.
 
-**Use case: UC13 - Add an event to Countdown tab**
+**Use case: UC18 - Add an event to Countdown tab**
 
 **MSS**
 
-1.  User requests to <u>switch to Countdown tab (UC12)</u> to view current list of events.
+1.  User requests to <u>switch to Countdown tab (UC17)</u> to view current list of events.
 
 2.  TR4CKER shows current list of events.
 
@@ -989,11 +989,11 @@ changing other task fields.
 
     Use case ends.
 
-**Use case: UC14 - Delete an event from Countdown tab**
+**Use case: UC19 - Delete an event from Countdown tab**
 
 **MSS**
 
-1.  User requests to <u>switch to Countdown tab (UC12)</u> to view current list of events.
+1.  User requests to <u>switch to Countdown tab (UC17)</u> to view current list of events.
 
 2.  TR4CKER shows current list of events.
 
@@ -1011,11 +1011,11 @@ changing other task fields.
 
     Use case ends.
 
-**Use case: UC15 - Count the number of events in the next `x` days**
+**Use case: UC20 - Count the number of events in the next `x` days**
 
 **MSS**
 
-1.  User requests to <u>switch to Countdown tab (UC12)</u> to view current list of events.
+1.  User requests to <u>switch to Countdown tab (UC17)</u> to view current list of events.
 
 2.  TR4CKER shows current list of events.
 
@@ -1033,7 +1033,7 @@ changing other task fields.
 
     Use case ends.
 
-**Use case: UC16 - Switching to Planner tab**
+**Use case: UC21 - Switching to Planner tab**
 
 **MSS**
 
@@ -1050,7 +1050,7 @@ changing other task fields.
 
     Use case ends.
 
-**Use case: UC17 - Goto specific date in Planner tab**
+**Use case: UC22 - Goto specific date in Planner tab**
 
 **MSS**
 
@@ -1067,7 +1067,7 @@ changing other task fields.
 
     Use case ends.
 
-**Use case: UC18 - Goto specific month in Planner tab**
+**Use case: UC23 - Goto specific month in Planner tab**
 
 **MSS**
 
