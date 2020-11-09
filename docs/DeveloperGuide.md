@@ -117,7 +117,7 @@ the command `delete 1`.
 
 The sections below give more details of each component.
 
-## 2.2. UI component
+## 2.2. UI component (Han Wei)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
@@ -145,7 +145,7 @@ The `UI` component,
 
 1. `Logic` uses the `Tr4ckerParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
-1. The command execution can affect the `Model` (e.g. adding a person).
+1. The command execution can affect the `Model` (e.g. adding a Task).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
