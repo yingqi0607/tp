@@ -11,6 +11,9 @@ import seedu.tr4cker.commons.exceptions.IllegalValueException;
 import seedu.tr4cker.model.task.Deadline;
 import seedu.tr4cker.model.task.Name;
 
+/**
+ * Contains integration tests for {@code JsonAdaptedDaily}.
+ */
 public class JsonAdaptedDailyTest {
 
     private static final String INVALID_NAME = "R@chel";

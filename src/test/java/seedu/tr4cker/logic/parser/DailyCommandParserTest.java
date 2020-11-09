@@ -12,6 +12,9 @@ import org.junit.jupiter.api.Test;
 import seedu.tr4cker.commons.core.index.Index;
 import seedu.tr4cker.logic.commands.DailyCommand;
 
+/**
+ * Contains integration tests for {@code DailyCommandParser}.
+ */
 public class DailyCommandParserTest {
 
     private static final String MESSAGE_INVALID_SWITCH_TAB_FORMAT = String.format(MESSAGE_INVALID_COMMAND_FORMAT,

@@ -14,7 +14,9 @@ import org.junit.jupiter.api.Test;
 import seedu.tr4cker.model.task.Deadline;
 import seedu.tr4cker.model.task.Name;
 
-
+/**
+ * Contains integration tests for {@code Todo}.
+ */
 public class TodoTest {
     private Todo todo1 = new Todo(new Name("Name 1"), new Deadline("09-09-2021 2000", false));
     private Todo todo2 = new Todo(new Name("Name 2"), new Deadline("08-08-2021 1800", false));

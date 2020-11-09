@@ -16,6 +16,9 @@ import seedu.tr4cker.model.daily.exceptions.TodoNotFoundException;
 import seedu.tr4cker.model.task.Deadline;
 import seedu.tr4cker.model.task.Name;
 
+/**
+ * Contains integration tests for {@code UniqueDailyList}.
+ */
 public class UniqueDailyListTest {
 
     private final UniqueDailyList uniqueDailyList = new UniqueDailyList();

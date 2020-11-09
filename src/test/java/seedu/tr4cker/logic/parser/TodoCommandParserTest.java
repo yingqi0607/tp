@@ -9,6 +9,9 @@ import org.junit.jupiter.api.Test;
 
 import seedu.tr4cker.logic.commands.TodoCommand;
 
+/**
+ * Contains integration tests for {@code TodoCommandParser}.
+ */
 public class TodoCommandParserTest {
 
     private final TodoCommandParser parser = new TodoCommandParser();
