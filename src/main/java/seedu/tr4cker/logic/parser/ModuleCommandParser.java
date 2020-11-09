@@ -50,7 +50,8 @@ public class ModuleCommandParser implements Parser<ModuleCommand> {
         if (!arePrefixesPresent(argMultimap, PREFIX_MODULE_NAME, PREFIX_MODULE_CODE)
                 && arePrefixesPresent(argMultimap, PREFIX_MODULE_DELETE)
                 && argMultimap.getPreamble().isEmpty()) {
-            Index index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_MODULE_DELETE).get());
+            Index index = ParserUtil.parseModuleIndex(argMultimap.getValue(PREFIX_MODULE_DELETE).get(),
+                    ModuleCommand.MESSAGE_DELETE_MODULE_USAGE);
             return new ModuleCommand(index);
         }
 

@@ -48,7 +48,9 @@ public class ModuleCard extends UiPart<Region> {
         id.setText(displayedIndex + ") ");
         moduleName.setText(module.moduleName);
         moduleCode.setText(module.moduleCode.toString());
-        smallTaskListView.setItems(taskList.filtered(task -> task.getModuleCode().contains(module.moduleCode)));
+        smallTaskListView.setItems(taskList.filtered(
+            task -> task.getModuleCode().contains(module.moduleCode)
+                    && !task.isCompleted())); // only incomplete tasks shown
         smallTaskListView.setCellFactory(listView -> new ModuleTasksListViewCell());
         smallTaskListView.setPrefHeight(smallTaskListView.getItems().size() * 40 + 2);
     }

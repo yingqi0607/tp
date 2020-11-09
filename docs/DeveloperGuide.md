@@ -12,7 +12,7 @@ title: Developer Guide
     * 2.5. [Storage Component](#25-storage-component)
     * 2.6. [Common Classes](#26-common-classes)
 3. [Implementation](#3-implementation)
-    * 3.1. [Categorised Tasks Handling feature in Home tab](#31-categorised-tasks-handling-feature-in-home-tab-han-wei)
+    * 3.1. [Categorised Tasks Handling feature in Home tab (Han Wei)](#31-categorised-tasks-handling-feature-in-home-tab-han-wei)
         * 3.1.1. [Feature Introduction](#311-feature-introduction)
         * 3.1.2. [Implementation Details](#312-implementation-details)
         * 3.1.3. [Design Considerations](#313-design-considerations)
@@ -256,6 +256,7 @@ To implement the commands of this Daily feature, there are `TodoCommand`, `TodoC
 
 The following diagram shows the sequence flow when a task gets added into the `DailyPanel`:
 ![DailySequenceDiagram](images/DailySequenceDiagram.png)
+Figure 2: Sequence Diagram for Daily tab
 
 ### 3.2.2. Design Considerations
 
@@ -310,7 +311,7 @@ edited to be associated under the module.
 
 The following diagram shows the sequence flow when a task gets added to the `ModuleTaskListPanel` of a module:
 ![TaskWithModuleActivityDiagram](images/TaskWithModuleActivityDiagram.png)
-Figure 1: Adding task to `ModuleTaskListPanel` of a module.
+Figure 3: Adding task to `ModuleTaskListPanel` of a module.
 
 ### 3.3.2. Design considerations:
 
@@ -346,10 +347,11 @@ These are the main functions of the Countdown feature:
 ### 3.4.1. Implementation
 The UI of the Countdown feature is facilitated by the `countdown` package in `model` and `ui` packages. `CountdownCommand`
 and `CountdownCommandParser` classes in the `logic` package implements this feature.
-The class diagram (Figure 1) shown below summarises the implementation of the UI of the countdown feature:
+The class diagram (Figure 4) shown below summarises the implementation of the UI of the countdown feature:
 
 ![CountdownClassDiagram](images/CountdownClassDiagram.png)
-Figure 1: Countdown Class Diagram
+
+Figure 4: Countdown Class Diagram
 
 During the initialisation of TR4CKER, `CountdownTabWindow` will be initialised, together with `CountdownEventListPanel`.
 `CountdownTabWindow` will execute `Logic#getfilteredEventList` to update the events list shown in Countdown tab.
@@ -361,10 +363,10 @@ When users execute countdown commands, mainly the commands to add or delete an e
 This is done by initialising new `CountdownEventCard` objects to be placed in the `CountdownEventListPanel`, or by
 removing those that are deleted.
 
-The following sequence diagram (Figure 2) shows the execution of `countdown days/7`:
+The following sequence diagram (Figure 5) shows the execution of `countdown days/7`:
 
 ![CountdownSequenceDiagram](images/CountdownSequenceDiagram.png)
-Figure 2: Countdown Sequence Diagram
+Figure 5: Countdown Sequence Diagram
 
 When a user executes `CountdownCommand`, `countdown days/7` to count the number of events in the upcoming 7 days from
 from today, `MainWindow` begins the execution of the command. `LogicManager` is then called to execute the
@@ -380,7 +382,7 @@ for `countdownCommand` to work on.
 
 The following activity diagram summarises the flow of executing the various functions of `CountdownCommand`:
 ![CountdownCommandActivityDiagram](images/CountdownActivityDiagram.png)
-Figure 3: Countdown Activity Diagram
+Figure 6: Countdown Activity Diagram
 
 The activity diagram shows all the possible paths TR4CKER can take when a user executes a `CountdownCommand`, which is
 identified by the use of the command word, `countdown`. After a command is entered, it's arguments are parsed, to know
@@ -443,9 +445,9 @@ The 2 main functions of Planner command are to:
 ### 3.5.1. Implementation
 To implement the UI of this planner feature, there is a `planner` package in both `model` and `ui` packages. To implement
 the commands of this planner feature, there are `PlannerCommand` and `PlannerCommandParser` classes in `logic` package.
-The following class diagram (Figure 1) summarises how the UI aspect of this planner feature is being implemented:
+The following class diagram (Figure 7) summarises how the UI aspect of this planner feature is being implemented:
 ![PlannerClassDiagram](images/PlannerClassDiagram.png)
-Figure 1: Planner Class Diagram
+Figure 7: Planner Class Diagram
 
 During the initialisation of TR4CKER, `PlannerTabWindow` will be initialised, together with `PlannerCalendarPanel` and
 `PlannerTaskListPanel`. `PlannerTabWindow` will execute `Logic#getPlannerFilteredTaskList` to get the current date's filtered
@@ -459,9 +461,9 @@ clearing the calendar, new indicators would be set through `PlannerTabWindow#upd
 and `PlannerDayCard#updateIndicator`. The title of the tasks list will be updated through `PlannerTaskListPanel#updateTitle`
 and the tasks list will also be updated.
 
-The following sequence diagram (Figure 2) shows how the planner feature works when a user executes `planner goto/today`:
+The following sequence diagram (Figure 8) shows how the planner feature works when a user executes `planner goto/today`:
 ![PlannerSequenceDiagram](images/PlannerSequenceDiagram.png)
-Figure 2: Planner Sequence Diagram during execution of `planner goto/today`
+Figure 8: Planner Sequence Diagram during execution of `planner goto/today`
 
 <div markdown="span" class="alert alert-info">:information_source: 
 
@@ -479,10 +481,10 @@ will be passed back to `MainWindow`, then it will be checked in `PlannerTabWindo
 tab, or to view a specific date/month. In this case, user wants to go to today which is a specific date. After that, the
 calendar and tasks list are updated in Planner tab, and user can now see the results.
 
-The following activity diagram (Figure 3) summarises what happens when a user executes the 2 main functions of
+The following activity diagram (Figure 9) summarises what happens when a user executes the 2 main functions of
 `PlannerCommand`:
 ![PlannerActivityDiagram](images/PlannerActivityDiagram.png)
-Figure 3: Planner Activity Diagram
+Figure 9: Planner Activity Diagram
 
 This activity diagram shows all the possible paths TR4CKER can take when a user executes a `PlannerCommand`. After
 inputting a command, the command is parsed. By checking the arguments provided by the user, it can either mean the
@@ -766,6 +768,57 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2a1. TR4CKER shows an empty list.
 
     Use case ends.
+    
+**Use case: UC08 - Switching to Planner tab**
+
+**MSS**
+
+1.  User requests to go to Planner tab.
+2.  TR4CKER switches tab to Planner tab.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. User entered the wrong command.
+
+    * 1a1. An error message is shown.
+
+    Use case ends.
+    
+**Use case: UC09 - Goto specific date in Planner tab**
+
+**MSS**
+
+1.  User requests to view calendar view of a specific date and tasks list.
+2.  TR4CKER shows calendar view of user's input and tasks list.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. User entered invalid date or invalid format.
+
+    * 1a1. An error message is shown.
+
+    Use case ends.
+    
+**Use case: UC10 - Goto specific month in Planner tab**
+
+**MSS**
+
+1.  User requests to view calendar view of a specific month and tasks list.
+2.  TR4CKER shows calendar view of user's input and tasks list.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. User entered invalid month or invalid format.
+
+    * 1a1. An error message is shown.
+
+    Use case ends.
 
 ## A.4. Non-Functional Requirements
 
@@ -994,7 +1047,7 @@ testers are expected to do more *exploratory* testing.
     Expected: TR4CKER switches to Planner tab with a result message saying `Showed tasks on: TODAYS_DATE (TODAY)`. 
     TR4CKER switches to the monthly calendar view of today's date and tasks list shows tasks due today.
     
-    2.4. Incorrect planner goto commands to try: `planner goto/wrong input`<br>
+    2.4. Incorrect planner goto commands to try: `planner goto/todayy`, `planner goto/tdyy`<br>
     
     Expected: TR4CKER shows an error message. No switching to planner tab, calendar view and tasks list.
     
@@ -1012,7 +1065,7 @@ testers are expected to do more *exploratory* testing.
     Expected: TR4CKER switches to Planner tab with a result message saying `Showed tasks on: TOMORROWS_DATE (TOMORROW)`. 
     TR4CKER switches to the monthly calendar view of tomorrow's date and tasks list shows tasks due tomorrow.
     
-    3.4. Incorrect planner goto commands to try: `planner goto/wrong input`<br>
+    3.4. Incorrect planner goto commands to try: `planner goto/tomorr`, `planner goto/tmrr`<br>
     
     Expected: TR4CKER shows an error message. No switching to planner tab, calendar view and tasks list.
     
@@ -1030,7 +1083,7 @@ testers are expected to do more *exploratory* testing.
     Expected: TR4CKER switches to Planner tab with a result message saying `Showed tasks on: 19-Oct-2020`. 
     TR4CKER switches to the monthly calendar view of the date and tasks list shows tasks due on that day.
     
-    4.4. Incorrect planner goto commands to try: `planner goto/wrong input`<br>
+    4.4. Incorrect planner goto commands to try: `planner goto/29-02-2021`<br>
     
     Expected: TR4CKER shows an error message. No switching to planner tab, calendar view and tasks list.
     
@@ -1048,7 +1101,7 @@ testers are expected to do more *exploratory* testing.
     Expected: TR4CKER switches to Planner tab with a result message saying `Showed tasks on: 01-Oct-2020`.
     TR4CKER switches to the monthly calendar view of the month and tasks list shows tasks due on first day of the month.
     
-    5.4. Incorrect planner goto commands to try: `planner goto/wrong input`<br>
+    5.4. Incorrect planner goto commands to try: `planner goto/dec-2020`<br>
     
     Expected: TR4CKER shows an error message. No switching to planner tab, calendar view and tasks list.
 

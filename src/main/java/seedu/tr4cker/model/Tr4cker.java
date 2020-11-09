@@ -105,12 +105,15 @@ public class Tr4cker implements ReadOnlyTr4cker {
     }
 
     /**
-     * Returns true if a task with the same module code as {@code module} exists in Tr4cker.
+     * Returns true if a task is not done yet, and has the same module code as {@code module} exists in Tr4cker.
      */
-    public boolean hasRelatedTasks(Module module) {
+    public boolean hasRelatedIncompleteTasks(Module module) {
         requireNonNull(module);
         for (Task task : tasks) {
-            if (task.getModuleCode().contains(module.moduleCode)) {
+            boolean matchFound =
+                    task.getModuleCode().contains(module.moduleCode)
+                    && !task.isCompleted();
+            if (matchFound) {
                 return true;
             }
         }

@@ -108,11 +108,13 @@ public class LogicManager implements Logic {
 
     @Override
     public void updateFilteredModuleList(Predicate<Module> predicate) {
+        requireNonNull(predicate);
         model.updateFilteredModuleList(predicate);
     }
 
     @Override
     public void updateFilteredTodoList(Predicate<Todo> predicate) {
+        requireNonNull(predicate);
         model.updateFilteredTodoList(predicate);
     }
 
