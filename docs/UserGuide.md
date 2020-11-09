@@ -115,6 +115,8 @@ This section guides you through the different commands of TR4CKER.
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME dl/DEADLINE`, `dl/DEADLINE n/NAME` is also acceptable.
 
+* Command words are case-sensitive. This means that a command word of `home` is not the same as `Home` or `HOME`.
+
 </div>
 
 ## 3.1. Common Commands
@@ -322,6 +324,7 @@ Format: `tag INDEX [new/NEW_TAG]…​ [del/TAG_TO_DELETE]…​`
 * Tag(s) will only be deleted if it exists.
 * Adding and deleting of tags can be used concurrently.
 * Multiple tags can be added and deleted at the same time.
+* Tags are case-sensitive. This means that a tag of `cs2103t` will be regarded as a different tag from `CS2103T`.
 
 1.  Type the index number of the Pending task and its tags that you want to add or delete in the command box using the `tag` command.
     ![BeforeTagCommand](images/BeforeTagCommand.png)
