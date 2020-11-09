@@ -254,8 +254,8 @@ The 3 main functions of the Daily feature are to:
 3. Delete a daily todo task when it is done for the day
 
 ### 3.2.1. Implementation
-The UI of the Daily feature is facilitated by the `DailyPanel` class which will show users all daily todo tasks as a list.
-To implement the commands of this Daily feature, there are `TodoCommand` and `TodoCommandParser` classes in the `logic` package.
+The UI of the Daily feature is facilitated by the `DailyPanel` and `TodoCard` class which will show users all daily todo tasks as a list in the Daily tab.
+To implement the commands of this Daily feature, there are `TodoCommand`, `TodoCommandParser` , `DailyCommand` and `DailyCommandParser` classes in the `logic` package.
 
 The following diagram shows the sequence flow when a task gets added into the `DailyPanel`:
 ![DailySequenceDiagram](images/DailySequenceDiagram.png)
@@ -280,15 +280,16 @@ to add into daily todo list.
 #### 3.2.2.2. Aspect 2: How users indicate that they have completed a daily todo task
 * **Current Choice:** 
 There are 3 ways for users to remove a todo from daily todo list:
-1. Delete the pending task from home page, the corresponding task in daily todo list will be removed.
-2. Delete directly from daily todo list, the corresponding pending task in home page is still present.
-3. Indicate that they have completed a pending task, the corresponding todo task will be removed from daily todo list.
+    1. Delete the pending task from home page, the corresponding task in daily todo list will be removed.
+    2. Delete directly from daily todo list, the corresponding pending task in home page is still present.
+    3. Indicate that they have completed a pending task, the corresponding todo task will be removed from daily todo list.
+    
   * Pros: Users can remove a daily todo task under different scenarios.
   * Cons: May delete a daily todo task unexpectedly and have to add it back again.
 
 * **Alternative 1:** When users want to delete a todo task, prompt a message to double check with the user.
-  *Pros: Prevent users from deleting tasks unexpectedly.
-  *Cons: Users have to enter more commands for deleting
+  * Pros: Prevent users from deleting tasks unexpectedly.
+  * Cons: Users have to enter more commands for deleting
   
 * **Justification for current choice:** Users would have decided what to remove from their list before deciding to delete.
 It is not necessary to prompt the user on whether to delete a task.
@@ -443,23 +444,34 @@ The 2 main functions of Planner command are to:
 2. Display an overview of tasks for today/tomorrow and on specified date/month
 
 ### 3.5.1. Implementation
-To implement the UI of this planner feature, there is a `planner` package in `model` and `ui` packages. To implement
+To implement the UI of this planner feature, there is a `planner` package in both `model` and `ui` packages. To implement
 the commands of this planner feature, there are `PlannerCommand` and `PlannerCommandParser` classes in `logic` package.
 The following class diagram (Figure 1) summarises how the UI aspect of this planner feature is being implemented:
 ![PlannerClassDiagram](images/PlannerClassDiagram.png)
 Figure 1: Planner Class Diagram
 
 During the initialisation of TR4CKER, `PlannerTabWindow` will be initialised, together with `PlannerCalendarPanel` and
-`PlannerTaskListPanel`. `PlannerTabWindow` will execute `Logic#getPlannerFilteredTaskList` to update the tasks list shown in
-Planner tab. The month and year of the calendar will be set in `PlannerCalendarPanel`. There are multiple `PlannerDayCard`
+`PlannerTaskListPanel`. `PlannerTabWindow` will execute `Logic#getPlannerFilteredTaskList` to get the current date's filtered
+task list. Subsequent updates to filtered task list will be updated through the execution of `Logic#updatePlannerFilteredTaskList`.
+The month and year of the calendar will be set in `PlannerCalendarPanel`. There are multiple `PlannerDayCard`
 in 1 `PlannerCalendarPanel`. `PlannerDayCard` serves to store the details of each `PlannerDay`, which contains the date
-of each grid in the `PlannerCalendarPanel`. When users execute planner commands, The month and year of the calendar will
-be updated in `PlannerCalendarPanel`. Existing details of the calendar will also be cleared through
-`PlannerCalendarPanel#clearCalendar()` and `PlannerDayCard#clear()`. At the same time, the tasks list will also be updated.
+of each grid in the `PlannerCalendarPanel`, the circled date (today) and the indicators for each date. When users
+execute planner commands, the month and year of the calendar will be updated in `PlannerCalendarPanel`. Existing details
+of the calendar will also be cleared through `PlannerCalendarPanel#clearCalendar` and `PlannerDayCard#clear`. After
+clearing the calendar, new indicators would be set through `PlannerTabWindow#updateIndicator`, `PlannerCalendarPanel#updateIndicator`
+and `PlannerDayCard#updateIndicator`. The title of the tasks list will be updated through `PlannerTaskListPanel#updateTitle`
+and the tasks list will also be updated.
 
 The following sequence diagram (Figure 2) shows how the planner feature works when a user executes `planner goto/today`:
 ![PlannerSequenceDiagram](images/PlannerSequenceDiagram.png)
 Figure 2: Planner Sequence Diagram during execution of `planner goto/today`
+
+<div markdown="span" class="alert alert-info">:information_source: 
+
+**Note:** The lifelines for all the classes except `MainWindow` should
+end at the destroy markers _(X)_ but due to the limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
 
 When a user executes a `PlannerCommand` of `planner goto/today`, `MainWindow` will be called to execute the command. It will
 then call `LogicManager` to execute, followed by parsing of command in `Tr4ckerParser`. `Tr4ckerParser` will create a new
@@ -467,8 +479,8 @@ instance of `PlannerCommandParser` to parse the user's input. After parsing and 
 new `PlannerCommand` instance is created. This new instance `plannerCommand` will be passed back to `LogicManager` to execute
 on the `Model` in `PlannerCommand`. After executing, a new instance `CommandResult` `commandResult` is created. `commandResult`
 will be passed back to `MainWindow`, then it will be checked in `PlannerTabWindow` if the user wants to switch to Planner
-tab, or to view a specific date/month. After that, the calendar and tasks list are updated in Planner tab, and user can
-now see the results.
+tab, or to view a specific date/month. In this case, user wants to go to today which is a specific date. After that, the
+calendar and tasks list are updated in Planner tab, and user can now see the results.
 
 The following activity diagram (Figure 3) summarises what happens when a user executes the 2 main functions of
 `PlannerCommand`:
@@ -507,7 +519,7 @@ is different from the `TaskListPanel` class which is mainly used for the TR4CKER
   * Pros: Do not need to code for another class and more time could have been spent on other features.
   * Cons: Do not obey Single Responsibility Principle as now a class would need to have 2 types of functionalities for
   different purposes.
-  * Cons: Some functionalities for tasks list in TR4CKER tab and Planner tab differ, so accomodating for both functionalities
+  * Cons: Some functionalities for tasks list in TR4CKER tab and Planner tab differ, so accommodating for both functionalities
   in a single class is quite difficult.
 
 **Justification for current choice:** After thinking about how having a separate class for the tasks list in Planner tab
