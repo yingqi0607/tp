@@ -768,6 +768,57 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2a1. TR4CKER shows an empty list.
 
     Use case ends.
+    
+**Use case: UC08 - Switching to Planner tab**
+
+**MSS**
+
+1.  User requests to go to Planner tab.
+2.  TR4CKER switches tab to Planner tab.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. User entered the wrong command.
+
+    * 1a1. An error message is shown.
+
+    Use case ends.
+    
+**Use case: UC09 - Goto specific date in Planner tab**
+
+**MSS**
+
+1.  User requests to view calendar view of a specific date and tasks list.
+2.  TR4CKER shows calendar view of user's input and tasks list.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. User entered invalid date or invalid format.
+
+    * 1a1. An error message is shown.
+
+    Use case ends.
+    
+**Use case: UC10 - Goto specific month in Planner tab**
+
+**MSS**
+
+1.  User requests to view calendar view of a specific month and tasks list.
+2.  TR4CKER shows calendar view of user's input and tasks list.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. User entered invalid month or invalid format.
+
+    * 1a1. An error message is shown.
+
+    Use case ends.
 
 ## A.4. Non-Functional Requirements
 
