@@ -30,7 +30,7 @@ public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
 
-    public static final String MESSAGE_INVALID_DAYS = "Number of days given is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_DAYS = "Number of days given is not a non-negative integer.";
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
@@ -55,6 +55,21 @@ public class ParserUtil {
             throw new ParseException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         } else if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, invalidMsg));
+        }
+        return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
+
+    /**
+     * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
+     * trimmed.
+     * @throws ParseException if the specified event index is invalid (not non-zero unsigned integer).
+     */
+    public static Index parseEventIndex(String oneBasedIndex, String invalidMsg) throws ParseException {
+        String trimmedIndex = oneBasedIndex.trim();
+        if (StringUtil.isInteger(trimmedIndex) && !StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
+            throw new ParseException(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
+        } else if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
+            throw new ParseException(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
