@@ -757,7 +757,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to list tasks.
-2.  TR4CKER shows a list of all tasks.
+2.  TR4CKER shows a list of all pending task names.
 
     Use case ends.
 
@@ -768,8 +768,57 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2a1. TR4CKER shows an empty list.
 
     Use case ends.
+
+**Use case: UC08 - Switch to Daily tab**
+   
+**MSS**
+
+1. User requests to go to Daily tab.
+2. TR4CKER switches tab to Daily tab.
+
+    Use case ends
+
+**Extensions**
+
+* 1a. User entered the wrong command.
     
-**Use case: UC08 - Switching to Planner tab**
+    * 1a1. An error message is shown.
+    
+    Use case ends.
+
+**Use case: UC09 - Add a todo task to Daily tab**
+
+1.  User requests to <u>list task (UC07)</u>.
+2.  User requests to add a specific pending task in the daily todo list.
+3.  TR4CKER adds the task in daily todo list.
+
+    Use case ends
+
+**Extensions**
+
+* 2a. TR4CKER detects an error in entered task index.
+
+    * 2a1. An error message is shown.
+    
+    Use case ends.
+
+**Use case: UC10 - Delete a todo task from Daily tab**
+
+1. User <u>switches to Daily tab(UC08)</u>.
+2. User requests to delete a specific todo task in the daily todo list.
+3. TR4CKER deletes the todo task from daily todo list.
+
+    Use case ends
+
+**Extensions**
+
+* 2a. TR4CKER detects an error in entered task index.
+
+    * 2a1. An error message is shown.
+    
+    Use case ends.
+    
+**Use case: UC11 - Switching to Planner tab**
 
 **MSS**
 
@@ -786,7 +835,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
     
-**Use case: UC09 - Goto specific date in Planner tab**
+**Use case: UC12 - Goto specific date in Planner tab**
 
 **MSS**
 
@@ -803,7 +852,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
     
-**Use case: UC10 - Goto specific month in Planner tab**
+**Use case: UC13 - Goto specific month in Planner tab**
 
 **MSS**
 
