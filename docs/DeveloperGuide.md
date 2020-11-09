@@ -58,8 +58,6 @@ title: Developer Guide
     * B.5. [Countdown Feature](#b5-countdown-feature)
     * B.6. [Planner Feature](#b6-planner-feature)
     * B.7. [Saving Data](#b7-saving-data)
-
-<div style="page-break-after: always;"></div>
     
 --------------------------------------------------------------------------------------------------------------------
 
