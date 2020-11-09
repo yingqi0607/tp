@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_DAILY_DELETE;
 
 import java.util.List;
+import java.util.Objects;
 
 import seedu.tr4cker.commons.core.Messages;
 import seedu.tr4cker.commons.core.index.Index;
@@ -22,7 +23,7 @@ public class DailyCommand extends Command {
 
     public static final String MESSAGE_USAGE = "Looks like you're trying to use the " + COMMAND_WORD + " command: "
             + "Switch to daily tab or delete a todo task\n"
-            + "Switch to daily tab:  + COMMAND_WORD \n"
+            + "Switch to daily tab: " + COMMAND_WORD + "\n"
             + "Deletes a todo task: "
             + "Compulsory Parameter: INDEX (must be a positive integer and valid index number)\n"
             + "To delete task from Daily Todo Task List: (E.g. " + COMMAND_WORD + " " + PREFIX_DAILY_DELETE + "1)";
@@ -68,8 +69,9 @@ public class DailyCommand extends Command {
     public boolean equals(Object other) {
         if (this == other) { // short circuit if same object
             return true;
-        } else if (!(other instanceof DailyCommand)) {
-            return false;
+        } else if (other instanceof DailyCommand
+                && Objects.equals(toDeleteIndex, ((DailyCommand) other).toDeleteIndex)) {
+            return true;
         } else {
             return false;
         }
