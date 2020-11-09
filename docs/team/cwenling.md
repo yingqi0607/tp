@@ -20,13 +20,13 @@ Given below are my contributions to the project.
   * Justification: This feature allows users to update the completion status of a task using a more intuitive command
   \(`done`) instead of updating it using the Edit feature.
   * Highlights: This new feature allows users to either increase or decrease the completion status of a task, which
-  makes it flexible for users to use as they may realise that the task has more to ddo than they first realised.
+  makes it flexible for users to use as they may realise that the task has more to do than they first realised.
 
 * **New Feature**: Added countdown tab.
   * What it does: Allows users to view their upcoming events as a list of countdowns in a separate tab.
   * Justification: This feature provides users with the flexibility of adding a separate type of thing to track,
-  namely an event, which does not fit the mold of a `task`. This feature is a one-stop insight into the upcoming events
-  that the user has, including Examinations, and other important dates such as festivals, in order to serve as a
+  namely an `event`, which does not fit the mold of a `task`. This feature is a one-stop insight into the upcoming events
+  that the user has, including Examinations, and other important dates such as holidays, in order to serve as a
   reminder for how much time they have left.
   * Highlights: This new feature tells the user how many days there are, until a particular event, rather than just
   showing the date of an event's occurrence. Users are able to add a new event, or delete an event, without affecting
