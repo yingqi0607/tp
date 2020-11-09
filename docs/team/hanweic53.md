@@ -61,5 +61,5 @@ Given below are my contributions to the project.
     * Managed release `v1.2` on GitHub
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#44](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/44), [#\187](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/187)
+  * PRs reviewed (with non-trivial review comments): [\#44](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/44), [\#187](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/187)
   * Reported bugs and suggestions for other teams in the class (during Practical Dry Run): [Issues link](https://github.com/hanweic53/ped/issues)

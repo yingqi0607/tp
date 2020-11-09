@@ -142,6 +142,15 @@ public class EditCommandTest {
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
     }
 
+    @Test
+    public void execute_deleteModuleForTaskWithoutModule_failure() {
+        EditTaskDescriptor descriptor1 = new EditTaskDescriptorBuilder().withName(VALID_NAME_2).build();
+        EditTodoDescriptor descriptor2 = new EditTodoDescriptorBuilder().withName(VALID_NAME_2).build();
+        descriptor1.setModuleDeleted();
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_TASK, descriptor1, descriptor2);
+        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_MODULE_ALREADY_DELETED);
+    }
+
     /**
      * Edit filtered list where index is larger than size of filtered list,
      * but smaller than size of Tr4cker
