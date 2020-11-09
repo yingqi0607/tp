@@ -36,6 +36,14 @@ public class ModuleCommand extends Command {
             + "Example Delete Module: " + COMMAND_WORD + " "
             + PREFIX_MODULE_DELETE + "2";
 
+    public static final String MESSAGE_DELETE_MODULE_USAGE = COMMAND_WORD
+            + ": Deletes a module from module list\n"
+            + "Parameters: "
+            + PREFIX_MODULE_DELETE + "INDEX\n"
+            + "Note: INDEX must be a valid index!\n"
+            + "Examples: \n"
+            + COMMAND_WORD + " " + PREFIX_MODULE_DELETE + "1\n";
+
     public static final String MESSAGE_SWITCH_TAB_SUCCESS = "Switched to Module tab!";
     public static final String MESSAGE_MODULE_ADD_SUCCESS = "New module added: %1$s";
     public static final String MESSAGE_MODULE_DELETE_SUCCESS = "Deleted module: %1$s";
