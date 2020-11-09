@@ -6,6 +6,7 @@ import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_COMPLETION_STATUS;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_COUNTDOWN_DATE;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_COUNTDOWN_DELETE;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_COUNTDOWN_NEW;
+import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_DAILY_DELETE;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_DELETE_TAG;
 import static seedu.tr4cker.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
@@ -76,6 +77,7 @@ public class CommandTestUtil {
     public static final String EVENT_DATE_DESC_1 = " " + PREFIX_COUNTDOWN_DATE + VALID_EVENT_DATE_1;
     public static final String EVENT_DATE_DESC_2 = " " + PREFIX_COUNTDOWN_DATE + VALID_EVENT_DATE_2;
     public static final String EVENT_DELETE_DESC_1 = " " + PREFIX_COUNTDOWN_DELETE + "1";
+    public static final String DAILY_DELETE_DESC_1 = " " + PREFIX_DAILY_DELETE + "1";
     public static final String TAG_DESC_HELP = " " + PREFIX_TAG + VALID_TAG_HELP;
     public static final String TAG_DESC_URGENT = " " + PREFIX_TAG + VALID_TAG_URGENT;
 
@@ -94,6 +96,8 @@ public class CommandTestUtil {
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "tag*"; // '*' not allowed in tags
     public static final String INVALID_NEW_TAG = " " + PREFIX_NEW_TAG + "tag*"; // '*' not allowed in tags
     public static final String INVALID_DELETE_TAG = " " + PREFIX_DELETE_TAG + "tag*"; // '*' not allowed in tags
+
+    public static final String INVALID_DAILY_DELETE_DESC = " " + PREFIX_DAILY_DELETE + "-1";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
