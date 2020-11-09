@@ -204,16 +204,21 @@ This section describes some noteworthy details on how certain features are imple
 This feature allows users to view and handle tasks under 3 categories separately.
 
 ### 3.1.2. Implementation details
+To implement the UI of this feature, there will be a `PendingTaskListPanel`, `ExpiredTaskListPanel` and `CompletedTaskListPanel` classes
+in the `ui` package, modified from the `TaskListPanel` class. To implement the commands of
+this feature, there are `EditExpiredCommnad` and `DeleteExpiredCommand` classes that extends from the `EditCommand` and `DeleteCommand` in the `logic` package respectively.
+
 This feature comes in the form of a Task List panel, which is made up of three sub-panels:
 1. Pending tasks (Incomplete tasks that are not overdue)
 2. Expired tasks (Incomplete tasks that are overdue)
 3. Completed tasks (Archived tasks)
 
-Upon starting TR4CKER or refreshing of task lists, tasks which deadlines have passed will automatically appear under Expired tasks panel.
+Upon starting TR4CKER or after using the `list` command, tasks which deadlines have passed will automatically appear under Expired tasks panel.
 Users can modify tasks displayed in the Expired task panel using the Edit command.
 
-The following diagram shows the sequence flow of a EditCommand which modifies the deadline of a task in the Expired task list:
+The following diagram shows the sequence flow of a `EditExpiredCommand` which modifies the deadline of a task in the Expired task list:
 ![EditExpiredActivityDiagram](images/EditExpiredActivityDiagram.png)
+
 Figure 1: Edit deadline of expired task Activity Diagram
 
 Once the user marks a task as complete, it will automatically appear under Completed tasks.
@@ -221,6 +226,21 @@ Once the user marks a task as complete, it will automatically appear under Compl
 ### 3.1.3. Design considerations:
 
 #### 3.1.3.1. Aspect 1: How users can easily view and control all the tasks
+
+* **Current Choice:** Splits the tasks into 3 panels according to their completion status and deadlines.
+  * Pros: Able to support commands that specifically deal with each type of tasks.
+  * Pros: Allows users to view their tasks separately instead of browsing through a long task list.
+  * Cons: UI looks cramp when there are too many panels laid out horizontally.
+
+* **Alternative 1:** Use a single task list.
+  * Pros: Task list would have a large horizontal space to display long task descriptions and task names instead of having to wrap text.
+  * Cons: Less user-friendly because users would have to manually compare the deadlines of the tasks with today's date to find out which are the expired tasks.
+
+**Justification for current choice:** To the users, expired tasks that are overdue but not completed deserve more attention than pending tasks.
+ Users would want to either remove the expired task or continue working on it. Therefore, we felt a need to display them separately and create commands that specifically handle Expired tasks.
+ In addition, since tasks are sorted in the chronological order of their deadlines, having a centralised task list would mean that both completed and incomplete tasks would be mixed together,
+ which does not allow users to focus on their incomplete task.
+
 This design filters the tasks into 3 lists according to their completion statuses and deadlines which will be useful to the users,
 as opposed to having browse through a long task list.
 

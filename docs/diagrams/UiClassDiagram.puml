@@ -12,6 +12,7 @@ Class MainWindow
 Class HelpWindow
 Class ResultDisplay
 Class TaskListPanel
+Class PendingTaskListPanel
 Class ExpiredTaskListPanel
 Class CompletedTaskListPanel
 Class TaskCard
@@ -36,11 +37,12 @@ MainWindow --> HelpWindow
 MainWindow *-down-> CommandBox
 MainWindow *-down-> ResultDisplay
 MainWindow *-down-> TaskListPanel
-MainWindow *-down-> ExpiredTaskListPanel
-MainWindow *-down-> CompletedTaskListPanel
 MainWindow *-down-> StatusBarFooter
 
-TaskListPanel -down-> TaskCard
+TaskListPanel -down-> ExpiredTaskListPanel
+TaskListPanel -down-> PendingTaskListPanel
+TaskListPanel -down-> CompletedTaskListPanel
+PendingTaskListPanel -down-> TaskCard
 ExpiredTaskListPanel -down-> TaskCard
 CompletedTaskListPanel -down-> TaskCard
 
@@ -49,6 +51,7 @@ MainWindow -left-|> UiPart
 ResultDisplay --|> UiPart
 CommandBox --|> UiPart
 TaskListPanel --|> UiPart
+PendingTaskListPanel --|> UiPart
 ExpiredTaskListPanel --|> UiPart
 CompletedTaskListPanel --|> UiPart
 TaskCard --|> UiPart
