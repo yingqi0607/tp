@@ -65,8 +65,8 @@ optimized for Computing students familiar with Command Line Interface (CLI), who
 by typing in commands.
 
 ## 1.2. About this User Guide
-This User Guide explains how to use TR4CKER, as well as provides an understanding of the features and commands, and some
-common use cases of this application.
+This User Guide explains how to use TR4CKER, by giving you an understanding of the features and commands, as well as
+providing some common use cases of this application.
 
 In this guide, we cover:
 1. How to navigate the Graphical User Interface (GUI)
@@ -75,27 +75,29 @@ In this guide, we cover:
 --------------------------------------------------------------------------------------------------------------------
 
 # 2. Quick Start
-In this section, it will guide you through on how to get TR4CKER started for the first time.
+This section guides you through how to get TR4CKER started for the first time.
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
 2. TR4CKER works best on screen resolutions of at least `1600x900`.
 
-3. Download the latest `tr4cker.jar` from [here](https://github.com/AY2021S1-CS2103T-T10-2/tp/releases/tag/v1.3).
+3. Download the latest `tr4cker.jar` from [here](https://github.com/AY2021S1-CS2103T-T10-2/tp/releases).
 
 4. Copy the file to the folder you want to use as the _home folder_ for your TR4CKER.
 
-5. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how
-TR4CKER contains some sample data.<br>
+5. Double-click the file to start the app. The GUI similar to the picture shown below should appear in a few seconds.
+Note how TR4CKER contains some sample data.<br>
 ![Ui](images/Ui.png)
 Figure 1: TR4CKER home page populated with sample data
 
-6. Here is a labelled diagram of the GUI to help you familiarise with TR4CKER.
+6. Here is a labelled diagram of the GUI to help you familiarise yourself with TR4CKER.
 ![Labelled Ui](images/labelledUi.png)
 Figure 2: Labelled GUI of TR4CKER
+
 --------------------------------------------------------------------------------------------------------------------
+
 # 3. Commands
-In this section, it will guide you through the different commands of TR4CKER.
+This section guides you through the different commands of TR4CKER.
 
 <div markdown="block" class="alert alert-info">
 
@@ -119,8 +121,8 @@ In this section, it will guide you through the different commands of TR4CKER.
 Here are some commands that you might find handy when using TR4CKER. 
 
 ### 3.1.1. Viewing help : `help`
-If you cannot recall the command you need, you can enter the help command in any panel.
-TR4CKER will switch to help tab and a help window will pop out with a link to this User Guide.
+If you cannot recall the command you need, you can enter the help command while you are in any tab.
+TR4CKER will switch to the help tab, and a help window will pop out with a link to this User Guide.
 
 ![help message](images/helpMessage.png)
 
@@ -291,7 +293,7 @@ Format: `edit INDEX [n/NAME] [dl/DEADLINE] [des/DESCRIPTION]`
 * The index refers to the index number shown in the task list.
 * The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
-* Editing of tags is done using `tag` command instead (Refer to the next section on [_Section 3.2.7 - Editing tags of Pending tasks_](#327-editing-tags-of-pending-tasks-tag)).
+* Editing of tags is done using `tag` command instead (Refer to the next section on [_Section 3.2.7. - Editing tags of Pending tasks_](#327-editing-tags-of-pending-tasks-tag)).
 
 1.  Type the index number of the Pending task and its edited fields that you want to update in the command box using the `edit` command.
     ![BeforeEditCommand](images/BeforeEditCommand.png)
@@ -724,7 +726,7 @@ Figure 50: TR4CKER before executing `countdown n/ST2334 Final Examination d/23-N
 
 3. Press enter, and TR4CKER will add the event.
 ![add_new_after](images/countdowntab_addnew_after.png)
-Figure 51: TR4CKER before executing `countdown n/ST2334 Final Examination d/23-Nov-2020`
+Figure 51: TR4CKER after executing `countdown n/ST2334 Final Examination d/23-Nov-2020`
 
 Examples:
 * `countdown d/31-12-2020 n/New Years Eve Countdown Party at Scarlets` - Adds the event `New Years Eve Countdown Party
@@ -739,7 +741,7 @@ Format: `countdown del/INDEX`
 
 * This command deletes the event at index `INDEX` of the events list.
 * `INDEX` has to be a valid index of an event, numbered according to the list in Countdown tab.
-* Warning: :warning: This action is irreversible!
+* :warning: Warning: This action is irreversible!
 
 1. Switch to the Countdown tab to view your current list of events.
 
@@ -938,25 +940,32 @@ The indicator colours and their meanings are:
 
 ## 3.7. Saving the data
 
-TR4CKER saves data in the hard disk automatically after any command that changes the data.
-There is no need to save manually.
+TR4CKER saves data to the hard disk automatically after any command that changes the data.
+There is no need for you to save the data manually.
 
 --------------------------------------------------------------------------------------------------------------------
 # 4. Glossary
 
-* **CLI**: Command-Line Interface, a method of interacting with computer programs by typing lines of text.
+This section provides a list of definitions of some terms used in this User Guide.
+
+* **SoC**: School of Computing, computing school in National University of Singapore (NUS).
+* **GUI**: Graphical User Interface, the platform that allows users to interact with the application.
+* **CLI**: Command-Line Interface, a method of interacting with computer programs by typing lines of text into a text box.
 * **Task**: An item to be completed by a certain deadline, with specified task names, deadline, task description, tags (optional) and module code.
 * **Todo**: An item planned to be completed in a day.
-* **Event**: An item representing an event that occurs on a specific date.
+* **Event**: An item representing an event with specific event name and occurs on a specific date.
 * **Module**: A subject taken by NUS students with specific module code and module name.
 * **Planner**: A monthly display of tasks due on certain days in a calendar.
+
 --------------------------------------------------------------------------------------------------------------------
 
 # 5. FAQ
 
+Here are some frequently asked questions that you may have.
+
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
-the data of your previous TR4CKER home folder.
+**A**: Install TR4CKER by downloading the `tr4cker.jar` file in the other computer and replace the default data file
+it creates with the file that contains the data from your previous TR4CKER home folder.
 
 **Q**: Is TR4CKER free?<br>
 **A**: Yes! TR4CKER is totally free to use.
@@ -969,12 +978,12 @@ the data of your previous TR4CKER home folder.
 [_Section 3.2.10. - Edit expired tasks_](#3210-editing-expired-tasks-edit-expired) & [_Section 3.2.11. - Delete expired tasks_](#3211-deleting-expired-tasks--delete-expired).
 
 **Q**: Can I add multiple items at once? Multiple tasks / modules / countdowns, together in one line?<br>
-**A**: Unfortunately, TR4CKER can only do one at a time.
+**A**: Unfortunately, TR4CKER can only add one item at a time.
 
 **Q**: Can I manually make changes to TR4CKER's saved file?<br>
 **A**: This is **NOT** recommended as you could corrupt the saved file.
 
-**Q**: Do I need an internet connection?<br>
+**Q**: Do I need an internet connection to use TR4CKER?<br>
 **A**: Once you have downloaded TR4CKER, you can continue to use it without internet connection.
 
 **Q**: Is TR4CKER available on my mobile device?<br>
@@ -983,6 +992,8 @@ the data of your previous TR4CKER home folder.
 --------------------------------------------------------------------------------------------------------------------
 
 # 6. Command summary
+
+This section provides a quick summary of the commands of TR4CKER.
 
 | Tab | Command | Command Format | 
 | --- | ------- | -------------- |

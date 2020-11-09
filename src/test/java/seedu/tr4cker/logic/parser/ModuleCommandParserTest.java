@@ -1,6 +1,7 @@
 package seedu.tr4cker.logic.parser;
 
 import static seedu.tr4cker.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.tr4cker.commons.core.Messages.MESSAGE_INVALID_MODULE_DISPLAYED_INDEX;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.INVALID_MODULE_CODE_DESC;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.INVALID_MODULE_NAME_DESC;
 import static seedu.tr4cker.logic.commands.CommandTestUtil.MODULE_CODE_DESC_1;
@@ -23,6 +24,7 @@ class ModuleCommandParserTest {
             ModuleCommand.MESSAGE_SWITCH_TAB_USAGE);
     private static final String MESSAGE_INVALID_MODULE_COMMAND_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, ModuleCommand.MESSAGE_USAGE);
+    private static final String MESSAGE_INVALID_INDEX = MESSAGE_INVALID_MODULE_DISPLAYED_INDEX;
     private final ModuleCommandParser moduleCommandParser = new ModuleCommandParser();
     private final ModuleCommand moduleCommand = new ModuleCommand();
 
@@ -88,5 +90,12 @@ class ModuleCommandParserTest {
     @Test
     void parse_deleteModule_success() { // del/INDEX
         assertParseSuccess(moduleCommandParser, MODULE_DELETE_DESC, new ModuleCommand(Index.fromOneBased(1)));
+    }
+
+    @Test
+    void parse_deleteModule_failure() {
+        assertParseFailure(moduleCommandParser, " del/0", MESSAGE_INVALID_INDEX);
+        assertParseFailure(moduleCommandParser, " del/-1", MESSAGE_INVALID_INDEX);
+        assertParseFailure(moduleCommandParser, " del/invalid index", MESSAGE_INVALID_INDEX);
     }
 }

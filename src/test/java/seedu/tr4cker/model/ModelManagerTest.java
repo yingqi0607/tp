@@ -12,8 +12,13 @@ import static seedu.tr4cker.model.Model.PREDICATE_SHOW_PENDING_TASKS;
 import static seedu.tr4cker.testutil.Assert.assertThrows;
 import static seedu.tr4cker.testutil.TypicalTasks.EVENT1;
 import static seedu.tr4cker.testutil.TypicalTasks.EVENT2;
+import static seedu.tr4cker.testutil.TypicalTasks.MODULE1;
+import static seedu.tr4cker.testutil.TypicalTasks.MODULE2;
 import static seedu.tr4cker.testutil.TypicalTasks.TASK1;
+import static seedu.tr4cker.testutil.TypicalTasks.TASK1_ADD_MODULE1_AND_COMPLETE;
 import static seedu.tr4cker.testutil.TypicalTasks.TASK2;
+import static seedu.tr4cker.testutil.TypicalTasks.TODO1;
+import static seedu.tr4cker.testutil.TypicalTasks.TODO2;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -126,6 +131,37 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void hasRelatedIncompleteTasks_completedTaskInTr4cker_returnsFalse() {
+        modelManager.addTask(TASK1_ADD_MODULE1_AND_COMPLETE);
+        assertFalse(modelManager.hasRelatedIncompleteTasks(MODULE1));
+    }
+
+    @Test
+    public void hasModule_moduleNotInTr4cker_returnsFalse() {
+        assertFalse(modelManager.hasModule(MODULE1));
+    }
+
+    @Test
+    public void hasModule_moduleInTr4cker_returnsTrue() {
+        modelManager.addModule(MODULE1);
+        assertTrue(modelManager.hasModule(MODULE1));
+    }
+
+    @Test
+    public void hasDeletedModule_moduleInTr4cker_returnsFalse() {
+        modelManager.addModule(MODULE1);
+        modelManager.deleteModule(MODULE1);
+        assertFalse(modelManager.hasModule(MODULE1));
+    }
+
+    @Test
+    public void hasEditedTodo_todoInTr4cker_returnsTrue() {
+        modelManager.addTodo(TODO1);
+        modelManager.setTodo(TODO1, TODO2);
+        assertTrue(modelManager.hasTodo(TODO2));
+    }
+
+    @Test
     public void getFilteredTaskList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredTaskList().remove(0));
     }
@@ -151,6 +187,11 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void getFilteredModuleList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredModuleList().remove(0));
+    }
+
+    @Test
     public void getFilteredEventList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredEventList().remove(0));
     }
@@ -158,7 +199,8 @@ public class ModelManagerTest {
     @Test
     public void equals() {
         Tr4cker tr4cker = new Tr4ckerBuilder().withTask(TASK1).withTask(TASK2)
-                .withEvent(EVENT1).withEvent(EVENT2).build();
+                .withEvent(EVENT1).withEvent(EVENT2)
+                .withModule(MODULE1).withModule(MODULE2).build();
         Tr4cker differentTr4cker = new Tr4cker();
         UserPrefs userPrefs = new UserPrefs();
 

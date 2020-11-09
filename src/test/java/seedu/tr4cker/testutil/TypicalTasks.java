@@ -89,6 +89,11 @@ public class TypicalTasks {
             "Module2 Name", new ModuleCode("Module2Code"));
     public static final Module MODULE3 = new Module(
             "Module3 Name", new ModuleCode("Module3Code"));
+    // for modules use
+    public static final Task TASK1_ADD_MODULE1_AND_COMPLETE = new TaskBuilder().withName("Task1Name")
+            .withTaskDescription("Task 1 description").withCompletionStatus(100)
+            .withDeadline("20-Oct-2021 1800").withModule(MODULE1.moduleCode.codeName)
+            .withTags("homework").build();
 
     public static final Todo TODO1 = new Todo(new Name("Todo1 Name"), new Deadline("12-Jul-2021 0600", false));
     public static final Todo TODO2 = new Todo(new Name("Todo2 Name"), new Deadline("27-Sep-2021 2359", false));

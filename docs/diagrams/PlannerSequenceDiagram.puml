@@ -75,16 +75,16 @@ LogicManager --> MainWindow : commandResult
 deactivate LogicManager
 destroy PlannerCommand
 
+MainWindow -> PlannerTabWindow : updateCalendar(commandResult)
+activate PlannerTabWindow
+PlannerTabWindow --> MainWindow
+deactivate PlannerTabWindow
+
 MainWindow -> MainWindow : handleShowTabPlanner()
 destroy LogicManager
 activate MainWindow
 MainWindow --> MainWindow
 deactivate MainWindow
-
-MainWindow -> PlannerTabWindow : updateCalendar(commandResult)
-activate PlannerTabWindow
-PlannerTabWindow --> MainWindow
-deactivate PlannerTabWindow
 
 [<-- MainWindow : result
 deactivate MainWindow

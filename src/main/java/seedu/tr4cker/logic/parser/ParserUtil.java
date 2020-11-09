@@ -62,6 +62,21 @@ public class ParserUtil {
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
+     * @throws ParseException if the specified module index is invalid (not non-zero unsigned integer).
+     */
+    public static Index parseModuleIndex(String oneBasedIndex, String invalidMsg) throws ParseException {
+        String trimmedIndex = oneBasedIndex.trim();
+        if (StringUtil.isInteger(trimmedIndex) && !StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
+            throw new ParseException(Messages.MESSAGE_INVALID_MODULE_DISPLAYED_INDEX);
+        } else if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
+            throw new ParseException(Messages.MESSAGE_INVALID_MODULE_DISPLAYED_INDEX);
+        }
+        return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
+
+    /**
+     * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
+     * trimmed.
      * @throws ParseException if the specified event index is invalid (not non-zero unsigned integer).
      */
     public static Index parseEventIndex(String oneBasedIndex, String invalidMsg) throws ParseException {

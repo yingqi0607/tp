@@ -184,7 +184,7 @@ class ModuleCommandTest {
         }
 
         @Override
-        public boolean hasRelatedTasks(Module module) {
+        public boolean hasRelatedIncompleteTasks(Module module) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -336,7 +336,7 @@ class ModuleCommandTest {
     class ModelStubWithTaskModulePaired extends ModelStub {
 
         @Override
-        public boolean hasRelatedTasks(Module module) {
+        public boolean hasRelatedIncompleteTasks(Module module) {
             return true;
         }
 
@@ -372,7 +372,7 @@ class ModuleCommandTest {
         final ArrayList<Module> modulesAdded = new ArrayList<>(Arrays.asList(testModule));
 
         @Override
-        public boolean hasRelatedTasks(Module module) {
+        public boolean hasRelatedIncompleteTasks(Module module) {
             return false;
         }
 
