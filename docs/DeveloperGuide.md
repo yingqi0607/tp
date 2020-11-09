@@ -907,7 +907,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: UC12 - Switching to Planner tab**
+**Use case: UC16 - Switching to Planner tab**
 
 **MSS**
 
@@ -924,7 +924,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: UC13 - Goto specific date in Planner tab**
+**Use case: UC17 - Goto specific date in Planner tab**
 
 **MSS**
 
@@ -941,7 +941,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: UC14 - Goto specific month in Planner tab**
+**Use case: UC18 - Goto specific month in Planner tab**
 
 **MSS**
 
