@@ -93,7 +93,9 @@ Figure 1: TR4CKER home page populated with sample data
 6. Here is a labelled diagram of the GUI to help you familiarise yourself with TR4CKER.
 ![Labelled Ui](images/labelledUi.png)
 Figure 2: Labelled GUI of TR4CKER
+
 --------------------------------------------------------------------------------------------------------------------
+
 # 3. Commands
 This section guides you through the different commands of TR4CKER.
 
