@@ -104,7 +104,7 @@ public class ModuleCommand extends Command {
         }
 
         Module moduleToDelete = lastShownList.get(toDeleteIndex.getZeroBased());
-        if (model.hasRelatedTasks(moduleToDelete)) {
+        if (model.hasRelatedIncompleteTasks(moduleToDelete)) {
             throw new CommandException(MESSAGE_STILL_HAS_TASKS);
         }
         model.deleteModule(moduleToDelete);

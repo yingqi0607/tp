@@ -123,8 +123,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasRelatedTasks(Module module) {
-        return tr4cker.hasRelatedTasks(module);
+    public boolean hasRelatedIncompleteTasks(Module module) {
+        return tr4cker.hasRelatedIncompleteTasks(module);
     }
 
     @Override

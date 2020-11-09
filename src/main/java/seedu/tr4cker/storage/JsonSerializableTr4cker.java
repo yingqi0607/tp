@@ -70,7 +70,7 @@ class JsonSerializableTr4cker {
             if (tr4cker.hasTask(task)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_TASK);
             }
-            if (!tr4cker.hasValidModuleField(task)) {
+            if (!task.isCompleted() && !tr4cker.hasValidModuleField(task)) {
                 throw new IllegalValueException(MESSAGE_INVALID_MODULE);
             }
             tr4cker.addTask(task);
