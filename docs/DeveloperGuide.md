@@ -12,7 +12,7 @@ title: Developer Guide
     * 2.5. [Storage Component](#25-storage-component)
     * 2.6. [Common Classes](#26-common-classes)
 3. [Implementation](#3-implementation)
-    * 3.1. [Categorised Tasks Handling feature in Home tab](#31-categorised-tasks-handling-feature-in-home-tab-han-wei)
+    * 3.1. [Categorised Tasks Handling feature in Home tab (Han Wei)](#31-categorised-tasks-handling-feature-in-home-tab-han-wei)
         * 3.1.1. [Feature Introduction](#311-feature-introduction)
         * 3.1.2. [Implementation Details](#312-implementation-details)
         * 3.1.3. [Design Considerations](#313-design-considerations)
