@@ -241,9 +241,6 @@ Once the user marks a task as complete, it will automatically appear under Compl
  In addition, since tasks are sorted in the chronological order of their deadlines, having a centralised task list would mean that both completed and incomplete tasks would be mixed together,
  which does not allow users to focus on their incomplete task.
 
-This design filters the tasks into 3 lists according to their completion statuses and deadlines which will be useful to the users,
-as opposed to having browse through a long task list.
-
 ## 3.2. Daily feature (Yingqi)
 Tracker has a daily feature that allows users to add current tasks to a todo list for the day.
 This feature allows users to plan for what they want to do for a particular day.
