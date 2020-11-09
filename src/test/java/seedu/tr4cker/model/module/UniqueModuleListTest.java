@@ -17,8 +17,10 @@ import seedu.tr4cker.model.module.exceptions.ModuleNotFoundException;
 class UniqueModuleListTest {
 
     private final UniqueModuleList uniqueModuleList = new UniqueModuleList();
-    private final Module module1 = new Module("name1", new ModuleCode("code1"));
-    private final Module module2 = new Module("name2", new ModuleCode("code2"));
+    private final ModuleCode code1 = new ModuleCode("code1");
+    private final ModuleCode code2 = new ModuleCode("code2");
+    private final Module module1 = new Module("name1", code1);
+    private final Module module2 = new Module("name2", code2);
 
     @Test
     public void contains_nullTask_throwsNullPointerException() {
@@ -41,6 +43,28 @@ class UniqueModuleListTest {
         uniqueModuleList.add(module1);
         Module sameCodeModule = new Module("asdf", new ModuleCode("code1"));
         assertTrue(uniqueModuleList.contains(sameCodeModule));
+    }
+
+    @Test
+    public void containsCode_moduleNotInList_returnsFalse() {
+        assertFalse(uniqueModuleList.containsCode(code1));
+    }
+
+    @Test
+    public void containsCode_moduleInList_returnsTrue() {
+        uniqueModuleList.add(module1);
+        assertTrue(uniqueModuleList.containsCode(code1));
+    }
+
+    @Test
+    public void containsCode_differentCode_returnsFalse() {
+        uniqueModuleList.add(module1);
+        assertFalse(uniqueModuleList.containsCode(code2));
+    }
+
+    @Test
+    public void containsCode_nullCode_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueModuleList.containsCode(null));
     }
 
     @Test

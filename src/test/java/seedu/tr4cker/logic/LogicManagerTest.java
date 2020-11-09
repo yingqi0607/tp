@@ -109,6 +109,26 @@ public class LogicManagerTest {
     }
 
     @Test
+    public void getFilteredPendingTaskList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPendingTaskList().remove(0));
+    }
+
+    @Test
+    public void getFilteredExpiredTaskList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredExpiredTaskList().remove(0));
+    }
+
+    @Test
+    public void getFilteredCompletedTaskList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredCompletedTaskList().remove(0));
+    }
+
+    @Test
+    public void getFilteredModuleList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredModuleList().remove(0));
+    }
+
+    @Test
     public void getPlannerFilteredTaskList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> logic.getPlannerFilteredTaskList().remove(0));
     }
@@ -116,6 +136,21 @@ public class LogicManagerTest {
     @Test
     public void getFilteredEventList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredEventList().remove(0));
+    }
+
+    @Test
+    public void getFilteredTodoList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredTodoList().remove(0));
+    }
+
+    @Test
+    public void updateFilteredTodoList_nullEvent_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> logic.updateFilteredTodoList(null));
+    }
+
+    @Test
+    public void updatePlannerFilteredTaskList_nullEvent_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> logic.updatePlannerFilteredTaskList(null));
     }
 
     @Test
