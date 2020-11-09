@@ -302,16 +302,39 @@ The 2 main functions of the Module feature are to:
 2. Display the list of yet to be completed tasks under each module.
 
 ### 3.3.1. Implementation
-To implement the UI of this Module feature, there will be a `ModuleTaskCard` & `ModuleTaskListPanel` classes
+To implement the UI of this Module feature, there will be a `ModuleCard` & `ModuleListPanel` classes
 in the `ui` package, modified from the `TaskCard` and `TaskListPanel` classes. To implement the commands of
 this module feature, there are `ModuleCommnad` and `ModuleCommandParser` classes in the `logic` package.
 
-A module in the Modules tab has its own `ModuleTaskListPanel`, updated whenever new tasks are added with the module or are
+A module in the Modules tab has its own `ModuleListPanel`, updated whenever new tasks are added with the module or are
 edited to be associated under the module.
 
-The following diagram shows the sequence flow when a task gets added to the `ModuleTaskListPanel` of a module:
+The following diagram shows the sequence flow when a task gets added to the `ModuleListPanel` of a module:
 ![TaskWithModuleActivityDiagram](images/TaskWithModuleActivityDiagram.png)
 Figure 3: Adding task to `ModuleTaskListPanel` of a module.
+
+During the initialization of TR4CKER, a `ModuleListPanel` will be created with a copy of the filtered Module list obtained
+from executing `Logic#getFilteredModuleList` to fill the list of modules in the Module tab. Each module consists of
+a main panel, and within the main panel is a list of tasks. `ModuleCard` is used as the main panel, containing a list view
+of tasks stored each in a `SmallTaskCard`. 
+
+When users add new modules, the `ModuleListPanel` will be updated to contain the new `ModuleCard`. Similarly, assigning tasks
+to a module will create a `SmallTaskCard` to appear, in the task list of a specific `ModuleCard`. The Module tab will update
+whenever a user switches to it.
+
+The following sequence diagram (Figure 4) shows the process of adding a module,
+following execution of the command `modules n/Software Engineering m/CS2103T`:
+
+![ModuleSequenceDiagram](images/ModuleSequenceDiagram.png)
+Figure 4: Module Sequence Diagram during execution of `modules n/Software Engineering m/CS2103T`
+
+Whenever a user executes a `ModuleCommand`, like `modules n/Software Engineering m/CS2103T`, `MainWindow` will be called to
+execute the command. It will then call `LogicManager` to execute, followed by parsing of command in `Tr4ckerParser`.
+`Tr4ckerParser` will create a new instance of `ModuleCommandParser` to parse the user's input. After parsing and checking
+the validity of user's input, a new `ModuleCommand` instance is created. This new instance `moduleCommand` will be passed
+back to `LogicManager` to execute on the `Model` in `ModuleCommand`. After executing, a new instance `CommandResult` `commandResult`
+is created. `commandResult` will be passed back to `MainWindow`, which then proceeds to create a new `ModuleCard` once
+the user switches to the Modules tab.
 
 ### 3.3.2. Design considerations:
 
@@ -354,7 +377,7 @@ The class diagram (Figure 4) shown below summarises the implementation of the UI
 Figure 4: Countdown Class Diagram
 
 During the initialisation of TR4CKER, `CountdownTabWindow` will be initialised, together with `CountdownEventListPanel`.
-`CountdownTabWindow` will execute `Logic#getfilteredEventList` to update the events list shown in Countdown tab.
+`CountdownTabWindow` will execute `Logic#getFilteredEventList` to update the events list shown in Countdown tab.
 The list of events will be sorted before it is displayed in the `CountdownEventListPanel`, and the events which has
 passed will be placed at the end of the list, behind all the upcoming events.
 
@@ -368,7 +391,7 @@ The following sequence diagram (Figure 5) shows the execution of `countdown days
 ![CountdownSequenceDiagram](images/CountdownSequenceDiagram.png)
 Figure 5: Countdown Sequence Diagram
 
-When a user executes `CountdownCommand`, `countdown days/7` to count the number of events in the upcoming 7 days from
+When a user executes a `CountdownCommand`, `countdown days/7` to count the number of events in the upcoming 7 days from
 from today, `MainWindow` begins the execution of the command. `LogicManager` is then called to execute the
 command. The command is then parsed in `Tr4ckerParser`, and `Tr4ckerParser` will create a new instance of
 `CountdownCommandParser` to parse the user's input. After parsing and checking the validity of user's input, a
