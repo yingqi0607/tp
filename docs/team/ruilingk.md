@@ -53,6 +53,7 @@ Given below are my contributions to the project:
     * Updated Command Summary and updated documentation for the feature `planner`: [\#195](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/195)
     * Standardise screenshots for all figures: [\#209](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/209), [\#215](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/215)
     * Added labelled GUI: [\#211](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/211)
+    * Updated documentation for the feature `tag` and Commands Section: [\#239](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/239)
   * Developer Guide:
     * Added Non-Functional Requirements (NFRs) under Appendix: Requirements: [\#13](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/13)
     * Added documentation for the feature `planner`: [\#88](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/88), [\#97](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/97)
