@@ -302,16 +302,39 @@ The 2 main functions of the Module feature are to:
 2. Display the list of yet to be completed tasks under each module.
 
 ### 3.3.1. Implementation
-To implement the UI of this Module feature, there will be a `ModuleTaskCard` & `ModuleTaskListPanel` classes
+To implement the UI of this Module feature, there will be a `ModuleCard` & `ModuleListPanel` classes
 in the `ui` package, modified from the `TaskCard` and `TaskListPanel` classes. To implement the commands of
 this module feature, there are `ModuleCommnad` and `ModuleCommandParser` classes in the `logic` package.
 
-A module in the Modules tab has its own `ModuleTaskListPanel`, updated whenever new tasks are added with the module or are
+A module in the Modules tab has its own `ModuleListPanel`, updated whenever new tasks are added with the module or are
 edited to be associated under the module.
 
-The following diagram shows the sequence flow when a task gets added to the `ModuleTaskListPanel` of a module:
+The following diagram shows the sequence flow when a task gets added to the `ModuleListPanel` of a module:
 ![TaskWithModuleActivityDiagram](images/TaskWithModuleActivityDiagram.png)
 Figure 3: Adding task to `ModuleTaskListPanel` of a module.
+
+During the initialization of TR4CKER, a `ModuleListPanel` will be created with a copy of the filtered Module list obtained
+from executing `Logic#getFilteredModuleList` to fill the list of modules in the Module tab. Each module consists of
+a main panel, and within the main panel is a list of tasks. `ModuleCard` is used as the main panel, containing a list view
+of tasks stored each in a `SmallTaskCard`. 
+
+When users add new modules, the `ModuleListPanel` will be updated to contain the new `ModuleCard`. Similarly, assigning tasks
+to a module will create a `SmallTaskCard` to appear, in the task list of a specific `ModuleCard`. The Module tab will update
+whenever a user switches to it.
+
+The following sequence diagram (Figure 4) shows the process of adding a module,
+following execution of the command `modules n/Software Engineering m/CS2103T`:
+
+![ModuleSequenceDiagram](images/ModuleSequenceDiagram.png)
+Figure 4: Module Sequence Diagram during execution of `modules n/Software Engineering m/CS2103T`
+
+Whenever a user executes a `ModuleCommand`, like `modules n/Software Engineering m/CS2103T`, `MainWindow` will be called to
+execute the command. It will then call `LogicManager` to execute, followed by parsing of command in `Tr4ckerParser`.
+`Tr4ckerParser` will create a new instance of `ModuleCommandParser` to parse the user's input. After parsing and checking
+the validity of user's input, a new `ModuleCommand` instance is created. This new instance `moduleCommand` will be passed
+back to `LogicManager` to execute on the `Model` in `ModuleCommand`. After executing, a new instance `CommandResult` `commandResult`
+is created. `commandResult` will be passed back to `MainWindow`, which then proceeds to create a new `ModuleCard` once
+the user switches to the Modules tab.
 
 ### 3.3.2. Design considerations:
 
@@ -347,14 +370,14 @@ These are the main functions of the Countdown feature:
 ### 3.4.1. Implementation
 The UI of the Countdown feature is facilitated by the `countdown` package in `model` and `ui` packages. `CountdownCommand`
 and `CountdownCommandParser` classes in the `logic` package implements this feature.
-The class diagram (Figure 4) shown below summarises the implementation of the UI of the countdown feature:
+The class diagram (Figure 5) shown below summarises the implementation of the UI of the countdown feature:
 
 ![CountdownClassDiagram](images/CountdownClassDiagram.png)
 
-Figure 4: Countdown Class Diagram
+Figure 5: Countdown Class Diagram
 
 During the initialisation of TR4CKER, `CountdownTabWindow` will be initialised, together with `CountdownEventListPanel`.
-`CountdownTabWindow` will execute `Logic#getfilteredEventList` to update the events list shown in Countdown tab.
+`CountdownTabWindow` will execute `Logic#getFilteredEventList` to update the events list shown in Countdown tab.
 The list of events will be sorted before it is displayed in the `CountdownEventListPanel`, and the events which has
 passed will be placed at the end of the list, behind all the upcoming events.
 
@@ -363,12 +386,12 @@ When users execute countdown commands, mainly the commands to add or delete an e
 This is done by initialising new `CountdownEventCard` objects to be placed in the `CountdownEventListPanel`, or by
 removing those that are deleted.
 
-The following sequence diagram (Figure 5) shows the execution of `countdown days/7`:
+The following sequence diagram (Figure 6) shows the execution of `countdown days/7`:
 
 ![CountdownSequenceDiagram](images/CountdownSequenceDiagram.png)
-Figure 5: Countdown Sequence Diagram
+Figure 6: Countdown Sequence Diagram
 
-When a user executes `CountdownCommand`, `countdown days/7` to count the number of events in the upcoming 7 days from
+When a user executes a `CountdownCommand`, `countdown days/7` to count the number of events in the upcoming 7 days from
 from today, `MainWindow` begins the execution of the command. `LogicManager` is then called to execute the
 command. The command is then parsed in `Tr4ckerParser`, and `Tr4ckerParser` will create a new instance of
 `CountdownCommandParser` to parse the user's input. After parsing and checking the validity of user's input, a
@@ -382,7 +405,7 @@ for `countdownCommand` to work on.
 
 The following activity diagram summarises the flow of executing the various functions of `CountdownCommand`:
 ![CountdownCommandActivityDiagram](images/CountdownActivityDiagram.png)
-Figure 6: Countdown Activity Diagram
+Figure 7: Countdown Activity Diagram
 
 The activity diagram shows all the possible paths TR4CKER can take when a user executes a `CountdownCommand`, which is
 identified by the use of the command word, `countdown`. After a command is entered, it's arguments are parsed, to know
@@ -445,9 +468,9 @@ The 2 main functions of Planner command are to:
 ### 3.5.1. Implementation
 To implement the UI of this planner feature, there is a `planner` package in both `model` and `ui` packages. To implement
 the commands of this planner feature, there are `PlannerCommand` and `PlannerCommandParser` classes in `logic` package.
-The following class diagram (Figure 7) summarises how the UI aspect of this planner feature is being implemented:
+The following class diagram (Figure 8) summarises how the UI aspect of this planner feature is being implemented:
 ![PlannerClassDiagram](images/PlannerClassDiagram.png)
-Figure 7: Planner Class Diagram
+Figure 8: Planner Class Diagram
 
 During the initialisation of TR4CKER, `PlannerTabWindow` will be initialised, together with `PlannerCalendarPanel` and
 `PlannerTaskListPanel`. `PlannerTabWindow` will execute `Logic#getPlannerFilteredTaskList` to get the current date's filtered
@@ -461,9 +484,9 @@ clearing the calendar, new indicators would be set through `PlannerTabWindow#upd
 and `PlannerDayCard#updateIndicator`. The title of the tasks list will be updated through `PlannerTaskListPanel#updateTitle`
 and the tasks list will also be updated.
 
-The following sequence diagram (Figure 8) shows how the planner feature works when a user executes `planner goto/today`:
+The following sequence diagram (Figure 9) shows how the planner feature works when a user executes `planner goto/today`:
 ![PlannerSequenceDiagram](images/PlannerSequenceDiagram.png)
-Figure 8: Planner Sequence Diagram during execution of `planner goto/today`
+Figure 9: Planner Sequence Diagram during execution of `planner goto/today`
 
 <div markdown="span" class="alert alert-info">:information_source: 
 
@@ -481,10 +504,10 @@ will be passed back to `MainWindow`, then it will be checked in `PlannerTabWindo
 tab, or to view a specific date/month. In this case, user wants to go to today which is a specific date. After that, the
 calendar and tasks list are updated in Planner tab, and user can now see the results.
 
-The following activity diagram (Figure 9) summarises what happens when a user executes the 2 main functions of
+The following activity diagram (Figure 10) summarises what happens when a user executes the 2 main functions of
 `PlannerCommand`:
 ![PlannerActivityDiagram](images/PlannerActivityDiagram.png)
-Figure 9: Planner Activity Diagram
+Figure 10: Planner Activity Diagram
 
 This activity diagram shows all the possible paths TR4CKER can take when a user executes a `PlannerCommand`. After
 inputting a command, the command is parsed. By checking the arguments provided by the user, it can either mean the
@@ -823,7 +846,110 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
     Use case ends.
     
-**Use case: UC12 - Switching to Countdown tab**
+**Use case: UC12 - Switching to Module tab**
+
+**MSS**
+
+1.  User requests to go to Module tab.
+
+2.  TR4CKER switches tab to Modules tab.
+
+**Extentions**
+
+* 1a. User entered the wrong command.
+
+    * 1a1. An error message is shown.
+
+    Use case ends.
+
+**Use case: UC13 - Add a module to Module tab**
+
+**MSS**
+
+1.  User requests to <u>switch to Module tab (UC12)</u> to view current list of modules.
+
+2.  TR4CKER shows current list of modules.
+
+3.  User enters command to add a new module.
+
+4.  TR4CKER adds the new module to the list of modules.
+
+    Use case ends.
+
+**Extentions**
+
+* 1a. User entered the wrong command.
+
+    * 1a1. An error message is shown.
+
+    Use case ends.
+
+**Use case: UC14 - Delete a module from Module tab**
+
+**MSS**
+
+1.  User requests to <u>switch to Module tab (UC12)</u> to view current list of modules.
+
+2.  TR4CKER shows current list of modules.
+
+3.  User enters command to delete a module.
+
+4.  TR4CKER deletes module from the list of modules.
+
+    Use case ends.
+
+**Extensions**
+
+* 3a. User enters an invalid module index or uses the wrong format.
+
+    * 3a1. TR4CKER shows an error message.
+
+    Use case ends.
+
+* 3b. Module selected still has pending tasks
+
+    * 3b1. TR4CKER shows an error message.
+
+    Use case ends.
+
+**Use case: UC15 - Assigning a task to a module**
+
+1.  User requests to <u>list Pending tasks (UC08)</u>.
+
+2.  TR4CKER shows current list of Pending tasks.
+
+3.  User requests to <u>edit a Pending task (UC02)</u> with a module code.
+
+4.  TR4CKER assigns task to the module.
+
+**Extensions**
+
+* 3a. User enters an invalid module code or uses the wrong format.
+
+    * 3a1. TR4CKER shows an error message.
+
+    Use case ends.
+
+**Use case: UC16 - Un-assigning a task to a module**
+
+1.  User requests to <u>list Pending tasks (UC08)</u>.
+
+2.  TR4CKER shows current list of Pending tasks.
+
+3.  User requests to <u>edit a Pending task (UC02)</u> to remove its module code.
+
+4.  TR4CKER un-assigns task from the module.
+
+**Extensions**
+
+* 3a. User tries to remove code from task that already has no module code, without
+changing other task fields.
+
+    * 3a1. TR4CKER shows an error message.
+
+    Use case ends.
+
+**Use case: UC17 - Switching to Countdown tab**
 
 **MSS**
 
@@ -841,11 +967,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: UC13 - Add an event to Countdown tab**
+**Use case: UC18 - Add an event to Countdown tab**
 
 **MSS**
 
-1.  User requests to <u>switch to Countdown tab (UC12)</u> to view current list of events.
+1.  User requests to <u>switch to Countdown tab (UC17)</u> to view current list of events.
 
 2.  TR4CKER shows current list of events.
 
@@ -863,11 +989,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: UC14 - Delete an event from Countdown tab**
+**Use case: UC19 - Delete an event from Countdown tab**
 
 **MSS**
 
-1.  User requests to <u>switch to Countdown tab (UC12)</u> to view current list of events.
+1.  User requests to <u>switch to Countdown tab (UC17)</u> to view current list of events.
 
 2.  TR4CKER shows current list of events.
 
@@ -885,11 +1011,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: UC15 - Count the number of events in the next `x` days**
+**Use case: UC20 - Count the number of events in the next `x` days**
 
 **MSS**
 
-1.  User requests to <u>switch to Countdown tab (UC12)</u> to view current list of events.
+1.  User requests to <u>switch to Countdown tab (UC17)</u> to view current list of events.
 
 2.  TR4CKER shows current list of events.
 
@@ -907,7 +1033,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: UC16 - Switching to Planner tab**
+**Use case: UC21 - Switching to Planner tab**
 
 **MSS**
 
@@ -924,7 +1050,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: UC17 - Goto specific date in Planner tab**
+**Use case: UC22 - Goto specific date in Planner tab**
 
 **MSS**
 
@@ -941,7 +1067,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: UC18 - Goto specific month in Planner tab**
+**Use case: UC23 - Goto specific month in Planner tab**
 
 **MSS**
 

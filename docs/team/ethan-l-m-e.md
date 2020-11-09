@@ -31,21 +31,26 @@ Given below are my contributions to the project.
   module code. Assigning a task will let it appear automatically in the Module tab, under the same module.
 
 * **Enhancements**:
-  * Updated UI appearance of Module tab.
+  * Updated UI appearance of Module tab. [\#111](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/111)
   * Added tab switching and updated UI for highlighting current tab: [\#69](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/69)
+  * Bug fixes: [\#185](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/185), [\#224](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/224)
 
 * **Documentation:**
   * User Guide:
     * Edited documentation for `find` command: [\#53](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/53)
     * Added documentation for the feature `modules`: [\#134](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/134)
+    * Updated formatting and updated documentation for the feature `modules`: [\#206](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/206)
   * Developer Guide:
     * Added Use cases (UC04 - UC07): [\#15](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/15)
     * Added documentation for the feature `modules`: [\#100](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/100)
+    * Updated documentation and diagrams for the feature `modules`: [\#234](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/234)
+    * Added instructions for manual testing: [\#206](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/206)
+    * Added Use cases under Appendix: Requirements for the feature `modules`. [\#234](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/234)
 
 * **Team-based tasks**:
   * Project management:
     * Maintained issue tracker on GitHub
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments):
+  * PRs reviewed (with non-trivial review comments): [\#122](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/122), [\#207](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/207)
   * Reported bugs and suggestions for other teams in the class (during Practical Dry Run): [Issues link](https://github.com/ethan-l-m-e/ped/issues)
