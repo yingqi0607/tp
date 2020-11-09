@@ -291,7 +291,7 @@ Format: `edit INDEX [n/NAME] [dl/DEADLINE] [des/DESCRIPTION]`
 * The index refers to the index number shown in the task list.
 * The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
-* Editing of tags is done using `tag` command instead (Refer to the next section on [_Section 3.2.7 - Editing tags of Pending tasks_](#327-editing-tags-of-pending-tasks-tag)).
+* Editing of tags is done using `tag` command instead (Refer to the next section on [_Section 3.2.7. - Editing tags of Pending tasks_](#327-editing-tags-of-pending-tasks-tag)).
 
 1.  Type the index number of the Pending task and its edited fields that you want to update in the command box using the `edit` command.
     ![BeforeEditCommand](images/BeforeEditCommand.png)
@@ -724,7 +724,7 @@ Figure 50: TR4CKER before executing `countdown n/ST2334 Final Examination d/23-N
 
 3. Press enter, and TR4CKER will add the event.
 ![add_new_after](images/countdowntab_addnew_after.png)
-Figure 51: TR4CKER before executing `countdown n/ST2334 Final Examination d/23-Nov-2020`
+Figure 51: TR4CKER after executing `countdown n/ST2334 Final Examination d/23-Nov-2020`
 
 Examples:
 * `countdown d/31-12-2020 n/New Years Eve Countdown Party at Scarlets` - Adds the event `New Years Eve Countdown Party
@@ -950,6 +950,7 @@ There is no need to save manually.
 * **Event**: An item representing an event that occurs on a specific date.
 * **Module**: A subject taken by NUS students with specific module code and module name.
 * **Planner**: A monthly display of tasks due on certain days in a calendar.
+
 --------------------------------------------------------------------------------------------------------------------
 
 # 5. FAQ
