@@ -370,11 +370,11 @@ These are the main functions of the Countdown feature:
 ### 3.4.1. Implementation
 The UI of the Countdown feature is facilitated by the `countdown` package in `model` and `ui` packages. `CountdownCommand`
 and `CountdownCommandParser` classes in the `logic` package implements this feature.
-The class diagram (Figure 4) shown below summarises the implementation of the UI of the countdown feature:
+The class diagram (Figure 5) shown below summarises the implementation of the UI of the countdown feature:
 
 ![CountdownClassDiagram](images/CountdownClassDiagram.png)
 
-Figure 4: Countdown Class Diagram
+Figure 5: Countdown Class Diagram
 
 During the initialisation of TR4CKER, `CountdownTabWindow` will be initialised, together with `CountdownEventListPanel`.
 `CountdownTabWindow` will execute `Logic#getFilteredEventList` to update the events list shown in Countdown tab.
@@ -386,10 +386,10 @@ When users execute countdown commands, mainly the commands to add or delete an e
 This is done by initialising new `CountdownEventCard` objects to be placed in the `CountdownEventListPanel`, or by
 removing those that are deleted.
 
-The following sequence diagram (Figure 5) shows the execution of `countdown days/7`:
+The following sequence diagram (Figure 6) shows the execution of `countdown days/7`:
 
 ![CountdownSequenceDiagram](images/CountdownSequenceDiagram.png)
-Figure 5: Countdown Sequence Diagram
+Figure 6: Countdown Sequence Diagram
 
 When a user executes a `CountdownCommand`, `countdown days/7` to count the number of events in the upcoming 7 days from
 from today, `MainWindow` begins the execution of the command. `LogicManager` is then called to execute the
@@ -405,7 +405,7 @@ for `countdownCommand` to work on.
 
 The following activity diagram summarises the flow of executing the various functions of `CountdownCommand`:
 ![CountdownCommandActivityDiagram](images/CountdownActivityDiagram.png)
-Figure 6: Countdown Activity Diagram
+Figure 7: Countdown Activity Diagram
 
 The activity diagram shows all the possible paths TR4CKER can take when a user executes a `CountdownCommand`, which is
 identified by the use of the command word, `countdown`. After a command is entered, it's arguments are parsed, to know
@@ -468,9 +468,9 @@ The 2 main functions of Planner command are to:
 ### 3.5.1. Implementation
 To implement the UI of this planner feature, there is a `planner` package in both `model` and `ui` packages. To implement
 the commands of this planner feature, there are `PlannerCommand` and `PlannerCommandParser` classes in `logic` package.
-The following class diagram (Figure 7) summarises how the UI aspect of this planner feature is being implemented:
+The following class diagram (Figure 8) summarises how the UI aspect of this planner feature is being implemented:
 ![PlannerClassDiagram](images/PlannerClassDiagram.png)
-Figure 7: Planner Class Diagram
+Figure 8: Planner Class Diagram
 
 During the initialisation of TR4CKER, `PlannerTabWindow` will be initialised, together with `PlannerCalendarPanel` and
 `PlannerTaskListPanel`. `PlannerTabWindow` will execute `Logic#getPlannerFilteredTaskList` to get the current date's filtered
@@ -484,9 +484,9 @@ clearing the calendar, new indicators would be set through `PlannerTabWindow#upd
 and `PlannerDayCard#updateIndicator`. The title of the tasks list will be updated through `PlannerTaskListPanel#updateTitle`
 and the tasks list will also be updated.
 
-The following sequence diagram (Figure 8) shows how the planner feature works when a user executes `planner goto/today`:
+The following sequence diagram (Figure 9) shows how the planner feature works when a user executes `planner goto/today`:
 ![PlannerSequenceDiagram](images/PlannerSequenceDiagram.png)
-Figure 8: Planner Sequence Diagram during execution of `planner goto/today`
+Figure 9: Planner Sequence Diagram during execution of `planner goto/today`
 
 <div markdown="span" class="alert alert-info">:information_source: 
 
@@ -504,10 +504,10 @@ will be passed back to `MainWindow`, then it will be checked in `PlannerTabWindo
 tab, or to view a specific date/month. In this case, user wants to go to today which is a specific date. After that, the
 calendar and tasks list are updated in Planner tab, and user can now see the results.
 
-The following activity diagram (Figure 9) summarises what happens when a user executes the 2 main functions of
+The following activity diagram (Figure 10) summarises what happens when a user executes the 2 main functions of
 `PlannerCommand`:
 ![PlannerActivityDiagram](images/PlannerActivityDiagram.png)
-Figure 9: Planner Activity Diagram
+Figure 10: Planner Activity Diagram
 
 This activity diagram shows all the possible paths TR4CKER can take when a user executes a `PlannerCommand`. After
 inputting a command, the command is parsed. By checking the arguments provided by the user, it can either mean the
