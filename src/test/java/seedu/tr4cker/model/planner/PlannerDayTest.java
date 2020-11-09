@@ -18,6 +18,13 @@ class PlannerDayTest {
     private final PlannerDay plannerDay4 = new PlannerDay(localDate3);
 
     @Test
+    public void getLocalDate_success() {
+        assertEquals(localDate1, plannerDay1.getLocalDate());
+        assertEquals(localDate2, plannerDay2.getLocalDate());
+        assertEquals(localDate3, plannerDay3.getLocalDate());
+    }
+
+    @Test
     public void getDay_success() {
         assertEquals(plannerDay1.getDay(), 1);
         assertEquals(plannerDay2.getDay(), 14);

@@ -41,15 +41,15 @@ title: Developer Guide
 6. [Logging](#6-logging)
 7. [Configuration](#7-configuration)
 8. [Dev-ops](#8-dev-ops)
-* Appendix A. [Requirements](#appendix-a-requirements)
+9. Appendix A: [Requirements](#appendix-a-requirements)
     * A.1. [Product Scope](#a1-product-scope)
     * A.2. [User Stories](#a2-user-stories)
     * A.3. [Use Cases](#a3-use-cases)
     * A.4. [Non-Functional Requirements](#a4-non-functional-requirements)
     * A.5. [Glossary](#a5-glossary)
-* Appendix B. [Instructions for Manual Testing](#appendix-b-instructions-for-manual-testing)
+10. Appendix B: [Instructions for Manual Testing](#appendix-b-instructions-for-manual-testing)
     * B.1. [Launch and Shutdown](#b1-launch-and-shutdown)
-    * B.2. [HAN WEI UR PART HERE](#b2-deleting-a-task)
+    * B.2. [Features in Home tab](#b2-features-in-home-tab)
     * B.3. [Daily Feature](#b3-daily-feature)
     * B.4. [Module Feature](#b4-module-feature)
     * B.5. [Countdown Feature](#b5-countdown-feature)
@@ -117,7 +117,7 @@ the command `delete 1`.
 
 The sections below give more details of each component.
 
-## 2.2. UI component
+## 2.2. UI component (Han Wei)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
@@ -145,7 +145,7 @@ The `UI` component,
 
 1. `Logic` uses the `Tr4ckerParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
-1. The command execution can affect the `Model` (e.g. adding a person).
+1. The command execution can affect the `Model` (e.g. adding a Task).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
@@ -204,16 +204,21 @@ This section describes some noteworthy details on how certain features are imple
 This feature allows users to view and handle tasks under 3 categories separately.
 
 ### 3.1.2. Implementation details
+To implement the UI of this feature, there will be a `PendingTaskListPanel`, `ExpiredTaskListPanel` and `CompletedTaskListPanel` classes
+in the `ui` package, modified from the `TaskListPanel` class. To implement the commands of
+this feature, there are `EditExpiredCommnad` and `DeleteExpiredCommand` classes that extends from the `EditCommand` and `DeleteCommand` in the `logic` package respectively.
+
 This feature comes in the form of a Task List panel, which is made up of three sub-panels:
 1. Pending tasks (Incomplete tasks that are not overdue)
 2. Expired tasks (Incomplete tasks that are overdue)
 3. Completed tasks (Archived tasks)
 
-Upon starting TR4CKER or refreshing of task lists, tasks which deadlines have passed will automatically appear under Expired tasks panel.
+Upon starting TR4CKER or after using the `list` command, tasks which deadlines have passed will automatically appear under Expired tasks panel.
 Users can modify tasks displayed in the Expired task panel using the Edit command.
 
-The following diagram shows the sequence flow of a EditCommand which modifies the deadline of a task in the Expired task list:
-![EditActivityDiagram](images/EditActivityDiagram.png)
+The following diagram shows the sequence flow of a `EditExpiredCommand` which modifies the deadline of a task in the Expired task list:
+![EditExpiredActivityDiagram](images/EditExpiredActivityDiagram.png)
+
 Figure 1: Edit deadline of expired task Activity Diagram
 
 Once the user marks a task as complete, it will automatically appear under Completed tasks.
@@ -221,8 +226,20 @@ Once the user marks a task as complete, it will automatically appear under Compl
 ### 3.1.3. Design considerations:
 
 #### 3.1.3.1. Aspect 1: How users can easily view and control all the tasks
-This design filters the tasks into 3 lists according to their completion statuses and deadlines which will be useful to the users,
-as opposed to having browse through a long task list.
+
+* **Current Choice:** Splits the tasks into 3 panels according to their completion status and deadlines.
+  * Pros: Able to support commands that specifically deal with each type of tasks.
+  * Pros: Allows users to view their tasks separately instead of browsing through a long task list.
+  * Cons: UI looks cramp when there are too many panels laid out horizontally.
+
+* **Alternative 1:** Use a single task list.
+  * Pros: Task list would have a large horizontal space to display long task descriptions and task names instead of having to wrap text.
+  * Cons: Less user-friendly because users would have to manually compare the deadlines of the tasks with today's date to find out which are the expired tasks.
+
+**Justification for current choice:** To the users, expired tasks that are overdue but not completed deserve more attention than pending tasks.
+ Users would want to either remove the expired task or continue working on it. Therefore, we felt a need to display them separately and create commands that specifically handle Expired tasks.
+ In addition, since tasks are sorted in the chronological order of their deadlines, having a centralised task list would mean that both completed and incomplete tasks would be mixed together,
+ which does not allow users to focus on their incomplete tasks.
 
 ## 3.2. Daily feature (Yingqi)
 Tracker has a daily feature that allows users to add current tasks to a todo list for the day.
@@ -234,8 +251,8 @@ The 3 main functions of the Daily feature are to:
 3. Delete a daily todo task when it is done for the day
 
 ### 3.2.1. Implementation
-The UI of the Daily feature is facilitated by the `DailyPanel` class which will show users all daily todo tasks as a list.
-To implement the commands of this Daily feature, there are `TodoCommand` and `TodoCommandParser` classes in the `logic` package.
+The UI of the Daily feature is facilitated by the `DailyPanel` and `TodoCard` classes which will show users all daily todo tasks as a list in the Daily tab.
+To implement the commands of this Daily feature, there are `TodoCommand`, `TodoCommandParser` , `DailyCommand` and `DailyCommandParser` classes in the `logic` package.
 
 The following diagram shows the sequence flow when a task gets added into the `DailyPanel`:
 ![DailySequenceDiagram](images/DailySequenceDiagram.png)
@@ -260,15 +277,16 @@ to add into daily todo list.
 #### 3.2.2.2. Aspect 2: How users indicate that they have completed a daily todo task
 * **Current Choice:** 
 There are 3 ways for users to remove a todo from daily todo list:
-1. Delete the pending task from home page, the corresponding task in daily todo list will be removed.
-2. Delete directly from daily todo list, the corresponding pending task in home page is still present.
-3. Indicate that they have completed a pending task, the corresponding todo task will be removed from daily todo list.
+    1. Delete the pending task from home page, the corresponding task in daily todo list will be removed.
+    2. Delete directly from daily todo list, the corresponding pending task in home page is still present.
+    3. Indicate that they have completed a pending task, the corresponding todo task will be removed from daily todo list.
+    
   * Pros: Users can remove a daily todo task under different scenarios.
   * Cons: May delete a daily todo task unexpectedly and have to add it back again.
 
 * **Alternative 1:** When users want to delete a todo task, prompt a message to double check with the user.
-  *Pros: Prevent users from deleting tasks unexpectedly.
-  *Cons: Users have to enter more commands for deleting
+  * Pros: Prevent users from deleting tasks unexpectedly.
+  * Cons: Users have to enter more commands for deleting
   
 * **Justification for current choice:** Users would have decided what to remove from their list before deciding to delete.
 It is not necessary to prompt the user on whether to delete a task.
@@ -423,23 +441,34 @@ The 2 main functions of Planner command are to:
 2. Display an overview of tasks for today/tomorrow and on specified date/month
 
 ### 3.5.1. Implementation
-To implement the UI of this planner feature, there is a `planner` package in `model` and `ui` packages. To implement
+To implement the UI of this planner feature, there is a `planner` package in both `model` and `ui` packages. To implement
 the commands of this planner feature, there are `PlannerCommand` and `PlannerCommandParser` classes in `logic` package.
 The following class diagram (Figure 1) summarises how the UI aspect of this planner feature is being implemented:
 ![PlannerClassDiagram](images/PlannerClassDiagram.png)
 Figure 1: Planner Class Diagram
 
 During the initialisation of TR4CKER, `PlannerTabWindow` will be initialised, together with `PlannerCalendarPanel` and
-`PlannerTaskListPanel`. `PlannerTabWindow` will execute `Logic#getPlannerFilteredTaskList` to update the tasks list shown in
-Planner tab. The month and year of the calendar will be set in `PlannerCalendarPanel`. There are multiple `PlannerDayCard`
+`PlannerTaskListPanel`. `PlannerTabWindow` will execute `Logic#getPlannerFilteredTaskList` to get the current date's filtered
+task list. Subsequent updates to filtered task list will be updated through the execution of `Logic#updatePlannerFilteredTaskList`.
+The month and year of the calendar will be set in `PlannerCalendarPanel`. There are multiple `PlannerDayCard`
 in 1 `PlannerCalendarPanel`. `PlannerDayCard` serves to store the details of each `PlannerDay`, which contains the date
-of each grid in the `PlannerCalendarPanel`. When users execute planner commands, The month and year of the calendar will
-be updated in `PlannerCalendarPanel`. Existing details of the calendar will also be cleared through
-`PlannerCalendarPanel#clearCalendar()` and `PlannerDayCard#clear()`. At the same time, the tasks list will also be updated.
+of each grid in the `PlannerCalendarPanel`, the circled date (today) and the indicators for each date. When users
+execute planner commands, the month and year of the calendar will be updated in `PlannerCalendarPanel`. Existing details
+of the calendar will also be cleared through `PlannerCalendarPanel#clearCalendar` and `PlannerDayCard#clear`. After
+clearing the calendar, new indicators would be set through `PlannerTabWindow#updateIndicator`, `PlannerCalendarPanel#updateIndicator`
+and `PlannerDayCard#updateIndicator`. The title of the tasks list will be updated through `PlannerTaskListPanel#updateTitle`
+and the tasks list will also be updated.
 
 The following sequence diagram (Figure 2) shows how the planner feature works when a user executes `planner goto/today`:
 ![PlannerSequenceDiagram](images/PlannerSequenceDiagram.png)
 Figure 2: Planner Sequence Diagram during execution of `planner goto/today`
+
+<div markdown="span" class="alert alert-info">:information_source: 
+
+**Note:** The lifelines for all the classes except `MainWindow` should
+end at the destroy markers _(X)_ but due to the limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
 
 When a user executes a `PlannerCommand` of `planner goto/today`, `MainWindow` will be called to execute the command. It will
 then call `LogicManager` to execute, followed by parsing of command in `Tr4ckerParser`. `Tr4ckerParser` will create a new
@@ -447,8 +476,8 @@ instance of `PlannerCommandParser` to parse the user's input. After parsing and 
 new `PlannerCommand` instance is created. This new instance `plannerCommand` will be passed back to `LogicManager` to execute
 on the `Model` in `PlannerCommand`. After executing, a new instance `CommandResult` `commandResult` is created. `commandResult`
 will be passed back to `MainWindow`, then it will be checked in `PlannerTabWindow` if the user wants to switch to Planner
-tab, or to view a specific date/month. After that, the calendar and tasks list are updated in Planner tab, and user can
-now see the results.
+tab, or to view a specific date/month. In this case, user wants to go to today which is a specific date. After that, the
+calendar and tasks list are updated in Planner tab, and user can now see the results.
 
 The following activity diagram (Figure 3) summarises what happens when a user executes the 2 main functions of
 `PlannerCommand`:
@@ -487,7 +516,7 @@ is different from the `TaskListPanel` class which is mainly used for the TR4CKER
   * Pros: Do not need to code for another class and more time could have been spent on other features.
   * Cons: Do not obey Single Responsibility Principle as now a class would need to have 2 types of functionalities for
   different purposes.
-  * Cons: Some functionalities for tasks list in TR4CKER tab and Planner tab differ, so accomodating for both functionalities
+  * Cons: Some functionalities for tasks list in TR4CKER tab and Planner tab differ, so accommodating for both functionalities
   in a single class is quite difficult.
 
 **Justification for current choice:** After thinking about how having a separate class for the tasks list in Planner tab
@@ -785,22 +814,39 @@ testers are expected to do more *exploratory* testing.
    2.2. Re-launch TR4CKER by double-clicking the jar file.<br>
    Expected: The most recent window size and location is retained.
 
-## B.2. Deleting a task
+## B.2. Features in Home tab
+1. Adding a task in Home tab.<br>
 
-1. Deleting a task while all tasks are being shown
+    1.1. Prerequisite: Must not have another task with the same name and same deadline. (Task names can be the same as long they have different deadline due to the recurring nature of some tasks, e.g CS2103T tutorial)
 
-   1. Prerequisites: List all tasks using the `list` command. Multiple tasks in the list.
+    1.2. Test case: `add n/CS2103T tutorial dl/12-12-2020 des/last tutorial m/CS2103T t/sad`<br>
+    Expected: TR4CKER adds the event to Countdown tab, with a result message saying
+    `New task added: CS2103T tutorial Deadline: 12-Dec-2020 2359 CompletionStatus: 0% Description: last tutorial ModuleCode: CS2103T Tags: [sad]`.
 
-   1. Test case: `delete 1`<br>
-      Expected: First task is deleted from the list. Details of the deleted task shown in the status message. Timestamp in the status bar is updated.
+    1.3. Incorrect countdown commands to try:`add n/TR@CKER dl/12-12-2020 des/hahaha`<br>
+    Expected: TR4CKER shows an `Names should only contain alphanumeric characters and spaces, and it should not be blank` error message since `NAME` is not alphanumeric.
+        
+2. Editing the deadline of a Pending task.<br>
 
-   1. Test case: `delete 0`<br>
-      Expected: No task is deleted. Error details shown in the status message. Status bar remains the same.
+    2.1. Prerequisite: Pending task exists in Pending Tasks list.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where `x` is larger than the list size)<br>
-      Expected: Similar to previous.
+    2.2. Test case: `edit 1 dl/15-12-2020 2200`
+    Expected: TR4CKER edits the pending task at index 1, with a result message saying `Edited task: ...`.
 
-1. _{ more test cases …​ }_
+    2.3. Incorrect countdown commands to try:`edit 1`<br>
+    Expected: TR4CKER shows an `At least one field to edit must be provided.` error message since no fields were specified in the command.
+
+
+3. Deleting a Pending task.<br>
+
+   3.1. Prerequisites: List all Pending tasks using the `list` command. Multiple tasks in the list.
+
+   3.2. Test case: `delete 1`<br>
+   Expected: First task deleted from the displayed Pending Tasks list, with a result message saying `Deleted task: ...`.
+
+   3.3. Incorrect delete commands to try: `delete task 1`<br>
+   Expected: TR4CKER shows an `Invalid command format! ...` error message since the syntax of the Delete commmand is wrong.
+
 
 ## B.3. Daily feature
 1. Switching to Daily tab.<br>

@@ -59,6 +59,7 @@ Given below are my contributions to the project:
     * Updated documentation for the feature `planner`: [\#186](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/186)
     * Updated User Stories and added instructions for manual testing for the feature `planner`: [\#194](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/194)
     * Added table of contents: [\#216](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/216)
+    * Updated documentation for the feature `planner`: [\#221](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/221)
 
 * **Team-based tasks**:
   * Setting up tools:
@@ -71,5 +72,7 @@ Given below are my contributions to the project:
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#15](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/15), [\#101](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/101),
   [\#112](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/112), [\#125](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/125),
-  [\#126](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/126), [\#175](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/175)
+  [\#126](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/126), [\#175](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/175),
+  [\#196](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/196), [\#205](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/205),
+  [\#219](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/219)
   * Reported bugs and suggestions for other teams in the class (during Practical Dry Run): [Issues link](https://github.com/ruilingk/ped/issues)
