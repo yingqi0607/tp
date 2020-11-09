@@ -236,10 +236,8 @@ Examples:
 
 ### 3.2.4. Listing Pending tasks: `list`
 Suppose you used the `find` command previously to locate some of your Pending tasks. You may use the `list` command to
-go back to viewing the entire Pending Tasks list again.
-
-If you want to view a list of all pending tasks names in TR4CKER, you can enter `list`. TR4CKER will display a list of 
-all pending tasks names in TR4CKER.
+go back to viewing the entire Pending Tasks list again. In addition, TR4CKER will display a list of all Pending tasks in
+the Result Display box.
 
 Format: `list`
 
@@ -285,12 +283,14 @@ Examples:
 Suppose you made a spelling mistake when you were adding a task in TR4CKER.
 You can edit the fields of a task by using the `edit` command.
 
-Format: `edit INDEX [n/NAME] [dl/DEADLINE] [des/DESCRIPTION]`
+Format: `edit INDEX [n/NAME] [dl/DEADLINE] [des/DESCRIPTION] [m/MODULE_CODE]`
 
 * Edits the task's name, deadline and description at the specified `INDEX`.
 * The index refers to the index number shown in the task list.
 * The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
+* You need to add the module into TR4CKER's modules list before you can link a task to that module.
+  To find out how to add a module in TR4CKER, you may refer to [_Section 3.4.2 - Adding a new module into the modules list_](#342-adding-a-new-module-to-modules-list).
 * Editing of tags is done using `tag` command instead (Refer to the next section on [_Section 3.2.7. - Editing tags of Pending tasks_](#327-editing-tags-of-pending-tasks-tag)).
 
 1.  Type the index number of the Pending task and its edited fields that you want to update in the command box using the `edit` command.
