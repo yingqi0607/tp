@@ -93,7 +93,7 @@ public class Tr4ckerTest {
         Module module = new Module(VALID_MODULE_NAME_1, new ModuleCode(VALID_MODULE_CODE_1));
         tr4cker.addTask(task);
 
-        assertTrue(tr4cker.hasRelatedTasks(module));
+        assertTrue(tr4cker.hasRelatedIncompleteTasks(module));
     }
 
     @Test
