@@ -57,8 +57,7 @@ Given below are my contributions to the project.
     * Add Use Cases for feature `countdown`: [\#232](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/232)
 
 * **Team-based tasks**:
-  * Setting up GitHub team organisation and repo:
-    * Update `README.md` with `CI` and `CodeCov`: [\#49](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/49)
+  * Setting up GitHub team organisation and repo: [\#29](https://github.com/nus-cs2103-AY2021S1/tp/pull/29)
   * Project management:
     * Managed release `v1.3` on GitHub [v1.3](https://github.com/AY2021S1-CS2103T-T10-2/tp/releases/tag/v1.3)
     * Maintained issue tracker on GitHub
