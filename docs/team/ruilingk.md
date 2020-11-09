@@ -66,6 +66,7 @@ Given below are my contributions to the project:
   * Setting up tools:
     * Update `README.md` with `CI` and `CodeCov`: [\#49](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/49)
     * Enable assertions in `build.gradle`: [\#88](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/88)
+    * Update `README.md` with latest features: [\#226](https://github.com/AY2021S1-CS2103T-T10-2/tp/pull/226)
   * Project management:
     * Managed release `v1.1` on GitHub
     * Maintained issue tracker on GitHub
