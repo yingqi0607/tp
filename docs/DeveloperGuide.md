@@ -846,7 +846,91 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
     Use case ends.
     
-**Use case: UC12 - Switching to Planner tab**
+**Use case: UC12 - Switching to Countdown tab**
+
+**MSS**
+
+1.  User requests to go to Countdown tab.
+
+2.  TR4CKER switches tab to Countdown tab.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. User entered the wrong command.
+
+    * 1a1. An error message is shown.
+
+    Use case ends.
+
+**Use case: UC13 - Add an event to Countdown tab**
+
+**MSS**
+
+1.  User requests to <u>switch to Countdown tab (UC12)</u> to view current list of events.
+
+2.  TR4CKER shows current list of events.
+
+3.  User enters command to add a new event.
+
+4. TR4CKER adds new event to the list of events.
+
+    Use case ends.
+
+**Extensions**
+
+* 3a. User enters an invalid name or date or uses an invalid format.
+
+    * 3a1. An error message is shown.
+
+    Use case ends.
+
+**Use case: UC14 - Delete an event from Countdown tab**
+
+**MSS**
+
+1.  User requests to <u>switch to Countdown tab (UC12)</u> to view current list of events.
+
+2.  TR4CKER shows current list of events.
+
+3.  User enters command to delete an event.
+
+4.  TR4CKER deletes event from the list of events.
+
+    Use case ends.
+
+**Extensions**
+
+* 3a. User enters an invalid event index or uses the wrong format.
+
+    * 3a1. TR4CKER shows an error message.
+
+    Use case ends.
+
+**Use case: UC15 - Count the number of events in the next `x` days**
+
+**MSS**
+
+1.  User requests to <u>switch to Countdown tab (UC12)</u> to view current list of events.
+
+2.  TR4CKER shows current list of events.
+
+3.  User enters command to count the number of events in the next `x` days.
+
+4.  TR4CKER counts and shows the events in the next `x` days.
+
+    Use case ends.
+
+**Extensions**
+
+* 3a. User enters an invalid number of days or uses the wrong format.
+
+    * 3a1. TR4CKER shows an error message.
+
+    Use case ends.
+
+**Use case: UC16 - Switching to Planner tab**
 
 **MSS**
 
@@ -862,8 +946,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. An error message is shown.
 
     Use case ends.
-    
-**Use case: UC13 - Goto specific date in Planner tab**
+
+**Use case: UC17 - Goto specific date in Planner tab**
 
 **MSS**
 
@@ -879,9 +963,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. An error message is shown.
 
     Use case ends.
-    
 
-**Use case: UC14 - Goto specific month in Planner tab**
+**Use case: UC18 - Goto specific month in Planner tab**
 
 **MSS**
 
@@ -916,6 +999,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Task**: An item to be completed by a certain deadline.
 * **Todo**: An item planned to be completed in a day.
+* **Event**: An item representing an event which occurs on a certain date.
 * **CLI**: Command-Line Interface, a method of interacting with computer programs by typing lines of text.
 
 --------------------------------------------------------------------------------------------------------------------
