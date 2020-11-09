@@ -81,7 +81,7 @@ This section guides you through how to get TR4CKER started for the first time.
 
 2. TR4CKER works best on screen resolutions of at least `1600x900`.
 
-3. Download the latest `tr4cker.jar` from [here](https://github.com/AY2021S1-CS2103T-T10-2/tp/releases/tag/v1.3).
+3. Download the latest `tr4cker.jar` from [here](https://github.com/AY2021S1-CS2103T-T10-2/tp/releases).
 
 4. Copy the file to the folder you want to use as the _home folder_ for your TR4CKER.
 
