@@ -846,6 +846,109 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
     Use case ends.
     
+**Use case: UC12 - Switching to Module tab**
+
+**MSS**
+
+1.  User requests to go to Module tab.
+
+2.  TR4CKER switches tab to Modules tab.
+
+**Extentions**
+
+* 1a. User entered the wrong command.
+
+    * 1a1. An error message is shown.
+
+    Use case ends.
+
+**Use case: UC13 - Add a module to Module tab**
+
+**MSS**
+
+1.  User requests to <u>switch to Module tab (UC12)</u> to view current list of modules.
+
+2.  TR4CKER shows current list of modules.
+
+3.  User enters command to add a new module.
+
+4.  TR4CKER adds the new module to the list of modules.
+
+    Use case ends.
+
+**Extentions**
+
+* 1a. User entered the wrong command.
+
+    * 1a1. An error message is shown.
+
+    Use case ends.
+
+**Use case: UC14 - Delete a module from Module tab**
+
+**MSS**
+
+1.  User requests to <u>switch to Module tab (UC12)</u> to view current list of modules.
+
+2.  TR4CKER shows current list of modules.
+
+3.  User enters command to delete a module.
+
+4.  TR4CKER deletes module from the list of modules.
+
+    Use case ends.
+
+**Extensions**
+
+* 3a. User enters an invalid module index or uses the wrong format.
+
+    * 3a1. TR4CKER shows an error message.
+
+    Use case ends.
+
+* 3b. Module selected still has pending tasks
+
+    * 3b1. TR4CKER shows an error message.
+
+    Use case ends.
+
+**Use case: UC15 - Assigning a task to a module**
+
+1.  User requests to <u>list Pending tasks (UC08)</u>.
+
+2.  TR4CKER shows current list of Pending tasks.
+
+3.  User requests to <u>edit a Pending task (UC02)</u> with a module code.
+
+4.  TR4CKER assigns task to the module.
+
+**Extensions**
+
+* 3a. User enters an invalid module code or uses the wrong format.
+
+    * 3a1. TR4CKER shows an error message.
+
+    Use case ends.
+
+**Use case: UC16 - Un-assigning a task to a module**
+
+1.  User requests to <u>list Pending tasks (UC08)</u>.
+
+2.  TR4CKER shows current list of Pending tasks.
+
+3.  User requests to <u>edit a Pending task (UC02)</u> to remove its module code.
+
+4.  TR4CKER un-assigns task from the module.
+
+**Extensions**
+
+* 3a. User tries to remove code from task that already has no module code, without
+changing other task fields.
+
+    * 3a1. TR4CKER shows an error message.
+
+    Use case ends.
+
 **Use case: UC12 - Switching to Countdown tab**
 
 **MSS**
