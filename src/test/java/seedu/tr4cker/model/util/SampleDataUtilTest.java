@@ -94,10 +94,14 @@ class SampleDataUtilTest {
         new Event(new EventName("CS2103T Practical Exam Dry Run"),
                 new EventDate("30-10-2020", false)),
         new Event(new EventName("CS2103T Practical Exam"), new EventDate("13-Nov-2020", false)),
-        new Event(new EventName("Han Wei Birthday"), new EventDate("09-10-2020", false)),
+        new Event(new EventName("1st Anniversary"), new EventDate("15-11-2021", false)),
+        new Event(new EventName("Confession Day"), new EventDate("15-11-2020", false)),
         new Event(new EventName("CS2101 OP2 Demo"), new EventDate("03-11-2020", false)),
         new Event(new EventName("CS2101 OP2 Pitch"), new EventDate("06-11-2020", false)),
         new Event(new EventName("Christmas"), new EventDate("25-Dec-2020", false)),
+        new Event(new EventName("New Years Eve"), new EventDate("31-Dec-2020", false)),
+        new Event(new EventName("ST2334 Finals"), new EventDate("23-Nov-2020", false)),
+        new Event(new EventName("CS2100 Finals Exam"), new EventDate("27-11-2020", false))
     };
 
     @Test
