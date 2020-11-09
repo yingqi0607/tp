@@ -213,7 +213,7 @@ Upon starting TR4CKER or refreshing of task lists, tasks which deadlines have pa
 Users can modify tasks displayed in the Expired task panel using the Edit command.
 
 The following diagram shows the sequence flow of a EditCommand which modifies the deadline of a task in the Expired task list:
-![EditActivityDiagram](images/EditActivityDiagram.png)
+![EditExpiredActivityDiagram](images/EditExpiredActivityDiagram.png)
 Figure 1: Edit deadline of expired task Activity Diagram
 
 Once the user marks a task as complete, it will automatically appear under Completed tasks.
