@@ -37,6 +37,7 @@ title: User Guide
         * 3.4.3. [Assigning a task to a module](#343-assigning-a-task-to-a-module)
         * 3.4.4. [Un-assigning a task from a module](#344-un-assigning-a-task-from-a-module)
         * 3.4.5. [Deleting a module](#345-deleting-a-module)
+        <div style="page-break-after: always;"></div>
     * 3.5. [Countdown Tab](#35-countdown-wen-ling)
         * 3.5.1. [Switching to Countdown tab: `countdown`](#351-switching-to-countdown-tab-countdown)
         * 3.5.2. [Adding a new event to countdowns list](#352-adding-a-new-event-to-countdowns-list)
