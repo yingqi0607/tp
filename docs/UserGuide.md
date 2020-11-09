@@ -944,6 +944,8 @@ There is no need to save manually.
 --------------------------------------------------------------------------------------------------------------------
 # 4. Glossary
 
+* **Soc**: School of Computing, computing school in National University of Singapore(NUS).
+* **GUI**: Graphical User Interface, a platform that allows users to interact with the application.
 * **CLI**: Command-Line Interface, a method of interacting with computer programs by typing lines of text.
 * **Task**: An item to be completed by a certain deadline, with specified task names, deadline, task description, tags (optional) and module code.
 * **Todo**: An item planned to be completed in a day.

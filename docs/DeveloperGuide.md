@@ -234,8 +234,8 @@ The 3 main functions of the Daily feature are to:
 3. Delete a daily todo task when it is done for the day
 
 ### 3.2.1. Implementation
-The UI of the Daily feature is facilitated by the `DailyPanel` class which will show users all daily todo tasks as a list.
-To implement the commands of this Daily feature, there are `TodoCommand` and `TodoCommandParser` classes in the `logic` package.
+The UI of the Daily feature is facilitated by the `DailyPanel` and `TodoCard` class which will show users all daily todo tasks as a list in the Daily tab.
+To implement the commands of this Daily feature, there are `TodoCommand`, `TodoCommandParser` , `DailyCommand` and `DailyCommandParser` classes in the `logic` package.
 
 The following diagram shows the sequence flow when a task gets added into the `DailyPanel`:
 ![DailySequenceDiagram](images/DailySequenceDiagram.png)
@@ -260,15 +260,16 @@ to add into daily todo list.
 #### 3.2.2.2. Aspect 2: How users indicate that they have completed a daily todo task
 * **Current Choice:** 
 There are 3 ways for users to remove a todo from daily todo list:
-1. Delete the pending task from home page, the corresponding task in daily todo list will be removed.
-2. Delete directly from daily todo list, the corresponding pending task in home page is still present.
-3. Indicate that they have completed a pending task, the corresponding todo task will be removed from daily todo list.
+    1. Delete the pending task from home page, the corresponding task in daily todo list will be removed.
+    2. Delete directly from daily todo list, the corresponding pending task in home page is still present.
+    3. Indicate that they have completed a pending task, the corresponding todo task will be removed from daily todo list.
+    
   * Pros: Users can remove a daily todo task under different scenarios.
   * Cons: May delete a daily todo task unexpectedly and have to add it back again.
 
 * **Alternative 1:** When users want to delete a todo task, prompt a message to double check with the user.
-  *Pros: Prevent users from deleting tasks unexpectedly.
-  *Cons: Users have to enter more commands for deleting
+  * Pros: Prevent users from deleting tasks unexpectedly.
+  * Cons: Users have to enter more commands for deleting
   
 * **Justification for current choice:** Users would have decided what to remove from their list before deciding to delete.
 It is not necessary to prompt the user on whether to delete a task.
