@@ -28,6 +28,9 @@ public interface Model {
     Predicate<Task> PREDICATE_SHOW_COMPLETED_TASKS = Task::isCompleted;
 
     /** {@code Predicate} that always evaluate to true. */
+    Predicate<Module> PREDICATE_SHOW_ALL_MODULES = unused -> true;
+
+    /** {@code Predicate} that always evaluate to true. */
     Predicate<Event> PREDICATE_SHOW_ALL_EVENTS = unused -> true;
 
     /** {@code Predicate} that always evaluate to true when todo is not expired. */

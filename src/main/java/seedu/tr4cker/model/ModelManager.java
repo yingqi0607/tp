@@ -181,7 +181,6 @@ public class ModelManager implements Model {
     @Override
     public void addModule(Module module) {
         tr4cker.addModule(module);
-        updateFilteredModuleList(x -> true);
     }
 
     @Override

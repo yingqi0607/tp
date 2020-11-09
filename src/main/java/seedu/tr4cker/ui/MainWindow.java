@@ -278,6 +278,11 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleShowTabModule() {
+        // for refreshing module page beforehand
+        moduleListPanel = new ModuleListPanel(logic.getFilteredModuleList(), logic.getFilteredTaskList());
+        moduleListPanelPlaceholder.getChildren().add(moduleListPanel.getRoot());
+
+        // switch
         tabPane.getSelectionModel().select(MODULE);
         setTabColors(MODULE);
     }

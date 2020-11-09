@@ -14,7 +14,6 @@ import static seedu.tr4cker.logic.parser.CommandParserTestUtil.assertParseSucces
 
 import org.junit.jupiter.api.Test;
 
-import seedu.tr4cker.commons.core.Messages;
 import seedu.tr4cker.commons.core.index.Index;
 import seedu.tr4cker.logic.commands.ModuleCommand;
 import seedu.tr4cker.model.module.Module;
@@ -25,7 +24,7 @@ class ModuleCommandParserTest {
             ModuleCommand.MESSAGE_SWITCH_TAB_USAGE);
     private static final String MESSAGE_INVALID_MODULE_COMMAND_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, ModuleCommand.MESSAGE_USAGE);
-    private static final String MESSAGE_INVALID_INDEX =Messages.MESSAGE_INVALID_MODULE_DISPLAYED_INDEX;
+    private static final String MESSAGE_INVALID_INDEX = MESSAGE_INVALID_MODULE_DISPLAYED_INDEX;
     private final ModuleCommandParser moduleCommandParser = new ModuleCommandParser();
     private final ModuleCommand moduleCommand = new ModuleCommand();
 
