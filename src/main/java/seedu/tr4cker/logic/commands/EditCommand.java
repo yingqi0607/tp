@@ -48,6 +48,7 @@ public class EditCommand extends Command {
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Task: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_UNCHANGED = "Looks like nothing has been changed.";
+    public static final String MESSAGE_MODULE_ALREADY_DELETED = "Looks like there is no module code to delete.";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in TR4CKER.";
     public static final String MESSAGE_INVALID_MODULE = "Given module does not exist in TR4CKER.";
 
@@ -92,6 +93,10 @@ public class EditCommand extends Command {
 
         if (!model.hasValidModuleField(editedTask)) {
             throw new CommandException(MESSAGE_INVALID_MODULE);
+        }
+
+        if (taskToEdit.getModuleCode().isEmpty() && editTaskDescriptor.isModuleDeleted()) {
+            throw new CommandException(MESSAGE_MODULE_ALREADY_DELETED);
         }
 
         if (model.hasTodo(todoToEdit)) {
@@ -171,6 +176,7 @@ public class EditCommand extends Command {
         private TaskDescription taskDescription;
         private Set<ModuleCode> moduleCode;
         private Set<Tag> tags;
+        private boolean isModuleDeleted = false;
 
         public EditTaskDescriptor() {}
 
@@ -184,6 +190,7 @@ public class EditCommand extends Command {
             setDescription(toCopy.taskDescription);
             setModuleCode(toCopy.moduleCode);
             setTags(toCopy.tags);
+            this.isModuleDeleted = toCopy.isModuleDeleted;
         }
 
         /**
@@ -215,6 +222,20 @@ public class EditCommand extends Command {
 
         public Optional<TaskDescription> getTaskDescription() {
             return Optional.ofNullable(taskDescription);
+        }
+
+        /**
+         * Returns true if module code of the task is to be deleted.
+         */
+        public boolean isModuleDeleted() {
+            return isModuleDeleted;
+        }
+
+        /**
+         * Sets {@code isModuleDeleted} to be true.
+         */
+        public void setModuleDeleted() {
+            this.isModuleDeleted = true;
         }
 
         /**
