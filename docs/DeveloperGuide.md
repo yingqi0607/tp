@@ -49,7 +49,7 @@ title: Developer Guide
     * A.5. [Glossary](#a5-glossary)
 10. Appendix B: [Instructions for Manual Testing](#appendix-b-instructions-for-manual-testing)
     * B.1. [Launch and Shutdown](#b1-launch-and-shutdown)
-    * B.2. [HAN WEI UR PART HERE](#b2-deleting-a-task)
+    * B.2. [Features in Home tab](#b2-features-in-home-tab)
     * B.3. [Daily Feature](#b3-daily-feature)
     * B.4. [Module Feature](#b4-module-feature)
     * B.5. [Countdown Feature](#b5-countdown-feature)
@@ -239,7 +239,7 @@ Once the user marks a task as complete, it will automatically appear under Compl
 **Justification for current choice:** To the users, expired tasks that are overdue but not completed deserve more attention than pending tasks.
  Users would want to either remove the expired task or continue working on it. Therefore, we felt a need to display them separately and create commands that specifically handle Expired tasks.
  In addition, since tasks are sorted in the chronological order of their deadlines, having a centralised task list would mean that both completed and incomplete tasks would be mixed together,
- which does not allow users to focus on their incomplete task.
+ which does not allow users to focus on their incomplete tasks.
 
 ## 3.2. Daily feature (Yingqi)
 Tracker has a daily feature that allows users to add current tasks to a todo list for the day.
@@ -814,22 +814,39 @@ testers are expected to do more *exploratory* testing.
    2.2. Re-launch TR4CKER by double-clicking the jar file.<br>
    Expected: The most recent window size and location is retained.
 
-## B.2. Deleting a task
+## B.2. Features in Home tab
+1. Adding a task in Home tab.<br>
 
-1. Deleting a task while all tasks are being shown
+    1.1. Prerequisite: Must not have another task with the same name and same deadline. (Task names can be the same as long they have different deadline due to the recurring nature of some tasks, e.g CS2103T tutorial)
 
-   1. Prerequisites: List all tasks using the `list` command. Multiple tasks in the list.
+    1.2. Test case: `add n/CS2103T tutorial dl/12-12-2020 des/last tutorial m/CS2103T t/sad`<br>
+    Expected: TR4CKER adds the event to Countdown tab, with a result message saying
+    `New task added: CS2103T tutorial Deadline: 12-Dec-2020 2359 CompletionStatus: 0% Description: last tutorial ModuleCode: CS2103T Tags: [sad]`.
 
-   1. Test case: `delete 1`<br>
-      Expected: First task is deleted from the list. Details of the deleted task shown in the status message. Timestamp in the status bar is updated.
+    1.3. Incorrect countdown commands to try:`add n/TR@CKER dl/12-12-2020 des/hahaha`<br>
+    Expected: TR4CKER shows an `Names should only contain alphanumeric characters and spaces, and it should not be blank` error message since `NAME` is not alphanumeric.
+        
+2. Editing the deadline of a Pending task.<br>
 
-   1. Test case: `delete 0`<br>
-      Expected: No task is deleted. Error details shown in the status message. Status bar remains the same.
+    2.1. Prerequisite: Pending task exists in Pending Tasks list.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where `x` is larger than the list size)<br>
-      Expected: Similar to previous.
+    2.2. Test case: `edit 1 dl/15-12-2020 2200`
+    Expected: TR4CKER edits the pending task at index 1, with a result message saying `Edited task: ...`.
 
-1. _{ more test cases …​ }_
+    2.3. Incorrect countdown commands to try:`edit 1`<br>
+    Expected: TR4CKER shows an `At least one field to edit must be provided.` error message since no fields were specified in the command.
+
+
+3. Deleting a Pending task.<br>
+
+   3.1. Prerequisites: List all Pending tasks using the `list` command. Multiple tasks in the list.
+
+   3.2. Test case: `delete 1`<br>
+   Expected: First task deleted from the displayed Pending Tasks list, with a result message saying `Deleted task: ...`.
+
+   3.3. Incorrect delete commands to try: `delete task 1`<br>
+   Expected: TR4CKER shows an `Invalid command format! ...` error message since the syntax of the Delete commmand is wrong.
+
 
 ## B.3. Daily feature
 1. Switching to Daily tab.<br>
