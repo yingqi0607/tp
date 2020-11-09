@@ -138,7 +138,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasRelatedTasks(Module module) {
+        public boolean hasRelatedIncompleteTasks(Module module) {
             throw new AssertionError("This method should not be called.");
         }
 

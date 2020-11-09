@@ -2,6 +2,7 @@ package seedu.tr4cker.testutil;
 
 import seedu.tr4cker.model.Tr4cker;
 import seedu.tr4cker.model.countdown.Event;
+import seedu.tr4cker.model.module.Module;
 import seedu.tr4cker.model.task.Task;
 
 /**
@@ -39,5 +40,13 @@ public class Tr4ckerBuilder {
 
     public Tr4cker build() {
         return tr4cker;
+    }
+
+    /**
+     * Adds a new {@code Module} to the {@code Tr4cker} that we are building.
+     */
+    public Tr4ckerBuilder withModule(Module module) {
+        tr4cker.addModule(module);
+        return this;
     }
 }
