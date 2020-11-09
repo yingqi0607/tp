@@ -39,6 +39,9 @@ title: Developer Guide
 4. [Documentation](#4-documentation)
 5. [Testing](#5-testing)
 6. [Logging](#6-logging)
+
+<div style="page-break-after: always;"></div>
+
 7. [Configuration](#7-configuration)
 8. [Dev-ops](#8-dev-ops)
 9. Appendix A: [Requirements](#appendix-a-requirements)
@@ -55,6 +58,8 @@ title: Developer Guide
     * B.5. [Countdown Feature](#b5-countdown-feature)
     * B.6. [Planner Feature](#b6-planner-feature)
     * B.7. [Saving Data](#b7-saving-data)
+
+<div style="page-break-after: always;"></div>
     
 --------------------------------------------------------------------------------------------------------------------
 
