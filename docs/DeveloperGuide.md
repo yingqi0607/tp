@@ -254,7 +254,7 @@ The 3 main functions of the Daily feature are to:
 3. Delete a daily todo task when it is done for the day
 
 ### 3.2.1. Implementation
-The UI of the Daily feature is facilitated by the `DailyPanel` and `TodoCard` class which will show users all daily todo tasks as a list in the Daily tab.
+The UI of the Daily feature is facilitated by the `DailyPanel` and `TodoCard` classes which will show users all daily todo tasks as a list in the Daily tab.
 To implement the commands of this Daily feature, there are `TodoCommand`, `TodoCommandParser` , `DailyCommand` and `DailyCommandParser` classes in the `logic` package.
 
 The following diagram shows the sequence flow when a task gets added into the `DailyPanel`:
