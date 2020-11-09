@@ -658,7 +658,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  User requests to add a new task.
 2.  TR4CKER requests for task details.
 3.  User provides task details.
-4.  TR4CKER inserts the new task to user's task list.
+4.  TR4CKER inserts the new task to user's Pending Tasks list.
 
     Use case ends.
 
@@ -672,48 +672,52 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at step 4.
 
-**Use case: UC02 - Edit a task**
+**Use case: UC02 - Edit a Pending task**
 
 **MSS**
 
-1.  User requests to <u>list task (UC07)</u>.
-2.  User requests to edit a specific task in the list.
-3.  TR4CKER asks for the index.
-4.  User provides index.
-5.  TR4CKER asks for the field that User wishes to edit for the task.
-6.  User provides field to edit.
-7.  TR4CKER asks for the edited task field.
-8.  User provides the new edited task field.
-9.  TR4CKER updates the selected field accordingly.
+1.  User requests to <u>list Pending tasks (UC08)</u>.
+2.  User requests to edit a specific task in the Pending Tasks list.
+3.  TR4CKER asks for the task index and edited fields.
+4.  User provides the task index and the new edited task field.
+5.  TR4CKER updates the selected field accordingly.
 
     Use case ends.
 
 **Extensions**
 
-* 4a. TR4CKER detects an error in entered task index.
+* 4a. TR4CKER detects an error in the entered task index or edited task field.
     * 4a1. TR4CKER shows an error message.
 
     Use case end.
 
-* 8a. TR4CKER detects an error in edited task field.
-    * 8a1. TR4CKER requests for the correct edited field.
-    * 8a2. User enters the new edited field.
-
-    Steps 8a1-8a2 are repeated until the edited field entered is correct.
-
-    Use case resumes at step 9.
-
-**Use case: UC03 - Delete a task**
+**Use case: UC03 - Edit an Expired task**
 
 **MSS**
 
-1.  User requests to <u>list task (UC07)</u>.
-2.  User requests to delete a specific task in the list.
-3.  TR4CKER asks for the index.
+1.  User requests to edit a specific task in the Expired Tasks list.
+2.  TR4CKER asks for the task index and edited fields.
+3.  User provides the task index and the new edited task field.
+4.  TR4CKER updates the selected field accordingly.
+
+    Use case ends.
+
+**Extensions**
+
+* 3a. TR4CKER detects an error in the entered task index or edited task field.
+    * 3a1. TR4CKER shows an error message.
+
+    Use case end.
+
+**Use case: UC04 - Delete a Pending task**
+
+**MSS**
+
+1.  User requests to <u>list Pending tasks (UC08)</u>.
+2.  User requests to delete a specific task in the Pending Tasks list.
+3.  TR4CKER asks for the task index.
 4.  User provides index.
-5.  TR4CKER requests for confirmation.
-6.  User confirms.
-7.  TR4CKER deletes the task from the list.
+5.  TR4CKER deletes the task from the list.
 
     Use case ends.
 
@@ -724,13 +728,31 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: UC04 - Mark a task as done**
+**Use case: UC05 - Delete an Expired task**
 
 **MSS**
 
-1.  User requests to <u>list task (UC07)</u>.
+1.  User requests to delete a specific task from the Expired Tasks list.
+2.  TR4CKER asks for the task index.
+3.  User provides index.
+4.  TR4CKER deletes the expired task from the Expired Tasks list.
+
+    Use case ends.
+
+**Extensions**
+
+* 3a. TR4CKER detects an error in entered task index.
+    * 3a1. TR4CKER shows an error message.
+
+    Use case ends.
+
+**Use case: UC06 - Mark a Pending task as done**
+
+**MSS**
+
+1.  User requests to <u>list Pending tasks (UC08)</u>.
 2.  User requests to mark a specific task in the list as done.
-3.  TR4CKER marks the task as done.
+3.  TR4CKER marks the task as done and display task under Completed Tasks list.
 
     Use case ends.
 
@@ -742,28 +764,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
      Use case ends.
 
-**Use case: UC05 - View a task**
-
-**MSS**
-
-1.  User requests to <u>list task (UC07)</u>.
-2.  User requests to view a specific task in the list.
-3.  TR4CKER shows the details of the task.
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. TR4CKER detects an error in entered task index.
-
-    * 2a1. TR4CKER shows an error message.
-
-    Use case ends.
-
-**Use case: UC06 - Find related tasks**
+**Use case: UC07 - Find Pending tasks by keywords**
 
 1.  User requests to find tasks using specified keyword(s).
-2.  TR4CKER shows a list of all tasks that match the given keyword(s).
+2.  TR4CKER updates the Pending Tasks list with the Pending tasks that match any of the given keyword(s).
 
     Use case ends.
 
@@ -775,24 +779,74 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: UC07 - List all tasks**
+**Use case: UC08 - List Pending tasks**
 
 **MSS**
 
 1.  User requests to list tasks.
-2.  TR4CKER shows a list of all tasks.
+
+2.  TR4CKER shows a list of all Pending tasks.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. TR4CKER's task list is empty.
+* 2a. TR4CKER's Pending Tasks list is empty.
 
     * 2a1. TR4CKER shows an empty list.
 
     Use case ends.
+
+**Use case: UC09 - Switch to Daily tab**
+   
+**MSS**
+
+1. User requests to go to Daily tab.
+2. TR4CKER switches tab to Daily tab.
+
+    Use case ends
+
+**Extensions**
+
+* 1a. User entered the wrong command.
     
-**Use case: UC08 - Switching to Planner tab**
+    * 1a1. An error message is shown.
+    
+    Use case ends.
+
+**Use case: UC10 - Add a todo task to Daily tab**
+
+1.  User requests to <u>list Pending tasks (UC08)</u>.
+2.  User requests to add a specific pending task in the daily todo list.
+3.  TR4CKER adds the task in daily todo list.
+
+    Use case ends
+
+**Extensions**
+
+* 2a. TR4CKER detects an error in entered task index.
+
+    * 2a1. An error message is shown.
+    
+    Use case ends.
+
+**Use case: UC11 - Delete a todo task from Daily tab**
+
+1. User <u>switches to Daily tab(UC09)</u>.
+2. User requests to delete a specific todo task in the daily todo list.
+3. TR4CKER deletes the todo task from daily todo list.
+
+    Use case ends
+
+**Extensions**
+
+* 2a. TR4CKER detects an error in entered task index.
+
+    * 2a1. An error message is shown.
+    
+    Use case ends.
+    
+**Use case: UC12 - Switching to Planner tab**
 
 **MSS**
 
@@ -809,7 +863,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
     
-**Use case: UC09 - Goto specific date in Planner tab**
+**Use case: UC13 - Goto specific date in Planner tab**
 
 **MSS**
 
@@ -826,7 +880,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
     
-**Use case: UC10 - Goto specific month in Planner tab**
+
+**Use case: UC14 - Goto specific month in Planner tab**
 
 **MSS**
 
