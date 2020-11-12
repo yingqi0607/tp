@@ -79,7 +79,6 @@ This guide uses the following features to make it easier for you to navigate aro
 | Symbol | What does it mean? |
 | ------ | ------------------ |
 | `Command` | A command that you can type into TR4CKER |
-| <kbd>Key</kbd> | A keyboard key that you can press |
 | :information_source: | Important notes to take note of when using TR4CKER |
 | :bulb: | Tips and tricks to make it easier to use TR4CKER |
 | :warning: | Warnings that you need to take note of |
@@ -191,7 +190,7 @@ Format: `home`
 ![BeforeHomeCommand](images/BeforeHomeCommand.png)
 Figure 4: TR4CKER before executing `home`
 
-2. Press <kbd>enter</kbd>, and TR4CKER switches to the Home tab.
+2. Press enter, and TR4CKER switches to the Home tab.
 ![AfterHomeCommand](images/AfterHomeCommand.png)
 Figure 5: TR4CKER after executing `home`
 
