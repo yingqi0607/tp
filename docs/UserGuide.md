@@ -3,6 +3,10 @@ layout: page
 title: User Guide
 ---
 
+![TR4CKER Logo](images/logo.png)
+
+<div style="page-break-after: always;"></div>
+
 1. [Overview](#1-overview)
     * 1.1. [About TR4CKER](#11-about-tr4cker)
     * 1.2. [About this User Guide](#12-about-this-user-guide)
@@ -58,20 +62,29 @@ title: User Guide
 6. [Command Summary](#6-command-summary)
 
 # 1. Overview
-Welcome to the User Guide of TR4CKER!
+Welcome to the User Guide of TR4CKER! This User Guide is written for new and experienced users of TR4CKER. This User Guide
+equips you with the basics of using TR4CKER, so that you can start using TR4CKER to increase your productivity right away.
 
-## 1.1. About TR4CKER
-TR4CKER is a desktop app that helps SoC students track their tasks, meet their deadlines, and stay productive. It is
-optimized for Computing students familiar with Command Line Interface (CLI), who can manage their tasks efficiently
-by typing in commands.
+## 1.1. What is TR4CKER?
+TR4CKER is a desktop app that helps School of Computing (SoC) students track their tasks, meet their deadlines, and stay
+productive. It is optimized for Computing students who are familiar with Command Line Interface (CLI), who can manage
+their tasks efficiently by typing in commands.
 
 ## 1.2. About this User Guide
 This User Guide explains how to use TR4CKER, by giving you an understanding of the features and commands, as well as
 providing some common use cases of this application.
 
-In this guide, we cover:
-1. How to navigate the Graphical User Interface (GUI)
-2. How to use the Command Line Interface (CLI)
+This guide uses the following features to make it easier for you to navigate around: 
+
+| Symbol | What does it mean? |
+| ------ | ------------------ |
+| `Command` | A command that you can type into TR4CKER |
+| <kbd>Key</kbd> | A keyboard key that you can press |
+| :information_source: | Important notes to take note of when using TR4CKER |
+| :bulb: | Tips and tricks to make it easier to use TR4CKER |
+| :warning: | Warnings that you need to take note of |
+
+Table 1: Common symbols used in this User Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -94,6 +107,16 @@ Figure 1: TR4CKER home page populated with sample data
 6. Here is a labelled diagram of the GUI to help you familiarise yourself with TR4CKER.
 ![Labelled Ui](images/labelledUi.png)
 Figure 2: Labelled GUI of TR4CKER
+
+7. Here are some example commands you can try:
+* `add n/CS2103T Practical des/Catch bugs dl/today t/graded`  
+    Adds a task with the description “catch bugs” and deadline of today
+* `edit 1 dl/12-12-2020 1900`  
+    Edits the deadline of the first task to 12th Dec 2020 1900hrs 
+* `delete 1`  
+    Deletes the first task in the list
+* `exit`  
+    Exits and closes TR4CKER
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -146,11 +169,11 @@ You can switch between tabs by using the following commands:
 |  `home`    | Home            |
 |  `daily`   | Daily           |
 |  `modules` | Modules         |
-| `countdown`| Countdowns      |
+| `countdown`| Countdown       |
 |  `planner` | Planner         |
 |  `help`    | Help            |
 
-Table 1: List of Switch Tab commands
+Table 2: List of Switch Tab commands
 
 ## 3.2. Home (Han Wei)
 
@@ -164,11 +187,11 @@ You can also click on the Home button on the tabs menu at the top of the screen.
 
 Format: `home`
 
-1. Type `home` into the command box.
+1. You type `home` into the command box.
 ![BeforeHomeCommand](images/BeforeHomeCommand.png)
 Figure 4: TR4CKER before executing `home`
 
-2. Press enter, and TR4CKER switches to the Home tab.
+2. Press <kbd>enter</kbd>, and TR4CKER switches to the Home tab.
 ![AfterHomeCommand](images/AfterHomeCommand.png)
 Figure 5: TR4CKER after executing `home`
 
@@ -195,12 +218,12 @@ You can add a task to TR4CKER using the `add` command when you want to start wor
 
 Format: `add n/NAME des/DESCRIPTION [m/MODULE_CODE] [dl/DEADLINE] [t/TAG]…​`
 
-1. Type out details of your task in the command box using the `add` command.
+1. You type out details of your task in the command box using the `add` command.
  
     ![BeforeAddCommand](images/BeforeAddCommand.png)
     Figure 7: TR4CKER before executing `add n/Update DG dl/today des/draw UML diagrams m/CS2103T t/urgent t/important`
 
-2. Press enter, and TR4CKER will add the task.
+2. Press <kbd>enter</kbd>, and TR4CKER will add the task.
 
     ![AfterAddCommand](images/AfterAddCommand.png)
     Figure 8: TR4CKER after executing `add n/Update DG dl/today des/draw UML diagrams m/CS2103T t/urgent t/important`
@@ -246,11 +269,11 @@ the Result Display box.
 
 Format: `list`
 
-1. Type out the `list` command into the command box.
+1. You type out the `list` command into the command box.
     ![BeforeListCommand](images/BeforeListCommand.png)
     Figure 9: TR4CKER before executing `list`
 
-2. Press enter, and TR4CKER will list out all the Pending tasks.
+2. Press <kbd>enter</kbd>, and TR4CKER will list out all the Pending tasks.
     ![AfterListCommand](images/AfterListCommand.png)
     Figure 10: TR4CKER displaying the entire Pending Tasks list after executing `list`
 
@@ -266,11 +289,11 @@ Format: `done INDEX [p/COMPLETION_STATUS]`
 * Completion Status is a percentage of task done and therefore only accept integer values from 0 to 100.
 * If Completion Status is not entered, TR4CKER will mark the task as 100% done.
 
-1.  Type the index number of the task and the new Completion Status into the command box using the `done` command.
+1.  You type the index number of the task and the new Completion Status into the command box using the `done` command.
     ![BeforeDoneCommand](images/BeforeDoneCommand.png)
     Figure 11: TR4CKER before executing `done 1 p/50`
 
-2.  Press enter, and TR4CKER will update the Completion Status of the task.
+2.  Press <kbd>enter</kbd>, and TR4CKER will update the Completion Status of the task.
     ![AfterDoneCommand](images/AfterDoneCommand.png)
     Figure 12: TR4CKER after executing `done 1 p/50`
 
@@ -298,11 +321,11 @@ Format: `edit INDEX [n/NAME] [dl/DEADLINE] [des/DESCRIPTION] [m/MODULE_CODE]`
   To find out how to add a module in TR4CKER, you may refer to [_Section 3.4.2 - Adding a new module into the modules list_](#342-adding-a-new-module-to-modules-list).
 * Editing of tags is done using `tag` command instead (Refer to the next section on [_Section 3.2.7. - Editing tags of Pending tasks_](#327-editing-tags-of-pending-tasks-tag)).
 
-1.  Type the index number of the Pending task and its edited fields that you want to update in the command box using the `edit` command.
+1.  You type the index number of the Pending task and its edited fields that you want to update in the command box using the `edit` command.
     ![BeforeEditCommand](images/BeforeEditCommand.png)
     Figure 13: TR4CKER before executing `edit 2 n/CS2100 Lab 3`
 
-2. Press enter, and TR4CKER will edit the Pending task.
+2. Press <kbd>enter</kbd>, and TR4CKER will edit the Pending task.
     ![AfterEditCommand](images/AfterEditCommand.png)
     Figure 14: TR4CKER after executing `edit 2 n/CS2100 Lab 3`
 
@@ -327,11 +350,11 @@ Format: `tag INDEX [new/NEW_TAG]…​ [del/TAG_TO_DELETE]…​`
 * Multiple tags can be added and deleted at the same time.
 * Tags are case-sensitive. This means that a tag of `cs2103t` will be regarded as a different tag from `CS2103T`.
 
-1.  Type the index number of the Pending task and its tags that you want to add or delete in the command box using the `tag` command.
+1.  You type the index number of the Pending task and its tags that you want to add or delete in the command box using the `tag` command.
     ![BeforeTagCommand](images/BeforeTagCommand.png)
     Figure 15: TR4CKER before executing `tag 1 del/urgent`
 
-2.  Press enter, and TR4CKER will edit the tag of the Pending task.
+2.  Press <kbd>enter</kbd>, and TR4CKER will edit the tag of the Pending task.
     ![AfterTagCommand](images/AfterTagCommand.png)
     Figure 16: TR4CKER after executing `tag 1 del/urgent` with the urgent tag removed
 
@@ -354,11 +377,11 @@ Format: `find [KEYWORD_1] [KEYWORD_2] ...`
 * Tasks matching at least one keyword will be returned (e.g. `find CS2103T Assignment` will return `CS2103T Project`,
 `CS2100 Assignment 3`).
 
-1.  Type the keywords in the command box using the `find` command.
+1.  You type the keywords in the command box using the `find` command.
     ![BeforeFindCommand](images/BeforeFindCommand.png)
     Figure 17: TR4CKER before executing `find quiz`
 
-2.  Press enter, and TR4CKER will list out all the Pending tasks that match the keywords.
+2.  Press <kbd>enter</kbd>, and TR4CKER will list out all the Pending tasks that match the keywords.
     ![AfterFindCommand](images/AfterFindCommand.png)
     Figure 18: TR4CKER after executing `find quiz` with the search results
 
@@ -376,11 +399,11 @@ Format: `delete INDEX`
 * The index refers to a valid index number shown in the displayed task list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
-1.  Type the index of the Pending task that you wish to delete in the command box using the `delete` command.
+1.  You type the index of the Pending task that you wish to delete in the command box using the `delete` command.
     ![BeforeDeleteCommand](images/BeforeDeleteCommand.png)
     Figure 19: TR4CKER before executing `delete 1`
 
-2.  Press enter, and TR4CKER will delete the Pending task.
+2.  Press <kbd>enter</kbd>, and TR4CKER will delete the Pending task.
     ![AfterDeleteCommand](images/AfterDeleteCommand.png)
     Figure 20: TR4CKER after executing `delete 1` with the task at index 1 under the Pending Tasks panel removed from TR4CKER
 
@@ -403,11 +426,11 @@ must be a future Deadline. Hence, the edited task will be displayed under the Pe
 
 </div>
 
-1.  Type the index number of the Expired task and its edited fields that you want to update in the command box using the `edit expired` command.
+1.  You type the index number of the Expired task and its edited fields that you want to update in the command box using the `edit expired` command.
     ![BeforeEditExpiredCommand](images/BeforeEditExpiredCommand.png)
     Figure 21: TR4CKER before executing `edit expired 1 dl/today`
 
-2.  Press enter, and TR4CKER will edit the Expired task with the new field.
+2.  Press <kbd>enter</kbd>, and TR4CKER will edit the Expired task with the new field.
     ![AfterEditExpiredCommand](images/AfterEditExpiredCommand.png)
     Figure 22: TR4CKER after executing `edit expired 1 dl/today` with the edited task being displayed under Pending Tasks
 
@@ -422,11 +445,11 @@ Format: `delete expired INDEX`
 * The index refers to a valid index number shown in the Expired Tasks list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
-1.  Type the index of the Expired task that you wish to delete in the command box using the `delete expired` command.
+1.  You type the index of the Expired task that you wish to delete in the command box using the `delete expired` command.
     ![BeforeDeleteExpiredCommand](images/BeforeDeleteExpiredCommand.png)
     Figure 23: TR4CKER before executing `delete expired 1`
 
-2.  Press enter, and TR4CKER will delete the Pending task.
+2.  Press <kbd>enter</kbd>, and TR4CKER will delete the Pending task.
     ![AfterDeleteExpiredCommand](images/AfterDeleteExpiredCommand.png)
     Figure 24: TR4CKER after executing `delete expired 1` with the task at index 1 from the Expired Tasks panel removed from TR4CKER.
 
@@ -448,11 +471,11 @@ If you would like to switch to Daily tab without clicking on the Daily tab butto
 Format: `daily`
 
 Example:
-1. You enter `daily` into the command box.
+1. You type `daily` into the command box.
 ![switch tab before](images/dailyTab_switchTabBefore.png)
 Figure 26: TR4CKER before executing `daily`
 
-2. Press enter and TR4CKER should look like this:
+2. Press <kbd>enter</kbd> and TR4CKER should look like this:
 ![switch tab](images/dailyTab_switchTabAfter.png)
 Figure 27: TR4CKER after executing `daily`
 
@@ -468,15 +491,15 @@ Format: `todo INDEX`
 * The index refers to a valid index number shown in the displayed task list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
-1. You enter `list` and press enter to see a list of pending tasks.
+1. You type `list` and press <kbd>enter</kbd> to see a list of pending tasks.
 ![list of pending](images/listCommand.png)
 Figure 28: TR4CKER after executing `list`
 
-2. Enter `todo 1` to add the first task into daily todo list.
+2. Type `todo 1` to add the first task into daily todo list.
 ![todo before](images/dailyTab_todo1Before.png)
 Figure 29: TR4CKER before executing `todo 1`
 
-3. Press enter and the task has been added to daily todo list
+3. Press <kbd>enter</kbd> and the task has been added to daily todo list
 ![todo result](images/dailyTab_todo1After.png)
 Figure 30: TR4CKER after executing `todo 1`
 
@@ -488,14 +511,14 @@ Examples:
 You can edit details of a daily todo task using the `edit` command. 
 When you edit the details of a pending task that is also in Daily todo list, the corresponding todo task will be updated as well.
 
-1. You enter `edit 1 n/CS2101 Oral Presentation 2` to edit task name of the first pending task.
+1. You type `edit 1 n/CS2101 Oral Presentation 2` to edit task name of the first pending task.
     ![home edit before](images/homeTab_edit1Before.png)
     Figure 31: Home tab before executing `edit 1 n/CS2101 Oral Presentation 2`
     
     ![daily edit before](images/dailyTab_edit1Before.png)
     Figure 32: Daily tab before executing `edit 1 n/CS2101 Oral Presentation 2`
 
-2. Press enter and the name of the corresponding todo task is edited as well.
+2. Press <kbd>enter</kbd> and the name of the corresponding todo task is edited as well.
     ![home edit after](images/hometab_edit1After.png)
     Figure 33: Home tab after executing `edit 1 n/CS2101 Oral Presentation 2`
     
@@ -517,11 +540,11 @@ Format: `daily del/INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 * If you delete a pending task using the `delete` command, the corresponding daily todo task will be removed as well.
 
-1. You enter `daily del/1` to delete the first todo task in daily todo list.
+1. You type `daily del/1` to delete the first todo task in daily todo list.
 ![daily delete before](images/dailyTab_del1Before.png)
 Figure 35: Daily tab before executing `daily del/1`
 
-2. Press enter and the first todo task is deleted.
+2. Press <kbd>enter</kbd> and the first todo task is deleted.
 ![daily delete after](images/dailyTab_del1After.png)
 Figure 36: Daily tab after executing `daily del/1`
 
@@ -548,11 +571,11 @@ menu at the top.
 
 Format: `modules`
 
-1. You enter `modules` into the command box.
+1. You type `modules` into the command box.
 ![switch tab before](images/moduletab_switchtab_before.png)
 Figure 37: TR4CKER before executing `modules`
 
-2. Press enter and TR4CKER should switch to the Module tab:
+2. Press <kbd>enter</kbd> and TR4CKER should switch to the Module tab:
 ![switch tab](images/moduletab_switchtab_after.png)
 Figure 38: TR4CKER after executing `modules`
 
@@ -579,11 +602,11 @@ Format: `modules n/NAME m/MODULECODE`
 * `MODULECODE` is case-insensitive.
 * The keyword `DEL` is not a valid `MODULECODE`.
 
-1. You enter a command into the command box to create a module, let's say Computer Graphics with module code CS3241.
+1. You type a command into the command box to create a module, let's say Computer Graphics with module code CS3241.
 ![add module before](images/moduletab_addmodule_before.png)
 Figure 39: TR4CKER before executing `modules n/Computer Graphics m/CS3241`
 
-2. Press enter and the module should appear at the bottom of the modules list:
+2. Press <kbd>enter</kbd> and the module should appear at the bottom of the modules list:
 ![add_module after](images/moduletab_addmodule_after.png)
 Figure 40: TR4CKER after executing `modules n/Computer Graphics m/CS3241`
 
@@ -616,11 +639,11 @@ to assign tasks to modules straight away.
 
 </div>
 
-1. You enter a command into the command box to assign a module, let's say to assign task 1 to CS3241.
+1. You type a command into the command box to assign a module, let's say to assign task 1 to CS3241.
 ![assign module before](images/moduletab_assignmodule_before.png)
 Figure 41: TR4CKER before executing `edit 1 m/CS3241`
 
-2. Press enter and the module code should have been tagged with the module code.
+2. Press <kbd>enter</kbd> and the module code should have been tagged with the module code.
 ![assign module after](images/moduletab_assignmodule_after.png)
 Figure 42: TR4CKER after executing `edit 1 m/CS3241`
 
@@ -645,11 +668,11 @@ Format: `edit INDEX m/del`
 * The index **must be a positive integer** 1, 2, 3, …
 * Instead of providing a module code with `m/MODULECODE`, the input `m/del` signifies deleting a module code.
 
-1. You enter a command into the command box to delete a module assignment, let's say from task 1.
+1. You type a command into the command box to delete a module assignment, let's say from task 1.
 ![unassign module before](images/moduletab_unassignmodule_before.png)
 Figure 44: TR4CKER before executing `edit 1 m/del`
 
-2. Press enter and the module should be unassigned from task 1.
+2. Press <kbd>enter</kbd> and the module should be unassigned from task 1.
 ![unassign module](images/moduletab_unassignmodule_after.png)
 Figure 45: TR4CKER after executing `edit 1 m/del`
 
@@ -666,15 +689,27 @@ Format: `modules del/INDEX`
 * Deletes a module at the specified `INDEX`.
 * The index refers to a valid index number shown in the module list.
 * The index **must be a positive integer** 1, 2, 3, …
-* Warning: This action is irreversible!
 
-1. You enter a command into the command box to delete a module, let's say module number 9 that we created previously.
+1. You type a command into the command box to delete a module, let's say module number 9 that we created previously.
 ![delete module before](images/moduletab_deletemodule_before.png)
 Figure 46: TR4CKER before executing `modules del/9`
 
-2. Press enter and the module should be removed from the list.
+2. Press <kbd>enter</kbd> and the module should be removed from the list.
 ![delete module after](images/moduletab_deletemodule_after.png)
 Figure 47: TR4CKER after executing `modules del/9`
+
+<div markdown="block" class="alert alert-warning">
+
+:warning: Warning: This action is irreversible!
+
+</div>
+
+<div markdown="span" class="alert alert-primary">:bulb: **Note:**
+TR4CKER automatically sorts your upcoming events according to the date they are due, with earlier events being shown
+first. Events which occur **today** are shown right at the top, with `0 days!` shown as the number of days left, while
+events which are have passed are shown at the very bottom of the list in **no particular order**. You can delete them to
+stop seeing them!
+</div>
 
 Example:
 * `modules del/1` - Deletes the 1st module in the modules list.
@@ -689,11 +724,11 @@ on the tabs menu at the top of the screen.
 
 Format: `countdown`
 
-1. Type `countdown` into the command box.
+1. You type `countdown` into the command box.
 ![switch tab_before](images/countdowntab_switchtab_before.png)
 Figure 48: TR4CKER before executing `countdown`
 
-2. Press enter, and TR4CKER switches to the Countdown tab.
+2. Press <kbd>enter</kbd>, and TR4CKER switches to the Countdown tab.
 ![switch tab_after](images/countdowntab_switchtab_after.png)
 Figure 49: TR4CKER after executing `countdown`
 
@@ -723,12 +758,12 @@ Format: `countdown n/NAME d/DATE`
 
 1. Switch to the Countdown tab to view your current list of events.
 
-2. Type `countdown n/NAME d/DATE` into the command box, where `NAME` is the name of the event and `DATE` is the date of
+2. You type `countdown n/NAME d/DATE` into the command box, where `NAME` is the name of the event and `DATE` is the date of
 the event.
 ![add_new_before](images/countdowntab_addnew_before.png)
 Figure 50: TR4CKER before executing `countdown n/ST2334 Final Examination d/23-Nov-2020`
 
-3. Press enter, and TR4CKER will add the event.
+3. Press <kbd>enter</kbd>, and TR4CKER will add the event.
 ![add_new_after](images/countdowntab_addnew_after.png)
 Figure 51: TR4CKER after executing `countdown n/ST2334 Final Examination d/23-Nov-2020`
 
@@ -745,17 +780,22 @@ Format: `countdown del/INDEX`
 
 * This command deletes the event at index `INDEX` of the events list.
 * `INDEX` has to be a valid index of an event, numbered according to the list in Countdown tab.
-* :warning: Warning: This action is irreversible!
 
 1. Switch to the Countdown tab to view your current list of events.
 
-2. Type `countdown del/INDEX` into the command box, where `INDEX` is the index of the event in the events list.
+2. You type `countdown del/INDEX` into the command box, where `INDEX` is the index of the event in the events list.
 ![delete_before](images/countdowntab_delete_before.png)
 Figure 52: TR4CKER before executing `countdown del/2`
 
-3. Press enter, and TR4CKER will delete the event.
+3. Press <kbd>enter</kbd>, and TR4CKER will delete the event.
 ![delete_after](images/countdowntab_delete_after.png)
 Figure 53: TR4CKER after executing `countdown del/2`
+
+<div markdown="block" class="alert alert-warning">
+
+:warning: Warning: This action is irreversible!
+
+</div>
 
 Example:
 * `countdown del/8` - Deletes the event at index `8` of the Countdowns list.
@@ -771,11 +811,11 @@ Format: `countdown days/DAYS`
 
 1. Switch to the Countdown tab to view your current list of events.
 
-2. Type `countdown days/DAYS` into the command box, where `DAYS` is the number of days.
+2. You type `countdown days/DAYS` into the command box, where `DAYS` is the number of days.
 ![days_before](images/countdowntab_days_before.png)
 Figure 54: TR4CKER before executing `countdown days/28`
 
-3. Press enter, and TR4CKER will count the events occurring in the next `DAYS` number of days.
+3. Press <kbd>enter</kbd>, and TR4CKER will count the events occurring in the next `DAYS` number of days.
 ![days_after](images/countdowntab_days_after.png)
 Figure 55: TR4CKER after executing `countdown days/28`
 
@@ -795,11 +835,11 @@ CLI, by just typing `planner`.
 
 Format: `planner`
 
-1. You enter `planner` into the command box.
+1. You type `planner` into the command box.
 ![switch tab](images/plannertab_switchtab.png)
 Figure 56: TR4CKER before executing `planner`
 
-2. Press enter and TR4CKER should switch to Planner tab.
+2. Press <kbd>enter</kbd> and TR4CKER should switch to Planner tab.
 ![switch tab](images/plannertab_switchtab1.png)
 Figure 57: TR4CKER after executing `planner`
 
@@ -824,11 +864,11 @@ You can view today's tasks list using this command.
 
 Format: `planner goto/today` or `planner goto/tdy`
 
-1. You enter the command into the command box to navigate to today.
+1. You type the command into the command box to navigate to today.
 ![goto today command](images/plannertab_gototoday.png)
 Figure 58: TR4CKER before executing `planner goto/tdy`
 
-2. Press enter and TR4CKER will change planner tab to today's calendar view and tasks due today.
+2. Press <kbd>enter</kbd> and TR4CKER will change planner tab to today's calendar view and tasks due today.
 ![goto today result](images/plannertab_gototoday1.png)
 Figure 59: TR4CKER after executing `planner goto/tdy`
 
@@ -846,11 +886,11 @@ You can view tomorrow's tasks list using this command.
 
 Format: `planner goto/tomorrow` or `planner goto/tmr`
 
-1. You enter the command into the command box to navigate to tomorrow.
+1. You type the command into the command box to navigate to tomorrow.
 ![goto tomorrow command](images/plannertab_gototomorrow.png)
 Figure 60: TR4CKER before executing `planner goto/tmr`
 
-2. Press enter and TR4CKER will change planner tab to tomorrow's calendar view and tasks due tomorrow.
+2. Press <kbd>enter</kbd> and TR4CKER will change planner tab to tomorrow's calendar view and tasks due tomorrow.
 ![goto tomorrow result](images/plannertab_gototomorrow1.png)
 Figure 61: TR4CKER after executing `planner goto/tmr`
 
@@ -868,11 +908,11 @@ For the ease of accessing of a specific date's tasks list, TR4CKER has provided 
 
 Format: `planner goto/DATE`
 
-1. You enter the command into the command box to navigate to a specific date, let's say 27 October 2020.
+1. You type the command into the command box to navigate to a specific date, let's say 27 October 2020.
 ![goto date command](images/plannertab_gotodate.png)
 Figure 62: TR4CKER before executing `planner goto/27-10-2020`
 
-2. Press enter and TR4CKER will change planner tab to the date's calendar view and tasks due on that date.
+2. Press <kbd>enter</kbd> and TR4CKER will change planner tab to the date's calendar view and tasks due on that date.
 ![goto date result](images/plannertab_gotodate1.png)
 Figure 63: TR4CKER after executing `planner goto/27-10-2020`
 
@@ -899,11 +939,11 @@ For the ease of accessing of a specific month's tasks list, TR4CKER has provided
 
 Format: `planner goto/MONTH`
 
-1. You enter the command into the command box to navigate to a specific month, let's say September 2021.
+1. You type the command into the command box to navigate to a specific month, let's say September 2021.
 ![goto month command](images/plannertab_gotomonth.png)
 Figure 64: TR4CKER before executing `planner goto/Sep-2021`
 
-2. Press enter and TR4CKER will change planner tab to the month's calendar view and tasks due on first day of the month.
+2. Press <kbd>enter</kbd> and TR4CKER will change planner tab to the month's calendar view and tasks due on first day of the month.
 ![goto month result](images/plannertab_gotomonth1.png)
 Figure 65: TR4CKER after executing `planner goto/Sep-2021`
 
